@@ -16,6 +16,7 @@ public class Massages {
     }
 
     private static String getName(Context c){
-        return c.getClass().getName();
+        if (c!=null) return c.getClass().getName();
+        else return "anon class";
     }
 }
