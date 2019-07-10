@@ -40,7 +40,8 @@ public class RepDraw {
     }
 
     /*single - это если добавляем только один элемент*/
-    public RepDraw setImg(Bitmap b, CompRep rep, boolean single){
+
+    public void setImg(Bitmap b, CompRep rep, boolean single){
         zeroingBitmap(rImg);
         if(testBitmap(b)) {
             rImg = b.copy(Bitmap.Config.ARGB_8888, true);
@@ -49,11 +50,10 @@ public class RepDraw {
             if (rep != null) rIMat.setRepository(rep);
             if (single&&rAdd != null) rAdd.readinessImg(true);
         }
-        if(single)zeroingBitmap(b);
-        return this;
+        zeroingBitmap(b);
     }
 
-    public RepDraw setLyr(Bitmap b, CompRep rep, boolean single){
+    public void setLyr(Bitmap b, CompRep rep, boolean single){
         zeroingBitmap(rLyr);
         if(testBitmap(b)) {
             rLyr = b.copy(Bitmap.Config.ARGB_8888, true);
@@ -62,8 +62,7 @@ public class RepDraw {
             if (rep != null) rLMat.setRepository(rep);
             if (single&&rAdd != null) rAdd.readinessLyr(true);
         }
-        if(single)zeroingBitmap(b);;
-        return this;
+        zeroingBitmap(b);;
     }
 
     public RepDraw setAll(Bitmap img, CompRep repImg, Bitmap lyr, CompRep repLyr){
