@@ -8,7 +8,7 @@ public class Massages {
     private static final String TAG = "MASSAGE APP";
 
     public static void ERROR(String text, Context c){
-        Log.e(TAG,"class name - "+getName(c)+" massage - "+text);
+        Log.e(TAG,"class name - "+getName(c)+" error - "+text);
     }
 
     public static void MASSAGE(String text, Context c){
