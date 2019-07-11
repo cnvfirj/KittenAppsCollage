@@ -1,3 +1,36 @@
 <resources>
     <string name="app_name">Kitten Apps Collage</string>
+
+
+    <string name="GET">получи</string>
+    <string name="ASSES_TO_DATA">доступ к данным</string>
+    <string name="ASSES_TO_CAMERA">доступ к камере</string>
+    <string name="ASSES_TO_DATA_READER">доступ для чтения данных</string>
+    <string name="ASSES_TO_DATA_RECORDER">доступ для записи данных</string>
+    <string name="RATIONALE_ASSES_CAMERA">доступ к камере нужен для съемки внутри приложения</string>
+    <string name="RATIONALE_ASSES_ACCAUNT">доступ к аккаунту нужен для чтения и записи из облака</string>
+    <string name="RATIONALE_ASSES_WRITE">доступ к мультимедиа нужен для чтения и сохранения изображений на устройстве</string>
+    <string name="ASSES_NET_AND_AKK">доступ к сети и аккаунту</string>
+    <string name="ASSES_AKK">доступ к аккаунту</string>
+    <string name="ASSES_NET">доступ к сети</string>
+    <string name="IMAGES_NOT_FOUND">изображения не найдены</string>
+    <string name="TOAST_RESOLUTION">в настройках дай нужное разрешение</string>
+    <string name="NOT_PERMISSIONS_MULTIMEDIA">нет разрешения на чтение и запись</string>
+    <string name="NOT_PERMISSION">нет разрешения</string>
+    <string name="GO_TO_SETTINGS">для его получения перейди в настройки приложения</string>
+    <string name="TO_FIX">исправить?</string>
+    <string name="REPEAT_REQUEST">повторить запрос?</string>
+    <string name="YES">да</string>
+    <string name="NO">нет</string>
+    <string name="LOAD_IN_DERECT_MESSAGE_TOAST_">адрес должен начинаться на </string>
+    <string name="LOAD_IN_DIRECT_LENGTH_SIMBOLS">адрес содержит больше символов</string>
+    <string name="LOAD_IN_DIRECT_INPUT_FROM">заполните форму ввода</string>
+    <string name="OR"> или </string>
+    <string name="IMG_SAVED">изображение сохранено</string>
+    <string name="ERROR_SAVED">ошибка сохранения</string>
+    <string name="FOTO">Фото</string>
+    <string name="COLLECT">Галерея</string>
+    <string name="INPUT_TEXT_SELECT_TEXT">Введи нужный текст</string>
+    <string name="FILL_FIGURE">закрасить</string>
+    <string name="ITALIC">курсив</string>
 </resources>
