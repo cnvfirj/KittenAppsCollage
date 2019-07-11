@@ -43,5 +43,16 @@ public class FragmentDraw extends Fragment {
                 dViewDraw.applyMutable();
             }
         });
+
+        initViews(view);
+    }
+
+    private void  initViews(View view){
+
+        addListener();
+    }
+
+    private void addListener(){
+
     }
 }
