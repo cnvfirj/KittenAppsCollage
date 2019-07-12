@@ -4,7 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.kittenappscollage.draw.ViewDraw
+    <com.example.kittenappscollage.draw.view.ViewDraw
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/view_draw"/>

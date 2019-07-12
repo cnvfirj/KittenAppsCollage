@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.kittenappscollage.R;
+import com.example.kittenappscollage.draw.view.ViewDraw;
 import com.example.kittenappscollage.packProj.RepDraw;
 
 public class FragmentDraw extends Fragment {
