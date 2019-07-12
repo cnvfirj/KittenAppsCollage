@@ -5,10 +5,6 @@ import android.view.MotionEvent;
 
 public class ApplyOperation {
 
-
-
-
-
     public ApplyOperation event(MotionEvent event){
         return this;
     }

@@ -3,6 +3,7 @@ package com.example.kittenappscollage.draw.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,6 +33,7 @@ public class ViewDraw extends View {
     protected void onDraw(Canvas canvas) {
 
 
+        canvas.drawColor(Color.YELLOW);
         super.onDraw(canvas);
     }
 
@@ -52,5 +54,9 @@ public class ViewDraw extends View {
 
     public void command(Operation.Command command){
         vApplyOperation.command(command);
+    }
+
+    public void nonBlockTouch(boolean nonBlock){
+        vNonBlock = nonBlock;
     }
 }
