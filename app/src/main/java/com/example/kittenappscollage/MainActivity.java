@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        App.setMain(this);
+//        App.setMain(this);
         setupViewPager((SelectSweepViewPager) findViewById(R.id.select_sweep_viewpager));
     }
 
