@@ -1,31 +1,27 @@
-package com.example.kittenappscollage.collect;
+package com.example.kittenappscollage.draw;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
-import com.example.kittenappscollage.R;
-
-public class FragmentCollect extends Fragment {
+public class DrawTools extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_collect,null);
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Glide.with(this)
-                .load(R.drawable.ic_star)
-                .into((ImageView) view.findViewById(R.id.ic_account));
     }
+
+
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_width="@dimen/param_tools"
+        android:layout_height="@dimen/param_tools"
+        android:id="@+id/tool_translate"
+        android:src="@drawable/ic_star"/>
+    <ImageView
+        android:layout_width="@dimen/param_tools"
+        android:layout_height="@dimen/param_tools"
+        android:id="@+id/tool_scale"
+        android:src="@drawable/ic_star"/>
+    <ImageView
+        android:layout_width="@dimen/param_tools"
+        android:layout_height="@dimen/param_tools"
+        android:id="@+id/tool_deform_rotate"
+        android:src="@drawable/ic_star"/>
+    <ImageView
+        android:layout_width="@dimen/param_tools"
+        android:layout_height="@dimen/param_tools"
+        android:id="@+id/tool_cut"
+        android:src="@drawable/ic_star"/>
+    <ImageView
+        android:layout_width="@dimen/param_tools"
+        android:layout_height="@dimen/param_tools"
+        android:id="@+id/tool_draw"
+        android:src="@drawable/ic_star"/>
+    <ImageView
+        android:layout_width="@dimen/param_tools"
+        android:layout_height="@dimen/param_tools"
+        android:id="@+id/tool_elast"
+        android:src="@drawable/ic_star"/>
+    <ImageView
+        android:layout_width="@dimen/param_tools"
+        android:layout_height="@dimen/param_tools"
+        android:id="@+id/tool_fill"
+        android:src="@drawable/ic_star"/>
+    <ImageView
+        android:layout_width="@dimen/param_tools"
+        android:layout_height="@dimen/param_tools"
+        android:id="@+id/tool_text"
+        android:src="@drawable/ic_star"/>
+
+
+</LinearLayout>
