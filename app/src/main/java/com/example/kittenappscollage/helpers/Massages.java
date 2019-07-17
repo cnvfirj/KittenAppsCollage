@@ -12,7 +12,7 @@ public class Massages {
     }
 
     public static void MASSAGE(String text, Class c){
-        Log.d(TAG,"class name - "+getName(c)+" massage - "+text);
+        Log.d(TAG,"class name - "+getName(c)+"(MASSAGE) - "+text);
     }
 
     private static String getName(Class c){

@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="common_style_tools">
+        <item name="android:layout_width">@dimen/param_tools</item>
+        <item name="android:layout_height">@dimen/param_tools</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_marginTop">@dimen/margin_tool</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
 </resources>

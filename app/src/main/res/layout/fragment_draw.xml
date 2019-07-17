@@ -4,18 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+    <include layout="@layout/draw_tools"/>
+
     <com.example.kittenappscollage.draw.view.ViewDraw
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/view_draw"/>
-
-
-
-    <fragment
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/set_of_tools_draw"
-        android:name="com.example.kittenappscollage.draw.DrawTools"/>
-        <!--android:layout_marginStart="@dimen/indent_param_tools" />-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

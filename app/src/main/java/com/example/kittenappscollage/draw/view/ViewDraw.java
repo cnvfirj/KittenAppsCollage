@@ -32,8 +32,6 @@ public class ViewDraw extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
-
-        canvas.drawColor(Color.YELLOW);
         super.onDraw(canvas);
     }
 

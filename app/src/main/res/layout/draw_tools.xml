@@ -1,74 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/margin_tool"
-    android:layout_marginLeft="@dimen/margin_tool">
+    android:background="@color/colorPrimary"
+    android:id="@+id/layout_tools">
+
+    <include layout="@layout/include_tools_common"/>
+
+    <include layout="@layout/include_tools_draw"/>
 
     <ImageView
-        android:layout_width="@dimen/param_tools"
-        android:layout_height="@dimen/param_tools"
-        android:id="@+id/tool_translate"
-        android:src="@drawable/ic_star"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_marginTop="@dimen/margin_tool"/>
-    <ImageView
-        android:layout_width="@dimen/param_tools"
-        android:layout_height="@dimen/param_tools"
-        android:id="@+id/tool_scale"
-        android:src="@drawable/ic_star"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_marginTop="@dimen/margin_tool"/>
-    <ImageView
-        android:layout_width="@dimen/param_tools"
-        android:layout_height="@dimen/param_tools"
-        android:id="@+id/tool_deform_rotate"
-        android:src="@drawable/ic_star"
-        android:clickable="true"
-        android:layout_marginTop="@dimen/margin_tool"/>
-    <ImageView
-        android:layout_width="@dimen/param_tools"
-        android:layout_height="@dimen/param_tools"
-        android:id="@+id/tool_cut"
-        android:src="@drawable/ic_star"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_marginTop="@dimen/margin_tool"/>
-    <ImageView
-        android:layout_width="@dimen/param_tools"
-        android:layout_height="@dimen/param_tools"
-        android:id="@+id/tool_draw"
-        android:src="@drawable/ic_star"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_marginTop="@dimen/margin_tool"/>
-    <ImageView
-        android:layout_width="@dimen/param_tools"
-        android:layout_height="@dimen/param_tools"
-        android:id="@+id/tool_elast"
-        android:src="@drawable/ic_star"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_marginTop="@dimen/margin_tool"/>
-    <ImageView
-        android:layout_width="@dimen/param_tools"
-        android:layout_height="@dimen/param_tools"
-        android:id="@+id/tool_fill"
-        android:src="@drawable/ic_star"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_marginTop="@dimen/margin_tool"/>
-    <ImageView
-        android:layout_width="@dimen/param_tools"
-        android:layout_height="@dimen/param_tools"
-        android:id="@+id/tool_text"
-        android:src="@drawable/ic_star"
-        android:clickable="true"
-        android:focusable="true"
-        android:layout_marginTop="@dimen/margin_tool"/>
-
+        style="@style/common_style_tools"
+        android:src="@drawable/tools_slide"
+        android:id="@+id/slide_tools"
+        android:layout_gravity="center_horizontal"/>
 
 </LinearLayout>
