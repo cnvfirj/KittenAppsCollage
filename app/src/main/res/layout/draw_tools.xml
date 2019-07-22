@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
-    android:id="@+id/layout_tools">
+    android:id="@+id/layout_tools"
+    android:layout_marginTop="@dimen/SLIDE_TOOLS">
 
     <include layout="@layout/include_tools_common"/>
 

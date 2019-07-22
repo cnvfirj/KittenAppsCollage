@@ -3,4 +3,8 @@
     <dimen name="param_tools">25dp</dimen>
     <dimen name="indent_param_tools">-25dp</dimen>
     <dimen name="margin_tool">10dp</dimen>
+    <dimen name="SLIDE_TOOLS">-80dp</dimen>
+
+
+    <dimen name="time_slide">500</dimen>
 </resources>

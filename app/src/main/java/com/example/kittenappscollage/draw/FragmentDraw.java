@@ -20,20 +20,21 @@ import com.example.kittenappscollage.packProj.RepDraw;
 
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
-public class FragmentDraw extends Fragment {
+public class FragmentDraw extends Fragment implements View.OnClickListener {
 
     private ViewDraw dViewDraw;
 
-    private DrawTools dDrawTools;
-
     private boolean dVisibleTools;
+
+    private LinearLayout dToolsLayout;
+
+    private ImageView dSlideTools;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         dVisibleTools = false;
-        dDrawTools = new DrawTools();
         return inflater.inflate(R.layout.fragment_draw,null);
     }
 
@@ -45,30 +46,45 @@ public class FragmentDraw extends Fragment {
         initViews(view);
     }
 
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()){
+            case R.id.slide_tools:
+                slideTools();
+                break;
+        }
+    }
+
     private void  initViews(View view){
-//        ImageView i = (ImageView)view.findViewById(R.id.slide_tools);
-//        i.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                MASSAGE("slide",null);
-//
-//                slideTools((LinearLayout)view.findViewById(R.id.layout_tools));
-//            }
-//        });
+        dToolsLayout =  view.findViewById(R.id.layout_tools);
+        dSlideTools = view.findViewById(R.id.slide_tools);
+
         addListener();
     }
 
-    private void slideTools(ViewGroup container){
-//        if(container==null)MASSAGE("cont null ",null);
-//        if(!dVisibleTools){
-//            assert container != null;
-//            container.animate().translationY(-50).setDuration(1000).start();
-//        }else {
-//
-//        }
+
+
+    /*анимация выдвижения панели инструментов для рисования*/
+    private void slideTools(){
+
+        if(!dVisibleTools) {
+            dToolsLayout.animate().translationY(-getSlideTools()).setDuration(500).start();
+            dSlideTools.animate().rotation(180).setDuration(500).start();
+            dVisibleTools = true;
+        }else {
+            dToolsLayout.animate().translationY(0).setDuration(500).start();
+            dSlideTools.animate().rotation(0).setDuration(500).start();
+            dVisibleTools = false;
+        }
     }
 
-    private void addListener(){
+    private float getSlideTools(){
+        return getResources().getDimension(R.dimen.SLIDE_TOOLS);
+    }
 
+
+    private void addListener(){
+         dSlideTools.setOnClickListener(this);
     }
 }
