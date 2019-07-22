@@ -6,10 +6,12 @@
     <ImageView
         android:id="@+id/tool_undo"
         android:src="@drawable/tool_undo"
+        android:foreground="?android:attr/selectableItemBackground"
         style="@style/common_style_tools" />
     <ImageView
         android:id="@+id/tool_redo"
         android:src="@drawable/tool_redo"
+        android:foreground="?android:attr/selectableItemBackground"
         style="@style/common_style_tools" />
     <ImageView
         android:id="@+id/tool_1"
