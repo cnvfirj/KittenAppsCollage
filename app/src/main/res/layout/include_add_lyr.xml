@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout_add_lyr">
 
-</LinearLayout>
+
+    <ImageView
+        style="@style/slide_style_add_img"
+        android:id="@+id/add_created"
+        android:background="@color/colorAccent"
+        android:src="@drawable/add_img"/>
+
+    <ImageView
+        style="@style/slide_style_add_img"
+        android:id="@+id/add_link"
+        android:background="@color/colorAccent"
+        android:src="@drawable/add_img"/>
+
+    <ImageView
+        style="@style/slide_style_add_img"
+        android:id="@+id/add_camera"
+        android:background="@color/colorAccent"
+        android:src="@drawable/add_img"/>
+
+    <ImageView
+        style="@style/slide_style_add_img"
+        android:id="@+id/add_collect"
+        android:background="@color/colorAccent"
+        android:src="@drawable/add_img"/>
+
+
+
+</FrameLayout>

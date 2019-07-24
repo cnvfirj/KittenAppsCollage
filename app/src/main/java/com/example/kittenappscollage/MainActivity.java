@@ -6,15 +6,14 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 
 import com.example.kittenappscollage.collect.FragmentCollect;
-import com.example.kittenappscollage.draw.FragmentDraw;
-import com.example.kittenappscollage.helpers.App;
+import com.example.kittenappscollage.draw.fragment.SuperFragmentDraw;
 import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FragmentDraw mFragDraw;
+    private SuperFragmentDraw mFragDraw;
 
     private FragmentCollect mFragColl;
 
@@ -36,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ViewPageAdapter addFragments(){
-        mFragDraw = new FragmentDraw();
+        mFragDraw = new SuperFragmentDraw();
         mFragColl = new FragmentCollect();
         ViewPageAdapter a = new ViewPageAdapter(getSupportFragmentManager());
         a.addFragment(mFragDraw);

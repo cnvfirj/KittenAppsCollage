@@ -13,7 +13,26 @@
 
     <include layout="@layout/include_draw_tools"/>
 
+
+    <include layout="@layout/include_add_lyr"/>
+
+    <ImageView
+        style="@style/slide_style_add_img"
+        android:id="@+id/slide_add_lyr"
+        android:src="@drawable/add_img"
+        android:background="@color/colorPrimary"/>
+
+
+
     <include layout="@layout/include_save_img"/>
+
+    <ImageView
+        style="@style/slide_style_save"
+        android:id="@+id/slide_save_img"
+        android:src="@drawable/save_img"
+        android:background="@color/colorPrimary"/>
+
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

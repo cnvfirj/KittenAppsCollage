@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -8,24 +8,39 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="common_style_tools">
-        <item name="android:layout_width">@dimen/param_tools</item>
-        <item name="android:layout_height">@dimen/param_tools</item>
+
+    <style name="Clickable">
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
+    </style>
+
+    <style name="common_style_tools" parent="Clickable">
+        <item name="android:layout_width">@dimen/param_tools</item>
+        <item name="android:layout_height">@dimen/param_tools</item>
         <item name="android:layout_marginTop">@dimen/margin_tool</item>
         <item name="android:layout_weight">1</item>
     </style>
 
-    <style name="common_style_save">
+    <style name="common_buttons" parent="Clickable">
         <item name="android:layout_width">@dimen/param_save</item>
         <item name="android:layout_height">@dimen/param_save</item>
-        <item name="android:clickable">true</item>
-        <item name="android:focusable">true</item>
         <item name="android:layout_marginBottom">@dimen/margin_save</item>
         <item name="android:layout_marginTop">@dimen/margin_save</item>
         <item name="android:layout_marginLeft">@dimen/margin_save</item>
+        <item name="android:layout_marginRight">@dimen/margin_save</item>
     </style>
+
+
+    <style name="slide_style_save" parent="common_buttons" >
+        <item name="android:layout_gravity">bottom|left</item>
+    </style>
+
+     <style name="slide_style_add_img" parent="common_buttons">
+         <item name="android:layout_gravity">bottom|right</item>
+
+    </style>
+
+
 
 
 

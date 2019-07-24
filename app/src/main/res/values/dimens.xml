@@ -5,10 +5,10 @@
 
     <dimen name="param_save">35dp</dimen>
     <dimen name="margin_save">10dp</dimen>
+    <dimen name="margin">45dp</dimen>
 
     <dimen name="SLIDE_TOOLS">-80dp</dimen>
-    <dimen name="SLIDE_SAVE">-70dp</dimen>
+    <dimen name="SLIDE_SAVE">-45dp</dimen>
+    <dimen name="SLIDE_ADD">45dp</dimen>
 
-
-    <dimen name="time_slide">500</dimen>
 </resources>
