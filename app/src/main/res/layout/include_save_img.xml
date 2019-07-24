@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:id="@+id/layout_save"
+    android:layout_gravity="bottom">
+
+
+    <ImageView
+        android:src="@drawable/ic_star"
+        style="@style/common_style_save"
+        android:id="@+id/save_img_tel"/>
+
+    <ImageView
+        android:src="@drawable/ic_star"
+        style="@style/common_style_save"
+        android:id="@+id/save_img_net"/>
+
+    <ImageView
+        android:src="@drawable/save_img"
+        style="@style/common_style_save"
+        android:id="@+id/save_img"
+        android:layout_marginRight="@dimen/margin_save"/>
+
+
+
+</LinearLayout>

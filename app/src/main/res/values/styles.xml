@@ -17,4 +17,16 @@
         <item name="android:layout_weight">1</item>
     </style>
 
+    <style name="common_style_save">
+        <item name="android:layout_width">@dimen/param_save</item>
+        <item name="android:layout_height">@dimen/param_save</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:layout_marginBottom">@dimen/margin_save</item>
+        <item name="android:layout_marginTop">@dimen/margin_save</item>
+        <item name="android:layout_marginLeft">@dimen/margin_save</item>
+    </style>
+
+
+
 </resources>

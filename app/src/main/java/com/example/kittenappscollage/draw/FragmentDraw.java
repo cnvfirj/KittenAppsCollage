@@ -59,15 +59,14 @@ public class FragmentDraw extends Fragment implements View.OnClickListener {
     private void  initViews(View view){
         dToolsLayout =  view.findViewById(R.id.layout_tools);
         dSlideTools = view.findViewById(R.id.slide_tools);
-
+        shiftTools();
         addListener();
     }
 
 
 
     /*анимация выдвижения панели инструментов для рисования*/
-    private void slideTools(){
-
+    protected void slideTools(){
         if(!dVisibleTools) {
             dToolsLayout.animate().translationY(-getSlideTools()).setDuration(500).start();
             dSlideTools.animate().rotation(180).setDuration(500).start();
@@ -76,6 +75,16 @@ public class FragmentDraw extends Fragment implements View.OnClickListener {
             dToolsLayout.animate().translationY(0).setDuration(500).start();
             dSlideTools.animate().rotation(0).setDuration(500).start();
             dVisibleTools = false;
+        }
+    }
+
+    private void shiftTools(){
+        if(dVisibleTools) {
+            dToolsLayout.animate().translationY(-getSlideTools()).setDuration(0).start();
+            dSlideTools.animate().rotation(180).setDuration(0).start();
+        }else {
+            dToolsLayout.animate().translationY(0).setDuration(0).start();
+            dSlideTools.animate().rotation(0).setDuration(0).start();
         }
     }
 
