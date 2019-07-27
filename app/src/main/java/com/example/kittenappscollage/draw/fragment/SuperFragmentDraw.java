@@ -61,6 +61,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
                 slideAdd();
                 break;
 
+
             case R.id.save_net:
                 saveNet();
                 break;
@@ -128,6 +129,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
             dSaveNet.animate().translationX(0).setDuration(getTimeSlide()).start();
             dSaveTel.animate().translationY(0).setDuration(getTimeSlide()).start();
         }
+        dSlideSave.setSelected(dVisibleSave);
     }
 
     protected void slideAdd(){
@@ -145,6 +147,8 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
             dAddColl.animate().translationY(0).setDuration(getTimeSlide()).start();
             dVisibleAdd = false;
         }
+
+        dSlideAdd.setSelected(dVisibleAdd);
     }
 
     private void shiftTools(){
@@ -195,26 +199,26 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
 
     protected void saveNet(){
-
+        slideSave();
     }
 
     protected void saveTel(){
-
+        slideSave();
     }
 
     protected void addCreated(){
-
+        slideAdd();
     }
 
     protected void addLink(){
-
+        slideAdd();
     }
 
     protected void addCam(){
-
+        slideAdd();
     }
 
     protected void addColl(){
-
+        slideAdd();
     }
 }
