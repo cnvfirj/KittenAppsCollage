@@ -11,6 +11,7 @@ import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
 import com.google.android.material.tabs.TabLayout;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private SuperFragmentDraw mFragDraw;
