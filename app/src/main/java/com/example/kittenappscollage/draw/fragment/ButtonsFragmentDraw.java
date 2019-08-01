@@ -1,34 +1,25 @@
 package com.example.kittenappscollage.draw.fragment;
 
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 public class ButtonsFragmentDraw extends SuperFragmentDraw {
 
-    @Override
-    protected void saveNet() {
-        super.saveNet();
-    }
+    private ImageView dUndo, dRedo,dInfo, dAllLyrs, dChangeLyrs, dDelLyr, dDelAll;
+
+    private ImageView dPaint, dFill, dEraser, dCut, dText, dDeform, dScale, dTrans;
 
     @Override
-    protected void saveTel() {
-        super.saveTel();
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        initButtons(view);
     }
 
-    @Override
-    protected void addCreated() {
-        super.addCreated();
-    }
+    private void initButtons(View view){
 
-    @Override
-    protected void addLink() {
-        super.addLink();
-    }
-
-    @Override
-    protected void addCam() {
-        super.addCam();
-    }
-
-    @Override
-    protected void addColl() {
-        super.addColl();
     }
 }
