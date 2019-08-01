@@ -15,6 +15,10 @@ import androidx.fragment.app.Fragment;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.view.ViewDraw;
 
+
+/*инициируем анимацию нажатия на кнопки
+* так же обрабатываем некоторые нажатия*/
+
 public class SuperFragmentDraw extends Fragment implements View.OnClickListener {
 
     protected ViewDraw dViewDraw;
@@ -109,13 +113,15 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected void slideTools(){
         if(!dVisibleTools) {
             dToolsLayout.animate().translationY(-getSlideTools()).setDuration(getTimeSlide()).start();
-            dSlideTools.animate().rotation(180).setDuration(getTimeSlide()).start();
+//            dSlideTools.animate().rotation(180).setDuration(getTimeSlide()).start();
             dVisibleTools = true;
         }else {
             dToolsLayout.animate().translationY(0).setDuration(getTimeSlide()).start();
-            dSlideTools.animate().rotation(0).setDuration(getTimeSlide()).start();
+//            dSlideTools.animate().rotation(0).setDuration(getTimeSlide()).start();
             dVisibleTools = false;
         }
+
+        dSlideTools.setSelected(dVisibleTools);
     }
 
     /*анимация выдвижения сохранений*/
@@ -154,11 +160,13 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     private void shiftTools(){
         if(dVisibleTools) {
             dToolsLayout.animate().translationY(-getSlideTools()).setDuration(0).start();
-            dSlideTools.animate().rotation(180).setDuration(0).start();
+//            dSlideTools.animate().rotation(180).setDuration(0).start();
         }else {
             dToolsLayout.animate().translationY(0).setDuration(0).start();
-            dSlideTools.animate().rotation(0).setDuration(0).start();
+//            dSlideTools.animate().rotation(0).setDuration(0).start();
         }
+        dSlideTools.setSelected(dVisibleTools);
+
     }
 
     private float getSlideAdd1(){

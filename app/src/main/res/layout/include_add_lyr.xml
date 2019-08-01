@@ -11,25 +11,25 @@
         style="@style/slide_style_add_img"
         android:id="@+id/add_created"
         android:background="@color/colorAccent"
-        android:src="@drawable/add_img"/>
+        android:src="@drawable/ic_add_img"/>
 
     <ImageView
         style="@style/slide_style_add_img"
         android:id="@+id/add_link"
         android:background="@color/colorAccent"
-        android:src="@drawable/add_img"/>
+        android:src="@drawable/ic_add_img"/>
 
     <ImageView
         style="@style/slide_style_add_img"
         android:id="@+id/add_camera"
         android:background="@color/colorAccent"
-        android:src="@drawable/add_img"/>
+        android:src="@drawable/ic_add_img"/>
 
     <ImageView
         style="@style/slide_style_add_img"
         android:id="@+id/add_collect"
         android:background="@color/colorAccent"
-        android:src="@drawable/add_img"/>
+        android:src="@drawable/ic_add_img"/>
 
 
 

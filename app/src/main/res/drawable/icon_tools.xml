@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/yes"
+        android:drawable="@drawable/ic_tools_slide_close"
+        android:state_selected="true"/>
+
+    <item
+        android:id="@+id/no"
+        android:drawable="@drawable/ic_tools_slide_open"
+        android:state_selected="false"/>
+
+    <transition
+        android:drawable="@drawable/anim_tools_close"
+        android:fromId="@id/yes"
+        android:toId="@id/no"/>
+
+    <transition
+        android:drawable="@drawable/anim_tools_open"
+        android:fromId="@id/no"
+        android:toId="@id/yes"/>
+</animated-selector>

@@ -39,7 +39,7 @@
             <set>
                 <objectAnimator
                     android:propertyName="scaleY"
-                    android:duration="300"
+                    android:duration="500"
                     android:valueFrom="1"
                     android:valueTo="0"
                     android:valueType="floatType"
@@ -58,7 +58,7 @@
         <aapt:attr name="android:animation">
             <objectAnimator
                 android:propertyName="scaleY"
-                android:duration="300"
+                android:duration="500"
                 android:valueFrom="0"
                 android:valueTo="1"
                 android:valueType="floatType"
@@ -69,7 +69,7 @@
         <aapt:attr name="android:animation">
             <objectAnimator
                 android:propertyName="rotation"
-                android:duration="300"
+                android:duration="500"
                 android:valueFrom="0"
                 android:valueTo="-45"
                 android:valueType="floatType"

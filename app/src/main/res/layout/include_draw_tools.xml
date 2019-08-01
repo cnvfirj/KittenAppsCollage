@@ -14,7 +14,7 @@
 
     <ImageView
         style="@style/common_style_tools"
-        android:src="@drawable/tools_slide"
+        android:src="@drawable/icon_tools"
         android:id="@+id/slide_tools"
         android:layout_gravity="center_horizontal"/>
 

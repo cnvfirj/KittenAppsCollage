@@ -24,7 +24,7 @@
         <aapt:attr name="android:animation">
             <objectAnimator
                 android:propertyName="rotation"
-                android:duration="300"
+                android:duration="500"
                 android:valueFrom="0"
                 android:valueTo="-45"
                 android:valueType="floatType"
@@ -35,7 +35,7 @@
         <aapt:attr name="android:animation">
             <objectAnimator
                 android:propertyName="pathData"
-                android:duration="300"
+                android:duration="500"
                 android:valueFrom="M 17.657 6.343 L 15.663 6.343 L 15.656 14.242 L 7.05 5.636 L 5.636 7.05 L 14.242 15.656 L 6.343 15.663 L 6.343 17.657 L 16.027 17.657 L 17.638 17.657 L 17.657 17.657 L 17.657 15.785 L 17.657 6.343 L 17.657 6.343"
                 android:valueTo="M 17.59 5 L 17.537 5.053 L 12 10.59 L 6.41 5 L 5 6.41 L 10.59 12 L 5 17.59 L 6.41 19 L 12 13.41 L 17.59 19 L 19 17.59 L 13.41 12 L 19 6.41 L 17.59 5"
                 android:valueType="pathType"

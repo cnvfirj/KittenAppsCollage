@@ -11,4 +11,6 @@
     <dimen name="SLIDE_SAVE">-45dp</dimen>
     <dimen name="SLIDE_ADD">45dp</dimen>
 
+    <dimen name="DURATION_ANIM">500</dimen>
+
 </resources>

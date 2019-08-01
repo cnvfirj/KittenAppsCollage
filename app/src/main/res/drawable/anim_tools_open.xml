@@ -11,7 +11,7 @@
             <path
                 android:name="path"
                 android:pathData="M 7.41 8.59 L 12 13.17 L 16.59 8.59 L 18 10 L 12 16 L 6 10 L 7.41 8.59 Z"
-                android:fillColor="#000"
+                android:fillColor="#FFFFFF"
                 android:strokeWidth="1"/>
         </vector>
     </aapt:attr>
@@ -19,7 +19,7 @@
         <aapt:attr name="android:animation">
             <objectAnimator
                 android:propertyName="pathData"
-                android:duration="300"
+                android:duration="500"
                 android:valueFrom="M 6 10 L 7.41 8.59 L 7.41 8.59 L 12 13.17 L 16.59 8.59 L 18 10 L 12 16 L 6 10"
                 android:valueTo="M 6 14 L 7.335 15.335 L 7.41 15.41 L 12 10.83 L 16.59 15.41 L 18 14 L 12 8 L 6 14"
                 android:valueType="pathType"
