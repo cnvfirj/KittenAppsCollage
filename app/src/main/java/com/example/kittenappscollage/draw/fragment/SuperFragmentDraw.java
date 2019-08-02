@@ -16,8 +16,8 @@ import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.view.ViewDraw;
 
 
-/*инициируем анимацию нажатия на кнопки
-* так же обрабатываем некоторые нажатия*/
+/*описываем основную анимацию движения кнопок и панели
+* инструментов. Присваиваем им иконки*/
 
 public class SuperFragmentDraw extends Fragment implements View.OnClickListener {
 
@@ -106,7 +106,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         shiftTools();
         addListener();
     }
-
 
 
     /*анимация выдвижения панели инструментов для рисования*/

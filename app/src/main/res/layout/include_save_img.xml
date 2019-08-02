@@ -11,12 +11,12 @@
         style="@style/slide_style_save"
         android:id="@+id/save_tel"
         android:background="@color/colorAccent"
-        android:src="@drawable/ic_save_img"/>
+        android:src="@drawable/icon_device"/>
 
     <ImageView
         style="@style/slide_style_save"
         android:id="@+id/save_net"
         android:background="@color/colorAccent"
-        android:src="@drawable/ic_save_img"/>
+        android:src="@drawable/icon_google_drive"/>
 
 </FrameLayout>
