@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.kittenappscollage.R;
+
 public class ButtonsFragmentDraw extends SuperFragmentDraw {
 
     private ImageView dUndo, dRedo,dInfo, dAllLyrs, dChangeLyrs, dDelLyr, dDelAll;
@@ -20,6 +22,6 @@ public class ButtonsFragmentDraw extends SuperFragmentDraw {
     }
 
     private void initButtons(View view){
-
+        dUndo = view.findViewById(R.id.tool_undo);
     }
 }
