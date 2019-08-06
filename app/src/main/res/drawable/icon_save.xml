@@ -19,4 +19,5 @@
         android:drawable="@drawable/anim_save_to_arrow"
         android:fromId="@id/no"
         android:toId="@id/yes"/>
+
 </animated-selector>

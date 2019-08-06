@@ -33,4 +33,5 @@
     <string name="INPUT_TEXT_SELECT_TEXT">Введи нужный текст</string>
     <string name="FILL_FIGURE">закрасить</string>
     <string name="ITALIC">курсив</string>
+    <string name="todo">TODO</string>
 </resources>

@@ -22,6 +22,7 @@
         <item name="android:layout_height">@dimen/param_tools</item>
         <item name="android:layout_marginTop">@dimen/margin_tool</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 
     <style name="common_buttons" parent="Clickable">
