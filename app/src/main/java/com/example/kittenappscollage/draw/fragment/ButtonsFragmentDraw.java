@@ -1,7 +1,9 @@
 package com.example.kittenappscollage.draw.fragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +22,17 @@ public class ButtonsFragmentDraw extends SuperFragmentDraw {
 
     private ImageView dPaint, dFill, dEraser, dCut, dText, dDeform, dScale, dTrans;
 
+    private boolean dVisibleInfo, dOnAllLyrs;
+
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        dVisibleInfo = false;
+        dOnAllLyrs = false;
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -29,6 +42,12 @@ public class ButtonsFragmentDraw extends SuperFragmentDraw {
     private void initButtons(View view){
         dUndo = view.findViewById(R.id.tool_undo);
         dUndo.setOnClickListener(this);
+        dRedo = view.findViewById(R.id.tool_redo);
+        dRedo.setOnClickListener(this);
+        dInfo = view.findViewById(R.id.tool_info);
+        dInfo.setOnClickListener(this);
+        dAllLyrs = view.findViewById(R.id.tool_all_lyrs);
+        dAllLyrs.setOnClickListener(this);
     }
 
     @Override
@@ -38,18 +57,41 @@ public class ButtonsFragmentDraw extends SuperFragmentDraw {
             case R.id.tool_undo:
                 stepUndo();
                 break;
+            case R.id.tool_redo:
+                stepRedo();
+                break;
+            case R.id.tool_info:
+                onInfo();
+                break;
+            case R.id.tool_all_lyrs:
+                onAllLyrs();
+                break;
         }
     }
 
-    protected void stepUndo(){
-//        dUndo.setActivated(true);
+    protected void onAllLyrs(){
+        if(dOnAllLyrs){
+            dOnAllLyrs = false;
+        }else {
+            dOnAllLyrs = true;
+        }
+        dAllLyrs.setSelected(dOnAllLyrs);
+    }
 
-//
-//        try {
-//            TimeUnit.MILLISECONDS.sleep(500);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        dUndo.setActivated(false);
+    protected void onInfo(){
+        if(dVisibleInfo){
+            dVisibleInfo = false;
+        }else {
+            dVisibleInfo = true;
+        }
+        dInfo.setSelected(dVisibleInfo);
+    }
+
+    protected void stepUndo(){
+
+    }
+
+    protected void stepRedo(){
+
     }
 }

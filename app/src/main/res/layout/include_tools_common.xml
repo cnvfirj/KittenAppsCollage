@@ -5,18 +5,21 @@
     android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/tool_undo"
-        android:src="@drawable/tool_undo"
+        android:src="@drawable/icon_tool_undo"
         style="@style/common_style_tools" />
     <ImageView
         android:id="@+id/tool_redo"
-        android:src="@drawable/tool_redo"
+        android:src="@drawable/icon_tool_redo"
         style="@style/common_style_tools" />
+
     <ImageView
-        android:id="@+id/tool_1"
-        style="@style/common_style_tools" />
+        android:id="@+id/tool_info"
+        style="@style/common_style_tools"
+        android:src="@drawable/icon_info"/>
     <ImageView
-        android:id="@+id/tool_2"
-        style="@style/common_style_tools" />
+        android:id="@+id/tool_all_lyrs"
+        style="@style/common_style_tools"
+        android:src="@drawable/icon_all_lyrs"/>
     <ImageView
         android:id="@+id/tool_change"
         android:src="@drawable/ic_star"
