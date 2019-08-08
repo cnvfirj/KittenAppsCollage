@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="param_tools">25dp</dimen>
-    <dimen name="margin_tool">10dp</dimen>
+    <dimen name="param_tools">30dp</dimen>
+    <dimen name="margin_tool">5dp</dimen>
 
     <dimen name="param_save">35dp</dimen>
     <dimen name="margin_save">10dp</dimen>

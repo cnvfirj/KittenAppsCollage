@@ -22,15 +22,19 @@
         android:src="@drawable/icon_all_lyrs"/>
     <ImageView
         android:id="@+id/tool_change"
-        android:src="@drawable/ic_star"
+        android:src="@drawable/icon_change_lyrs"
         style="@style/common_style_tools" />
     <ImageView
         android:id="@+id/tool_del_lyr"
-        android:src="@drawable/ic_star"
+        android:src="@drawable/icon_delete_lyr"
         style="@style/common_style_tools" />
     <ImageView
+        android:id="@+id/tool_union"
+        android:src="@drawable/icon_union_lyrs"
+        style="@style/common_style_tools"  />
+    <ImageView
         android:id="@+id/tool_del_all"
-        android:src="@drawable/ic_star"
+        android:src="@drawable/icon_delete_all"
         style="@style/common_style_tools" />
 
 </LinearLayout>
