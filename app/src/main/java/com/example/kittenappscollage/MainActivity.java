@@ -48,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
     private void addTabs(final SelectSweepViewPager v){
         mTabLayout = findViewById(R.id.tabs);
         mTabLayout.setupWithViewPager(v);
-        mTabLayout.getTabAt(0).setIcon(R.drawable.ic_star);
-        mTabLayout.getTabAt(1).setIcon(R.drawable.ic_star);
+        mTabLayout.getTabAt(0).setIcon(R.drawable.icon_edit);
+        mTabLayout.getTabAt(1).setIcon(R.drawable.icon_collect);
         if(mTabLayout.getSelectedTabPosition()==0)v.setSweep(false);
         else v.setSweep(true);
 

@@ -26,15 +26,11 @@ public class ButtonsFragmentDraw extends SuperFragmentDraw {
 
     private boolean dVisibleInfo, dOnAllLyrs;
 
-    private Animation dBlink;
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         dVisibleInfo = false;
         dOnAllLyrs = false;
-        dBlink = AnimationUtils.loadAnimation(getContext(),R.anim.blink);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -136,6 +132,7 @@ public class ButtonsFragmentDraw extends SuperFragmentDraw {
 
     protected void delAll(){
         dDelAll.startAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.blink));
+
     }
 
 }

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
     <ImageView
         android:id="@+id/tool_translate"
-        android:src="@drawable/ic_star"
+        android:src="@drawable/icon_translate"
         style="@style/common_style_tools" />
     <ImageView
         android:id="@+id/tool_scale"
