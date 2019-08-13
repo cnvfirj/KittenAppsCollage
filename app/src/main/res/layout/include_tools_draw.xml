@@ -27,7 +27,7 @@
 
     <ImageView
         android:id="@+id/tool_fill"
-        android:src="@drawable/ic_star"
+        android:src="@drawable/icon_fill_to_bord"
         style="@style/common_style_tools" />
     <ImageView
         android:id="@+id/tool_text"
