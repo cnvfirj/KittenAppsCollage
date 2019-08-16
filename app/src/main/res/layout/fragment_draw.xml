@@ -11,8 +11,13 @@
         android:layout_height="match_parent"
         android:id="@+id/view_draw"/>
 
-    <include layout="@layout/include_draw_tools"/>
+    <include layout="@layout/include_menu_common_and_tools"/>
 
+    <ImageView
+        style="@style/slide_style_all_tools"
+        android:id="@+id/slide_all_tools"
+        android:src="@drawable/icon_tools"
+        android:background="@color/colorPrimary"/>
 
     <include layout="@layout/include_add_lyr"/>
 

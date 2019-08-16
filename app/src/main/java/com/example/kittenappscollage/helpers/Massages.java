@@ -5,7 +5,7 @@ import android.content.Context;
 import android.util.Log;
 
 public class Massages {
-    private static final String TAG = "MASSAGE APP";
+    private static final String TAG = "_____MASSAGE";
 
     public static void ERROR(String text, Class c){
         Log.e(TAG,"class name - "+getName(c)+" error - "+text);

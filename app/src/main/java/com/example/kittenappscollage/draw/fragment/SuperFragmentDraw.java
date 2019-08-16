@@ -1,10 +1,12 @@
 package com.example.kittenappscollage.draw.fragment;
 
 
+import android.graphics.Point;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -14,6 +16,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.view.ViewDraw;
+
+import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
 
 /*описываем основную анимацию движения кнопок и панели
@@ -25,13 +29,17 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     private boolean dVisibleTools, dVisibleSave, dVisibleAdd;
 
-    private LinearLayout dToolsLayout;
-
     private ImageView dSlideTools,dSlideSave, dSlideAdd;
 
     private ImageView dSaveTel, dSaveNet;
 
     private ImageView dAddCreated, dAddLink, dAddCam, dAddColl;
+
+    private ImageView dUndo, dRedo, dInfo, dAllLyrs, dUnion, dDeleteLyr, dChangeLyrs, dDeleteAll;
+
+    private ImageView dPaint, dFil, dEraser, dText, dCut, dTrans, dScale, dDeformRotate;
+
+    private float dSlideStep;
 
 
     @Nullable
@@ -47,7 +55,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         dViewDraw = view.findViewById(R.id.view_draw);
-
         initViews(view);
     }
 
@@ -55,7 +62,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     public void onClick(View view) {
 
         switch (view.getId()){
-            case R.id.slide_tools:
+            case R.id.slide_all_tools:
                 slideTools();
                 break;
             case R.id.slide_save_img:
@@ -64,15 +71,12 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
             case R.id.slide_add_lyr:
                 slideAdd();
                 break;
-
-
             case R.id.save_net:
                 saveNet();
                 break;
             case R.id.save_tel:
                 saveTel();
                 break;
-
             case R.id.add_created:
                 addCreated();
                 break;
@@ -91,8 +95,27 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     private void  initViews(View view){
         dViewDraw = view.findViewById(R.id.view_draw);
 
-        dToolsLayout =  view.findViewById(R.id.layout_tools);
-        dSlideTools = view.findViewById(R.id.slide_tools);
+        dSlideTools = view.findViewById(R.id.slide_all_tools);
+        dUndo = view.findViewById(R.id.tool_undo);
+        dRedo = view.findViewById(R.id.tool_redo);
+        dInfo = view.findViewById(R.id.tool_info);
+        dAllLyrs = view.findViewById(R.id.tool_all_lyrs);
+        dUnion = view.findViewById(R.id.tool_union);
+        dDeleteLyr = view.findViewById(R.id.tool_del_lyr);
+        dChangeLyrs = view.findViewById(R.id.tool_change);
+        dDeleteAll = view.findViewById(R.id.tool_del_all);
+
+        dPaint = view.findViewById(R.id.tool_draw);
+        dFil = view.findViewById(R.id.tool_fill);
+        dEraser = view.findViewById(R.id.tool_erase);
+        dText = view.findViewById(R.id.tool_text);
+        dCut = view.findViewById(R.id.tool_cut);
+        dTrans = view.findViewById(R.id.tool_translate);
+        dScale = view.findViewById(R.id.tool_scale);
+        dDeformRotate = view.findViewById(R.id.tool_deform_rotate);
+
+        shiftTools(dSlideTools);
+
         dSlideSave = view.findViewById(R.id.slide_save_img);
         dSaveNet = view.findViewById(R.id.save_net);
         dSaveTel = view.findViewById(R.id.save_tel);
@@ -103,7 +126,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dAddCam = view.findViewById(R.id.add_camera);
         dAddColl = view.findViewById(R.id.add_collect);
 
-        shiftTools();
+
         addListener();
     }
 
@@ -111,14 +134,13 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     /*анимация выдвижения панели инструментов для рисования*/
     protected void slideTools(){
         if(!dVisibleTools) {
-            dToolsLayout.animate().translationY(-getSlideTools()).setDuration(getTimeSlide()).start();
-//            dSlideTools.animate().rotation(180).setDuration(getTimeSlide()).start();
+            computeSlide(dSlideStep,getTimeSlide());
             dVisibleTools = true;
         }else {
-            dToolsLayout.animate().translationY(0).setDuration(getTimeSlide()).start();
-//            dSlideTools.animate().rotation(0).setDuration(getTimeSlide()).start();
+            computeSlide(0,getTimeSlide());
             dVisibleTools = false;
         }
+
 
         dSlideTools.setSelected(dVisibleTools);
     }
@@ -156,17 +178,45 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dSlideAdd.setSelected(dVisibleAdd);
     }
 
-    private void shiftTools(){
-        if(dVisibleTools) {
-            dToolsLayout.animate().translationY(-getSlideTools()).setDuration(0).start();
-//            dSlideTools.animate().rotation(180).setDuration(0).start();
-        }else {
-            dToolsLayout.animate().translationY(0).setDuration(0).start();
-//            dSlideTools.animate().rotation(0).setDuration(0).start();
+    private void shiftTools(final View view){
+        /*здесь дожидаемся создания вью для расчета расстояний между кнопками*/
+        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+        if (viewTreeObserver.isAlive()) {
+            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    Point size = new Point();
+                    getActivity().getWindowManager().getDefaultDisplay().getSize(size);
+                    float border = dSlideTools.getLeft();
+                    int display = size.x;
+                    dSlideStep = (display-(border+dSlideTools.getWidth())-border)/8;
+                    computeSlide(dSlideStep,0);
+                }
+            });
         }
-        dSlideTools.setSelected(dVisibleTools);
-
     }
+
+    private void computeSlide(float step, long time){
+        dUndo.animate().translationX(step).setDuration(time).start();
+        dRedo.animate().translationX(step*2).setDuration(time).start();
+        dInfo.animate().translationX(step*3).setDuration(time).start();
+        dAllLyrs.animate().translationX(step*4).setDuration(time).start();
+        dChangeLyrs.animate().translationX(step*5).setDuration(time).start();
+        dUnion.animate().translationX(step*6).setDuration(time).start();
+        dDeleteLyr.animate().translationX(step*7).setDuration(time).start();
+        dDeleteAll.animate().translationX(step*8).setDuration(time).start();
+        dPaint.animate().translationY(step).setDuration(time).start();
+        dEraser.animate().translationY(step*2).setDuration(time).start();
+        dFil.animate().translationY(step*3).setDuration(time).start();
+        dText.animate().translationY(step*4).setDuration(time).start();
+        dDeformRotate.animate().translationY(step*5).setDuration(time).start();
+        dCut.animate().translationY(step*6).setDuration(time).start();
+        dTrans.animate().translationY(step*7).setDuration(time).start();
+        dScale.animate().translationY(step*8).setDuration(time).start();
+    }
+
+
 
     private float getSlideAdd1(){
         return getResources().getDimension(R.dimen.SLIDE_ADD);
@@ -177,7 +227,13 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     }
 
     private float getSlideTools(){
-        return getResources().getDimension(R.dimen.SLIDE_TOOLS);
+        if(dVisibleTools){
+            dVisibleTools = false;
+            return 0;
+        } else{
+            dVisibleTools = true;
+            return dSlideStep;
+        }
     }
 
     private float getSlideSave(){
@@ -190,17 +246,35 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
 
     private void addListener(){
-         dSlideTools.setOnClickListener(this);
+        dSlideTools.setOnClickListener(this);
+        dSlideTools.setOnClickListener(this);
+        dUndo.setOnClickListener(this);
+        dRedo.setOnClickListener(this);
+        dInfo.setOnClickListener(this);
+        dAllLyrs.setOnClickListener(this);
+        dUnion.setOnClickListener(this);
+        dDeleteLyr.setOnClickListener(this);
+        dChangeLyrs.setOnClickListener(this);
+        dDeleteAll.setOnClickListener(this);
 
-         dSlideSave.setOnClickListener(this);
-         dSaveTel.setOnClickListener(this);
-         dSaveNet.setOnClickListener(this);
+        dPaint.setOnClickListener(this);
+        dFil.setOnClickListener(this);
+        dEraser.setOnClickListener(this);
+        dText.setOnClickListener(this);
+        dCut.setOnClickListener(this);
+        dTrans.setOnClickListener(this);
+        dScale.setOnClickListener(this);
+        dDeformRotate.setOnClickListener(this);
 
-         dSlideAdd.setOnClickListener(this);
-         dAddCreated.setOnClickListener(this);
-         dAddLink.setOnClickListener(this);
-         dAddCam.setOnClickListener(this);
-         dAddColl.setOnClickListener(this);
+        dSlideSave.setOnClickListener(this);
+        dSaveTel.setOnClickListener(this);
+        dSaveNet.setOnClickListener(this);
+
+        dSlideAdd.setOnClickListener(this);
+        dAddCreated.setOnClickListener(this);
+        dAddLink.setOnClickListener(this);
+        dAddCam.setOnClickListener(this);
+        dAddColl.setOnClickListener(this);
 
     }
 
