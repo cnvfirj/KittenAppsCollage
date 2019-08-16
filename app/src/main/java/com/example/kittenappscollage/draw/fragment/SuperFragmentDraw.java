@@ -191,7 +191,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
                     float border = dSlideTools.getLeft();
                     int display = size.x;
                     dSlideStep = (display-(border+dSlideTools.getWidth())-border)/8;
-                    computeSlide(dSlideStep,0);
+                    if(dVisibleTools)computeSlide(dSlideStep,0);
                 }
             });
         }
