@@ -89,9 +89,66 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
             case R.id.add_collect:
                 addColl();
                 break;
+                default:
+                    toolsDrive(view.getId());
+                    break;
         }
     }
 
+    private void toolsDrive(int id){
+        switch (id){
+            case R.id.tool_undo:
+                toolUndo();
+                break;
+            case R.id.tool_redo:
+                toolRedo();
+                break;
+            case R.id.tool_info:
+                toolInfo();
+                break;
+            case R.id.tool_all_lyrs:
+                toolAllLyrs();
+                break;
+            case R.id.tool_change:
+                toolChange();
+                break;
+            case R.id.tool_union:
+                toolUnion();
+                break;
+            case R.id.tool_del_lyr:
+                toolDelLyr();
+                break;
+            case R.id.tool_del_all:
+                toolDelAll();
+                break;
+            case R.id.tool_draw:
+                toolPaint();
+                break;
+            case R.id.tool_fill:
+                toolFill();
+                break;
+            case R.id.tool_erase:
+                toolErase();
+                break;
+            case R.id.tool_text:
+                toolText();
+                break;
+            case R.id.tool_cut:
+                toolCut();
+                break;
+            case R.id.tool_deform_rotate:
+                toolDeformRotate();
+                break;
+            case R.id.tool_translate:
+                toolTranslate();
+                break;
+            case R.id.tool_scale:
+                toolScale();
+                break;
+
+
+        }
+    }
     private void  initViews(View view){
         dViewDraw = view.findViewById(R.id.view_draw);
 
@@ -226,16 +283,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         return getSlideAdd1()*2;
     }
 
-    private float getSlideTools(){
-        if(dVisibleTools){
-            dVisibleTools = false;
-            return 0;
-        } else{
-            dVisibleTools = true;
-            return dSlideStep;
-        }
-    }
-
     private float getSlideSave(){
         return getResources().getDimension(R.dimen.SLIDE_SAVE);
     }
@@ -301,5 +348,58 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     protected void addColl(){
         slideAdd();
+    }
+
+    protected void toolUndo(){
+
+    }
+    private void toolRedo(){
+
+    }
+    protected void toolInfo(){
+
+    }
+    protected void toolAllLyrs(){
+
+    }
+    protected void toolUnion(){
+
+    }
+    protected void toolChange(){
+
+    }
+    protected void toolDelLyr(){
+
+    }
+    protected void toolDelAll(){
+
+    }
+
+    protected void toolPaint(){
+
+    }
+    protected void toolErase(){
+
+    }
+    protected void toolFill(){
+
+    }
+    protected void toolText(){
+
+    }
+    protected void toolCut(){
+
+    }
+
+    protected void toolDeformRotate(){
+
+    }
+
+    protected void toolTranslate(){
+
+    }
+
+    protected void toolScale(){
+
     }
 }
