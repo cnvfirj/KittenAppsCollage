@@ -191,6 +191,13 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         addListener();
     }
 
+    protected void enabledSlideTools(boolean enable){
+        dSlideTools.setEnabled(enable);
+    }
+
+    protected void enabledSlideSave(boolean enable){
+        dSlideSave.setEnabled(enable);
+    }
 
     /*анимация выдвижения панели инструментов для рисования*/
     protected void slideTools(){
@@ -361,17 +368,14 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     }
     protected void toolRedo(View v){
-         dSlideTools.setEnabled(!dSlideTools.isEnabled());
+
     }
     protected void toolInfo(View v){
        dSelectInfo=!dSelectInfo;
-//       scaleSelected(v,dSelectInfo);
-
         v.setSelected(dSelectInfo);
     }
     protected void toolAllLyrs(View v){
         dSelectAllLyrs = !dSelectAllLyrs;
-//        scaleSelected(v,dSelectAllLyrs);
         v.setSelected(dSelectAllLyrs);
     }
     protected void toolUnion(View v){
@@ -413,11 +417,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     protected void toolScale(View v){
 
-    }
-
-    private void scaleSelected(View v, boolean select){
-        if(select)v.animate().scaleY(1.2f).scaleX(1.2f).setDuration(getTymeAnimView()).start();
-        else v.animate().scaleY(1).scaleX(1).setDuration(getTymeAnimView()).start();
     }
 
 

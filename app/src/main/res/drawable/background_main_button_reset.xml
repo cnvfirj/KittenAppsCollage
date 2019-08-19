@@ -32,14 +32,24 @@
 
 
     <transition
-        android:drawable="@drawable/anim_background_out_to_noenabl"
+        android:drawable="@drawable/anim_background_in_to_noenabl"
         android:fromId="@id/free"
         android:toId="@id/noenabl"/>
 
     <transition
-        android:drawable="@drawable/anim_background_out_to_enabled"
+        android:drawable="@drawable/anim_background_in_to_enabled"
         android:fromId="@id/noenabl"
         android:toId="@id/free" />
+
+    <transition
+        android:drawable="@drawable/anim_background_in_to_noenabl"
+        android:fromId="@id/press"
+        android:toId="@id/noenabl"/>
+
+    <transition
+        android:drawable="@drawable/anim_background_in_to_enabled"
+        android:fromId="@id/noenabl"
+        android:toId="@id/press" />
 
 
 </animated-selector>
