@@ -2,21 +2,21 @@
 <animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/yes"
-        android:drawable="@drawable/ic_tools_slide_close"
+        android:drawable="@drawable/anim_tools_invisible"
         android:state_selected="true"/>
 
     <item
         android:id="@+id/no"
-        android:drawable="@drawable/ic_tools_slide_open"
+        android:drawable="@drawable/anim_tools_visible"
         android:state_selected="false"/>
 
     <transition
-        android:drawable="@drawable/anim_tools_close"
+        android:drawable="@drawable/anim_tools_invisible"
         android:fromId="@id/yes"
         android:toId="@id/no"/>
 
     <transition
-        android:drawable="@drawable/anim_tools_open"
+        android:drawable="@drawable/anim_tools_visible"
         android:fromId="@id/no"
         android:toId="@id/yes"/>
 </animated-selector>

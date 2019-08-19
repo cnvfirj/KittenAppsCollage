@@ -1,22 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
-    android:id="@+id/layout_tools"
-    android:layout_marginTop="@dimen/SLIDE_TOOLS">
+    android:layout_height="match_parent"
+>
 
     <include layout="@layout/include_tools_common"/>
 
     <include layout="@layout/include_tools_draw"/>
 
-    <ImageView
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:src="@drawable/icon_tools"
-        android:id="@+id/slide_tools"
-        android:layout_gravity="center_horizontal" />
 
-</LinearLayout>
+</FrameLayout>

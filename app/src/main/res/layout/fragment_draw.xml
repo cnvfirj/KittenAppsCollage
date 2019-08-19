@@ -17,7 +17,7 @@
         style="@style/slide_style_all_tools"
         android:id="@+id/slide_all_tools"
         android:src="@drawable/icon_tools"
-        android:background="@color/colorPrimary"/>
+        android:background="@drawable/background_main_button_reset"/>
 
     <include layout="@layout/include_add_lyr"/>
 
@@ -25,7 +25,7 @@
         style="@style/slide_style_add_img"
         android:id="@+id/slide_add_lyr"
         android:src="@drawable/icon_add"
-        android:background="@color/colorPrimary"/>
+        android:background="@drawable/background_main_button_reset"/>
 
 
 
@@ -35,7 +35,7 @@
         style="@style/slide_style_save"
         android:id="@+id/slide_save_img"
         android:src="@drawable/icon_save"
-        android:background="@color/colorPrimary"/>
+        android:background="@drawable/background_main_button_reset"/>
 
 
 

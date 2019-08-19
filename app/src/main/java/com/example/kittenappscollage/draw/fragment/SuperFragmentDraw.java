@@ -29,6 +29,8 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     private boolean dVisibleTools, dVisibleSave, dVisibleAdd;
 
+    private boolean dSelectInfo, dSelectAllLyrs;
+
     private ImageView dSlideTools,dSlideSave, dSlideAdd;
 
     private ImageView dSaveTel, dSaveNet;
@@ -48,6 +50,8 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dVisibleTools = false;
         dVisibleSave = false;
         dVisibleAdd = false;
+        dSelectAllLyrs = false;
+        dSelectInfo = false;
         return inflater.inflate(R.layout.fragment_draw,null);
     }
 
@@ -72,78 +76,78 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
                 slideAdd();
                 break;
             case R.id.save_net:
-                saveNet();
+                saveNet(view);
                 break;
             case R.id.save_tel:
-                saveTel();
+                saveTel(view);
                 break;
             case R.id.add_created:
-                addCreated();
+                addCreated(view);
                 break;
             case R.id.add_link:
-                addLink();
+                addLink(view);
                 break;
             case R.id.add_camera:
-                addCam();
+                addCam(view);
                 break;
             case R.id.add_collect:
-                addColl();
+                addColl(view);
                 break;
                 default:
-                    toolsDrive(view.getId());
+                    toolsDrive(view);
                     break;
         }
     }
 
-    private void toolsDrive(int id){
-        switch (id){
+    private void toolsDrive(View view){
+        switch (view.getId()){
             case R.id.tool_undo:
-                toolUndo();
+                toolUndo(view);
                 break;
             case R.id.tool_redo:
-                toolRedo();
+                toolRedo(view);
                 break;
             case R.id.tool_info:
-                toolInfo();
+                toolInfo(view);
                 break;
             case R.id.tool_all_lyrs:
-                toolAllLyrs();
+                toolAllLyrs(view);
                 break;
             case R.id.tool_change:
-                toolChange();
+                toolChange(view);
                 break;
             case R.id.tool_union:
-                toolUnion();
+                toolUnion(view);
                 break;
             case R.id.tool_del_lyr:
-                toolDelLyr();
+                toolDelLyr(view);
                 break;
             case R.id.tool_del_all:
-                toolDelAll();
+                toolDelAll(view);
                 break;
             case R.id.tool_draw:
-                toolPaint();
+                toolPaint(view);
                 break;
             case R.id.tool_fill:
-                toolFill();
+                toolFill(view);
                 break;
             case R.id.tool_erase:
-                toolErase();
+                toolErase(view);
                 break;
             case R.id.tool_text:
-                toolText();
+                toolText(view);
                 break;
             case R.id.tool_cut:
-                toolCut();
+                toolCut(view);
                 break;
             case R.id.tool_deform_rotate:
-                toolDeformRotate();
+                toolDeformRotate(view);
                 break;
             case R.id.tool_translate:
-                toolTranslate();
+                toolTranslate(view);
                 break;
             case R.id.tool_scale:
-                toolScale();
+                toolScale(view);
                 break;
 
 
@@ -190,6 +194,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     /*анимация выдвижения панели инструментов для рисования*/
     protected void slideTools(){
+
         if(!dVisibleTools) {
             computeSlide(dSlideStep,getTimeSlide());
             dVisibleTools = true;
@@ -197,8 +202,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
             computeSlide(0,getTimeSlide());
             dVisibleTools = false;
         }
-
-
         dSlideTools.setSelected(dVisibleTools);
     }
 
@@ -291,6 +294,10 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         return 500;
     }
 
+    private long getTymeAnimView(){
+        return 300;
+    }
+
 
     private void addListener(){
         dSlideTools.setOnClickListener(this);
@@ -326,80 +333,92 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     }
 
 
-    protected void saveNet(){
+    protected void saveNet(View v){
         slideSave();
     }
 
-    protected void saveTel(){
+    protected void saveTel(View v){
         slideSave();
     }
 
-    protected void addCreated(){
+    protected void addCreated(View v){
         slideAdd();
     }
 
-    protected void addLink(){
+    protected void addLink(View v){
         slideAdd();
     }
 
-    protected void addCam(){
+    protected void addCam(View v){
         slideAdd();
     }
 
-    protected void addColl(){
+    protected void addColl(View v){
         slideAdd();
     }
 
-    protected void toolUndo(){
+    protected void toolUndo(View v){
 
     }
-    private void toolRedo(){
+    protected void toolRedo(View v){
+         dSlideTools.setEnabled(!dSlideTools.isEnabled());
+    }
+    protected void toolInfo(View v){
+       dSelectInfo=!dSelectInfo;
+//       scaleSelected(v,dSelectInfo);
+
+        v.setSelected(dSelectInfo);
+    }
+    protected void toolAllLyrs(View v){
+        dSelectAllLyrs = !dSelectAllLyrs;
+//        scaleSelected(v,dSelectAllLyrs);
+        v.setSelected(dSelectAllLyrs);
+    }
+    protected void toolUnion(View v){
 
     }
-    protected void toolInfo(){
+    protected void toolChange(View v){
 
     }
-    protected void toolAllLyrs(){
+    protected void toolDelLyr(View v){
 
     }
-    protected void toolUnion(){
-
-    }
-    protected void toolChange(){
-
-    }
-    protected void toolDelLyr(){
-
-    }
-    protected void toolDelAll(){
-
-    }
-
-    protected void toolPaint(){
-
-    }
-    protected void toolErase(){
-
-    }
-    protected void toolFill(){
-
-    }
-    protected void toolText(){
-
-    }
-    protected void toolCut(){
+    protected void toolDelAll(View v){
 
     }
 
-    protected void toolDeformRotate(){
+    protected void toolPaint(View v){
+
+    }
+    protected void toolErase(View v){
+
+    }
+    protected void toolFill(View v){
+
+    }
+    protected void toolText(View v){
+
+    }
+    protected void toolCut(View v){
 
     }
 
-    protected void toolTranslate(){
+    protected void toolDeformRotate(View v){
 
     }
 
-    protected void toolScale(){
+    protected void toolTranslate(View v){
 
     }
+
+    protected void toolScale(View v){
+
+    }
+
+    private void scaleSelected(View v, boolean select){
+        if(select)v.animate().scaleY(1.2f).scaleX(1.2f).setDuration(getTymeAnimView()).start();
+        else v.animate().scaleY(1).scaleX(1).setDuration(getTymeAnimView()).start();
+    }
+
+
 }

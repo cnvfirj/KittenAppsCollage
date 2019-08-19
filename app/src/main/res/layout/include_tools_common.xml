@@ -18,12 +18,12 @@
         android:id="@+id/tool_info"
         style="@style/slide_style_all_tools"
         android:src="@drawable/icon_info"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_buttons_selected"/>
     <ImageView
         android:id="@+id/tool_all_lyrs"
         style="@style/slide_style_all_tools"
         android:src="@drawable/icon_all_lyrs"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_buttons_selected"/>
     <ImageView
         android:id="@+id/tool_change"
         android:src="@drawable/icon_change_lyrs"
