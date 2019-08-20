@@ -25,11 +25,23 @@ import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
 public class SuperFragmentDraw extends Fragment implements View.OnClickListener {
 
+    private final int TOOL_PAINT = 1;
+    private final int TOOL_ERASE = 2;
+    private final int TOOL_FILL = 3;
+    private final int TOOL_CUT = 4;
+    private final int TOOL_TRANS = 5;
+    private final int TOOL_TEXT = 6;
+    private final int TOOL_DEF_ROT = 7;
+    private final int TOOL_SCALE = 8;
+
+
     protected ViewDraw dViewDraw;
 
     private boolean dVisibleTools, dVisibleSave, dVisibleAdd;
 
     private boolean dSelectInfo, dSelectAllLyrs;
+
+    private boolean dSelectPaint, dSelectErase, dSelectFill, dSelectText, dSelectDeformRotate, dSelectCut, dSelectTrans, dSelectScale;
 
     private ImageView dSlideTools,dSlideSave, dSlideAdd;
 
@@ -365,10 +377,10 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     }
 
     protected void toolUndo(View v){
-
+        v.setSelected(!v.isSelected());
     }
     protected void toolRedo(View v){
-
+        v.setSelected(!v.isSelected());
     }
     protected void toolInfo(View v){
        dSelectInfo=!dSelectInfo;
@@ -379,44 +391,55 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         v.setSelected(dSelectAllLyrs);
     }
     protected void toolUnion(View v){
-
+        v.setSelected(!v.isSelected());
     }
     protected void toolChange(View v){
-
+        v.setSelected(!v.isSelected());
     }
     protected void toolDelLyr(View v){
-
+        v.setSelected(!v.isSelected());
     }
     protected void toolDelAll(View v){
-
+        v.setSelected(!v.isSelected());
     }
 
     protected void toolPaint(View v){
-
+        selectorButtons(TOOL_PAINT);
     }
     protected void toolErase(View v){
-
+       selectorButtons(TOOL_ERASE);
     }
     protected void toolFill(View v){
-
+       selectorButtons(TOOL_FILL);
     }
     protected void toolText(View v){
-
+       selectorButtons(TOOL_TEXT);
     }
     protected void toolCut(View v){
-
+       selectorButtons(TOOL_CUT);
     }
 
     protected void toolDeformRotate(View v){
-
+       selectorButtons(TOOL_DEF_ROT);
     }
 
     protected void toolTranslate(View v){
-
+        selectorButtons(TOOL_TRANS);
     }
 
     protected void toolScale(View v){
+          selectorButtons(TOOL_SCALE);
+    }
 
+    private void selectorButtons(int index){
+        dPaint.setSelected(index==TOOL_PAINT);
+        dEraser.setSelected(index==TOOL_ERASE);
+        dFil.setSelected(index==TOOL_FILL);
+        dText.setSelected(index==TOOL_TEXT);
+        dCut.setSelected(index==TOOL_CUT);
+        dTrans.setSelected(index==TOOL_TRANS);
+        dDeformRotate.setSelected(index==TOOL_DEF_ROT);
+        dScale.setSelected(index==TOOL_SCALE);
     }
 
 

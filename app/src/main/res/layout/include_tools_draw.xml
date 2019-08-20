@@ -7,42 +7,44 @@
         android:id="@+id/tool_translate"
         android:src="@drawable/icon_translate"
         style="@style/slide_style_all_tools"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_buttons_selected"/>
     <ImageView
         android:id="@+id/tool_scale"
         android:src="@drawable/icon_scale_plus"
         style="@style/slide_style_all_tools"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_buttons_selected"/>
     <ImageView
         android:id="@+id/tool_deform_rotate"
         android:src="@drawable/icon_rotation_image"
         style="@style/slide_style_all_tools"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_buttons_selected"/>
     <ImageView
         android:id="@+id/tool_draw"
         android:src="@drawable/icon_paint_rambol_non"
         style="@style/slide_style_all_tools"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_buttons_selected"/>
 
     <ImageView
         android:id="@+id/tool_erase"
         android:src="@drawable/icon_erase_rambol_non"
         style="@style/slide_style_all_tools"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_buttons_selected"/>
 
     <ImageView
         android:id="@+id/tool_fill"
         android:src="@drawable/icon_fill_to_bord"
         style="@style/slide_style_all_tools"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_buttons_selected"/>
     <ImageView
         android:id="@+id/tool_text"
         android:src="@drawable/icon_text"
         style="@style/slide_style_all_tools"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_buttons_selected"/>
     <ImageView
         android:id="@+id/tool_cut"
         android:src="@drawable/ic_star"
         style="@style/slide_style_all_tools"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_buttons_selected"/>
+
+
 </FrameLayout>

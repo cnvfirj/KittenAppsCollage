@@ -7,12 +7,13 @@
         android:id="@+id/tool_undo"
         android:src="@drawable/icon_tool_undo"
         style="@style/slide_style_all_tools"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_under_button_reset"/>
+
     <ImageView
         android:id="@+id/tool_redo"
         android:src="@drawable/icon_tool_redo"
         style="@style/slide_style_all_tools"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_under_button_reset"/>
 
     <ImageView
         android:id="@+id/tool_info"
@@ -28,21 +29,21 @@
         android:id="@+id/tool_change"
         android:src="@drawable/icon_change_lyrs"
         style="@style/slide_style_all_tools"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_under_button_reset"/>
     <ImageView
         android:id="@+id/tool_del_lyr"
         android:src="@drawable/icon_delete_lyr"
         style="@style/slide_style_all_tools"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_under_button_reset"/>
     <ImageView
         android:id="@+id/tool_union"
         android:src="@drawable/icon_union_lyrs"
         style="@style/slide_style_all_tools"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_under_button_reset"/>
     <ImageView
         android:id="@+id/tool_del_all"
         android:src="@drawable/icon_delete_all"
         style="@style/slide_style_all_tools"
-        android:background="@color/colorAccent"/>
+        android:background="@drawable/background_under_button_reset"/>
 
 </FrameLayout>
