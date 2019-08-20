@@ -34,7 +34,7 @@ public class RepDraw {
         return singleton;
     }
 
-    public RepDraw list(Adding add){
+    public RepDraw listener(Adding add){
         rAdd = add;
         return this;
     }

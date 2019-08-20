@@ -18,33 +18,26 @@ import java.util.concurrent.TimeUnit;
 
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
-public class ButtonsFragmentDraw extends SuperFragmentDraw {
-
-
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        return super.onCreateView(inflater, container, savedInstanceState);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-    }
-
+public class AddLyrsFragmentDraw extends SuperFragmentDraw {
 
 
     @Override
-    public void onClick(View view) {
-        super.onClick(view);
-
+    protected void addCreated(ImageView v) {
+        super.addCreated(v);
     }
 
+    @Override
+    protected void addLink(ImageView v) {
+        super.addLink(v);
+    }
 
+    @Override
+    protected void addCam(ImageView v) {
+        super.addCam(v);
+    }
 
-
-
+    @Override
+    protected void addColl(ImageView v) {
+        super.addColl(v);
+    }
 }

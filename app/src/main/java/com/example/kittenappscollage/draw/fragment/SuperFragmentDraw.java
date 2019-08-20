@@ -1,6 +1,9 @@
 package com.example.kittenappscollage.draw.fragment;
 
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,6 +19,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.view.ViewDraw;
+
+import java.util.Objects;
 
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
@@ -34,7 +39,13 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected final int TOOL_DEF_ROT = 7;
     protected final int TOOL_SCALE = 8;
 
-    private int dIndexTool = TOOL_PAINT;
+    protected final String SAVE_STATE = "state";
+
+    private final String KEY_STATE_INDEX_TOOL = "tool";
+    private final String KEY_STATE_INFO = "info";
+    private final String KEY_STATE_ALLLYRS = "alllyrs";
+
+    private int dIndexTool;
 
 
     protected ViewDraw dViewDraw;
@@ -55,7 +66,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     private float dSlideStep;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,6 +74,8 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dVisibleAdd = false;
         dSelectAllLyrs = false;
         dSelectInfo = false;
+        dIndexTool = TOOL_PAINT;
+
         return inflater.inflate(R.layout.fragment_draw,null);
     }
 
@@ -72,7 +84,19 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         super.onViewCreated(view, savedInstanceState);
         dViewDraw = view.findViewById(R.id.view_draw);
         initViews(view);
+
     }
+
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        SharedPreferences states = getContext().getSharedPreferences(SAVE_STATE, Context.MODE_PRIVATE);
+//        SharedPreferences.Editor edit = states.edit();
+//        edit.putInt(KEY_STATE_INDEX_TOOL,dIndexTool);
+//        edit.putBoolean(KEY_STATE_INFO,dSelectInfo);
+//        edit.putBoolean(KEY_STATE_ALLLYRS,dSelectAllLyrs);
+//        edit.apply();
+//    }
 
     @Override
     public void onClick(View view) {
@@ -88,22 +112,22 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
                 slideAdd();
                 break;
             case R.id.save_net:
-                saveNet(view);
+                saveNet((ImageView)view);
                 break;
             case R.id.save_tel:
-                saveTel(view);
+                saveTel((ImageView)view);
                 break;
             case R.id.add_created:
-                addCreated(view);
+                addCreated((ImageView)view);
                 break;
             case R.id.add_link:
-                addLink(view);
+                addLink((ImageView)view);
                 break;
             case R.id.add_camera:
-                addCam(view);
+                addCam((ImageView)view);
                 break;
             case R.id.add_collect:
-                addColl(view);
+                addColl((ImageView)view);
                 break;
                 default:
                     toolsDrive(view);
@@ -114,57 +138,58 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     private void toolsDrive(View view){
         switch (view.getId()){
             case R.id.tool_undo:
-                toolUndo(view);
+                toolUndo((ImageView)view);
                 break;
             case R.id.tool_redo:
-                toolRedo(view);
+                toolRedo((ImageView)view);
                 break;
             case R.id.tool_info:
-                toolInfo(view);
+                toolInfo((ImageView)view);
                 break;
             case R.id.tool_all_lyrs:
-                toolAllLyrs(view);
+                toolAllLyrs((ImageView)view);
                 break;
             case R.id.tool_change:
-                toolChange(view);
+                toolChange((ImageView)view);
                 break;
             case R.id.tool_union:
-                toolUnion(view);
+                toolUnion((ImageView)view);
                 break;
             case R.id.tool_del_lyr:
-                toolDelLyr(view);
+                toolDelLyr((ImageView)view);
                 break;
             case R.id.tool_del_all:
-                toolDelAll(view);
+                toolDelAll((ImageView)view);
                 break;
             case R.id.tool_draw:
-                toolPaint(view);
+                toolPaint((ImageView)view);
                 break;
             case R.id.tool_fill:
-                toolFill(view);
+                toolFill((ImageView)view);
                 break;
             case R.id.tool_erase:
-                toolErase(view);
+                toolErase((ImageView)view);
                 break;
             case R.id.tool_text:
-                toolText(view);
+                toolText((ImageView)view);
                 break;
             case R.id.tool_cut:
-                toolCut(view);
+                toolCut((ImageView)view);
                 break;
             case R.id.tool_deform_rotate:
-                toolDeformRotate(view);
+                toolDeformRotate((ImageView)view);
                 break;
             case R.id.tool_translate:
-                toolTranslate(view);
+                toolTranslate((ImageView)view);
                 break;
             case R.id.tool_scale:
-                toolScale(view);
+                toolScale((ImageView)view);
                 break;
 
 
         }
     }
+
     private void  initViews(View view){
         dViewDraw = view.findViewById(R.id.view_draw);
 
@@ -199,7 +224,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dAddCam = view.findViewById(R.id.add_camera);
         dAddColl = view.findViewById(R.id.add_collect);
 
-
+        appStates();
         addListener();
     }
 
@@ -210,6 +235,14 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected void enabledSlideSave(boolean enable){
         dSlideSave.setEnabled(enable);
     }
+
+    protected void enabledSlideAdd(boolean enable){
+        dSlideAdd.setEnabled(enable);
+    }
+
+
+
+
 
     /*анимация выдвижения панели инструментов для рисования*/
     protected void slideTools(){
@@ -296,6 +329,17 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     }
 
 
+    private void appStates(){
+
+//        SharedPreferences pref = getContext().getSharedPreferences(SAVE_STATE, Context.MODE_PRIVATE);
+//        dIndexTool = pref.getInt(KEY_STATE_INDEX_TOOL,TOOL_PAINT);
+//        dSelectInfo = pref.getBoolean(KEY_STATE_INFO,false);
+//        dSelectAllLyrs = pref.getBoolean(KEY_STATE_ALLLYRS,false);
+
+        selectorButtons(dIndexTool);
+        dInfo.setSelected(dSelectInfo);
+        dAllLyrs.setSelected(dSelectAllLyrs);
+    }
 
     private float getSlideAdd1(){
         return getResources().getDimension(R.dimen.SLIDE_ADD);
@@ -352,86 +396,87 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     }
 
 
-    protected void saveNet(View v){
+    protected void saveNet(ImageView v){
         slideSave();
     }
 
-    protected void saveTel(View v){
+    protected void saveTel(ImageView v){
         slideSave();
     }
 
-    protected void addCreated(View v){
+    protected void addCreated(ImageView v){
         slideAdd();
     }
 
-    protected void addLink(View v){
+    protected void addLink(ImageView v){
         slideAdd();
     }
 
-    protected void addCam(View v){
+    protected void addCam(ImageView v){
         slideAdd();
     }
 
-    protected void addColl(View v){
+    protected void addColl(ImageView v){
         slideAdd();
     }
 
-    protected void toolUndo(View v){
+    protected void toolUndo(ImageView v){
         v.setSelected(!v.isSelected());
     }
-    protected void toolRedo(View v){
+    protected void toolRedo(ImageView v){
         v.setSelected(!v.isSelected());
     }
-    protected void toolInfo(View v){
+    protected void toolInfo(ImageView v){
        dSelectInfo=!dSelectInfo;
         v.setSelected(dSelectInfo);
     }
-    protected void toolAllLyrs(View v){
+    protected void toolAllLyrs(ImageView v){
         dSelectAllLyrs = !dSelectAllLyrs;
         v.setSelected(dSelectAllLyrs);
     }
-    protected void toolUnion(View v){
+    protected void toolUnion(ImageView v){
         v.setSelected(!v.isSelected());
     }
-    protected void toolChange(View v){
+    protected void toolChange(ImageView v){
         v.setSelected(!v.isSelected());
     }
-    protected void toolDelLyr(View v){
+    protected void toolDelLyr(ImageView v){
         v.setSelected(!v.isSelected());
     }
-    protected void toolDelAll(View v){
+    protected void toolDelAll(ImageView v){
         v.setSelected(!v.isSelected());
     }
 
-    protected void toolPaint(View v){
+    protected void toolPaint(ImageView v){
         selectorButtons(TOOL_PAINT);
     }
 
-    protected void toolErase(View v){
+    protected void toolErase(ImageView v){
        selectorButtons(TOOL_ERASE);
     }
 
-    protected void toolFill(View v){
+    protected void toolFill(ImageView v){
        selectorButtons(TOOL_FILL);
     }
 
-    protected void toolText(View v){
+    protected void toolText(ImageView v){
        selectorButtons(TOOL_TEXT);
     }
 
-    protected void toolCut(View v){
+    protected void toolCut(ImageView v){
        selectorButtons(TOOL_CUT);
     }
 
-    protected void toolDeformRotate(View v){
+    protected void toolDeformRotate(ImageView v){
        selectorButtons(TOOL_DEF_ROT);
     }
 
-    protected void toolTranslate(View v){
+    protected void toolTranslate(ImageView v){
         selectorButtons(TOOL_TRANS);
+
     }
 
-    protected void toolScale(View v){
+    protected void toolScale(ImageView v){
           selectorButtons(TOOL_SCALE);
     }
 

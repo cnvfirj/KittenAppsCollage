@@ -6,6 +6,10 @@
 
 
 
+    <com.example.kittenappscollage.draw.view.CustomFon
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <com.example.kittenappscollage.draw.view.ViewDraw
         android:layout_width="match_parent"
         android:layout_height="match_parent"
