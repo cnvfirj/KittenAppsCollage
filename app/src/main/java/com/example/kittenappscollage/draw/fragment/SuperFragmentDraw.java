@@ -25,14 +25,16 @@ import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
 public class SuperFragmentDraw extends Fragment implements View.OnClickListener {
 
-    private final int TOOL_PAINT = 1;
-    private final int TOOL_ERASE = 2;
-    private final int TOOL_FILL = 3;
-    private final int TOOL_CUT = 4;
-    private final int TOOL_TRANS = 5;
-    private final int TOOL_TEXT = 6;
-    private final int TOOL_DEF_ROT = 7;
-    private final int TOOL_SCALE = 8;
+    protected final int TOOL_PAINT = 1;
+    protected final int TOOL_ERASE = 2;
+    protected final int TOOL_FILL = 3;
+    protected final int TOOL_CUT = 4;
+    protected final int TOOL_TRANS = 5;
+    protected final int TOOL_TEXT = 6;
+    protected final int TOOL_DEF_ROT = 7;
+    protected final int TOOL_SCALE = 8;
+
+    private int dIndexTool = TOOL_PAINT;
 
 
     protected ViewDraw dViewDraw;
@@ -40,8 +42,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     private boolean dVisibleTools, dVisibleSave, dVisibleAdd;
 
     private boolean dSelectInfo, dSelectAllLyrs;
-
-    private boolean dSelectPaint, dSelectErase, dSelectFill, dSelectText, dSelectDeformRotate, dSelectCut, dSelectTrans, dSelectScale;
 
     private ImageView dSlideTools,dSlideSave, dSlideAdd;
 
@@ -406,15 +406,19 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected void toolPaint(View v){
         selectorButtons(TOOL_PAINT);
     }
+
     protected void toolErase(View v){
        selectorButtons(TOOL_ERASE);
     }
+
     protected void toolFill(View v){
        selectorButtons(TOOL_FILL);
     }
+
     protected void toolText(View v){
        selectorButtons(TOOL_TEXT);
     }
+
     protected void toolCut(View v){
        selectorButtons(TOOL_CUT);
     }
@@ -431,7 +435,12 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
           selectorButtons(TOOL_SCALE);
     }
 
+    protected boolean compareIndex(int index){
+        return dIndexTool==index;
+    }
+
     private void selectorButtons(int index){
+        dIndexTool = index;
         dPaint.setSelected(index==TOOL_PAINT);
         dEraser.setSelected(index==TOOL_ERASE);
         dFil.setSelected(index==TOOL_FILL);

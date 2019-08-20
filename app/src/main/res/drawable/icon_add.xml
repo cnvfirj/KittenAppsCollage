@@ -3,7 +3,7 @@
     <item
         android:id="@+id/yes"
         android:drawable="@drawable/ic_arrow_bottom_right"
-        android:state_selected="true"/>
+        android:state_selected="true" />
 
     <item
         android:id="@+id/no"
