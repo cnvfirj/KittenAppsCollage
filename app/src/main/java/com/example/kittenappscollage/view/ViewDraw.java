@@ -1,15 +1,14 @@
-package com.example.kittenappscollage.draw.view;
+package com.example.kittenappscollage.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.kittenappscollage.draw.view.operations.ApplyOperation;
-import com.example.kittenappscollage.draw.view.operations.Operation;
+import com.example.kittenappscollage.draw.operations.ApplyOperation;
+import com.example.kittenappscollage.draw.operations.Operation;
 
 public class ViewDraw extends View {
 

@@ -10,8 +10,11 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 
 import com.example.kittenappscollage.R;
+import com.example.kittenappscollage.draw.addLyrs.AddLyr;
+import com.example.kittenappscollage.draw.addLyrs.FrameDialogAdd;
 
 import java.sql.Time;
 import java.util.concurrent.TimeUnit;
@@ -21,9 +24,13 @@ import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 public class AddLyrsFragmentDraw extends SuperFragmentDraw {
 
 
+    FrameDialogAdd dialog;
     @Override
     protected void addCreated(ImageView v) {
         super.addCreated(v);
+        dialog = new FrameDialogAdd();
+        dialog.show(getFragmentManager(),"dialog");
+
     }
 
     @Override

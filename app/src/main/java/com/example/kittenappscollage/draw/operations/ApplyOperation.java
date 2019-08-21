@@ -1,6 +1,5 @@
-package com.example.kittenappscollage.draw.view.operations;
+package com.example.kittenappscollage.draw.operations;
 
-import android.graphics.Canvas;
 import android.view.MotionEvent;
 
 public class ApplyOperation {

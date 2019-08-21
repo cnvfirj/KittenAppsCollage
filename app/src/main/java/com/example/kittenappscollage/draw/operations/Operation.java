@@ -1,4 +1,4 @@
-package com.example.kittenappscollage.draw.view.operations;
+package com.example.kittenappscollage.draw.operations;
 
 public abstract class Operation {
 

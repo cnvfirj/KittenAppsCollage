@@ -1,9 +1,6 @@
 package com.example.kittenappscollage.draw.fragment;
 
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,18 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.kittenappscollage.R;
-import com.example.kittenappscollage.draw.view.ViewDraw;
-
-import java.util.Objects;
-
-import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
+import com.example.kittenappscollage.view.ViewDraw;
 
 
 /*описываем основную анимацию движения кнопок и панели

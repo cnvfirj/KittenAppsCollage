@@ -9,6 +9,13 @@
     </style>
 
 
+    <style name="DialogAddLyr" parent="Base.Theme.AppCompat.Dialog.FixedSize">
+        <item name="windowFixedWidthMajor">@dimen/width_window_major_add_bitmap</item>
+        <item name="windowFixedWidthMinor">@dimen/width_window_minor_add_bitmap</item>
+        <item name="windowFixedHeightMajor">@dimen/height_window_major_add_bitmap</item>
+        <item name="windowFixedHeightMinor">@dimen/height_window_minor_add_bitmap</item>
+    </style>
+
     <style name="Clickable">
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
@@ -27,6 +34,11 @@
     </style>
 
 
+
+    <style name="buttons_dialog_add">
+        <item name="android:layout_width">@dimen/param_save</item>
+        <item name="android:layout_height">@dimen/param_save</item>
+    </style>
 
     <style name="common_buttons" parent="Clickable">
         <item name="android:layout_width">@dimen/param_save</item>

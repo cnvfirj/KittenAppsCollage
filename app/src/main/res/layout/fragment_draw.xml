@@ -6,11 +6,11 @@
 
 
 
-    <com.example.kittenappscollage.draw.view.CustomFon
+    <com.example.kittenappscollage.view.CustomFon
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.example.kittenappscollage.draw.view.ViewDraw
+    <com.example.kittenappscollage.view.ViewDraw
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/view_draw"/>

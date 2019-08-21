@@ -12,4 +12,10 @@
     <dimen name="SLIDE_ADD">45dp</dimen>
 
 
+    <dimen name="width_window_major_add_bitmap">90%</dimen>
+    <dimen name="width_window_minor_add_bitmap">90%</dimen>
+    <dimen name="height_window_major_add_bitmap">55%</dimen>
+    <dimen name="height_window_minor_add_bitmap">55%</dimen>
+
+
 </resources>

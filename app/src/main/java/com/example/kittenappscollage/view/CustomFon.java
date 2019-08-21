@@ -1,4 +1,4 @@
-package com.example.kittenappscollage.draw.view;
+package com.example.kittenappscollage.view;
 
 import android.content.Context;
 import android.graphics.Canvas;
