@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.example.kittenappscollage.view.CustomFon
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
     <com.example.kittenappscollage.view.PresentLyr
+        android:id="@+id/present_lyr"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/present_lyr"/>
+        android:layout_height="match_parent" />
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dialog_add_progress"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"/>
 
 
     <ImageView
@@ -51,6 +59,61 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/margin_save"/>
+
+
+    <TextView
+        style="@style/dialog_add_text"
+        android:id="@+id/dialog_select_alpha"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:text="000"
+        android:inputType="number"
+        android:maxLength="3"/>
+
+    <TextView
+        style="@style/dialog_add_text"
+        android:id="@+id/dialog_select_transparent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:text="000"
+        android:inputType="number"
+        android:maxLength="3"/>
+
+    <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+        style="@style/dialog_add_seek_bar"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/dialog_select_alpha"
+        android:layout_above="@+id/dialog_back">
+
+        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+            android:id="@+id/alpha_adjustment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:max="100"
+            android:progress="100"
+            android:splitTrack="false"
+            app:seekBarRotation="CW270" />
+    </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+
+    <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper
+        style="@style/dialog_add_seek_bar"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/dialog_select_alpha"
+        android:layout_above="@+id/dialog_close">
+
+        <com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBar
+            android:id="@+id/scale_adjustment"
+            android:layout_width="0dp"
+            android:layout_height="503dp"
+            android:max="100"
+            android:progress="100"
+            android:splitTrack="false"
+            app:seekBarRotation="CW270" />
+    </com.h6ah4i.android.widget.verticalseekbar.VerticalSeekBarWrapper>
+
+
+
 
 
 

@@ -17,5 +17,9 @@
     <dimen name="height_window_major_add_bitmap">55%</dimen>
     <dimen name="height_window_minor_add_bitmap">55%</dimen>
 
+    <dimen name="dialog_add_text_size">30sp</dimen>
+
+    <dimen name="margin_seek_dialog_add">30dp</dimen>
+
 
 </resources>

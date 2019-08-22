@@ -1,0 +1,37 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
+            <group
+                android:name="group"
+                android:pivotX="12"
+                android:pivotY="12"
+                android:scaleX="-1">
+                <clip-path
+                    android:name="mask"
+                    android:pathData="M 23.008 22.956 L 23.102 0.948 L 15.017 1.053 L 15.003 10.919 L 19.031 19.021 L 15.013 19.021 L 15.041 22.966 L 11.999 23.02 L 11.995 19.02 L 4.981 18.972 L 9.055 10.968 L 8.999 19.008 L 11.994 19.03 L 12.013 1.041 L 0.988 1.043 L 0.993 23.051 Z"/>
+                <path
+                    android:name="path"
+                    android:pathData="M 2.159 21.827 L 2.043 21.653 L 1.991 21.419 L 1.992 2.554 L 2.049 2.327 L 2.151 2.152 L 2.314 2.052 L 2.529 1.997 L 8.998 1.983 L 8.998 0.995 L 12.008 1.011 L 12.009 1.972 L 21.457 1.995 L 21.714 2.03 L 21.882 2.117 L 21.96 2.271 L 22.002 2.537 L 21.995 21.493 L 21.96 21.757 L 21.875 21.905 L 21.721 21.969 L 21.471 22.005 L 11.999 22.004 L 12.006 23.004 L 8.991 23.008 L 8.986 21.99 L 2.534 22.003 L 2.333 21.932 Z"
+                    android:fillColor="#FFFFFF"/>
+            </group>
+        </vector>
+    </aapt:attr>
+    <target android:name="group">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="scaleX"
+                android:duration="300"
+                android:valueFrom="-1"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+</animated-vector>
