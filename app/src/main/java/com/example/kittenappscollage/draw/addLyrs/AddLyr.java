@@ -1,24 +1,44 @@
 package com.example.kittenappscollage.draw.addLyrs;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.kittenappscollage.R;
+import com.example.kittenappscollage.view.ExtendsSeekBar;
+import com.example.kittenappscollage.view.PresentLyr;
+import com.mohammedalaa.seekbar.RangeSeekBarView;
 
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
-public class AddLyr extends Fragment implements View.OnClickListener {
+public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSeekBar.TrackSeekBar {
 
 
     private ImageView aBack, aDone, aClose, aMirror;
 
+    private ProgressBar aProgress;
+
+    private ExtendsSeekBar aScale, aAlpha;
+
+    private int aPercentScale, aPercentAlpha;
+
+    private Bitmap aLyr;
+
+    private PresentLyr aPresent;
+
+    public AddLyr() {
+        aPercentAlpha = 100;
+        aPercentScale = 100;
+    }
 
     @Nullable
     @Override
@@ -32,6 +52,10 @@ public class AddLyr extends Fragment implements View.OnClickListener {
         initViews(view);
     }
 
+    public void setBitmap(Bitmap bitmap){
+        aLyr = bitmap;
+    }
+
     private void initViews(View v){
         aBack = v.findViewById(R.id.dialog_back);
         aBack.setOnClickListener(this);
@@ -41,6 +65,17 @@ public class AddLyr extends Fragment implements View.OnClickListener {
         aClose.setOnClickListener(this);
         aMirror = v.findViewById(R.id.dialog_mirror);
         aMirror.setOnClickListener(this);
+        aScale = v.findViewById(R.id.dialog_seek_scale);
+        aScale.setTracker(this);
+        aScale.setValue(aPercentScale);
+        aAlpha = v.findViewById(R.id.dialog_seek_alpha);
+        aAlpha.setTracker(this);
+        aAlpha.setValue(aPercentAlpha);
+        aAlpha.setAnimated(true,3000);
+        aProgress = v.findViewById(R.id.dialog_add_progress);
+        aProgress.setVisibility(View.INVISIBLE);
+        aPresent = v.findViewById(R.id.dialog_add_present_lyr);
+
     }
 
 
@@ -64,6 +99,20 @@ public class AddLyr extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void touch(SeekBar s) {
+        switch (s.getId()){
+            case R.id.dialog_seek_alpha:
+                aPercentAlpha = aAlpha.getValue();
+                break;
+            case R.id.dialog_seek_scale:
+                aPercentScale = aScale.getValue();
+                break;
+        }
+    }
+
+
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
@@ -72,6 +121,13 @@ public class AddLyr extends Fragment implements View.OnClickListener {
     public void onResume() {
         super.onResume();
 
+    }
+
+    private void applyParams(boolean mirror){
+         aProgress.setVisibility(View.VISIBLE);
+         if(mirror){
+
+         }
     }
 
     private void pressMirror(ImageView view){

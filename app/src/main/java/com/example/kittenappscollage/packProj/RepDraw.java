@@ -62,7 +62,7 @@ public class RepDraw {
             if (rep != null) rLMat.setRepository(rep);
             if (single&&rAdd != null) rAdd.readinessLyr(true);
         }
-        zeroingBitmap(b);;
+        zeroingBitmap(b);
     }
 
     public RepDraw setAll(Bitmap img, CompRep repImg, Bitmap lyr, CompRep repLyr){

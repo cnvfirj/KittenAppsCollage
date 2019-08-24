@@ -6,6 +6,7 @@
     <dimen name="param_save">35dp</dimen>
     <dimen name="margin_save">10dp</dimen>
     <dimen name="margin">45dp</dimen>
+    <dimen name="param_seek_bar">17dp</dimen>
 
     <dimen name="SLIDE_TOOLS">-80dp</dimen>
     <dimen name="SLIDE_SAVE">-45dp</dimen>
