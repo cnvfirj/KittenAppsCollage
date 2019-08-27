@@ -1,0 +1,71 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
+            <path
+                android:name="path"
+                android:pathData="M 10.5 16.8 C 9.006 16.8 7.8 18.006 7.8 19.5 C 7.8 20.679 6.756 21.3 6 21.3 C 6.828 22.398 8.241 23.1 9.6 23.1 C 11.589 23.1 13.2 21.489 13.2 19.5 C 13.2 18.006 11.994 16.8 10.5 16.8 Z M 22.839 8.367 L 21.633 7.161 C 21.282 6.81 20.715 6.81 20.364 7.161 L 12.3 15.225 L 14.775 17.7 L 22.839 9.636 C 23.19 9.285 23.19 8.718 22.839 8.367 Z"
+                android:fillColor="#000"
+                android:strokeWidth="1.111111111"/>
+            <clip-path
+                android:name="mask"
+                android:pathData="M 4.206 20.867 C 5.677 22.945 6.727 22.594 5.39 22.998 C 1.118 22.963 5.707 23.086 1.09 22.925 C 1.119 19.949 0.987 4.283 0.984 1.01 C 12.043 1.08 18.809 0.913 23.005 1.048 C 23.005 2.455 22.964 2.4 22.978 3.998 C 9.862 16.042 23.004 3.931 9.931 16 C 5.617 16.138 8.826 20.955 4.206 20.867 Z"/>
+            <path
+                android:name="ramb_1"
+                android:pathData="M 3.276 11.621 C 3.276 14.725 9.499 17.241 17.176 17.241 C 24.857 17.241 31.078 14.725 31.078 11.621 C 31.078 8.517 24.857 6 17.176 6 C 9.499 6 3.276 8.517 3.276 11.621 Z"
+                android:strokeColor="#000000"
+                android:strokeWidth="3"/>
+            <path
+                android:name="ramb_2"
+                android:pathData="M 0.517 11.622 C 0.517 16.325 8.225 20.138 17.732 20.138 C 27.243 20.138 34.953 16.325 34.953 11.622 C 34.953 6.917 27.243 3.103 17.732 3.103 C 8.225 3.103 0.517 6.917 0.517 11.622 Z"
+                android:strokeColor="#000000"
+                android:strokeAlpha="0.6"
+                android:strokeWidth="3"/>
+            <path
+                android:name="ramb_3"
+                android:pathData="M -2.448 11.642 C -2.448 17.996 6.793 23.145 18.189 23.145 C 29.587 23.145 38.828 17.996 38.828 11.642 C 38.828 5.289 29.587 0.138 18.189 0.138 C 6.793 0.138 -2.448 5.289 -2.448 11.642 Z"
+                android:strokeColor="#000000"
+                android:strokeAlpha="0.3"
+                android:strokeWidth="3"/>
+        </vector>
+    </aapt:attr>
+    <target android:name="ramb_2">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="strokeAlpha"
+                android:duration="300"
+                android:valueFrom="0.6"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+    <target android:name="ramb_3">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="strokeAlpha"
+                android:duration="300"
+                android:valueFrom="0.3"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+    <target android:name="ramb_1">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="strokeAlpha"
+                android:duration="300"
+                android:valueFrom="1"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+</animated-vector>

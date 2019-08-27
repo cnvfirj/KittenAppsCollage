@@ -11,7 +11,7 @@
         style="@style/slide_style_add_img"
         android:id="@+id/add_created"
         android:background="@color/colorAccent"
-        android:src="@drawable/ic_add_img"/>
+        android:src="@drawable/icon_create_new"/>
 
     <ImageView
         style="@style/slide_style_add_img"

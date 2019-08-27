@@ -58,6 +58,8 @@
 
     </style>
 
+
+
     <style name="common_buttons" parent="Clickable">
         <item name="android:layout_width">@dimen/param_save</item>
         <item name="android:layout_height">@dimen/param_save</item>

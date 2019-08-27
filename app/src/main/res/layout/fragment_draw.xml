@@ -23,6 +23,8 @@
         android:src="@drawable/icon_tools"
         android:background="@drawable/background_main_button_reset"/>
 
+
+
     <include layout="@layout/include_add_lyr"/>
 
     <ImageView
