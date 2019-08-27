@@ -3,12 +3,12 @@
     <item
         android:id="@+id/yes"
         android:drawable="@drawable/ic_all_lyrs_on"
-        android:state_selected="true"/>
+        android:state_activated="true"/>
 
     <item
         android:id="@+id/no"
         android:drawable="@drawable/ic_all_lyrs_off"
-        android:state_selected="false"/>
+        android:state_activated="false"/>
 
     <transition
         android:drawable="@drawable/anim_off_all_lyr"

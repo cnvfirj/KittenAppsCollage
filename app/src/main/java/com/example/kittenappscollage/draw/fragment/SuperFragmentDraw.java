@@ -16,11 +16,38 @@ import androidx.fragment.app.Fragment;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.view.ViewDraw;
 
+import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
+
 
 /*описываем основную анимацию движения кнопок и панели
 * инструментов. Присваиваем им иконки*/
 
 public class SuperFragmentDraw extends Fragment implements View.OnClickListener {
+
+    public final static int OP_PAINT_1 = 11;
+    public final static int OP_PAINT_2 = 12;
+    public final static int OP_PAINT_3 = 13;
+
+    public final static int OP_ERASE_1 = 21;
+    public final static int OP_ERASE_2 = 22;
+    public final static int OP_ERASE_3 = 22;
+
+    public final static int OP_FILL_1 = 31;
+    public final static int OP_FILL_2 = 32;
+
+    public final static int OP_DEF_ROT_1 = 41;
+    public final static int OP_DEF_ROT_2 = 42;
+
+    public final static int OP_SCALE_1 = 51;
+    public final static int OP_SCALE_2 = 52;
+
+    public final static int OP_TRANS_1 = 61;
+
+    public final static int OP_CUT_1 = 71;
+
+    public final static int OP_TEXT_1 = 81;
+    public final static int OP_TEXT_2 = 82;
+
 
     protected final int TOOL_PAINT = 1;
     protected final int TOOL_ERASE = 2;
@@ -30,6 +57,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected final int TOOL_TEXT = 6;
     protected final int TOOL_DEF_ROT = 7;
     protected final int TOOL_SCALE = 8;
+    protected final int TOOL_PROPERTIES = 9;
 
     protected final String SAVE_STATE = "state";
 
@@ -54,7 +82,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     private ImageView dUndo, dRedo, dInfo, dAllLyrs, dUnion, dDeleteLyr, dChangeLyrs, dDeleteAll;
 
-    private ImageView dPaint, dFil, dEraser, dText, dCut, dTrans, dScale, dDeformRotate;
+    private ImageView dPaint, dFil, dEraser, dText, dCut, dTrans, dScale, dDeformRotate,dProperties;
 
     private float dSlideStep;
 
@@ -79,16 +107,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     }
 
-//    @Override
-//    public void onPause() {
-//        super.onPause();
-//        SharedPreferences states = getContext().getSharedPreferences(SAVE_STATE, Context.MODE_PRIVATE);
-//        SharedPreferences.Editor edit = states.edit();
-//        edit.putInt(KEY_STATE_INDEX_TOOL,dIndexTool);
-//        edit.putBoolean(KEY_STATE_INFO,dSelectInfo);
-//        edit.putBoolean(KEY_STATE_ALLLYRS,dSelectAllLyrs);
-//        edit.apply();
-//    }
+
 
     @Override
     public void onClick(View view) {
@@ -177,6 +196,9 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
             case R.id.tool_scale:
                 toolScale((ImageView)view);
                 break;
+            case R.id.tool_properties:
+                toolProperties((ImageView)view);
+                break;
 
 
         }
@@ -203,6 +225,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dTrans = view.findViewById(R.id.tool_translate);
         dScale = view.findViewById(R.id.tool_scale);
         dDeformRotate = view.findViewById(R.id.tool_deform_rotate);
+        dProperties = view.findViewById(R.id.tool_properties);
 
         shiftTools(dSlideTools);
 
@@ -318,15 +341,11 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dCut.animate().translationY(step*6).setDuration(time).start();
         dTrans.animate().translationY(step*7).setDuration(time).start();
         dScale.animate().translationY(step*8).setDuration(time).start();
+        dProperties.animate().translationY(step*9).setDuration(time).start();
     }
 
 
     private void appStates(){
-
-//        SharedPreferences pref = getContext().getSharedPreferences(SAVE_STATE, Context.MODE_PRIVATE);
-//        dIndexTool = pref.getInt(KEY_STATE_INDEX_TOOL,TOOL_PAINT);
-//        dSelectInfo = pref.getBoolean(KEY_STATE_INFO,false);
-//        dSelectAllLyrs = pref.getBoolean(KEY_STATE_ALLLYRS,false);
 
         selectorButtons(dIndexTool);
         dInfo.setSelected(dSelectInfo);
@@ -365,6 +384,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dDeleteLyr.setOnClickListener(this);
         dChangeLyrs.setOnClickListener(this);
         dDeleteAll.setOnClickListener(this);
+        dProperties.setOnClickListener(this);
 
         dPaint.setOnClickListener(this);
         dFil.setOnClickListener(this);
@@ -420,11 +440,11 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     }
     protected void toolInfo(ImageView v){
        dSelectInfo=!dSelectInfo;
-        v.setSelected(dSelectInfo);
+        v.setActivated(dSelectInfo);
     }
     protected void toolAllLyrs(ImageView v){
         dSelectAllLyrs = !dSelectAllLyrs;
-        v.setSelected(dSelectAllLyrs);
+        v.setActivated(dSelectAllLyrs);
     }
     protected void toolUnion(ImageView v){
         v.setSelected(!v.isSelected());
@@ -439,37 +459,83 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         v.setSelected(!v.isSelected());
     }
 
+    protected void callDialogSelectText(){
+
+    }
+
+    protected void callDialogProperties(){
+
+    }
+
+    protected void applyCutOperation(){
+
+    }
+
     protected void toolPaint(ImageView v){
-        selectorButtons(TOOL_PAINT);
+        if(v.isActivated()){
+            v.setSelected(false);
+            v.setSelected(true);
+        }else selectorButtons(TOOL_PAINT);
     }
 
     protected void toolErase(ImageView v){
-       selectorButtons(TOOL_ERASE);
+
+        if(v.isActivated()){
+            v.setSelected(false);
+            v.setSelected(true);
+        }else selectorButtons(TOOL_ERASE);
     }
 
     protected void toolFill(ImageView v){
-       selectorButtons(TOOL_FILL);
+
+        if(v.isActivated()){
+            v.setSelected(false);
+            v.setSelected(true);
+        }else selectorButtons(TOOL_FILL);
     }
 
     protected void toolText(ImageView v){
-       selectorButtons(TOOL_TEXT);
+
+        if(v.isActivated()){
+            v.setSelected(false);
+            v.setSelected(true);
+        }else selectorButtons(TOOL_TEXT);
     }
 
     protected void toolCut(ImageView v){
-       selectorButtons(TOOL_CUT);
+        if(v.isActivated()){
+            v.setSelected(false);
+            v.setSelected(true);
+        }else selectorButtons(TOOL_CUT);
     }
 
     protected void toolDeformRotate(ImageView v){
-       selectorButtons(TOOL_DEF_ROT);
+
+        if(v.isActivated()){
+            v.setSelected(false);
+            v.setSelected(true);
+        }else selectorButtons(TOOL_DEF_ROT);
     }
 
     protected void toolTranslate(ImageView v){
-        selectorButtons(TOOL_TRANS);
+        if(v.isActivated()){
+            v.setSelected(false);
+            v.setSelected(true);
+        }else selectorButtons(TOOL_TRANS);
 
     }
 
     protected void toolScale(ImageView v){
-          selectorButtons(TOOL_SCALE);
+        if(v.isActivated()){
+            v.setSelected(false);
+            v.setSelected(true);
+        }else selectorButtons(TOOL_SCALE);
+
+
+    }
+
+    protected void toolProperties(ImageView v){
+        v.setSelected(!v.isSelected());
     }
 
     protected boolean compareIndex(int index){
@@ -477,16 +543,52 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     }
 
     private void selectorButtons(int index){
-        dIndexTool = index;
-        dPaint.setSelected(index==TOOL_PAINT);
-        dEraser.setSelected(index==TOOL_ERASE);
-        dFil.setSelected(index==TOOL_FILL);
-        dText.setSelected(index==TOOL_TEXT);
-        dCut.setSelected(index==TOOL_CUT);
-        dTrans.setSelected(index==TOOL_TRANS);
-        dDeformRotate.setSelected(index==TOOL_DEF_ROT);
-        dScale.setSelected(index==TOOL_SCALE);
+
+            dIndexTool = index;
+
+            dPaint.setActivated(index == TOOL_PAINT);
+
+            dEraser.setActivated(index == TOOL_ERASE);
+
+            dFil.setActivated(index == TOOL_FILL);
+
+            dText.setActivated(index == TOOL_TEXT);
+
+            dCut.setActivated(index == TOOL_CUT);
+
+            dTrans.setActivated(index == TOOL_TRANS);
+
+            dDeformRotate.setActivated(index == TOOL_DEF_ROT);
+
+            dScale.setActivated(index == TOOL_SCALE);
+
     }
+
+    private void selectorPaint(){
+
+    }
+
+    private void selectorErase(){
+
+    }
+
+    private void selectorFill(){
+
+    }
+
+    private void selectorDefRot(){
+
+    }
+
+    private void selectorScale(){
+
+    }
+
+    private void selectorTranslate(){
+
+    }
+
+
 
 
 }

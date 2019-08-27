@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/in"
+        android:drawable="@color/colorPrimary"
+        android:state_activated="true"
+        android:state_selected="false"/>
+
+    <item
+        android:id="@+id/out"
+        android:drawable="@color/colorAccent"
+        android:state_activated="false"
+        android:state_selected="false"/>
+
+    <item
+        android:id="@+id/select_out"
+        android:drawable="@color/colorAccent"
+        android:state_activated="false"
+        android:state_selected="true"/>
+
+  <item
+        android:id="@+id/select_in"
+        android:drawable="@color/colorPrimary"
+        android:state_activated="true"
+        android:state_selected="true"/>
+
+
+    <transition
+        android:drawable="@drawable/anim_background_in"
+        android:fromId="@id/in"
+        android:toId="@id/out"/>
+
+    <transition
+        android:drawable="@drawable/anim_background_out"
+        android:fromId="@id/out"
+        android:toId="@id/in"
+        tools:ignore="StateListReachable" />
+
+
+    <transition
+        android:drawable="@drawable/anim_background_click_pr_as_pr"
+        android:fromId="@+id/in"
+        android:toId="@+id/select_in"/>
+
+    <transition
+        android:drawable="@drawable/anim_background_out"
+        android:fromId="@+id/select_out"
+        android:toId="@+id/select_in"/>
+
+    <transition
+        android:drawable="@drawable/anim_background_in"
+        android:fromId="@+id/select_in"
+        android:toId="@+id/select_out"/>
+
+
+
+
+
+
+
+</animated-selector>

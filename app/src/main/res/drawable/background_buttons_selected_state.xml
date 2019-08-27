@@ -2,17 +2,19 @@
 <animated-selector
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
         android:id="@+id/in"
         android:drawable="@color/colorPrimary"
-        android:state_selected="true"
+        android:state_activated="true"
         android:state_enabled="true"/>
 
     <item
         android:id="@+id/out"
         android:drawable="@color/colorAccent"
-        android:state_selected="false"
+        android:state_activated="false"
         android:state_enabled="true"/>
+
 
     <item
         android:id="@+id/noenabl"
@@ -51,7 +53,6 @@
         android:fromId="@id/noenabl"
         android:toId="@id/out"
         tools:ignore="StateListReachable" />
-
 
 
 </animated-selector>

@@ -71,7 +71,6 @@ public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSee
         aAlpha = v.findViewById(R.id.dialog_seek_alpha);
         aAlpha.setTracker(this);
         aAlpha.setValue(aPercentAlpha);
-        aAlpha.setAnimated(true,3000);
         aProgress = v.findViewById(R.id.dialog_add_progress);
         aProgress.setVisibility(View.INVISIBLE);
         aPresent = v.findViewById(R.id.dialog_add_present_lyr);
