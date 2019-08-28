@@ -25,13 +25,13 @@
                 android:name="ramb_2"
                 android:pathData="M 0.517 11.622 C 0.517 16.325 8.225 20.138 17.732 20.138 C 27.243 20.138 34.953 16.325 34.953 11.622 C 34.953 6.917 27.243 3.103 17.732 3.103 C 8.225 3.103 0.517 6.917 0.517 11.622 Z"
                 android:strokeColor="#FFFFFF"
-                android:strokeAlpha="0.6"
+
                 android:strokeWidth="3"/>
             <path
                 android:name="ramb_3"
                 android:pathData="M -2.448 11.642 C -2.448 17.996 6.793 23.145 18.189 23.145 C 29.587 23.145 38.828 17.996 38.828 11.642 C 38.828 5.289 29.587 0.138 18.189 0.138 C 6.793 0.138 -2.448 5.289 -2.448 11.642 Z"
                 android:strokeColor="#FFFFFF"
-                android:strokeAlpha="0.3"
+
                 android:strokeWidth="3"/>
         </vector>
     </aapt:attr>
@@ -51,7 +51,7 @@
             <objectAnimator
                 android:propertyName="strokeAlpha"
                 android:duration="300"
-                android:valueFrom="0.3"
+                android:valueFrom="1"
                 android:valueTo="1"
                 android:valueType="floatType"
                 android:interpolator="@android:interpolator/fast_out_slow_in"/>
@@ -62,7 +62,7 @@
             <objectAnimator
                 android:propertyName="strokeAlpha"
                 android:duration="300"
-                android:valueFrom="1"
+                android:valueFrom="0.3"
                 android:valueTo="1"
                 android:valueType="floatType"
                 android:interpolator="@android:interpolator/fast_out_slow_in"/>

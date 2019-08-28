@@ -18,46 +18,51 @@ import com.example.kittenappscollage.view.ViewDraw;
 
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
-
 /*описываем основную анимацию движения кнопок и панели
 * инструментов. Присваиваем им иконки*/
 
 public class SuperFragmentDraw extends Fragment implements View.OnClickListener {
 
+    protected final int TOOL_PAINT = 1;
     public final static int OP_PAINT_1 = 11;
     public final static int OP_PAINT_2 = 12;
     public final static int OP_PAINT_3 = 13;
+    private int dIndexPaint;
 
+    protected final int TOOL_ERASE = 2;
     public final static int OP_ERASE_1 = 21;
     public final static int OP_ERASE_2 = 22;
     public final static int OP_ERASE_3 = 22;
+    private int dIndexErase;
 
+    protected final int TOOL_FILL = 3;
     public final static int OP_FILL_1 = 31;
     public final static int OP_FILL_2 = 32;
+    private int dIndexFill;
 
+    protected final int TOOL_DEF_ROT = 4;
     public final static int OP_DEF_ROT_1 = 41;
     public final static int OP_DEF_ROT_2 = 42;
+    private int dIndexDefRot;
 
+    protected final int TOOL_SCALE = 5;
     public final static int OP_SCALE_1 = 51;
     public final static int OP_SCALE_2 = 52;
+    private int dIndexScale;
 
+    protected final int TOOL_TRANS = 6;
     public final static int OP_TRANS_1 = 61;
+    private int dIndexTrans;
 
+    protected final int TOOL_CUT = 7;
     public final static int OP_CUT_1 = 71;
+    public final static int OP_CUT_2 = 72;
+    private int dIndexCut;
 
+    protected final int TOOL_TEXT = 8;
     public final static int OP_TEXT_1 = 81;
     public final static int OP_TEXT_2 = 82;
-
-
-    protected final int TOOL_PAINT = 1;
-    protected final int TOOL_ERASE = 2;
-    protected final int TOOL_FILL = 3;
-    protected final int TOOL_CUT = 4;
-    protected final int TOOL_TRANS = 5;
-    protected final int TOOL_TEXT = 6;
-    protected final int TOOL_DEF_ROT = 7;
-    protected final int TOOL_SCALE = 8;
-    protected final int TOOL_PROPERTIES = 9;
+    private int dIndexText;
 
     protected final String SAVE_STATE = "state";
 
@@ -65,8 +70,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     private final String KEY_STATE_INFO = "info";
     private final String KEY_STATE_ALLLYRS = "alllyrs";
 
-    protected int dIndexTool, dIndexPaint;
-
+    protected int dIndexTool;
 
     protected ViewDraw dViewDraw;
 
@@ -86,16 +90,27 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     private float dSlideStep;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public SuperFragmentDraw() {
         dVisibleTools = false;
         dVisibleSave = false;
         dVisibleAdd = false;
         dSelectAllLyrs = false;
         dSelectInfo = false;
         dIndexTool = TOOL_PAINT;
-        dIndexPaint = 1;
+        dIndexPaint = OP_PAINT_1;
+        dIndexErase = OP_ERASE_1;
+        dIndexFill = OP_FILL_1;
+        dIndexDefRot = OP_DEF_ROT_1;
+        dIndexScale = OP_SCALE_1;
+        dIndexText = OP_TEXT_1;
+        dIndexTrans = OP_TRANS_1;
+        dIndexCut = OP_CUT_1;
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         return inflater.inflate(R.layout.fragment_draw,null);
     }
 
@@ -106,8 +121,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         initViews(view);
 
     }
-
-
 
     @Override
     public void onClick(View view) {
@@ -255,10 +268,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dSlideAdd.setEnabled(enable);
     }
 
-
-
-
-
     /*анимация выдвижения панели инструментов для рисования*/
     protected void slideTools(){
 
@@ -344,12 +353,12 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dProperties.animate().translationY(step*9).setDuration(time).start();
     }
 
-
-    private void appStates(){
-        selectorIconsPaint(dPaint);
-        selectorButtons(dIndexTool);
-        dInfo.setSelected(dSelectInfo);
-        dAllLyrs.setSelected(dSelectAllLyrs);
+    /*здесь на все элементы применяем состояния*/
+    protected void appStates(){
+//        selectorIconsPaint(dPaint);
+//        selectorButtons(dIndexTool);
+//        dInfo.setSelected(dSelectInfo);
+//        dAllLyrs.setSelected(dSelectAllLyrs);
     }
 
     private float getSlideAdd1(){
@@ -473,18 +482,25 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     protected void toolPaint(ImageView v){
         if(v.isActivated()){
+            dIndexPaint++;
+            if(dIndexPaint>OP_PAINT_3)dIndexPaint=OP_PAINT_1;
             v.setSelected(false);
             selectorIconsPaint(v);
-            dIndexPaint++;
-            if(dIndexPaint>3)dIndexPaint=1;
             v.setSelected(true);
-        }else selectorButtons(TOOL_PAINT);
+        }else {
+            selectorButtons(TOOL_PAINT);
+        }
+
+        /*дальше передаем индекс*/
     }
 
     protected void toolErase(ImageView v){
 
         if(v.isActivated()){
+            dIndexErase++;
+            if(dIndexErase>OP_ERASE_3)dIndexErase=OP_ERASE_1;
             v.setSelected(false);
+            /**/
             v.setSelected(true);
         }else selectorButtons(TOOL_ERASE);
     }
@@ -508,6 +524,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected void toolCut(ImageView v){
         if(v.isActivated()){
             v.setSelected(false);
+            doneCut();
             v.setSelected(true);
         }else selectorButtons(TOOL_CUT);
     }
@@ -567,39 +584,17 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     }
 
-    private void selectorIconsPaint(ImageView v){
-        if(dIndexPaint==1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_1_to_2,null));
-        else if(dIndexPaint==2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_2_to_3,null));
-        else if(dIndexPaint==3)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_3_to_1,null));
+    protected void selectorIconsPaint(ImageView v){
+        if(dIndexPaint==OP_PAINT_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_3_to_1,null));
+        else if(dIndexPaint==OP_PAINT_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_1_to_2,null));
+        else if(dIndexPaint==OP_PAINT_3)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_2_to_3,null));
     }
 
-
-
-    private void selectorPaint(){
-
-    }
-
-    private void selectorErase(){
+    /*нажатие на ок запускает отрез по контуру
+    * или диалог*/
+    protected void doneCut(){
 
     }
-
-    private void selectorFill(){
-
-    }
-
-    private void selectorDefRot(){
-
-    }
-
-    private void selectorScale(){
-
-    }
-
-    private void selectorTranslate(){
-
-    }
-
-
 
 
 }

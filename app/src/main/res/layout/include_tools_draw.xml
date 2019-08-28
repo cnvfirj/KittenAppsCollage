@@ -43,7 +43,7 @@
         android:background="@drawable/background_buttons_selected_tools"/>
     <ImageView
         android:id="@+id/tool_cut"
-        android:src="@drawable/ic_cut"
+        android:src="@drawable/icon_cut"
         style="@style/slide_style_all_tools"
         android:background="@drawable/background_buttons_selected_tools"/>
 
