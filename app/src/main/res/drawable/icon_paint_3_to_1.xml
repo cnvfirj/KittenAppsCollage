@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/select"
+        android:drawable="@drawable/ic_brush_step_1"
+        android:state_selected="true"/>
+
+    <item
+        android:id="@+id/inselect"
+        android:drawable="@drawable/ic_brush_step_3"
+        android:state_selected="false"/>
+
+
+
+    <transition
+        android:fromId="@+id/inselect"
+        android:toId="@+id/select"
+        android:drawable="@drawable/anim_brush_3_to_1"/>
+</animated-selector>

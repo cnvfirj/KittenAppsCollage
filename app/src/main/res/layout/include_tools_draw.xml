@@ -18,9 +18,10 @@
         android:src="@drawable/icon_rotation_image"
         style="@style/slide_style_all_tools"
         android:background="@drawable/background_buttons_selected_tools"/>
+
     <ImageView
         android:id="@+id/tool_draw"
-        android:src="@drawable/icon_paint_rambol_non"
+        android:src="@drawable/icon_paint_1_to_2"
         style="@style/slide_style_all_tools"
         android:background="@drawable/background_buttons_selected_tools"/>
 

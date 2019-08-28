@@ -65,7 +65,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     private final String KEY_STATE_INFO = "info";
     private final String KEY_STATE_ALLLYRS = "alllyrs";
 
-    private int dIndexTool;
+    protected int dIndexTool, dIndexPaint;
 
 
     protected ViewDraw dViewDraw;
@@ -95,7 +95,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dSelectAllLyrs = false;
         dSelectInfo = false;
         dIndexTool = TOOL_PAINT;
-
+        dIndexPaint = 1;
         return inflater.inflate(R.layout.fragment_draw,null);
     }
 
@@ -346,7 +346,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
 
     private void appStates(){
-
+        selectorIconsPaint(dPaint);
         selectorButtons(dIndexTool);
         dInfo.setSelected(dSelectInfo);
         dAllLyrs.setSelected(dSelectAllLyrs);
@@ -474,6 +474,9 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected void toolPaint(ImageView v){
         if(v.isActivated()){
             v.setSelected(false);
+            selectorIconsPaint(v);
+            dIndexPaint++;
+            if(dIndexPaint>3)dIndexPaint=1;
             v.setSelected(true);
         }else selectorButtons(TOOL_PAINT);
     }
@@ -563,6 +566,14 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
             dScale.setActivated(index == TOOL_SCALE);
 
     }
+
+    private void selectorIconsPaint(ImageView v){
+        if(dIndexPaint==1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_1_to_2,null));
+        else if(dIndexPaint==2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_2_to_3,null));
+        else if(dIndexPaint==3)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_3_to_1,null));
+    }
+
+
 
     private void selectorPaint(){
 

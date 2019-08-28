@@ -11,7 +11,7 @@
             <path
                 android:name="path"
                 android:pathData="M 10.5 16.8 C 9.006 16.8 7.8 18.006 7.8 19.5 C 7.8 20.679 6.756 21.3 6 21.3 C 6.828 22.398 8.241 23.1 9.6 23.1 C 11.589 23.1 13.2 21.489 13.2 19.5 C 13.2 18.006 11.994 16.8 10.5 16.8 Z M 22.839 8.367 L 21.633 7.161 C 21.282 6.81 20.715 6.81 20.364 7.161 L 12.3 15.225 L 14.775 17.7 L 22.839 9.636 C 23.19 9.285 23.19 8.718 22.839 8.367 Z"
-                android:fillColor="#000"
+                android:fillColor="#FFFFFF"
                 android:strokeWidth="1.111111111"/>
             <clip-path
                 android:name="mask"
@@ -19,18 +19,18 @@
             <path
                 android:name="ramb_1"
                 android:pathData="M 3.276 11.621 C 3.276 14.725 9.499 17.241 17.176 17.241 C 24.857 17.241 31.078 14.725 31.078 11.621 C 31.078 8.517 24.857 6 17.176 6 C 9.499 6 3.276 8.517 3.276 11.621 Z"
-                android:strokeColor="#000000"
+                android:strokeColor="#FFFFFF"
                 android:strokeWidth="3"/>
             <path
                 android:name="ramb_2"
                 android:pathData="M 0.517 11.622 C 0.517 16.325 8.225 20.138 17.732 20.138 C 27.243 20.138 34.953 16.325 34.953 11.622 C 34.953 6.917 27.243 3.103 17.732 3.103 C 8.225 3.103 0.517 6.917 0.517 11.622 Z"
-                android:strokeColor="#000000"
+                android:strokeColor="#FFFFFF"
                 android:strokeAlpha="0.6"
                 android:strokeWidth="3"/>
             <path
                 android:name="ramb_3"
                 android:pathData="M -2.448 11.642 C -2.448 17.996 6.793 23.145 18.189 23.145 C 29.587 23.145 38.828 17.996 38.828 11.642 C 38.828 5.289 29.587 0.138 18.189 0.138 C 6.793 0.138 -2.448 5.289 -2.448 11.642 Z"
-                android:strokeColor="#000000"
+                android:strokeColor="#FFFFFF"
                 android:strokeAlpha="0.3"
                 android:strokeWidth="3"/>
         </vector>
