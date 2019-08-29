@@ -8,23 +8,31 @@
             android:height="24dp"
             android:viewportWidth="24"
             android:viewportHeight="24">
-            <path
-                android:name="path"
-                android:pathData="M 17 15 L 19 15 L 19 7 C 19 5.9 18.1 5 17 5 L 9 5 L 9 7 L 17 7 L 17 15 Z M 7 17 L 7 1 L 5 1 L 5 5 L 1 5 L 1 7 L 5 7 L 5 17 C 5 18.1 5.9 19 7 19 L 17 19 L 17 23 L 19 23 L 19 19 L 23 19 L 23 17 L 7 17 Z"
-                android:fillColor="#FFFFFF"
-                android:strokeWidth="1"/>
             <group
                 android:name="group"
                 android:pivotX="12"
-                android:pivotY="12">
+                android:pivotY="12"
+                android:scaleX="0.9"
+                android:scaleY="0.9">
                 <path
-                    android:name="path_1"
-                    android:pathData="M 7 1 L 5 1 L 4.964 18.992 L 23 19 L 23 17 L 7 17 Z"
+                    android:name="path"
+                    android:pathData="M 17 15 L 19 15 L 19 7 C 19 5.9 18.1 5 17 5 L 9 5 L 9 7 L 17 7 L 17 15 Z M 7 17 L 7 1 L 5 1 L 5 5 L 1 5 L 1 7 L 5 7 L 5 17 C 5 18.1 5.9 19 7 19 L 17 19 L 17 23 L 19 23 L 19 19 L 23 19 L 23 17 L 7 17 Z"
                     android:fillColor="#FFFFFF"
-                    android:fillAlpha="0"
-                    android:strokeColor="#FFFFFF"
-                    android:strokeAlpha="0"/>
+                    android:strokeWidth="1"/>
+                <group
+                    android:name="group"
+                    android:pivotX="12"
+                    android:pivotY="12">
+                    <path
+                        android:name="path_1"
+                        android:pathData="M 7 1 L 5 1 L 4.964 18.992 L 23 19 L 23 17 L 7 17 Z"
+                        android:fillColor="#FFFFFF"
+                        android:fillAlpha="0"
+                        android:strokeColor="#FFFFFF"
+                        android:strokeAlpha="0"/>
+                </group>
             </group>
+
         </vector>
     </aapt:attr>
     <target android:name="path">

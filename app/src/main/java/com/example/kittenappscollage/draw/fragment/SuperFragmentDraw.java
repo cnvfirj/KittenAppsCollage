@@ -16,8 +16,6 @@ import androidx.fragment.app.Fragment;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.view.ViewDraw;
 
-import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
-
 /*описываем основную анимацию движения кнопок и панели
 * инструментов. Присваиваем им иконки*/
 
@@ -487,9 +485,8 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
             v.setSelected(false);
             selectorIconsPaint(v);
             v.setSelected(true);
-        }else {
-            selectorButtons(TOOL_PAINT);
-        }
+        }else selectorButtons(TOOL_PAINT);
+
 
         /*дальше передаем индекс*/
     }
@@ -517,6 +514,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
         if(v.isActivated()){
             v.setSelected(false);
+            enterText();
             v.setSelected(true);
         }else selectorButtons(TOOL_TEXT);
     }
@@ -532,7 +530,10 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected void toolDeformRotate(ImageView v){
 
         if(v.isActivated()){
+            dIndexDefRot++;
+            if(dIndexDefRot>OP_DEF_ROT_2)dIndexDefRot=OP_DEF_ROT_1;
             v.setSelected(false);
+            selectorIconsDefRot(v);
             v.setSelected(true);
         }else selectorButtons(TOOL_DEF_ROT);
     }
@@ -547,7 +548,10 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     protected void toolScale(ImageView v){
         if(v.isActivated()){
+            dIndexScale++;
+            if(dIndexScale>OP_SCALE_2)dIndexScale=OP_SCALE_1;
             v.setSelected(false);
+            selectorIconsScale(v);
             v.setSelected(true);
         }else selectorButtons(TOOL_SCALE);
 
@@ -590,9 +594,27 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         else if(dIndexPaint==OP_PAINT_3)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_2_to_3,null));
     }
 
+    protected void selectorIconsScale(ImageView v){
+        if(dIndexScale==OP_SCALE_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_scale_2,null));
+        else if(dIndexScale==OP_SCALE_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_scale_1,null));
+
+    }
+
+    protected void selectorIconsDefRot(ImageView v){
+        if(dIndexDefRot==OP_DEF_ROT_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_deform_rotate_2,null));
+        else if(dIndexDefRot==OP_DEF_ROT_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_deform_rotate_1,null));
+
+    }
+
     /*нажатие на ок запускает отрез по контуру
     * или диалог*/
     protected void doneCut(){
+
+    }
+
+    /*нажатие на ввод запускает окно
+    * с выбором текста*/
+    protected void enterText(){
 
     }
 

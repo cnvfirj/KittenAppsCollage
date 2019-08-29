@@ -12,21 +12,29 @@
                 android:name="group"
                 android:pivotX="12"
                 android:pivotY="12"
-                android:translateX="-3"
-                android:translateY="-3"
-                android:rotation="-45">
+                android:scaleX="0.9"
+                android:scaleY="0.9">
+                <group
+                    android:name="group"
+                    android:pivotX="12"
+                    android:pivotY="12"
+                    android:translateX="-3"
+                    android:translateY="-3"
+                    android:rotation="-45">
+                    <path
+                        android:name="path"
+                        android:pathData="M 6.905 10.015 L 5 10.017 L 4.967 18.899 C 4.968 18.899 4.97 18.899 4.971 18.899 L 23 19 L 23 17 L 7 17 L 7 17 L 6.905 10.015"
+                        android:fillColor="#FFFFFF"
+                        android:strokeColor="#FFFFFF"/>
+                </group>
                 <path
-                    android:name="path"
-                    android:pathData="M 6.905 10.015 L 5 10.017 L 4.967 18.899 C 4.968 18.899 4.97 18.899 4.971 18.899 L 23 19 L 23 17 L 7 17 L 7 17 L 6.905 10.015"
+                    android:name="path_1"
+                    android:pathData="M 5 1 L 7 1 L 7 17 L 7 17 L 23 17 L 23 19 L 19.03 18.978 L 18.91 18.977 L 16.971 18.966 L 16.97 18.966 L 4.971 18.899 C 4.97 18.899 4.968 18.899 4.967 18.899 L 4.989 7.03 L 4.989 7.029 L 4.992 5.333 L 4.992 5.212 L 5 1 M 17.75 13.75 L 17.75 13.75 L 17.75 13.75 L 17.75 13.75 C 17.75 13.75 17.75 13.75 17.75 13.75 L 17.75 13.75 L 17.75 13.75 L 17.75 13.75 L 17.75 13.75"
                     android:fillColor="#FFFFFF"
+                    android:fillAlpha="0"
                     android:strokeColor="#FFFFFF"/>
             </group>
-            <path
-                android:name="path_1"
-                android:pathData="M 5 1 L 7 1 L 7 17 L 7 17 L 23 17 L 23 19 L 19.03 18.978 L 18.91 18.977 L 16.971 18.966 L 16.97 18.966 L 4.971 18.899 C 4.97 18.899 4.968 18.899 4.967 18.899 L 4.989 7.03 L 4.989 7.029 L 4.992 5.333 L 4.992 5.212 L 5 1 M 17.75 13.75 L 17.75 13.75 L 17.75 13.75 L 17.75 13.75 C 17.75 13.75 17.75 13.75 17.75 13.75 L 17.75 13.75 L 17.75 13.75 L 17.75 13.75 L 17.75 13.75"
-                android:fillColor="#FFFFFF"
-                android:fillAlpha="0"
-                android:strokeColor="#FFFFFF"/>
+
         </vector>
     </aapt:attr>
     <target android:name="group">

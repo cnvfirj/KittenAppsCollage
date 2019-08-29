@@ -3,6 +3,7 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
+
   <group
       android:name="group"
       android:pivotX="12"
@@ -10,13 +11,17 @@
       android:scaleX="0.9"
       android:scaleY="0.9">
     <path
-        android:pathData="M3,5L1,5L1,21C1,22.1 1.9,23 3,23L19,23L19,21L3,21L3,5ZM21,1L7,1C5.9,1 5,1.9 5,3L5,17C5,18.1 5.9,19 7,19L21,19C22.1,19 23,18.1 23,17L23,3C23,1.9 22.1,1 21,1ZM21,17L7,17L7,3L21,3L21,17Z"
+        android:pathData="M12.175,6.132L12.069,3.174L21.176,3.161L21.104,6.073L18.043,6.073L18.169,20.826L15.155,20.825L15.333,6.132Z"
         android:strokeWidth="1"
         android:fillColor="#FFFFFF"/>
     <path
-        android:pathData="M19.6,5.528L18.472,4.4L14,8.872L9.528,4.4L8.4,5.528L12.872,10L8.4,14.472L9.528,15.6L14,11.128L18.472,15.6L19.6,14.472L15.128,10Z"
-        android:strokeWidth="1"
+        android:pathData="M16.975,10.051L16.976,6.922L23.041,6.946L22.994,9.981L22.998,9.981L23.023,17.443L19.938,17.475L20.012,10.004Z"
         android:fillColor="#FFFFFF"/>
+    <path
+        android:pathData="M21.529,8.454L21.529,16.572L2.235,16.572L2.235,8.454Z"
+        android:strokeWidth="3"
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"/>
   </group>
 
 </vector>
