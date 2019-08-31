@@ -33,7 +33,7 @@
 
     <ImageView
         android:id="@+id/tool_fill"
-        android:src="@drawable/icon_fill_to_bord"
+        android:src="@drawable/icon_fill_1"
         style="@style/slide_style_all_tools"
         android:background="@drawable/background_buttons_selected_tools"/>
     <ImageView

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fill1"
+        android:drawable="@drawable/ic_fill_to_border"
+        android:state_selected="false"/>
+
+    <item
+        android:id="@+id/fill2"
+        android:drawable="@drawable/ic_fill_to_color"
+        android:state_selected="true"/>
+
+    <transition
+        android:drawable="@drawable/anim_fill_border_to_color"
+        android:fromId="@+id/fill1"
+        android:toId="@+id/fill2"/>
+
+</animated-selector>

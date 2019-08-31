@@ -505,7 +505,10 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected void toolFill(ImageView v){
 
         if(v.isActivated()){
+            dIndexFill++;
+            if(dIndexFill>OP_FILL_2)dIndexFill = OP_FILL_1;
             v.setSelected(false);
+            selectorIconsFill(v);
             v.setSelected(true);
         }else selectorButtons(TOOL_FILL);
     }
@@ -606,6 +609,10 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     }
 
+    protected void selectorIconsFill(ImageView v){
+        if(dIndexFill==OP_FILL_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_fill_2));
+        else if(dIndexFill==OP_FILL_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_fill_1));
+    }
     /*нажатие на ок запускает отрез по контуру
     * или диалог*/
     protected void doneCut(){
