@@ -414,7 +414,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     }
 
-
     protected void saveNet(ImageView v){
         slideSave();
     }
@@ -466,17 +465,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         v.setSelected(!v.isSelected());
     }
 
-    protected void callDialogSelectText(){
-
-    }
-
-    protected void callDialogProperties(){
-
-    }
-
-    protected void applyCutOperation(){
-
-    }
 
     protected void toolPaint(ImageView v){
         if(v.isActivated()){
