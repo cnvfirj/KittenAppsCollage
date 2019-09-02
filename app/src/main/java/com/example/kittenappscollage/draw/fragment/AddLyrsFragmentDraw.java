@@ -24,27 +24,36 @@ import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 public class AddLyrsFragmentDraw extends SuperFragmentDraw {
 
 
-    FrameDialogAdd dialog;
+    public final static String DIALOG = "dialog";
+
+    private FrameDialogAdd aDialog;
+
     @Override
     protected void addCreated(ImageView v) {
         super.addCreated(v);
-        dialog = new FrameDialogAdd();
-        dialog.show(getFragmentManager(),"dialog");
+        aDialog = FrameDialogAdd.instance(FrameDialogAdd.ADD_NEW);
+        aDialog.show(getChildFragmentManager(),DIALOG);
 
     }
 
     @Override
     protected void addLink(ImageView v) {
         super.addLink(v);
+        aDialog = FrameDialogAdd.instance(FrameDialogAdd.ADD_NET);
+        aDialog.show(getChildFragmentManager(),DIALOG);
     }
 
     @Override
     protected void addCam(ImageView v) {
         super.addCam(v);
+        aDialog = FrameDialogAdd.instance(FrameDialogAdd.ADD_CAM);
+        aDialog.show(getChildFragmentManager(),DIALOG);
     }
 
     @Override
     protected void addColl(ImageView v) {
         super.addColl(v);
+        aDialog = FrameDialogAdd.instance(FrameDialogAdd.ADD_COLL);
+        aDialog.show(getChildFragmentManager(),DIALOG);
     }
 }

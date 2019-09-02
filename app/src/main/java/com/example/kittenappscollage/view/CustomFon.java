@@ -129,22 +129,6 @@ public class CustomFon extends AppCompatImageView {
         invalidate();
     }
 
-//    private void euclideanAlgorithm(){
-//       pNumberStepX = getWidth();
-//       pNumberStepY = getHeight();
-//       while (pNumberStepY>0.1&&pNumberStepX>0.1){
-//
-//           if(pNumberStepX>pNumberStepY){
-//               pNumberStepX = pNumberStepX%pNumberStepY;
-//           }else {
-//               pNumberStepY = pNumberStepY%pNumberStepX;
-//           }
-//       }
-//       pStep = (pNumberStepX+pNumberStepY);
-//       if(pStep==1)pStep=12;
-//    }
-
-
     private void var(){
         pTypeFill = RECT;
         pIsCircle = false;

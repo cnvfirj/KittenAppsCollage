@@ -21,4 +21,10 @@
     <color name="colorWhiteAlpha">#81FFFFFF</color>
 
 
+    <color name="colorTransparent">#00FFFFFF</color>
+
+
+
+
+
 </resources>

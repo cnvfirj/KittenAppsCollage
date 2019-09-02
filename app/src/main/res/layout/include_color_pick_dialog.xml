@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.madrapps.pikolo.HSLColorPicker
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+
+        app:lightness_arc_width="10dp"
+        app:lightness_radius_offset="40dp"
+        app:lightness_indicator_stroke_width="1dp"
+
+        app:saturation_arc_width="10dp"
+        app:saturation_radius_offset="40dp"
+        app:saturation_indicator_stroke_width="1dp"
+
+        app:arc_width="10dp"
+        app:indicator_stroke_width="1dp"
+
+        android:id="@+id/color_pick"
+        android:layout_gravity="end|top"/>
+
+    <ImageView
+        style="@style/common_buttons"
+        android:layout_gravity="top|end"
+        android:background="@drawable/background_main_button_reset"
+        android:id="@+id/color_pick_call"/>
+
+</FrameLayout>

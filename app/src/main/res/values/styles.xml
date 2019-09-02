@@ -59,6 +59,12 @@
     </style>
 
 
+    <style name="margin_all">
+        <item name="android:layout_marginBottom">@dimen/margin_save</item>
+        <item name="android:layout_marginTop">@dimen/margin_save</item>
+        <item name="android:layout_marginLeft">@dimen/margin_save</item>
+        <item name="android:layout_marginRight">@dimen/margin_save</item>
+    </style>
 
     <style name="common_buttons" parent="Clickable">
         <item name="android:layout_width">@dimen/param_save</item>
