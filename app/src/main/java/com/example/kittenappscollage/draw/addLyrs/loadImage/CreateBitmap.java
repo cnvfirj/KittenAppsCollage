@@ -41,8 +41,11 @@ public class CreateBitmap {
         return Observable.create(e -> {
             try {
                 Bitmap b = BitmapFactory.decodeFile(path);
-                e.onNext(mutable(b));
-                b.recycle();
+                if(b==null){
+                    e.onNext(createNew(new Point(1,1)));
+                }else {
+                    e.onNext(b);
+                }
             }catch (Exception ex){
                 /*если получаем ошибку то возвращаем битмап из одного пикселя*/
                 e.onNext(createNew(new Point(1,1)));
@@ -59,8 +62,7 @@ public class CreateBitmap {
                 if(b==null){
                     e.onNext(createNew(new Point(1,1)));
                 }else {
-                    e.onNext(mutable(b));
-                    b.recycle();
+                    e.onNext(b);
                 }
             }catch (Exception ex){
                 /*если получаем ошибку то возвращаем битмап из одного пикселя*/
@@ -70,9 +72,9 @@ public class CreateBitmap {
         }).compose(new ThreadTransformers.InputOutput<>());
     }
 
-    private static Bitmap mutable(Bitmap bitmap){
-       return bitmap.copy(Bitmap.Config.ARGB_8888,true);
-    }
+//    private static Bitmap mutable(Bitmap bitmap){
+//       return bitmap.copy(Bitmap.Config.ARGB_8888,true);
+//    }
 
 
 
