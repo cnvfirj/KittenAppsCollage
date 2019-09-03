@@ -22,5 +22,12 @@
 
     <dimen name="margin_seek_dialog_add">30dp</dimen>
 
+    <dimen name="PATH_FILE">111</dimen>
+    <dimen name="PATH_PHOTO">1111</dimen>
+    <dimen name="PATH_DRIVE">222</dimen>
+    <dimen name="PATH_NET">333</dimen>
+    <dimen name="PATH_CAM">444</dimen>
+    <dimen name="PATH_NEW">555</dimen>
+
 
 </resources>

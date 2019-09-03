@@ -17,7 +17,8 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.kittenappscollage.R;
 
-public class FrameDialogAdd extends DialogFragment {
+
+public class FrameDialogAdd extends DialogFragment implements SelectedFragment.SelectorAddLyrFragments {
 
     public static final int ADD_CAM = 1;
     public static final int ADD_NEW = 2;
@@ -79,4 +80,16 @@ public class FrameDialogAdd extends DialogFragment {
         else if(index==ADD_NEW)return new AddLyrInCreator();
         return null;
     }
+
+    @Override
+    public void done() {
+
+    }
+
+    @Override
+    public void back() {
+
+    }
+
+
 }

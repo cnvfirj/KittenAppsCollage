@@ -68,24 +68,26 @@ public class AddLyrInCreator extends SelectedFragment {
             public void onColorSelected(int color) {
                 super.onColorSelected(color);
                 aColor = color;
+                aColorPickCall.setImageTintList(ColorStateList.valueOf(color));
+
             }
         });
 
         aColorPickCall.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!aColorPickCall.isSelected()){
+                if(!aColorPickCall.isActivated()){
                     applyTransform(false,500);
                 }else {
                     applyTransform(true,500);
+                    aPreview.fon(aColor);
                 }
-                aColorPickCall.setSelected(!aColorPickCall.isSelected());
+                aColorPickCall.setActivated(!aColorPickCall.isActivated());
             }
         });
     }
 
     private void paramView(final View view){
-        /*здесь дожидаемся создания вью для расчета расстояний между кнопками*/
         ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {
             viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -98,20 +100,22 @@ public class AddLyrInCreator extends SelectedFragment {
             });
         }
     }
-    private void applyTransform(boolean hide, long time){
-        float transX = 0;
-        float transY = 0;
-        float scale = 1;
-        if(hide) {
-            scale = (float) aColorPickCall.getWidth() / (float) aSelectColor.getWidth();
-            transX = (aColorPickCall.getLeft()+(aColorPickCall.getRight()-aColorPickCall.getLeft())/2)-
-                    (aSelectColor.getLeft()+(aSelectColor.getRight()-aSelectColor.getLeft())/2);
-            transY = (aColorPickCall.getTop()+(aColorPickCall.getBottom()-aColorPickCall.getTop())/2)-
-                    (aSelectColor.getTop()+(aSelectColor.getBottom()-aSelectColor.getTop())/2);
 
+    private void applyTransform(boolean hide, long time){
+       float scale = (float) aColorPickCall.getWidth() / (float) aSelectColor.getWidth();
+       float transX = (aColorPickCall.getLeft()+(aColorPickCall.getRight()-aColorPickCall.getLeft())/2)-
+                (aSelectColor.getLeft()+(aSelectColor.getRight()-aSelectColor.getLeft())/2);
+       float transY = (aColorPickCall.getTop()+(aColorPickCall.getBottom()-aColorPickCall.getTop())/2)-
+                (aSelectColor.getTop()+(aSelectColor.getBottom()-aSelectColor.getTop())/2);
+        if(hide) {
+            aSelectColor.animate().scaleX(scale).scaleY(scale).translationX(transX).translationY(transY).setDuration(time).start();
+            aColorPickCall.animate().scaleX(1).scaleY(1).translationX(0).translationY(0).setDuration(time).start();
+        }else{
+            aSelectColor.animate().scaleX(1).scaleY(1).translationX(0).translationY(0).setDuration(time).start();
+            aColorPickCall.animate().scaleX(1.5f).scaleY(1.5f).translationX(-transX).translationY(-transY).setDuration(time).start();
         }
 
-        aSelectColor.animate().scaleX(scale).scaleY(scale).translationX(transX).translationY(transY).setDuration(time).start();
+
     }
 
 

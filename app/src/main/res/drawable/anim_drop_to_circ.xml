@@ -1,0 +1,29 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
+            <path
+                android:name="path"
+                android:pathData="M -0.001 11.94 C -0.001 5.345 5.372 -0.001 12 -0.001 C 18.628 -0.001 24.001 5.345 24.001 11.94 C 24.001 18.536 18.628 23.883 12 23.883 C 5.372 23.883 -0.001 18.536 -0.001 11.94 Z"
+                android:fillColor="#FFFFFF"
+                android:strokeColor="#FFFFFF"/>
+        </vector>
+    </aapt:attr>
+    <target android:name="path">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="pathData"
+                android:duration="300"
+                android:valueFrom="M 5.522 14.895 C 5.522 11.916 7.633 9.212 12.329 2.736 C 17.616 9.383 19.307 10.894 19.307 14.895 C 19.307 18.896 16.221 22.14 12.414 22.14 C 8.608 22.14 5.522 18.896 5.522 14.895 Z"
+                android:valueTo="M -0.001 11.94 C -0.001 5.345 5.372 -0.001 12 -0.001 C 18.628 -0.001 24.001 5.345 24.001 11.94 C 24.001 18.536 18.628 23.883 12 23.883 C 5.372 23.883 -0.001 18.536 -0.001 11.94 Z"
+                android:valueType="pathType"
+                android:interpolator="@android:anim/linear_interpolator"/>
+        </aapt:attr>
+    </target>
+</animated-vector>

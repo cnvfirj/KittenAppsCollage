@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/yes"
+        android:drawable="@drawable/ic_circ"
+        android:state_activated="true"/>
+
+    <item
+        android:id="@+id/no"
+        android:drawable="@drawable/ic_drop"
+        android:state_activated="false"/>
+
+    <transition
+        android:drawable="@drawable/anim_circ_to_drop"
+        android:fromId="@id/yes"
+        android:toId="@id/no"/>
+
+    <transition
+        android:drawable="@drawable/anim_drop_to_circ"
+        android:fromId="@id/no"
+        android:toId="@id/yes"/>
+
+</animated-selector>

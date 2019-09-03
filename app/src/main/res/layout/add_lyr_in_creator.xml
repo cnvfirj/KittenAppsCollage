@@ -11,5 +11,21 @@
 
     <include layout="@layout/include_color_pick_dialog"/>
 
+    <ImageView
+        style="@style/common_buttons"
+        android:id="@+id/creator_lyr_done"
+        android:background="@drawable/background_main_button_reset"
+        android:src="@drawable/ic_done"
+        android:layout_gravity="end|bottom"/>
+
+    <ImageView
+        style="@style/common_buttons"
+        android:id="@+id/creator_lyr_back"
+        android:background="@drawable/background_main_button_reset"
+        android:src="@drawable/ic_back"
+        android:layout_gravity="start|bottom|center_horizontal"/>
+
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

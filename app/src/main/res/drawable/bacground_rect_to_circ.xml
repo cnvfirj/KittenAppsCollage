@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/yes"
+        android:drawable="@drawable/anim_bacground_circle_to_rect"
+        android:state_activated="true"/>
+
+    <item
+        android:id="@+id/no"
+        android:drawable="@drawable/anim_bacground_rect_to_circle"
+        android:state_activated="false"/>
+
+    <transition
+        android:drawable="@drawable/anim_bacground_circle_to_rect"
+        android:fromId="@id/yes"
+        android:toId="@id/no"/>
+
+    <transition
+        android:drawable="@drawable/anim_bacground_rect_to_circle"
+        android:fromId="@id/no"
+        android:toId="@id/yes"/>
+
+</animated-selector>
