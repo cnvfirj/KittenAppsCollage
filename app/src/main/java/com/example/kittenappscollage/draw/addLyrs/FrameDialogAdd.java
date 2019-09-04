@@ -1,5 +1,6 @@
 package com.example.kittenappscollage.draw.addLyrs;
 
+import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -7,18 +8,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.kittenappscollage.R;
 
+import java.util.Objects;
 
-public class FrameDialogAdd extends DialogFragment implements SelectedFragment.SelectorAddLyrFragments {
+import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
+
+
+public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragments {
 
     public static final int ADD_CAM = 1;
     public static final int ADD_NEW = 2;
@@ -60,6 +63,7 @@ public class FrameDialogAdd extends DialogFragment implements SelectedFragment.S
         super.onViewCreated(view, savedInstanceState);
         dManager.beginTransaction().add(R.id.dialog_add_frame,dSelectedFragment).commit();
 
+
     }
 
     @Override
@@ -82,14 +86,29 @@ public class FrameDialogAdd extends DialogFragment implements SelectedFragment.S
     }
 
     @Override
-    public void done() {
-
+    public void backInAddLyr() {
+        dManager.beginTransaction().replace(R.id.dialog_add_frame,dFragmentAdd).commit();
     }
 
     @Override
-    public void back() {
-
+    public void backInSelectedLyr() {
+        dManager.beginTransaction().replace(R.id.dialog_add_frame,dSelectedFragment).commit();
     }
 
+    @Override
+    public void exitAll() {
+        dFragmentAdd.clear();
+        dManager.beginTransaction().remove(dSelectedFragment).commit();
+        dManager.beginTransaction().remove(dFragmentAdd).commit();
+        dismiss();
+    }
 
+    @Override
+    public void doneLyr(Bitmap lyr) {
+        /*здесь надо отправить полученный слой куда надо*/
+        dFragmentAdd.clear();
+        dManager.beginTransaction().remove(dSelectedFragment).commit();
+        dManager.beginTransaction().remove(dFragmentAdd).commit();
+        dismiss();
+    }
 }

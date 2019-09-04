@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/yes"
+        android:drawable="@drawable/anim_background_cirk_reset"
+        android:state_selected="false"/>
+
+    <item
+        android:id="@+id/no"
+        android:drawable="@drawable/anim_background_cirk_reset"
+        android:state_selected="true"/>
+
+
+
+    <transition
+        android:drawable="@drawable/anim_background_cirk_reset"
+        android:fromId="@id/yes"
+        android:toId="@id/no" />
+
+    <transition
+        android:drawable="@drawable/anim_background_cirk_reset"
+        android:fromId="@id/no"
+        android:toId="@id/yes" />
+
+
+
+
+</animated-selector>

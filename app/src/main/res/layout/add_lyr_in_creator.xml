@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.example.kittenappscollage.draw.addLyrs.PreviewBlankBitmp
         android:layout_width="match_parent"
@@ -16,14 +16,90 @@
         android:id="@+id/creator_lyr_done"
         android:background="@drawable/background_main_button_reset"
         android:src="@drawable/ic_done"
-        android:layout_gravity="end|bottom"/>
+        android:layout_gravity="start|bottom"/>
 
     <ImageView
         style="@style/common_buttons"
         android:id="@+id/creator_lyr_back"
         android:background="@drawable/background_main_button_reset"
-        android:src="@drawable/ic_back"
-        android:layout_gravity="start|bottom|center_horizontal"/>
+        android:src="@drawable/ic_close"
+        android:layout_gravity="end|bottom"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            style="@style/buttons_arrows"
+            android:src="@drawable/ic_arrow_minus"
+            android:background="@drawable/background_circ_reset"
+            android:id="@+id/creator_arrow_w_minus"
+            android:layout_marginStart="@dimen/margin_save" />
+
+        <com.example.kittenappscollage.view.ExtendsSeekBar
+            android:id="@+id/creator_seek_w"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:barHeight="5dp"
+            app:baseColor="@color/colorAccent"
+            app:circleRadius="@dimen/param_seek_bar"
+            app:circleTextColor="@color/white"
+            app:circleTextSize="12dp"
+            app:fillColor="@color/colorPrimary"
+            app:currentValue="100"
+            app:minValue="10"
+            app:maxValue="2000"
+            app:stepValue="1" />
+
+        <ImageView
+            style="@style/buttons_arrows"
+            android:src="@drawable/ic_arrow_plus"
+            android:background="@drawable/background_circ_reset"
+            android:id="@+id/creator_arrow_w_plus"
+            android:layout_marginEnd="@dimen/margin_save"/>
+    </LinearLayout>
+
+
+
+        <ImageView
+            style="@style/buttons_arrows"
+            android:src="@drawable/ic_arrow_minus"
+            android:background="@drawable/background_circ_reset"
+            android:id="@+id/creator_arrow_h_minus"
+            android:layout_marginEnd="@dimen/margin_save"
+            android:rotation="-90"
+            android:layout_gravity="end|bottom"/>
+
+        <com.example.kittenappscollage.view.ExtendsSeekBar
+            android:id="@+id/creator_seek_h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/margin_save"
+            app:barHeight="5dp"
+            app:baseColor="@color/colorAccent"
+            app:circleRadius="@dimen/param_seek_bar"
+            app:circleTextColor="@color/white"
+            app:circleTextSize="12dp"
+            app:fillColor="@color/colorPrimary"
+            app:currentValue="100"
+            app:minValue="10"
+            app:maxValue="2000"
+            app:stepValue="1"
+            android:rotation="-90"/>
+
+        <ImageView
+            style="@style/buttons_arrows"
+            android:src="@drawable/ic_arrow_plus"
+            android:background="@drawable/background_circ_reset"
+            android:id="@+id/creator_arrow_h_plus"
+            android:layout_marginEnd="@dimen/margin_save"
+            android:rotation="-90"
+            android:layout_gravity="end|top"/>
+
+
 
 
 

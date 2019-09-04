@@ -44,7 +44,7 @@
     <ImageView
         style="@style/buttons_dialog_add"
         android:id="@+id/dialog_close"
-        android:src="@drawable/icon_close"
+        android:src="@drawable/ic_close"
         android:background="@drawable/background_main_button_reset"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"

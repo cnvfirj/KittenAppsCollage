@@ -86,5 +86,12 @@ public class PreviewBlankBitmp extends CustomFon {
         invalidate();
     }
 
+    public int getColorFon() {
+        return cColorFon;
+    }
+
+    public Size getSize() {
+        return cSize;
+    }
 
 }

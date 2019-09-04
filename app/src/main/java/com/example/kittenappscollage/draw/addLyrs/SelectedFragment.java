@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment;
 
 public abstract class SelectedFragment extends Fragment {
 
-    interface SelectorAddLyrFragments{
-        public void done();
-        public void back();
-    }
+    protected SelectorFrameFragments selector;
+
+
+
 }

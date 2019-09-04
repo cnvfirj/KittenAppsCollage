@@ -2,37 +2,39 @@ package com.example.kittenappscollage.draw.addLyrs;
 
 import android.content.res.ColorStateList;
 import android.graphics.Color;
-import android.graphics.Point;
-import android.graphics.PointF;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.example.kittenappscollage.R;
+import com.example.kittenappscollage.view.ExtendsSeekBar;
 import com.madrapps.pikolo.HSLColorPicker;
-import com.madrapps.pikolo.listeners.OnColorSelectionListener;
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 
-import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
-
-public class AddLyrInCreator extends SelectedFragment {
+public class AddLyrInCreator extends SelectedFragment implements View.OnClickListener {
 
 
     private PreviewBlankBitmp aPreview;
 
     private HSLColorPicker aSelectColor;
 
-    private ImageView aColorPickCall;
+    private ImageView aColorPickCall, aDoneParams, aExitAll;
+
+    private ImageView aPlusWidth, aPlusHeight, aMinusWidth, aMinusHeight;
 
     private int aColor;
 
     private int aNumb;
+
+    private ExtendsSeekBar aSeekWidth, aSeekHeight;
 
 
     public AddLyrInCreator() {
@@ -51,6 +53,14 @@ public class AddLyrInCreator extends SelectedFragment {
         aPreview = view.findViewById(R.id.creator_blank_btmp);
         aSelectColor = view.findViewById(R.id.color_pick);
         aColorPickCall = view.findViewById(R.id.color_pick_call);
+        aDoneParams = view.findViewById(R.id.creator_lyr_done);
+        aExitAll = view.findViewById(R.id.creator_lyr_back);
+        aSeekWidth = view.findViewById(R.id.creator_seek_w);
+        aSeekHeight = view.findViewById(R.id.creator_seek_h);
+        aPlusWidth = view.findViewById(R.id.creator_arrow_w_plus);
+        aMinusWidth = view.findViewById(R.id.creator_arrow_w_minus);
+        aPlusHeight = view.findViewById(R.id.creator_arrow_h_plus);
+        aMinusHeight = view.findViewById(R.id.creator_arrow_h_minus);
         aNumb = 0;
         paramView(aPreview);
         paramView(aSelectColor);
@@ -59,6 +69,23 @@ public class AddLyrInCreator extends SelectedFragment {
 
         addListen();
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.creator_lyr_back:
+                selector = (SelectorFrameFragments) getParentFragment();
+                selector.exitAll();
+                break;
+            case R.id.creator_lyr_done:
+                selector = (SelectorFrameFragments) getParentFragment();
+                selector.backInAddLyr();
+                break;
+            case R.id.color_pick_call:
+                callPalette();
+                break;
+        }
     }
 
     private void addListen(){
@@ -73,18 +100,19 @@ public class AddLyrInCreator extends SelectedFragment {
             }
         });
 
-        aColorPickCall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(!aColorPickCall.isActivated()){
-                    applyTransform(false,500);
-                }else {
-                    applyTransform(true,500);
-                    aPreview.fon(aColor);
-                }
-                aColorPickCall.setActivated(!aColorPickCall.isActivated());
-            }
-        });
+        aColorPickCall.setOnClickListener(this);
+        aDoneParams.setOnClickListener(this);
+        aExitAll.setOnClickListener(this);
+    }
+
+    private void callPalette(){
+        if(!aColorPickCall.isActivated()){
+            applyTransform(false,500);
+        }else {
+            applyTransform(true,500);
+            aPreview.fon(aColor);
+        }
+        aColorPickCall.setActivated(!aColorPickCall.isActivated());
     }
 
     private void paramView(final View view){
@@ -95,10 +123,38 @@ public class AddLyrInCreator extends SelectedFragment {
                 public void onGlobalLayout() {
                     view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     aNumb++;
-                    if(aNumb==3)applyTransform(true,0);
+                    if(aNumb==3){
+                        applyTransform(true,0);
+                        applyTransformTools();
+                    }
+
                 }
             });
         }
+    }
+
+    private void applyTransformTools(){
+        int step = aPreview.getWidth()-aColorPickCall.getRight();
+        int button = aColorPickCall.getWidth();
+      LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)aSeekWidth.getLayoutParams();
+      params.width = aPreview.getWidth()-(step*3+button*3);
+      aSeekWidth.setLayoutParams(params);
+//
+      CoordinatorLayout.LayoutParams plus = (CoordinatorLayout.LayoutParams)aPlusHeight.getLayoutParams();
+      plus.topMargin = step*2+button;
+//      aPlusHeight.setLayoutParams(plus);
+
+      CoordinatorLayout.LayoutParams minus = (CoordinatorLayout.LayoutParams)aMinusHeight.getLayoutParams();
+      minus.bottomMargin = step*2+button;
+      aMinusHeight.setLayoutParams(minus);
+
+
+      CoordinatorLayout.LayoutParams seek = (CoordinatorLayout.LayoutParams)aSeekHeight.getLayoutParams();
+      seek.width = aPreview.getHeight()-(step*4+button*4);
+//      seek.rightMargin = step;
+      aSeekHeight.setLayoutParams(seek);
+
+
     }
 
     private void applyTransform(boolean hide, long time){
@@ -117,6 +173,12 @@ public class AddLyrInCreator extends SelectedFragment {
 
 
     }
+
+//    private float memoryBitmap(){
+//        float memory = Integer.valueOf(dWidth.getText().toString())*4*Integer.valueOf(dHeight.getText().toString());
+//        return memory/(1024*1000);
+//
+//    }
 
 
 }

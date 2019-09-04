@@ -22,6 +22,7 @@ import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
 public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSeekBar.TrackSeekBar {
 
+    private SelectorFrameFragments selector;
 
     private ImageView aBack, aDone, aClose, aMirror;
 
@@ -129,20 +130,31 @@ public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSee
          }
     }
 
+    public void clear(){
+        if(aLyr!=null&&!aLyr.isRecycled()){
+            aLyr.recycle();
+        }
+    }
     private void pressMirror(ImageView view){
         view.setSelected(!view.isSelected());
     }
 
     private void pressDone(ImageView view){
         view.setSelected(!view.isSelected());
+        selector = (SelectorFrameFragments)getParentFragment();
+        selector.doneLyr(aLyr);
     }
 
     private void pressClose(ImageView view){
         view.setSelected(!view.isSelected());
+        selector = (SelectorFrameFragments)getParentFragment();
+        selector.exitAll();
     }
 
     private void pressBack(ImageView view){
         view.setSelected(!view.isSelected());
+        selector = (SelectorFrameFragments)getParentFragment();
+        selector.backInSelectedLyr();
     }
 
 

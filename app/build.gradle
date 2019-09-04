@@ -52,30 +52,7 @@ dependencies {
 
 //    implementation 'com.github.Jay-Goo:RangeSeekBar:v3.0.0'
     implementation 'com.github.Mohammed-Alaa:RangeSeekBar:1.0.3'
-    /*<com.mohammedalaa.seekbar.RangeSeekBarView
-        android:id="@+id/range_seekbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:barHeight="@dimen/value_bar_barHeight"
-        app:baseColor="@color/navy"
-        app:circleRadius="@dimen/value_bar_circleRadius"
-        app:circleTextColor="@color/white"
-        app:circleTextSize="@dimen/value_bar_circleTextSize"
-        app:fillColor="@color/red"
-        app:currentValue="60"
-        app:minValue="15"
-        app:maxValue="150"
-        app:stepValue="5"
-        />*/
-    /*Reference the View in Java code.
 
-       RangeSeekBarView rangeSeekbar = (RangeSeekBarView) findViewById(R.id.range_seekbar);
-Add Animation.
-
-       rangeSeekbar.setAnimated(true,3000L);
-Get Value
-
-       rangeSeekbar.getValue();*/
     implementation 'com.github.madrapps:pikolo:1.1.6'
 
     implementation 'com.otaliastudios:cameraview:1.5.1'

@@ -4,6 +4,7 @@
     <dimen name="margin_tool">5dp</dimen>
 
     <dimen name="param_save">35dp</dimen>
+    <dimen name="param_arrow">20dp</dimen>
     <dimen name="margin_save">10dp</dimen>
     <dimen name="margin">45dp</dimen>
     <dimen name="param_seek_bar">17dp</dimen>
