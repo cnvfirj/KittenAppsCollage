@@ -3,6 +3,7 @@ package com.example.kittenappscollage.draw.addLyrs;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,9 @@ import com.example.kittenappscollage.view.ExtendsSeekBar;
 import com.madrapps.pikolo.HSLColorPicker;
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 
+import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
+import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
+
 public class AddLyrInCreator extends SelectedFragment implements View.OnClickListener {
 
 
@@ -28,13 +32,11 @@ public class AddLyrInCreator extends SelectedFragment implements View.OnClickLis
 
     private ImageView aColorPickCall, aDoneParams, aExitAll;
 
-    private ImageView aPlusWidth, aPlusHeight, aMinusWidth, aMinusHeight;
-
     private int aColor;
 
     private int aNumb;
 
-    private ExtendsSeekBar aSeekWidth, aSeekHeight;
+//    private ExtendsSeekBar aSeekWidth, aSeekHeight;
 
 
     public AddLyrInCreator() {
@@ -55,12 +57,9 @@ public class AddLyrInCreator extends SelectedFragment implements View.OnClickLis
         aColorPickCall = view.findViewById(R.id.color_pick_call);
         aDoneParams = view.findViewById(R.id.creator_lyr_done);
         aExitAll = view.findViewById(R.id.creator_lyr_back);
-        aSeekWidth = view.findViewById(R.id.creator_seek_w);
-        aSeekHeight = view.findViewById(R.id.creator_seek_h);
-        aPlusWidth = view.findViewById(R.id.creator_arrow_w_plus);
-        aMinusWidth = view.findViewById(R.id.creator_arrow_w_minus);
-        aPlusHeight = view.findViewById(R.id.creator_arrow_h_plus);
-        aMinusHeight = view.findViewById(R.id.creator_arrow_h_minus);
+//        aSeekWidth = view.findViewById(R.id.creator_seek_w);
+//        aSeekHeight = view.findViewById(R.id.creator_seek_h);
+
         aNumb = 0;
         paramView(aPreview);
         paramView(aSelectColor);
@@ -79,8 +78,14 @@ public class AddLyrInCreator extends SelectedFragment implements View.OnClickLis
                 selector.exitAll();
                 break;
             case R.id.creator_lyr_done:
-                selector = (SelectorFrameFragments) getParentFragment();
-                selector.backInAddLyr();
+                if(memoryBitmap(aPreview.getSize())<40) {
+                    selector = (SelectorFrameFragments) getParentFragment();
+                    String way = aPreview.getSize().getWidth() + "_" + aPreview.getSize().getHeight() + "_" + aPreview.getColorFon();
+                    selector.backInAddLyr(view, way);
+                }else {
+                    SHOW_MASSAGE(getActivity(),getActivity().getResources().getString(R.string.big_big_papper)+
+                            aPreview.getSize().getWidth()+":"+aPreview.getSize().getHeight());
+                }
                 break;
             case R.id.color_pick_call:
                 callPalette();
@@ -136,25 +141,9 @@ public class AddLyrInCreator extends SelectedFragment implements View.OnClickLis
     private void applyTransformTools(){
         int step = aPreview.getWidth()-aColorPickCall.getRight();
         int button = aColorPickCall.getWidth();
-      LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)aSeekWidth.getLayoutParams();
-      params.width = aPreview.getWidth()-(step*3+button*3);
-      aSeekWidth.setLayoutParams(params);
-//
-      CoordinatorLayout.LayoutParams plus = (CoordinatorLayout.LayoutParams)aPlusHeight.getLayoutParams();
-      plus.topMargin = step*2+button;
-//      aPlusHeight.setLayoutParams(plus);
-
-      CoordinatorLayout.LayoutParams minus = (CoordinatorLayout.LayoutParams)aMinusHeight.getLayoutParams();
-      minus.bottomMargin = step*2+button;
-      aMinusHeight.setLayoutParams(minus);
-
-
-      CoordinatorLayout.LayoutParams seek = (CoordinatorLayout.LayoutParams)aSeekHeight.getLayoutParams();
-      seek.width = aPreview.getHeight()-(step*4+button*4);
-//      seek.rightMargin = step;
-      aSeekHeight.setLayoutParams(seek);
-
-
+//      LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)aSeekWidth.getLayoutParams();
+//      params.width = aPreview.getWidth()-(step*3+button*3);
+//      aSeekWidth.setLayoutParams(params);
     }
 
     private void applyTransform(boolean hide, long time){
@@ -174,11 +163,11 @@ public class AddLyrInCreator extends SelectedFragment implements View.OnClickLis
 
     }
 
-//    private float memoryBitmap(){
-//        float memory = Integer.valueOf(dWidth.getText().toString())*4*Integer.valueOf(dHeight.getText().toString());
-//        return memory/(1024*1000);
-//
-//    }
+    private float memoryBitmap(Size s){
+        float memory = (s.getWidth()*4*s.getHeight())/(1024*1000);
+        return memory;
+
+    }
 
 
 }

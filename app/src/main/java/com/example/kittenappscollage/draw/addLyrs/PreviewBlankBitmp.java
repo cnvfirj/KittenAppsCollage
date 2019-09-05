@@ -47,18 +47,19 @@ public class PreviewBlankBitmp extends CustomFon {
         cPaintBitmap.setStyle(Paint.Style.FILL);
         cPaintBitmap.setColor(cColorFon);
         cPaintBitmap.setStrokeWidth(1);
+
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        canvas.drawRect(rect(canvas),cPaintBitmap);
+        canvas.drawRect(rect(),cPaintBitmap);
     }
 
-    private RectF rect(Canvas c){
-        if(cCorrect&&cSize!=null){
-           return new RectF(location(new SizeF(c.getWidth(),c.getHeight()),new SizeF(cSize.getWidth(),cSize.getHeight())));
-        }else return new RectF(location(new SizeF(c.getWidth(),c.getHeight()),new SizeF(c.getHeight(),c.getWidth())));
+    private RectF rect(){
+        if(cSize==null)cSize = new Size(getHeight(),getWidth());
+           return new RectF(location(new SizeF(getWidth(),getHeight()),new SizeF(cSize.getWidth(),cSize.getHeight())));
+
     }
 
     private RectF location(SizeF c, SizeF r){

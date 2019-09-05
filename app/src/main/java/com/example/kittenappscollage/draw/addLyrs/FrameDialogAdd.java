@@ -15,13 +15,16 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.kittenappscollage.R;
+import com.example.kittenappscollage.draw.addLyrs.loadImage.LoadProjectListener;
+import com.example.kittenappscollage.draw.addLyrs.loadImage.SelectorLoadProject;
 
 import java.util.Objects;
 
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
+import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 
-public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragments {
+public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragments{
 
     public static final int ADD_CAM = 1;
     public static final int ADD_NEW = 2;
@@ -47,6 +50,7 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         Bundle bundle = getArguments();
         if(bundle!=null){
             int index = bundle.getInt(KEY_SOURCE_ADD,ADD_NEW);
@@ -86,8 +90,19 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
     }
 
     @Override
-    public void backInAddLyr() {
+    public void backInAddLyr(View v, Object way) {
+
+        Bundle bundle = null;
+        switch (v.getId()){
+            case R.id.creator_lyr_done:
+                bundle = new Bundle();
+                bundle.putString(AddLyr.KEY_EXTRACTOR_WAY,(String)way);
+                bundle.putInt(AddLyr.KEY_SOURCE,R.dimen.PATH_NEW);
+                break;
+        }
+        dFragmentAdd.setArguments(bundle);
         dManager.beginTransaction().replace(R.id.dialog_add_frame,dFragmentAdd).commit();
+
     }
 
     @Override
@@ -110,5 +125,12 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
         dManager.beginTransaction().remove(dSelectedFragment).commit();
         dManager.beginTransaction().remove(dFragmentAdd).commit();
         dismiss();
+    }
+
+    @Override
+    public void onDestroyView() {
+        dFragmentAdd.clear();
+        super.onDestroyView();
+
     }
 }

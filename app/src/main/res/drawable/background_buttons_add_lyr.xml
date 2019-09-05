@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/free"
+        android:drawable="@color/colorPrimary"
+        android:state_selected="false"/>
+
+    <item
+        android:id="@+id/press"
+        android:drawable="@color/colorPrimary"
+        android:state_selected="true"/>
+
+    <transition
+        android:drawable="@drawable/anim_background_click_pr_as_pr"
+        android:fromId="@id/press"
+        android:toId="@id/free" />
+
+    <transition
+        android:drawable="@drawable/anim_background_click_pr_as_pr"
+        android:fromId="@id/free"
+        android:toId="@id/press" />
+
+
+
+
+
+</animated-selector>

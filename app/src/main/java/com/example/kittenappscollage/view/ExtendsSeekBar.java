@@ -13,8 +13,11 @@ public class ExtendsSeekBar extends RangeSeekBarView {
 
 
 
+
+
     public ExtendsSeekBar(Context context) {
         super(context);
+
     }
 
     public ExtendsSeekBar(Context context, AttributeSet attrs) {

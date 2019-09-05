@@ -1,5 +1,6 @@
 package com.example.kittenappscollage.draw.addLyrs;
 
+import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,13 +15,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.kittenappscollage.R;
+import com.example.kittenappscollage.draw.MutableBitmap;
+import com.example.kittenappscollage.draw.addLyrs.loadImage.LoadProjectListener;
+import com.example.kittenappscollage.draw.addLyrs.loadImage.SelectorLoadProject;
 import com.example.kittenappscollage.view.ExtendsSeekBar;
 import com.example.kittenappscollage.view.PresentLyr;
 import com.mohammedalaa.seekbar.RangeSeekBarView;
 
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
+import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
-public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSeekBar.TrackSeekBar {
+public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSeekBar.TrackSeekBar  {
+
+    public static final String KEY_EXTRACTOR_WAY = "extractor";
+
+    public static final String KEY_SOURCE = "source";
+
+    private final String NULL_WAY = "null";
 
     private SelectorFrameFragments selector;
 
@@ -34,16 +45,26 @@ public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSee
 
     private Bitmap aLyr;
 
+    private String aWay;
+
+    private int aSource;
+
     private PresentLyr aPresent;
 
     public AddLyr() {
-        aPercentAlpha = 100;
-        aPercentScale = 100;
+        aWay = NULL_WAY;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        aPercentAlpha = 255;
+        aPercentScale = 100;
+        Bundle b = getArguments();
+        if(b!=null){
+            aWay = b.getString(KEY_EXTRACTOR_WAY);
+            aSource = b.getInt(KEY_SOURCE,-897);
+        }
         return inflater.inflate(R.layout.dialog_add_lyr,null);
     }
 
@@ -51,10 +72,12 @@ public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSee
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initViews(view);
+
     }
 
     public void setBitmap(Bitmap bitmap){
         aLyr = bitmap;
+        aPresent.presentBitmap(bitmap);
     }
 
     private void initViews(View v){
@@ -76,6 +99,7 @@ public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSee
         aProgress.setVisibility(View.INVISIBLE);
         aPresent = v.findViewById(R.id.dialog_add_present_lyr);
 
+        if(!aWay.equals(NULL_WAY))createBitmap(aWay,aSource);
     }
 
 
@@ -98,6 +122,36 @@ public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSee
         }
     }
 
+    protected void createBitmap(Object way, int source){
+        aProgress.setVisibility(View.VISIBLE);
+        ongoingProgress(true);
+        SelectorLoadProject
+                .selector(getContext())
+                .listen(new LoadProjectListener() {
+                    @Override
+                    public void loadImage(Bitmap image) {
+                        if(image.getHeight()==1||image==null) {
+                            showToast(source);
+                        }
+                        aLyr = image;
+                        aPresent.presentBitmap(image);
+                        aProgress.setVisibility(View.INVISIBLE);
+                        ongoingProgress(false);
+
+                    }
+
+                }).data(way,source);
+    }
+
+    private void showToast(int source){
+        switch (source){
+            case R.dimen.PATH_NET:
+                SHOW_MASSAGE(getContext(),"не правильная ссылка");
+                break;
+        }
+
+    }
+
     @Override
     public void touch(SeekBar s) {
         switch (s.getId()){
@@ -108,41 +162,51 @@ public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSee
                 aPercentScale = aScale.getValue();
                 break;
         }
+        applyMutable(false);
     }
 
 
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+     private void pressMirror(ImageView view){
+        view.setSelected(!view.isSelected());
+        applyMutable(true);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    @SuppressLint("CheckResult")
+    private void applyMutable(boolean mirr){
+        aProgress.setVisibility(View.VISIBLE);
+        ongoingProgress(true);
+        if(mirr){
 
+            aPresent.presentBitmap(MutableBitmap.mirror(aPresent.getPresent()));
+            aLyr = MutableBitmap.mirror(aLyr);
+        }
+        MutableBitmap
+                .requestMutable(aLyr,aPercentScale,aPercentAlpha)
+                .subscribe(bitmap ->{
+                    aPresent.presentBitmap((Bitmap) bitmap);
+                    aProgress.setVisibility(View.INVISIBLE);
+                    ongoingProgress(false);
+                } );
     }
 
-    private void applyParams(boolean mirror){
-         aProgress.setVisibility(View.VISIBLE);
-         if(mirror){
-
-         }
+    private void ongoingProgress(boolean ongoing){
+       aBack.setEnabled(!ongoing);
+       aDone.setEnabled(!ongoing);
+       aClose.setEnabled(!ongoing);
+       aMirror.setEnabled(!ongoing);
+       aAlpha.setEnabled(!ongoing);
+       aScale.setEnabled(!ongoing);
     }
 
     public void clear(){
-        if(aLyr!=null&&!aLyr.isRecycled()){
-            aLyr.recycle();
-        }
-    }
-    private void pressMirror(ImageView view){
-        view.setSelected(!view.isSelected());
+        if(aLyr!=null&&!aLyr.isRecycled())aLyr.recycle();
+        if(aPresent!=null)aPresent.clear();
     }
 
-    private void pressDone(ImageView view){
+     private void pressDone(ImageView view){
         view.setSelected(!view.isSelected());
         selector = (SelectorFrameFragments)getParentFragment();
-        selector.doneLyr(aLyr);
+        selector.doneLyr(aPresent.getPresent());
     }
 
     private void pressClose(ImageView view){
