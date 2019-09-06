@@ -99,6 +99,11 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
                 bundle.putString(AddLyr.KEY_EXTRACTOR_WAY,(String)way);
                 bundle.putInt(AddLyr.KEY_SOURCE,R.dimen.PATH_NEW);
                 break;
+            case R.id.network_done_link:
+                bundle = new Bundle();
+                bundle.putString(AddLyr.KEY_EXTRACTOR_WAY,(String)way);
+                bundle.putInt(AddLyr.KEY_SOURCE,R.dimen.PATH_NET);
+                break;
         }
         dFragmentAdd.setArguments(bundle);
         dManager.beginTransaction().replace(R.id.dialog_add_frame,dFragmentAdd).commit();

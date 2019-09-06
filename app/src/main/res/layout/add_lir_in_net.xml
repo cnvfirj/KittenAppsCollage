@@ -1,8 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-</LinearLayout>
+
+
+    <TextView
+        style="@style/common_buttons"
+        android:layout_width="match_parent"
+        android:id="@+id/network_disclaimer"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            style="@style/common_buttons"
+            android:background="@drawable/background_main_button_reset"
+            android:id="@+id/network_done_link"/>
+
+        <EditText
+            style="@style/common_buttons"
+            android:layout_width="500dp"
+            android:id="@+id/network_enter_link"
+            android:singleLine="true" />
+
+        <ImageView
+            style="@style/common_buttons"
+            android:background="@drawable/background_main_button_reset"
+            android:id="@+id/network_clear_link"/>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -23,7 +23,7 @@ import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
-public class AddLyrInCreator extends SelectedFragment implements View.OnClickListener {
+public class AddLyrInCreator extends SelectedFragment {
 
 
     private PreviewBlankBitmp aPreview;
