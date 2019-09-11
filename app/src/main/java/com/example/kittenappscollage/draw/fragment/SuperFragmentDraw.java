@@ -587,6 +587,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     }
 
     protected void selectorIconsErase(ImageView v){
+        /**/
         if(dIndexErase==OP_ERASE_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_erase_3_to_1,null));
         else if(dIndexErase==OP_ERASE_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_erase_1_to_2,null));
         else if(dIndexErase==OP_ERASE_3)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_erase_2_to_3,null));
