@@ -16,6 +16,8 @@ import androidx.fragment.app.Fragment;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.view.ViewDraw;
 
+import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
+
 /*описываем основную анимацию движения кнопок и панели
 * инструментов. Присваиваем им иконки*/
 
@@ -30,7 +32,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected final int TOOL_ERASE = 2;
     public final static int OP_ERASE_1 = 21;
     public final static int OP_ERASE_2 = 22;
-    public final static int OP_ERASE_3 = 22;
+    public final static int OP_ERASE_3 = 23;
     private int dIndexErase;
 
     protected final int TOOL_FILL = 3;
@@ -480,12 +482,11 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     }
 
     protected void toolErase(ImageView v){
-
         if(v.isActivated()){
             dIndexErase++;
             if(dIndexErase>OP_ERASE_3)dIndexErase=OP_ERASE_1;
             v.setSelected(false);
-            /**/
+            selectorIconsErase(v);
             v.setSelected(true);
         }else selectorButtons(TOOL_ERASE);
     }
@@ -584,6 +585,14 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         else if(dIndexPaint==OP_PAINT_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_1_to_2,null));
         else if(dIndexPaint==OP_PAINT_3)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_2_to_3,null));
     }
+
+    protected void selectorIconsErase(ImageView v){
+        if(dIndexErase==OP_ERASE_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_erase_3_to_1,null));
+        else if(dIndexErase==OP_ERASE_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_erase_1_to_2,null));
+        else if(dIndexErase==OP_ERASE_3)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_erase_2_to_3,null));
+    }
+
+
 
     protected void selectorIconsScale(ImageView v){
         if(dIndexScale==OP_SCALE_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_scale_2,null));

@@ -1,0 +1,76 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
+            <group
+                android:name="group"
+                android:translateX="0.7"
+                android:translateY="1.2"
+                android:scaleX="0.9"
+                android:scaleY="0.9">
+                <clip-path
+                    android:name="path_1"
+                    android:pathData="M 22.471 22.118 L 23.41 2.341 L 12.699 17.602 L 5.403 17.53 L 12.587 22.139 Z"/>
+                <path
+                    android:name="track_3"
+                    android:pathData="M 2.041 19.973 L 21.36 25.15 L 22.121 22.308 L 2.782 17.097 Z"
+                    android:fillColor="#FFFFFF"
+                    android:strokeWidth="1"/>
+                <path
+                    android:name="track_2"
+                    android:pathData="M 2.802 17.132 L 22.121 22.309 L 22.985 19.311 L 3.594 14.178 Z"
+                    android:fillColor="#FFFFFF"
+                    android:strokeWidth="1"/>
+                <path
+                    android:name="track_1"
+                    android:pathData="M 4.356 11.337 L 23.674 16.513 L 22.913 19.354 L 3.594 14.177 Z"
+                    android:fillColor="#FFFFFF"
+                    android:strokeWidth="1"/>
+            </group>
+            <path
+                android:name="eraser"
+                android:pathData="M 2.49 14.431 L 10.398 3.13 L 13.714 5.475 L 13.25 6.138 L 10.594 4.287 L 7.346 8.915 L 12.645 12.634 L 15.909 7.987 L 12.588 5.679 L 13.03 5.002 L 17.049 7.799 L 11.345 15.932 L 4.67 15.956 Z"
+                android:fillColor="#FFFFFF"
+                android:strokeColor="#FFFFFF"/>
+        </vector>
+    </aapt:attr>
+    <target android:name="track_3">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="fillAlpha"
+                android:duration="300"
+                android:valueFrom="1"
+                android:valueTo="0.6"
+                android:valueType="floatType"
+                android:interpolator="@android:anim/linear_interpolator"/>
+        </aapt:attr>
+    </target>
+    <target android:name="track_2">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="fillAlpha"
+                android:duration="300"
+                android:valueFrom="1"
+                android:valueTo="1"
+                android:valueType="floatType"
+                android:interpolator="@android:anim/linear_interpolator"/>
+        </aapt:attr>
+    </target>
+    <target android:name="track_1">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="fillAlpha"
+                android:duration="300"
+                android:valueFrom="1"
+                android:valueTo="0.6"
+                android:valueType="floatType"
+                android:interpolator="@android:anim/linear_interpolator"/>
+        </aapt:attr>
+    </target>
+</animated-vector>

@@ -27,7 +27,7 @@
 
     <ImageView
         android:id="@+id/tool_erase"
-        android:src="@drawable/icon_erase_rambol_non"
+        android:src="@drawable/icon_erase_1_to_2"
         style="@style/slide_style_all_tools"
         android:background="@drawable/background_buttons_selected_tools"/>
 
