@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.addLyrs.loadImage.LoadProjectListener;
 import com.example.kittenappscollage.draw.addLyrs.loadImage.SelectorLoadProject;
+import com.example.kittenappscollage.packProj.RepDraw;
 
 import java.util.Objects;
 
@@ -126,6 +127,7 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
     @Override
     public void doneLyr(Bitmap lyr) {
         /*здесь надо отправить полученный слой куда надо*/
+        RepDraw.get().addLyr(lyr);
         dFragmentAdd.clear();
         dManager.beginTransaction().remove(dSelectedFragment).commit();
         dManager.beginTransaction().remove(dFragmentAdd).commit();

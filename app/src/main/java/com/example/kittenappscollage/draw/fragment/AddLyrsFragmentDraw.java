@@ -15,18 +15,26 @@ import androidx.fragment.app.DialogFragment;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.addLyrs.AddLyr;
 import com.example.kittenappscollage.draw.addLyrs.FrameDialogAdd;
+import com.example.kittenappscollage.packProj.RepDraw;
 
 import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
-public class AddLyrsFragmentDraw extends SuperFragmentDraw {
+public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Adding {
 
 
     public final static String DIALOG = "dialog";
 
     private FrameDialogAdd aDialog;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        RepDraw.get().listener(this);
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
 
     @Override
     protected void addCreated(ImageView v) {
@@ -55,5 +63,20 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw {
         super.addColl(v);
         aDialog = FrameDialogAdd.instance(FrameDialogAdd.ADD_COLL);
         aDialog.show(getChildFragmentManager(),DIALOG);
+    }
+
+    @Override
+    public void readinessImg(boolean is) {
+        dViewDraw.invalidate();
+    }
+
+    @Override
+    public void readinessLyr(boolean is) {
+        dViewDraw.invalidate();
+    }
+
+    @Override
+    public void readinessAll(boolean is) {
+        dViewDraw.invalidate();
     }
 }

@@ -3,8 +3,11 @@ package com.example.kittenappscollage.packProj;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
+import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
 import com.example.mutablebitmap.CompRep;
 import com.example.mutablebitmap.DeformMat;
+
+import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
 public class RepDraw {
 
@@ -39,6 +42,10 @@ public class RepDraw {
         return this;
     }
 
+    public void addLyr(Bitmap b){
+        if(isImg())setLyr(b,null,true);
+        else setImg(b,null,true);
+    }
     /*single - это если добавляем только один элемент*/
 
     public void setImg(Bitmap b, CompRep rep, boolean single){
@@ -48,7 +55,9 @@ public class RepDraw {
             rImgC = new Canvas(rImg);
             rIMat.reset();
             if (rep != null) rIMat.setRepository(rep);
-            if (single&&rAdd != null) rAdd.readinessImg(true);
+            if (single&&rAdd!=null) {
+                rAdd.readinessImg(true);
+            }
         }
         zeroingBitmap(b);
     }
@@ -80,6 +89,22 @@ public class RepDraw {
         return rLyrC;
     }
 
+    public Bitmap getImg() {
+        return rImg;
+    }
+
+    public Bitmap getLyr() {
+        return rLyr;
+    }
+
+    public DeformMat getIMat() {
+        return rIMat;
+    }
+
+    public DeformMat getLMat() {
+        return rLMat;
+    }
+
     public void zeroingImg(){
         zeroingBitmap(rImg);
     }
@@ -93,6 +118,14 @@ public class RepDraw {
             b.recycle();
             b = null;
         }
+    }
+
+    public boolean isImg(){
+        return testBitmap(rImg);
+    }
+
+    public boolean isLyr(){
+        return testBitmap(rLyr);
     }
 
     private boolean testBitmap(Bitmap b){

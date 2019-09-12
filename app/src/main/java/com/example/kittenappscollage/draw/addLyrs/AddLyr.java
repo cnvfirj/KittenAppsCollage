@@ -146,7 +146,7 @@ public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSee
     private void showToast(int source){
         switch (source){
             case R.dimen.PATH_NET:
-                SHOW_MASSAGE(getContext(),"не правильная ссылка");
+                SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.wrong_link));
                 break;
         }
 
