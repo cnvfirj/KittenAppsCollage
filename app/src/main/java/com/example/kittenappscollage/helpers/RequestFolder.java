@@ -5,6 +5,8 @@ import android.os.Environment;
 
 import java.io.File;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 /**
  * Created by Admin on 11.02.2018.
  */

@@ -2,6 +2,7 @@ package com.example.kittenappscollage.draw.fragment;
 
 import android.widget.ImageView;
 
+import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.SaveImageToFile;
 import com.example.kittenappscollage.packProj.RepDraw;
 
@@ -18,6 +19,12 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     @Override
     protected void saveTel(ImageView v) {
         super.saveTel(v);
-        if(RepDraw.get().isImg()) SaveImageToFile.saveImage(getContext(),RepDraw.get().getImg());
+        if (AllPermissions.create().activity(getActivity()).reqSingle(AllPermissions.STORAGE).isStorage()) {
+
+            if(RepDraw.get().isImg())SaveImageToFile.saveImage(getContext(),RepDraw.get().getImg());
+        } else {
+            AllPermissions.create().activity(getActivity()).callDialog(AllPermissions.STORAGE);
+        }
+
     }
 }

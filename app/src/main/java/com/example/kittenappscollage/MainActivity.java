@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.example.kittenappscollage.collect.FragmentCollect;
 import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
+import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        App.setMain(this);
+        App.setMain(this);
         setupViewPager((SelectSweepViewPager) findViewById(R.id.select_sweep_viewpager));
     }
 

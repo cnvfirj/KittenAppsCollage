@@ -21,6 +21,7 @@ import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
+import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 /*обрабатываем добавление слоя или начало коллажа*/
 public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Adding{
@@ -35,6 +36,14 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         RepDraw.get().listenerAdd(this);
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    protected void slideTools() {
+
+        if(!RepDraw.get().isImg()&&!isSlideTools())SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.condition_apply_tools));
+            super.slideTools();
+
     }
 
     @Override
@@ -69,16 +78,19 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
     @Override
     public void readinessImg(boolean is) {
         if(is)dViewDraw.invalidate();
+        if(!isSlideTools())slideTools();
     }
 
     @Override
     public void readinessLyr(boolean is) {
         if(is)dViewDraw.invalidate();
+
     }
 
     @Override
     public void readinessAll(boolean is) {
         if(is)dViewDraw.invalidate();
+        if(!isSlideTools())slideTools();
     }
 
 

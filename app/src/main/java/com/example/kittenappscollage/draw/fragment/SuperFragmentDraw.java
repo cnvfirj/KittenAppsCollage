@@ -623,5 +623,17 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     }
 
+    public boolean isSlideTools(){
+        return dVisibleTools;
+    }
+
+    public boolean isSlideSave(){
+        return dVisibleSave;
+    }
+
+    public boolean isSlideAdd(){
+        return dVisibleAdd;
+    }
+
 
 }

@@ -63,6 +63,7 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
     protected void toolDelAll(ImageView v) {
         super.toolDelAll(v);
         RepDraw.get().delAll();
+
     }
 
     /*интерфейс применения изменений*/
@@ -74,6 +75,7 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
     @Override
     public void delAll(boolean is) {
         if(is)dViewDraw.invalidate();
+        if(isSlideTools())slideTools();
     }
 
     @Override

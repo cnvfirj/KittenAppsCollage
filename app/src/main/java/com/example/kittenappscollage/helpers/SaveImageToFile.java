@@ -16,6 +16,8 @@ import java.io.OutputStream;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 import static com.example.kittenappscollage.helpers.RequestFolder.testFolder;
 
@@ -28,11 +30,13 @@ public class SaveImageToFile {
     /*сохраняем в рисунок*/
     @SuppressLint("CheckResult")
     public static void saveImage(Context context, Bitmap bitmap) {
+
         if(bitmap==null||bitmap.isRecycled())return;
+
         quality = 100;
         final File folder = new File(RequestFolder.getFolderImages());
         final String name = "/"+ PropertiesImage.NAME_IMAGE();
-        if(testFolder(folder)) {
+        if(RequestFolder.testFolder(folder)) {
             requestSaveFile(folder.getAbsolutePath() + name, bitmap)
                     .subscribe(aBoolean -> {
                         if (aBoolean) SHOW_MASSAGE(context, "image saved");
