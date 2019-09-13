@@ -1,10 +1,26 @@
 package com.example.kittenappscollage.draw.fragment;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.example.kittenappscollage.packProj.RepDraw;
 
 
 /*применяем действия стандартной панети инструментов*/
-public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw {
+public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw implements RepDraw.Appling {
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        RepDraw.get().listenerApp(this);
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
 
     @Override
     protected void toolUndo(ImageView v) {
@@ -34,15 +50,34 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw {
     @Override
     protected void toolChange(ImageView v) {
         super.toolChange(v);
+        RepDraw.get().change();
     }
 
     @Override
     protected void toolDelLyr(ImageView v) {
         super.toolDelLyr(v);
+        RepDraw.get().delLyr();
     }
 
     @Override
     protected void toolDelAll(ImageView v) {
         super.toolDelAll(v);
+        RepDraw.get().delAll();
+    }
+
+    /*интерфейс применения изменений*/
+    @Override
+    public void delLyr(boolean is) {
+        if(is)dViewDraw.invalidate();
+    }
+
+    @Override
+    public void delAll(boolean is) {
+        if(is)dViewDraw.invalidate();
+    }
+
+    @Override
+    public void change(boolean is) {
+        if(is)dViewDraw.invalidate();
     }
 }

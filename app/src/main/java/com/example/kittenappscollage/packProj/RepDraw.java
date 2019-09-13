@@ -13,18 +13,20 @@ public class RepDraw {
 
     private static RepDraw singleton;
 
-    private Bitmap rImg, rLyr;
+    private Bitmap rImg, rLyr, rTemp;
 
-    private DeformMat rIMat, rLMat;
+    private DeformMat rImgMat, rLyrMat, rTemtMat;
 
     private Canvas rImgC, rLyrC;
 
     private Adding rAdd;
 
+    private Appling rApp;
+
 
     private RepDraw() {
-        rLMat = new DeformMat();
-        rIMat = new DeformMat();
+        rLyrMat = new DeformMat();
+        rImgMat = new DeformMat();
     }
 
     public static RepDraw get(){
@@ -36,8 +38,13 @@ public class RepDraw {
         return singleton;
     }
 
-    public RepDraw listener(Adding add){
+    public RepDraw listenerAdd(Adding add){
         rAdd = add;
+        return this;
+    }
+
+    public RepDraw listenerApp(Appling app){
+        rApp = app;
         return this;
     }
 
@@ -52,8 +59,8 @@ public class RepDraw {
         if(testBitmap(b)) {
             rImg = b.copy(Bitmap.Config.ARGB_8888, true);
             rImgC = new Canvas(rImg);
-            rIMat.reset();
-            if (rep != null) rIMat.setRepository(rep);
+            rImgMat.reset();
+            if (rep != null) rImgMat.setRepository(rep);
             if (single&&rAdd!=null) {
                 rAdd.readinessImg(true);
             }
@@ -66,20 +73,43 @@ public class RepDraw {
         if(testBitmap(b)) {
             rLyr = b.copy(Bitmap.Config.ARGB_8888, true);
             rLyrC = new Canvas(rLyr);
-            rLMat.reset();
-            if (rep != null) rLMat.setRepository(rep);
+            rLyrMat.reset();
+            if (rep != null) rLyrMat.setRepository(rep);
             if (single&&rAdd != null) rAdd.readinessLyr(true);
         }
         zeroingBitmap(b);
     }
 
-    public RepDraw setAll(Bitmap img, CompRep repImg, Bitmap lyr, CompRep repLyr){
+    public void setAll(Bitmap img, CompRep repImg, Bitmap lyr, CompRep repLyr){
         setImg(img,repImg,false);
         setLyr(lyr,repLyr,false);
         if(rAdd!=null)rAdd.readinessAll(true);
-        return this;
+
     }
 
+    public void delAll(){
+        zeroingBitmap(rImg);
+        zeroingBitmap(rLyr);
+        rImgMat.reset();
+        rLyrMat.reset();
+        if(rApp!=null)rApp.delAll(true);
+    }
+
+    public void delLyr(){
+        zeroingBitmap(rLyr);
+        rLyrMat.reset();
+        if(rApp!=null)rApp.delLyr(true);
+    }
+
+    public void change(){
+        rTemp = rImg.copy(Bitmap.Config.ARGB_8888,true);
+        zeroingBitmap(rImg);
+        rImg = rLyr.copy(Bitmap.Config.ARGB_8888,true);
+        zeroingBitmap(rLyr);
+        rLyr = rTemp.copy(Bitmap.Config.ARGB_8888,true);
+        zeroingBitmap(rTemp);
+        if(rApp!=null)rApp.change(true);
+    }
     public Canvas getImgCanv(){
         return rImgC;
     }
@@ -97,11 +127,11 @@ public class RepDraw {
     }
 
     public DeformMat getIMat() {
-        return rIMat;
+        return rImgMat;
     }
 
     public DeformMat getLMat() {
-        return rLMat;
+        return rLyrMat;
     }
 
     public void zeroingImg(){
@@ -137,5 +167,11 @@ public class RepDraw {
         void readinessImg(boolean is);
         void readinessLyr(boolean is);
         void readinessAll(boolean is);
+    }
+
+    public interface Appling{
+        void delLyr(boolean is);
+        void delAll(boolean is);
+        void change(boolean is);
     }
 }

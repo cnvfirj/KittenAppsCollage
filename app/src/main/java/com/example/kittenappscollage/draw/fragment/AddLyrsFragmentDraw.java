@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
 /*обрабатываем добавление слоя или начало коллажа*/
-public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Adding {
+public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Adding{
 
 
     public final static String DIALOG = "dialog";
@@ -33,7 +33,7 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        RepDraw.get().listener(this);
+        RepDraw.get().listenerAdd(this);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -68,16 +68,18 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
 
     @Override
     public void readinessImg(boolean is) {
-        dViewDraw.invalidate();
+        if(is)dViewDraw.invalidate();
     }
 
     @Override
     public void readinessLyr(boolean is) {
-        dViewDraw.invalidate();
+        if(is)dViewDraw.invalidate();
     }
 
     @Override
     public void readinessAll(boolean is) {
-        dViewDraw.invalidate();
+        if(is)dViewDraw.invalidate();
     }
+
+
 }
