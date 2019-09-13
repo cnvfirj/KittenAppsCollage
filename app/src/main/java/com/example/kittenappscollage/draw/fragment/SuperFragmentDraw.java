@@ -52,17 +52,17 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     protected final int TOOL_TRANS = 6;
     public final static int OP_TRANS_1 = 61;
-    private int dIndexTrans;
+//    private int dIndexTrans;
 
     protected final int TOOL_CUT = 7;
     public final static int OP_CUT_1 = 71;
     public final static int OP_CUT_2 = 72;
-    private int dIndexCut;
+//    private int dIndexCut;
 
     protected final int TOOL_TEXT = 8;
     public final static int OP_TEXT_1 = 81;
     public final static int OP_TEXT_2 = 82;
-    private int dIndexText;
+//    private int dIndexText;
 
     protected final String SAVE_STATE = "state";
 
@@ -70,7 +70,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     private final String KEY_STATE_INFO = "info";
     private final String KEY_STATE_ALLLYRS = "alllyrs";
 
-    protected int dIndexTool;
+//    protected int dIndexTool;
 
     protected ViewDraw dViewDraw;
 
@@ -96,15 +96,15 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dVisibleAdd = false;
         dSelectAllLyrs = false;
         dSelectInfo = false;
-        dIndexTool = TOOL_PAINT;
+//        dIndexTool = TOOL_PAINT;
         dIndexPaint = OP_PAINT_1;
         dIndexErase = OP_ERASE_1;
         dIndexFill = OP_FILL_1;
         dIndexDefRot = OP_DEF_ROT_1;
         dIndexScale = OP_SCALE_1;
-        dIndexText = OP_TEXT_1;
-        dIndexTrans = OP_TRANS_1;
-        dIndexCut = OP_CUT_1;
+//        dIndexText = OP_TEXT_1;
+//        dIndexTrans = OP_TRANS_1;
+//        dIndexCut = OP_CUT_1;
     }
 
     @Nullable
@@ -554,13 +554,13 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         v.setSelected(!v.isSelected());
     }
 
-    protected boolean compareIndex(int index){
-        return dIndexTool==index;
-    }
+//    protected boolean compareIndex(int index){
+//        return dIndexTool==index;
+//    }
 
     private void selectorButtons(int index){
 
-            dIndexTool = index;
+//            dIndexTool = index;
 
             dPaint.setActivated(index == TOOL_PAINT);
 
@@ -608,8 +608,8 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     }
 
     protected void selectorIconsFill(ImageView v){
-        if(dIndexFill==OP_FILL_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_fill_2));
-        else if(dIndexFill==OP_FILL_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_fill_1));
+        if(dIndexFill==OP_FILL_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_fill_2,null));
+        else if(dIndexFill==OP_FILL_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_fill_1,null));
     }
     /*нажатие на ок запускает отрез по контуру
     * или диалог*/

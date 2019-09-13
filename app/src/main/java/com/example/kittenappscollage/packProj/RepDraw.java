@@ -15,7 +15,6 @@ public class RepDraw {
 
     private Bitmap rImg, rLyr;
 
-
     private DeformMat rIMat, rLMat;
 
     private Canvas rImgC, rLyrC;

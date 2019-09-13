@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.example.kittenappscollage.collect.FragmentCollect;
 import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
+import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -14,7 +15,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AddLyrsFragmentDraw mFragDraw;
+    private ApplyDrawToolsFragmentDraw mFragDraw;
 
     private FragmentCollect mFragColl;
 
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ViewPageAdapter addFragments(){
-        mFragDraw = new AddLyrsFragmentDraw();
+        mFragDraw = new ApplyDrawToolsFragmentDraw();
         mFragColl = new FragmentCollect();
         ViewPageAdapter a = new ViewPageAdapter(getSupportFragmentManager());
         a.addFragment(mFragDraw);

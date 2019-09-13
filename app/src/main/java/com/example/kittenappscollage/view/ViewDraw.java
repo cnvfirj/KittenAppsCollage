@@ -21,16 +21,22 @@ public class ViewDraw extends View {
 
     private boolean vNonBlock;
 
+    private Matrix vMatrL, vMatrI;
+
     public ViewDraw(Context context) {
         super(context);
         vApplyOperation = new ApplyOperation();
         vNonBlock = true;
+        vMatrI = new Matrix();
+        vMatrL = new Matrix();
          }
 
     public ViewDraw(Context context, AttributeSet attrs) {
         super(context, attrs);
         vApplyOperation = new ApplyOperation();
         vNonBlock = true;
+        vMatrI = new Matrix();
+        vMatrL = new Matrix();
 
     }
 
@@ -65,11 +71,11 @@ public class ViewDraw extends View {
     }
 
     private Matrix getMatrImg(){
-        return RepDraw.get().getIMat().matrix();
+        return RepDraw.get().getIMat().matrix(vMatrI);
     }
 
     private Matrix getMatrLyr(){
-        return RepDraw.get().getLMat().matrix();
+        return RepDraw.get().getLMat().matrix(vMatrL);
     }
 
     public void applyMutable(){

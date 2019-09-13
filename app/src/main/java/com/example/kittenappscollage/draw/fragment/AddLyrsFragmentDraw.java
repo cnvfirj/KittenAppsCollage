@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
+/*обрабатываем добавление слоя или начало коллажа*/
 public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Adding {
 
 
