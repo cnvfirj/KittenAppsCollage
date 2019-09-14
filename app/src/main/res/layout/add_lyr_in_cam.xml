@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.otaliastudios.cameraview.CameraView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/cam_view"/>
+
+    <ImageView
+        style="@style/common_buttons"
+        android:id="@+id/cam_click"
+        android:layout_gravity="center_horizontal|bottom"/>
+
+    <ImageView
+        style="@style/common_buttons"
+        android:id="@+id/cam_change"
+        android:layout_gravity="center_vertical|start"/>
+
+    <ImageView
+        style="@style/common_buttons"
+        android:id="@+id/cam_flash"
+        android:layout_gravity="center_vertical|end"/>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

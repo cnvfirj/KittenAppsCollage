@@ -71,6 +71,15 @@ public class AddLyrInCreator extends SelectedFragment {
     }
 
     @Override
+    protected void readinessView(View v) {
+        aNumb++;
+        if(aNumb==3){
+            applyTransform(true,0);
+            applyTransformTools();
+        }
+    }
+
+    @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.creator_lyr_back:
@@ -120,23 +129,23 @@ public class AddLyrInCreator extends SelectedFragment {
         aColorPickCall.setActivated(!aColorPickCall.isActivated());
     }
 
-    private void paramView(final View view){
-        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
-        if (viewTreeObserver.isAlive()) {
-            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    aNumb++;
-                    if(aNumb==3){
-                        applyTransform(true,0);
-                        applyTransformTools();
-                    }
-
-                }
-            });
-        }
-    }
+//    private void paramView(final View view){
+//        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+//        if (viewTreeObserver.isAlive()) {
+//            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//                @Override
+//                public void onGlobalLayout() {
+//                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//                    aNumb++;
+//                    if(aNumb==3){
+//                        applyTransform(true,0);
+//                        applyTransformTools();
+//                    }
+//
+//                }
+//            });
+//        }
+//    }
 
     private void applyTransformTools(){
         int step = aPreview.getWidth()-aColorPickCall.getRight();

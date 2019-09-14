@@ -43,6 +43,8 @@ public class SaveImageToFile {
                         else SHOW_MASSAGE(context, "error saved");
 //                        EventBus.getDefault().post(new FragmentCollections.SaveFile(aBoolean));
                     });
+        }else {
+            SHOW_MASSAGE(context, "check device memory");
         }
 
     }
