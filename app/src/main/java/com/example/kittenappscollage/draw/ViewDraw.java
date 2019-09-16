@@ -1,4 +1,4 @@
-package com.example.kittenappscollage.view;
+package com.example.kittenappscollage.draw;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,13 +11,11 @@ import android.view.View;
 
 import com.example.kittenappscollage.draw.operations.ApplyOperation;
 import com.example.kittenappscollage.draw.operations.Operation;
-import com.example.kittenappscollage.packProj.RepDraw;
-
-import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
+import com.example.kittenappscollage.draw.RepDraw;
 
 public class ViewDraw extends View {
 
-    private ApplyOperation vApplyOperation;
+    private ApplyOperation vAppOp;
 
     private boolean vNonBlock;
 
@@ -25,7 +23,7 @@ public class ViewDraw extends View {
 
     public ViewDraw(Context context) {
         super(context);
-        vApplyOperation = new ApplyOperation();
+        vAppOp = new ApplyOperation();
         vNonBlock = true;
         vMatrI = new Matrix();
         vMatrL = new Matrix();
@@ -33,7 +31,7 @@ public class ViewDraw extends View {
 
     public ViewDraw(Context context, AttributeSet attrs) {
         super(context, attrs);
-        vApplyOperation = new ApplyOperation();
+        vAppOp = new ApplyOperation();
         vNonBlock = true;
         vMatrI = new Matrix();
         vMatrL = new Matrix();
@@ -56,7 +54,7 @@ public class ViewDraw extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if(vNonBlock) {
-            vApplyOperation.event(event);
+
             invalidate();
         }
         return super.onTouchEvent(event);
@@ -78,15 +76,12 @@ public class ViewDraw extends View {
         return RepDraw.get().getLMat().matrix(vMatrL);
     }
 
-    public void applyMutable(){
-        invalidate();
-    }
-
-    public void command(Operation.Command command){
-        vApplyOperation.command(command);
-    }
 
     public void nonBlockTouch(boolean nonBlock){
         vNonBlock = nonBlock;
+    }
+
+    public void setEvent(Operation.Event event){
+        vAppOp.event(event);
     }
 }

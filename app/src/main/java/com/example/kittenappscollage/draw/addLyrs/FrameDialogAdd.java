@@ -15,14 +15,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.kittenappscollage.R;
-import com.example.kittenappscollage.draw.addLyrs.loadImage.LoadProjectListener;
-import com.example.kittenappscollage.draw.addLyrs.loadImage.SelectorLoadProject;
-import com.example.kittenappscollage.packProj.RepDraw;
-
-import java.util.Objects;
-
-import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
-import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
+import com.example.kittenappscollage.draw.RepDraw;
 
 
 public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragments{

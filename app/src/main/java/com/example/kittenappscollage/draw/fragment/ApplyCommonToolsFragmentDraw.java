@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.kittenappscollage.packProj.RepDraw;
+import com.example.kittenappscollage.draw.RepDraw;
 
 
 /*применяем действия стандартной панети инструментов*/

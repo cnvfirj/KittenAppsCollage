@@ -14,9 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.kittenappscollage.R;
-import com.example.kittenappscollage.view.ViewDraw;
-
-import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
+import com.example.kittenappscollage.draw.ViewDraw;
 
 /*описываем основную анимацию движения кнопок и панели
 * инструментов. Присваиваем им иконки*/
@@ -27,28 +25,30 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     public final static int OP_PAINT_1 = 11;
     public final static int OP_PAINT_2 = 12;
     public final static int OP_PAINT_3 = 13;
-    private int dIndexPaint;
+    public final static int OP_PAINT_SPOT = 14;
+    protected int dIndexPaint;
 
     protected final int TOOL_ERASE = 2;
     public final static int OP_ERASE_1 = 21;
     public final static int OP_ERASE_2 = 22;
     public final static int OP_ERASE_3 = 23;
-    private int dIndexErase;
+    protected int dIndexErase;
 
     protected final int TOOL_FILL = 3;
     public final static int OP_FILL_1 = 31;
     public final static int OP_FILL_2 = 32;
-    private int dIndexFill;
+    protected int dIndexFill;
 
     protected final int TOOL_DEF_ROT = 4;
     public final static int OP_DEF_ROT_1 = 41;
     public final static int OP_DEF_ROT_2 = 42;
-    private int dIndexDefRot;
+    public final static int OP_DEF_ROT_RESET = 43;
+    protected int dIndexDefRot;
 
     protected final int TOOL_SCALE = 5;
     public final static int OP_SCALE_1 = 51;
     public final static int OP_SCALE_2 = 52;
-    private int dIndexScale;
+    protected int dIndexScale;
 
     protected final int TOOL_TRANS = 6;
     public final static int OP_TRANS_1 = 61;

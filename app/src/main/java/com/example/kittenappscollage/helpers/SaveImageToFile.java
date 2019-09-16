@@ -5,8 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
-
-import org.greenrobot.eventbus.EventBus;
+import com.example.kittenappscollage.draw.RepDraw;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,8 +15,6 @@ import java.io.OutputStream;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 import static com.example.kittenappscollage.helpers.RequestFolder.testFolder;
 
@@ -35,7 +32,27 @@ public class SaveImageToFile {
 
         quality = 100;
         final File folder = new File(RequestFolder.getFolderImages());
-        final String name = "/"+ PropertiesImage.NAME_IMAGE();
+        final String name = "/"+ RepDraw.PropertiesImage.NAME_IMAGE();
+        if(RequestFolder.testFolder(folder)) {
+            requestSaveFile(folder.getAbsolutePath() + name, bitmap)
+                    .subscribe(aBoolean -> {
+                        if (aBoolean) SHOW_MASSAGE(context, "image saved");
+                        else SHOW_MASSAGE(context, "error saved");
+//                        EventBus.getDefault().post(new FragmentCollections.SaveFile(aBoolean));
+                    });
+        }else {
+            SHOW_MASSAGE(context, "check device memory");
+        }
+
+    }
+@SuppressLint("CheckResult")
+    public static void saveImage(Context context, Bitmap bitmap, String name) {
+
+        if(bitmap==null||bitmap.isRecycled())return;
+
+        quality = 100;
+        final File folder = new File(RequestFolder.getFolderImages());
+//        final String name = "/"+ RepDraw.PropertiesImage.NAME_IMAGE();
         if(RequestFolder.testFolder(folder)) {
             requestSaveFile(folder.getAbsolutePath() + name, bitmap)
                     .subscribe(aBoolean -> {
@@ -54,7 +71,7 @@ public class SaveImageToFile {
         if(bitmap==null||bitmap.isRecycled())return;
         quality = 100;
         final File folder = new File(RequestFolder.getFolderImages());
-        final String name = "/"+ PropertiesImage.NAME_IMAGE();
+        final String name = "/"+ RepDraw.PropertiesImage.NAME_IMAGE();
         if(testFolder(folder)) {
             requestSaveFile(folder.getAbsolutePath() + name, bitmap)
                     .subscribe(aBoolean -> {
@@ -64,6 +81,24 @@ public class SaveImageToFile {
         }
 
     }
+
+      @SuppressLint("CheckResult")
+    public static void saveImage(ActionSave act, Bitmap bitmap, String name) {
+        if(bitmap==null||bitmap.isRecycled())return;
+        quality = 100;
+        final File folder = new File(RequestFolder.getFolderImages());
+//        final String name = "/"+ RepDraw.PropertiesImage.NAME_IMAGE();
+        if(testFolder(folder)) {
+            requestSaveFile(folder.getAbsolutePath() + name, bitmap)
+                    .subscribe(aBoolean -> {
+                        act.saved(aBoolean);
+
+                    });
+        }
+
+    }
+
+
 
 
 

@@ -4,7 +4,7 @@ import android.widget.ImageView;
 
 import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.SaveImageToFile;
-import com.example.kittenappscollage.packProj.RepDraw;
+import com.example.kittenappscollage.draw.RepDraw;
 
 /*здесь обработаем нажатие кнопок сохранения*/
 

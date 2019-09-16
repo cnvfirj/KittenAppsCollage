@@ -4,23 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 
 import com.example.kittenappscollage.R;
-import com.example.kittenappscollage.draw.addLyrs.AddLyr;
 import com.example.kittenappscollage.draw.addLyrs.FrameDialogAdd;
-import com.example.kittenappscollage.packProj.RepDraw;
+import com.example.kittenappscollage.draw.RepDraw;
 
-import java.sql.Time;
-import java.util.concurrent.TimeUnit;
-
-import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 /*обрабатываем добавление слоя или начало коллажа*/
