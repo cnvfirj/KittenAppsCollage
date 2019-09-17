@@ -333,6 +333,12 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         }
     }
 
+
+
+
+
+
+
     private void computeSlide(float step, long time){
         dUndo.animate().translationX(step).setDuration(time).start();
         dRedo.animate().translationX(step*2).setDuration(time).start();

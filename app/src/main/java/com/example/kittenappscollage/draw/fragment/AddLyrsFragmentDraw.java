@@ -1,9 +1,12 @@
 package com.example.kittenappscollage.draw.fragment;
 
+import android.graphics.Point;
+import android.graphics.PointF;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -23,12 +26,21 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
 
     private FrameDialogAdd aDialog;
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         RepDraw.get().listenerAdd(this);
         return super.onCreateView(inflater, container, savedInstanceState);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        waitingReadinessView(dViewDraw);
+    }
+
 
     @Override
     protected void slideTools() {
@@ -83,6 +95,19 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
     public void readinessAll(boolean is) {
         if(is)dViewDraw.invalidate();
         if(!isSlideTools())slideTools();
+    }
+
+    protected void waitingReadinessView(final View view){
+        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+        if (viewTreeObserver.isAlive()) {
+            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    RepDraw.get().viewDraw(new PointF(view.getWidth(),view.getHeight()));
+                }
+            });
+        }
     }
 
 

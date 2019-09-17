@@ -2,6 +2,7 @@ package com.example.kittenappscollage.draw;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.PointF;
 
 import com.example.mutablebitmap.CompRep;
 import com.example.mutablebitmap.DeformMat;
@@ -59,6 +60,12 @@ public class RepDraw {
         return this;
     }
 
+    public RepDraw viewDraw(PointF view){
+        rLyrMat.view(view);
+        rImgMat.view(view);
+        return this;
+    }
+
     public void addLyr(Bitmap b){
         if(isImg())setLyr(b,null,true);
         else setImg(b,null,true);
@@ -67,12 +74,13 @@ public class RepDraw {
 
     public void setImg(Bitmap b, CompRep rep, boolean single){
         zeroingBitmap(rImg);
+        rImgMat.reset();
         if(testBitmap(b)) {
             if(rNameProj.equals(NONAME))rNameProj = PropertiesImage.NAME_IMAGE();
             rImg = b.copy(Bitmap.Config.ARGB_8888, true);
             rImgC = new Canvas(rImg);
-            rImgMat.reset();
             if (rep != null) rImgMat.setRepository(rep);
+            rImgMat.bitmap(new PointF(b.getWidth(),b.getHeight()));
             if (single&&rAdd!=null) {
                 rAdd.readinessImg(true);
             }
@@ -82,11 +90,12 @@ public class RepDraw {
 
     public void setLyr(Bitmap b, CompRep rep, boolean single){
         zeroingBitmap(rLyr);
+        rLyrMat.reset();
         if(testBitmap(b)) {
             rLyr = b.copy(Bitmap.Config.ARGB_8888, true);
             rLyrC = new Canvas(rLyr);
-            rLyrMat.reset();
             if (rep != null) rLyrMat.setRepository(rep);
+            rLyrMat.bitmap(new PointF(b.getWidth(),b.getHeight()));
             if (single&&rAdd != null) rAdd.readinessLyr(true);
         }
         zeroingBitmap(b);

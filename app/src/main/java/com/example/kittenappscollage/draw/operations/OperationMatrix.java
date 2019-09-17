@@ -50,7 +50,6 @@ public class OperationMatrix extends Operation {
 
     @Override
     public Operation event(Event event) {
-        LYTE("matrix "+event.name());
         this.event = event;
         if(event.equals(Event.MATRIX_T))mCommand = BaseMat.Command.TRANSLATE;
         else if(event.equals(Event.MATRIX_S_P))mCommand = BaseMat.Command.SCALE_PLUS;
@@ -83,6 +82,7 @@ public class OperationMatrix extends Operation {
             return;
         }
         if(TouchBitmap.ifIGotBit(mMat.muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),mPoint)) {
+
             mMat.command(mCommand).point(mPoint, mAction);
             zeroing();
         }
@@ -95,6 +95,7 @@ public class OperationMatrix extends Operation {
         if(mMat==null||mPoint==null||mAction==ACTION_NULL||mCommand==null||mCommand.equals(BaseMat.Command.NULLABLE)){
             return;
         }
+
         mMat.command(mCommand).point(mPoint, mAction);
         zeroing();
 

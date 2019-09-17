@@ -20,7 +20,6 @@ public class OperationCanvas extends Operation {
 
     @Override
     public Operation event(Event event) {
-        LYTE("canvas "+event.name());
         return this;
     }
 

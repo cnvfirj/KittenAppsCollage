@@ -40,6 +40,7 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
     @Override
     protected void toolAllLyrs(ImageView v) {
         super.toolAllLyrs(v);
+        dViewDraw.groupLyrs(v.isActivated());
     }
 
     @Override

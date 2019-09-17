@@ -35,7 +35,6 @@ public class ViewDraw extends View {
         vNonBlock = true;
         vMatrI = new Matrix();
         vMatrL = new Matrix();
-
     }
 
     @Override
@@ -54,11 +53,15 @@ public class ViewDraw extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if(vNonBlock) {
-
+            if(RepDraw.get().isImg()){
+                vAppOp.point(event);
+            }
             invalidate();
         }
-        return super.onTouchEvent(event);
+        return true;
     }
+
+
 
     private Bitmap getImg(){
         return RepDraw.get().getImg();
@@ -76,6 +79,9 @@ public class ViewDraw extends View {
         return RepDraw.get().getLMat().matrix(vMatrL);
     }
 
+    public void groupLyrs(boolean gr){
+        vAppOp.grouping(gr);
+    }
 
     public void nonBlockTouch(boolean nonBlock){
         vNonBlock = nonBlock;

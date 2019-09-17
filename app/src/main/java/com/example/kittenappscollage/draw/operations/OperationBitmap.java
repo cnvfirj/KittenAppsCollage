@@ -20,7 +20,6 @@ public class OperationBitmap extends Operation{
 
     @Override
     public Operation event(Event event) {
-        LYTE("bitmap "+event.name());
         return this;
     }
 

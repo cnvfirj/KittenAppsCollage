@@ -1,6 +1,11 @@
 package com.example.kittenappscollage.draw.operations;
 
+import android.graphics.PointF;
 import android.view.MotionEvent;
+
+import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.helpers.App;
+import com.example.mutablebitmap.DeformMat;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
@@ -8,14 +13,41 @@ public class ApplyOperation {
 
        private Operation aOperation;
 
+       private PointF aView;
+
+       private Operation.Event aCommandEvent;
+
+       private boolean aGroupingLyrs;
+
 
     public ApplyOperation event(Operation.Event event){
+        aCommandEvent = event;
         aOperation = assignOperation(event);
+        return this;
+    }
+
+    public ApplyOperation point(MotionEvent event){
+        if(belongMat(getEvent())){
+            if(aGroupingLyrs)matGroupOperation(event);
+            else matSoloOperation(event);
+        }
+        return this;
+    }
+    public ApplyOperation view(PointF view){
+        aView = view;
+        return this;
+    }
+
+    public ApplyOperation grouping(boolean gr){
+        aGroupingLyrs = gr;
         return this;
     }
 
 
 
+    private Operation.Event getEvent(){
+        return aCommandEvent;
+    }
 
     private Operation assignOperation(Operation.Event event){
         if(belongCan(event)){
@@ -31,6 +63,18 @@ public class ApplyOperation {
         return null;
     }
 
+
+    private void matSoloOperation(MotionEvent event){
+         ApplyOperationSelector.get().singleMat(aOperation,event);
+    }
+
+    private void matGroupOperation(MotionEvent event){
+        if(aCommandEvent.equals(Operation.Event.MATRIX_T)||
+                        aCommandEvent.equals(Operation.Event.MATRIX_S_M)||
+                        aCommandEvent.equals(Operation.Event.MATRIX_S_P))
+        ApplyOperationSelector.get().groupMat(aOperation,event);
+        else matSoloOperation(event);
+    }
 
 
 
