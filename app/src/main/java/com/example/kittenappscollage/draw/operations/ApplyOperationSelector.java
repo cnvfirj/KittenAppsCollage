@@ -4,6 +4,7 @@ import android.graphics.PointF;
 import android.view.MotionEvent;
 
 import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.draw.SaveStep;
 import com.example.mutablebitmap.DeformMat;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
@@ -24,21 +25,20 @@ public class ApplyOperationSelector {
     void singleMat(Operation operation, MotionEvent event){
         PointF p = new PointF(event.getX(),event.getY());
         int action = event.getAction();
-//        boolean touch = false;
+        boolean touch = false;
         if(RepDraw.get().isImg()){
             if(belongingRegion(RepDraw.get().getIMat(),p)){
                 if(action==MotionEvent.ACTION_UP){
-//                    touch = true;
+                    touch = true;
                 }
                 if(action==MotionEvent.ACTION_DOWN){
                     operation.mat(RepDraw.get().getIMat());
                 }
             }
-
             if(RepDraw.get().isLyr()){
                 if(belongingRegion(RepDraw.get().getLMat(),p)){
                     if(action==MotionEvent.ACTION_UP){
-//                        touch = true;
+                        touch = true;
                     }
                     if(action==MotionEvent.ACTION_DOWN){
                         operation.mat(RepDraw.get().getLMat());
@@ -47,7 +47,7 @@ public class ApplyOperationSelector {
 
             }
             operation.point(event).apply();
-//            if(touch)saveStep(BackStepNext.PropProj.OP_WHAT_MUTE_MATRIX);
+            if(touch) SaveStep.get().save();
         }
     }
 
@@ -59,13 +59,13 @@ public class ApplyOperationSelector {
                     operation.mat(RepDraw.get().getIMat()).point(event).applyAll();
                     operation.mat(RepDraw.get().getLMat()).point(event).applyAll();
                     if(event.getAction()==MotionEvent.ACTION_UP) {
-//                        saveStep(BackStepNext.PropProj.OP_WHAT_MUTE_MATRIX);
+                        SaveStep.get().save();
                     }
                 }else if(belongingRegion(RepDraw.get().getLMat(),p)){
                     operation.mat(RepDraw.get().getIMat()).point(event).applyAll();
                     operation.mat(RepDraw.get().getLMat()).point(event).applyAll();
                     if(event.getAction()==MotionEvent.ACTION_UP) {
-//                        saveStep(BackStepNext.PropProj.OP_WHAT_MUTE_MATRIX);
+                        SaveStep.get().save();
                     }
                 }
             }else {
@@ -73,7 +73,7 @@ public class ApplyOperationSelector {
                 if(belongingRegion(RepDraw.get().getIMat(),p)){
                     operation.mat(RepDraw.get().getIMat()).point(event).applyAll();
                     if(event.getAction()==MotionEvent.ACTION_UP) {
-//                        saveStep(BackStepNext.PropProj.OP_WHAT_MUTE_MATRIX);
+                        SaveStep.get().save();
                     }
                 }
             }
