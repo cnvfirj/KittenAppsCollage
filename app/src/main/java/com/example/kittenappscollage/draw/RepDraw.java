@@ -30,6 +30,8 @@ public class RepDraw {
 
     private String rNameProj;
 
+    private PointF rView;
+
     private RepDraw() {
         rLyrMat = new DeformMat();
         rImgMat = new DeformMat();
@@ -61,6 +63,7 @@ public class RepDraw {
     }
 
     public RepDraw viewDraw(PointF view){
+        rView = view;
         rLyrMat.view(view);
         rImgMat.view(view);
         return this;
@@ -125,21 +128,23 @@ public class RepDraw {
     }
 
     public void change(){
-        rTemp = rImg.copy(Bitmap.Config.ARGB_8888,true);
-        rTempRep = rImgMat.getRepository().copy();
-        zeroingBitmap(rImg);
-        rImgMat.reset();
+        if(isImg()&&isLyr()) {
+            rTemp = rImg.copy(Bitmap.Config.ARGB_8888, true);
+            rTempRep = rImgMat.getRepository().copy();
+            zeroingBitmap(rImg);
+            rImgMat.reset();
 
-        rImg = rLyr.copy(Bitmap.Config.ARGB_8888,true);
-        rImgMat.setRepository(rLyrMat.getRepository().copy());
-        zeroingBitmap(rLyr);
-        rLyrMat.reset();
+            rImg = rLyr.copy(Bitmap.Config.ARGB_8888, true);
+            rImgMat.setRepository(rLyrMat.getRepository().copy());
+            zeroingBitmap(rLyr);
+            rLyrMat.reset();
 
-        rLyr = rTemp.copy(Bitmap.Config.ARGB_8888,true);
-        rLyrMat.setRepository(rTempRep.copy());
-        zeroingBitmap(rTemp);
-        rTempRep.reset();
-        if(rApp!=null)rApp.change(true);
+            rLyr = rTemp.copy(Bitmap.Config.ARGB_8888, true);
+            rLyrMat.setRepository(rTempRep.copy());
+            zeroingBitmap(rTemp);
+            rTempRep.reset();
+            if (rApp != null) rApp.change(true);
+        }
     }
     public Canvas getImgCanv(){
         return rImgC;
@@ -163,6 +168,10 @@ public class RepDraw {
 
     public DeformMat getLMat() {
         return rLyrMat;
+    }
+
+    public PointF getView() {
+        return rView;
     }
 
     public String getrNameProj(){

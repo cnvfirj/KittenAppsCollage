@@ -25,7 +25,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     public final static int OP_PAINT_1 = 11;
     public final static int OP_PAINT_2 = 12;
     public final static int OP_PAINT_3 = 13;
-    public final static int OP_PAINT_SPOT = 14;
+    public final static int OP_PAINT_4 = 14;
     protected int dIndexPaint;
 
     protected final int TOOL_ERASE = 2;
@@ -42,7 +42,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected final int TOOL_DEF_ROT = 4;
     public final static int OP_DEF_ROT_1 = 41;
     public final static int OP_DEF_ROT_2 = 42;
-    public final static int OP_DEF_ROT_RESET = 43;
+    public final static int OP_DEF_ROT_3 = 43;
     protected int dIndexDefRot;
 
     protected final int TOOL_SCALE = 5;
@@ -477,7 +477,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected void toolPaint(ImageView v){
         if(v.isActivated()){
             dIndexPaint++;
-            if(dIndexPaint>OP_PAINT_3)dIndexPaint=OP_PAINT_1;
+            if(dIndexPaint>OP_PAINT_4)dIndexPaint=OP_PAINT_1;
             v.setSelected(false);
             selectorIconsPaint(v);
             v.setSelected(true);
@@ -529,7 +529,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
         if(v.isActivated()){
             dIndexDefRot++;
-            if(dIndexDefRot>OP_DEF_ROT_2)dIndexDefRot=OP_DEF_ROT_1;
+            if(dIndexDefRot>OP_DEF_ROT_3)dIndexDefRot=OP_DEF_ROT_1;
             v.setSelected(false);
             selectorIconsDefRot(v);
             v.setSelected(true);
@@ -587,9 +587,11 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     }
 
     protected void selectorIconsPaint(ImageView v){
-        if(dIndexPaint==OP_PAINT_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_3_to_1,null));
+        if(dIndexPaint==OP_PAINT_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_4_to_1,null));
         else if(dIndexPaint==OP_PAINT_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_1_to_2,null));
         else if(dIndexPaint==OP_PAINT_3)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_2_to_3,null));
+        else if(dIndexPaint==OP_PAINT_4)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_3_to_4,null));
+
     }
 
     protected void selectorIconsErase(ImageView v){
@@ -608,8 +610,10 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     }
 
     protected void selectorIconsDefRot(ImageView v){
-        if(dIndexDefRot==OP_DEF_ROT_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_deform_rotate_2,null));
-        else if(dIndexDefRot==OP_DEF_ROT_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_deform_rotate_1,null));
+        if(dIndexDefRot==OP_DEF_ROT_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_deform_rotate_3_to_1,null));
+        else if(dIndexDefRot==OP_DEF_ROT_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_deform_rotate_1_to_2,null));
+        else if(dIndexDefRot==OP_DEF_ROT_3)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_deform_rotate_2_to_3,null));
+
 
     }
 

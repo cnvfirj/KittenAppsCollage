@@ -15,7 +15,7 @@
         android:background="@drawable/background_buttons_selected_tools"/>
     <ImageView
         android:id="@+id/tool_deform_rotate"
-        android:src="@drawable/icon_deform_rotate_1"
+        android:src="@drawable/icon_deform_rotate_1_to_2"
         style="@style/slide_style_all_tools"
         android:background="@drawable/background_buttons_selected_tools"/>
 

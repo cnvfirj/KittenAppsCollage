@@ -4,16 +4,16 @@
 
     <item
         android:id="@+id/def1"
-        android:drawable="@drawable/ic_rotation_image"
+        android:drawable="@drawable/ic_matrix_reset_image"
         android:state_selected="false"/>
 
     <item
         android:id="@+id/def2"
-        android:drawable="@drawable/ic_deform_image"
+        android:drawable="@drawable/ic_matrix_rotation_image"
         android:state_selected="true"/>
 
     <transition
-        android:drawable="@drawable/anim_rot_to_def"
+        android:drawable="@drawable/anim_matrix_reset_to_rot"
         android:fromId="@+id/def1"
         android:toId="@+id/def2"/>
 
