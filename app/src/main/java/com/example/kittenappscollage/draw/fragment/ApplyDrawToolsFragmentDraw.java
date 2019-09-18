@@ -13,6 +13,8 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         if(dIndexPaint%10==1)dViewDraw.setEvent(Operation.Event.DRAW_A_LINE_1);
         else if(dIndexPaint%10==2)dViewDraw.setEvent(Operation.Event.DRAW_A_LINE_2);
         else if(dIndexPaint%10==3)dViewDraw.setEvent(Operation.Event.DRAW_A_LINE_3);
+        else if(dIndexPaint%10==4)dViewDraw.setEvent(Operation.Event.DRAW_SPOT);
+
     }
 
     @Override

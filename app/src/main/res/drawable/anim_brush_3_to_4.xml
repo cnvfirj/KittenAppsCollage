@@ -8,79 +8,46 @@
             android:height="24dp"
             android:viewportWidth="24"
             android:viewportHeight="24">
-            <group
-                android:name="group"
-                android:pivotX="12"
-                android:pivotY="12"
-                android:scaleX="0.9"
-                android:scaleY="0.9">
-                <path
-                    android:name="path"
-                    android:pathData="M 10.5 16.8 C 9.006 16.8 7.8 18.006 7.8 19.5 C 7.8 20.679 6.756 21.3 6 21.3 C 6.828 22.398 8.241 23.1 9.6 23.1 C 11.589 23.1 13.2 21.489 13.2 19.5 C 13.2 18.006 11.994 16.8 10.5 16.8 Z M 22.839 8.367 L 21.633 7.161 C 21.282 6.81 20.715 6.81 20.364 7.161 L 12.3 15.225 L 14.775 17.7 L 22.839 9.636 C 23.19 9.285 23.19 8.718 22.839 8.367 Z"
-                    android:fillColor="#FFFFFF"
-                    android:strokeWidth="1.111111111"/>
-                <clip-path
-                    android:name="mask"
-                    android:pathData="M 4.206 20.867 C 5.677 22.945 6.727 22.594 5.39 22.998 C 1.118 22.963 5.707 23.086 1.09 22.925 C 1.119 19.949 0.987 4.283 0.984 1.01 C 12.043 1.08 18.809 0.913 23.005 1.048 C 23.005 2.455 22.964 2.4 22.978 3.998 C 9.862 16.042 23.004 3.931 9.931 16 C 5.617 16.138 8.826 20.955 4.206 20.867 Z"/>
-                <path
-                    android:name="ramb_2"
-                    android:pathData="M 0.517 11.622 C 0.517 16.325 8.225 20.138 17.732 20.138 C 27.243 20.138 34.953 16.325 34.953 11.622 C 34.953 6.917 27.243 3.103 17.732 3.103 C 8.225 3.103 0.517 6.917 0.517 11.622 Z"
-                    android:strokeColor="#FFFFFF"
-                    android:strokeAlpha="0.6"
-                    android:strokeWidth="3"/>
-                <path
-                    android:name="ramb_3"
-                    android:pathData="M -2.448 11.642 C -2.448 17.996 6.793 23.145 18.189 23.145 C 29.587 23.145 38.828 17.996 38.828 11.642 C 38.828 5.289 29.587 0.138 18.189 0.138 C 6.793 0.138 -2.448 5.289 -2.448 11.642 Z"
-                    android:strokeColor="#FFFFFF"
-                    android:strokeWidth="3"/>
-                <group
-                    android:name="group_1"
-                    android:pivotX="12"
-                    android:pivotY="12"
-                    android:translateX="1"
-                    android:scaleY="0.9">
-                    <path
-                        android:name="ramb_1"
-                        android:pathData="M 3.976 11.659 C 3.976 14.453 10.199 16.717 17.876 16.717 C 25.557 16.717 31.778 14.453 31.778 11.659 C 31.778 8.865 25.557 6.6 17.876 6.6 C 10.199 6.6 3.976 8.865 3.976 11.659 Z"
-                        android:fillColor="#FFFFFF"
-                        android:fillAlpha="0"
-                        android:strokeColor="#FFFFFF"
-                        android:strokeAlpha="0.3"
-                        android:strokeWidth="3"/>
-                </group>
-            </group>
+            <path
+                android:name="path"
+                android:pathData="M 10.65 16.32 C 9.305 16.32 8.22 17.405 8.22 18.75 C 8.22 19.811 7.28 20.37 6.6 20.37 C 7.345 21.358 8.617 21.99 9.84 21.99 C 11.63 21.99 13.08 20.54 13.08 18.75 C 13.08 17.405 11.995 16.32 10.65 16.32 Z M 21.755 8.73 L 20.67 7.645 C 20.354 7.329 19.843 7.329 19.528 7.645 L 12.27 14.902 L 14.498 17.13 L 21.755 9.872 C 22.071 9.556 22.071 9.046 21.755 8.73 Z"
+                android:fillColor="#FFFFFF"
+                android:strokeWidth="1.111111111"/>
+            <clip-path
+                android:name="mask"
+                android:pathData="M 4.985 19.98 C 6.309 21.851 7.254 21.535 6.051 21.898 C 2.206 21.867 6.336 21.977 2.181 21.832 C 2.207 19.154 2.088 5.055 2.086 2.109 C 12.039 2.172 18.128 2.022 21.904 2.143 C 21.904 3.409 21.868 3.36 21.88 4.798 C 10.076 15.638 21.904 4.738 10.138 15.6 C 6.255 15.724 9.143 20.059 4.985 19.98 Z"/>
+            <path
+                android:name="ramb_1"
+                android:pathData="M 4.578 11.493 C 4.578 14.007 10.179 16.045 17.088 16.045 C 24.001 16.045 29.6 14.007 29.6 11.493 C 29.6 8.979 24.001 6.94 17.088 6.94 C 10.179 6.94 4.578 8.979 4.578 11.493 Z"
+                android:fillColor="#FFFFFF"
+                android:fillAlpha="0"
+                android:strokeColor="#FFFFFF"
+                android:strokeAlpha="0.3"
+                android:strokeWidth="3"/>
+            <path
+                android:name="ramb_2"
+                android:pathData="M 1.665 11.66 C 1.665 15.893 8.602 19.324 17.159 19.324 C 25.719 19.324 32.658 15.893 32.658 11.66 C 32.658 7.425 25.719 3.993 17.159 3.993 C 8.602 3.993 1.665 7.425 1.665 11.66 Z"
+                android:strokeColor="#FFFFFF"
+                android:strokeAlpha="0.6"
+                android:strokeWidth="3"/>
+            <path
+                android:name="ramb_3"
+                android:pathData="M -1.003 11.678 C -1.003 17.396 7.314 22.03 17.57 22.03 C 27.828 22.03 36.145 17.396 36.145 11.678 C 36.145 5.96 27.828 1.324 17.57 1.324 C 7.314 1.324 -1.003 5.96 -1.003 11.678 Z"
+                android:fillColor="#FFFFFF"
+                android:fillAlpha="0"
+                android:strokeColor="#FFFFFF"
+                android:strokeWidth="3"/>
         </vector>
     </aapt:attr>
-    <target android:name="ramb_1">
-        <aapt:attr name="android:animation">
-            <set>
-                <objectAnimator
-                    android:propertyName="strokeAlpha"
-                    android:duration="300"
-                    android:valueFrom="0.3"
-                    android:valueTo="1"
-                    android:valueType="floatType"
-                    android:interpolator="@android:anim/linear_interpolator"/>
-                <objectAnimator
-                    android:propertyName="fillAlpha"
-                    android:startOffset="175"
-                    android:duration="125"
-                    android:valueFrom="0"
-                    android:valueTo="1"
-                    android:valueType="floatType"
-                    android:interpolator="@android:anim/linear_interpolator"/>
-            </set>
-        </aapt:attr>
-    </target>
-    <target android:name="ramb_2">
+    <target android:name="ramb_3">
         <aapt:attr name="android:animation">
             <objectAnimator
-                android:propertyName="strokeAlpha"
+                android:propertyName="fillAlpha"
                 android:duration="300"
-                android:valueFrom="0.6"
+                android:valueFrom="0"
                 android:valueTo="1"
                 android:valueType="floatType"
-                android:interpolator="@android:anim/linear_interpolator"/>
+                android:interpolator="@android:interpolator/fast_out_slow_in"/>
         </aapt:attr>
     </target>
 </animated-vector>
