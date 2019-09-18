@@ -17,9 +17,7 @@
         android:name="ramb_1"
         android:pathData="M 4.578 11.493 C 4.578 14.007 10.179 16.045 17.088 16.045 C 24.001 16.045 29.6 14.007 29.6 11.493 C 29.6 8.979 24.001 6.94 17.088 6.94 C 10.179 6.94 4.578 8.979 4.578 11.493 Z"
         android:fillColor="#FFFFFF"
-        android:fillAlpha="0"
         android:strokeColor="#FFFFFF"
-        android:strokeAlpha="0.6"
         android:strokeWidth="3"/>
     <path
         android:name="ramb_2"
@@ -30,6 +28,5 @@
         android:name="ramb_3"
         android:pathData="M -1.003 11.678 C -1.003 17.396 7.314 22.03 17.57 22.03 C 27.828 22.03 36.145 17.396 36.145 11.678 C 36.145 5.96 27.828 1.324 17.57 1.324 C 7.314 1.324 -1.003 5.96 -1.003 11.678 Z"
         android:strokeColor="#FFFFFF"
-        android:strokeAlpha="0.6"
         android:strokeWidth="3"/>
 </vector>
