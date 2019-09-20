@@ -22,13 +22,13 @@
                 android:fillColor="#FFFFFF"
                 android:fillAlpha="0"
                 android:strokeColor="#FFFFFF"
-                android:strokeAlpha="0.3"
+                android:strokeAlpha="1"
                 android:strokeWidth="3"/>
             <path
                 android:name="ramb_2"
                 android:pathData="M 1.665 11.66 C 1.665 15.893 8.602 19.324 17.159 19.324 C 25.719 19.324 32.658 15.893 32.658 11.66 C 32.658 7.425 25.719 3.993 17.159 3.993 C 8.602 3.993 1.665 7.425 1.665 11.66 Z"
                 android:strokeColor="#FFFFFF"
-                android:strokeAlpha="0.6"
+                android:strokeAlpha="1"
                 android:strokeWidth="3"/>
             <path
                 android:name="ramb_3"
@@ -47,29 +47,8 @@
                 android:valueFrom="1"
                 android:valueTo="0"
                 android:valueType="floatType"
-                android:interpolator="@android:interpolator/linear_interpolator"/>
-        </aapt:attr>
-    </target>
-    <target android:name="ramb_2">
-        <aapt:attr name="android:animation">
-            <objectAnimator
-                android:propertyName="strokeAlpha"
-                android:duration="300"
-                android:valueFrom="0.6"
-                android:valueTo="1"
-                android:valueType="floatType"
                 android:interpolator="@android:anim/linear_interpolator"/>
         </aapt:attr>
     </target>
-    <target android:name="ramb_1">
-        <aapt:attr name="android:animation">
-            <objectAnimator
-                android:propertyName="strokeAlpha"
-                android:duration="300"
-                android:valueFrom="0.3"
-                android:valueTo="1"
-                android:valueType="floatType"
-                android:interpolator="@android:anim/linear_interpolator"/>
-        </aapt:attr>
-    </target>
+
 </animated-vector>

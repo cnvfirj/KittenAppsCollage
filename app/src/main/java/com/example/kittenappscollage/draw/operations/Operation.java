@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 
 import com.example.mutablebitmap.DeformMat;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public abstract class Operation {
 
 
@@ -46,9 +48,10 @@ public abstract class Operation {
         LAYERS_FILL_TO_BORDER,
         LAYERS_CUT,
         LAYERS_CUT_BORD,
-        LAYERS_ELASTIC_C,
-        LAYERS_ELASTIC_H,
-        LAYERS_ELASTIC_S,
+        LAYERS_ELASTIC_1,
+        LAYERS_ELASTIC_2,
+        LAYERS_ELASTIC_3,
+        LAYERS_ELASTIC_4,
         LAYERS_SCALE,
         LAYERS_MIRR_V,
         LAYERS_MIRR_H,
@@ -143,8 +146,6 @@ public abstract class Operation {
     public interface ResultMutable{
 
         public void result(Bitmap bitmap, DeformMat mat, @Nullable LayerFlag flag);
-
-        public void preview(@Nullable Path path, @Nullable PointF[] points);
 
     }
 

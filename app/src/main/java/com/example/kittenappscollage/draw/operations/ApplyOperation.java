@@ -1,23 +1,29 @@
 package com.example.kittenappscollage.draw.operations;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 
+import androidx.annotation.Nullable;
+
 import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.draw.operations.bitmap.CoercionBitmap;
 import com.example.kittenappscollage.helpers.App;
 import com.example.mutablebitmap.DeformMat;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
-public class ApplyOperation {
+public class ApplyOperation implements Operation.ResultMutable {
 
        private Operation aOperation;
 
-       private PointF aView;
+//       private PointF aView;
 
        private Operation.Event aCommandEvent;
 
        private boolean aGroupingLyrs;
+
 
 
     public ApplyOperation event(Operation.Event event){
@@ -30,11 +36,19 @@ public class ApplyOperation {
         if(belongMat(getEvent())){
             if(aGroupingLyrs)matGroupOperation(event);
             else matSoloOperation(event);
+        }else if (belongLay(getEvent())){
+            if(aGroupingLyrs)lyrGroupOperation(event);
+            else lyrSoloOperation(event);
+        }else if(belongCan(getEvent())){
+            if(aGroupingLyrs)canvGroupOperation(event);
+            else canvSoloOperation(event);
+
+
         }
         return this;
     }
     public ApplyOperation view(PointF view){
-        aView = view;
+//        aView = view;
         return this;
     }
 
@@ -43,7 +57,10 @@ public class ApplyOperation {
         return this;
     }
 
+    @Override
+    public void result(Bitmap bitmap, DeformMat mat, @Nullable Operation.LayerFlag flag) {
 
+    }
 
     private Operation.Event getEvent(){
         return aCommandEvent;
@@ -51,18 +68,43 @@ public class ApplyOperation {
 
     private Operation assignOperation(Operation.Event event){
         if(belongCan(event)){
-            return OperationCanvas.get().event(event);
+            return OperationCanvas
+                    .get()
+                    .view(RepDraw.get().getView())
+                    .event(event);
         }
         else if(belongMat(event)){
-            return OperationMatrix.get().event(event);
+            return OperationMatrix
+                    .get()
+                    .view(RepDraw.get().getView())
+                    .event(event);
         }
         else if(belongLay(event)){
-            return OperationBitmap.get().event(event);
+            return OperationBitmap
+                    .get()
+                    .view(RepDraw.get().getView())
+                    .event(event);
 
         }
         return null;
     }
 
+
+    private void lyrGroupOperation(MotionEvent event){
+        ApplyOperationSelector.get().singleLay(aOperation,event);
+    }
+
+    private void lyrSoloOperation(MotionEvent event){
+        ApplyOperationSelector.get().singleLay(aOperation,event);
+    }
+
+    private void canvGroupOperation(MotionEvent event){
+        ApplyOperationSelector.get().groupCanv(aOperation,event);
+    }
+
+    private void canvSoloOperation(MotionEvent event){
+        ApplyOperationSelector.get().singleCanv(aOperation,event);
+    }
 
     private void matSoloOperation(MotionEvent event){
          ApplyOperationSelector.get().singleMat(aOperation,event);

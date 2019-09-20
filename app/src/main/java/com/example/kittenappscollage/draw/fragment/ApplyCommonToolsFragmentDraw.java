@@ -46,6 +46,7 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
     @Override
     protected void toolUnion(ImageView v) {
         super.toolUnion(v);
+        RepDraw.get().union();
     }
 
     @Override

@@ -20,9 +20,11 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     @Override
     protected void toolErase(ImageView v) {
         super.toolErase(v);
-        if(dIndexErase%10==1)dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_C);
-        else if(dIndexErase%10==2)dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_H);
-        else if(dIndexErase%10==3)dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_S);
+        if(dIndexErase%10==1)dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_1);
+        else if(dIndexErase%10==2)dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_2);
+        else if(dIndexErase%10==3)dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_3);
+        else if(dIndexErase%10==4)dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_4);
+
 
     }
 
