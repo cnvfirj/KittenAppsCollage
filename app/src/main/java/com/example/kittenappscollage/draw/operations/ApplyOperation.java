@@ -18,8 +18,6 @@ public class ApplyOperation implements Operation.ResultMutable {
 
        private Operation aOperation;
 
-//       private PointF aView;
-
        private Operation.Event aCommandEvent;
 
        private boolean aGroupingLyrs;

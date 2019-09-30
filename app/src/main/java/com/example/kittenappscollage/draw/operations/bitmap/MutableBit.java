@@ -5,10 +5,13 @@ import android.graphics.Path;
 import android.graphics.PointF;
 
 import com.example.kittenappscollage.draw.operations.Operation;
+import com.example.kittenappscollage.draw.operations.TouchPoints;
 import com.example.mutablebitmap.DeformMat;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
-public abstract class MutableBit {
+
+public abstract class MutableBit extends TouchPoints {
 
     public enum Command{
         CUT,
@@ -22,11 +25,9 @@ public abstract class MutableBit {
         NON
     }
 
-    protected boolean mVisibleMark;
-
-    protected Operation.ResultMutable mResultMutable;
-
-    private String mName = "";
+    public MutableBit() {
+        super();
+    }
 
     public MutableBit bitmap(Bitmap bitmap){
         return this;
@@ -68,36 +69,11 @@ public abstract class MutableBit {
         return this;
     }
 
-    public MutableBit marker(boolean visible){
-        mVisibleMark = visible;
-        return this;
-    }
-    public MutableBit listResult(Operation.ResultMutable listResult){
-        mResultMutable = listResult;
-        return this;
-    }
-
-    public MutableBit view(PointF view){
+    public MutableBit listener(Operation.ResultMutable listener){
         return this;
     }
 
     public abstract void apply();
 
-    public Path getPath(){
-        return new Path();
-    }
-
-    public Path createPath(){
-
-        return null;
-    }
-
-    protected void name(String name){
-        mName = name;
-    }
-
-    public String getName() {
-        return mName;
-    }
 
 }

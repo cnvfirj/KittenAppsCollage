@@ -145,7 +145,7 @@ public abstract class Operation {
 
     public interface ResultMutable{
 
-        public void result(Bitmap bitmap, DeformMat mat, @Nullable LayerFlag flag);
+        public void result(Bitmap bitmap, DeformMat mat);
 
     }
 

@@ -37,7 +37,6 @@ public class HelpCut {
 
     /*получаем область обрезания по экрану*/
     public Rect getCut() {
-
         return hCut;
     }
 

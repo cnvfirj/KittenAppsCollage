@@ -42,8 +42,6 @@ public class RepDraw {
 
     private Appling rApp;
 
-
-
     private String rNameProj;
 
     private PointF rView;
