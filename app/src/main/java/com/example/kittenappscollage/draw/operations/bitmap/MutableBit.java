@@ -3,6 +3,7 @@ package com.example.kittenappscollage.draw.operations.bitmap;
 import android.graphics.Bitmap;
 import android.graphics.Path;
 import android.graphics.PointF;
+import android.view.MotionEvent;
 
 import com.example.kittenappscollage.draw.operations.Operation;
 import com.example.kittenappscollage.draw.operations.TouchPoints;
@@ -54,6 +55,10 @@ public abstract class MutableBit extends TouchPoints {
     }
 
     public MutableBit point(PointF point, int action){
+        return this;
+    }
+
+    public MutableBit point(MotionEvent event){
         return this;
     }
 

@@ -55,9 +55,16 @@ public class ApplyOperation implements Operation.ResultMutable {
         return this;
     }
 
-    @Override
-    public void result(Bitmap bitmap, DeformMat mat, @Nullable Operation.LayerFlag flag) {
 
+
+    @Override
+    public void result(Bitmap bitmap, DeformMat mat) {
+
+    }
+
+    @Override
+    public void repers(PointF[] points, boolean is) {
+        RepDraw.get().correctRepers(is).repers(points);
     }
 
     private Operation.Event getEvent(){
@@ -68,6 +75,7 @@ public class ApplyOperation implements Operation.ResultMutable {
         if(belongCan(event)){
             return OperationCanvas
                     .get()
+                    .resultMutable(this)
                     .view(RepDraw.get().getView())
                     .event(event);
         }
@@ -80,6 +88,7 @@ public class ApplyOperation implements Operation.ResultMutable {
         else if(belongLay(event)){
             return OperationBitmap
                     .get()
+                    .resultMutable(this)
                     .view(RepDraw.get().getView())
                     .event(event);
 

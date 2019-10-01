@@ -147,6 +147,8 @@ public abstract class Operation {
 
         public void result(Bitmap bitmap, DeformMat mat);
 
+        public void repers(PointF[]points, boolean ready);
+
     }
 
 

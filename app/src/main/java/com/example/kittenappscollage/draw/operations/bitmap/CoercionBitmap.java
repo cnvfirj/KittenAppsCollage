@@ -98,7 +98,6 @@ public class CoercionBitmap {
     private static PointF[] verticesRealScale(PointF[]ver, float scale){
         PointF[] p = new PointF[4];
         for(int i=0;i<p.length;i++){
-            LYTE("i "+i+"|"+ver[i]);
             p[i] = new PointF(ver[i].x/scale,ver[i].y/scale);
         }
 

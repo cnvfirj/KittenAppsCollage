@@ -76,6 +76,24 @@ public class ViewDraw extends View implements RepDraw.Mutable {
             path.close();
             canvas.drawPath(path,paint);
         }
+        if(RepDraw.get().getRepers()!=null){
+            if(RepDraw.get().isCorrectRepers()){
+              for(int i=0;i<RepDraw.get().getRepers().length;i++) {
+                  if (RepDraw.get().getRepers()[i] != null) {
+                      canvas.drawCircle(RepDraw.get().getRepers()[i].x, RepDraw.get().getRepers()[i].y,
+                        RepDraw.get().getView().x / 40, paint); }
+              }
+        }else {
+                path.reset();
+                path.moveTo(RepDraw.get().getRepers()[0].x,RepDraw.get().getRepers()[0].y);
+                path.lineTo(RepDraw.get().getRepers()[1].x,RepDraw.get().getRepers()[1].y);
+                path.lineTo(RepDraw.get().getRepers()[2].x,RepDraw.get().getRepers()[2].y);
+                path.lineTo(RepDraw.get().getRepers()[3].x,RepDraw.get().getRepers()[3].y);
+                path.close();
+                canvas.drawPath(path,paint);
+
+            }
+        }
         super.onDraw(canvas);
     }
 

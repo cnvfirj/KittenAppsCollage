@@ -9,6 +9,9 @@ import com.example.kittenappscollage.draw.operations.Operation;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.mutablebitmap.DeformMat;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
+
 public class MutableCut extends MutableBit {
 
     private HelpCut mCut;
@@ -29,7 +32,7 @@ public class MutableCut extends MutableBit {
     @Override
     public void apply() {
         if(mBitmap!=null&&!mBitmap.isRecycled()){
-            if(mListener!=null)mListener.result(mCut.cut(null).apply(mBitmap),mCut.getMat());
+            if(mListener!=null)mListener.result(mCut.cut(getStartFin()).apply(mBitmap),mCut.getMat());
         }
         else Massages.ERROR("bed bitmap",getClass());
 
@@ -45,6 +48,7 @@ public class MutableCut extends MutableBit {
     public MutableBit mat(DeformMat mat) {
         mMat = mat;
         mCut.mat(mat);
+        zoneTouch((int) mMat.getCanvas().x/20);
         return super.mat(mat);
     }
 
@@ -54,22 +58,24 @@ public class MutableCut extends MutableBit {
         return super.listener(listener);
     }
 
+
+
     @Override
     public MutableBit command(Command command) {
-        if(command.equals(Operation.Event.LAYERS_CUT))mCommand = Command.CUT;
-        else if(command.equals(Operation.Event.LAYERS_ELASTIC_1))mCommand = Command.ELAST_1;
-        else if(command.equals(Operation.Event.LAYERS_ELASTIC_2))mCommand = Command.ELAST_2;
-        else if(command.equals(Operation.Event.LAYERS_ELASTIC_3))mCommand = Command.ELAST_3;
-        else if(command.equals(Operation.Event.LAYERS_ELASTIC_4))mCommand = Command.ELAST_4;
-        else if(command.equals(Operation.Event.LAYERS_FILL_TO_BORDER))mCommand = Command.FILL_B;
-        else if(command.equals(Operation.Event.LAYERS_FILL_TO_COLOR))mCommand = Command.FILL_C;
-
+        mCommand = command;
         return super.command(command);
     }
 
     @Override
     public MutableBit start(PointF start) {
-
+        if(mCommand.equals(Command.CUT)){
+            if(ifTouchZone(start)){
+                LYTE("Mutable cut touch zone");
+            } else {
+                LYTE("Mutable cut reset");
+                reset();
+            }
+        }
         return super.start(start);
     }
 
@@ -84,12 +90,36 @@ public class MutableCut extends MutableBit {
     }
 
     @Override
-    public MutableBit point(PointF point, int action) {
-        if(action== MotionEvent.ACTION_DOWN)start(point);
-        else if(action==MotionEvent.ACTION_MOVE)move(point);
-        else if(action==MotionEvent.ACTION_UP)fin(point);
-        return super.point(point, action);
+    public MutableBit point(MotionEvent event) {
+        if(event.getAction()== MotionEvent.ACTION_DOWN)start(new PointF(event.getX(),event.getY()));
+        else if(event.getAction()==MotionEvent.ACTION_MOVE)move(new PointF(event.getX(),event.getY()));
+        else if(event.getAction()==MotionEvent.ACTION_UP)fin(new PointF(event.getX(),event.getY()));
+
+        if(mCommand.equals(Command.CUT))allPoints(event);
+        return super.point(event);
+    }
+
+    private boolean ifTouchZone(PointF t){
+        boolean target = false;
+        if (RepDraw.get().isCorrectRepers()){
+            for(PointF p:RepDraw.get().getRepers()){
+                int r = zoneTouch();
+                if(p.x+r>t.x&&p.x-r<t.x){
+
+                }
+            }
+        }
+        return target;
     }
 
 
+
+    private boolean isCircle(){
+        return false;
+    }
+    @Override
+    protected void createReperStartFin() {
+        super.createReperStartFin();
+        mListener.repers(getRepersStartFinPoints(), istReadyCorrectStartFin());
+    }
 }

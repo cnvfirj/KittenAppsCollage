@@ -50,7 +50,7 @@ public class ApplyOperationSelector {
 
             }
             operation.point(event).apply();
-            if(touch) SaveStep.get().save();
+            if(touch) SaveStep.get().save(0);
         }
     }
 
@@ -62,13 +62,13 @@ public class ApplyOperationSelector {
                     operation.mat(RepDraw.get().getIMat()).point(event).applyAll();
                     operation.mat(RepDraw.get().getLMat()).point(event).applyAll();
                     if(event.getAction()==MotionEvent.ACTION_UP) {
-                        SaveStep.get().save();
+                        SaveStep.get().save(0);
                     }
                 }else if(belongingRegion(RepDraw.get().getLMat(),p)){
                     operation.mat(RepDraw.get().getIMat()).point(event).applyAll();
                     operation.mat(RepDraw.get().getLMat()).point(event).applyAll();
                     if(event.getAction()==MotionEvent.ACTION_UP) {
-                        SaveStep.get().save();
+                        SaveStep.get().save(0);
                     }
                 }
             }else {
@@ -76,7 +76,7 @@ public class ApplyOperationSelector {
                 if(belongingRegion(RepDraw.get().getIMat(),p)){
                     operation.mat(RepDraw.get().getIMat()).point(event).applyAll();
                     if(event.getAction()==MotionEvent.ACTION_UP) {
-                        SaveStep.get().save();
+                        SaveStep.get().save(0);
                     }
                 }
             }
@@ -93,9 +93,9 @@ public class ApplyOperationSelector {
                     !event.equals(Operation.Event.LAYERS_CUT_BORD)) {
                 if(RepDraw.get().isImg()) {
                     if (RepDraw.get().isLyr()) {
-                        SaveStep.get().save();
+                        SaveStep.get().save(0);
                     } else {
-                        SaveStep.get().save();
+                        SaveStep.get().save(0);
                     }
                 }
             }

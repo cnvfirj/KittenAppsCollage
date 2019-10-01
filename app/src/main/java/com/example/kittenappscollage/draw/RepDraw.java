@@ -46,6 +46,10 @@ public class RepDraw {
 
     private PointF rView;
 
+    private PointF[]rRepers;
+
+    private boolean rCorrectRepers;
+
     private RepDraw() {
         rLyrMat = new DeformMat();
         rImgMat = new DeformMat();
@@ -80,6 +84,16 @@ public class RepDraw {
         rView = view;
         rLyrMat.view(view);
         rImgMat.view(view);
+        return this;
+    }
+
+    public RepDraw repers(PointF[]points){
+        rRepers = points;
+        return this;
+    }
+
+    public RepDraw correctRepers(boolean is){
+        rCorrectRepers = is;
         return this;
     }
 
@@ -230,6 +244,14 @@ public class RepDraw {
         return rView;
     }
 
+    public PointF[] getRepers(){
+        return rRepers;
+    }
+
+    public boolean isCorrectRepers(){
+        return rCorrectRepers;
+    }
+
     public String getrNameProj(){
         return rNameProj;
     }
@@ -240,6 +262,11 @@ public class RepDraw {
 
     public void zeroingLyr(){
         zeroingBitmap(rLyr);
+    }
+
+    public void zeroingRepers(){
+        rRepers = null;
+        rCorrectRepers = false;
     }
 
 

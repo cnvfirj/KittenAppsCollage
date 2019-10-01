@@ -23,6 +23,13 @@ public class HelpCut {
         this.hCut = cut;
         return this;
     }
+
+    public HelpCut cut(RectF cut) {
+        this.hCut = new Rect((int)cut.left,(int)cut.top,(int)cut.right,(int)cut.bottom);
+        return this;
+    }
+
+
     /*применяем обрезание по присланному битмап*/
     public Bitmap apply(Bitmap bitmap){
         Rect r = correctionRect(editCut(),bitmap);
