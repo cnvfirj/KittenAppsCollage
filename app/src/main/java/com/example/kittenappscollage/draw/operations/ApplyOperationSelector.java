@@ -12,7 +12,11 @@ import com.example.mutablebitmap.DeformMat;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
-public class ApplyOperationSelector {
+public class ApplyOperationSelector implements Operation.ResultMutable {
+
+    private final int SINGLE_IMG = 0;
+    private final int SINGLE_LYR = 1;
+    private final int ALL = 2;
 
     private static ApplyOperationSelector single;
 
@@ -25,7 +29,24 @@ public class ApplyOperationSelector {
         return single;
     }
 
+
+    @Override
+    public void result(Bitmap img, DeformMat mat) {
+        if(RepDraw.get().isLyr()){
+            RepDraw.get().mutableLyr(img,mat.getRepository(),RepDraw.MUTABLE_SIZE,true);
+        }else {
+            RepDraw.get().mutableImg(img,mat.getRepository(),RepDraw.MUTABLE_SIZE,true);
+        }
+    }
+
+    @Override
+    public void repers(PointF[] points, boolean is) {
+        RepDraw.get().correctRepers(is).repers(points);
+    }
+
+
     void singleMat(Operation operation, MotionEvent event){
+        operation.resultMutable(this).view(RepDraw.get().getView());
         PointF p = new PointF(event.getX(),event.getY());
         int action = event.getAction();
         boolean touch = false;
@@ -50,11 +71,12 @@ public class ApplyOperationSelector {
 
             }
             operation.point(event).apply();
-            if(touch) SaveStep.get().save(0);
+//            if(touch) SaveStep.get().save(0);
         }
     }
 
     void groupMat(Operation operation, MotionEvent event){
+        operation.resultMutable(this).view(RepDraw.get().getView());
         PointF p = new PointF(event.getX(),event.getY());
         if(RepDraw.get().isImg()){
             if(RepDraw.get().isLyr()){
@@ -62,13 +84,13 @@ public class ApplyOperationSelector {
                     operation.mat(RepDraw.get().getIMat()).point(event).applyAll();
                     operation.mat(RepDraw.get().getLMat()).point(event).applyAll();
                     if(event.getAction()==MotionEvent.ACTION_UP) {
-                        SaveStep.get().save(0);
+//                        SaveStep.get().save(0);
                     }
                 }else if(belongingRegion(RepDraw.get().getLMat(),p)){
                     operation.mat(RepDraw.get().getIMat()).point(event).applyAll();
                     operation.mat(RepDraw.get().getLMat()).point(event).applyAll();
                     if(event.getAction()==MotionEvent.ACTION_UP) {
-                        SaveStep.get().save(0);
+//                        SaveStep.get().save(0);
                     }
                 }
             }else {
@@ -76,7 +98,7 @@ public class ApplyOperationSelector {
                 if(belongingRegion(RepDraw.get().getIMat(),p)){
                     operation.mat(RepDraw.get().getIMat()).point(event).applyAll();
                     if(event.getAction()==MotionEvent.ACTION_UP) {
-                        SaveStep.get().save(0);
+//                        SaveStep.get().save(0);
                     }
                 }
             }
@@ -85,26 +107,30 @@ public class ApplyOperationSelector {
     }
 
     void singleLay(Operation operation,MotionEvent event){
-        if(event.getAction()==MotionEvent.ACTION_DOWN)selectImg(operation);
+        operation.resultMutable(this).view(RepDraw.get().getView());
+        if(event.getAction()==MotionEvent.ACTION_DOWN)readyImg(operation);
         operation.point(event);
 
         if(event.getAction()==MotionEvent.ACTION_UP) {
             if (!event.equals(Operation.Event.LAYERS_CUT) &&
                     !event.equals(Operation.Event.LAYERS_CUT_BORD)) {
-                if(RepDraw.get().isImg()) {
-                    if (RepDraw.get().isLyr()) {
-                        SaveStep.get().save(0);
-                    } else {
-                        SaveStep.get().save(0);
-                    }
-                }
+//                if(RepDraw.get().isImg()) {
+//                    if (RepDraw.get().isLyr()) {
+//                        SaveStep.get().save(0);
+//                    } else {
+//                        SaveStep.get().save(0);
+//                    }
+//                }
             }
 
         }
     }
 
     void groupLay(Operation operation,MotionEvent event){
+        operation.resultMutable(this).view(RepDraw.get().getView());
+        if(event.getAction()==MotionEvent.ACTION_DOWN){
 
+        }
     }
 
     void singleCanv(Operation operation, MotionEvent event){
@@ -115,21 +141,22 @@ public class ApplyOperationSelector {
 
     }
 
-    private void selectImg(Operation operation){
+    private void readyImg(Operation operation){
         if(RepDraw.get().isLyr()){
+
+            operCorrectLyr(RepDraw.get().getLyr(), RepDraw.get().getLMat(),SINGLE_LYR);
             operation.mat(RepDraw.get().getLMat());
-            operCorrectLyr(RepDraw.get().getLyr(), RepDraw.get().getLMat());
-            operation.bitmap(RepDraw.get().getImg());
+            operation.bitmap(RepDraw.get().getLyr());
 
         } else {
+            operCorrectLyr(RepDraw.get().getImg(), RepDraw.get().getIMat(),SINGLE_IMG);
             operation.mat(RepDraw.get().getIMat());
-            operCorrectLyr(RepDraw.get().getImg(), RepDraw.get().getIMat());
             operation.bitmap(RepDraw.get().getImg());
 
         }
     }
 
-    private Bitmap operCorrectLyr(Bitmap bit, DeformMat mat){
+    private Bitmap operCorrectLyr(Bitmap bit, DeformMat mat, int index){
         if(isZeroing(bit)) {
             Bitmap temp = CoercionBitmap.blankBitmap(mat);
             CoercionBitmap.drawBitmap(new Canvas(temp), CoercionBitmap.matrixBitmap(mat), bit);
@@ -141,6 +168,9 @@ public class ApplyOperationSelector {
             mat.getRepository().setScale(scale);
             mat.getRepository().setTranslate(translate);
             zeroingBitmap(temp);
+            if(index==SINGLE_IMG){
+                RepDraw.get().mutableImg(bit,mat.getRepository(),RepDraw.MUTABLE_SIZE,true);
+            }else if(index==SINGLE_LYR)RepDraw.get().mutableLyr(bit,mat.getRepository(),RepDraw.MUTABLE_SIZE,true);
         }
         return bit;
     }

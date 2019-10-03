@@ -123,8 +123,11 @@ public class ViewDraw extends View implements RepDraw.Mutable {
 
     @Override
     public void mutImg(boolean is) {
-
         invalidate();
+    }
+
+    public void doneCut(){
+          vAppOp.doneCut();
     }
 
     private Bitmap getImg(){

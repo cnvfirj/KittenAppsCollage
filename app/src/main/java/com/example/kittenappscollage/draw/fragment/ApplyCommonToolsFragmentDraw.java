@@ -15,6 +15,7 @@ import com.example.kittenappscollage.draw.RepDraw;
 /*применяем действия стандартной панети инструментов*/
 public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw implements RepDraw.Appling {
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

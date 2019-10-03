@@ -79,6 +79,8 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     @Override
     protected void doneCut() {
         super.doneCut();
+        dViewDraw.doneCut();
+//        dViewDraw.invalidate();
     }
 
     @Override

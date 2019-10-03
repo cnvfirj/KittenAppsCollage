@@ -7,14 +7,14 @@ import android.view.MotionEvent;
 
 import androidx.annotation.Nullable;
 
-import com.example.kittenappscollage.draw.RepDraw;
+//import com.example.kittenappscollage.draw.RepDraw;
 import com.example.kittenappscollage.draw.operations.bitmap.CoercionBitmap;
 import com.example.kittenappscollage.helpers.App;
 import com.example.mutablebitmap.DeformMat;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
-public class ApplyOperation implements Operation.ResultMutable {
+public class ApplyOperation {
 
        private Operation aOperation;
 
@@ -55,17 +55,16 @@ public class ApplyOperation implements Operation.ResultMutable {
         return this;
     }
 
+    public void doneCut(){
+        if(aGroupingLyrs){
 
-
-    @Override
-    public void result(Bitmap bitmap, DeformMat mat) {
-
+        }else {
+            aOperation.apply();
+        }
     }
 
-    @Override
-    public void repers(PointF[] points, boolean is) {
-        RepDraw.get().correctRepers(is).repers(points);
-    }
+
+
 
     private Operation.Event getEvent(){
         return aCommandEvent;
@@ -75,21 +74,21 @@ public class ApplyOperation implements Operation.ResultMutable {
         if(belongCan(event)){
             return OperationCanvas
                     .get()
-                    .resultMutable(this)
-                    .view(RepDraw.get().getView())
+//                    .resultMutable(this)
+//                    .view(RepDraw.get().getView())
                     .event(event);
         }
         else if(belongMat(event)){
             return OperationMatrix
                     .get()
-                    .view(RepDraw.get().getView())
+//                    .view(RepDraw.get().getView())
                     .event(event);
         }
         else if(belongLay(event)){
             return OperationBitmap
                     .get()
-                    .resultMutable(this)
-                    .view(RepDraw.get().getView())
+//                    .resultMutable(this)
+//                    .view(RepDraw.get().getView())
                     .event(event);
 
         }

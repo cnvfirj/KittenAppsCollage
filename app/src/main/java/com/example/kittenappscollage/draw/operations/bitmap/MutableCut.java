@@ -24,6 +24,10 @@ public class MutableCut extends MutableBit {
 
     protected Operation.ResultMutable mListener;
 
+    private PointF mStart;
+
+    private int mZone;
+
     public MutableCut() {
         super();
         mCut = new HelpCut();
@@ -69,23 +73,50 @@ public class MutableCut extends MutableBit {
     @Override
     public MutableBit start(PointF start) {
         if(mCommand.equals(Command.CUT)){
-            if(ifTouchZone(start)){
-                LYTE("Mutable cut touch zone");
-            } else {
-                LYTE("Mutable cut reset");
+            mZone = touchZone(start);
+            if(mZone!=NON_ZONE){
+                mStart = start;
+                resetPoints();
+
+            }else {
                 reset();
+                if(mCommand.equals(Command.CUT))allPoints(start);
             }
+
         }
         return super.start(start);
     }
 
     @Override
     public MutableBit move(PointF move) {
+        if(mCommand.equals(Command.CUT)){
+            if(mZone!=NON_ZONE){
+
+               correctRepersStartFin(mZone,getCorrect(mStart,move));
+               mStart = move;
+            }else {
+
+                if(mCommand.equals(Command.CUT))allPoints(move);
+            }
+
+        }
         return super.move(move);
     }
 
     @Override
     public MutableBit fin(PointF fin) {
+        if(mCommand.equals(Command.CUT)){
+            if(mZone!=NON_ZONE){
+                correctRepersStartFin(mZone,getCorrect(mStart,fin));
+                mStart = fin;
+
+            }else {
+
+                if(mCommand.equals(Command.CUT))allPoints(fin);
+            }
+
+            mStart = null;
+        }
         return super.fin(fin);
     }
 
@@ -95,21 +126,46 @@ public class MutableCut extends MutableBit {
         else if(event.getAction()==MotionEvent.ACTION_MOVE)move(new PointF(event.getX(),event.getY()));
         else if(event.getAction()==MotionEvent.ACTION_UP)fin(new PointF(event.getX(),event.getY()));
 
-        if(mCommand.equals(Command.CUT))allPoints(event);
         return super.point(event);
     }
 
+    private PointF getCorrect(PointF start, PointF fin){
+        return new PointF(fin.x-start.x,fin.y-start.y);
+    }
     private boolean ifTouchZone(PointF t){
         boolean target = false;
         if (RepDraw.get().isCorrectRepers()){
+            int r = zoneTouch();
             for(PointF p:RepDraw.get().getRepers()){
-                int r = zoneTouch();
-                if(p.x+r>t.x&&p.x-r<t.x){
 
+                if(p.x+r>t.x&&p.x-r<t.x){
+                   if(p.y+r>t.y&&p.y-r<t.y){
+                       target = true;
+                       break;
+                   }
                 }
             }
         }
         return target;
+    }
+
+    private int touchZone(PointF t){
+        int index = NON_ZONE;
+        if (RepDraw.get().isCorrectRepers()){
+            int r = zoneTouch();
+            for (int i = 0;i<getRepersStartFinPoints().length;i++){
+                PointF p = getRepersStartFinPoints()[i];
+                if(p.x+r>t.x&&p.x-r<t.x){
+                    if(p.y+r>t.y&&p.y-r<t.y){
+                        index = i;
+                        break;
+                    }
+                }
+            }
+
+
+        }
+        return index;
     }
 
 

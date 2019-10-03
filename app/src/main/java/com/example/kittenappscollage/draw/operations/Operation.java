@@ -145,7 +145,7 @@ public abstract class Operation {
 
     public interface ResultMutable{
 
-        public void result(Bitmap bitmap, DeformMat mat);
+        public void result(Bitmap img, DeformMat mat);
 
         public void repers(PointF[]points, boolean ready);
 
