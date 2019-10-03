@@ -38,6 +38,10 @@ public abstract class MutableBit extends TouchPoints {
         return this;
     }
 
+    public MutableBit index(int index){
+        return this;
+    }
+
     public MutableBit command(Command command){
         return this;
     }

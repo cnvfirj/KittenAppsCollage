@@ -20,7 +20,7 @@ import com.example.mutablebitmap.DeformMat;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
-public class ViewDraw extends View implements RepDraw.Mutable {
+public class ViewDraw extends View {
 
     private ApplyOperation vAppOp;
 
@@ -29,6 +29,8 @@ public class ViewDraw extends View implements RepDraw.Mutable {
     private Matrix vMatrL, vMatrI;
 
     private Paint paint;
+
+    private boolean vInfo;
 
     public ViewDraw(Context context) {
         super(context);
@@ -56,25 +58,30 @@ public class ViewDraw extends View implements RepDraw.Mutable {
         if(RepDraw.get().isImg()){
             canvas.drawBitmap(getImg(),getMatrImg(),null);
             paint.setColor(Color.RED);
-            PointF[]p = RepDraw.get().getIMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
-            path.moveTo(p[0].x,p[0].y);
-            path.lineTo(p[1].x,p[1].y);
-            path.lineTo(p[2].x,p[2].y);
-            path.lineTo(p[3].x,p[3].y);
-            path.close();
-            canvas.drawPath(path,paint);
+
+            if(vInfo) {
+                PointF[] p = RepDraw.get().getIMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
+                path.moveTo(p[0].x, p[0].y);
+                path.lineTo(p[1].x, p[1].y);
+                path.lineTo(p[2].x, p[2].y);
+                path.lineTo(p[3].x, p[3].y);
+                path.close();
+                canvas.drawPath(path, paint);
+            }
 
         }
         if(RepDraw.get().isLyr()){
             canvas.drawBitmap(getLyr(),getMatrLyr(),null);
             paint.setColor(Color.GREEN);
-            PointF[]p = RepDraw.get().getLMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
-            path.moveTo(p[0].x,p[0].y);
-            path.lineTo(p[1].x,p[1].y);
-            path.lineTo(p[2].x,p[2].y);
-            path.lineTo(p[3].x,p[3].y);
-            path.close();
-            canvas.drawPath(path,paint);
+            if(vInfo) {
+                PointF[] p = RepDraw.get().getLMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
+                path.moveTo(p[0].x, p[0].y);
+                path.lineTo(p[1].x, p[1].y);
+                path.lineTo(p[2].x, p[2].y);
+                path.lineTo(p[3].x, p[3].y);
+                path.close();
+                canvas.drawPath(path, paint);
+            }
         }
         if(RepDraw.get().getRepers()!=null){
             if(RepDraw.get().isCorrectRepers()){
@@ -111,18 +118,8 @@ public class ViewDraw extends View implements RepDraw.Mutable {
         return true;
     }
 
-    @Override
-    public void mutLyr(boolean is) {
-
-    }
-
-    @Override
-    public void mutAll(boolean is) {
-
-    }
-
-    @Override
-    public void mutImg(boolean is) {
+    public void changeInfo(boolean info){
+        vInfo = info;
         invalidate();
     }
 

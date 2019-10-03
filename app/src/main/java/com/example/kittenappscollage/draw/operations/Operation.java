@@ -98,6 +98,10 @@ public abstract class Operation {
         return this;
     }
 
+    public Operation index(int index){
+        return this;
+    }
+
     public Operation mark(boolean vis){
         return this;
     }
@@ -138,14 +142,11 @@ public abstract class Operation {
 
     }
 
-    public Bitmap getBitmap(){
-        return null;
-    }
 
 
     public interface ResultMutable{
 
-        public void result(Bitmap img, DeformMat mat);
+        public void result(Bitmap img, DeformMat mat,int index);
 
         public void repers(PointF[]points, boolean ready);
 

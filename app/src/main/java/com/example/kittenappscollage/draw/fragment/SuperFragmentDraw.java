@@ -459,6 +459,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected void toolAllLyrs(ImageView v){
         dSelectAllLyrs = !dSelectAllLyrs;
         v.setActivated(dSelectAllLyrs);
+
     }
     protected void toolUnion(ImageView v){
         v.setSelected(!v.isSelected());
@@ -564,7 +565,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 //        return dIndexTool==index;
 //    }
 
-    private void selectorButtons(int index){
+    protected void selectorButtons(int index){
 
 //            dIndexTool = index;
 
@@ -632,6 +633,45 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected void enterText(){
 
     }
+
+    protected void enabledGrouping(boolean enable){
+        dAllLyrs.setEnabled(enable);
+    }
+
+    protected void enabledInfo(boolean enable){
+        dInfo.setEnabled(enable);
+    }
+
+    protected void enabledOperLyr(boolean enable){
+        dChangeLyrs.setEnabled(enable);
+        dUnion.setEnabled(enable);
+        dDeleteLyr.setEnabled(enable);
+    }
+
+
+    protected void enabledDeleteAll(boolean enable){
+        dDeleteAll.setEnabled(enable);
+    }
+
+    protected void enableUndo(boolean enable){
+        dUndo.setEnabled(enable);
+    }
+
+    protected void enableRedo(boolean enable){
+        dRedo.setEnabled(enable);
+    }
+
+    protected void enableDraw(boolean enable){
+        dPaint.setEnabled(enable);
+        dEraser.setEnabled(enable);
+        dFil.setEnabled(enable);
+        dText.setEnabled(enable);
+        dDeformRotate.setEnabled(enable);
+        dCut.setEnabled(enable);
+        dTrans.setEnabled(enable);
+        dScale.setEnabled(enable);
+    }
+
 
     public boolean isSlideTools(){
         return dVisibleTools;

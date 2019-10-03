@@ -15,11 +15,13 @@ import com.example.kittenappscollage.draw.RepDraw;
 /*применяем действия стандартной панети инструментов*/
 public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw implements RepDraw.Appling {
 
+    private boolean dInfo;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         RepDraw.get().listenerApp(this);
+        dInfo = false;
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -36,6 +38,8 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
     @Override
     protected void toolInfo(ImageView v) {
         super.toolInfo(v);
+        dInfo = !dInfo;
+        dViewDraw.changeInfo(dInfo);
     }
 
     @Override
@@ -48,6 +52,7 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
     protected void toolUnion(ImageView v) {
         super.toolUnion(v);
         RepDraw.get().union();
+        readinessLyr(false);
     }
 
     @Override
@@ -60,12 +65,15 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
     protected void toolDelLyr(ImageView v) {
         super.toolDelLyr(v);
         RepDraw.get().delLyr();
+        readinessLyr(false);
     }
 
     @Override
     protected void toolDelAll(ImageView v) {
         super.toolDelAll(v);
         RepDraw.get().delAll();
+        readinessLyr(false);
+        readinessImg(false);
 
     }
 

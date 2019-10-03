@@ -7,25 +7,34 @@
         android:id="@+id/in"
         android:drawable="@color/colorPrimary"
         android:state_activated="true"
-        android:state_selected="false"/>
+        android:state_selected="false"
+        android:state_enabled="true"/>
 
     <item
         android:id="@+id/out"
         android:drawable="@color/colorAccent"
         android:state_activated="false"
-        android:state_selected="false"/>
+        android:state_selected="false"
+        android:state_enabled="true"/>
 
     <item
         android:id="@+id/select_out"
         android:drawable="@color/colorAccent"
         android:state_activated="false"
-        android:state_selected="true"/>
+        android:state_selected="true"
+        android:state_enabled="true"/>
 
   <item
         android:id="@+id/select_in"
         android:drawable="@color/colorPrimary"
         android:state_activated="true"
-        android:state_selected="true"/>
+        android:state_selected="true"
+        android:state_enabled="true"/>
+
+    <item
+        android:id="@+id/noenabl"
+        android:drawable="@color/colorNoEnabl"
+        android:state_enabled="false"/>
 
 
     <transition
@@ -54,6 +63,50 @@
         android:drawable="@drawable/anim_background_in"
         android:fromId="@+id/select_in"
         android:toId="@+id/select_out"/>
+
+    <transition
+        android:drawable="@drawable/anim_background_in_to_noenabl"
+        android:fromId="@id/in"
+        android:toId="@id/noenabl"/>
+
+    <transition
+        android:drawable="@drawable/anim_background_in_to_enabled"
+        android:fromId="@id/noenabl"
+        android:toId="@id/in"
+        tools:ignore="StateListReachable" />
+
+    <transition
+        android:drawable="@drawable/anim_background_out_to_noenabl"
+        android:fromId="@id/out"
+        android:toId="@id/noenabl"/>
+
+    <transition
+        android:drawable="@drawable/anim_background_out_to_enabled"
+        android:fromId="@id/noenabl"
+        android:toId="@id/out"
+        tools:ignore="StateListReachable" />
+
+    <transition
+        android:drawable="@drawable/anim_background_in_to_noenabl"
+        android:fromId="@id/select_in"
+        android:toId="@id/noenabl"/>
+
+    <transition
+        android:drawable="@drawable/anim_background_in_to_enabled"
+        android:fromId="@id/noenabl"
+        android:toId="@id/select_in"
+        tools:ignore="StateListReachable" />
+
+    <transition
+        android:drawable="@drawable/anim_background_out_to_noenabl"
+        android:fromId="@id/select_out"
+        android:toId="@id/noenabl"/>
+
+    <transition
+        android:drawable="@drawable/anim_background_out_to_enabled"
+        android:fromId="@id/noenabl"
+        android:toId="@id/select_out"
+        tools:ignore="StateListReachable" />
 
 
 

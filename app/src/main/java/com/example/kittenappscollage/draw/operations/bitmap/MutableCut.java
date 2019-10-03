@@ -28,15 +28,18 @@ public class MutableCut extends MutableBit {
 
     private int mZone;
 
+    private int mIndex;
+
     public MutableCut() {
         super();
         mCut = new HelpCut();
+        mIndex = 999;
     }
 
     @Override
     public void apply() {
         if(mBitmap!=null&&!mBitmap.isRecycled()){
-            if(mListener!=null)mListener.result(mCut.cut(getStartFin()).apply(mBitmap),mCut.getMat());
+            if(mListener!=null)mListener.result(mCut.cut(getStartFin()).apply(mBitmap),mCut.getMat(),mIndex);
         }
         else Massages.ERROR("bed bitmap",getClass());
 
@@ -54,6 +57,12 @@ public class MutableCut extends MutableBit {
         mCut.mat(mat);
         zoneTouch((int) mMat.getCanvas().x/20);
         return super.mat(mat);
+    }
+
+    @Override
+    public MutableBit index(int index) {
+        mIndex = index;
+        return super.index(index);
     }
 
     @Override

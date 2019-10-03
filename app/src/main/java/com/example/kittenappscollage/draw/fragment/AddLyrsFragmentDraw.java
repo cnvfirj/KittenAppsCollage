@@ -32,12 +32,20 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         RepDraw.get().listenerAdd(this);
+
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        enabledOperLyr(false);
+        enabledGrouping(false);
+        enableDraw(false);
+        enabledDeleteAll(false);
+        enabledInfo(false);
+        enableUndo(false);
+        enableRedo(false);
         waitingReadinessView(dViewDraw);
     }
 
@@ -82,19 +90,25 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
     @Override
     public void readinessImg(boolean is) {
         if(is)dViewDraw.invalidate();
-        if(!isSlideTools())slideTools();
+        if(!isSlideTools()&&is)slideTools();
+            enabledDeleteAll(is);
+            enableDraw(is);
+            enabledInfo(is);
     }
 
     @Override
     public void readinessLyr(boolean is) {
         if(is)dViewDraw.invalidate();
-
+            enabledGrouping(is);
+            enabledOperLyr(is);
     }
 
     @Override
     public void readinessAll(boolean is) {
-        if(is)dViewDraw.invalidate();
+//        if(is)dViewDraw.invalidate();
         if(!isSlideTools())slideTools();
+        if(RepDraw.get().isImg())readinessImg(is);
+        if(RepDraw.get().isLyr())readinessLyr(is);
     }
 
     protected void waitingReadinessView(final View view){

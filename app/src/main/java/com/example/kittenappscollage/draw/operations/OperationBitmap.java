@@ -17,8 +17,10 @@ public class OperationBitmap extends Operation{
 
     private MutableBit oMutableBit;
 
+
     public OperationBitmap() {
         oMutableBit = new MutableCut();
+
     }
 
     public static OperationBitmap get(){
@@ -53,6 +55,12 @@ public class OperationBitmap extends Operation{
     public Operation bitmap(Bitmap bitmap) {
         oMutableBit.bitmap(bitmap);
         return super.bitmap(bitmap);
+    }
+
+    @Override
+    public Operation index(int index) {
+        oMutableBit.index(index);
+        return super.index(index);
     }
 
     @Override
