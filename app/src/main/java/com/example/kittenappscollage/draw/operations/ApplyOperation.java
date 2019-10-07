@@ -48,7 +48,7 @@ public class ApplyOperation {
         ApplyOperationSelector.get().doneCut(aOperation, aGroupingLyrs);
     }
 
-    private Operation.Event getEvent(){
+    public Operation.Event getEvent(){
         return aCommandEvent;
     }
 

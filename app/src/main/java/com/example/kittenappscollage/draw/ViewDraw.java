@@ -13,9 +13,11 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.operations.ApplyOperation;
 import com.example.kittenappscollage.draw.operations.Operation;
 import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.draw.operations.TouchPoints;
 import com.example.mutablebitmap.DeformMat;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
@@ -30,6 +32,9 @@ public class ViewDraw extends View {
 
     private Paint paint;
 
+    private Path vShadow;
+
+    private Paint vShadowPaint;
     private boolean vInfo;
 
     public ViewDraw(Context context) {
@@ -46,6 +51,10 @@ public class ViewDraw extends View {
         vNonBlock = true;
         vMatrI = new Matrix();
         vMatrL = new Matrix();
+        vShadow = new Path();
+        vShadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        vShadowPaint.setStrokeWidth(1);
+        vShadowPaint.setColor(getContext().getResources().getColor(R.color.colorShadow));
         paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
@@ -101,6 +110,7 @@ public class ViewDraw extends View {
 
             }
         }
+        shadowInRepers(canvas);
         super.onDraw(canvas);
     }
 
@@ -118,6 +128,7 @@ public class ViewDraw extends View {
         return true;
     }
 
+
     public void changeInfo(boolean info){
         vInfo = info;
         invalidate();
@@ -125,6 +136,35 @@ public class ViewDraw extends View {
 
     public void doneCut(){
           vAppOp.doneCut();
+    }
+
+    private void shadowInRepers(Canvas canvas){
+        if(vAppOp.getEvent()!=null&&vAppOp.getEvent().equals(Operation.Event.LAYERS_CUT)){
+            vAppOp.event(Operation.Event.LAYERS_CUT);
+            PointF[]repers = RepDraw.get().getRepers();
+            if(repers!=null){
+                        vShadow.reset();
+                        vShadow.moveTo(0, 0);
+                        vShadow.lineTo(repers[TouchPoints.TOP_LEFT].x, 0);
+                        vShadow.lineTo(repers[TouchPoints.BOTTOM_LEFT].x, repers[TouchPoints.BOTTOM_LEFT].y);
+                        vShadow.lineTo(repers[TouchPoints.BOTTOM_RIGHT].x, repers[TouchPoints.BOTTOM_RIGHT].y);
+                        vShadow.lineTo(repers[TouchPoints.TOP_RIGHT].x, repers[TouchPoints.TOP_RIGHT].y);
+                        vShadow.lineTo(repers[TouchPoints.TOP_LEFT].x, repers[TouchPoints.TOP_LEFT].y);
+                        vShadow.lineTo(repers[TouchPoints.TOP_LEFT].x, 0);
+                        vShadow.lineTo(canvas.getWidth(), 0);
+                        vShadow.lineTo(canvas.getWidth(), canvas.getHeight());
+                        vShadow.lineTo(0, canvas.getHeight());
+                        vShadow.close();
+            }else {
+                vShadow.moveTo(0,0);
+                vShadow.lineTo(canvas.getWidth(),0);
+                vShadow.lineTo(canvas.getWidth(),canvas.getHeight());
+                vShadow.lineTo(0,canvas.getHeight());
+                vShadow.close();
+            }
+            canvas.drawPath(vShadow,vShadowPaint);
+
+        }
     }
 
     private Bitmap getImg(){

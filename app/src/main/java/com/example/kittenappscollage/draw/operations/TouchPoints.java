@@ -52,13 +52,13 @@ public class TouchPoints {
     /*добавляем все точки без исключения*/
     protected void allPoints(MotionEvent event){
         tAllPoints.add(new PointF(event.getX(),event.getY()));
-//        changeOnArrPoint();
+        if(event.getAction()==MotionEvent.ACTION_DOWN)tReadyCorrectStartFin = true;
+        if(event.getAction()==MotionEvent.ACTION_UP)tReadyCorrectStartFin = false;
         changeStartFinPoints();
     }
 
-    protected void allPoints(PointF event){
+    protected void allPoints(PointF event, int action){
         tAllPoints.add(event);
-//        changeOnArrPoint();
         changeStartFinPoints();
     }
 
@@ -137,13 +137,6 @@ public class TouchPoints {
     public int zoneTouch(){
         return tTouch;
     }
-    public ArrayList<PointF> getAllPoints() {
-        return tAllPoints;
-    }
-
-//    public PointF[] getRepersArrPoints() {
-//        return tRepersArrPoints;
-//    }
 
     public PointF[] getRepersStartFinPoints() {
         return tRepersStartFinPoints;
@@ -152,11 +145,6 @@ public class TouchPoints {
     public RectF getStartFin() {
         return tStartFin;
     }
-
-//    public RectF getArrPoints() {
-//        return tArrPoints;
-//    }
-
 
     public boolean isResetPoints(){
         return tResetPoints;
@@ -196,6 +184,7 @@ public class TouchPoints {
             tStartFin.right = p.x;
             tStartFin.top = p.y;
             tStartFin.bottom = p.y;
+            tReadyCorrectStartFin = true;
         }
         if(tAllPoints.size()>1){
             PointF start = tAllPoints.get(0);
@@ -213,7 +202,7 @@ public class TouchPoints {
     protected void createReperStartFin(){
 
         if(tStartFin.right-tStartFin.left>tTouch*4&&
-                tStartFin.bottom-tStartFin.top>tTouch*4)tReadyCorrectStartFin = true;
+                tStartFin.bottom-tStartFin.top>tTouch*4) tReadyCorrectStartFin = true;
         else tReadyCorrectStartFin = false;
         if(tReadyCorrectStartFin){
             tRepersStartFinPoints[TOP_LEFT] = new PointF(tStartFin.left,tStartFin.top);
@@ -241,31 +230,5 @@ public class TouchPoints {
 
     }
 
-    /*реперные точки из области всех точек*/
-//    protected void createRepersArr(){
-//        if(tArrPoints.right-tArrPoints.left>tTouch*4&&
-//                tArrPoints.bottom-tArrPoints.top>tTouch*4)tReadyCorrectArr = true;
-//        else tReadyCorrectArr = false;
-//        if(tReadyCorrectArr){
-//            tRepersArrPoints[TOP_LEFT] = new PointF(tArrPoints.left,tArrPoints.top);
-//            tRepersArrPoints[TOP_RIGHT] = new PointF(tArrPoints.right,tArrPoints.top);
-//            tRepersArrPoints[BOTTOM_RIGHT] = new PointF(tArrPoints.right,tArrPoints.bottom);
-//            tRepersArrPoints[BOTTOM_LEFT] = new PointF(tArrPoints.left,tArrPoints.bottom);
-//            tRepersArrPoints[TOP] = new PointF((tArrPoints.left+tArrPoints.right)/2,tArrPoints.top);
-//            tRepersArrPoints[RIGHT] = new PointF(tArrPoints.right,(tArrPoints.bottom+tArrPoints.top)/2);
-//            tRepersArrPoints[BOTTOM] = new PointF((tArrPoints.left+tArrPoints.right)/2,tArrPoints.bottom);
-//            tRepersArrPoints[LEFT] = new PointF(tArrPoints.left,(tArrPoints.bottom+tArrPoints.top)/2);
-//            tRepersArrPoints[CENTER] = new PointF((tArrPoints.left+tArrPoints.right)/2,(tArrPoints.bottom+tArrPoints.top)/2);
-//        }else {
-//            tRepersArrPoints[TOP_LEFT] = new PointF(tArrPoints.left,tArrPoints.top);
-//            tRepersArrPoints[TOP_RIGHT] = new PointF(tArrPoints.right,tArrPoints.top);
-//            tRepersArrPoints[BOTTOM_RIGHT] = new PointF(tArrPoints.right,tArrPoints.bottom);
-//            tRepersArrPoints[BOTTOM_LEFT] = new PointF(tArrPoints.left,tArrPoints.bottom);
-//            tRepersArrPoints[TOP] = null;
-//            tRepersArrPoints[RIGHT] = null;
-//            tRepersArrPoints[BOTTOM] = null;
-//            tRepersArrPoints[LEFT] = null;
-//            tRepersArrPoints[CENTER] = null;
-//        }
-//    }
+
 }

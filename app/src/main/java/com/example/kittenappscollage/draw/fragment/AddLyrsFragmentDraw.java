@@ -105,7 +105,6 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
 
     @Override
     public void readinessAll(boolean is) {
-//        if(is)dViewDraw.invalidate();
         if(!isSlideTools())slideTools();
         if(RepDraw.get().isImg())readinessImg(is);
         if(RepDraw.get().isLyr())readinessLyr(is);

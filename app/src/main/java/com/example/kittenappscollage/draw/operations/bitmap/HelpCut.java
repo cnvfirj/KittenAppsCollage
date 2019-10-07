@@ -33,6 +33,7 @@ public class HelpCut {
     /*применяем обрезание по присланному битмап*/
     public Bitmap apply(Bitmap bitmap){
         Rect r = correctionRect(editCut(),bitmap);
+        if(r.left>bitmap.getWidth()||r.right<0||r.top>bitmap.getHeight()||r.bottom<0)return bitmap;
         correctMat(r);
         return Bitmap.createBitmap(bitmap,r.left,r.top,r.width(),r.height());
     }
@@ -53,6 +54,7 @@ public class HelpCut {
         int sY = rect.top>=0?(int) rect.top:0;
         int fX = rect.right<bitmap.getWidth()?(int) rect.right:bitmap.getWidth();
         int fY = rect.bottom<bitmap.getHeight()?(int) rect.bottom:bitmap.getHeight();
+
         return new Rect(sX,sY,fX,fY);
     }
 

@@ -22,6 +22,8 @@
 
 
     <color name="colorTransparent">#00FFFFFF</color>
+    <color name="colorShadow">#3C000000</color>
+
 
 
 

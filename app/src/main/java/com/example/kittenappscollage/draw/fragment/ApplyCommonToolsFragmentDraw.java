@@ -74,6 +74,7 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
         RepDraw.get().delAll();
         readinessLyr(false);
         readinessImg(false);
+        RepDraw.get().zeroingRepers();
 
     }
 

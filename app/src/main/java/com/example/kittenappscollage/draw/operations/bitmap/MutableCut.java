@@ -71,11 +71,10 @@ public class MutableCut extends MutableBit {
         return super.listener(listener);
     }
 
-
-
     @Override
     public MutableBit command(Command command) {
         mCommand = command;
+        if(mCommand.equals(Command.CUT))createReperStartFin();
         return super.command(command);
     }
 
@@ -86,12 +85,10 @@ public class MutableCut extends MutableBit {
             if(mZone!=NON_ZONE){
                 mStart = start;
                 resetPoints();
-
             }else {
                 reset();
-                if(mCommand.equals(Command.CUT))allPoints(start);
+                if(mCommand.equals(Command.CUT))allPoints(start, MotionEvent.ACTION_UP);
             }
-
         }
         return super.start(start);
     }
@@ -104,10 +101,8 @@ public class MutableCut extends MutableBit {
                correctRepersStartFin(mZone,getCorrect(mStart,move));
                mStart = move;
             }else {
-
-                if(mCommand.equals(Command.CUT))allPoints(move);
+                if(mCommand.equals(Command.CUT))allPoints(move,MotionEvent.ACTION_MOVE);
             }
-
         }
         return super.move(move);
     }
@@ -120,8 +115,7 @@ public class MutableCut extends MutableBit {
                 mStart = fin;
 
             }else {
-
-                if(mCommand.equals(Command.CUT))allPoints(fin);
+                if(mCommand.equals(Command.CUT))allPoints(fin,MotionEvent.ACTION_UP);
             }
 
             mStart = null;
@@ -171,20 +165,13 @@ public class MutableCut extends MutableBit {
                     }
                 }
             }
-
-
         }
         return index;
     }
 
-
-
-    private boolean isCircle(){
-        return false;
-    }
     @Override
     protected void createReperStartFin() {
         super.createReperStartFin();
-        mListener.repers(getRepersStartFinPoints(), istReadyCorrectStartFin());
+        if(mListener!=null)mListener.repers(getRepersStartFinPoints(), istReadyCorrectStartFin());
     }
 }
