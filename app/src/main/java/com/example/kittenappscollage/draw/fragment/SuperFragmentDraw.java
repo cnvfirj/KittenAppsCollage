@@ -567,8 +567,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     protected void selectorButtons(int index){
 
-//            dIndexTool = index;
-
             dPaint.setActivated(index == TOOL_PAINT);
 
             dEraser.setActivated(index == TOOL_ERASE);

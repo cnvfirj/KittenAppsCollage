@@ -72,9 +72,11 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
     protected void toolDelAll(ImageView v) {
         super.toolDelAll(v);
         RepDraw.get().delAll();
+
         readinessLyr(false);
         readinessImg(false);
-        RepDraw.get().zeroingRepers();
+//        RepDraw.get().zeroingRepers();
+//        dViewDraw.invalidate();
 
     }
 

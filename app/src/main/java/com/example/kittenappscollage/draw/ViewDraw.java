@@ -26,35 +26,33 @@ public class ViewDraw extends View {
 
     private ApplyOperation vAppOp;
 
+    private ViewDrawHelper vHelper;
+
     private boolean vNonBlock;
 
     private Matrix vMatrL, vMatrI;
 
     private Paint paint;
 
-    private Path vShadow;
-
-    private Paint vShadowPaint;
     private boolean vInfo;
 
     public ViewDraw(Context context) {
         super(context);
-        vAppOp = new ApplyOperation();
-        vNonBlock = true;
-        vMatrI = new Matrix();
-        vMatrL = new Matrix();
+        initVars();
+
          }
 
     public ViewDraw(Context context, AttributeSet attrs) {
         super(context, attrs);
+        initVars();
+    }
+
+    private void initVars(){
         vAppOp = new ApplyOperation();
+        vHelper = new ViewDrawHelper();
         vNonBlock = true;
         vMatrI = new Matrix();
         vMatrL = new Matrix();
-        vShadow = new Path();
-        vShadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        vShadowPaint.setStrokeWidth(1);
-        vShadowPaint.setColor(getContext().getResources().getColor(R.color.colorShadow));
         paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
@@ -62,55 +60,20 @@ public class ViewDraw extends View {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Path path = new Path();
-        path.reset();
+
         if(RepDraw.get().isImg()){
             canvas.drawBitmap(getImg(),getMatrImg(),null);
-            paint.setColor(Color.RED);
-
-            if(vInfo) {
-                PointF[] p = RepDraw.get().getIMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
-                path.moveTo(p[0].x, p[0].y);
-                path.lineTo(p[1].x, p[1].y);
-                path.lineTo(p[2].x, p[2].y);
-                path.lineTo(p[3].x, p[3].y);
-                path.close();
-                canvas.drawPath(path, paint);
-            }
-
         }
         if(RepDraw.get().isLyr()){
             canvas.drawBitmap(getLyr(),getMatrLyr(),null);
-            paint.setColor(Color.GREEN);
-            if(vInfo) {
-                PointF[] p = RepDraw.get().getLMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
-                path.moveTo(p[0].x, p[0].y);
-                path.lineTo(p[1].x, p[1].y);
-                path.lineTo(p[2].x, p[2].y);
-                path.lineTo(p[3].x, p[3].y);
-                path.close();
-                canvas.drawPath(path, paint);
-            }
         }
-        if(RepDraw.get().getRepers()!=null){
-            if(RepDraw.get().isCorrectRepers()){
-              for(int i=0;i<RepDraw.get().getRepers().length;i++) {
-                  if (RepDraw.get().getRepers()[i] != null) {
-                      canvas.drawCircle(RepDraw.get().getRepers()[i].x, RepDraw.get().getRepers()[i].y,
-                        RepDraw.get().getView().x / 40, paint); }
-              }
-        }else {
-                path.reset();
-                path.moveTo(RepDraw.get().getRepers()[0].x,RepDraw.get().getRepers()[0].y);
-                path.lineTo(RepDraw.get().getRepers()[1].x,RepDraw.get().getRepers()[1].y);
-                path.lineTo(RepDraw.get().getRepers()[2].x,RepDraw.get().getRepers()[2].y);
-                path.lineTo(RepDraw.get().getRepers()[3].x,RepDraw.get().getRepers()[3].y);
-                path.close();
-                canvas.drawPath(path,paint);
 
-            }
+        if(vInfo){
+            if(RepDraw.get().isImg())vHelper.drawInfo(canvas,RepDraw.get().getIMat(),"img",Color.RED);
+            if(RepDraw.get().isLyr())vHelper.drawInfo(canvas,RepDraw.get().getLMat(),"lyr",Color.BLUE);
         }
-        shadowInRepers(canvas);
+      if(vAppOp.getEvent()!=null&&vAppOp.getEvent().equals(Operation.Event.LAYERS_CUT)&&RepDraw.get().isImg())
+        vHelper.drawShadow(canvas,RepDraw.get().getRepers(),getContext().getResources().getColor(R.color.colorShadow));
         super.onDraw(canvas);
     }
 
@@ -138,34 +101,7 @@ public class ViewDraw extends View {
           vAppOp.doneCut();
     }
 
-    private void shadowInRepers(Canvas canvas){
-        if(vAppOp.getEvent()!=null&&vAppOp.getEvent().equals(Operation.Event.LAYERS_CUT)){
-            vAppOp.event(Operation.Event.LAYERS_CUT);
-            PointF[]repers = RepDraw.get().getRepers();
-            if(repers!=null){
-                        vShadow.reset();
-                        vShadow.moveTo(0, 0);
-                        vShadow.lineTo(repers[TouchPoints.TOP_LEFT].x, 0);
-                        vShadow.lineTo(repers[TouchPoints.BOTTOM_LEFT].x, repers[TouchPoints.BOTTOM_LEFT].y);
-                        vShadow.lineTo(repers[TouchPoints.BOTTOM_RIGHT].x, repers[TouchPoints.BOTTOM_RIGHT].y);
-                        vShadow.lineTo(repers[TouchPoints.TOP_RIGHT].x, repers[TouchPoints.TOP_RIGHT].y);
-                        vShadow.lineTo(repers[TouchPoints.TOP_LEFT].x, repers[TouchPoints.TOP_LEFT].y);
-                        vShadow.lineTo(repers[TouchPoints.TOP_LEFT].x, 0);
-                        vShadow.lineTo(canvas.getWidth(), 0);
-                        vShadow.lineTo(canvas.getWidth(), canvas.getHeight());
-                        vShadow.lineTo(0, canvas.getHeight());
-                        vShadow.close();
-            }else {
-                vShadow.moveTo(0,0);
-                vShadow.lineTo(canvas.getWidth(),0);
-                vShadow.lineTo(canvas.getWidth(),canvas.getHeight());
-                vShadow.lineTo(0,canvas.getHeight());
-                vShadow.close();
-            }
-            canvas.drawPath(vShadow,vShadowPaint);
 
-        }
-    }
 
     private Bitmap getImg(){
         return RepDraw.get().getImg();

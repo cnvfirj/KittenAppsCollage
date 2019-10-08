@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import com.example.kittenappscollage.draw.RepDraw;
 import com.example.kittenappscollage.draw.operations.Operation;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 /*применяем инструменты обработки изображения*/
 public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
 
@@ -94,7 +96,8 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     protected void doneCut() {
         super.doneCut();
         dViewDraw.doneCut();
-        RepDraw.get().zeroingRepers();
+//        RepDraw.get().zeroingRepers();
+//        dViewDraw.invalidate();
     }
 
     @Override
