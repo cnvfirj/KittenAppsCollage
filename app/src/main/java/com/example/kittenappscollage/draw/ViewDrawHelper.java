@@ -66,8 +66,9 @@ public class ViewDrawHelper {
         hPath.close();
         c.drawPath(hPath,hPaint);
         String info = text+":"+createInfo(img);
-        hPaint.setTextSize(50);
+        hPaint.setTextSize(25);
         hPaint.setStrokeWidth(1);
+        hPaint.setStyle(Paint.Style.FILL);
         c.drawTextOnPath(info,hPath,0,0,hPaint);
     }
 
@@ -93,7 +94,7 @@ public class ViewDrawHelper {
         hPath.lineTo(repers[TouchPoints.CENTER].x,repers[TouchPoints.CENTER].y-width*2+touch);
 
         hPath.moveTo(repers[TouchPoints.CENTER].x+width*2-touch,repers[TouchPoints.CENTER].y);
-        hPath.lineTo(repers[TouchPoints.CENTER].x-width*2+touch,repers[TouchPoints.CENTER].y+width);
+        hPath.lineTo(repers[TouchPoints.CENTER].x-width*2+touch,repers[TouchPoints.CENTER].y);
 
         hPath.moveTo(repers[TouchPoints.TOP_LEFT].x-width*2,repers[TouchPoints.TOP_LEFT].y+touch);
         hPath.lineTo(repers[TouchPoints.TOP_LEFT].x-width*2,repers[TouchPoints.TOP_LEFT].y-width*2);
