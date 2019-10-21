@@ -38,4 +38,5 @@
     <string name="fill_form_enter">заполните форму ввода</string>
     <string name="wrong_link">не правильная ссылка</string>
     <string name="condition_apply_tools">открой или создай холст</string>
+    <string name="click_again">нажми еще раз</string>
 </resources>

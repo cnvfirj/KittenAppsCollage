@@ -5,27 +5,46 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.otaliastudios.cameraview.CameraView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/cam_view"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/camera_frame"
+        android:layout_gravity="center"
+        android:background="@android:color/black"/>
 
     <ImageView
         style="@style/common_buttons"
         android:id="@+id/cam_click"
-        android:layout_gravity="center_horizontal|bottom"/>
+        android:src="@drawable/ic_done"
+        android:background="@drawable/background_buttons_add_lyr"
+        android:layout_gravity="start|bottom"/>
 
     <ImageView
         style="@style/common_buttons"
         android:id="@+id/cam_change"
+        android:src="@drawable/icon_camera_change"
+        android:background="@drawable/background_buttons_add_lyr"
         android:layout_gravity="center_vertical|start"/>
 
     <ImageView
         style="@style/common_buttons"
         android:id="@+id/cam_flash"
+        android:src="@drawable/icon_camera_flash"
+        android:background="@drawable/background_buttons_add_lyr"
         android:layout_gravity="center_vertical|end"/>
 
+    <ImageView
+        style="@style/common_buttons"
+        android:id="@+id/cam_exit"
+        android:background="@drawable/background_buttons_add_lyr"
+        android:src="@drawable/ic_close"
+        android:layout_gravity="end|bottom"/>
 
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_cam"
+        android:layout_gravity="center"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

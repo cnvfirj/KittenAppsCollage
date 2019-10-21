@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.draw.addLyrs.loadImage.DecodeCamera;
 
 
 public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragments{
@@ -90,13 +91,18 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
         switch (v.getId()){
             case R.id.creator_lyr_done:
                 bundle = new Bundle();
-                bundle.putString(AddLyr.KEY_EXTRACTOR_WAY,(String)way);
+                bundle.putSerializable(AddLyr.KEY_EXTRACTOR_WAY,(String)way);
                 bundle.putInt(AddLyr.KEY_SOURCE,R.dimen.PATH_NEW);
                 break;
             case R.id.network_done_link:
                 bundle = new Bundle();
-                bundle.putString(AddLyr.KEY_EXTRACTOR_WAY,(String)way);
+                bundle.putSerializable(AddLyr.KEY_EXTRACTOR_WAY,(String)way);
                 bundle.putInt(AddLyr.KEY_SOURCE,R.dimen.PATH_NET);
+                break;
+            case R.id.cam_click:
+                bundle = new Bundle();
+                bundle.putSerializable(AddLyr.KEY_EXTRACTOR_WAY, (DecodeCamera.CameraProperties)way);
+                bundle.putInt(AddLyr.KEY_SOURCE,R.dimen.PATH_CAM);
                 break;
         }
         dFragmentAdd.setArguments(bundle);

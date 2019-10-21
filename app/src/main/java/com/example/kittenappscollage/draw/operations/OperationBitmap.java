@@ -34,6 +34,7 @@ public class OperationBitmap extends Operation{
 
     @Override
     public Operation event(Event event) {
+        this.event = event;
         if(event.equals(Operation.Event.LAYERS_CUT))oMutableBit.command(MutableBit.Command.CUT);
         else if(event.equals(Operation.Event.LAYERS_ELASTIC_1))oMutableBit.command(MutableBit.Command.ELAST_1);
         else if(event.equals(Operation.Event.LAYERS_ELASTIC_2))oMutableBit.command(MutableBit.Command.ELAST_2);
@@ -61,6 +62,12 @@ public class OperationBitmap extends Operation{
     public Operation index(int index) {
         oMutableBit.index(index);
         return super.index(index);
+    }
+
+    @Override
+    public Operation lyr(int lyr) {
+        oMutableBit.lyr(lyr);
+        return super.lyr(lyr);
     }
 
     @Override

@@ -15,6 +15,8 @@ import androidx.annotation.Nullable;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.addLyrs.FrameDialogAdd;
 import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.helpers.AllPermissions;
+import com.example.kittenappscollage.helpers.SaveImageToFile;
 
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
@@ -76,8 +78,13 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
     @Override
     protected void addCam(ImageView v) {
         super.addCam(v);
-        aDialog = FrameDialogAdd.instance(FrameDialogAdd.ADD_CAM);
-        aDialog.show(getChildFragmentManager(),DIALOG);
+        if (AllPermissions.create().activity(getActivity()).reqSingle(AllPermissions.CAMERA).isCamera()) {
+            aDialog = FrameDialogAdd.instance(FrameDialogAdd.ADD_CAM);
+            aDialog.show(getChildFragmentManager(),DIALOG);
+        } else {
+            AllPermissions.create().activity(getActivity()).callDialog(AllPermissions.CAMERA);
+        }
+
     }
 
     @Override

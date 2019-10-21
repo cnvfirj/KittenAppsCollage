@@ -30,6 +30,8 @@ public class MutableCut extends MutableBit {
 
     private int mIndex;
 
+    private int mLyr;
+
     public MutableCut() {
         super();
         mCut = new HelpCut();
@@ -38,8 +40,10 @@ public class MutableCut extends MutableBit {
 
     @Override
     public void apply() {
-        if(mBitmap!=null&&!mBitmap.isRecycled()){
-            if(mListener!=null)mListener.result(mCut.cut(getStartFin()).apply(mBitmap),mCut.getMat(),mIndex);
+        if(mBitmap!=null&&!mBitmap.isRecycled()&&mCommand.equals(Command.CUT)){
+//            if(mListener!=null)mListener.result(mCut.cut(getStartFin()).apply(mBitmap),mCut.getMat(),mLyr);
+            if(mListener!=null)mListener.result(mCut.cut(getStartFin()).apply(mBitmap),mCut.getMat(),mIndex, mLyr, RepDraw.MUTABLE_SIZE);
+
         }
         else Massages.ERROR("bed bitmap",getClass());
 
@@ -63,6 +67,12 @@ public class MutableCut extends MutableBit {
     public MutableBit index(int index) {
         mIndex = index;
         return super.index(index);
+    }
+
+    @Override
+    public MutableBit lyr(int lyr) {
+        mLyr = lyr;
+        return super.lyr(lyr);
     }
 
     @Override
@@ -118,7 +128,7 @@ public class MutableCut extends MutableBit {
                 if(mCommand.equals(Command.CUT))allPoints(fin,MotionEvent.ACTION_UP);
             }
 
-            mStart = null;
+//            mStart = null;
         }
         return super.fin(fin);
     }
@@ -133,7 +143,8 @@ public class MutableCut extends MutableBit {
     }
 
     private PointF getCorrect(PointF start, PointF fin){
-        return new PointF(fin.x-start.x,fin.y-start.y);
+        return new PointF(fin.x-start.x,
+                fin.y-start.y);
     }
     private boolean ifTouchZone(PointF t){
         boolean target = false;

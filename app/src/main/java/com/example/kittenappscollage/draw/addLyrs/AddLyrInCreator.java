@@ -16,7 +16,6 @@ import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.example.kittenappscollage.R;
-import com.example.kittenappscollage.view.ExtendsSeekBar;
 import com.madrapps.pikolo.HSLColorPicker;
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 

@@ -73,7 +73,7 @@ public class ApplyOperation {
 
 
     private void lyrGroupOperation(MotionEvent event){
-        ApplyOperationSelector.get().singleLay(aOperation,event);
+        ApplyOperationSelector.get().groupLay(aOperation,event);
     }
 
     private void lyrSoloOperation(MotionEvent event){
@@ -118,6 +118,7 @@ public class ApplyOperation {
     }
 
     private String sectionEvent(Operation.Event event){
+        if(event==null)return Operation.Event.NULLABLE.name();
         return event.name().substring(0,4);
     }
 

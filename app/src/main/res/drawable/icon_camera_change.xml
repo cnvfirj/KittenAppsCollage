@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/front"
+        android:drawable="@drawable/ic_camera_front"
+        android:state_selected="true"/>
+
+    <item
+        android:id="@+id/back"
+        android:drawable="@drawable/ic_camera_rear"
+        android:state_selected="false"/>
+
+<!--    <transition-->
+<!--        android:drawable="@drawable/anim_mirror_out"-->
+<!--        android:fromId="@id/set"-->
+<!--        android:toId="@id/out"/>-->
+
+<!--    <transition-->
+<!--        android:drawable="@drawable/anim_mirror_set"-->
+<!--        android:fromId="@id/out"-->
+<!--        android:toId="@id/set"/>-->
+</animated-selector>

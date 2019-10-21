@@ -11,21 +11,7 @@
         android:background="@drawable/background_main_button_reset"
         android:id="@+id/creator_arrow_w_minus"/>
 
-    <com.example.kittenappscollage.view.ExtendsSeekBar
-        android:id="@+id/creator_seek_w"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        app:barHeight="5dp"
-        app:baseColor="@color/colorAccent"
-        app:circleRadius="@dimen/param_seek_bar"
-        app:circleTextColor="@color/white"
-        app:circleTextSize="12dp"
-        app:fillColor="@color/colorPrimary"
-        app:currentValue="100"
-        app:minValue="10"
-        app:maxValue="2000"
-        app:stepValue="1" />
+
 
      <ImageView
         style="@style/common_buttons"

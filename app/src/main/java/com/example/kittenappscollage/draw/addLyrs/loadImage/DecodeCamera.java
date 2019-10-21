@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 import com.otaliastudios.cameraview.Facing;
 
+import java.io.Serializable;
+
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 
@@ -35,7 +37,11 @@ public class DecodeCamera {
 
     @SuppressLint("CheckResult")
     public void decodeBitmap(CameraProperties properties, final LoadProjectListener callback){
-        dFacing = properties.getFacing();
+        String facing = properties.getFacing();
+        if(facing.equals(Facing.FRONT.name()))dFacing = Facing.FRONT;
+        if(facing.equals(Facing.BACK.name()))dFacing = Facing.BACK;
+
+//        dFacing = properties.getFacing();
         dRotate = 360-properties.getRotate();
         decode(properties.getImg()).subscribe(bitmap -> callback.loadImage(bitmap));
     }
@@ -79,19 +85,27 @@ public class DecodeCamera {
     }
 
 
-    public static class CameraProperties{
-        private Facing facing = Facing.BACK;
+    public static class CameraProperties implements Serializable {
+//        private Facing facing = Facing.BACK;
+        private String camera;
         private int rotate = 0;
         private byte[]img;
 
-        public CameraProperties(@NonNull byte[] img, @Nullable Facing facing, @Nullable int rotate) {
-            this.facing = facing;
+        public CameraProperties(@NonNull byte[] img, @Nullable String facing, @Nullable int rotate) {
+//            this.facing = facing;
+            camera = facing;
             this.rotate = rotate;
             this.img = img;
         }
 
-        public Facing getFacing() {
-            return facing;
+//        public Facing getFacing() {
+//            if(camera.equals(Facing.BACK.name()))return Facing.BACK;
+//            else if(camera.equals(Facing.FRONT.name()))return Facing.FRONT;
+//            return null;
+//        }
+
+        public String getFacing(){
+            return camera;
         }
 
         public int getRotate() {

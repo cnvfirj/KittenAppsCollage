@@ -102,6 +102,10 @@ public abstract class Operation {
         return this;
     }
 
+    public Operation lyr(int lyr){
+        return this;
+    }
+
     public Operation mark(boolean vis){
         return this;
     }
@@ -147,6 +151,8 @@ public abstract class Operation {
     public interface ResultMutable{
 
         public void result(Bitmap img, DeformMat mat,int index);
+
+        public void result(Bitmap img, DeformMat mat,int index, int lyr, int mutable);
 
         public void repers(PointF[]points, boolean ready);
 

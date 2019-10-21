@@ -20,6 +20,7 @@ public class OperationCanvas extends Operation {
 
     @Override
     public Operation event(Event event) {
+        this.event = event;
         return this;
     }
 

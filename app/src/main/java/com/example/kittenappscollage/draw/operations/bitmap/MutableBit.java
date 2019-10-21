@@ -42,6 +42,12 @@ public abstract class MutableBit extends TouchPoints {
         return this;
     }
 
+    public MutableBit lyr(int lyr){
+        return this;
+    }
+
+
+
     public MutableBit command(Command command){
         return this;
     }

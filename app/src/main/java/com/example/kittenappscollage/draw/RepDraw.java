@@ -4,31 +4,34 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PointF;
 
-import androidx.annotation.Nullable;
-
 import com.example.kittenappscollage.draw.operations.bitmap.CoercionBitmap;
 import com.example.kittenappscollage.draw.operations.bitmap.DrawBitmap;
+import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
 import com.example.mutablebitmap.CompRep;
 import com.example.mutablebitmap.DeformMat;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-
 public class RepDraw {
+
+    private static RepDraw singleton;
 
     public final static int MUTABLE_SIZE = 1;
 
     public final static int MUTABLE_CONTENT = 2;
 
+    public final static int MUTABLE_MATRIX = 3;
+
     public final static int LYR_IMG = 11;
 
     public final static int LYR_LYR = 12;
 
-    private final String NONAME = "noname";
+    public final static int SINGLE = 13;
 
-    private static RepDraw singleton;
+    public final static int ALL = 14;
+
+    private final String NONAME = "noname";
 
     private Bitmap rImg, rLyr, rTemp;
 
@@ -50,10 +53,13 @@ public class RepDraw {
 
     private boolean rCorrectRepers;
 
+    private int rReadiness;
+
     private RepDraw() {
         rLyrMat = new DeformMat();
         rImgMat = new DeformMat();
         rNameProj = NONAME;
+        rReadiness = 0;
     }
 
     public static RepDraw get(){
@@ -97,37 +103,69 @@ public class RepDraw {
         return this;
     }
 
-    public void mutableImg(Bitmap b, @Nullable CompRep rep, int type, boolean single){
+    /*сбрасываем счетчик, что надо для if(single||rReadiness==2) rAdd.readinessImg(true);*/
+    public void startMutable(){
+        rReadiness = 0;
+    }
+
+    public void mutableMatrix(){
+        BackNextStep.get().save(BackNextStep.TARGET_ALL,BackNextStep.MUT_MATRIX);
+    }
+
+    public void mutableImg(Bitmap b, CompRep rep, int type, boolean single){
         if(testBitmap(b)){
             rImg = b;
             if(type==MUTABLE_SIZE){
                 rImgMat.reset().setRepository(rep.copy());
                 rImgC = new Canvas(rImg);
             }
-            if(single)rAdd.readinessImg(true);
+            rReadiness++;
+
+            if(single){
+                rAdd.readinessImg(true);
+                BackNextStep.get().save(BackNextStep.TARGET_IMG,BackNextStep.MUT_SCALAR);
+            }else {
+                if (rReadiness == 2) {
+                    rAdd.readinessAll(true);
+                    BackNextStep.get().save(BackNextStep.TARGET_ALL,BackNextStep.MUT_SCALAR);
+                }
+            }
         }
     }
 
-    public void mutableLyr(Bitmap b, @Nullable CompRep rep, int type, boolean single){
+    public void mutableLyr(Bitmap b, CompRep rep, int type, boolean single){
         if(testBitmap(b)){
             rLyr = b;
             if(type==MUTABLE_SIZE){
                 rLyrMat.reset().setRepository(rep.copy());
                 rLyrC = new Canvas(rLyr);
             }
-            if(single)rAdd.readinessLyr(true);
+            rReadiness++;
+            if(single){
+                rAdd.readinessLyr(true);
+                BackNextStep.get().save(BackNextStep.TARGET_LYR,BackNextStep.MUT_SCALAR);
+            }else {
+                if (rReadiness == 2) {
+                    rAdd.readinessAll(true);
+                    BackNextStep.get().save(BackNextStep.TARGET_LYR,BackNextStep.MUT_SCALAR);
+                }
+            }
         }
     }
-
-    public void mutableAll(Bitmap img, CompRep repImg, int typImg, Bitmap lyr, CompRep repLyr, int typLyr){
-        mutableImg(img,repImg,typImg,false);
-        mutableLyr(lyr,repLyr,typLyr,false);
-        rAdd.readinessAll(true);
-    }
+//    public void mutableAll(Bitmap img, CompRep repImg, int typImg, Bitmap lyr, CompRep repLyr, int typLyr){
+//        mutableImg(img,repImg,typImg,false);
+//        mutableLyr(lyr,repLyr,typLyr,false);
+//        rAdd.readinessAll(true);
+//    }
 
     public void addLyr(Bitmap b){
-        if(isImg())setLyr(b,null,true);
-        else setImg(b,null,true);
+        if(isImg()){
+            setLyr(b,null,true);
+
+        } else {
+            setImg(b,null,true);
+
+        }
     }
     /*single - это если добавляем только один элемент*/
 
@@ -135,15 +173,13 @@ public class RepDraw {
         zeroingBitmap(rImg);
         rImgMat.reset();
         if(testBitmap(b)) {
-
-            if(rNameProj.equals(NONAME))rNameProj = PropertiesImage.NAME_IMAGE();
+//            if(rNameProj.equals(NONAME))rNameProj = PropertiesImage.NAME_IMAGE();
             rImg = b.copy(Bitmap.Config.ARGB_8888, true);
             rImgC = new Canvas(rImg);
             if (rep != null) rImgMat.setRepository(rep);
             rImgMat.bitmap(new PointF(b.getWidth(),b.getHeight()));
-            if (single&&rAdd!=null) {
-                rAdd.readinessImg(true);
-            }
+            if (single&&rAdd!=null) rAdd.readinessImg(true);
+            if(single)BackNextStep.get().save(BackNextStep.TARGET_IMG,BackNextStep.MUT_SCALAR);
         }
         zeroingBitmap(b);
     }
@@ -157,6 +193,7 @@ public class RepDraw {
             if (rep != null) rLyrMat.setRepository(rep);
             rLyrMat.bitmap(new PointF(b.getWidth(),b.getHeight()));
             if (single&&rAdd != null) rAdd.readinessLyr(true);
+            if(single)BackNextStep.get().save(BackNextStep.TARGET_LYR,BackNextStep.MUT_SCALAR);
         }
         zeroingBitmap(b);
     }
@@ -164,8 +201,8 @@ public class RepDraw {
     public void setAll(Bitmap img, CompRep repImg, Bitmap lyr, CompRep repLyr){
         setImg(img,repImg,false);
         setLyr(lyr,repLyr,false);
-        if(rNameProj.equals(NONAME))rNameProj = PropertiesImage.NAME_IMAGE();
         if(rAdd!=null)rAdd.readinessAll(true);
+        BackNextStep.get().save(BackNextStep.TARGET_ALL,BackNextStep.MUT_SCALAR);
 
     }
 
@@ -175,6 +212,7 @@ public class RepDraw {
             DrawBitmap.create(rImgC,rImgMat).draw(rLyr,rLyrMat);
             zeroingLyr();
             rAdd.readinessImg(true);
+            BackNextStep.get().union();
         }
     }
 
@@ -185,12 +223,15 @@ public class RepDraw {
         rLyrMat.reset();
         if(rApp!=null)rApp.delAll(true);
         rNameProj = NONAME;
+
+        BackNextStep.get().remove();
     }
 
     public void delLyr(){
         zeroingBitmap(rLyr);
         rLyrMat.reset();
         if(rApp!=null)rApp.delLyr(true);
+        BackNextStep.get().deleteLyr();
     }
 
     public void change(){
@@ -212,9 +253,41 @@ public class RepDraw {
             zeroingBitmap(rTemp);
             rTempRep.reset();
             if (rApp != null) rApp.change(true);
+            BackNextStep.get().change();
         }
     }
 
+    public void correctImg(){
+        if(isImg()){
+            Bitmap temp = CoercionBitmap.blankBitmap(rImgMat);
+            CoercionBitmap.drawBitmap(new Canvas(temp), CoercionBitmap.matrixBitmap(rImgMat), rImg);
+            rImg = temp.copy(Bitmap.Config.ARGB_8888, true);
+            rImgC = new Canvas(rImg);
+            float scale = rImgMat.getRepository().getScale();
+            PointF translate = CoercionBitmap.transBitmap(rImgMat);
+            rImgMat.reset();
+            rImgMat.view(rView).bitmap(new PointF(temp.getWidth(), temp.getHeight()));
+            rImgMat.getRepository().setScale(scale);
+            rImgMat.getRepository().setTranslate(translate);
+            zeroingBitmap(temp);
+        }
+    }
+
+    public void correctLyr(){
+        if(isLyr()){
+            Bitmap temp = CoercionBitmap.blankBitmap(rLyrMat);
+            CoercionBitmap.drawBitmap(new Canvas(temp), CoercionBitmap.matrixBitmap(rLyrMat), rLyr);
+            rLyr = temp.copy(Bitmap.Config.ARGB_8888, true);
+            rLyrC = new Canvas(rImg);
+            float scale = rLyrMat.getRepository().getScale();
+            PointF translate = CoercionBitmap.transBitmap(rLyrMat);
+            rLyrMat.reset();
+            rLyrMat.view(rView).bitmap(new PointF(temp.getWidth(), temp.getHeight()));
+            rLyrMat.getRepository().setScale(scale);
+            rLyrMat.getRepository().setTranslate(translate);
+            zeroingBitmap(temp);
+        }
+    }
 
     public Canvas getImgCanv(){
         return rImgC;
@@ -282,43 +355,6 @@ public class RepDraw {
     private boolean testBitmap(Bitmap b){
         return b!=null&&!b.isRecycled();
     }
-
-
-
-
-    private void correctImg(){
-        if(isImg()){
-            Bitmap temp = CoercionBitmap.blankBitmap(rImgMat);
-            CoercionBitmap.drawBitmap(new Canvas(temp), CoercionBitmap.matrixBitmap(rImgMat), rImg);
-            rImg = temp.copy(Bitmap.Config.ARGB_8888, true);
-            rImgC = new Canvas(rImg);
-            float scale = rImgMat.getRepository().getScale();
-            PointF translate = CoercionBitmap.transBitmap(rImgMat);
-            rImgMat.reset();
-            rImgMat.view(rView).bitmap(new PointF(temp.getWidth(), temp.getHeight()));
-            rImgMat.getRepository().setScale(scale);
-            rImgMat.getRepository().setTranslate(translate);
-            zeroingBitmap(temp);
-        }
-    }
-
-    private void correctLyr(){
-        if(isLyr()){
-            Bitmap temp = CoercionBitmap.blankBitmap(rLyrMat);
-            CoercionBitmap.drawBitmap(new Canvas(temp), CoercionBitmap.matrixBitmap(rLyrMat), rLyr);
-            rLyr = temp.copy(Bitmap.Config.ARGB_8888, true);
-            rLyrC = new Canvas(rImg);
-            float scale = rLyrMat.getRepository().getScale();
-            PointF translate = CoercionBitmap.transBitmap(rLyrMat);
-            rLyrMat.reset();
-            rLyrMat.view(rView).bitmap(new PointF(temp.getWidth(), temp.getHeight()));
-            rLyrMat.getRepository().setScale(scale);
-            rLyrMat.getRepository().setTranslate(translate);
-            zeroingBitmap(temp);
-        }
-    }
-
-
 
     public boolean isZeroing(Bitmap b){
         if(b!=null&&!b.isRecycled())return true;

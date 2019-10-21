@@ -1,17 +1,23 @@
 package com.example.kittenappscollage;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.kittenappscollage.collect.FragmentCollect;
 import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
+import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
 import com.google.android.material.tabs.TabLayout;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -75,6 +81,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        AllPermissions.create()
+                .activity(this)
+                .setPerm(grantResults[0]== PackageManager.PERMISSION_GRANTED,requestCode);
+        if(grantResults[0]== PackageManager.PERMISSION_GRANTED)Toast.makeText(this,getString(R.string.click_again),Toast.LENGTH_SHORT).show();
+
     }
 
 

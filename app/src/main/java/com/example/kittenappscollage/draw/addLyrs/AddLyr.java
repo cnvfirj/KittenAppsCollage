@@ -14,18 +14,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.dynamikseekbar.DynamicSeekBar;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.MutableBitmap;
 import com.example.kittenappscollage.draw.addLyrs.loadImage.LoadProjectListener;
 import com.example.kittenappscollage.draw.addLyrs.loadImage.SelectorLoadProject;
-import com.example.kittenappscollage.view.ExtendsSeekBar;
 import com.example.kittenappscollage.view.PresentLyr;
-import com.mohammedalaa.seekbar.RangeSeekBarView;
 
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
-public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSeekBar.TrackSeekBar  {
+public class AddLyr extends Fragment implements View.OnClickListener, DynamicSeekBar.OnSeekBarChangeListener {
 
     public static final String KEY_EXTRACTOR_WAY = "extractor";
 
@@ -39,21 +38,18 @@ public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSee
 
     private ProgressBar aProgress;
 
-    private ExtendsSeekBar aScale, aAlpha;
+    private DynamicSeekBar aScale, aAlpha;
 
     private int aPercentScale, aPercentAlpha;
 
     private Bitmap aLyr;
 
-    private String aWay;
+    private Object aWay;
 
     private int aSource;
 
     private PresentLyr aPresent;
 
-    public AddLyr() {
-        aWay = NULL_WAY;
-    }
 
     @Nullable
     @Override
@@ -62,7 +58,7 @@ public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSee
         aPercentScale = 100;
         Bundle b = getArguments();
         if(b!=null){
-            aWay = b.getString(KEY_EXTRACTOR_WAY);
+            aWay = b.getSerializable(KEY_EXTRACTOR_WAY);
             aSource = b.getInt(KEY_SOURCE,-897);
         }
         return inflater.inflate(R.layout.dialog_add_lyr,null);
@@ -90,18 +86,23 @@ public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSee
         aMirror = v.findViewById(R.id.dialog_mirror);
         aMirror.setOnClickListener(this);
         aScale = v.findViewById(R.id.dialog_seek_scale);
-        aScale.setTracker(this);
-        aScale.setValue(aPercentScale);
+        aScale.setOnSeekBarChangeListener(this);
+        aScale.setProgress(aPercentScale);
         aAlpha = v.findViewById(R.id.dialog_seek_alpha);
-        aAlpha.setTracker(this);
-        aAlpha.setValue(aPercentAlpha);
+        aAlpha.setOnSeekBarChangeListener(this);
+        aAlpha.setProgress(aPercentAlpha);
         aProgress = v.findViewById(R.id.dialog_add_progress);
         aProgress.setVisibility(View.INVISIBLE);
         aPresent = v.findViewById(R.id.dialog_add_present_lyr);
 
-        if(!aWay.equals(NULL_WAY))createBitmap(aWay,aSource);
+//        if(!aWay.equals(NULL_WAY))
+            createBitmap(aWay,aSource);
     }
 
+
+    public void addBitmap(Object way, int source){
+        createBitmap(way,source);
+    }
 
     @Override
     public void onClick(View view) {
@@ -123,24 +124,26 @@ public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSee
     }
 
     protected void createBitmap(Object way, int source){
-        aProgress.setVisibility(View.VISIBLE);
-        ongoingProgress(true);
-        SelectorLoadProject
-                .selector(getContext())
-                .listen(new LoadProjectListener() {
-                    @Override
-                    public void loadImage(Bitmap image) {
-                        if(image.getHeight()==1||image==null) {
-                            showToast(source);
+
+            aProgress.setVisibility(View.VISIBLE);
+            ongoingProgress(true);
+            SelectorLoadProject
+                    .selector(getContext())
+                    .listen(new LoadProjectListener() {
+                        @Override
+                        public void loadImage(Bitmap image) {
+                            if (image.getHeight() == 1 || image == null) {
+                                showToast(source);
+                            }
+                            aLyr = image;
+                            aPresent.presentBitmap(image);
+                            aProgress.setVisibility(View.INVISIBLE);
+                            ongoingProgress(false);
+
                         }
-                        aLyr = image;
-                        aPresent.presentBitmap(image);
-                        aProgress.setVisibility(View.INVISIBLE);
-                        ongoingProgress(false);
 
-                    }
+                    }).data(way, source);
 
-                }).data(way,source);
     }
 
     private void showToast(int source){
@@ -152,21 +155,31 @@ public class AddLyr extends Fragment implements View.OnClickListener, ExtendsSee
 
     }
 
+
     @Override
-    public void touch(SeekBar s) {
-        switch (s.getId()){
+    public void onProgressChanged(DynamicSeekBar seekBar, int progress, boolean isTouch) {
+
+    }
+
+    @Override
+    public void onStartTrackingTouch(DynamicSeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(DynamicSeekBar seekBar) {
+        switch (seekBar.getId()){
             case R.id.dialog_seek_alpha:
-                aPercentAlpha = aAlpha.getValue();
+                aPercentAlpha = aAlpha.getProgress();
                 break;
             case R.id.dialog_seek_scale:
-                aPercentScale = aScale.getValue();
+                aPercentScale = aScale.getProgress();
                 break;
         }
         applyMutable(false);
     }
 
-
-     private void pressMirror(ImageView view){
+    private void pressMirror(ImageView view){
         view.setSelected(!view.isSelected());
         applyMutable(true);
     }

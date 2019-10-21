@@ -12,8 +12,11 @@ import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.example.kittenappscollage.R;
+
+import static androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale;
 
 
 public class AllPermissions {
@@ -34,6 +37,8 @@ public class AllPermissions {
     private boolean account = false;
 
     private Activity activity;
+
+    private Fragment f;
 
     public AllPermissions() {
 
@@ -173,6 +178,7 @@ public class AllPermissions {
 
     /*запускаем намерение в настройки приложения, где можно дать нужные расрешения*/
     private void startPropertiesApp(){
+
         Toast.makeText(activity,createToastResolution(), Toast.LENGTH_LONG).show();
         Intent appSettingsIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
                 Uri.parse("package:" + activity.getPackageName()));

@@ -61,44 +61,48 @@
         android:layout_marginTop="@dimen/margin_save"/>
 
 
-    <com.example.kittenappscollage.view.ExtendsSeekBar
+    <com.example.dynamikseekbar.DynamicSeekBar
+        style="@style/buttons_dialog_add"
+        android:layout_height="match_parent"
         android:id="@+id/dialog_seek_alpha"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dialog_mirror"
-        android:layout_marginStart="@dimen/margin_save"
+        android:layout_alignParentEnd="true"
         android:layout_marginEnd="@dimen/margin_save"
         android:layout_marginTop="@dimen/margin_save"
-        app:barHeight="5dp"
-        app:baseColor="@color/colorAccent"
-        app:circleRadius="@dimen/param_seek_bar"
-        app:circleTextColor="@color/white"
-        app:circleTextSize="18dp"
-        app:fillColor="@color/colorPrimary"
-        app:currentValue="100"
-        app:minValue="0"
-        app:maxValue="100"
-        app:stepValue="1" />
+        android:layout_marginBottom="@dimen/margin_seek"
+        app:orientation="vertical"
+        app:visible_text="true"
+        app:text_size="18"
+        app:visible_buttons="true"
+        app:color_mark="@color/colorPrimary"
+        app:revers_text="true"
+        app:direct="back"
+        app:drw_b1="@drawable/ic_add"
+        app:drw_b2="@drawable/ic_remove"
+        app:color_way="@color/colorAccent"/>
 
-
-    <com.example.kittenappscollage.view.ExtendsSeekBar
+    <com.example.dynamikseekbar.DynamicSeekBar
+        style="@style/buttons_dialog_add"
+        android:layout_height="match_parent"
         android:id="@+id/dialog_seek_scale"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dialog_seek_alpha"
-        android:layout_marginStart="@dimen/margin_save"
-        android:layout_marginEnd="@dimen/margin_save"
+        android:layout_alignParentStart="true"
         android:layout_marginTop="@dimen/margin_save"
-        app:barHeight="5dp"
-        app:baseColor="@color/colorAccent"
-        app:circleRadius="@dimen/param_seek_bar"
-        app:circleTextColor="@color/white"
-        app:circleTextSize="18dp"
-        app:fillColor="@color/colorPrimary"
-        app:currentValue="100"
-        app:minValue="0"
-        app:maxValue="100"
-        app:stepValue="1" />
+        android:layout_marginStart="@dimen/margin_save"
+        android:layout_marginBottom="@dimen/margin_seek"
+        app:orientation="vertical"
+        app:visible_text="true"
+        app:text_size="18"
+        app:visible_buttons="true"
+        app:color_mark="@color/colorPrimary"
+        app:revers_text="true"
+        app:direct="back"
+        app:drw_b1="@drawable/ic_add"
+        app:drw_b2="@drawable/ic_remove"
+        app:color_way="@color/colorAccent"/>
+
+
+
+
+
 
 
 
