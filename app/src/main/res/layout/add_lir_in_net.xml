@@ -14,29 +14,40 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+    <EditText
+        style="@style/common_buttons"
+        android:layout_width="500dp"
+        android:id="@+id/network_enter_link"
+        android:singleLine="true"
+        android:layout_above="@+id/network_clear_link"
+        android:background="@color/colorPrimary"/>
 
         <ImageView
             style="@style/common_buttons"
             android:background="@drawable/background_main_button_reset"
-            android:id="@+id/network_done_link"/>
+            android:id="@+id/network_done_link"
+            android:src="@drawable/ic_done"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"/>
 
-        <EditText
-            style="@style/common_buttons"
-            android:layout_width="500dp"
-            android:id="@+id/network_enter_link"
-            android:singleLine="true" />
 
         <ImageView
             style="@style/common_buttons"
             android:background="@drawable/background_main_button_reset"
-            android:id="@+id/network_clear_link"/>
+            android:id="@+id/network_clear_link"
+            android:src="@drawable/icon_clear_link"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+
+        <ImageView
+            style="@style/common_buttons"
+            android:background="@drawable/background_main_button_reset"
+            android:id="@+id/network_exit"
+            android:src="@drawable/ic_close"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"/>
 
 
-    </LinearLayout>
+
 
 </RelativeLayout>
