@@ -26,5 +26,38 @@
         android:src="@drawable/ic_close"
         android:layout_gravity="end|bottom"/>
 
+    <com.example.dynamikseekbar.DynamicSeekBar
+        style="@style/common_buttons"
+        android:layout_width="match_parent"
+        android:id="@+id/creator_width"
+        android:layout_gravity="start"
+        app:visible_text="true"
+        app:text_size="15"
+        app:max_value="2000"
+        app:visible_buttons="true"
+        app:color_mark="@color/colorPrimary"
+        app:revers_text="true"
+        app:drw_b2="@drawable/ic_add"
+        app:drw_b1="@drawable/ic_remove"
+        app:color_way="@color/colorAccent"/>
+
+    <com.example.dynamikseekbar.DynamicSeekBar
+        style="@style/common_buttons"
+        android:layout_height="match_parent"
+        app:orientation="vertical"
+        android:id="@+id/creator_height"
+        android:layout_gravity="top"
+        app:visible_text="true"
+        app:text_size="15"
+        app:max_value="2000"
+        app:visible_buttons="true"
+        app:color_mark="@color/colorPrimary"
+        app:revers_text="true"
+        app:drw_b2="@drawable/ic_add"
+        app:drw_b1="@drawable/ic_remove"
+        app:color_way="@color/colorAccent"/>
+
+
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

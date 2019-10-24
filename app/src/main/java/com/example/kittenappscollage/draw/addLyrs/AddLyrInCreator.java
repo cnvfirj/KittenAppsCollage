@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import com.example.dynamikseekbar.DynamicSeekBar;
 import com.example.kittenappscollage.R;
 import com.madrapps.pikolo.HSLColorPicker;
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
@@ -22,7 +23,7 @@ import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
-public class AddLyrInCreator extends SelectedFragment {
+public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.OnSeekBarChangeListener{
 
 
     private PreviewBlankBitmp aPreview;
@@ -35,11 +36,14 @@ public class AddLyrInCreator extends SelectedFragment {
 
     private int aNumb;
 
-//    private ExtendsSeekBar aSeekWidth, aSeekHeight;
+    private boolean aBlock;
+
+    private DynamicSeekBar aSeekWidth, aSeekHeight;
 
 
     public AddLyrInCreator() {
         aColor = Color.WHITE;
+        aBlock = false;
     }
 
     @Nullable
@@ -56,14 +60,13 @@ public class AddLyrInCreator extends SelectedFragment {
         aColorPickCall = view.findViewById(R.id.color_pick_call);
         aDoneParams = view.findViewById(R.id.creator_lyr_done);
         aExitAll = view.findViewById(R.id.creator_lyr_back);
+        aSeekWidth = view.findViewById(R.id.creator_width);
+        aSeekHeight = view.findViewById(R.id.creator_height);
         aNumb = 0;
         paramView(aPreview);
         paramView(aSelectColor);
         paramView(aColorPickCall);
-
-
         addListen();
-
     }
 
     @Override
@@ -71,7 +74,7 @@ public class AddLyrInCreator extends SelectedFragment {
         aNumb++;
         if(aNumb==3){
             applyTransform(true,0);
-//            applyTransformTools();
+            applyTransformTools();
         }
     }
 
@@ -79,23 +82,49 @@ public class AddLyrInCreator extends SelectedFragment {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.creator_lyr_back:
-                selector = (SelectorFrameFragments) getParentFragment();
-                selector.exitAll();
+                if(!aBlock) {
+                    selector = (SelectorFrameFragments) getParentFragment();
+                    selector.exitAll();
+                }
                 break;
             case R.id.creator_lyr_done:
-                if(memoryBitmap(aPreview.getSize())<40) {
-                    selector = (SelectorFrameFragments) getParentFragment();
-                    String way = aPreview.getSize().getWidth() + "_" + aPreview.getSize().getHeight() + "_" + aPreview.getColorFon();
-                    selector.backInAddLyr(view, way);
-                }else {
-                    SHOW_MASSAGE(getActivity(),getActivity().getResources().getString(R.string.big_big_papper)+
-                            aPreview.getSize().getWidth()+":"+aPreview.getSize().getHeight());
+                if(!aBlock) {
+                    if (memoryBitmap(aPreview.getSize()) < 40) {
+                        selector = (SelectorFrameFragments) getParentFragment();
+                        String way = aPreview.getSize().getWidth() + "_" + aPreview.getSize().getHeight() + "_" + aPreview.getColorFon();
+                        selector.backInAddLyr(view, way);
+                    } else {
+                        SHOW_MASSAGE(getActivity(), getActivity().getResources().getString(R.string.big_big_papper) +
+                                aPreview.getSize().getWidth() + ":" + aPreview.getSize().getHeight());
+                    }
                 }
                 break;
             case R.id.color_pick_call:
                 callPalette();
                 break;
         }
+    }
+
+    @Override
+    public void onProgressChanged(DynamicSeekBar seekBar, int progress, boolean isTouch) {
+        switch (seekBar.getId()){
+            case R.id.creator_width:
+                 aPreview.size(new Size(seekBar.getProgress(),aPreview.getSize().getHeight()));
+                break;
+            case R.id.creator_height:
+                aPreview.size(new Size(aPreview.getSize().getWidth(),seekBar.getProgress()));
+                break;
+        }
+    }
+
+    @Override
+    public void onStartTrackingTouch(DynamicSeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(DynamicSeekBar seekBar) {
+
     }
 
     private void addListen(){
@@ -113,24 +142,37 @@ public class AddLyrInCreator extends SelectedFragment {
         aColorPickCall.setOnClickListener(this);
         aDoneParams.setOnClickListener(this);
         aExitAll.setOnClickListener(this);
+        aSeekHeight.setOnSeekBarChangeListener(this);
+        aSeekWidth.setOnSeekBarChangeListener(this);
     }
 
     private void callPalette(){
         if(!aColorPickCall.isActivated()){
             applyTransform(false,500);
+            aBlock = true;
         }else {
             applyTransform(true,500);
             aPreview.fon(aColor);
+            aBlock = false;
         }
         aColorPickCall.setActivated(!aColorPickCall.isActivated());
     }
 
 
-//    private void applyTransformTools(){
-//        int step = aPreview.getWidth()-aColorPickCall.getRight();
-//        int button = aColorPickCall.getWidth();
-//
-//    }
+    private void applyTransformTools(){
+
+        int margin = aColorPickCall.getTop();
+        int side = aColorPickCall.getWidth();
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) aSeekWidth.getLayoutParams();
+        params.rightMargin = margin*2+side;
+        params.leftMargin = side;
+        aSeekWidth.setLayoutParams(params);
+        params = (CoordinatorLayout.LayoutParams) aSeekHeight.getLayoutParams();
+        params.bottomMargin = margin*2+side;
+        params.topMargin = side;
+        aSeekHeight.setLayoutParams(params);
+
+    }
 
     private void applyTransform(boolean hide, long time){
        float scale = (float) aColorPickCall.getWidth() / (float) aSelectColor.getWidth();

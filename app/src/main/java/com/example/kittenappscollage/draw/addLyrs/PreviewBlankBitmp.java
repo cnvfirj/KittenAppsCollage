@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import com.example.kittenappscollage.view.CustomFon;
 import com.madrapps.pikolo.HSLColorPicker;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 
 public class PreviewBlankBitmp extends CustomFon {
 
