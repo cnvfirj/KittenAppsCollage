@@ -23,6 +23,8 @@ public class AddLyrInNet extends SelectedFragment {
 
     private ImageView aClearLink;
 
+    private ImageView aExit;
+
     private EditText aEnterLink;
 
     private TextView aDisclaimer;
@@ -42,7 +44,10 @@ public class AddLyrInNet extends SelectedFragment {
         aDoneLink.setOnClickListener(this);
         aClearLink = view.findViewById(R.id.network_clear_link);
         aClearLink.setOnClickListener(this);
+        aExit = view.findViewById(R.id.network_exit);
+        aExit.setOnClickListener(this);
         aEnterLink = view.findViewById(R.id.network_enter_link);
+
     }
 
     @Override
@@ -58,6 +63,10 @@ public class AddLyrInNet extends SelectedFragment {
                break;
            case R.id.network_clear_link:
                aEnterLink.setText("");
+               break;
+           case R.id.network_exit:
+               selector = (SelectorFrameFragments) getParentFragment();
+               selector.exitAll();
                break;
        }
     }

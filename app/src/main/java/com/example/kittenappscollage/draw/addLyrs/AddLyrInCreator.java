@@ -56,9 +56,6 @@ public class AddLyrInCreator extends SelectedFragment {
         aColorPickCall = view.findViewById(R.id.color_pick_call);
         aDoneParams = view.findViewById(R.id.creator_lyr_done);
         aExitAll = view.findViewById(R.id.creator_lyr_back);
-//        aSeekWidth = view.findViewById(R.id.creator_seek_w);
-//        aSeekHeight = view.findViewById(R.id.creator_seek_h);
-
         aNumb = 0;
         paramView(aPreview);
         paramView(aSelectColor);
@@ -74,7 +71,7 @@ public class AddLyrInCreator extends SelectedFragment {
         aNumb++;
         if(aNumb==3){
             applyTransform(true,0);
-            applyTransformTools();
+//            applyTransformTools();
         }
     }
 
@@ -128,31 +125,12 @@ public class AddLyrInCreator extends SelectedFragment {
         aColorPickCall.setActivated(!aColorPickCall.isActivated());
     }
 
-//    private void paramView(final View view){
-//        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
-//        if (viewTreeObserver.isAlive()) {
-//            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//                @Override
-//                public void onGlobalLayout() {
-//                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-//                    aNumb++;
-//                    if(aNumb==3){
-//                        applyTransform(true,0);
-//                        applyTransformTools();
-//                    }
-//
-//                }
-//            });
-//        }
-//    }
 
-    private void applyTransformTools(){
-        int step = aPreview.getWidth()-aColorPickCall.getRight();
-        int button = aColorPickCall.getWidth();
-//      LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)aSeekWidth.getLayoutParams();
-//      params.width = aPreview.getWidth()-(step*3+button*3);
-//      aSeekWidth.setLayoutParams(params);
-    }
+//    private void applyTransformTools(){
+//        int step = aPreview.getWidth()-aColorPickCall.getRight();
+//        int button = aColorPickCall.getWidth();
+//
+//    }
 
     private void applyTransform(boolean hide, long time){
        float scale = (float) aColorPickCall.getWidth() / (float) aSelectColor.getWidth();

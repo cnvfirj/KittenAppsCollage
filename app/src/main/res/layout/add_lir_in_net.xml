@@ -20,7 +20,9 @@
         android:id="@+id/network_enter_link"
         android:singleLine="true"
         android:layout_above="@+id/network_clear_link"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:textSize="20dp"/>
 
         <ImageView
             style="@style/common_buttons"
