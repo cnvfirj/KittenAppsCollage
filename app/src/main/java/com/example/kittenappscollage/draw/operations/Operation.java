@@ -62,21 +62,6 @@ public abstract class Operation {
         NULLABLE
     }
 
-    public enum LayerFlag{
-        IMG,
-        LYR,
-        NON
-    }
-
-    public enum FixedPoints{
-        P_SHIFT_1,
-        P_SHIFT_2,
-        P_SHIFT_3,
-        P_SHIFT_4,
-        P_ACTION,
-        SEARCH,
-        NON
-    }
 
     protected Event event;
 

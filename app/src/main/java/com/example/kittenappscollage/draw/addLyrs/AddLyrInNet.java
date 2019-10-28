@@ -1,5 +1,7 @@
 package com.example.kittenappscollage.draw.addLyrs;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,14 @@ public class AddLyrInNet extends SelectedFragment {
     private final String HTTP = "http://";
     private final String HTTPS = "https://";
 
+    private final String PNG = "png";
+    private final String JPEG = "jpeg";
+    private final String JPG = "jpg";
+
+    private final String KEY_PATH_LINK = "path link";
+
+    private SharedPreferences aPreferences;
+
     private ImageView aDoneLink;
 
     private ImageView aClearLink;
@@ -30,6 +40,14 @@ public class AddLyrInNet extends SelectedFragment {
     private TextView aDisclaimer;
 
     private TextView aInstruction;
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        aPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        aEnterLink.setText(aPreferences.getString(KEY_PATH_LINK,""));
+    }
 
     @Nullable
     @Override
@@ -78,8 +96,12 @@ public class AddLyrInNet extends SelectedFragment {
                 String http = link.substring(0, 7);
                 String https = link.substring(0,8);
                 if (http.equals(HTTP)||https.equals(HTTPS)) {
-                    selector = (SelectorFrameFragments)getParentFragment();
-                    selector.backInAddLyr(view,link);
+                    if(checkExp(link)) {
+                        saveLink(link);
+                        selector = (SelectorFrameFragments) getParentFragment();
+                        assert selector != null;
+                        selector.backInAddLyr(view, link);
+                    }else Massages.SHOW_MASSAGE(getActivity(),"не правильная ссылка");
                 } else {
                     Massages.SHOW_MASSAGE(getActivity(), "адрес должен начинаться на " + HTTP+" или "+HTTPS);
                 }
@@ -89,5 +111,19 @@ public class AddLyrInNet extends SelectedFragment {
         }else {
             Massages.SHOW_MASSAGE(getActivity(),getResources().getString(R.string.fill_form_enter));
         }
+    }
+
+    private boolean checkExp(String link){
+        String[] s = link.split(".");
+        String exp = s[s.length-1].toLowerCase();
+
+        if(exp.equals(JPEG)||exp.equals(PNG)||exp.equals(JPG))return true;
+        return false;
+    }
+    private void saveLink(String link){
+        aPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor e = aPreferences.edit();
+        e.putString(KEY_PATH_LINK,link);
+        e.apply();
     }
 }

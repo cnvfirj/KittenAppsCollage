@@ -95,7 +95,6 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
         aProgress.setVisibility(View.INVISIBLE);
         aPresent = v.findViewById(R.id.dialog_add_present_lyr);
 
-//        if(!aWay.equals(NULL_WAY))
             createBitmap(aWay,aSource);
     }
 
@@ -203,6 +202,7 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
     }
 
     private void ongoingProgress(boolean ongoing){
+
        aBack.setEnabled(!ongoing);
        aDone.setEnabled(!ongoing);
        aClose.setEnabled(!ongoing);

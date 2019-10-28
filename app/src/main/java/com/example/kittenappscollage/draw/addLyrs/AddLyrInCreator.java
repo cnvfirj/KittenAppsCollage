@@ -1,5 +1,7 @@
 package com.example.kittenappscollage.draw.addLyrs;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -20,11 +22,19 @@ import com.example.kittenappscollage.R;
 import com.madrapps.pikolo.HSLColorPicker;
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 
+import java.util.Objects;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.OnSeekBarChangeListener{
 
+    private final String KEY_COLOR_FON = "key color fon";
+    private final String KEY_WIDTH_BLANK = "width blank";
+    private final String KEY_HEIGHT_BLANK = "height blank";
+
+    private SharedPreferences aPreferences;
 
     private PreviewBlankBitmp aPreview;
 
@@ -44,6 +54,33 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
     public AddLyrInCreator() {
         aColor = Color.WHITE;
         aBlock = false;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        aPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
+            int color = aPreferences.getInt(KEY_COLOR_FON, Color.WHITE);
+            aPreview.fon(color);
+            aSelectColor.setColor(color);
+            aColorPickCall.setImageTintList(ColorStateList.valueOf(color));
+            int width = aPreferences.getInt(KEY_WIDTH_BLANK, 0);
+            int height = aPreferences.getInt(KEY_HEIGHT_BLANK, 0);
+            aPreview.size(new Size(width, height));
+            paramView(aPreview);
+
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        aPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor e = aPreferences.edit();
+            e.putInt(KEY_COLOR_FON, aPreview.getColorFon());
+            e.putInt(KEY_WIDTH_BLANK, aPreview.getSize().getWidth());
+            e.putInt(KEY_HEIGHT_BLANK, aPreview.getSize().getHeight());
+            e.apply();
     }
 
     @Nullable
@@ -76,6 +113,10 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
             applyTransform(true,0);
             applyTransformTools();
         }
+        if(v.getId()==R.id.creator_blank_btmp){
+            aSeekWidth.setProgress(aPreview.getSize().getWidth());
+            aSeekHeight.setProgress(aPreview.getSize().getHeight());
+        }
     }
 
     @Override
@@ -84,6 +125,7 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
             case R.id.creator_lyr_back:
                 if(!aBlock) {
                     selector = (SelectorFrameFragments) getParentFragment();
+                    assert selector != null;
                     selector.exitAll();
                 }
                 break;

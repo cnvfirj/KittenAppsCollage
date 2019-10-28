@@ -17,6 +17,7 @@ import com.example.kittenappscollage.view.CustomFon;
 import com.madrapps.pikolo.HSLColorPicker;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
 
 public class PreviewBlankBitmp extends CustomFon {
@@ -59,9 +60,15 @@ public class PreviewBlankBitmp extends CustomFon {
     }
 
     private RectF rect(){
-        if(cSize==null)cSize = new Size(getHeight(),getWidth());
+        if(cSize==null||cSize.getHeight()==0||cSize.getWidth()==0){
+            createSize();
+        }
            return new RectF(location(new SizeF(getWidth(),getHeight()),new SizeF(cSize.getWidth(),cSize.getHeight())));
 
+    }
+
+    private void createSize(){
+        cSize = new Size(getHeight(),getWidth());
     }
 
     private RectF location(SizeF c, SizeF r){
@@ -94,6 +101,10 @@ public class PreviewBlankBitmp extends CustomFon {
     }
 
     public Size getSize() {
+        if(cSize==null||cSize.getHeight()==0||cSize.getWidth()==0){
+            createSize();
+
+        }
         return cSize;
     }
 

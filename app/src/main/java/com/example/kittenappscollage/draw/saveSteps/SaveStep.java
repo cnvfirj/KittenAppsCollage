@@ -71,8 +71,10 @@ public class SaveStep {
     private void saveState(){
         requestSaveState()
                 .subscribe(aBoolean -> {
-                    stepSaved++;
-                    if(stepSaved==3)state.setReadiness(aBoolean);
+                    if(aBoolean) {
+                        stepSaved++;
+                        if (stepSaved == 3) state.setReadiness(aBoolean);
+                    }
                 });
 
     }
@@ -81,8 +83,10 @@ public class SaveStep {
     private void saveImage(Bitmap bitmap, String path){
         requestSaveBitm(path, bitmap)
                 .subscribe(aBoolean -> {
-                    stepSaved++;
-                    if(stepSaved==3)state.setReadiness(aBoolean);
+                    if(aBoolean) {
+                        stepSaved++;
+                        if (stepSaved == 3) state.setReadiness(aBoolean);
+                    }
                 });
     }
 
