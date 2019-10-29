@@ -1,6 +1,7 @@
 package com.example.kittenappscollage.draw.fragment;
 
 
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,6 +21,8 @@ import com.example.kittenappscollage.draw.ViewDraw;
 * инструментов. Присваиваем им иконки*/
 
 public class SuperFragmentDraw extends Fragment implements View.OnClickListener {
+
+    protected SharedPreferences dPreferences;
 
     protected final int TOOL_PAINT = 1;
     public final static int OP_PAINT_1 = 11;
@@ -84,11 +87,12 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     private ImageView dAddCreated, dAddLink, dAddCam, dAddColl;
 
-    private ImageView dUndo, dRedo, dInfo, dAllLyrs, dUnion, dDeleteLyr, dChangeLyrs, dDeleteAll;
+    protected ImageView dUndo, dRedo, dInfo, dAllLyrs, dUnion, dDeleteLyr, dChangeLyrs, dDeleteAll;
 
     private ImageView dPaint, dFil, dEraser, dText, dCut, dTrans, dScale, dDeformRotate,dProperties;
 
     private float dSlideStep;
+
 
     public SuperFragmentDraw() {
         dVisibleTools = false;
@@ -452,15 +456,42 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected void toolRedo(ImageView v){
         v.setSelected(!v.isSelected());
     }
+
     protected void toolInfo(ImageView v){
        dSelectInfo=!dSelectInfo;
-        v.setActivated(dSelectInfo);
+        infoActive();
     }
     protected void toolAllLyrs(ImageView v){
         dSelectAllLyrs = !dSelectAllLyrs;
-        v.setActivated(dSelectAllLyrs);
-
+        groupActive();
     }
+
+    protected boolean isdSelectInfo() {
+        return dSelectInfo;
+    }
+
+    protected void setdSelectInfo(boolean select) {
+        this.dSelectInfo = select;
+        infoActive();
+    }
+
+    protected boolean isdSelectAllLyrs() {
+        return dSelectAllLyrs;
+    }
+
+    protected void setdSelectAllLyrs(boolean select) {
+        this.dSelectAllLyrs = select;
+        groupActive();
+    }
+    private void infoActive(){
+        dInfo.setActivated(dSelectInfo);
+    }
+
+    private void groupActive(){
+        dAllLyrs.setActivated(dSelectAllLyrs);
+    }
+
+
     protected void toolUnion(ImageView v){
         v.setSelected(!v.isSelected());
     }

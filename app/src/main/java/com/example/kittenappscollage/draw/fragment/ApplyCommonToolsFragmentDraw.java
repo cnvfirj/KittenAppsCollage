@@ -1,5 +1,8 @@
 package com.example.kittenappscollage.draw.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +14,19 @@ import androidx.annotation.Nullable;
 
 import com.example.kittenappscollage.draw.RepDraw;
 
+import java.util.Objects;
+
 
 /*применяем действия стандартной панети инструментов*/
 public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw implements RepDraw.Appling {
 
+    private final String KEY_INFO = "info";
+
+    private final String KEY_GROUP = "group";
+
     private boolean dInfo;
+
+    private boolean dGroup;
 
     @Nullable
     @Override
@@ -46,6 +57,7 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
     protected void toolAllLyrs(ImageView v) {
         super.toolAllLyrs(v);
         dViewDraw.groupLyrs(v.isActivated());
+        dGroup = v.isActivated();
     }
 
     @Override
@@ -96,4 +108,22 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
     public void change(boolean is) {
         if(is)dViewDraw.invalidate();
     }
+
+//    private void saveState(){
+//        dPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
+//        SharedPreferences.Editor e = dPreferences.edit();
+//        e.putBoolean(KEY_INFO,isdSelectInfo());
+//        e.putBoolean(KEY_GROUP,isdSelectAllLyrs());
+//        e.apply();
+//    }
+//
+//    private void loadState(){
+//        dPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
+//        dInfo = dPreferences.getBoolean(KEY_INFO,false);
+//        dGroup = dPreferences.getBoolean(KEY_GROUP,false);
+//        dViewDraw.changeInfo(dInfo);
+//        dViewDraw.groupLyrs(dGroup);
+//
+//
+//    }
 }

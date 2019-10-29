@@ -96,7 +96,6 @@ public class BackNextStep {
                 .setTarget(TARGET_ALL)
                 .setMut(MUT_SCALAR);
         resetStatesNext();
-        LYTE("BackNextStep унион");
         statesBack.push(state);
     }
     public void change(){
@@ -109,7 +108,6 @@ public class BackNextStep {
                 .setTarget(TARGET_ALL)
                 .setMut(MUT_SCALAR);
         resetStatesNext();
-        LYTE("BackNextStep чанге");
         statesBack.push(state);
     }
 
@@ -123,12 +121,12 @@ public class BackNextStep {
                 .setTarget(TARGET_LYR)
                 .setMut(MUT_SCALAR);
         resetStatesNext();
-        LYTE("BackNextStep дел лир");
         statesBack.push(state);
     }
 
     private void save(){
          /*сохраняем на у-ве последний State и слои*/
+
     }
 
     public void remove(){
@@ -145,7 +143,7 @@ public class BackNextStep {
                     .setPathLyr(statesBack.peek().getPathLyr())
                     .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
                     .setRepLyr(getCopy(RepDraw.get().getLMat().getRepository()));
-            LYTE("BackNextStep саве имг");
+
         }
     }
 
@@ -157,19 +155,13 @@ public class BackNextStep {
                     .setPathLyr(name(PR_LYR))
                     .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
                     .setRepLyr(getCopy(RepDraw.get().getLMat().getRepository()));
-            LYTE("BackNextStep саве лир");
+
         }
     }
 
     private void saveAll(State state){
-//        if(statesBack.empty()) {
             startProject(state);
-//        }else{
-//            state.setPathImg(name(PR_IMG))
-//                    .setPathLyr(name(PR_LYR))
-//                    .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
-//                    .setRepLyr(getCopy(RepDraw.get().getLMat().getRepository()));
-//        }
+
     }
 
     private void saveMatrix(State state){
@@ -180,25 +172,21 @@ public class BackNextStep {
                     .setPathLyr(statesBack.peek().getPathLyr())
                     .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
                     .setRepLyr(getCopy(RepDraw.get().getLMat().getRepository()));
-            LYTE("BackNextStep саве матр");
         }
     }
 
     private void startProject(State state){
         if(RepDraw.get().isImg()){
-            LYTE("BackNextStep старт");
             if(RepDraw.get().isLyr()){
                 state.setPathImg(name(PR_IMG))
                         .setPathLyr(name(PR_LYR))
                         .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
                         .setRepLyr(getCopy(RepDraw.get().getLMat().getRepository()));
-                LYTE("BackNextStep старт лир");
             }else{
                 state.setPathImg(name(PR_IMG))
                         .setPathLyr(PR_NON)
                         .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
                         .setRepLyr(null);
-                LYTE("BackNextStep старт имг");
             }
         }
     }
