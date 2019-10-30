@@ -28,8 +28,6 @@ public class State implements Serializable {
 
     public State() {
         readiness = false;
-        nameImg = "---";
-        nameLyr = "---";
     }
 
     public State setNameImg(String name) {

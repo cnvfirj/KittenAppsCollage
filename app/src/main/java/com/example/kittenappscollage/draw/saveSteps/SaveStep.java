@@ -40,11 +40,7 @@ public class SaveStep {
     }
 
     public void save(){
-        LYTE("save img => "+state.getPathImg());
-        LYTE("save lyr => "+state.getPathLyr());
-        LYTE("save dat => "+state.getPathData());
-
-        switch (state.getTarget()){
+           switch (state.getTarget()){
             case BackNextStep.TARGET_ALL:
                 if(state.getMut()==BackNextStep.MUT_MATRIX){
                     stepSaved = SAVE_MATR;
