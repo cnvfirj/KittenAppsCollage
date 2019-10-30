@@ -28,14 +28,19 @@ public class BackNextStep {
     public static final int TARGET_IMG = 334;
     public static final int TARGET_LYR = 335;
 
-    private final String PR_IMG = "_img";
-    private final String PR_LYR = "_lyr";
+    private final String PR_IMG = "img_";
+    private final String PR_LYR = "lyr_";
     private final String PR_FILE = ".png";
     private final String PR_DATA = "step.data";
 
     private final String FOLD_STEPS = "/steps/";
-
+    private final String FOLD_DATA = "/data/";
+    private final String COMMON_FOLD;
     public static final String PR_NON = "non";
+
+
+
+    private SaveStep saveStep;
 
 
 
@@ -44,8 +49,8 @@ public class BackNextStep {
     private BackNextStep() {
         statesBack = new Stack<>();
         statesNext = new Stack<>();
-        RequestFolder
-                .testFolder(new File(RequestFolder.getPersonalFolder(App.getMain())+FOLD_STEPS));
+        COMMON_FOLD = RequestFolder.getPersonalFolder(App.getMain());
+        saveStep = new SaveStep();
     }
 
     public static BackNextStep get(){
@@ -63,7 +68,8 @@ public class BackNextStep {
         State state = new State()
                 .setTarget(target)
                 .setMut(mut)
-                .setPathFold(RequestFolder.getPersonalFolder(App.getMain())+FOLD_STEPS)
+                .setPathFoldImg(RequestFolder.getPersonalFolder(App.getMain())+FOLD_STEPS)
+                .setPathFoldData(RequestFolder.getPersonalFolder(App.getMain())+FOLD_DATA)
                 .setNameData(PR_DATA);
         if(target==TARGET_ALL){
            if(mut==MUT_MATRIX)saveMatrix(state);
@@ -82,50 +88,63 @@ public class BackNextStep {
             }
         }
         resetStatesNext();
-        statesBack.push(state);
         return this;
     }
 
     public void union(){
         /*сохраняем шаг при объединении*/
         State state = new State();
-        state.setPathImg(name(PR_IMG))
-                .setPathLyr(PR_NON)
+        state.setNameImg(name(PR_IMG))
+                .setNameLyr(PR_NON)
                 .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
                 .setRepLyr(null)
+                .setPathFoldImg(RequestFolder.getPersonalFolder(App.getMain())+FOLD_STEPS)
+                .setPathFoldData(RequestFolder.getPersonalFolder(App.getMain())+FOLD_DATA)
+                .setNameData(PR_DATA)
                 .setTarget(TARGET_ALL)
                 .setMut(MUT_SCALAR);
         resetStatesNext();
         statesBack.push(state);
+        save();
     }
     public void change(){
         /*сохраняем шаг при обмене*/
         State state = new State();
-        state.setPathImg(statesBack.peek().getPathLyr())
-                .setPathLyr(statesBack.peek().getPathImg())
-                .setRepImg(getCopy(statesBack.peek().getRepLyr()))
-                .setRepLyr(getCopy(statesBack.peek().getRepImg()))
+        state.setNameImg(statesBack.peek().getNameLyr())
+                .setNameLyr(statesBack.peek().getNameImg())
+                .setRepImg(getCopy(statesBack.peek().getRepImg()))
+                .setRepLyr(getCopy(statesBack.peek().getRepLyr()))
+                .setPathFoldImg(RequestFolder.getPersonalFolder(App.getMain())+FOLD_STEPS)
+                .setPathFoldData(RequestFolder.getPersonalFolder(App.getMain())+FOLD_DATA)
+                .setNameData(PR_DATA)
                 .setTarget(TARGET_ALL)
                 .setMut(MUT_SCALAR);
         resetStatesNext();
         statesBack.push(state);
+        save();
     }
 
     public void deleteLyr(){
         /*сохраняем шаг при удалении верхнего слоя*/
         State state = new State();
-        state.setPathImg(name(PR_IMG))
-                .setPathLyr(PR_NON)
+
+        state.setNameImg(name(PR_IMG))
+                .setNameLyr(PR_NON)
                 .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
                 .setRepLyr(null)
+                .setPathFoldImg(RequestFolder.getPersonalFolder(App.getMain())+FOLD_STEPS)
+                .setPathFoldData(RequestFolder.getPersonalFolder(App.getMain())+FOLD_DATA)
+                .setNameData(PR_DATA)
                 .setTarget(TARGET_LYR)
                 .setMut(MUT_SCALAR);
         resetStatesNext();
         statesBack.push(state);
+        save();
     }
 
     private void save(){
          /*сохраняем на у-ве последний State и слои*/
+        saveStep.register(statesBack.peek()).save();
 
     }
 
@@ -139,24 +158,27 @@ public class BackNextStep {
         if(statesBack.empty()) {
             startProject(state);
         }else {
-            state.setPathImg(name(PR_IMG))
-                    .setPathLyr(statesBack.peek().getPathLyr())
+            state.setNameImg(name(PR_IMG))
+                    .setNameLyr(statesBack.peek().getNameLyr())
                     .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
                     .setRepLyr(getCopy(RepDraw.get().getLMat().getRepository()));
-
+            statesBack.push(state);
         }
+        save();
     }
 
     private void saveLyr(State state){
         if(statesBack.empty()) {
             startProject(state);
         }else {
-            state.setPathImg(statesBack.peek().getPathImg())
-                    .setPathLyr(name(PR_LYR))
+            state.setNameImg(statesBack.peek().getNameImg())
+                    .setNameLyr(name(PR_LYR))
                     .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
                     .setRepLyr(getCopy(RepDraw.get().getLMat().getRepository()));
-
+            statesBack.push(state);
+            save();
         }
+
     }
 
     private void saveAll(State state){
@@ -168,26 +190,30 @@ public class BackNextStep {
         if(statesBack.empty()) {
             startProject(state);
         }else{
-            state.setPathImg(statesBack.peek().getPathImg())
-                    .setPathLyr(statesBack.peek().getPathLyr())
+            state.setNameImg(statesBack.peek().getNameImg())
+                    .setNameLyr(statesBack.peek().getNameLyr())
                     .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
                     .setRepLyr(getCopy(RepDraw.get().getLMat().getRepository()));
+            save();
         }
+
     }
 
     private void startProject(State state){
         if(RepDraw.get().isImg()){
             if(RepDraw.get().isLyr()){
-                state.setPathImg(name(PR_IMG))
-                        .setPathLyr(name(PR_LYR))
+                state.setNameImg(name(PR_IMG))
+                        .setNameLyr(name(PR_LYR))
                         .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
                         .setRepLyr(getCopy(RepDraw.get().getLMat().getRepository()));
             }else{
-                state.setPathImg(name(PR_IMG))
-                        .setPathLyr(PR_NON)
+                state.setNameImg(name(PR_IMG))
+                        .setNameLyr(PR_NON)
                         .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
                         .setRepLyr(null);
             }
+            statesBack.push(state);
+            save();
         }
     }
 
@@ -208,7 +234,7 @@ public class BackNextStep {
         int minute = calendar.get(Calendar.MINUTE);
         int second = calendar.get(Calendar.SECOND);
         int second_of_day = ((hour*60)+minute)*60+second;
-        return "/"+day+"_"+second_of_day+target+PR_FILE;
+        return target+day+"_"+second_of_day+PR_FILE;
     }
 
 

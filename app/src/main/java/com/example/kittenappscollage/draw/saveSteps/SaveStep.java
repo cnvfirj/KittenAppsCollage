@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 
 import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.helpers.RequestFolder;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 import com.example.mutablebitmap.CompRep;
 
@@ -19,6 +20,8 @@ import java.util.GregorianCalendar;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class SaveStep {
 
@@ -37,57 +40,78 @@ public class SaveStep {
     }
 
     public void save(){
-        saveState();
-        if(state.getTarget()==BackNextStep.TARGET_ALL){
-            if(state.getMut()==BackNextStep.MUT_MATRIX){
-                stepSaved = SAVE_MATR;
-                saveState();
-            }else if (state.getMut()==BackNextStep.MUT_SCALAR||state.getMut()==BackNextStep.MUT_CONTENT){
-                stepSaved = SAVE_ALL;
-                saveImage(RepDraw.get().getImg(),state.getPathImg());
-                saveImage(RepDraw.get().getLyr(),state.getPathLyr());
+        LYTE("save img => "+state.getPathImg());
+        LYTE("save lyr => "+state.getPathLyr());
+        LYTE("save dat => "+state.getPathData());
 
-            }
-        }else if(state.getTarget()==BackNextStep.TARGET_IMG){
-            if(state.getMut()==BackNextStep.MUT_MATRIX){
-                stepSaved = SAVE_MATR;
-                saveState();
-            }else if (state.getMut()==BackNextStep.MUT_SCALAR||state.getMut()==BackNextStep.MUT_CONTENT){
-                stepSaved = SAVE_SINGLE;
-                saveImage(RepDraw.get().getImg(),state.getPathImg());
-            }
-        }else if(state.getTarget()==BackNextStep.TARGET_LYR){
-            if(state.getMut()==BackNextStep.MUT_MATRIX){
-                stepSaved = SAVE_MATR;
-                saveState();
-            }else if (state.getMut()==BackNextStep.MUT_SCALAR||state.getMut()==BackNextStep.MUT_CONTENT){
-                stepSaved = SAVE_SINGLE;
-                saveImage(RepDraw.get().getLyr(),state.getPathLyr());
-            }
+        switch (state.getTarget()){
+            case BackNextStep.TARGET_ALL:
+                if(state.getMut()==BackNextStep.MUT_MATRIX){
+                    stepSaved = SAVE_MATR;
+                    saveState();
+                }else if (state.getMut()==BackNextStep.MUT_SCALAR||state.getMut()==BackNextStep.MUT_CONTENT){
+                    stepSaved = SAVE_ALL;
+                    if(RepDraw.get().isImg())saveImage(RepDraw.get().getImg(),state.getPathImg());
+                    if(RepDraw.get().isLyr())saveImage(RepDraw.get().getLyr(),state.getPathLyr());
+
+                }
+
+
+                break;
+            case BackNextStep.TARGET_IMG:
+                if(state.getMut()==BackNextStep.MUT_MATRIX){
+                    stepSaved = SAVE_MATR;
+                    saveState();
+                }else if (state.getMut()==BackNextStep.MUT_SCALAR||state.getMut()==BackNextStep.MUT_CONTENT){
+                    stepSaved = SAVE_SINGLE;
+                    if(RepDraw.get().isImg())saveImage(RepDraw.get().getImg(),state.getPathImg());
+                }
+                break;
+
+
+            case BackNextStep.TARGET_LYR:
+                if(state.getMut()==BackNextStep.MUT_MATRIX){
+                    stepSaved = SAVE_MATR;
+                    saveState();
+                }else if (state.getMut()==BackNextStep.MUT_SCALAR||state.getMut()==BackNextStep.MUT_CONTENT){
+                    stepSaved = SAVE_SINGLE;
+                    if(RepDraw.get().isLyr())saveImage(RepDraw.get().getLyr(),state.getPathLyr());
+                }
+                break;
         }
+
     }
 
+    /**/
     @SuppressLint("CheckResult")
     private void saveState(){
-        requestSaveState()
-                .subscribe(aBoolean -> {
-                    if(aBoolean) {
-                        stepSaved++;
-                        if (stepSaved == 3) state.setReadiness(aBoolean);
-                    }
-                });
+        if(testFolder(new File(state.getPathFoldData()))) {
+            requestSaveState()
+                    .subscribe(aBoolean -> {
+                        if (aBoolean) {
+                            stepSaved++;
+                            if (stepSaved == 3) state.setReadiness(aBoolean);
+                        }
+                    });
+        }
 
     }
 
+    /**/
     @SuppressLint("CheckResult")
     private void saveImage(Bitmap bitmap, String path){
-        requestSaveBitm(path, bitmap)
-                .subscribe(aBoolean -> {
-                    if(aBoolean) {
-                        stepSaved++;
-                        if (stepSaved == 3) state.setReadiness(aBoolean);
-                    }
-                });
+        if(testFolder(new File(state.getPathFoldImg()))) {
+            requestSaveBitm(path, bitmap)
+                    .subscribe(aBoolean -> {
+                        if (aBoolean) {
+                            stepSaved++;
+                            if (stepSaved == 2) {
+                                state.setReadiness(aBoolean);
+                                saveState();
+                            }
+                        }
+                    });
+        }
     }
 
     private Observable<Boolean> requestSaveState(){
@@ -105,38 +129,41 @@ public class SaveStep {
     }
 
     private boolean saveImg(String path, Bitmap bitmap){
-        final File file = new File(path);
-        OutputStream os = null;
-        try {
-            os = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
-            os.flush();
-            os.close();
-        } catch (IOException e) {
 
-        }
-        return file.exists();
+            final File file = new File(path);
+            OutputStream os = null;
+            try {
+                os = new FileOutputStream(file);
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
+                os.flush();
+                os.close();
+            } catch (IOException e) {
+
+            }
+            return file.exists();
+
 
     }
     private boolean saveSt(){
 
-        final File file = new File(state.getPathData());
-        if(file.exists()){
-            file.delete();
-        }
-        try {
-            OutputStream fos = new FileOutputStream(file);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(state);
-            oos.flush();
-            oos.close();
+            final File file = new File(state.getPathData());
+            if (file.exists()) {
+                file.delete();
+            }
+            try {
+                OutputStream fos = new FileOutputStream(file);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(state);
+                oos.flush();
+                oos.close();
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return file.exists();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return file.exists();
+
     }
 
     private boolean testFolder(File file){

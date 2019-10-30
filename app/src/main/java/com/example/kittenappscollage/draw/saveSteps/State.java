@@ -10,13 +10,15 @@ public class State implements Serializable {
 
     private int mut;
 
-    private String pathImg;
+    private String nameImg;
 
-    private String pathLyr;
+    private String nameLyr;
 
     private String pathData;
 
-    private String pathFold;
+    private String pathFoldImg;
+
+    private String pathFoldData;
 
     private CompRep repImg;
 
@@ -26,22 +28,17 @@ public class State implements Serializable {
 
     public State() {
         readiness = false;
+        nameImg = "---";
+        nameLyr = "---";
     }
 
-    public State(String pathImg, String pathLyr, CompRep repImg, CompRep repLyr) {
-        this.pathImg = pathImg;
-        this.pathLyr = pathLyr;
-        this.repImg = repImg;
-        this.repLyr = repLyr;
-    }
-
-    public State setPathImg(String pathImg) {
-        this.pathImg = pathImg;
+    public State setNameImg(String name) {
+        this.nameImg = name;
         return this;
     }
 
-    public State setPathLyr(String pathLyr) {
-        this.pathLyr = pathLyr;
+    public State setNameLyr(String name) {
+        this.nameLyr = name;
         return this;
     }
 
@@ -70,15 +67,38 @@ public class State implements Serializable {
         return this;
     }
 
-    public State setPathFold(String fold){
-        this.pathFold = fold;
+    public State setPathFoldImg(String fold){
+        this.pathFoldImg = fold;
         return this;
     }
-    public String getPathFolder(){
-        return pathFold;
+
+    public State setPathData(String path){
+        this.pathData = path;
+        return this;
     }
+
+    public State setPathFoldData(String fold){
+        this.pathFoldData = fold;
+        return this;
+    }
+
+    public String getPathFoldData(){
+        return pathFoldData;
+    }
+    public String getPathFoldImg(){
+        return pathFoldImg;
+    }
+
+    public String getPathLyr(){
+        return pathFoldImg+nameLyr;
+    }
+
+    public String getPathImg(){
+        return pathFoldImg+nameImg;
+    }
+
     public String getPathData() {
-        return pathFold+pathData;
+        return pathFoldData+pathData;
     }
 
     public void setReadiness(boolean readiness) {
@@ -97,12 +117,12 @@ public class State implements Serializable {
         return mut;
     }
 
-    public String getPathImg() {
-        return pathImg;
+    public String getNameImg() {
+        return nameImg;
     }
 
-    public String getPathLyr() {
-        return pathLyr;
+    public String getNameLyr() {
+        return nameLyr;
     }
 
     public CompRep getRepImg() {
