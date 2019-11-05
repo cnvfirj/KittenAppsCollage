@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
 
 import java.util.Objects;
 
@@ -24,40 +25,41 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
 
     private final String KEY_GROUP = "group";
 
-    private boolean dInfo;
-
-    private boolean dGroup;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         RepDraw.get().listenerApp(this);
-        dInfo = false;
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 
     @Override
     protected void toolUndo(ImageView v) {
         super.toolUndo(v);
+        BackNextStep.get().inBackToNext();
     }
 
     @Override
     protected void toolRedo(ImageView v) {
         super.toolRedo(v);
+        BackNextStep.get().inNextToBack();
     }
 
     @Override
     protected void toolInfo(ImageView v) {
         super.toolInfo(v);
-        dInfo = !dInfo;
-        dViewDraw.changeInfo(dInfo);
+        dViewDraw.changeInfo(v.isActivated());
     }
 
     @Override
     protected void toolAllLyrs(ImageView v) {
         super.toolAllLyrs(v);
         dViewDraw.groupLyrs(v.isActivated());
-        dGroup = v.isActivated();
     }
 
     @Override
@@ -87,9 +89,6 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
 
         readinessLyr(false);
         readinessImg(false);
-//        RepDraw.get().zeroingRepers();
-//        dViewDraw.invalidate();
-
     }
 
     /*интерфейс применения изменений*/
@@ -109,21 +108,6 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
         if(is)dViewDraw.invalidate();
     }
 
-//    private void saveState(){
-//        dPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
-//        SharedPreferences.Editor e = dPreferences.edit();
-//        e.putBoolean(KEY_INFO,isdSelectInfo());
-//        e.putBoolean(KEY_GROUP,isdSelectAllLyrs());
-//        e.apply();
-//    }
-//
-//    private void loadState(){
-//        dPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
-//        dInfo = dPreferences.getBoolean(KEY_INFO,false);
-//        dGroup = dPreferences.getBoolean(KEY_GROUP,false);
-//        dViewDraw.changeInfo(dInfo);
-//        dViewDraw.groupLyrs(dGroup);
-//
-//
-//    }
+
+
 }

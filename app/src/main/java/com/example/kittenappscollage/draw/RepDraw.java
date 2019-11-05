@@ -7,6 +7,7 @@ import android.graphics.PointF;
 import com.example.kittenappscollage.draw.operations.bitmap.CoercionBitmap;
 import com.example.kittenappscollage.draw.operations.bitmap.DrawBitmap;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
+import com.example.kittenappscollage.draw.saveSteps.State;
 import com.example.mutablebitmap.CompRep;
 import com.example.mutablebitmap.DeformMat;
 
@@ -130,6 +131,11 @@ public class RepDraw {
                     BackNextStep.get().save(BackNextStep.TARGET_ALL,BackNextStep.MUT_SCALAR);
                 }
             }
+        }else {
+            if(rep!=null){
+                rImgMat.reset().setRepository(rep.copy());
+                rAdd.readinessImg(true);
+            }
         }
     }
 
@@ -150,13 +156,13 @@ public class RepDraw {
                     BackNextStep.get().save(BackNextStep.TARGET_LYR,BackNextStep.MUT_SCALAR);
                 }
             }
+        }else {
+            if(rep!=null){
+                rLyrMat.reset().setRepository(rep.copy());
+                    rAdd.readinessLyr(true);
+            }
         }
     }
-//    public void mutableAll(Bitmap img, CompRep repImg, int typImg, Bitmap lyr, CompRep repLyr, int typLyr){
-//        mutableImg(img,repImg,typImg,false);
-//        mutableLyr(lyr,repLyr,typLyr,false);
-//        rAdd.readinessAll(true);
-//    }
 
     public void addLyr(Bitmap b){
         if(isImg()){
@@ -173,7 +179,6 @@ public class RepDraw {
         zeroingBitmap(rImg);
         rImgMat.reset();
         if(testBitmap(b)) {
-//            if(rNameProj.equals(NONAME))rNameProj = PropertiesImage.NAME_IMAGE();
             rImg = b.copy(Bitmap.Config.ARGB_8888, true);
             rImgC = new Canvas(rImg);
             if (rep != null) rImgMat.setRepository(rep);

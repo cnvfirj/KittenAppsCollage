@@ -1,8 +1,11 @@
 package com.example.kittenappscollage.draw.saveSteps;
 
+import com.example.kittenappscollage.draw.RepDraw;
 import com.example.mutablebitmap.CompRep;
 
 import java.io.Serializable;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class State implements Serializable {
 
@@ -100,6 +103,11 @@ public class State implements Serializable {
     }
 
     public void setReadiness(boolean readiness) {
+//        if(readiness){
+//            LYTE("read true");
+//            if(RepDraw.get().isImg())LYTE("path img "+getPathImg());
+//            if(RepDraw.get().isLyr())LYTE("path lyr "+getPathLyr());
+//        }
         this.readiness = readiness;
     }
 

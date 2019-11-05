@@ -49,10 +49,7 @@ public class SaveStep {
                     stepSaved = SAVE_ALL;
                     if(RepDraw.get().isImg())saveImage(RepDraw.get().getImg(),state.getPathImg());
                     if(RepDraw.get().isLyr())saveImage(RepDraw.get().getLyr(),state.getPathLyr());
-
                 }
-
-
                 break;
             case BackNextStep.TARGET_IMG:
                 if(state.getMut()==BackNextStep.MUT_MATRIX){
@@ -63,8 +60,6 @@ public class SaveStep {
                     if(RepDraw.get().isImg())saveImage(RepDraw.get().getImg(),state.getPathImg());
                 }
                 break;
-
-
             case BackNextStep.TARGET_LYR:
                 if(state.getMut()==BackNextStep.MUT_MATRIX){
                     stepSaved = SAVE_MATR;
@@ -78,7 +73,11 @@ public class SaveStep {
 
     }
 
-    /**/
+    public void saveState(State state){
+        this.state = state;
+        saveState();
+    }
+
     @SuppressLint("CheckResult")
     private void saveState(){
         if(testFolder(new File(state.getPathFoldData()))) {
@@ -86,7 +85,9 @@ public class SaveStep {
                     .subscribe(aBoolean -> {
                         if (aBoolean) {
                             stepSaved++;
-                            if (stepSaved == 3) state.setReadiness(aBoolean);
+                            if (stepSaved == 3) {
+                                state.setReadiness(aBoolean);
+                            }
                         }
                     });
         }
@@ -102,7 +103,8 @@ public class SaveStep {
                         if (aBoolean) {
                             stepSaved++;
                             if (stepSaved == 2) {
-                                state.setReadiness(aBoolean);
+//                                LYTE("save bit set readiness");
+//                                state.setReadiness(aBoolean);
                                 saveState();
                             }
                         }

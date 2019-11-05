@@ -1,6 +1,7 @@
 package com.example.kittenappscollage.draw.fragment;
 
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -16,6 +17,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.ViewDraw;
+import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
+
+import java.util.Objects;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 /*описываем основную анимацию движения кнопок и панели
 * инструментов. Присваиваем им иконки*/
@@ -123,9 +129,40 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         super.onViewCreated(view, savedInstanceState);
         dViewDraw = view.findViewById(R.id.view_draw);
         initViews(view);
+        BackNextStep.get().setOnBackNextStepsListen(new BackNextStep.OnBackNextStepListen() {
+            @Override
+            public void back(boolean enable, int size) {
+                dUndo.setEnabled(enable);
+            }
 
+            @Override
+            public void next(boolean enable, int size) {
+                dRedo.setEnabled(enable);
+            }
+        });
     }
-
+/*********************************************************/
+/************************сохраняем статус некоторых кнопок**********************************/
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        dPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
+//        SharedPreferences.Editor e = dPreferences.edit();
+//        e.putBoolean("key group", dAllLyrs.isActivated());
+//        e.putBoolean("key info", dInfo.isActivated());
+//        e.apply();
+//    }
+//
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        dPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
+//        dSelectAllLyrs = dPreferences.getBoolean("key group", false);
+//        dSelectInfo = dPreferences.getBoolean("key info", false);
+//        infoActive();
+//        groupActive();
+//    }
+/*************************************************************/
     @Override
     public void onClick(View view) {
 
@@ -458,11 +495,11 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     }
 
     protected void toolInfo(ImageView v){
-       dSelectInfo=!dSelectInfo;
+       dSelectInfo=!v.isActivated();
         infoActive();
     }
     protected void toolAllLyrs(ImageView v){
-        dSelectAllLyrs = !dSelectAllLyrs;
+        dSelectAllLyrs = !v.isActivated();
         groupActive();
     }
 
