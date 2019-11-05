@@ -15,6 +15,12 @@ public class BackNextStep extends StorySteps{
 
     private static BackNextStep single;
 
+    private LoadStep loadStep;
+
+    private BackNextStep() {
+        loadStep = new LoadStep();
+    }
+
     public static BackNextStep get(){
         if(single==null){
             synchronized (BackNextStep.class){
@@ -78,38 +84,34 @@ public class BackNextStep extends StorySteps{
     /*********************************************************************/
 
     private void loadMatrix(State state){
-         RepDraw.get().mutableImg(null,state.getRepImg(),0,false);
-         RepDraw.get().mutableLyr(null,state.getRepLyr(),0,false);
+
+         RepDraw.get().stepLoadMatr(state.getRepImg(),state.getRepLyr());
 
     }
 
     private void loadImg(State state){
-
+       if(state.getNameImg().equals(PR_NON))RepDraw.get().stepLoadImg(null,null,false);
+       loadStep.loadImg(state);
     }
 
     private void loadLyr(State state){
-
+        if(state.getNameLyr().equals(PR_NON))RepDraw.get().stepLoadLyr(null,null,false);
+       loadStep.loadLyr(state);
     }
 
     private void loadAll(State state){
-
-    }
-
-    private void startProject(State state){
-        if(RepDraw.get().isImg()){
-            if(RepDraw.get().isLyr()){
-                state.setNameImg(name(PR_IMG))
-                        .setNameLyr(name(PR_LYR))
-                        .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
-                        .setRepLyr(getCopy(RepDraw.get().getLMat().getRepository()));
-            }else{
-                state.setNameImg(name(PR_IMG))
-                        .setNameLyr(PR_NON)
-                        .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
-                        .setRepLyr(null);
-            }
-            addBack(state);
+        RepDraw.get().startMutable();
+        if(state.getNameImg().equals(PR_NON)){
+            RepDraw.get().stepLoadImg(null,null,false);
+            loadLyr(state);
+            return;
         }
+        if(state.getNameLyr().equals(PR_NON)){
+            RepDraw.get().stepLoadLyr(null,null,false);
+            loadImg(state);
+            return;
+        }
+       loadStep.loadAll(state);
     }
 
 

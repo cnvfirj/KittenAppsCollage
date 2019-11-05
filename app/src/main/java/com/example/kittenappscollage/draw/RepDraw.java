@@ -104,6 +104,63 @@ public class RepDraw {
         return this;
     }
 
+    public void stepLoadImg(Bitmap b, CompRep rep,boolean single){
+        if(testBitmap(b)){
+            rImg = b;
+                rImgMat.reset().setRepository(rep.copy());
+                rImgC = new Canvas(rImg);
+                rReadiness++;
+            if(single){
+                rAdd.readinessImg(true);
+            }else {
+                if (rReadiness == 2) {
+                    rAdd.readinessAll(true);
+                }
+            }
+        }else {
+            zeroingImg();
+            rReadiness++;
+            if(single){
+                rAdd.readinessImg(true);
+            }else {
+                if (rReadiness == 2) {
+                    rAdd.readinessAll(true);
+                }
+            }
+        }
+    }
+
+    public void stepLoadLyr(Bitmap b, CompRep rep, boolean single){
+        if(testBitmap(b)){
+            rLyr = b;
+                rLyrMat.reset().setRepository(rep.copy());
+                rLyrC = new Canvas(rLyr);
+            rReadiness++;
+            if(single){
+                rAdd.readinessLyr(true);
+            }else {
+                if (rReadiness == 2) {
+                    rAdd.readinessAll(true);
+                }
+            }
+        }{
+            zeroingLyr();
+            rReadiness++;
+            if(single){
+                rAdd.readinessLyr(true);
+            }else {
+                if (rReadiness == 2) {
+                    rAdd.readinessAll(true);
+                }
+            }
+        }
+    }
+
+    public void stepLoadMatr(CompRep img, CompRep lyr){
+        if(img!=null)rImgMat.reset().setRepository(img.copy());
+        if(lyr!=null)rLyrMat.reset().setRepository(lyr.copy());
+        rAdd.readinessAll(true);
+    }
     /*сбрасываем счетчик, что надо для if(single||rReadiness==2) rAdd.readinessImg(true);*/
     public void startMutable(){
         rReadiness = 0;
@@ -131,12 +188,8 @@ public class RepDraw {
                     BackNextStep.get().save(BackNextStep.TARGET_ALL,BackNextStep.MUT_SCALAR);
                 }
             }
-        }else {
-            if(rep!=null){
-                rImgMat.reset().setRepository(rep.copy());
-                rAdd.readinessImg(true);
-            }
         }
+
     }
 
     public void mutableLyr(Bitmap b, CompRep rep, int type, boolean single){
@@ -156,12 +209,13 @@ public class RepDraw {
                     BackNextStep.get().save(BackNextStep.TARGET_LYR,BackNextStep.MUT_SCALAR);
                 }
             }
-        }else {
-            if(rep!=null){
-                rLyrMat.reset().setRepository(rep.copy());
-                    rAdd.readinessLyr(true);
-            }
         }
+//        else {
+//            if(rep!=null){
+//                rLyrMat.reset().setRepository(rep.copy());
+//                    rAdd.readinessLyr(true);
+//            }
+//        }
     }
 
     public void addLyr(Bitmap b){
@@ -336,10 +390,12 @@ public class RepDraw {
 
     public void zeroingImg(){
         zeroingBitmap(rImg);
+        rImgMat.reset();
     }
 
     public void zeroingLyr(){
         zeroingBitmap(rLyr);
+        rLyrMat.reset();
     }
 
     public void zeroingRepers(){

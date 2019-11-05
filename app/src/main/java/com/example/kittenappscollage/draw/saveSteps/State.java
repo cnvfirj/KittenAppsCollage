@@ -103,11 +103,7 @@ public class State implements Serializable {
     }
 
     public void setReadiness(boolean readiness) {
-//        if(readiness){
-//            LYTE("read true");
-//            if(RepDraw.get().isImg())LYTE("path img "+getPathImg());
-//            if(RepDraw.get().isLyr())LYTE("path lyr "+getPathLyr());
-//        }
+
         this.readiness = readiness;
     }
 

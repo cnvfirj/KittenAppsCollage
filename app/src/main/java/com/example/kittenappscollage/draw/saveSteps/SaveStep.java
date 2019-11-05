@@ -97,6 +97,7 @@ public class SaveStep {
     /**/
     @SuppressLint("CheckResult")
     private void saveImage(Bitmap bitmap, String path){
+//        LYTE("save "+path);
         if(testFolder(new File(state.getPathFoldImg()))) {
             requestSaveBitm(path, bitmap)
                     .subscribe(aBoolean -> {
@@ -104,7 +105,7 @@ public class SaveStep {
                             stepSaved++;
                             if (stepSaved == 2) {
 //                                LYTE("save bit set readiness");
-//                                state.setReadiness(aBoolean);
+                                state.setReadiness(aBoolean);
                                 saveState();
                             }
                         }
