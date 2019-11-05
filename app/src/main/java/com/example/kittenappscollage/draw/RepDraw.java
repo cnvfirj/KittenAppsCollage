@@ -143,7 +143,7 @@ public class RepDraw {
                     rAdd.readinessAll(true);
                 }
             }
-        }{
+        }else {
             zeroingLyr();
             rReadiness++;
             if(single){

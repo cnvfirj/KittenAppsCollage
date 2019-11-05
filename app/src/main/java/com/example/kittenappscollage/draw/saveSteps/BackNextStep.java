@@ -91,12 +91,12 @@ public class BackNextStep extends StorySteps{
 
     private void loadImg(State state){
        if(state.getNameImg().equals(PR_NON))RepDraw.get().stepLoadImg(null,null,false);
-       loadStep.loadImg(state);
+       else loadStep.loadImg(state);
     }
 
     private void loadLyr(State state){
         if(state.getNameLyr().equals(PR_NON))RepDraw.get().stepLoadLyr(null,null,false);
-       loadStep.loadLyr(state);
+       else loadStep.loadLyr(state);
     }
 
     private void loadAll(State state){
