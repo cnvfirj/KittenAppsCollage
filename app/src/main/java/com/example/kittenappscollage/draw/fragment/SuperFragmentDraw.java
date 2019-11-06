@@ -141,28 +141,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
             }
         });
     }
-/*********************************************************/
-/************************сохраняем статус некоторых кнопок**********************************/
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        dPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
-//        SharedPreferences.Editor e = dPreferences.edit();
-//        e.putBoolean("key group", dAllLyrs.isActivated());
-//        e.putBoolean("key info", dInfo.isActivated());
-//        e.apply();
-//    }
-//
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        dPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
-//        dSelectAllLyrs = dPreferences.getBoolean("key group", false);
-//        dSelectInfo = dPreferences.getBoolean("key info", false);
-//        infoActive();
-//        groupActive();
-//    }
-/*************************************************************/
+
     @Override
     public void onClick(View view) {
 
@@ -629,9 +608,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         v.setSelected(!v.isSelected());
     }
 
-//    protected boolean compareIndex(int index){
-//        return dIndexTool==index;
-//    }
+
 
     protected void selectorButtons(int index){
 

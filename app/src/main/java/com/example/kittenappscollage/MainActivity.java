@@ -12,8 +12,10 @@ import android.widget.Toast;
 import com.example.kittenappscollage.collect.FragmentCollect;
 import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
 import com.example.kittenappscollage.draw.saveSteps.ClearCatch;
+import com.example.kittenappscollage.draw.saveSteps.State;
 import com.example.kittenappscollage.draw.saveSteps.Steps;
 import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.App;
@@ -24,7 +26,7 @@ import com.google.android.material.tabs.TabLayout;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery{
 
     private ApplyDrawToolsFragmentDraw mFragDraw;
 
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         App.setMain(this);
         setupViewPager((SelectSweepViewPager) findViewById(R.id.select_sweep_viewpager));
+        requestOldProj();
     }
 
     private void setupViewPager(SelectSweepViewPager v){
@@ -99,10 +102,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    public void result(boolean r) {
+         if(r){
+             State state = DialogLoadOldProject.requestData(BackNextStep.get().getFoldData());
+             if(state!=null){
+                 LYTE("download all");
+                 /**/
+             }
+         }else {
+             BackNextStep.get().remove();
+         }
+    }
+
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
+        RepDraw.get().clearRep();
+        clearCatchImges();
+    }
+
+    private void clearCatchImges(){
         Intent intent = new Intent(App.getMain(), ClearCatch.class);
         intent.putExtra(ClearCatch.KEY_FOLD, BackNextStep.get().getFoldData());
         App.getMain().startService(intent);
+    }
+
+    private void requestOldProj(){
+       State state = DialogLoadOldProject.requestData(BackNextStep.get().getFoldData());
+       if(state!=null&&state.isReadiness()){
+           DialogLoadOldProject d = new DialogLoadOldProject();
+           d.show(getSupportFragmentManager(), DialogLoadOldProject.TAG);
+       }else BackNextStep.get().remove();
     }
 }

@@ -30,6 +30,13 @@ public class RepCommonFunctions extends Repozitory {
         BackNextStep.get().remove();
     }
 
+    public void clearRep(){
+        zeroingBitmap(rImg);
+        zeroingBitmap(rLyr);
+        rImgMat.reset();
+        rLyrMat.reset();
+    }
+
     public void delLyr(){
         zeroingBitmap(rLyr);
         rLyrMat.reset();

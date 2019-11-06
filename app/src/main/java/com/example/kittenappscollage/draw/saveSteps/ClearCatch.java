@@ -45,10 +45,11 @@ public class ClearCatch extends Service {
     @SuppressLint("CheckResult")
     private void clearSelect(String foldData){
 
-        File data = Objects.requireNonNull((new File(foldData)).listFiles())[0];
+        File[] data = Objects.requireNonNull((new File(foldData)).listFiles());
         State state = null;
+        if(data.length==0)return;
         try {
-            InputStream fis = new FileInputStream(data);
+            InputStream fis = new FileInputStream(data[0]);
             ObjectInputStream ois = new ObjectInputStream(fis);
 
            state = (State) ois.readObject();
@@ -77,7 +78,7 @@ public class ClearCatch extends Service {
             !file.getAbsolutePath().equals(state.getPathLyr())){
                 file.delete();
             }
-//            else LYTE("non del "+file.getAbsolutePath());
+            else LYTE("non del "+file.getAbsolutePath());
         }
         return false;
     }

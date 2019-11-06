@@ -39,11 +39,14 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        enabledOperLyr(false);
-        enabledGrouping(false);
-        enableDraw(false);
-        enabledDeleteAll(false);
-        enabledInfo(false);
+        boolean img = RepDraw.get().isImg();
+        boolean lyr = RepDraw.get().isLyr();
+
+        enabledOperLyr(lyr);
+        enabledGrouping(lyr);
+        enableDraw(img);
+        enabledDeleteAll(img);
+        enabledInfo(img);
         enableUndo(false);
         enableRedo(false);
         waitingReadinessView(dViewDraw);
@@ -52,7 +55,6 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
 
     @Override
     protected void slideTools() {
-
         if(!RepDraw.get().isImg()&&!isSlideTools())SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.condition_apply_tools));
             super.slideTools();
 

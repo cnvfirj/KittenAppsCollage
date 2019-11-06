@@ -42,7 +42,6 @@ public class BackNextStep extends StorySteps{
         }
     }
 
- /******************************************************************/
     public void inBackToNext(){
         if(statesBack.size()>1){
             statesNext.push(statesBack.pop());
@@ -74,7 +73,6 @@ public class BackNextStep extends StorySteps{
             listenSteps.next(!statesNext.empty(),statesNext.size());
         }
     }
-    /*********************************************************************/
 
     private void loadMatrix(State state){
 

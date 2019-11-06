@@ -75,6 +75,8 @@ public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw impl
         super.toolDelLyr(v);
         RepDraw.get().delLyr();
         readinessLyr(false);
+        enableUndo(false);
+        enableRedo(false);
     }
 
     @Override
