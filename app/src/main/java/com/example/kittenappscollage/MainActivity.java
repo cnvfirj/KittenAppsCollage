@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -11,6 +12,9 @@ import android.widget.Toast;
 import com.example.kittenappscollage.collect.FragmentCollect;
 import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
+import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
+import com.example.kittenappscollage.draw.saveSteps.ClearCatch;
+import com.example.kittenappscollage.draw.saveSteps.Steps;
 import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
@@ -94,5 +98,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Intent intent = new Intent(App.getMain(), ClearCatch.class);
+        intent.putExtra(ClearCatch.KEY_FOLD, BackNextStep.get().getFoldData());
+        App.getMain().startService(intent);
+    }
 }

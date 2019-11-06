@@ -5,7 +5,7 @@ import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutablebitmap.DeformMat;
 
 public class HelpCut {

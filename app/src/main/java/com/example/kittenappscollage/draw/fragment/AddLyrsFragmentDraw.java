@@ -1,6 +1,5 @@
 package com.example.kittenappscollage.draw.fragment;
 
-import android.graphics.Point;
 import android.graphics.PointF;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,9 +13,8 @@ import androidx.annotation.Nullable;
 
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.addLyrs.FrameDialogAdd;
-import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.helpers.AllPermissions;
-import com.example.kittenappscollage.helpers.SaveImageToFile;
 
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 

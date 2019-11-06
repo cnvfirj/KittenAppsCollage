@@ -7,8 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -16,11 +14,7 @@ import android.view.View;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.operations.ApplyOperation;
 import com.example.kittenappscollage.draw.operations.Operation;
-import com.example.kittenappscollage.draw.RepDraw;
-import com.example.kittenappscollage.draw.operations.TouchPoints;
-import com.example.mutablebitmap.DeformMat;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
 public class ViewDraw extends View {
 

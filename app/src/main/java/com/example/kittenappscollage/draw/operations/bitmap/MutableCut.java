@@ -4,12 +4,10 @@ import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 
-import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.operations.Operation;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.mutablebitmap.DeformMat;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 
 public class MutableCut extends MutableBit {

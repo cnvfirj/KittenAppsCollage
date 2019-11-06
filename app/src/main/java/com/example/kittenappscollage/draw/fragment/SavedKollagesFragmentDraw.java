@@ -1,18 +1,10 @@
 package com.example.kittenappscollage.draw.fragment;
 
-import android.Manifest;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.widget.ImageView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.SaveImageToFile;
-import com.example.kittenappscollage.draw.RepDraw;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
 /*здесь обработаем нажатие кнопок сохранения*/
 

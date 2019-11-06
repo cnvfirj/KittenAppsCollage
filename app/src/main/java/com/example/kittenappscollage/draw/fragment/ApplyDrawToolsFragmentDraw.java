@@ -1,18 +1,9 @@
 package com.example.kittenappscollage.draw.fragment;
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.operations.Operation;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 /*применяем инструменты обработки изображения*/
 public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
@@ -83,7 +74,6 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         super.toolScale(v);
         if(dIndexScale%10==1)dViewDraw.setEvent(Operation.Event.MATRIX_S_P);
         else if(dIndexScale%10==2)dViewDraw.setEvent(Operation.Event.MATRIX_S_M);
-//        enabledGrouping(true);
 
     }
 
@@ -96,8 +86,6 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     protected void doneCut() {
         super.doneCut();
         dViewDraw.doneCut();
-//        RepDraw.get().zeroingRepers();
-//        dViewDraw.invalidate();
     }
 
     @Override

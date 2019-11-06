@@ -1,13 +1,6 @@
 package com.example.kittenappscollage.draw.saveSteps;
 
-import com.example.kittenappscollage.draw.RepDraw;
-import com.example.kittenappscollage.helpers.App;
-import com.example.kittenappscollage.helpers.RequestFolder;
-import com.example.mutablebitmap.CompRep;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Stack;
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
@@ -33,17 +26,17 @@ public class BackNextStep extends StorySteps{
     private void load(int target, int mut, State state){
         if(target==TARGET_ALL){
             if(mut==MUT_MATRIX)loadMatrix(state);
-            if(mut==MUT_CONTENT||mut==MUT_SCALAR){
+            else if(mut==MUT_CONTENT||mut==MUT_SCALAR){
                 loadAll(state);
             }
         }else if(target==TARGET_IMG){
             if(mut==MUT_MATRIX)loadMatrix(state);
-            if(mut==MUT_CONTENT||mut==MUT_SCALAR){
+            else if(mut==MUT_CONTENT||mut==MUT_SCALAR){
                 loadImg(state);
             }
         }else if(target==TARGET_LYR){
             if(mut==MUT_MATRIX)loadMatrix(state);
-            if(mut==MUT_CONTENT||mut==MUT_SCALAR){
+            else if(mut==MUT_CONTENT||mut==MUT_SCALAR){
                 loadLyr(state);
             }
         }
@@ -90,12 +83,12 @@ public class BackNextStep extends StorySteps{
     }
 
     private void loadImg(State state){
-       if(state.getNameImg().equals(PR_NON))RepDraw.get().stepLoadImg(null,null,false);
+       if(state.getNameImg().equals(PR_NON))RepDraw.get().stepLoadImg(null,null,true);
        else loadStep.loadImg(state);
     }
 
     private void loadLyr(State state){
-        if(state.getNameLyr().equals(PR_NON))RepDraw.get().stepLoadLyr(null,null,false);
+        if(state.getNameLyr().equals(PR_NON))RepDraw.get().stepLoadLyr(null,null,true);
        else loadStep.loadLyr(state);
     }
 

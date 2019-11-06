@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 
-import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutablebitmap.DeformMat;
 
 public class ApplyOperationSelector implements Operation.ResultMutable {

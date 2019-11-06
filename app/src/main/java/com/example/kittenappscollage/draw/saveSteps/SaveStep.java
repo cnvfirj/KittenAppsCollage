@@ -3,10 +3,8 @@ package com.example.kittenappscollage.draw.saveSteps;
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 
-import com.example.kittenappscollage.draw.RepDraw;
-import com.example.kittenappscollage.helpers.RequestFolder;
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
-import com.example.mutablebitmap.CompRep;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,9 +12,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.io.Serializable;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
@@ -47,8 +42,15 @@ public class SaveStep {
                     saveState();
                 }else if (state.getMut()==BackNextStep.MUT_SCALAR||state.getMut()==BackNextStep.MUT_CONTENT){
                     stepSaved = SAVE_ALL;
-                    if(RepDraw.get().isImg())saveImage(RepDraw.get().getImg(),state.getPathImg());
-                    if(RepDraw.get().isLyr())saveImage(RepDraw.get().getLyr(),state.getPathLyr());
+                    if(RepDraw.get().isLyr()){
+                        saveImage(RepDraw.get().getLyr(),state.getPathLyr());
+                    }else {
+                        stepSaved++;
+                    }
+                    if(RepDraw.get().isImg()){
+                        saveImage(RepDraw.get().getImg(),state.getPathImg());
+                    }
+
                 }
                 break;
             case BackNextStep.TARGET_IMG:
@@ -67,6 +69,10 @@ public class SaveStep {
                 }else if (state.getMut()==BackNextStep.MUT_SCALAR||state.getMut()==BackNextStep.MUT_CONTENT){
                     stepSaved = SAVE_SINGLE;
                     if(RepDraw.get().isLyr())saveImage(RepDraw.get().getLyr(),state.getPathLyr());
+                    else {
+                        stepSaved++;
+                        saveState(state);
+                    }
                 }
                 break;
         }
@@ -97,20 +103,20 @@ public class SaveStep {
     /**/
     @SuppressLint("CheckResult")
     private void saveImage(Bitmap bitmap, String path){
-//        LYTE("save "+path);
+
         if(testFolder(new File(state.getPathFoldImg()))) {
             requestSaveBitm(path, bitmap)
                     .subscribe(aBoolean -> {
                         if (aBoolean) {
                             stepSaved++;
                             if (stepSaved == 2) {
-//                                LYTE("save bit set readiness");
                                 state.setReadiness(aBoolean);
                                 saveState();
                             }
-                        }
+                        }/*проверить память устройства*/
                     });
         }
+
     }
 
     private Observable<Boolean> requestSaveState(){

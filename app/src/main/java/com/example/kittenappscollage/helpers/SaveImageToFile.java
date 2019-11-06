@@ -5,7 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
-import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
 import java.io.File;
 import java.io.FileOutputStream;

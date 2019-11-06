@@ -1,6 +1,6 @@
 package com.example.kittenappscollage.draw.saveSteps;
 
-import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.RequestFolder;
 import com.example.mutablebitmap.CompRep;
@@ -22,12 +22,13 @@ public class CommonSteps extends Steps {
         addBack(state);
         save();
     }
+
     public void change(){
         State state = new State();
         state.setNameImg(statesBack.peek().getNameLyr())
                 .setNameLyr(statesBack.peek().getNameImg())
-                .setRepImg(getCopy(statesBack.peek().getRepImg()))
-                .setRepLyr(getCopy(statesBack.peek().getRepLyr()))
+                .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
+                .setRepLyr(getCopy(RepDraw.get().getLMat().getRepository()))
                 .setPathFoldImg(RequestFolder.getPersonalFolder(App.getMain())+FOLD_STEPS)
                 .setPathFoldData(RequestFolder.getPersonalFolder(App.getMain())+FOLD_DATA)
                 .setNameData(PR_DATA)

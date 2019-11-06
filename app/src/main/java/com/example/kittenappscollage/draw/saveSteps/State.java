@@ -1,11 +1,8 @@
 package com.example.kittenappscollage.draw.saveSteps;
 
-import com.example.kittenappscollage.draw.RepDraw;
 import com.example.mutablebitmap.CompRep;
 
 import java.io.Serializable;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class State implements Serializable {
 

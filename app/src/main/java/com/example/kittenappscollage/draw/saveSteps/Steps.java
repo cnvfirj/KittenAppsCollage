@@ -1,5 +1,7 @@
 package com.example.kittenappscollage.draw.saveSteps;
 
+import android.content.Intent;
+
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.RequestFolder;
 
@@ -58,6 +60,14 @@ public class Steps {
     public void remove(){
         statesNext.clear();
         statesBack.clear();
+        ClearCatch.clearAll(COMMON_FOLD+FOLD_STEPS);
+        ClearCatch.clearAll(COMMON_FOLD+FOLD_DATA);
+
+
+    }
+
+    public String getFoldData(){
+        return COMMON_FOLD+FOLD_DATA;
     }
 
     public interface OnBackNextStepListen{

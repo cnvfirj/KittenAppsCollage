@@ -4,13 +4,11 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.kittenappscollage.draw.RepDraw;
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 
 public class LoadStep {
@@ -41,7 +39,6 @@ public class LoadStep {
     }
 
     private Observable<Bitmap> requestLoadImg(final String path){
-//        LYTE("load "+path);
         return Observable.create((ObservableOnSubscribe<Bitmap>) emitter -> {
             emitter.onNext(BitmapFactory.decodeFile(path).copy(Bitmap.Config.ARGB_8888,true));
             emitter.onComplete();
