@@ -16,6 +16,8 @@ import androidx.annotation.Nullable;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.helpers.Massages;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class AddLyrInNet extends SelectedFragment {
 
     private final String HTTP = "http://";
@@ -114,9 +116,8 @@ public class AddLyrInNet extends SelectedFragment {
     }
 
     private boolean checkExp(String link){
-        String[] s = link.split(".");
+        String[] s = link.split("[.]");
         String exp = s[s.length-1].toLowerCase();
-
         if(exp.equals(JPEG)||exp.equals(PNG)||exp.equals(JPG))return true;
         return false;
     }

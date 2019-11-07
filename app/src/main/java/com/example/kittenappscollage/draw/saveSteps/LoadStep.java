@@ -32,8 +32,6 @@ public class LoadStep {
 
     @SuppressLint("CheckResult")
     public void loadAll(State state){
-        LYTE("load all "+state.getPathImg());
-        LYTE("load all "+state.getPathLyr());
         requestLoadImg(state.getPathImg()).subscribe(bitmap->{
             RepDraw.get().stepLoadImg(bitmap,state.getRepImg(),false);
         });
