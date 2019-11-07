@@ -106,8 +106,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
          if(r){
              State state = DialogLoadOldProject.requestData(BackNextStep.get().getFoldData());
              if(state!=null){
-                 LYTE("download all");
-                 /**/
+                 BackNextStep.get().setOldState(state).loadAll(state);
              }
          }else {
              BackNextStep.get().remove();
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private void requestOldProj(){
        State state = DialogLoadOldProject.requestData(BackNextStep.get().getFoldData());
-       if(state!=null&&state.isReadiness()){
+       if(state!=null){
            DialogLoadOldProject d = new DialogLoadOldProject();
            d.show(getSupportFragmentManager(), DialogLoadOldProject.TAG);
        }else BackNextStep.get().remove();

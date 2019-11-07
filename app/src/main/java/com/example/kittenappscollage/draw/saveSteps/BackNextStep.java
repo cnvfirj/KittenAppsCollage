@@ -23,6 +23,11 @@ public class BackNextStep extends StorySteps{
         return single;
     }
 
+    public BackNextStep setOldState(State state){
+        statesBack.push(state);
+        return this;
+    }
+
     private void load(int target, int mut, State state){
         if(target==TARGET_ALL){
             if(mut==MUT_MATRIX)loadMatrix(state);
@@ -90,7 +95,7 @@ public class BackNextStep extends StorySteps{
        else loadStep.loadLyr(state);
     }
 
-    private void loadAll(State state){
+    public void loadAll(State state){
         RepDraw.get().startMutable();
         if(state.getNameImg().equals(PR_NON)){
             RepDraw.get().stepLoadImg(null,null,false);
@@ -104,6 +109,5 @@ public class BackNextStep extends StorySteps{
         }
        loadStep.loadAll(state);
     }
-
 
 }

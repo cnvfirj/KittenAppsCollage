@@ -78,7 +78,7 @@ public class ClearCatch extends Service {
             !file.getAbsolutePath().equals(state.getPathLyr())){
                 file.delete();
             }
-            else LYTE("non del "+file.getAbsolutePath());
+//            else LYTE("non del "+file.getAbsolutePath());
         }
         return false;
     }

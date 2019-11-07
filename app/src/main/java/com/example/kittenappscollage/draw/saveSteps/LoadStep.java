@@ -10,6 +10,8 @@ import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 
 public class LoadStep {
 
@@ -30,6 +32,8 @@ public class LoadStep {
 
     @SuppressLint("CheckResult")
     public void loadAll(State state){
+        LYTE("load all "+state.getPathImg());
+        LYTE("load all "+state.getPathLyr());
         requestLoadImg(state.getPathImg()).subscribe(bitmap->{
             RepDraw.get().stepLoadImg(bitmap,state.getRepImg(),false);
         });

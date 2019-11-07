@@ -5,6 +5,8 @@ import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.RequestFolder;
 import com.example.mutablebitmap.CompRep;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class CommonSteps extends Steps {
 
     public void union(){
@@ -41,8 +43,7 @@ public class CommonSteps extends Steps {
 
     public void deleteLyr(){
         State state = new State();
-
-        state.setNameImg(name(PR_IMG))
+        state.setNameImg(statesBack.peek().getNameImg())
                 .setNameLyr(PR_NON)
                 .setRepImg(getCopy(RepDraw.get().getIMat().getRepository()))
                 .setRepLyr(null)

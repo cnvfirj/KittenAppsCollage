@@ -4,14 +4,19 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
+import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
 import com.example.kittenappscollage.draw.saveSteps.State;
 import com.example.kittenappscollage.helpers.RequestFolder;
+import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,11 +25,13 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.Objects;
 
+import io.reactivex.Observable;
+import io.reactivex.ObservableOnSubscribe;
+
 public class DialogLoadOldProject extends DialogFragment {
     public static final String TAG = "DIALOG_LOAD_OLD_PR";
 
     public static final int REQUEST = 1259;
-
 
     private ResultQuery query;
 
