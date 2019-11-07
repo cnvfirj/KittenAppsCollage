@@ -99,10 +99,11 @@ public class ClearCatch extends Service {
 
     private static boolean clearAllInFold(String fold){
         File[] files = (new File(fold)).listFiles();
-        assert files != null;
-        for (File file:files){
-            file.delete();
-            LYTE("delete "+file.getAbsolutePath());
+        if(files!=null) {
+            for (File file : files) {
+                file.delete();
+            }
+            return true;
         }
         return false;
     }

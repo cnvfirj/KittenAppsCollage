@@ -180,7 +180,6 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
 
             }
         });
-
         aColorPickCall.setOnClickListener(this);
         aDoneParams.setOnClickListener(this);
         aExitAll.setOnClickListener(this);
@@ -192,10 +191,14 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
         if(!aColorPickCall.isActivated()){
             applyTransform(false,500);
             aBlock = true;
+            aSeekHeight.setVisibility(View.INVISIBLE);
+            aSeekWidth.setVisibility(View.INVISIBLE);
         }else {
             applyTransform(true,500);
             aPreview.fon(aColor);
             aBlock = false;
+            aSeekHeight.setVisibility(View.VISIBLE);
+            aSeekWidth.setVisibility(View.VISIBLE);
         }
         aColorPickCall.setActivated(!aColorPickCall.isActivated());
     }

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.kittenappscollage.draw.saveSteps.State;
+import com.example.kittenappscollage.helpers.RequestFolder;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -48,21 +49,23 @@ public class DialogLoadOldProject extends DialogFragment {
     @SuppressLint("CheckResult")
     public static State requestData(String foldData){
 
-        File[] data = Objects.requireNonNull((new File(foldData)).listFiles());
 
         State state = null;
-        if(data.length==0)return state;
-        try {
-            InputStream fis = new FileInputStream(data[0]);
-            ObjectInputStream ois = new ObjectInputStream(fis);
+        if(RequestFolder.testFolder(new File(foldData))) {
+            File[] data = Objects.requireNonNull((new File(foldData)).listFiles());
 
-            state = (State) ois.readObject();
+            if (data.length == 0) return state;
+            try {
+                InputStream fis = new FileInputStream(data[0]);
+                ObjectInputStream ois = new ObjectInputStream(fis);
 
-            ois.close();
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
+                state = (State) ois.readObject();
+
+                ois.close();
+            } catch (ClassNotFoundException | IOException e) {
+                e.printStackTrace();
+            }
         }
-
         return state;
 
     }
