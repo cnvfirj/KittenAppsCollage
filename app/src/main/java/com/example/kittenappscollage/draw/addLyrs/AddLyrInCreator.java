@@ -191,6 +191,7 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
         if(!aColorPickCall.isActivated()){
             applyTransform(false,500);
             aBlock = true;
+            /******************************************************************/
             aSeekHeight.animate().translationX(-aSeekHeight.getRight()).setDuration(500).start();
             aSeekWidth.animate().translationY(-aSeekWidth.getBottom()).setDuration(500).start();
         }else {
@@ -217,7 +218,7 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
         params.topMargin = side;
         aSeekHeight.setLayoutParams(params);
 
-        /**/
+
     }
 
     private void applyTransform(boolean hide, long time){
