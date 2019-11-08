@@ -57,9 +57,13 @@ public class Steps {
         return target+day+"_"+second_of_day+PR_FILE;
     }
 
-    public void remove(){
+    public void clearStacks(){
         statesNext.clear();
         statesBack.clear();
+    }
+
+    public void remove(){
+        clearStacks();
         ClearCatch.clearAll(COMMON_FOLD+FOLD_STEPS);
         ClearCatch.clearAll(COMMON_FOLD+FOLD_DATA);
 

@@ -106,7 +106,9 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
          if(r){
              State state = DialogLoadOldProject.requestData(BackNextStep.get().getFoldData());
              if(state!=null){
-                 BackNextStep.get().setOldState(state).loadAll(state);
+                 BackNextStep.get()
+                         .setOldState(state)
+                         .load(Steps.TARGET_ALL,Steps.MUT_SCALAR,state);
              }
          }else {
              BackNextStep.get().remove();
@@ -122,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     }
 
     private void clearCatchImges(){
+        BackNextStep.get().clearStacks();
         Intent intent = new Intent(App.getMain(), ClearCatch.class);
         intent.putExtra(ClearCatch.KEY_FOLD, BackNextStep.get().getFoldData());
         App.getMain().startService(intent);
