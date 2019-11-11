@@ -16,6 +16,8 @@ import com.example.kittenappscollage.draw.operations.ApplyOperation;
 import com.example.kittenappscollage.draw.operations.Operation;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class ViewDraw extends View {
 
     private ApplyOperation vAppOp;
