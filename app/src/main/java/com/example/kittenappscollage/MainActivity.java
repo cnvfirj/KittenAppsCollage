@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private TabLayout mTabLayout;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,11 +117,14 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        RepDraw.get().clearRep();
         clearCatchImges();
     }
 
     private void clearCatchImges(){
+        /* синглтоны обязательно очистить
+         * так как при повторном запуске
+         * программы возможны баги */
+        RepDraw.get().clearRep();
         BackNextStep.get().clearStacks();
         Intent intent = new Intent(App.getMain(), ClearCatch.class);
         intent.putExtra(ClearCatch.KEY_FOLD, BackNextStep.get().getFoldData());
