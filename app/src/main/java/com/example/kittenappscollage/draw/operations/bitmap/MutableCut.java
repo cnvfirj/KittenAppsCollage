@@ -22,7 +22,7 @@ public class MutableCut extends MutableBit {
 
     protected Operation.ResultMutable mListener;
 
-    private PointF mStart;
+    protected PointF mStart;
 
     private int mZone;
 
