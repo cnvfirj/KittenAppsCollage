@@ -53,7 +53,8 @@ public class MutableFill extends MutableCut {
         if(mLyr==RepDraw.ALL){
 
         }else{
-            mListener.result(DrawBitmap.create(new Canvas(mBitmap),mMat).draw(temp,mMat),
+            DrawBitmap.create(new Canvas(mBitmap),mMat).draw(temp,mMat);
+            mListener.result(mBitmap,
                     mMat,mIndex,mLyr,RepDraw.MUTABLE_CONTENT);
         }
 
