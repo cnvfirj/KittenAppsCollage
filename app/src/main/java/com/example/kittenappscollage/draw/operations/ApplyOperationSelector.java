@@ -8,6 +8,7 @@ import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutablebitmap.DeformMat;
 
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_IMG;
+import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_LYR;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ApplyOperationSelector implements Operation.ResultMutable {
@@ -30,7 +31,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
     @Override
     public void result(Bitmap img, DeformMat mat,int index) {
-        if(index==RepDraw.LYR_LYR){
+        if(index== LYR_LYR){
             RepDraw.get().mutableLyr(img,mat.getRepository(),RepDraw.MUTABLE_SIZE,true);
         }
         if(index== LYR_IMG){
@@ -46,7 +47,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
                  RepDraw.get().mutableImg(img,mat.getRepository(),mutable,index==RepDraw.SINGLE);
 
              }
-             if(lyr==RepDraw.LYR_LYR){
+             if(lyr== LYR_LYR){
                  RepDraw.get().mutableLyr(img,mat.getRepository(),mutable,index==RepDraw.SINGLE);
              }
 
@@ -132,11 +133,21 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
         operation.resultMutable(this).view(RepDraw.get().getView());
         if(event.getAction()==MotionEvent.ACTION_DOWN){
             if(!operation.getEvent().equals(Operation.Event.LAYERS_CUT)){
-                int lyr = RepDraw.get().isLyr()?RepDraw.LYR_LYR: LYR_IMG;
-                readySingle(operation,lyr);
+                if(RepDraw.get().isLyr()){
+//                    if(TouchBitmap.ifIGotBit(getLMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),new PointF(event.getX(),event.getY()))){
+                        readySingle(operation,LYR_LYR);
+                        operation.point(event);
+//                    }
+                }else {
+//                    if(TouchBitmap.ifIGotBit(getIMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),new PointF(event.getX(),event.getY()))) {
+                        readySingle(operation, LYR_IMG);
+                        operation.point(event);
+//                    }
+                }
             }
         }
-        operation.point(event);
+        if(operation.getEvent().equals(Operation.Event.LAYERS_CUT))operation.point(event);
+
     }
 
 
@@ -150,17 +161,20 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
                   int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
                   if (index == LYR_IMG){
                       singleLay(operation, event);
-                      return;
+//                      return;
                   } else {
                       if(belongingOverlay()) {
-                          readyAll(operation);
+//                          if(TouchBitmap.ifIGotBit(getLMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),new PointF(event.getX(),event.getY()))) {
+                              readyAll(operation);
+                              operation.point(event);
+//                          }
                       } else {
                           singleLay(operation,event);
-                          return;
+//                          return;
                       }
                   }
               }
-              operation.point(event);
+
           }
     }
 
@@ -174,14 +188,14 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
     void doneCut(Operation operation, boolean isGroup){
         if(!isGroup) {
-            int lyr = RepDraw.get().isLyr()?RepDraw.LYR_LYR: LYR_IMG;
+            int lyr = RepDraw.get().isLyr()? LYR_LYR: LYR_IMG;
             operation.index(RepDraw.SINGLE);
             readySingle(operation, lyr);
             operation.apply();
         }else {
             RepDraw.get().startMutable();
             operation.index(RepDraw.ALL);
-            readySingle(operation,RepDraw.LYR_LYR);
+            readySingle(operation, LYR_LYR);
             operation.apply();
             readySingle(operation, LYR_IMG);
             operation.apply();
@@ -192,13 +206,12 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
 
     private void readyAll(Operation operation){
-
-        RepDraw.get().correctImg();
-        RepDraw.get().correctLyr();
-        operation
-                .index(RepDraw.ALL)
-                .mat(RepDraw.get().getLMat())
-                .bitmap(RepDraw.get().getLyr());
+            RepDraw.get().correctImg();
+            RepDraw.get().correctLyr();
+            operation
+                    .index(RepDraw.ALL)
+                    .mat(RepDraw.get().getLMat())
+                    .bitmap(RepDraw.get().getLyr());
     }
 
     private void readySingle(Operation operation,int lyr){
@@ -209,13 +222,13 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
                     .mat(RepDraw.get().getIMat())
                     .bitmap(RepDraw.get().getImg())
                     .lyr(LYR_IMG);
-        }else if(lyr==RepDraw.LYR_LYR){
+        }else if(lyr== LYR_LYR){
             RepDraw.get().correctLyr();
             operation
                     .index(RepDraw.SINGLE)
                     .mat(RepDraw.get().getLMat())
                     .bitmap(RepDraw.get().getLyr())
-                    .lyr(RepDraw.LYR_LYR);
+                    .lyr(LYR_LYR);
         }
     }
 
