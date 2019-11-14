@@ -35,6 +35,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
         }
         if(index== LYR_IMG){
             RepDraw.get().mutableImg(img,mat.getRepository(),RepDraw.MUTABLE_SIZE,true);
+
         }
     }
 
@@ -43,6 +44,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
              if(lyr== LYR_IMG){
                  RepDraw.get().mutableImg(img,mat.getRepository(),mutable,index==RepDraw.SINGLE);
+
              }
              if(lyr==RepDraw.LYR_LYR){
                  RepDraw.get().mutableLyr(img,mat.getRepository(),mutable,index==RepDraw.SINGLE);

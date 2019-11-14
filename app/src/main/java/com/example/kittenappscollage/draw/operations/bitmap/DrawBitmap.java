@@ -21,13 +21,13 @@ public class DrawBitmap {
     private DrawBitmap(Canvas canvas, DeformMat mat) {
         dCanvas = canvas;
         dMat = mat;
-        dPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        dPaint = new Paint();
     }
 
     private DrawBitmap(Bitmap img, DeformMat mat, DeformMat clip){
         dCanvas = new Canvas(img);
         dMat = mat;
-        dPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        dPaint = new Paint();
         PointF[] pClip = clip.muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
 
         for (int i=0;i<pClip.length;i++){
@@ -48,12 +48,18 @@ public class DrawBitmap {
 
     }
 
+
     public static DrawBitmap create(Canvas canvas, DeformMat mat){
         return new DrawBitmap(canvas,mat);
     }
 
     public static DrawBitmap create(Bitmap img, DeformMat mat, DeformMat clip){
         return new DrawBitmap(img,mat,clip);
+    }
+
+    public DrawBitmap antiAlias(boolean alias){
+        dPaint.setAntiAlias(alias);
+        return this;
     }
 
     public Bitmap draw(Bitmap bitmap, DeformMat mat){
