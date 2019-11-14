@@ -64,7 +64,6 @@ public class MutableCut extends MutableBit {
 
     @Override
     public MutableBit index(int index) {
-        LYTE("index "+index);
         mIndex = index;
         return super.index(index);
     }
