@@ -42,7 +42,7 @@ public class HelpFill {
         return this;
     }
 
-     public HelpFill setTypeFill(MutableBit.Command command){
+    public HelpFill setTypeFill(MutableBit.Command command){
         if(command.equals(MutableBit.Command.FILL_C))hTypeFill = true;
         else if (command.equals(MutableBit.Command.FILL_B))hTypeFill = false;
         return this;
@@ -52,7 +52,7 @@ public class HelpFill {
         return hBitmap;
     }
 
-    private void useParams(){
+    protected void useParams(){
             hWidth = hBitmap.getWidth();
             hHeight = hBitmap.getHeight();
             hPixels = new int[hWidth * hHeight];
@@ -110,8 +110,9 @@ public class HelpFill {
            }
 
         }
-          hBitmap.setPixels(hPixels,0, hWidth, 0, 0, hWidth , hHeight );
-        return hBitmap;
+//        hBitmap.setPixels(hPixels,0, hWidth, 0, 0, hWidth , hHeight );
+
+        return endFill();
 
     }
 
@@ -120,8 +121,9 @@ public class HelpFill {
         int index = (hWidth * y) + x;
 
         while (true){
-            hPixels[index] = hFillColor;
-            hPixelsChecked[index] = true;
+//            hPixels[index] = hFillColor;
+//            hPixelsChecked[index] = true;
+            filingUnder(index);
             left--;
             index--;
 
@@ -137,8 +139,9 @@ public class HelpFill {
         int right = x;
         index = (hWidth * y) + x;
         while (true) {
-            hPixels[index] = hFillColor;
-            hPixelsChecked[index] = true;
+//            hPixels[index] = hFillColor;
+//            hPixelsChecked[index] = true;
+            filingUnder(index);
             right++;
             index++;
 
@@ -168,6 +171,13 @@ public class HelpFill {
 
 
 
+    protected void filingUnder(int index){
+
+    }
+
+    protected Bitmap endFill(){
+      return null;
+    }
 
     protected class FillRange {
         public int startX;

@@ -56,7 +56,7 @@ public class DrawBitmap {
         return new DrawBitmap(img,mat,clip);
     }
 
-    public void draw(Bitmap bitmap, DeformMat mat){
+    public Bitmap draw(Bitmap bitmap, DeformMat mat){
         float scaleImg = dMat.getRepository().getScale();
         float scaleLyr = mat.getRepository().getScale();
         float scaleCom = scaleLyr/scaleImg;
@@ -67,7 +67,10 @@ public class DrawBitmap {
         PointF pointImg = dMat.getPointBitmap(mat.getRepository().getTranslate());
         matrix.postTranslate(pointImg.x,pointImg.y);
         dCanvas.drawBitmap(bitmap,matrix,dPaint);
+        return bitmap;
     }
+
+
 
     public void drawSolo(Bitmap ov, DeformMat ovl){
         float scaleImg = dMat.getRepository().getScale();

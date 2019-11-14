@@ -9,6 +9,8 @@ import com.example.kittenappscollage.draw.operations.Operation;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.mutablebitmap.DeformMat;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 
 public class MutableCut extends MutableBit {
 
@@ -24,11 +26,11 @@ public class MutableCut extends MutableBit {
 
     protected PointF mStart;
 
+    protected int mIndex;
+
     private int mZone;
 
-    private int mIndex;
-
-    private int mLyr;
+    protected int mLyr;
 
     public MutableCut() {
         super();
@@ -39,7 +41,6 @@ public class MutableCut extends MutableBit {
     @Override
     public void apply() {
         if(mBitmap!=null&&!mBitmap.isRecycled()&&mCommand.equals(Command.CUT)){
-//            if(mListener!=null)mListener.result(mCut.cut(getStartFin()).apply(mBitmap),mCut.getMat(),mLyr);
             if(mListener!=null)mListener.result(mCut.cut(getStartFin()).apply(mBitmap),mCut.getMat(),mIndex, mLyr, RepDraw.MUTABLE_SIZE);
 
         }
@@ -63,6 +64,7 @@ public class MutableCut extends MutableBit {
 
     @Override
     public MutableBit index(int index) {
+        LYTE("index "+index);
         mIndex = index;
         return super.index(index);
     }
@@ -105,11 +107,10 @@ public class MutableCut extends MutableBit {
     public MutableBit move(PointF move) {
         if(mCommand.equals(Command.CUT)){
             if(mZone!=NON_ZONE){
-
                correctRepersStartFin(mZone,getCorrect(mStart,move));
                mStart = move;
             }else {
-                if(mCommand.equals(Command.CUT))allPoints(move,MotionEvent.ACTION_MOVE);
+                allPoints(move,MotionEvent.ACTION_MOVE);
             }
         }
         return super.move(move);
@@ -121,12 +122,10 @@ public class MutableCut extends MutableBit {
             if(mZone!=NON_ZONE){
                 correctRepersStartFin(mZone,getCorrect(mStart,fin));
                 mStart = fin;
-
             }else {
-                if(mCommand.equals(Command.CUT))allPoints(fin,MotionEvent.ACTION_UP);
+                allPoints(fin,MotionEvent.ACTION_UP);
             }
 
-//            mStart = null;
         }
         return super.fin(fin);
     }

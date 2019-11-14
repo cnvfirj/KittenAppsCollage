@@ -7,6 +7,9 @@ import android.view.MotionEvent;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutablebitmap.DeformMat;
 
+import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_IMG;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class ApplyOperationSelector implements Operation.ResultMutable {
 
     private final int SINGLE_IMG = 0;
@@ -30,7 +33,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
         if(index==RepDraw.LYR_LYR){
             RepDraw.get().mutableLyr(img,mat.getRepository(),RepDraw.MUTABLE_SIZE,true);
         }
-        if(index==RepDraw.LYR_IMG){
+        if(index== LYR_IMG){
             RepDraw.get().mutableImg(img,mat.getRepository(),RepDraw.MUTABLE_SIZE,true);
         }
     }
@@ -38,13 +41,11 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     @Override
     public void result(Bitmap img, DeformMat mat, int index, int lyr, int mutable) {
 
-         boolean single = index==RepDraw.SINGLE;
-
-             if(lyr==RepDraw.LYR_IMG){
-                 RepDraw.get().mutableImg(img,mat.getRepository(),mutable,single);
+             if(lyr== LYR_IMG){
+                 RepDraw.get().mutableImg(img,mat.getRepository(),mutable,index==RepDraw.SINGLE);
              }
              if(lyr==RepDraw.LYR_LYR){
-                 RepDraw.get().mutableLyr(img,mat.getRepository(),mutable,single);
+                 RepDraw.get().mutableLyr(img,mat.getRepository(),mutable,index==RepDraw.SINGLE);
              }
 
     }
@@ -128,22 +129,33 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     void singleLay(Operation operation, MotionEvent event){
         operation.resultMutable(this).view(RepDraw.get().getView());
         if(event.getAction()==MotionEvent.ACTION_DOWN){
-            int lyr = RepDraw.get().isLyr()?RepDraw.LYR_LYR:RepDraw.LYR_IMG;
-            readySingle(operation,lyr);
+            if(!operation.getEvent().equals(Operation.Event.LAYERS_CUT)){
+                int lyr = RepDraw.get().isLyr()?RepDraw.LYR_LYR: LYR_IMG;
+                readySingle(operation,lyr);
+            }
         }
         operation.point(event);
     }
 
 
+
     void groupLay(Operation operation,MotionEvent event){
           operation.resultMutable(this).view(RepDraw.get().getView());
-          if(operation.getEvent().equals(Operation.Event.LAYERS_CUT))singleLay(operation,event);
-          else {
+          if(operation.getEvent().equals(Operation.Event.LAYERS_CUT)){
+              singleLay(operation,event);
+          } else {
               if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                  int index = RepDraw.get().isLyr() ? ALL : SINGLE_IMG;
-                  if (index == SINGLE_IMG) readySingle(operation, index);
-                  if (index == ALL) {
-                      readyAll(operation);
+                  int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
+                  if (index == LYR_IMG){
+                      singleLay(operation, event);
+                      return;
+                  } else {
+                      if(belongingOverlay()) {
+                          readyAll(operation);
+                      } else {
+                          singleLay(operation,event);
+                          return;
+                      }
                   }
               }
               operation.point(event);
@@ -160,38 +172,48 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
     void doneCut(Operation operation, boolean isGroup){
         if(!isGroup) {
-            int lyr = RepDraw.get().isLyr()?RepDraw.LYR_LYR:RepDraw.LYR_IMG;
+            int lyr = RepDraw.get().isLyr()?RepDraw.LYR_LYR: LYR_IMG;
             operation.index(RepDraw.SINGLE);
             readySingle(operation, lyr);
             operation.apply();
         }else {
-
             RepDraw.get().startMutable();
             operation.index(RepDraw.ALL);
             readySingle(operation,RepDraw.LYR_LYR);
             operation.apply();
-            readySingle(operation,RepDraw.LYR_IMG);
+            readySingle(operation, LYR_IMG);
             operation.apply();
         }
     }
 
 
+
+
     private void readyAll(Operation operation){
-        operation.index(RepDraw.ALL);
+
         RepDraw.get().correctImg();
-
         RepDraw.get().correctLyr();
-
-
+        operation
+                .index(RepDraw.ALL)
+                .mat(RepDraw.get().getLMat())
+                .bitmap(RepDraw.get().getLyr());
     }
 
     private void readySingle(Operation operation,int lyr){
-        if(lyr==RepDraw.LYR_IMG){
+        if(lyr== LYR_IMG){
             RepDraw.get().correctImg();
-            operation.mat(RepDraw.get().getIMat()).bitmap(RepDraw.get().getImg()).lyr(RepDraw.LYR_IMG);
+            operation
+                    .index(RepDraw.SINGLE)
+                    .mat(RepDraw.get().getIMat())
+                    .bitmap(RepDraw.get().getImg())
+                    .lyr(LYR_IMG);
         }else if(lyr==RepDraw.LYR_LYR){
             RepDraw.get().correctLyr();
-            operation.mat(RepDraw.get().getLMat()).bitmap(RepDraw.get().getLyr()).lyr(RepDraw.LYR_LYR);
+            operation
+                    .index(RepDraw.SINGLE)
+                    .mat(RepDraw.get().getLMat())
+                    .bitmap(RepDraw.get().getLyr())
+                    .lyr(RepDraw.LYR_LYR);
         }
     }
 
@@ -209,5 +231,22 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     private boolean belongingRegion(DeformMat mat, PointF p){
         PointF[]region = mat.muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
         return TouchBitmap.ifIGotBit(region,p);
+    }
+
+    private boolean belongingOverlay(){
+        PointF[]lyr = getLMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
+        PointF[]img = getIMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
+       for(PointF i:img) {
+               if(TouchBitmap.ifIGotBit(lyr,i)) return true;
+       }
+        return false;
+    }
+
+    private DeformMat getLMat(){
+        return RepDraw.get().getLMat();
+    }
+
+    private DeformMat getIMat(){
+        return RepDraw.get().getIMat();
     }
 }

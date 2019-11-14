@@ -40,6 +40,7 @@ public class RepMutable extends RepCommonFunctions {
                 rImgMat.reset().setRepository(rep.copy());
                 rImgC = new Canvas(rImg);
             }
+
             rReadiness++;
             if(single){
                 rAdd.readinessImg(true);
