@@ -81,7 +81,6 @@ public class BackNextStep extends StorySteps{
     }
 
     private void loadMatrix(State state){
-
          RepDraw.get().stepLoadMatr(state.getRepImg(),state.getRepLyr());
 
     }

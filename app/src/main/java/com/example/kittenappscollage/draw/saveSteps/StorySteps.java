@@ -5,6 +5,8 @@ import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.RequestFolder;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class StorySteps extends CommonSteps {
 
 

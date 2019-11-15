@@ -2,6 +2,7 @@ package com.example.kittenappscollage.draw.repozitoryDraw;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.graphics.PointF;
 
 import com.example.kittenappscollage.draw.operations.bitmap.CoercionBitmap;
@@ -88,7 +89,11 @@ public class RepDraw extends RepMutable{
     }
 
     public void stepLoadMatr(CompRep img, CompRep lyr){
-        if(img!=null)rImgMat.reset().setRepository(img.copy());
+        if(img!=null){
+            rImgMat.reset()
+//            rImgMat.bitmap(new PointF(img.getBitmap().x,img.getBitmap().y))
+                    .setRepository(img.copy());
+        }
         if(lyr!=null)rLyrMat.reset().setRepository(lyr.copy());
         rAdd.readinessAll(true);
     }

@@ -71,7 +71,7 @@ public class SaveStep {
                     if(RepDraw.get().isLyr())saveImage(RepDraw.get().getLyr(),state.getPathLyr());
                     else {
                         stepSaved++;
-                        saveState(state);
+                        saveState();
                     }
                 }
                 break;
@@ -100,7 +100,6 @@ public class SaveStep {
 
     }
 
-    /**/
     @SuppressLint("CheckResult")
     private void saveImage(Bitmap bitmap, String path){
 
@@ -170,7 +169,6 @@ public class SaveStep {
             return file.exists();
 
     }
-
     private boolean testFolder(File file){
         boolean success = true;
         if(!file.exists()){

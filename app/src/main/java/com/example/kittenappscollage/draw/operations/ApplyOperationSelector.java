@@ -30,6 +30,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
     @Override
     public void result(Bitmap img, DeformMat mat,int index) {
+
         if(index==RepDraw.LYR_LYR){
             RepDraw.get().mutableLyr(img,mat.getRepository(),RepDraw.MUTABLE_SIZE,true);
         }
@@ -147,12 +148,15 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
               if (event.getAction() == MotionEvent.ACTION_DOWN) {
                   int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
                   if (index == LYR_IMG){
+                      operation.index(RepDraw.SINGLE);
                       singleLay(operation, event);
                       return;
                   } else {
                       if(belongingOverlay()) {
+                          operation.index(RepDraw.ALL);
                           readyAll(operation);
                       } else {
+                          operation.index(RepDraw.SINGLE);
                           singleLay(operation,event);
                           return;
                       }
@@ -194,7 +198,6 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
         RepDraw.get().correctImg();
         RepDraw.get().correctLyr();
         operation
-                .index(RepDraw.ALL)
                 .mat(RepDraw.get().getLMat())
                 .bitmap(RepDraw.get().getLyr());
     }
@@ -203,14 +206,12 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
         if(lyr== LYR_IMG){
             RepDraw.get().correctImg();
             operation
-                    .index(RepDraw.SINGLE)
                     .mat(RepDraw.get().getIMat())
                     .bitmap(RepDraw.get().getImg())
                     .lyr(LYR_IMG);
         }else if(lyr==RepDraw.LYR_LYR){
             RepDraw.get().correctLyr();
             operation
-                    .index(RepDraw.SINGLE)
                     .mat(RepDraw.get().getLMat())
                     .bitmap(RepDraw.get().getLyr())
                     .lyr(RepDraw.LYR_LYR);
