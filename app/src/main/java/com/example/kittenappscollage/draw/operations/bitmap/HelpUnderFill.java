@@ -35,7 +35,6 @@ public class HelpUnderFill extends HelpFill {
 
     @Override
     protected void filingUnder(int index) {
-//            hPixels[index] = hFillColor;
             hOverPix[index] = hFillColor;
             hPixelsChecked[index] = true;
     }

@@ -110,8 +110,6 @@ public class HelpFill {
            }
 
         }
-//        hBitmap.setPixels(hPixels,0, hWidth, 0, 0, hWidth , hHeight );
-
         return endFill();
 
     }
@@ -121,8 +119,6 @@ public class HelpFill {
         int index = (hWidth * y) + x;
 
         while (true){
-//            hPixels[index] = hFillColor;
-//            hPixelsChecked[index] = true;
             filingUnder(index);
             left--;
             index--;
@@ -139,8 +135,6 @@ public class HelpFill {
         int right = x;
         index = (hWidth * y) + x;
         while (true) {
-//            hPixels[index] = hFillColor;
-//            hPixelsChecked[index] = true;
             filingUnder(index);
             right++;
             index++;
