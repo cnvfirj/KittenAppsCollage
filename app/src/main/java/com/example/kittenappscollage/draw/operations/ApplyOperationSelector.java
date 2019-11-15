@@ -10,7 +10,7 @@ import com.example.mutablebitmap.DeformMat;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.ALL;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_IMG;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.SINGLE;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
+//import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ApplyOperationSelector implements Operation.ResultMutable {
 
@@ -41,7 +41,6 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
         boolean b = index==RepDraw.SINGLE;
 
-        LYTE("single "+b);
              if(lyr== LYR_IMG){
                  RepDraw.get().mutableImg(img,mat.getRepository(),mutable,index==RepDraw.SINGLE);
              }

@@ -9,11 +9,6 @@ import com.example.kittenappscollage.draw.operations.Operation;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.mutablebitmap.DeformMat;
 
-import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.ALL;
-import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.SINGLE;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-
-
 public class MutableCut extends MutableBit {
 
     private HelpCut mCut;

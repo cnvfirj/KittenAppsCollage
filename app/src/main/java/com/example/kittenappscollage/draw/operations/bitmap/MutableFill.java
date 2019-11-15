@@ -8,7 +8,6 @@ import com.example.kittenappscollage.draw.operations.TouchBitmap;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutablebitmap.DeformMat;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class MutableFill extends MutableCut {
 
