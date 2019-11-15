@@ -46,7 +46,6 @@ public class OperationBitmap extends Operation{
         return this;
     }
 
-
     @Override
     public Operation mat(DeformMat mat) {
         oMutableBit.mat(mat);

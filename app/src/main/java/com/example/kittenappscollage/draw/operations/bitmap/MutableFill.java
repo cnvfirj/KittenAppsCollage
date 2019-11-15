@@ -57,6 +57,7 @@ public class MutableFill extends MutableCut {
             DrawBitmap.create(new Canvas(getImg()),getIMat()).antiAlias(false).draw(temp,mMat);
             mListener.result(getImg(), getIMat(),mIndex,RepDraw.LYR_IMG,RepDraw.MUTABLE_SIZE);
         } else{
+
             DrawBitmap.create(new Canvas(mBitmap),mMat).antiAlias(false).draw(temp,mMat);
             mListener.result(mBitmap, mMat,mIndex,mLyr,RepDraw.MUTABLE_SIZE);
         }
@@ -64,18 +65,18 @@ public class MutableFill extends MutableCut {
         if(temp!=null&&!temp.isRecycled())temp.recycle();
     }
 
-    protected boolean belongingRegion(DeformMat mat, PointF p){
-        PointF[]region = mat.muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
-        return TouchBitmap.ifIGotBit(region,p);
-    }
-
-    protected boolean belongingOverlay(){
-        PointF[]region = getLMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
-        for (PointF p:region){
-            if(TouchBitmap.ifIGotBit(region,p))return true;
-        }
-        return false;
-    }
+//    protected boolean belongingRegion(DeformMat mat, PointF p){
+//        PointF[]region = mat.muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
+//        return TouchBitmap.ifIGotBit(region,p);
+//    }
+//
+//    protected boolean belongingOverlay(){
+//        PointF[]region = getLMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
+//        for (PointF p:region){
+//            if(TouchBitmap.ifIGotBit(region,p))return true;
+//        }
+//        return false;
+//    }
 
     protected DeformMat getLMat(){
         return RepDraw.get().getLMat();

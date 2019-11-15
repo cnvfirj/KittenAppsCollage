@@ -7,14 +7,12 @@ import android.view.MotionEvent;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutablebitmap.DeformMat;
 
+import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.ALL;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_IMG;
+import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.SINGLE;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ApplyOperationSelector implements Operation.ResultMutable {
-
-    private final int SINGLE_IMG = 0;
-    private final int SINGLE_LYR = 1;
-    private final int ALL = 2;
 
     private static ApplyOperationSelector single;
 
@@ -41,6 +39,9 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     @Override
     public void result(Bitmap img, DeformMat mat, int index, int lyr, int mutable) {
 
+        boolean b = index==RepDraw.SINGLE;
+
+        LYTE("single "+b);
              if(lyr== LYR_IMG){
                  RepDraw.get().mutableImg(img,mat.getRepository(),mutable,index==RepDraw.SINGLE);
              }
@@ -131,6 +132,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
         if(event.getAction()==MotionEvent.ACTION_DOWN){
             if(!operation.getEvent().equals(Operation.Event.LAYERS_CUT)){
                 int lyr = RepDraw.get().isLyr()?RepDraw.LYR_LYR: LYR_IMG;
+                operation.index(SINGLE);
                 readySingle(operation,lyr);
             }
         }
@@ -147,12 +149,15 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
               if (event.getAction() == MotionEvent.ACTION_DOWN) {
                   int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
                   if (index == LYR_IMG){
+                      operation.index(SINGLE);
                       singleLay(operation, event);
                       return;
                   } else {
                       if(belongingOverlay()) {
+                          operation.index(ALL);
                           readyAll(operation);
                       } else {
+                          operation.index(SINGLE);
                           singleLay(operation,event);
                           return;
                       }
@@ -178,7 +183,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
             operation.apply();
         }else {
             RepDraw.get().startMutable();
-            operation.index(RepDraw.ALL);
+            operation.index(ALL);
             readySingle(operation,RepDraw.LYR_LYR);
             operation.apply();
             readySingle(operation, LYR_IMG);
@@ -194,23 +199,21 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
         RepDraw.get().correctImg();
         RepDraw.get().correctLyr();
         operation
-                .index(RepDraw.ALL)
                 .mat(RepDraw.get().getLMat())
                 .bitmap(RepDraw.get().getLyr());
     }
 
     private void readySingle(Operation operation,int lyr){
         if(lyr== LYR_IMG){
+
             RepDraw.get().correctImg();
             operation
-                    .index(RepDraw.SINGLE)
                     .mat(RepDraw.get().getIMat())
                     .bitmap(RepDraw.get().getImg())
                     .lyr(LYR_IMG);
         }else if(lyr==RepDraw.LYR_LYR){
             RepDraw.get().correctLyr();
             operation
-                    .index(RepDraw.SINGLE)
                     .mat(RepDraw.get().getLMat())
                     .bitmap(RepDraw.get().getLyr())
                     .lyr(RepDraw.LYR_LYR);
@@ -236,8 +239,15 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     private boolean belongingOverlay(){
         PointF[]lyr = getLMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
         PointF[]img = getIMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
-       for(PointF i:img) {
-               if(TouchBitmap.ifIGotBit(lyr,i)) return true;
+       for(PointF l:lyr) {
+               if(TouchBitmap.ifIGotBit(img,l)) {
+                   return true;
+               }
+       }
+       for (PointF i:img){
+           if(TouchBitmap.ifIGotBit(lyr,i)) {
+               return true;
+           }
        }
         return false;
     }
