@@ -29,21 +29,23 @@ public class BackNextStep extends StorySteps{
     }
 
     public void load(int target, int mut, State state){
-
         if(target==TARGET_ALL){
             if(mut==MUT_MATRIX)loadMatrix(state);
             else if(mut==MUT_CONTENT||mut==MUT_SCALAR){
                 loadAll(state);
+
             }
         }else if(target==TARGET_IMG){
             if(mut==MUT_MATRIX)loadMatrix(state);
             else if(mut==MUT_CONTENT||mut==MUT_SCALAR){
                 loadImg(state);
+
             }
         }else if(target==TARGET_LYR){
             if(mut==MUT_MATRIX)loadMatrix(state);
             else if(mut==MUT_CONTENT||mut==MUT_SCALAR){
                 loadLyr(state);
+
             }
         }
     }
@@ -52,7 +54,7 @@ public class BackNextStep extends StorySteps{
         if(statesBack.size()>1){
             statesNext.push(statesBack.pop());
             if(statesBack.peek().isReadiness()){
-                load(statesNext.peek().getTarget(),statesNext.peek().getMut(),statesBack.peek());
+               load(statesNext.peek().getTarget(),statesNext.peek().getMut(),statesBack.peek());
                 saveStep.saveState(statesBack.peek());
             }else {
                 inBackToNext();
@@ -81,33 +83,39 @@ public class BackNextStep extends StorySteps{
     }
 
     private void loadMatrix(State state){
+
          RepDraw.get().stepLoadMatr(state.getRepImg(),state.getRepLyr());
 
     }
 
     private void loadImg(State state){
+        RepDraw.get().startSingleMutable();
        if(state.getNameImg().equals(PR_NON))RepDraw.get().stepLoadImg(null,null,true);
-       else loadStep.loadImg(state);
+       else {
+
+           loadStep.loadImg(state);
+       }
     }
 
     private void loadLyr(State state){
+        RepDraw.get().startSingleMutable();
         if(state.getNameLyr().equals(PR_NON))RepDraw.get().stepLoadLyr(null,null,true);
-       else loadStep.loadLyr(state);
+       else {
+           loadStep.loadLyr(state);
+        }
     }
 
     private void loadAll(State state){
-        RepDraw.get().startMutable();
-        if(state.getNameImg().equals(PR_NON)){
-            RepDraw.get().stepLoadImg(null,null,false);
-            loadLyr(state);
-            return;
+        RepDraw.get().startAllMutable();
+
+        if(!state.getNameImg().equals(PR_NON)){
+            if(!state.getNameLyr().equals(PR_NON)){
+                loadStep.loadAll(state);
+            }else {
+
+                loadStep.loadImg(state);
+            }
         }
-        if(state.getNameLyr().equals(PR_NON)){
-            RepDraw.get().stepLoadLyr(null,null,false);
-            loadImg(state);
-            return;
-        }
-       loadStep.loadAll(state);
     }
 
 }

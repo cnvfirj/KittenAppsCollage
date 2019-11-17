@@ -18,6 +18,7 @@ public class StorySteps extends CommonSteps {
                 .setPathFoldImg(RequestFolder.getPersonalFolder(App.getMain())+FOLD_STEPS)
                 .setPathFoldData(RequestFolder.getPersonalFolder(App.getMain())+FOLD_DATA)
                 .setNameData(PR_DATA);
+
         if(target==TARGET_ALL){
             if(mut==MUT_MATRIX)saveMatrix(state);
             if(mut==MUT_CONTENT||mut==MUT_SCALAR){

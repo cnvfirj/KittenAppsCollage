@@ -8,7 +8,6 @@ import com.example.kittenappscollage.draw.operations.TouchBitmap;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutablebitmap.DeformMat;
 
-
 public class MutableFill extends MutableCut {
 
     private HelpUnderFill mFill;
@@ -50,32 +49,22 @@ public class MutableFill extends MutableCut {
 
 
         if(mIndex==RepDraw.ALL){
-            DrawBitmap.create(new Canvas(mBitmap),mMat).antiAlias(false).draw(temp,mMat);
-            mListener.result(mBitmap, mMat,mIndex,mLyr,RepDraw.MUTABLE_SIZE);
+            RepDraw.get().startAllMutable();
 
             DrawBitmap.create(new Canvas(getImg()),getIMat()).antiAlias(false).draw(temp,mMat);
-            mListener.result(getImg(), getIMat(),mIndex,RepDraw.LYR_IMG,RepDraw.MUTABLE_SIZE);
-        } else{
+            mListener.result(getImg(), getIMat(),RepDraw.ALL,RepDraw.LYR_IMG,RepDraw.MUTABLE_SIZE);
 
+            DrawBitmap.create(new Canvas(getLyr()),getLMat()).antiAlias(false).draw(temp,mMat);
+            mListener.result(getLyr(), getLMat(),RepDraw.ALL,RepDraw.LYR_LYR,RepDraw.MUTABLE_SIZE);
+
+        } else{
+            RepDraw.get().startSingleMutable();
             DrawBitmap.create(new Canvas(mBitmap),mMat).antiAlias(false).draw(temp,mMat);
             mListener.result(mBitmap, mMat,mIndex,mLyr,RepDraw.MUTABLE_SIZE);
         }
 
         if(temp!=null&&!temp.isRecycled())temp.recycle();
     }
-
-//    protected boolean belongingRegion(DeformMat mat, PointF p){
-//        PointF[]region = mat.muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
-//        return TouchBitmap.ifIGotBit(region,p);
-//    }
-//
-//    protected boolean belongingOverlay(){
-//        PointF[]region = getLMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
-//        for (PointF p:region){
-//            if(TouchBitmap.ifIGotBit(region,p))return true;
-//        }
-//        return false;
-//    }
 
     protected DeformMat getLMat(){
         return RepDraw.get().getLMat();

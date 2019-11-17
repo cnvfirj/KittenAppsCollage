@@ -57,6 +57,7 @@ public class ViewDraw extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         if(RepDraw.get().isImg()){
+
             canvas.drawBitmap(getImg(),getMatrImg(),null);
         }
         if(RepDraw.get().isLyr()){

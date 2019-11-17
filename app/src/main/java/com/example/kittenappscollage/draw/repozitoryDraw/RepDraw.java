@@ -37,8 +37,10 @@ public class RepDraw extends RepMutable{
         public void stepLoadImg(Bitmap b, CompRep rep,boolean single){
         if(testBitmap(b)){
             rImg = b;
-                rImgMat.reset().setRepository(rep.copy());
-                rImgMat.view(rView).bitmap(rep.getBitmap());
+                rImgMat
+//                        .reset()
+                        .setRepository(rep.copy());
+//                rImgMat.view(rView).bitmap(rep.getBitmap());
                 rImgC = new Canvas(rImg);
             if(single){
                 rAdd.readinessImg(true);
@@ -64,8 +66,10 @@ public class RepDraw extends RepMutable{
     public void stepLoadLyr(Bitmap b, CompRep rep, boolean single){
         if(testBitmap(b)){
             rLyr = b;
-                rLyrMat.reset().setRepository(rep.copy());
-                rLyrMat.view(rView).bitmap(rep.getBitmap());
+                rLyrMat
+//                        .reset()
+                        .setRepository(rep.copy());
+//                rLyrMat.view(rView).bitmap(rep.getBitmap());
                 rLyrC = new Canvas(rLyr);
             if(single){
                 rAdd.readinessLyr(true);
@@ -89,11 +93,7 @@ public class RepDraw extends RepMutable{
     }
 
     public void stepLoadMatr(CompRep img, CompRep lyr){
-        if(img!=null){
-            rImgMat.reset()
-//            rImgMat.bitmap(new PointF(img.getBitmap().x,img.getBitmap().y))
-                    .setRepository(img.copy());
-        }
+        if(img!=null)rImgMat.reset().setRepository(img.copy());
         if(lyr!=null)rLyrMat.reset().setRepository(lyr.copy());
         rAdd.readinessAll(true);
     }

@@ -10,7 +10,6 @@ import com.example.mutablebitmap.DeformMat;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.ALL;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_IMG;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.SINGLE;
-//import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ApplyOperationSelector implements Operation.ResultMutable {
 
@@ -29,6 +28,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     @Override
     public void result(Bitmap img, DeformMat mat,int index) {
         if(index==RepDraw.LYR_LYR){
+
             RepDraw.get().mutableLyr(img,mat.getRepository(),RepDraw.MUTABLE_SIZE,true);
         }
         if(index== LYR_IMG){
@@ -39,12 +39,12 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     @Override
     public void result(Bitmap img, DeformMat mat, int index, int lyr, int mutable) {
 
-        boolean b = index==RepDraw.SINGLE;
-
              if(lyr== LYR_IMG){
+//                 LYTE("LYR_IMG");
                  RepDraw.get().mutableImg(img,mat.getRepository(),mutable,index==RepDraw.SINGLE);
              }
              if(lyr==RepDraw.LYR_LYR){
+//                 LYTE("LYR_LYR");
                  RepDraw.get().mutableLyr(img,mat.getRepository(),mutable,index==RepDraw.SINGLE);
              }
 
@@ -181,7 +181,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
             readySingle(operation, lyr);
             operation.apply();
         }else {
-            RepDraw.get().startMutable();
+            RepDraw.get().startAllMutable();
             operation.index(ALL);
             readySingle(operation,RepDraw.LYR_LYR);
             operation.apply();
