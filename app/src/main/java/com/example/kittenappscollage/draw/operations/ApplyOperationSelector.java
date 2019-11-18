@@ -40,11 +40,9 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     public void result(Bitmap img, DeformMat mat, int index, int lyr, int mutable) {
 
              if(lyr== LYR_IMG){
-//                 LYTE("LYR_IMG");
                  RepDraw.get().mutableImg(img,mat.getRepository(),mutable,index==RepDraw.SINGLE);
              }
              if(lyr==RepDraw.LYR_LYR){
-//                 LYTE("LYR_LYR");
                  RepDraw.get().mutableLyr(img,mat.getRepository(),mutable,index==RepDraw.SINGLE);
              }
 
@@ -128,41 +126,55 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     /*для отреза ключевым методом является doneCut()*/
     void singleLay(Operation operation, MotionEvent event){
         operation.resultMutable(this).view(RepDraw.get().getView());
+        boolean touch = true;
         if(event.getAction()==MotionEvent.ACTION_DOWN){
             if(!operation.getEvent().equals(Operation.Event.LAYERS_CUT)){
-                int lyr = RepDraw.get().isLyr()?RepDraw.LYR_LYR: LYR_IMG;
-                operation.index(SINGLE);
-                readySingle(operation,lyr);
+                touch = TouchBitmap
+                        .ifIGotBit(getOverMat()
+                                .muteDeformLoc(DeformMat
+                                        .Coordinates.DISPLAY_ROTATE_DEFORM),new PointF(event.getX(),event.getY()));
+               if(touch) {
+                   int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
+                   operation.index(SINGLE);
+                   readySingle(operation, lyr);
+               }
             }
         }
-        operation.point(event);
+        if(touch)operation.point(event);
     }
 
 
 
     void groupLay(Operation operation,MotionEvent event){
           operation.resultMutable(this).view(RepDraw.get().getView());
+          boolean touch = true;
           if(operation.getEvent().equals(Operation.Event.LAYERS_CUT)){
               singleLay(operation,event);
           } else {
               if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                  int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
-                  if (index == LYR_IMG){
-                      operation.index(SINGLE);
-                      singleLay(operation, event);
-                      return;
-                  } else {
-                      if(belongingOverlay()) {
-                          operation.index(ALL);
-                          readyAll(operation);
-                      } else {
+                  touch = TouchBitmap
+                          .ifIGotBit(getOverMat()
+                                  .muteDeformLoc(DeformMat
+                                          .Coordinates.DISPLAY_ROTATE_DEFORM), new PointF(event.getX(), event.getY()));
+                  if (touch) {
+                      int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
+                      if (index == LYR_IMG) {
                           operation.index(SINGLE);
-                          singleLay(operation,event);
+                          singleLay(operation, event);
                           return;
+                      } else {
+                          if (belongingOverlay()) {
+                              operation.index(ALL);
+                              readyAll(operation);
+                          } else {
+                              operation.index(SINGLE);
+                              singleLay(operation, event);
+                              return;
+                          }
                       }
                   }
               }
-              operation.point(event);
+              if (touch)operation.point(event);
           }
     }
 
@@ -251,6 +263,10 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
         return false;
     }
 
+    private DeformMat getOverMat(){
+        if(RepDraw.get().isLyr())return getLMat();
+        else return getIMat();
+    }
     private DeformMat getLMat(){
         return RepDraw.get().getLMat();
     }
