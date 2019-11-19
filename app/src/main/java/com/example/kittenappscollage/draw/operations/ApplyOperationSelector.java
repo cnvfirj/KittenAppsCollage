@@ -15,6 +15,8 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
     private static ApplyOperationSelector single;
 
+    private boolean down = false;
+
     public static ApplyOperationSelector get(){
         if(single==null){
             synchronized (ApplyOperationSelector.class){
@@ -24,6 +26,10 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
         return single;
     }
 
+    public ApplyOperationSelector registerList(Operation operation) {
+        operation.resultMutable(this);
+        return this;
+    }
 
     @Override
     public void result(Bitmap img, DeformMat mat,int index) {
@@ -55,34 +61,37 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
 
     void singleMat(Operation operation, MotionEvent event){
-        operation.resultMutable(this).view(RepDraw.get().getView());
+
         PointF p = new PointF(event.getX(),event.getY());
         int action = event.getAction();
         boolean touch = false;
+
         if(RepDraw.get().isImg()){
+            if(action==MotionEvent.ACTION_UP){
+                touch = true;
+            }
             if(belongingRegion(RepDraw.get().getIMat(),p)){
-                if(action==MotionEvent.ACTION_UP){
-                    touch = true;
-                }
+
                 if(action==MotionEvent.ACTION_DOWN){
                     operation.mat(RepDraw.get().getIMat());
+                    down = true;
                 }
             }
 
             if(RepDraw.get().isLyr()){
                 if(belongingRegion(RepDraw.get().getLMat(),p)){
-                    if(action==MotionEvent.ACTION_UP){
-                        touch = true;
-                    }
+
                     if(action==MotionEvent.ACTION_DOWN){
                         operation.mat(RepDraw.get().getLMat());
+                        down = true;
                     }
                 }
             }
 
             operation.point(event).apply();
-            if(touch){
+            if(touch&&down){
                 RepDraw.get().mutableMatrix();
+                down = false;
             }
 
 
@@ -90,7 +99,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     }
 
     void groupMat(Operation operation, MotionEvent event){
-        operation.resultMutable(this).view(RepDraw.get().getView());
+
         PointF p = new PointF(event.getX(),event.getY());
         int action = event.getAction();
         if(RepDraw.get().isImg()){
@@ -125,7 +134,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
     /*для отреза ключевым методом является doneCut()*/
     void singleLay(Operation operation, MotionEvent event){
-        operation.resultMutable(this).view(RepDraw.get().getView());
+
         boolean touch = true;
         if(event.getAction()==MotionEvent.ACTION_DOWN){
             if(!operation.getEvent().equals(Operation.Event.LAYERS_CUT)){
@@ -145,8 +154,10 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
 
 
+
+
     void groupLay(Operation operation,MotionEvent event){
-          operation.resultMutable(this).view(RepDraw.get().getView());
+
           boolean touch = true;
           if(operation.getEvent().equals(Operation.Event.LAYERS_CUT)){
               singleLay(operation,event);

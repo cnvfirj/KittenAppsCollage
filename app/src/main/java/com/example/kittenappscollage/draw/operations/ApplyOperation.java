@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
+
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ApplyOperation {
@@ -20,6 +22,7 @@ public class ApplyOperation {
     public ApplyOperation event(Operation.Event event){
         aCommandEvent = event;
         aOperation = assignOperation(event);
+        ApplyOperationSelector.get().registerList(aOperation);
         return this;
     }
 

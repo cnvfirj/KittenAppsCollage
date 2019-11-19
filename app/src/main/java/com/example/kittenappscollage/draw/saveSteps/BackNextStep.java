@@ -60,6 +60,7 @@ public class BackNextStep extends StorySteps{
                 inBackToNext();
             }
         }
+//        else LYTE("back non >1");
         if(listenSteps!=null){
             listenSteps.back(statesBack.size()>1,statesBack.size());
             listenSteps.next(!statesNext.empty(),statesNext.size());
@@ -112,7 +113,6 @@ public class BackNextStep extends StorySteps{
             if(!state.getNameLyr().equals(PR_NON)){
                 loadStep.loadAll(state);
             }else {
-
                 loadStep.loadImg(state);
             }
         }
