@@ -86,13 +86,11 @@ public class SaveStep {
 
     @SuppressLint("CheckResult")
     private void saveState(){
-        /*для сохранения только мптричных изменений*/
-        state.setReadiness(true);
+        state.setReadiness(true);/*для сохранения только мптричных изменений*/
         if(testFolder(new File(state.getPathFoldData()))) {
             requestSaveState()
                     .subscribe(aBoolean -> {
                             state.setReadiness(aBoolean);
-
                     });
         }else state.setReadiness(false);
 
@@ -100,7 +98,6 @@ public class SaveStep {
 
     @SuppressLint("CheckResult")
     private void saveImage(Bitmap bitmap, String path){
-
         if(testFolder(new File(state.getPathFoldImg()))) {
             requestSaveBitm(path, bitmap)
                     .subscribe(aBoolean -> {
@@ -112,7 +109,7 @@ public class SaveStep {
                             }
                         }/*проверить память устройства*/
                     });
-        }state.setReadiness(false);
+        }else state.setReadiness(false);
 
     }
 
