@@ -24,6 +24,8 @@ public class BackNextStep extends StorySteps{
     }
 
     public BackNextStep setOldState(State state){
+//        LYTE("old "+state.isReadiness());
+//        state.setReadiness(true);
         statesBack.push(state);
         return this;
     }
@@ -33,7 +35,6 @@ public class BackNextStep extends StorySteps{
             if(mut==MUT_MATRIX)loadMatrix(state);
             else if(mut==MUT_CONTENT||mut==MUT_SCALAR){
                 loadAll(state);
-
             }
         }else if(target==TARGET_IMG){
             if(mut==MUT_MATRIX)loadMatrix(state);
@@ -60,7 +61,6 @@ public class BackNextStep extends StorySteps{
                 inBackToNext();
             }
         }
-//        else LYTE("back non >1");
         if(listenSteps!=null){
             listenSteps.back(statesBack.size()>1,statesBack.size());
             listenSteps.next(!statesNext.empty(),statesNext.size());
@@ -84,7 +84,6 @@ public class BackNextStep extends StorySteps{
     }
 
     private void loadMatrix(State state){
-
          RepDraw.get().stepLoadMatr(state.getRepImg(),state.getRepLyr());
 
     }

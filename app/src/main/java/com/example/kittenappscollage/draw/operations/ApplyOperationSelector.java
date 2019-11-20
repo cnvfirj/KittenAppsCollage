@@ -134,22 +134,33 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
     /*для отреза ключевым методом является doneCut()*/
     void singleLay(Operation operation, MotionEvent event){
-
-        boolean touch = true;
-        if(event.getAction()==MotionEvent.ACTION_DOWN){
-            if(!operation.getEvent().equals(Operation.Event.LAYERS_CUT)){
+        if(operation.getEvent().equals(Operation.Event.LAYERS_CUT))operation.point(event);
+        else if(operation.getEvent().equals(Operation.Event.LAYERS_FILL_TO_COLOR)||
+                operation.getEvent().equals(Operation.Event.LAYERS_FILL_TO_BORDER)){
+            boolean touch = true;
+            if(event.getAction()==MotionEvent.ACTION_DOWN){
                 touch = TouchBitmap
                         .ifIGotBit(getOverMat()
                                 .muteDeformLoc(DeformMat
                                         .Coordinates.DISPLAY_ROTATE_DEFORM),new PointF(event.getX(),event.getY()));
-               if(touch) {
-                   int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
-                   operation.index(SINGLE);
-                   readySingle(operation, lyr);
-               }
+                if(touch) {
+                    int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
+                    operation.index(SINGLE);
+                    readySingle(operation, lyr);
+                }
             }
+            if(touch)operation.point(event);
         }
-        if(touch)operation.point(event);
+        else if (operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_1)||
+                operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_2)||
+                operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_3)){
+            if(event.getAction()==MotionEvent.ACTION_DOWN){
+                int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
+                operation.index(SINGLE);
+                readySingle(operation, lyr);
+            }
+            operation.point(event);
+        }
     }
 
 
@@ -157,36 +168,41 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
 
     void groupLay(Operation operation,MotionEvent event){
+        if(operation.getEvent().equals(Operation.Event.LAYERS_CUT))operation.point(event);
+        else if(operation.getEvent().equals(Operation.Event.LAYERS_FILL_TO_COLOR)||
+                operation.getEvent().equals(Operation.Event.LAYERS_FILL_TO_BORDER)){
+            boolean touch = true;
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                touch = TouchBitmap
+                        .ifIGotBit(getOverMat()
+                                .muteDeformLoc(DeformMat
+                                        .Coordinates.DISPLAY_ROTATE_DEFORM), new PointF(event.getX(), event.getY()));
+                if (touch) {
+                    int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
+                    if (index == LYR_IMG) {
+                        operation.index(SINGLE);
+                        singleLay(operation, event);
+                        return;
+                    } else {
+                        if (belongingOverlay()) {
+                            operation.index(ALL);
+                            readyAll(operation);
+                        } else {
+                            operation.index(SINGLE);
+                            singleLay(operation, event);
+                            return;
+                        }
+                    }
+                }
+            }
+            if (touch)operation.point(event);
+        }
+        else if (operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_1)||
+                operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_2)||
+                operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_3)){
 
-          boolean touch = true;
-          if(operation.getEvent().equals(Operation.Event.LAYERS_CUT)){
-              singleLay(operation,event);
-          } else {
-              if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                  touch = TouchBitmap
-                          .ifIGotBit(getOverMat()
-                                  .muteDeformLoc(DeformMat
-                                          .Coordinates.DISPLAY_ROTATE_DEFORM), new PointF(event.getX(), event.getY()));
-                  if (touch) {
-                      int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
-                      if (index == LYR_IMG) {
-                          operation.index(SINGLE);
-                          singleLay(operation, event);
-                          return;
-                      } else {
-                          if (belongingOverlay()) {
-                              operation.index(ALL);
-                              readyAll(operation);
-                          } else {
-                              operation.index(SINGLE);
-                              singleLay(operation, event);
-                              return;
-                          }
-                      }
-                  }
-              }
-              if (touch)operation.point(event);
-          }
+        }
+
     }
 
     void singleCanv(Operation operation, MotionEvent event){

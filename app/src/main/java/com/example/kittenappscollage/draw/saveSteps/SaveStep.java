@@ -86,17 +86,15 @@ public class SaveStep {
 
     @SuppressLint("CheckResult")
     private void saveState(){
+        /*для сохранения только мптричных изменений*/
+        state.setReadiness(true);
         if(testFolder(new File(state.getPathFoldData()))) {
             requestSaveState()
                     .subscribe(aBoolean -> {
-                        if (aBoolean) {
-                            stepSaved++;
-                            if (stepSaved == 3) {
-                                state.setReadiness(aBoolean);
-                            }
-                        }
+                            state.setReadiness(aBoolean);
+
                     });
-        }
+        }else state.setReadiness(false);
 
     }
 
@@ -114,7 +112,7 @@ public class SaveStep {
                             }
                         }/*проверить память устройства*/
                     });
-        }
+        }state.setReadiness(false);
 
     }
 

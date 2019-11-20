@@ -50,7 +50,6 @@ public class StorySteps extends CommonSteps {
             addBack(state);
             save();
         }
-
     }
 
     private void saveLyr(State state){
@@ -85,7 +84,6 @@ public class StorySteps extends CommonSteps {
             addBack(state);
             save();
         }
-
     }
 
     private void startProject(State state){

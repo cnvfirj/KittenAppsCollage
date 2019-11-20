@@ -10,9 +10,6 @@ import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-
-
 public class LoadStep {
 
 

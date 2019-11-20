@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
          * программы возможны баги */
         RepDraw.get().clearRep();
         BackNextStep.get().clearStacks();
-        Intent intent = new Intent(App.getMain(), ClearCatch.class);
+        Intent intent = new Intent(this, ClearCatch.class);
         intent.putExtra(ClearCatch.KEY_FOLD, BackNextStep.get().getFoldData());
         App.getMain().startService(intent);
     }
