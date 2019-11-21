@@ -4,14 +4,10 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PointF;
-
 import com.example.mutablebitmap.DeformMat;
-
 import java.util.ArrayList;
 
 public class HelpElast {
-
-
 
         public static final int ZERO_VAL = -121;
 
@@ -99,7 +95,6 @@ public class HelpElast {
         }
 
         public HelpElast alpha(int alpha){
-
             hAlpha = alpha;
             return this;
         }
@@ -134,7 +129,6 @@ public class HelpElast {
         public HelpElast apply(){
             if(hCommand.equals(MutableBit.Command.ELAST_1)||hCommand.equals(MutableBit.Command.ELAST_2)||
                     hCommand.equals(MutableBit.Command.ELAST_3)){
-
                 elast();
             }else if (hCommand.equals(MutableBit.Command.ELAST_4)){
                 elastSpot();
@@ -165,11 +159,8 @@ public class HelpElast {
 
         private void setPixel(int []p, int alpha){
             final int index = p[1]*hWidth+p[0];
-            if(p[0]>=0&&p[0]<hWidth&&p[1]>=0&&p[1]<hHeight){
-                if(!hCheckPixel[index]) {
-                    hAllPixels[index] = alphaColor(hAllPixels[index], alpha);
-                    hCheckPixel[index]=true;
-                }
+            if(!hCheckPixel[index]&&p[0]>=0&&p[0]<hWidth&&p[1]>=0&&p[1]<hHeight){
+                implementElast1(index,alpha);
             }
         }
 
@@ -177,8 +168,21 @@ public class HelpElast {
         private void setGradPixel(int []p,int alpha){
             final int index = p[1]*hWidth+p[0];
             if(p[0]>=0&&p[0]<hWidth&&p[1]>=0&&p[1]<hHeight){
-                hAllPixels[index] = alphaColor(hAllPixels[index], alpha);
+                implementElast2(index,alpha);
             }
+        }
+
+        protected void implementElast1(int index,int alpha){
+            hAllPixels[index] = alphaColor(hAllPixels[index], alpha);
+            hCheckPixel[index]=true;
+        }
+
+        protected void implementElast2(int index,int alpha){
+            hAllPixels[index] = alphaColor(hAllPixels[index], alpha);
+        }
+
+        protected void implementElast3(int index,int alpha){
+
         }
 
 

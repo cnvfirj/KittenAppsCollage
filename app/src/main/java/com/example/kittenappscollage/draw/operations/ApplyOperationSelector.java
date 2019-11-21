@@ -3,10 +3,8 @@ package com.example.kittenappscollage.draw.operations;
 import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.view.MotionEvent;
-
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutablebitmap.DeformMat;
-
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.ALL;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_IMG;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.SINGLE;
@@ -200,7 +198,27 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
         else if (operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_1)||
                 operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_2)||
                 operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_3)){
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
+                int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
+
+                if (index == LYR_IMG) {
+                    operation.index(SINGLE);
+                    singleLay(operation, event);
+                    return;
+                } else {
+                    if (belongingOverlay()) {
+                        operation.index(ALL);
+                        readyAll(operation);
+                    } else {
+                        operation.index(SINGLE);
+                        singleLay(operation, event);
+                        return;
+                    }
+                }
+
+            }
+            operation.point(event);
         }
 
     }

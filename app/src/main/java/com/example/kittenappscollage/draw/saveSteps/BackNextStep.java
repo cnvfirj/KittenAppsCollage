@@ -24,8 +24,6 @@ public class BackNextStep extends StorySteps{
     }
 
     public BackNextStep setOldState(State state){
-//        LYTE("old "+state.isReadiness());
-//        state.setReadiness(true);
         statesBack.push(state);
         return this;
     }
@@ -40,13 +38,11 @@ public class BackNextStep extends StorySteps{
             if(mut==MUT_MATRIX)loadMatrix(state);
             else if(mut==MUT_CONTENT||mut==MUT_SCALAR){
                 loadImg(state);
-
             }
         }else if(target==TARGET_LYR){
             if(mut==MUT_MATRIX)loadMatrix(state);
             else if(mut==MUT_CONTENT||mut==MUT_SCALAR){
                 loadLyr(state);
-
             }
         }
     }

@@ -110,7 +110,6 @@ public class SaveStep {
                         }/*проверить память устройства*/
                     });
         }else state.setReadiness(false);
-
     }
 
     private Observable<Boolean> requestSaveState(){

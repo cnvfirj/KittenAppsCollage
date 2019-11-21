@@ -3,15 +3,12 @@ package com.example.kittenappscollage.draw.operations.bitmap;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.PointF;
-
-import com.example.kittenappscollage.draw.operations.TouchBitmap;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutablebitmap.DeformMat;
 
 public class MutableFill extends MutableCut {
 
     private HelpUnderFill mFill;
-
 
     public MutableFill() {
         mFill = new HelpUnderFill();
