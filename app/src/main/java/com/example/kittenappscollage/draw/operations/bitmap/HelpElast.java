@@ -51,6 +51,8 @@ public class HelpElast {
             hValuesAlpha = new ArrayList<>();
             hPointsCenter = new ArrayList<>();
             hPointsCircle = new ArrayList<>();
+            hRadius = 20;
+            hAlpha = 0;
         }
 
 
@@ -126,6 +128,11 @@ public class HelpElast {
             return this;
         }
 
+        public HelpElast fin(){
+            hOunStart = false;
+            hOunProcess = false;
+            return this;
+        }
         public HelpElast apply(){
             if(hCommand.equals(MutableBit.Command.ELAST_1)||hCommand.equals(MutableBit.Command.ELAST_2)||
                     hCommand.equals(MutableBit.Command.ELAST_3)){
@@ -159,8 +166,8 @@ public class HelpElast {
 
         private void setPixel(int []p, int alpha){
             final int index = p[1]*hWidth+p[0];
-            if(!hCheckPixel[index]&&p[0]>=0&&p[0]<hWidth&&p[1]>=0&&p[1]<hHeight){
-                implementElast1(index,alpha);
+            if(p[0]>=0&&p[0]<hWidth&&p[1]>=0&&p[1]<hHeight){
+                if(!hCheckPixel[index])implementElast1(index,alpha);
             }
         }
 

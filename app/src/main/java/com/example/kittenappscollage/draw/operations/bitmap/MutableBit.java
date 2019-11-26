@@ -90,5 +90,9 @@ public abstract class MutableBit extends TouchPoints {
 
     public abstract void apply();
 
+    protected boolean testBitmap(Bitmap b){
+        if(b!=null||!b.isRecycled())return true;
+        return false;
+    }
 
 }

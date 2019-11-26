@@ -28,11 +28,6 @@ public class TouchBitmap {
         return vectorCheck(points,point);
     }
 
-
-
-
-
-
     private static boolean vectorCheck(PointF[]points, PointF p){
         Pair<PointF, PointF> minMax = minMax(points);
         if(p.x>minMax.first.x&&p.y>minMax.first.y&&p.x<minMax.second.x&&p.y<minMax.second.y){
@@ -51,6 +46,31 @@ public class TouchBitmap {
 
     private static float vecProductVec(PointF p1, PointF p2, PointF p){
         return (p2.x - p1.x)*(p.y - p1.y) - (p.x - p1.x)*(p2.y - p1.y);
+    }
+
+    public static boolean ifIGotBitBord(PointF[]points, PointF point, float r){
+           return vectorBitBordCheck(points,point,r);
+    }
+
+    private static boolean vectorBitBordCheck(PointF[]points, PointF p, float r){
+        Pair<PointF, PointF> minMax = minMax(points);
+        if(p.x>minMax.first.x&&p.y>minMax.first.y&&p.x<minMax.second.x&&p.y<minMax.second.y){
+            float vec1 = vecBitBordProductVec(points[0],points[1],p,r);
+            float vec2 = vecBitBordProductVec(points[1],points[2],p,r);
+            float vec3 = vecBitBordProductVec(points[2],points[3],p,r);
+            float vec4 = vecBitBordProductVec(points[3],points[0],p,r);
+
+            if(vec1>=0&&vec2>=0&&vec3>=0&&vec4>=0){
+                return true;
+            }else if(vec1<=0&&vec2<=0&&vec3<=0&&vec4<=0){
+                return true;
+            }else return false;
+        }return false;
+    }
+
+
+    private static float vecBitBordProductVec(PointF p1, PointF p2, PointF p, float r){
+        return ((p2.x+r) - (p1.x+r))*((p.y+r) - (p1.y+r)) - ((p.x+r) - (p1.x+r))*((p2.y+r) - (p1.y+r));
     }
 
 

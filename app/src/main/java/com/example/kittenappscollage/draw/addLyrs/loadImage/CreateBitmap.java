@@ -36,7 +36,6 @@ public class CreateBitmap {
         }).compose(new ThreadTransformers.Processor<>());
     }
 
-
     public static Observable createRequestInFile(String path){
         return Observable.create(e -> {
             try {
@@ -51,7 +50,7 @@ public class CreateBitmap {
                 e.onNext(createNew(new Point(1,1)));
             }
             e.onComplete();
-        }).compose(new ThreadTransformers.Processor<>());
+        }).compose(new ThreadTransformers.InputOutput<>());
     }
 
     public static Observable createBitmapRequestInNet(URL url){

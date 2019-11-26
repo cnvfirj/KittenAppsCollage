@@ -128,9 +128,12 @@ public class MutableCut extends MutableBit {
 
     @Override
     public MutableBit point(MotionEvent event) {
-        if(event.getAction()== MotionEvent.ACTION_DOWN)start(new PointF(event.getX(),event.getY()));
-        else if(event.getAction()==MotionEvent.ACTION_MOVE)move(new PointF(event.getX(),event.getY()));
-        else if(event.getAction()==MotionEvent.ACTION_UP)fin(new PointF(event.getX(),event.getY()));
+        int action = event.getActionMasked();
+        int index = event.getActionIndex();
+        int id = event.getPointerId(index);
+        if(action== MotionEvent.ACTION_DOWN)start(new PointF(event.getX(),event.getY()));
+        else if(action==MotionEvent.ACTION_MOVE&&id==0)move(new PointF(event.getX(),event.getY()));
+        else if(action==MotionEvent.ACTION_UP)fin(new PointF(event.getX(),event.getY()));
 
         return super.point(event);
     }

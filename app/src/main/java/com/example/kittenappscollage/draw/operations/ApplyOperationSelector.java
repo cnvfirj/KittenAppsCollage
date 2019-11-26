@@ -133,42 +133,76 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     /*для отреза ключевым методом является doneCut()*/
     void singleLay(Operation operation, MotionEvent event){
         if(operation.getEvent().equals(Operation.Event.LAYERS_CUT))operation.point(event);
-        else if(operation.getEvent().equals(Operation.Event.LAYERS_FILL_TO_COLOR)||
-                operation.getEvent().equals(Operation.Event.LAYERS_FILL_TO_BORDER)){
-            boolean touch = true;
+        else {
+//              if(!operation.isReady()){
+//                  if(isFill(operation)){
+//                      if(event.getAction()==MotionEvent.ACTION_DOWN) {
+//                          operation.ready(TouchBitmap
+//                                  .ifIGotBit(
+//                                          getOverMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),
+//                                          new PointF(event.getX(), event.getY())
+//                                  ));
+//                                    }
+//                  }else if(isElast(operation)){
+//                      if(event.getAction()==MotionEvent.ACTION_DOWN||event.getAction()==MotionEvent.ACTION_MOVE){
+//                          operation.ready(TouchBitmap
+//                                    .ifIGotBitBord(getOverMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),
+//                                            new PointF(event.getX(), event.getY()),20));
+//                                      }
+//                  }
+//                  if(operation.isReady()) {
+//                      int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
+//                      operation.index(SINGLE);
+//                      readySingle(operation, lyr);
+//                  }
+//              }
+//
+//              if(operation.isReady())operation.point(event);
+
+
             if(event.getAction()==MotionEvent.ACTION_DOWN){
-                touch = TouchBitmap
-                        .ifIGotBit(getOverMat()
-                                .muteDeformLoc(DeformMat
-                                        .Coordinates.DISPLAY_ROTATE_DEFORM),new PointF(event.getX(),event.getY()));
-                if(touch) {
+                if(isFill(operation)) {
+                    operation.ready(TouchBitmap
+                            .ifIGotBit(
+                                    getOverMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),
+                                    new PointF(event.getX(), event.getY())
+                            ));
+                }else if(isElast(operation)){
+                    operation.ready(TouchBitmap
+                            .ifIGotBitBord(
+                                    getOverMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),
+                                    new PointF(event.getX(), event.getY()),20
+                            ));
+                }
+                if(operation.isReady()) {
                     int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
                     operation.index(SINGLE);
                     readySingle(operation, lyr);
                 }
+            }else if(event.getAction()==MotionEvent.ACTION_DOWN||event.getAction()==MotionEvent.ACTION_MOVE&&!operation.isReady()){
+                if(isElast(operation)){
+                    if(isElast(operation)){
+                        operation.ready(TouchBitmap
+                                .ifIGotBitBord(
+                                        getOverMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),
+                                        new PointF(event.getX(), event.getY()),20
+                                ));
+                    }
+                    if(operation.isReady()) {
+                        int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
+                        operation.index(SINGLE);
+                        readySingle(operation, lyr);
+                    }
+                }
             }
-            if(touch)operation.point(event);
-        }
-        else if (operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_1)||
-                operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_2)||
-                operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_3)){
-            if(event.getAction()==MotionEvent.ACTION_DOWN){
-                int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
-                operation.index(SINGLE);
-                readySingle(operation, lyr);
-            }
-            operation.point(event);
+            if(operation.isReady())operation.point(event);
+            if(event.getAction()==MotionEvent.ACTION_UP)operation.ready(false);
         }
     }
 
-
-
-
-
     void groupLay(Operation operation,MotionEvent event){
-        if(operation.getEvent().equals(Operation.Event.LAYERS_CUT))operation.point(event);
-        else if(operation.getEvent().equals(Operation.Event.LAYERS_FILL_TO_COLOR)||
-                operation.getEvent().equals(Operation.Event.LAYERS_FILL_TO_BORDER)){
+        if(isCut(operation))operation.point(event);
+        else if(isFill(operation)){
             boolean touch = true;
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 touch = TouchBitmap
@@ -195,9 +229,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
             }
             if (touch)operation.point(event);
         }
-        else if (operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_1)||
-                operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_2)||
-                operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_3)){
+        else if (isElast(operation)){
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
 
                 int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
@@ -208,8 +240,12 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
                     return;
                 } else {
                     if (belongingOverlay()) {
-                        operation.index(ALL);
-                        readyAll(operation);
+//                        operation.index(ALL);
+//                        readyAll(operation);
+                        operation.index(SINGLE);
+                        singleLay(operation, event);
+                        return;
+
                     } else {
                         operation.index(SINGLE);
                         singleLay(operation, event);
@@ -229,6 +265,21 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
     void groupCanv(Operation operation, MotionEvent event){
 
+    }
+
+    private boolean isCut(Operation operation){
+        return operation.getEvent().equals(Operation.Event.LAYERS_CUT);
+    }
+
+    private boolean isFill(Operation operation){
+        return operation.getEvent().equals(Operation.Event.LAYERS_FILL_TO_COLOR)||
+                operation.getEvent().equals(Operation.Event.LAYERS_FILL_TO_BORDER);
+    }
+
+    private boolean isElast(Operation operation){
+        return operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_1)||
+                operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_2)||
+                operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_3);
     }
 
     void doneCut(Operation operation, boolean isGroup){

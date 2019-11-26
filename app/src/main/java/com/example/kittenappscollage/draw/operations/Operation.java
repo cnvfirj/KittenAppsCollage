@@ -65,8 +65,16 @@ public abstract class Operation {
 
     protected Event event;
 
+    private boolean ready;
 
 
+    public Operation ready(boolean ready){
+        this.ready = ready;
+        return this;
+    }
+    public boolean isReady(){
+        return ready;
+    }
     public Operation mat(DeformMat mat){
         return this;
     }
