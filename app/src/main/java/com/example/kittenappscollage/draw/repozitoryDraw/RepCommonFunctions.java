@@ -8,7 +8,7 @@ import com.example.kittenappscollage.draw.operations.bitmap.CoercionBitmap;
 import com.example.kittenappscollage.draw.operations.bitmap.DrawBitmap;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
 
-public class RepCommonFunctions extends Repozitory {
+public class RepCommonFunctions extends RepParams {
 
     public void union(){
         if(isLyr()){

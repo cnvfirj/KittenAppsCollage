@@ -10,6 +10,9 @@ import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 
+import static com.example.kittenappscollage.draw.saveSteps.Steps.PR_NON;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class LoadStep {
 
 
@@ -32,9 +35,15 @@ public class LoadStep {
         requestLoadImg(state.getPathImg()).subscribe(bitmap->{
             RepDraw.get().stepLoadImg(bitmap,state.getRepImg(),false);
         });
-        requestLoadImg(state.getPathLyr()).subscribe(bitmap->{
-            RepDraw.get().stepLoadLyr(bitmap,state.getRepLyr(),false);
-        });
+        if(state.getNameLyr().equals(PR_NON)){
+            RepDraw.get().stepLoadLyr(null,null,false);
+//            LYTE("null ");
+        }else {
+//            LYTE("no null "+state.getPathLyr());
+            requestLoadImg(state.getPathLyr()).subscribe(bitmap -> {
+                RepDraw.get().stepLoadLyr(bitmap, state.getRepLyr(), false);
+            });
+        }
     }
 
     private Observable<Bitmap> requestLoadImg(final String path){

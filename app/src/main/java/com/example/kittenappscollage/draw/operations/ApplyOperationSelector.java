@@ -8,6 +8,7 @@ import com.example.mutablebitmap.DeformMat;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.ALL;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_IMG;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.SINGLE;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ApplyOperationSelector implements Operation.ResultMutable {
 
@@ -134,128 +135,125 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     void singleLay(Operation operation, MotionEvent event){
         if(operation.getEvent().equals(Operation.Event.LAYERS_CUT))operation.point(event);
         else {
-//              if(!operation.isReady()){
-//                  if(isFill(operation)){
-//                      if(event.getAction()==MotionEvent.ACTION_DOWN) {
-//                          operation.ready(TouchBitmap
-//                                  .ifIGotBit(
-//                                          getOverMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),
-//                                          new PointF(event.getX(), event.getY())
-//                                  ));
-//                                    }
-//                  }else if(isElast(operation)){
-//                      if(event.getAction()==MotionEvent.ACTION_DOWN||event.getAction()==MotionEvent.ACTION_MOVE){
-//                          operation.ready(TouchBitmap
-//                                    .ifIGotBitBord(getOverMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),
-//                                            new PointF(event.getX(), event.getY()),20));
-//                                      }
-//                  }
-//                  if(operation.isReady()) {
-//                      int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
-//                      operation.index(SINGLE);
-//                      readySingle(operation, lyr);
-//                  }
-//              }
-//
-//              if(operation.isReady())operation.point(event);
-
-
-            if(event.getAction()==MotionEvent.ACTION_DOWN){
-                if(isFill(operation)) {
-                    operation.ready(TouchBitmap
-                            .ifIGotBit(
-                                    getOverMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),
-                                    new PointF(event.getX(), event.getY())
-                            ));
-                }else if(isElast(operation)){
-                    operation.ready(TouchBitmap
-                            .ifIGotBitBord(
-                                    getOverMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),
-                                    new PointF(event.getX(), event.getY()),20
-                            ));
-                }
-                if(operation.isReady()) {
-                    int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
-                    operation.index(SINGLE);
-                    readySingle(operation, lyr);
-                }
-            }else if(event.getAction()==MotionEvent.ACTION_DOWN||event.getAction()==MotionEvent.ACTION_MOVE&&!operation.isReady()){
-                if(isElast(operation)){
-                    if(isElast(operation)){
-                        operation.ready(TouchBitmap
-                                .ifIGotBitBord(
-                                        getOverMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),
-                                        new PointF(event.getX(), event.getY()),20
-                                ));
-                    }
-                    if(operation.isReady()) {
-                        int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
-                        operation.index(SINGLE);
-                        readySingle(operation, lyr);
-                    }
-                }
-            }
+              if(!operation.isReady()){
+                  if(isFill(operation)){
+                      if(event.getAction()==MotionEvent.ACTION_DOWN) {
+                          operation.ready(TouchBitmap
+                                  .ifIGotBit(
+                                          getOverMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),
+                                          new PointF(event.getX(), event.getY())
+                                  ));
+                                    }
+                  }else if(isElast(operation)){
+                      if(event.getAction()==MotionEvent.ACTION_DOWN||event.getAction()==MotionEvent.ACTION_MOVE){
+                          operation.ready(TouchBitmap
+                                    .ifIGotBitBord(getOverMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),
+                                            new PointF(event.getX(), event.getY()),20));
+                                      }
+                  }
+                  if(operation.isReady()) {
+                      int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
+                      operation.index(SINGLE);
+                      readySingle(operation, lyr);
+                  }
+              }
             if(operation.isReady())operation.point(event);
+
             if(event.getAction()==MotionEvent.ACTION_UP)operation.ready(false);
         }
     }
 
     void groupLay(Operation operation,MotionEvent event){
         if(isCut(operation))operation.point(event);
-        else if(isFill(operation)){
-            boolean touch = true;
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                touch = TouchBitmap
-                        .ifIGotBit(getOverMat()
-                                .muteDeformLoc(DeformMat
-                                        .Coordinates.DISPLAY_ROTATE_DEFORM), new PointF(event.getX(), event.getY()));
-                if (touch) {
-                    int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
-                    if (index == LYR_IMG) {
-                        operation.index(SINGLE);
-                        singleLay(operation, event);
-                        return;
-                    } else {
-                        if (belongingOverlay()) {
-                            operation.index(ALL);
-                            readyAll(operation);
-                        } else {
+        else {
+            if(!operation.isReady()){
+                if(isFill(operation)){
+                    operation.ready(TouchBitmap
+                            .ifIGotBit(getOverMat()
+                                    .muteDeformLoc(DeformMat
+                                            .Coordinates.DISPLAY_ROTATE_DEFORM), new PointF(event.getX(), event.getY())));
+                    if(operation.isReady()){
+                        int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
+                        if (index == LYR_IMG) {
                             operation.index(SINGLE);
                             singleLay(operation, event);
                             return;
+                        } else {
+                            if (belongingOverlay()) {
+                                operation.index(ALL);
+                                readyAll(operation);
+                            } else {
+                                operation.index(SINGLE);
+                                singleLay(operation, event);
+                                return;
+                            }
                         }
                     }
-                }
-            }
-            if (touch)operation.point(event);
-        }
-        else if (isElast(operation)){
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
-                int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
-
-                if (index == LYR_IMG) {
-                    operation.index(SINGLE);
-                    singleLay(operation, event);
+                }else if(isElast(operation)){
+                    singleLay(operation,event);
                     return;
-                } else {
-                    if (belongingOverlay()) {
-//                        operation.index(ALL);
-//                        readyAll(operation);
-                        operation.index(SINGLE);
-                        singleLay(operation, event);
-                        return;
-
-                    } else {
-                        operation.index(SINGLE);
-                        singleLay(operation, event);
-                        return;
-                    }
                 }
-
             }
-            operation.point(event);
+            if(operation.isReady())operation.point(event);
+            if(event.getAction()==MotionEvent.ACTION_UP)operation.ready(false);
         }
+
+
+
+//        if(isFill(operation)){
+//            boolean touch = true;
+//            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                touch = TouchBitmap
+//                        .ifIGotBit(getOverMat()
+//                                .muteDeformLoc(DeformMat
+//                                        .Coordinates.DISPLAY_ROTATE_DEFORM), new PointF(event.getX(), event.getY()));
+//                if (touch) {
+//                    int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
+//                    if (index == LYR_IMG) {
+//                        operation.index(SINGLE);
+//                        singleLay(operation, event);
+//                        return;
+//                    } else {
+//                        if (belongingOverlay()) {
+//                            operation.index(ALL);
+//                            readyAll(operation);
+//                        } else {
+//                            operation.index(SINGLE);
+//                            singleLay(operation, event);
+//                            return;
+//                        }
+//                    }
+//                }
+//            }
+//            if (touch)operation.point(event);
+//        }
+//        else if (isElast(operation)){
+//            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//
+//                int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
+//
+//                if (index == LYR_IMG) {
+//                    operation.index(SINGLE);
+//                    singleLay(operation, event);
+//                    return;
+//                } else {
+//                    if (belongingOverlay()) {
+////                        operation.index(ALL);
+////                        readyAll(operation);
+//                        operation.index(SINGLE);
+//                        singleLay(operation, event);
+//                        return;
+//
+//                    } else {
+//                        operation.index(SINGLE);
+//                        singleLay(operation, event);
+//                        return;
+//                    }
+//                }
+//
+//            }
+//            operation.point(event);
+//        }
 
     }
 

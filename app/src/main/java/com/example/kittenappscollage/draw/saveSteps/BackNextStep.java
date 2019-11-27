@@ -88,7 +88,6 @@ public class BackNextStep extends StorySteps{
         RepDraw.get().startSingleMutable();
        if(state.getNameImg().equals(PR_NON))RepDraw.get().stepLoadImg(null,null,true);
        else {
-
            loadStep.loadImg(state);
        }
     }
@@ -103,13 +102,12 @@ public class BackNextStep extends StorySteps{
 
     private void loadAll(State state){
         RepDraw.get().startAllMutable();
-
         if(!state.getNameImg().equals(PR_NON)){
-            if(!state.getNameLyr().equals(PR_NON)){
+//            if(!state.getNameLyr().equals(PR_NON)){
                 loadStep.loadAll(state);
-            }else {
-                loadStep.loadImg(state);
-            }
+//            }else {
+//                loadStep.loadImg(state);
+//            }
         }
     }
 

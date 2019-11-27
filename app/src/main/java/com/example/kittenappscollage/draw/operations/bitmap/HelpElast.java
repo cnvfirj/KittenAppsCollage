@@ -7,6 +7,8 @@ import android.graphics.PointF;
 import com.example.mutablebitmap.DeformMat;
 import java.util.ArrayList;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class HelpElast {
 
         public static final int ZERO_VAL = -121;
@@ -40,6 +42,8 @@ public class HelpElast {
 
         protected Bitmap hBitmap;
 
+        private boolean hConvert;
+
 
 
         public HelpElast() {
@@ -53,6 +57,7 @@ public class HelpElast {
             hPointsCircle = new ArrayList<>();
             hRadius = 20;
             hAlpha = 0;
+            hConvert = false;
         }
 
 
@@ -78,6 +83,7 @@ public class HelpElast {
             hBitmap.getPixels(hAllPixels,
                     0, hBitmap.getWidth(),
                     0, 0, hBitmap.getWidth() , hBitmap.getHeight() );
+            hConvert = true;
             return this;
         }
 
@@ -112,6 +118,8 @@ public class HelpElast {
             return this;
         }
 
+
+
         public HelpElast point(PointF point){
             hPoint = point;
             if(hOunProcess){
@@ -131,6 +139,7 @@ public class HelpElast {
         public HelpElast fin(){
             hOunStart = false;
             hOunProcess = false;
+            hConvert = false;
             return this;
         }
         public HelpElast apply(){
@@ -147,6 +156,10 @@ public class HelpElast {
             hCheckPixel = new boolean[1];
             hAllPixels = new int[1];
             return this;
+        }
+
+        public boolean isConvert(){
+            return hConvert;
         }
 
         public PointF getPoint() {
@@ -221,7 +234,6 @@ public class HelpElast {
             if(hOunProcess){
                 searchRect(hPointsCenter,hMat.getPointBitmap(hStartSegment),hMat.getPointBitmap(hFinSegment));
             }
-
             hBitmap.setPixels(hAllPixels,0, hBitmap.getWidth(), 0, 0,hBitmap.getWidth() , hBitmap.getHeight() );
         }
         /*searchPointsCirc(points,zero,isRight(vector(start,fin),vector(hMat.getPointBitmap(hOldPoint),start)));*/

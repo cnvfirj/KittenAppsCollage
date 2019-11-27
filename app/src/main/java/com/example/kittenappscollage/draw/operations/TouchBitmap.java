@@ -5,6 +5,8 @@ import android.util.Pair;
 
 import java.util.Arrays;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class TouchBitmap {
 
 
@@ -53,13 +55,12 @@ public class TouchBitmap {
     }
 
     private static boolean vectorBitBordCheck(PointF[]points, PointF p, float r){
-        Pair<PointF, PointF> minMax = minMax(points);
+        Pair<PointF, PointF> minMax = minMaxBitBord(points,r);
         if(p.x>minMax.first.x&&p.y>minMax.first.y&&p.x<minMax.second.x&&p.y<minMax.second.y){
-            float vec1 = vecBitBordProductVec(points[0],points[1],p,r);
-            float vec2 = vecBitBordProductVec(points[1],points[2],p,r);
-            float vec3 = vecBitBordProductVec(points[2],points[3],p,r);
-            float vec4 = vecBitBordProductVec(points[3],points[0],p,r);
-
+            float vec1 = vecBitBordProductVec(points[0],points[1],p,r,1);
+            float vec2 = vecBitBordProductVec(points[1],points[2],p,r,2);
+            float vec3 = vecBitBordProductVec(points[2],points[3],p,r,3);
+            float vec4 = vecBitBordProductVec(points[3],points[0],p,r,4);
             if(vec1>=0&&vec2>=0&&vec3>=0&&vec4>=0){
                 return true;
             }else if(vec1<=0&&vec2<=0&&vec3<=0&&vec4<=0){
@@ -69,8 +70,22 @@ public class TouchBitmap {
     }
 
 
-    private static float vecBitBordProductVec(PointF p1, PointF p2, PointF p, float r){
-        return ((p2.x+r) - (p1.x+r))*((p.y+r) - (p1.y+r)) - ((p.x+r) - (p1.x+r))*((p2.y+r) - (p1.y+r));
+    private static float vecBitBordProductVec(PointF p1, PointF p2, PointF p, float r,int index ){
+        float x1 = p1.x;
+        float y1 = p1.y;
+        float x2 = p2.x;
+        float y2 = p2.y;
+
+        if(index==1){
+            x1-=r;y1-=r;x2+=r;y2-=r;
+        }else if(index==2){
+            x1+=r;y1-=r;x2+=r;y2+=r;
+        }else if(index==3){
+            x1+=r;y1+=r;x2-=r;y2+=r;
+        } else if(index==4){
+            x1-=r;y1+=r;x2-=r;y2-=r;
+        }
+        return (x2 - x1)*(p.y - y1) - (p.x - x1)*(y2 - y1);
     }
 
 
@@ -80,8 +95,34 @@ public class TouchBitmap {
         float[]arrX = new float[4];
         float[]arrY = new float[4];
         for (int i=0;i<ver.length;i++){
+
             arrX[i] = ver[i].x;
             arrY[i] = ver[i].y;
+        }
+        Arrays.sort(arrX);
+        Arrays.sort(arrY);
+
+        return new Pair<>(new PointF(arrX[0],arrY[0]),new PointF(arrX[3],arrY[3]));
+    }
+
+    private static Pair<PointF, PointF> minMaxBitBord(PointF[]ver,float r){
+        float[]arrX = new float[4];
+        float[]arrY = new float[4];
+        for (int i=0;i<ver.length;i++){
+            float x1 = ver[i].x;
+            float y1 = ver[i].y;
+
+            if(i==0){
+                x1-=r;y1-=r;
+            }else if(i==1){
+                x1+=r;y1-=r;
+            }else if(i==2){
+                x1+=r;y1+=r;
+            } else if(i==3){
+                x1-=r;y1+=r;
+            }
+            arrX[i] = x1;
+            arrY[i] = y1;
         }
         Arrays.sort(arrX);
         Arrays.sort(arrY);

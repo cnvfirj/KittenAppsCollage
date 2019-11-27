@@ -3,6 +3,7 @@ package com.example.kittenappscollage.draw.operations.bitmap;
 import android.graphics.Bitmap;
 import android.graphics.PointF;
 
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutablebitmap.DeformMat;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
@@ -42,6 +43,7 @@ public class MutableElast extends MutableFill {
     public MutableBit move(PointF move) {
         if(mCommand.equals(Command.ELAST_1)||mCommand.equals(Command.ELAST_2)||
                 mCommand.equals(Command.ELAST_3)||mCommand.equals(Command.ELAST_4)){
+            if(!mElast.isConvert())mElast.convert().resetOun();
             mElast.point(move).apply();
             return this;
         }else return super.move(move);
@@ -52,6 +54,7 @@ public class MutableElast extends MutableFill {
         if(mCommand.equals(Command.ELAST_1)||mCommand.equals(Command.ELAST_2)||
                 mCommand.equals(Command.ELAST_3)||mCommand.equals(Command.ELAST_4)){
             mElast.point(fin).apply().fin();
+            if(mListener!=null)mListener.result(mBitmap,mMat,mIndex, mLyr, RepDraw.MUTABLE_SIZE);
             return this;
         }else return super.fin(fin);
     }
