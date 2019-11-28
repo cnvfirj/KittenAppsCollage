@@ -7,18 +7,14 @@
     <com.madrapps.pikolo.HSLColorPicker
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-
         app:lightness_arc_width="10dp"
         app:lightness_radius_offset="40dp"
         app:lightness_indicator_stroke_width="1dp"
-
         app:saturation_arc_width="10dp"
         app:saturation_radius_offset="40dp"
         app:saturation_indicator_stroke_width="1dp"
-
         app:arc_width="10dp"
         app:indicator_stroke_width="1dp"
-
         android:id="@+id/color_pick"
         android:layout_gravity="end|top"/>
 

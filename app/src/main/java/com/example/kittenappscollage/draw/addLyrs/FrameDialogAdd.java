@@ -69,7 +69,6 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
     public void onResume() {
         super.onResume();
         Window window = getDialog().getWindow();
-
         Rect rect = new Rect();
         getActivity().getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
         window.setLayout((int) (rect.right*0.9), (int)(rect.bottom*0.7));

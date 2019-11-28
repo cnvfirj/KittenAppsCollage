@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.kittenappscollage.view.CustomFon
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/prop_fon"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal">-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.example.dynamikseekbar.DynamicSeekBar
+                style="@style/common_buttons"
+                android:layout_height="230dp"
+                app:orientation="vertical"
+                app:visible_text="true"
+                app:text_size="15"
+                app:max_value="255"
+                app:visible_buttons="true"
+                app:color_mark="@color/colorPrimary"
+                app:revers_text="true"
+                app:drw_b2="@drawable/ic_add"
+                app:drw_b1="@drawable/ic_remove"
+                app:color_way="@color/colorAccent"
+                android:id="@+id/prop_paint_alpha"
+                android:layout_alignParentStart="true"/>
+
+            <include layout="@layout/include_color_pick_dialog_prop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_save"
+                android:layout_alignStart="@id/prop_paint_alpha"
+                android:layout_alignEnd="@id/prop_paint_width"/>
+
+            <com.example.dynamikseekbar.DynamicSeekBar
+                style="@style/common_buttons"
+                android:layout_height="230dp"
+                app:orientation="vertical"
+                app:visible_text="true"
+                app:text_size="15"
+                app:min_value="1"
+                app:max_value="50"
+                app:visible_buttons="true"
+                app:color_mark="@color/colorPrimary"
+                app:revers_text="true"
+                app:drw_b2="@drawable/ic_add"
+                app:drw_b1="@drawable/ic_remove"
+                app:color_way="@color/colorAccent"
+                android:id="@+id/prop_paint_width"
+                android:layout_alignParentEnd="true"/>
+
+<!--        </LinearLayout>-->
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        style="@style/common_buttons"
+        android:id="@+id/prop_done"
+        android:background="@drawable/background_buttons_add_lyr"
+        android:src="@drawable/ic_done"
+        android:layout_gravity="start|bottom"/>
+
+    <ImageView
+        style="@style/common_buttons"
+        android:id="@+id/prop_back"
+        android:background="@drawable/background_buttons_add_lyr"
+        android:src="@drawable/ic_close"
+        android:layout_gravity="end|bottom"/>
+
+</FrameLayout>

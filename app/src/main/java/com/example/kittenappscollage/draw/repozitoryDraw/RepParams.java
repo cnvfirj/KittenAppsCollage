@@ -4,7 +4,7 @@ import android.graphics.Color;
 
 public class RepParams extends Repozitory {
 
-    private float rWidthTool = 20;
+    private float rWidthTool = 50;
 
     private int rColorPaint = Color.BLACK;
 
@@ -12,36 +12,47 @@ public class RepParams extends Repozitory {
 
     private String rText = "Enter TEXT";
 
-
-    public float getWidthTool() {
+    public void allParams(float width, int color, int alpha, String text){
+        setWidth(width);
+        setColor(color);
+        setAlpha(alpha);
+        setText(text);
+    }
+    public float getWidth() {
         return rWidthTool;
     }
 
-    public void setWidthTool(float rWidthTool) {
-        this.rWidthTool = rWidthTool;
+    public void setWidth(float width) {
+        if(width>0)rWidthTool = width;
+        else rWidthTool = 1;
+        if(width<=50)rWidthTool = width;
+        else rWidthTool = 50;
     }
 
-    public int getColorPaint() {
+    public int getColor() {
         return rColorPaint;
     }
 
-    public void setColorPaint(int rColorPaint) {
-        this.rColorPaint = rColorPaint;
+    public void setColor(int color) {
+        this.rColorPaint = color;
     }
 
-    public int getAlphaErase() {
+    public int getAlpha() {
         return rAlphaErase;
     }
 
-    public void setAlphaErase(int rAlphaErase) {
-        this.rAlphaErase = rAlphaErase;
+    public void setAlpha(int alpha) {
+        if(alpha>=0)rAlphaErase = alpha;
+        else rAlphaErase = 0;
+        if(alpha<=255)rAlphaErase = alpha;
+        else rAlphaErase = 255;
     }
 
     public String getText() {
         return rText;
     }
 
-    public void setText(String rText) {
-        this.rText = rText;
+    public void setText(String text) {
+        if(text.length()>0)rText = text;
     }
 }

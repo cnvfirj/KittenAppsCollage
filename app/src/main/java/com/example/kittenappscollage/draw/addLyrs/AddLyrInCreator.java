@@ -194,12 +194,16 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
             /******************************************************************/
             aSeekHeight.animate().translationX(-aSeekHeight.getRight()).setDuration(500).start();
             aSeekWidth.animate().translationY(-aSeekWidth.getBottom()).setDuration(500).start();
+            aExitAll.animate().translationX(aExitAll.getWidth()+aDoneParams.getLeft()).setDuration(500).start();
+            aDoneParams.animate().translationX(-aDoneParams.getRight()).setDuration(500).start();
         }else {
             applyTransform(true,500);
             aPreview.fon(aColor);
             aBlock = false;
             aSeekHeight.animate().translationX(0).setDuration(500).start();
             aSeekWidth.animate().translationY(0).setDuration(500).start();
+            aExitAll.animate().translationX(0).setDuration(500).start();
+            aDoneParams.animate().translationX(0).setDuration(500).start();
         }
         aColorPickCall.setActivated(!aColorPickCall.isActivated());
     }

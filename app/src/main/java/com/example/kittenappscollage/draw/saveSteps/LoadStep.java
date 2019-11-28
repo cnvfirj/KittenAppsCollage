@@ -37,9 +37,7 @@ public class LoadStep {
         });
         if(state.getNameLyr().equals(PR_NON)){
             RepDraw.get().stepLoadLyr(null,null,false);
-//            LYTE("null ");
         }else {
-//            LYTE("no null "+state.getPathLyr());
             requestLoadImg(state.getPathLyr()).subscribe(bitmap -> {
                 RepDraw.get().stepLoadLyr(bitmap, state.getRepLyr(), false);
             });

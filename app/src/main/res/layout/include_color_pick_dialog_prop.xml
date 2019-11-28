@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <com.madrapps.pikolo.HSLColorPicker
+        android:layout_height="230dp"
+        android:layout_width="230dp"
+        app:lightness_arc_width="5dp"
+        app:lightness_radius_offset="40dp"
+        app:saturation_arc_width="5dp"
+        app:saturation_radius_offset="40dp"
+        app:arc_width="5dp"
+        app:lightness_indicator_stroke_width="0dp"
+        app:saturation_indicator_stroke_width="0dp"
+        app:indicator_stroke_width="0dp"
+        android:id="@+id/color_pick"
+        android:layout_gravity="center"/>
+
+    <com.example.kittenappscollage.view.PresentPaint
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:id="@+id/present_paint"/>
+
+</FrameLayout>

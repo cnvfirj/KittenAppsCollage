@@ -2,6 +2,7 @@ package com.example.kittenappscollage.draw.fragment;
 
 import android.widget.ImageView;
 
+import com.example.kittenappscollage.draw.DialogSelectParams;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.operations.Operation;
 
@@ -80,6 +81,8 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     @Override
     protected void toolProperties(ImageView v) {
         super.toolProperties(v);
+        DialogSelectParams d = new DialogSelectParams();
+        d.show(getChildFragmentManager(),"params");
     }
 
     @Override
