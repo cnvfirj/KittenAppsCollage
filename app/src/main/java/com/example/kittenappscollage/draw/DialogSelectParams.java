@@ -83,7 +83,7 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
                         presentPaint.getWidthPaint(),
                         presentPaint.getColor(),
                         0,
-                        "TEXT"
+                        "Enter TEXT"
                 );
                 dismiss();
                 break;
