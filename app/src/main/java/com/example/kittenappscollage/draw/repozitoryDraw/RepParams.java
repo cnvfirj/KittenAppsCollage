@@ -2,6 +2,8 @@ package com.example.kittenappscollage.draw.repozitoryDraw;
 
 import android.graphics.Color;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class RepParams extends Repozitory {
 
     private float rWidthTool = 50;
@@ -27,6 +29,7 @@ public class RepParams extends Repozitory {
         else rWidthTool = 1;
         if(width<=50)rWidthTool = width;
         else rWidthTool = 50;
+//        rWidthTool = width;
     }
 
     public int getColor() {

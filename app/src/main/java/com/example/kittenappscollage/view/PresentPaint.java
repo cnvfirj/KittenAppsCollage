@@ -68,6 +68,10 @@ public class PresentPaint extends View {
         invalidate();
     }
 
+    public int getWidthPaint(){
+        return width;
+    }
+
     private int implementParams(){
         return Color.argb(alpha,Color.red(color),Color.green(color),Color.blue(color));
     }

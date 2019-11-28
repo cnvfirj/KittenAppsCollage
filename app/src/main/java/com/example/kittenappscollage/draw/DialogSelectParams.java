@@ -37,9 +37,6 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
 
     private ImageView done, close;
 
-//    private CustomFon customFon;
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,8 +79,16 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.prop_done:
+                RepDraw.get().allParams(
+                        presentPaint.getWidthPaint(),
+                        presentPaint.getColor(),
+                        0,
+                        "TEXT"
+                );
+                dismiss();
                 break;
             case R.id.prop_back:
+                dismiss();
                 break;
         }
     }
