@@ -1,27 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <com.madrapps.pikolo.HSLColorPicker
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/prop_paint_alpha"
+        android:layout_alignEnd="@id/prop_paint_width">
+
+        <com.example.kittenappscollage.view.PresentPaint
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:id="@+id/present_paint"/>
+
+        <com.madrapps.pikolo.HSLColorPicker
+            android:layout_height="230dp"
+            android:layout_width="230dp"
+            app:lightness_arc_width="5dp"
+            app:lightness_radius_offset="40dp"
+            app:saturation_arc_width="5dp"
+            app:saturation_radius_offset="40dp"
+            app:arc_width="5dp"
+            app:lightness_indicator_stroke_width="0dp"
+            app:saturation_indicator_stroke_width="0dp"
+            app:indicator_stroke_width="0dp"
+            android:id="@+id/color_pick"
+            android:layout_gravity="center" />
+
+    </FrameLayout>
+
+
+
+
+    <com.example.dynamikseekbar.DynamicSeekBar
+        style="@style/common_buttons"
         android:layout_height="230dp"
-        android:layout_width="230dp"
-        app:lightness_arc_width="5dp"
-        app:lightness_radius_offset="40dp"
-        app:saturation_arc_width="5dp"
-        app:saturation_radius_offset="40dp"
-        app:arc_width="5dp"
-        app:lightness_indicator_stroke_width="0dp"
-        app:saturation_indicator_stroke_width="0dp"
-        app:indicator_stroke_width="0dp"
-        android:id="@+id/color_pick"
-        android:layout_gravity="center"/>
+        app:orientation="vertical"
+        app:visible_text="true"
+        app:text_size="15"
+        app:max_value="255"
+        app:visible_buttons="true"
+        app:color_mark="@color/colorPrimary"
+        app:revers_text="true"
+        app:drw_b2="@drawable/ic_add"
+        app:drw_b1="@drawable/ic_remove"
+        app:color_way="@color/colorAccent"
+        android:id="@+id/prop_paint_alpha"
+        android:layout_alignParentStart="true"/>
 
-    <com.example.kittenappscollage.view.PresentPaint
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:id="@+id/present_paint"/>
+    <com.example.dynamikseekbar.DynamicSeekBar
+        style="@style/common_buttons"
+        android:layout_height="230dp"
+        app:orientation="vertical"
+        app:visible_text="true"
+        app:text_size="15"
+        app:min_value="1"
+        app:max_value="50"
+        app:visible_buttons="true"
+        app:color_mark="@color/colorPrimary"
+        app:revers_text="true"
+        app:drw_b2="@drawable/ic_add"
+        app:drw_b1="@drawable/ic_remove"
+        app:color_way="@color/colorAccent"
+        android:id="@+id/prop_paint_width"
+        android:layout_alignParentEnd="true"/>
 
-</FrameLayout>
+    <!--        </LinearLayout>-->
+</RelativeLayout>
+
