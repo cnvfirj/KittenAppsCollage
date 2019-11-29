@@ -70,6 +70,37 @@
         android:id="@+id/prop_paint_width"
         android:layout_alignParentEnd="true"/>
 
-    <!--        </LinearLayout>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/prop_paint_alpha">
+
+        <TextView
+            style="@style/common_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type paint - "
+            android:textSize="25sp"
+            android:textColor="@color/colorPrimary"/>
+
+        <com.example.dynamikseekbar.DynamicSeekBar
+            android:id="@+id/prop_type_paint"
+            style="@style/common_buttons"
+            android:layout_width="match_parent"
+            app:min_value="1"
+            app:max_value="3"
+            app:text_size="15"
+            app:color_mark="@color/colorPrimary"
+            app:color_way="@color/colorAccent"
+            app:visible_text="true" />
+
+
+    </LinearLayout>
+
+
+
 </RelativeLayout>
 
