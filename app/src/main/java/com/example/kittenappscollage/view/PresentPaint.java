@@ -14,15 +14,25 @@ import androidx.annotation.Nullable;
 
 public class PresentPaint extends View {
 
+    public static final int TEXT = 1;
+    public static final int PAINT = 0;
+    public static final int ERASER = 2;
+
     private int color;
 
     private int alpha;
 
     private int width;
 
+    private int erase;
+
     private Paint paint;
 
     private Path clip;
+
+    private int type;
+
+    private boolean circ;
 
     public PresentPaint(Context context) {
         super(context);
@@ -33,18 +43,31 @@ public class PresentPaint extends View {
         paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         clip = new Path();
+        type = PAINT;
+        circ = true;
     }
 
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        clip.reset();
-        clip.addArc(new RectF(0,0,canvas.getWidth(),canvas.getHeight()),0,360);
-        canvas.clipPath(clip);
-        canvas.drawLine(0,canvas.getHeight()/2,getWidth(),canvas.getHeight()/2,paint);
+        if(circ) {
+            clip.reset();
+            clip.addArc(new RectF(0, 0, canvas.getWidth(), canvas.getHeight()), 0, 360);
+            canvas.clipPath(clip);
+        }
+        if(type==PAINT){
+            canvas.drawLine(0,canvas.getHeight()/2,getWidth(),canvas.getHeight()/2,paint);
+        } else if(type==ERASER){
+
+        } else if(type==TEXT){
+
+        }
     }
 
+    public void setType(int type){
+        this.type = type;
+    }
     public void setColor(int color) {
         this.color = color;
         paint.setColor(implementParams());
@@ -56,7 +79,6 @@ public class PresentPaint extends View {
         paint.setColor(implementParams());
         invalidate();
     }
-
 
     public int getColor() {
         return implementParams();

@@ -6,41 +6,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@id/prop_paint_alpha"
-        android:layout_alignEnd="@id/prop_paint_width">
 
-        <com.example.kittenappscollage.view.PresentPaint
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_gravity="center"
-            android:id="@+id/present_paint"/>
-
-        <com.madrapps.pikolo.HSLColorPicker
-            android:layout_height="230dp"
-            android:layout_width="230dp"
-            app:lightness_arc_width="5dp"
-            app:lightness_radius_offset="40dp"
-            app:saturation_arc_width="5dp"
-            app:saturation_radius_offset="40dp"
-            app:arc_width="5dp"
-            app:lightness_indicator_stroke_width="0dp"
-            app:saturation_indicator_stroke_width="0dp"
-            app:indicator_stroke_width="0dp"
-            android:id="@+id/color_pick"
-            android:layout_gravity="center" />
-
-    </FrameLayout>
-
-
-
+    <com.madrapps.pikolo.HSLColorPicker
+        android:layout_height="250dp"
+        android:layout_width="250dp"
+        app:lightness_arc_width="5dp"
+        app:lightness_radius_offset="40dp"
+        app:saturation_arc_width="5dp"
+        app:saturation_radius_offset="40dp"
+        app:arc_width="5dp"
+        app:lightness_indicator_stroke_width="0dp"
+        app:saturation_indicator_stroke_width="0dp"
+        app:indicator_stroke_width="0dp"
+        android:id="@+id/color_pick"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
 
     <com.example.dynamikseekbar.DynamicSeekBar
         style="@style/common_buttons"
-        android:layout_height="230dp"
-        app:orientation="vertical"
+        android:layout_width="match_parent"
+        app:orientation="horizontal"
         app:visible_text="true"
         app:text_size="15"
         app:max_value="255"
@@ -51,12 +36,20 @@
         app:drw_b1="@drawable/ic_remove"
         app:color_way="@color/colorAccent"
         android:id="@+id/prop_paint_alpha"
-        android:layout_alignParentStart="true"/>
+        android:layout_below="@id/color_pick"/>
+
+    <com.example.kittenappscollage.view.PresentPaint
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/prop_paint_alpha"
+        android:layout_alignParentStart="true"
+        android:id="@+id/present_paint"
+        android:layout_marginStart="@dimen/margin_save"/>
 
     <com.example.dynamikseekbar.DynamicSeekBar
         style="@style/common_buttons"
-        android:layout_height="230dp"
-        app:orientation="vertical"
+        android:layout_width="match_parent"
+        app:orientation="horizontal"
         app:visible_text="true"
         app:text_size="15"
         app:min_value="1"
@@ -68,37 +61,16 @@
         app:drw_b1="@drawable/ic_remove"
         app:color_way="@color/colorAccent"
         android:id="@+id/prop_paint_width"
-        android:layout_alignParentEnd="true"/>
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/present_paint"/>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/prop_paint_alpha">
-
-        <TextView
-            style="@style/common_buttons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Type paint - "
-            android:textSize="25sp"
-            android:textColor="@color/colorPrimary"/>
-
-        <com.example.dynamikseekbar.DynamicSeekBar
-            android:id="@+id/prop_type_paint"
-            style="@style/common_buttons"
-            android:layout_width="match_parent"
-            app:min_value="1"
-            app:max_value="3"
-            app:text_size="15"
-            app:color_mark="@color/colorPrimary"
-            app:color_way="@color/colorAccent"
-            app:visible_text="true" />
 
 
-    </LinearLayout>
+
+
+
+
 
 
 
