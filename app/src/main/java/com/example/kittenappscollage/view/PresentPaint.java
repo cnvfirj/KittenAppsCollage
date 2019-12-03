@@ -24,9 +24,9 @@ public class PresentPaint extends View {
 
     private int width;
 
-    private int erase;
-
     private Paint paint;
+
+    private Paint erase;
 
     private Path clip;
 
@@ -44,7 +44,7 @@ public class PresentPaint extends View {
         paint.setStyle(Paint.Style.FILL);
         clip = new Path();
         type = PAINT;
-        circ = true;
+        circ = false;
     }
 
     @SuppressLint("DrawAllocation")
@@ -59,15 +59,36 @@ public class PresentPaint extends View {
         if(type==PAINT){
             canvas.drawLine(0,canvas.getHeight()/2,getWidth(),canvas.getHeight()/2,paint);
         } else if(type==ERASER){
+            clip.reset();
+            clip.addRect(0,0,canvas.getWidth(),canvas.getHeight()/2-width/2, Path.Direction.CCW);
+            clip.addRect(0,canvas.getHeight()/2+width/2,canvas.getWidth(),canvas.getHeight(), Path.Direction.CCW);
+            canvas.save();
+            canvas.clipPath(clip);
+            canvas.drawColor(Color.argb(255,Color.red(color),Color.green(color),Color.blue(color)));
+            canvas.restore();
+            canvas.drawLine(0,canvas.getHeight()/2,getWidth(),canvas.getHeight()/2,paint);
 
         } else if(type==TEXT){
-
+            clip.reset();
+            clip.moveTo(0,canvas.getHeight()/2);
+            clip.lineTo(getWidth(),canvas.getHeight()/2);
+            paint.setTextSize(width);
+            paint.setStrokeWidth((float)Math.ceil(width/9));
+            paint.setTextAlign(Paint.Align.CENTER);
+            String text = "Your Text";
+            float i = getWidth()/(text.length()*(width/1.66f));
+            paint.setTextScaleX(i);
+            canvas.drawTextOnPath(text, clip, 0, width/3, paint);
         }
     }
 
     public void setType(int type){
         this.type = type;
+        if(type==ERASER)setAlpha(0);
+        else invalidate();
     }
+
+
     public void setColor(int color) {
         this.color = color;
         paint.setColor(implementParams());

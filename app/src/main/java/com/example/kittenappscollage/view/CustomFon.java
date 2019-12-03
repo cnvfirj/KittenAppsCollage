@@ -30,11 +30,11 @@ public class CustomFon extends AppCompatImageView {
 
     private int pColorFill;
 
-    private int pAlphaPrint;
+//    private int pAlphaPrint;
 
     private int pWidthPrint;
 
-    private int pPresentation;
+//    private int pPresentation;
 
     private float pPowerDegree;
 
@@ -77,23 +77,23 @@ public class CustomFon extends AppCompatImageView {
         }
         canvas.drawColor(Color.WHITE);
         canvas.drawPath(pPath,pPaint);
-        if(pPresentation==FILL){
-            canvas.drawCircle(getWidth()/2,getWidth()/2,getWidth()/2,pPresPaint);
-        }else if(pPresentation==ELAST){
-
-            canvas.drawRect(0,0,pPrintPress.right,pPrintPress.top,new Paint());
-            canvas.drawRect(0,pPrintPress.bottom,getWidth(),getHeight(),new Paint());
-            canvas.drawRect(pPrintPress,pPresPaint);
-        }else if(pPresentation==PAINT){
-            canvas.drawRect(pPrintPress,pPresPaint);
-        }
+//        if(pPresentation==FILL){
+//            canvas.drawCircle(getWidth()/2,getWidth()/2,getWidth()/2,pPresPaint);
+//        }else if(pPresentation==ELAST){
+//
+//            canvas.drawRect(0,0,pPrintPress.right,pPrintPress.top,new Paint());
+//            canvas.drawRect(0,pPrintPress.bottom,getWidth(),getHeight(),new Paint());
+//            canvas.drawRect(pPrintPress,pPresPaint);
+//        }else if(pPresentation==PAINT){
+//            canvas.drawRect(pPrintPress,pPresPaint);
+//        }
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-
-        pStep = (float)getWidth()/pPowerDegree;
+        int w = getWidth()<getHeight()?getWidth():getHeight();
+        pStep =  w/pPowerDegree<15?15:(float)w/pPowerDegree;
         pPrintPress.set(0,getHeight()/2-pWidthPrint/2,getWidth(),getHeight()/2+pWidthPrint/2);
 
         pPaint.setStrokeWidth(pStep);
@@ -106,10 +106,10 @@ public class CustomFon extends AppCompatImageView {
         invalidate();
     }
 
-    public void setPresentation(int pPresentation) {
-        this.pPresentation = pPresentation;
-            invalidate();
-    }
+//    public void setPresentation(int pPresentation) {
+//        this.pPresentation = pPresentation;
+//            invalidate();
+//    }
 
     public void setCircle(boolean circle) {
         pIsCircle = circle;
@@ -117,11 +117,11 @@ public class CustomFon extends AppCompatImageView {
     }
 
 
-    public void setAlphaPrint(int alpha) {
-        pAlphaPrint = alpha;
-        pPresPaint.setColor(Color.argb(alpha, Color.red(Color.BLACK), Color.green(Color.BLACK), Color.blue(Color.BLACK)));
-        invalidate();
-    }
+//    public void setAlphaPrint(int alpha) {
+//        pAlphaPrint = alpha;
+//        pPresPaint.setColor(Color.argb(alpha, Color.red(Color.BLACK), Color.green(Color.BLACK), Color.blue(Color.BLACK)));
+//        invalidate();
+//    }
 
     public void setWidthPrint(int width){
         pWidthPrint = width;
@@ -139,7 +139,7 @@ public class CustomFon extends AppCompatImageView {
         pPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         pPaint.setStyle(Paint.Style.FILL);
         pPaint.setColor(pColorFill);
-        pPresentation = BACKGROUND;
+//        pPresentation = BACKGROUND;
         pPresPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         pPresPaint.setStyle(Paint.Style.FILL);
         pPresPaint.setColor(Color.BLACK);
