@@ -198,6 +198,13 @@ public class HelpElast {
             }
         }
 
+        private void setSideGradPixel(int []p,int alpha){
+            final int index = p[1]*hWidth+p[0];
+            if(p[0]>=0&&p[0]<hWidth&&p[1]>=0&&p[1]<hHeight){
+                implementElast3(index,alpha);
+            }
+        }
+
         protected void implementElast1(int index,int alpha){
             hAllPixels[index] = alphaColor(hAllPixels[index], alpha);
             hCheckPixel[index]=true;
@@ -222,9 +229,7 @@ public class HelpElast {
         private void applyElastPixel(int[]p, int alpha){
             if(hCommand.equals(MutableBit.Command.ELAST_1))setPixel(p, alpha);
             else if(hCommand.equals(MutableBit.Command.ELAST_2))setGradPixel(p, alpha);
-//            else if(hCommand.equals(Command.ELAST_3))setGradPixel(p, alpha);
-//            else if(hCommand.equals(Command.ELAST_4))setPixel(p, alpha);
-
+            else if(hCommand.equals(MutableBit.Command.ELAST_3))setSideGradPixel(p, alpha);
         }
 
         private int computeAlpha(float power){
