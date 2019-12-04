@@ -58,25 +58,27 @@ public class PresentPaint extends View {
             canvas.clipPath(clip);
         }
         if(type==PAINT){
-            canvas.drawLine(0,canvas.getHeight()/2,getWidth(),canvas.getHeight()/2,paint);
+            canvas.drawLine(0,(float) canvas.getHeight()/2.0f,getWidth(),(float) canvas.getHeight()/2.0f,paint);
+
         } else if(type==ERASER){
             clip.reset();
-            clip.addRect(0,0,canvas.getWidth(),canvas.getHeight()/2-width/2, Path.Direction.CCW);
-            clip.addRect(0,canvas.getHeight()/2+width/2,canvas.getWidth(),canvas.getHeight(), Path.Direction.CCW);
+            clip.addRect(0,0,(float) canvas.getWidth(),(float) canvas.getHeight()/2.0f-(float) width/2.0f, Path.Direction.CCW);
+            clip.addRect(0,(float) canvas.getHeight()/2.0f+width/2.0f,(float)canvas.getWidth(),(float) canvas.getHeight(), Path.Direction.CCW);
             canvas.save();
             canvas.clipPath(clip);
             canvas.drawColor(Color.argb(255,Color.red(color),Color.green(color),Color.blue(color)));
             canvas.restore();
-            canvas.drawLine(0,canvas.getHeight()/2,getWidth(),canvas.getHeight()/2,paint);
+            canvas.drawLine(0,(float) canvas.getHeight()/2,getWidth(),(float) canvas.getHeight()/2,paint);
         } else if(type==TEXT){
             clip.reset();
-            clip.moveTo(0,canvas.getHeight()/2);
-            clip.lineTo(getWidth(),canvas.getHeight()/2);
-            paint.setTextSize(width);
-            paint.setStrokeWidth((float)Math.ceil(width/9));
+            clip.moveTo(0,(float) canvas.getHeight()/2);
+            clip.lineTo(getWidth(),(float) canvas.getHeight()/2);
+            paint.setTextSize(width*1.2f);
+            paint.setStrokeWidth((float) width/9);
             paint.setTextAlign(Paint.Align.CENTER);
             if(getWidth()<(text.length()*(width/2f)))paint.setTextAlign(Paint.Align.LEFT);
-            canvas.drawTextOnPath(text, clip, 0, width/3, paint);
+            canvas.drawTextOnPath(text, clip, 0, (float) width/3, paint);
+
         }
     }
 
