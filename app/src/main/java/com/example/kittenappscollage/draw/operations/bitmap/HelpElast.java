@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PointF;
+
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutablebitmap.DeformMat;
 import java.util.ArrayList;
 
@@ -17,9 +19,9 @@ public class HelpElast {
 
         protected DeformMat hMat;
 
-        protected int hAlpha;
+//        protected int hAlpha;
 
-        protected float hRadius;
+//        protected float hRadius;
 
         protected boolean hOunStart,hOunProcess;
 
@@ -55,8 +57,8 @@ public class HelpElast {
             hValuesAlpha = new ArrayList<>();
             hPointsCenter = new ArrayList<>();
             hPointsCircle = new ArrayList<>();
-            hRadius = 20;
-            hAlpha = 0;
+//            hRadius = 20;
+//            hAlpha = 0;
             hConvert = false;
         }
 
@@ -64,7 +66,9 @@ public class HelpElast {
         public HelpElast bitmap(Bitmap b, DeformMat mat){
             hBitmap = b;
             hMat = mat;
-            searchZeroCirc(hPointsCircle,hRadius);
+//            searchZeroCirc(hPointsCircle,hRadius);
+            searchZeroCirc(hPointsCircle,RepDraw.get().getWidth()/2.0f);
+
             return this;
         }
 
@@ -98,12 +102,14 @@ public class HelpElast {
 
         public HelpElast mat(DeformMat mat){
             hMat = mat;
-            searchZeroCirc(hPointsCircle,hRadius);
+//            searchZeroCirc(hPointsCircle,hRadius);
+            searchZeroCirc(hPointsCircle,RepDraw.get().getWidth()/2.0f);
+
             return this;
         }
 
         public HelpElast alpha(int alpha){
-            hAlpha = alpha;
+//            hAlpha = alpha;
             return this;
         }
 
@@ -113,8 +119,8 @@ public class HelpElast {
         }
 
         public HelpElast radius(float radius){
-            hRadius = radius;
-            searchZeroCirc(hPointsCircle,hRadius);
+//            hRadius = radius;
+//            searchZeroCirc(hPointsCircle,hRadius);
             return this;
         }
 
@@ -167,9 +173,9 @@ public class HelpElast {
             return hPoint;
         }
 
-        public float getRadius(){
-            return hRadius;
-        }
+//        public float getRadius(){
+//            return hRadius;
+//        }
 
         private void createPoint(){
 //            if(hPoint==null)hPoint = new PointF(mView.x/2,mView.y/2);
@@ -222,8 +228,11 @@ public class HelpElast {
         }
 
         private int computeAlpha(float power){
-            int segm = 255 - hAlpha;
-            return (int)(segm*power)+hAlpha;
+//            int segm = 255 - hAlpha;
+//            return (int)(segm*power)+hAlpha;
+            int segm = 255 - RepDraw.get().getAlpha();
+            return (int)(segm*power)+RepDraw.get().getAlpha();
+
         }
 
         private void elastSpot(){
@@ -300,8 +309,11 @@ public class HelpElast {
                 fillAlterPointsAlpha(alpha,a,b,points.get(points.size() - 1));
             }
             if(hCommand.equals(MutableBit.Command.ELAST_2)) {
-                fillPointsAlpha(alpha, points.get(points.size() - 1),
-                        hRadius / hMat.getRepository().getScale());
+//                fillPointsAlpha(alpha, points.get(points.size() - 1),
+//                        hRadius / hMat.getRepository().getScale());
+               fillPointsAlpha(alpha, points.get(points.size() - 1),
+                       RepDraw.get().getWidth()/2.0f / hMat.getRepository().getScale());
+
             }
             /***************************/
             while (a.x!=b.x||a.y!=b.y){
@@ -311,8 +323,11 @@ public class HelpElast {
                     fillAlterPointsAlpha(alpha,a,b,points.get(points.size() - 1));
                 }
                 if(hCommand.equals(MutableBit.Command.ELAST_2)) {
+//                    fillPointsAlpha(alpha, points.get(points.size() - 1),
+//                            hRadius / hMat.getRepository().getScale());
                     fillPointsAlpha(alpha, points.get(points.size() - 1),
-                            hRadius / hMat.getRepository().getScale());
+                            RepDraw.get().getWidth()/2.0f / hMat.getRepository().getScale());
+
                 }
                 /***************************/
                 int shift = 0;
@@ -334,8 +349,11 @@ public class HelpElast {
                         fillAlterPointsAlpha(alpha,a,b,points.get(points.size() - 1));
                     }
                     if(hCommand.equals(MutableBit.Command.ELAST_2)) {
+//                        fillPointsAlpha(alpha, points.get(points.size() - 1),
+//                                hRadius / hMat.getRepository().getScale());
                         fillPointsAlpha(alpha, points.get(points.size() - 1),
-                                hRadius / hMat.getRepository().getScale());
+                                RepDraw.get().getWidth()/2.0f / hMat.getRepository().getScale());
+
                     }
                     /***************************/
                 }
@@ -373,7 +391,9 @@ public class HelpElast {
                 for (PointF p:points){
                     addAllPoints(hZeroingPoints,new Point(0,0),extPoint(p),hValuesAlpha);
                 }
-                int alpha = hAlpha;
+//                 int alpha = hAlpha;
+                int alpha = RepDraw.get().getAlpha();
+
                 for (int i=0;i<hZeroingPoints.size();i++){
                     if(hCommand.equals(MutableBit.Command.ELAST_2)||hCommand.equals(MutableBit.Command.ELAST_3)){
                         alpha = hValuesAlpha.get(i);
@@ -393,8 +413,8 @@ public class HelpElast {
 
             addAllPoints(hZeroingPoints,new Point((int)-zero.x,(int)zero.y),new Point((int)zero.x,(int)-zero.y),hValuesAlpha);
 
-            int alpha = hAlpha;
-
+//            int alpha = hAlpha;
+            int alpha = RepDraw.get().getAlpha();
             for (PointF p:points){
                 for (int i=0;i<hZeroingPoints.size();i++){
                     if(hCommand.equals(MutableBit.Command.ELAST_2)||hCommand.equals(MutableBit.Command.ELAST_3)){
@@ -427,8 +447,11 @@ public class HelpElast {
             PointF vector = vector(start,fin);
             float segment = widthVector(vector) ;
             PointF zeroing = new PointF(vector.x/segment,vector.y/segment);
-            float x = zeroing.x*hRadius/hMat.getRepository().getScale();
-            float y = zeroing.y*hRadius/hMat.getRepository().getScale();
+//            float x = zeroing.x*hRadius/hMat.getRepository().getScale();
+//            float y = zeroing.y*hRadius/hMat.getRepository().getScale();
+            float x = zeroing.x*(RepDraw.get().getWidth()/2.0f)/hMat.getRepository().getScale();
+            float y = zeroing.y*(RepDraw.get().getWidth()/2.0f)/hMat.getRepository().getScale();
+
             return new PointF(y,x);
         }
 

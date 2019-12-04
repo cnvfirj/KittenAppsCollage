@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PointF;
 
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutablebitmap.DeformMat;
 
 import java.util.LinkedList;
@@ -154,7 +155,9 @@ public class HelpFill {
         int color = hPixels[index];
 
         if(hTypeFill) return color==hStartColor;
-        else return color!=hFillColor;
+//        else return color!=hFillColor;
+        else return color!= RepDraw.get().getColor();
+
     }
 
 

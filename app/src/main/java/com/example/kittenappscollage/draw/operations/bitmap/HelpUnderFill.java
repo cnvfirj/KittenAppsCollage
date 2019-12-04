@@ -35,7 +35,8 @@ public class HelpUnderFill extends HelpFill {
 
     @Override
     protected void filingUnder(int index) {
-            hOverPix[index] = hFillColor;
+//            hOverPix[index] = hFillColor;
+            hOverPix[index] = RepDraw.get().getColor();
             hPixelsChecked[index] = true;
     }
 
