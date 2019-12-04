@@ -12,6 +12,8 @@
         android:layout_width="250dp"
         app:lightness_arc_width="5dp"
         app:lightness_radius_offset="40dp"
+        app:indicator_radius="17dp"
+        app:hue_indicator_radius="17dp"
         app:saturation_arc_width="5dp"
         app:saturation_radius_offset="40dp"
         app:arc_width="5dp"
@@ -52,7 +54,7 @@
         <com.example.kittenappscollage.view.PresentPaint
             android:layout_marginStart="@dimen/margin_save"
             android:layout_width="70dp"
-            android:layout_height="30dp"
+            android:layout_height="@dimen/param_save"
             android:id="@+id/present_paint"
             android:layout_gravity="start"/>
 
@@ -93,6 +95,7 @@
 
     <com.example.dynamikseekbar.DynamicSeekBar
         style="@style/common_buttons"
+        android:layout_marginTop="0dp"
         android:layout_width="match_parent"
         app:orientation="horizontal"
         app:visible_text="true"

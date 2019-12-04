@@ -50,7 +50,6 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
 
     private DynamicSeekBar aSeekWidth, aSeekHeight;
 
-
     public AddLyrInCreator() {
         aColor = Color.WHITE;
         aBlock = false;

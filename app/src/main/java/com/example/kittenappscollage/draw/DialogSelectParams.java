@@ -1,6 +1,9 @@
 package com.example.kittenappscollage.draw;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
@@ -9,6 +12,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.widget.ImageView;
 
@@ -22,6 +26,12 @@ import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.view.PresentPaint;
 import com.madrapps.pikolo.HSLColorPicker;
 import com.madrapps.pikolo.listeners.OnColorSelectionListener;
+
+import java.util.Objects;
+
+import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_ALPHA;
+import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_COLOR;
+import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_WIDTH;
 
 public class DialogSelectParams extends DialogFragment implements DynamicSeekBar.OnSeekBarChangeListener,
         View.OnClickListener {
@@ -37,7 +47,7 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(getContext().getResources().getColor(R.color.colorPrimaryTransparent)));
         return inflater.inflate(R.layout.dialog_select_params,null);
     }
 
@@ -78,19 +88,23 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
         barEraseAlpha.setOnSeekBarChangeListener(this);
         done.setOnClickListener(this);
         close.setOnClickListener(this);
-
+//        paramView(view);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.prop_done:
-                RepDraw.get().allParams(
-                        presentPaint.getWidthPaint(),
-                        presentPaint.getColor(),
-                        0,
-                        "Enter TEXT"
-                );
+                RepDraw.get()
+                        .setAlpha(Color.alpha(presentErase.getColor()))
+                        .setColor(presentPaint.getColor())
+                        .setWidth(presentPaint.getWidthPaint());
+                SharedPreferences p = getActivity().getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor e = p.edit();
+                e.putInt(KEY_SAVE_COLOR, RepDraw.get().getColor());
+                e.putInt(KEY_SAVE_ALPHA,RepDraw.get().getAlpha());
+                e.putFloat(KEY_SAVE_WIDTH, RepDraw.get().getWidth());
+                e.apply();
                 dismiss();
                 break;
             case R.id.prop_back:
@@ -131,12 +145,14 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
     public void onResume() {
         super.onResume();
         Window window = getDialog().getWindow();
-        Rect rect = new Rect();
-        getActivity().getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-
-        window.setLayout((int) (rect.right*0.9), (int)(rect.bottom*0.9));
+//        Rect rect = new Rect();
+//        getActivity().getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+        Resources res = getContext().getResources();
+        float height = res.getDimension(R.dimen.param_color_pick)+res.getDimension(R.dimen.param_save)*5;
+        height+=res.getDimension(R.dimen.margin_save)*6;
+        float width = res.getDimension(R.dimen.param_color_pick)+res.getDimension(R.dimen.margin_save)*2;
+        window.setLayout((int) (width), (int)(height));
         window.setGravity(Gravity.CENTER);
-
         addParams();
     }
 
@@ -148,9 +164,27 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
         presentErase.setColor(RepDraw.get().getColor());
         presentText.setWidthPaint((int) RepDraw.get().getWidth());
         presentText.setColor(RepDraw.get().getColor());
+        presentText.setText(RepDraw.get().getText());
         barPaintWidth.setProgress((int)RepDraw.get().getWidth());
         barPaintAlpha.setProgress(Color.alpha(RepDraw.get().getColor()));
+        barEraseAlpha.setProgress(RepDraw.get().getAlpha());
     }
+
+    protected void paramView(final View view){
+        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+        if (viewTreeObserver.isAlive()) {
+            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+
+
+                }
+            });
+        }
+    }
+
+
 
 
 }

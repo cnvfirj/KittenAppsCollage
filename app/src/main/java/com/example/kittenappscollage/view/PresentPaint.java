@@ -24,9 +24,9 @@ public class PresentPaint extends View {
 
     private int width;
 
-    private Paint paint;
+    private String text;
 
-    private Paint erase;
+    private Paint paint;
 
     private Path clip;
 
@@ -45,6 +45,7 @@ public class PresentPaint extends View {
         clip = new Path();
         type = PAINT;
         circ = false;
+        text = "Your Text";
     }
 
     @SuppressLint("DrawAllocation")
@@ -67,7 +68,6 @@ public class PresentPaint extends View {
             canvas.drawColor(Color.argb(255,Color.red(color),Color.green(color),Color.blue(color)));
             canvas.restore();
             canvas.drawLine(0,canvas.getHeight()/2,getWidth(),canvas.getHeight()/2,paint);
-
         } else if(type==TEXT){
             clip.reset();
             clip.moveTo(0,canvas.getHeight()/2);
@@ -75,9 +75,7 @@ public class PresentPaint extends View {
             paint.setTextSize(width);
             paint.setStrokeWidth((float)Math.ceil(width/9));
             paint.setTextAlign(Paint.Align.CENTER);
-            String text = "Your Text";
-            float i = getWidth()/(text.length()*(width/1.66f));
-            paint.setTextScaleX(i);
+            if(getWidth()<(text.length()*(width/2f)))paint.setTextAlign(Paint.Align.LEFT);
             canvas.drawTextOnPath(text, clip, 0, width/3, paint);
         }
     }
@@ -88,6 +86,9 @@ public class PresentPaint extends View {
         else invalidate();
     }
 
+    public void setText(String text){
+        this.text = text;
+    }
 
     public void setColor(int color) {
         this.color = color;

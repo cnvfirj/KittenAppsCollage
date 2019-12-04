@@ -1,14 +1,26 @@
 package com.example.kittenappscollage.draw.fragment;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.widget.ImageView;
+
+import androidx.annotation.Nullable;
 
 import com.example.kittenappscollage.draw.DialogSelectParams;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.operations.Operation;
 
+import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_ALPHA;
+import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_COLOR;
+import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_TEXT;
+import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_WIDTH;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 /*применяем инструменты обработки изображения*/
 public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
-
 
     @Override
     protected void toolPaint(ImageView v) {
@@ -82,7 +94,7 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     protected void toolProperties(ImageView v) {
         super.toolProperties(v);
         DialogSelectParams d = new DialogSelectParams();
-        d.show(getChildFragmentManager(),"params");
+        d.show(getChildFragmentManager(),d.getClass().getName());
     }
 
     @Override
@@ -101,5 +113,15 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         super.selectorButtons(index);
         if(index!=TOOL_CUT) RepDraw.get().zeroingRepers();
         dViewDraw.invalidate();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        SharedPreferences p = getActivity().getPreferences(Context.MODE_PRIVATE);
+        RepDraw.get().setAlpha(p.getInt(KEY_SAVE_ALPHA,0));
+        RepDraw.get().setColor(p.getInt(KEY_SAVE_COLOR, Color.BLACK));
+        RepDraw.get().setWidth(p.getFloat(KEY_SAVE_WIDTH,50));
+        RepDraw.get().setText(p.getString(KEY_SAVE_TEXT,"Your Text"));
     }
 }
