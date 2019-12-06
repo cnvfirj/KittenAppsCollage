@@ -19,7 +19,6 @@ public abstract class Operation {
 
     public enum Event{
         DRAW,
-        DRAW_FON,
         DRAW_A_LINE_1,
         DRAW_A_LINE_2,
         DRAW_A_LINE_3,

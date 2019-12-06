@@ -8,6 +8,7 @@ import com.example.kittenappscollage.helpers.App;
 
 import java.util.Objects;
 
+import static com.example.kittenappscollage.helpers.Massages.ERROR;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class RepParams extends Repozitory {
@@ -28,6 +29,8 @@ public class RepParams extends Repozitory {
 
     private String rText = "Your Enter Text";
 
+    private ListParams rList;
+
     public void allParams(float width, int color, int alpha, String text){
         setWidth(width);
         setColor(color);
@@ -39,11 +42,17 @@ public class RepParams extends Repozitory {
         return rWidthTool;
     }
 
+    public RepParams listParams(ListParams list){
+        rList = list;
+        return this;
+    }
+
     public RepParams setWidth(float width) {
         if(width>0)rWidthTool = width;
         else rWidthTool = 1;
         if(width<=50)rWidthTool = width;
         else rWidthTool = 50;
+        if(rList!=null)rList.width(rWidthTool);
         return this;
     }
 
@@ -53,6 +62,7 @@ public class RepParams extends Repozitory {
 
     public  RepParams setColor(int color) {
         this.rColorPaint = color;
+        if(rList!=null)rList.color(color);
         return this;
     }
 
@@ -65,6 +75,7 @@ public class RepParams extends Repozitory {
         else rAlphaErase = 0;
         if(alpha<=255)rAlphaErase = alpha;
         else rAlphaErase = 255;
+        if(rList!=null)rList.alpha(alpha);
         return this;
     }
 
@@ -74,6 +85,14 @@ public class RepParams extends Repozitory {
 
     public  RepParams setText(String text) {
         if(text.length()>0)rText = text;
+        if(rList!=null)rList.text(text);
         return this;
+    }
+
+    public interface ListParams{
+        public void color(int c);
+        public void alpha(int a);
+        public void width(float w);
+        public void text(String t);
     }
 }
