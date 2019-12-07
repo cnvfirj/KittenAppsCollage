@@ -14,8 +14,6 @@ import com.example.mutmatrix.actions.Deform;
 
 import java.util.Arrays;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-
 /*класс для приведения перевернутого и искаженного битмап
 * к обысному состоянию с учетом всех Matrix преобразований*/
 public class CoercionBitmap {
@@ -33,11 +31,36 @@ public class CoercionBitmap {
         return createBitmap(size(minMax(realVer)));
     }
 
-    public static Bitmap blank(DeformMat mat){
-        float[][]find = mat.getRepository().getLoc();
-        PointF[]realVerRotate = verticesRealScale(new float[][]{find[1],find[2],find[3],find[4]},mat.getRepository().getScale());
-        return createBitmap(size(minMax(realVerRotate)));
+//    public static Bitmap blank(DeformMat mat){
+//        float[][]find = mat.getRepository().getLoc();
+//        PointF[]realVerRotate = verticesRealScale(new float[][]{find[1],find[2],find[3],find[4]},mat.getRepository().getScale());
+//        return createBitmap(size(minMax(realVerRotate)));
+//    }
+
+    public static Bitmap correctBlank(DeformMat mat){
+        PointF[]p = mat.muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM);
+        return createBitmap(size(p,mat.getRepository().getScale()));
     }
+
+    public static PointF correctTrans(DeformMat mat){
+        PointF[]p = mat.muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM);
+        return minMax(p).first;
+    }
+
+    private static Size size(PointF[]p, float scale){
+        Pair<PointF,PointF> minMax = minMax(p);
+        float w = (minMax.second.x-minMax.first.x)/scale;
+        float h = (minMax.second.y-minMax.first.y)/scale;
+        return new Size((int)w,(int)h);
+    }
+
+//    public static DeformMat mat(DeformMat mat){
+//        float[][]find = mat.getRepository().getLoc();
+//        PointF[]realVerRotate = verticesRealScale(new float[][]{find[1],find[2],find[3],find[4]},mat.getRepository().getScale());
+//        Pair<PointF, PointF>m = minMax(realVerRotate);
+//        return null;
+//    }
+
 
 
 
@@ -70,23 +93,23 @@ public class CoercionBitmap {
         return minMax(verticesScaled(mat)).first;
     }
 
-    public static float scaleBitmap(DeformMat mat){
-        return mat.getRepository().getScale();
-    }
-
-    private static void zeroingBitma(Bitmap b){
-        if(b!=null||!b.isRecycled()){
-            b.recycle();
-            b=null;
-        }
-    }
-
-
+//    public static float scaleBitmap(DeformMat mat){
+//        return mat.getRepository().getScale();
+//    }
+//
+//    private static void zeroingBitmap(Bitmap b){
+//        if(b!=null||!b.isRecycled()){
+//            b.recycle();
+//            b=null;
+//        }
+//    }
 
 
-    private static float[]src(Bitmap bitmap){
-        return new float[]{0,0,bitmap.getWidth(),0,bitmap.getWidth(),bitmap.getHeight(),0,bitmap.getHeight()};
-    }
+
+
+//    private static float[]src(Bitmap bitmap){
+//        return new float[]{0,0,bitmap.getWidth(),0,bitmap.getWidth(),bitmap.getHeight(),0,bitmap.getHeight()};
+//    }
 
     /*получаем координаты вершин с учетом масштаба,
     * сдвига, вращения и деформации*/
@@ -123,23 +146,23 @@ public class CoercionBitmap {
         return p;
     }
 
-    private static Pair<PointF, PointF> minMax(PointF[]ver1, PointF[]ver2){
-        float[]arrX = new float[8];
-        float[]arrY = new float[8];
-        for (int i=0;i<4;i+=1){
-            arrX[i] = ver1[i].x;
-            arrY[i] = ver1[i].y;
-        }
-
-        for (int i=4;i<8;i++){
-            arrX[i] = ver2[i-4].x;
-            arrY[i] = ver2[i-4].y;
-        }
-        Arrays.sort(arrX);
-        Arrays.sort(arrY);
-
-        return new Pair<>(new PointF(arrX[0],arrY[0]),new PointF(arrX[7],arrY[7]));
-    }
+//    private static Pair<PointF, PointF> minMax(PointF[]ver1, PointF[]ver2){
+//        float[]arrX = new float[8];
+//        float[]arrY = new float[8];
+//        for (int i=0;i<4;i+=1){
+//            arrX[i] = ver1[i].x;
+//            arrY[i] = ver1[i].y;
+//        }
+//
+//        for (int i=4;i<8;i++){
+//            arrX[i] = ver2[i-4].x;
+//            arrY[i] = ver2[i-4].y;
+//        }
+//        Arrays.sort(arrX);
+//        Arrays.sort(arrY);
+//
+//        return new Pair<>(new PointF(arrX[0],arrY[0]),new PointF(arrX[7],arrY[7]));
+//    }
 
     /*выяснием минимальные и мксимальные значения
     * x и y из всех вершин*/

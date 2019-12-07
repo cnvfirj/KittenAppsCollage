@@ -7,6 +7,9 @@ import android.graphics.PointF;
 import com.example.kittenappscollage.draw.operations.bitmap.CoercionBitmap;
 import com.example.kittenappscollage.draw.operations.bitmap.DrawBitmap;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
+import com.example.kittenappscollage.helpers.App;
+import com.example.mutmatrix.CompRep;
+import com.example.mutmatrix.DeformMat;
 
 public class RepCommonFunctions extends RepParams {
 
@@ -68,17 +71,33 @@ public class RepCommonFunctions extends RepParams {
     }
 
     public void correctImg(){
+        correctOpImg();
+//        if(isImg()){
+//            Bitmap temp = CoercionBitmap.blankBitmap(rImgMat);
+//            CoercionBitmap.drawBitmap(new Canvas(temp), CoercionBitmap.matrixBitmap(rImgMat), rImg);
+//            rImg = temp.copy(Bitmap.Config.ARGB_8888, true);
+//            rImgC = new Canvas(rImg);
+//            float scale = rImgMat.getRepository().getScale();
+//            PointF translate = CoercionBitmap.transBitmap(rImgMat);
+//            rImgMat.reset();
+//            rImgMat.view(rView).bitmap(new PointF(temp.getWidth(), temp.getHeight()));
+//            rImgMat.getRepository().setScale(scale);
+//            rImgMat.getRepository().setTranslate(translate);
+//            zeroingBitmap(temp);
+//        }
+    }
+
+    private void correctOpImg(){
         if(isImg()){
-            Bitmap temp = CoercionBitmap.blankBitmap(rImgMat);
-            CoercionBitmap.drawBitmap(new Canvas(temp), CoercionBitmap.matrixBitmap(rImgMat), rImg);
+            Bitmap temp = CoercionBitmap.correctBlank(rImgMat);
+            PointF trans = CoercionBitmap.correctTrans(rImgMat);
+            DeformMat mat = new DeformMat(App.getMain());
+            mat.view(rView).bitmap(new PointF(temp.getWidth(), temp.getHeight())).getRepository().setScale(rImgMat.getRepository().getScale());
+            mat.getRepository().setTranslate(trans);
+            DrawBitmap.create(new Canvas(temp),mat).draw(rImg, rImgMat);
             rImg = temp.copy(Bitmap.Config.ARGB_8888, true);
             rImgC = new Canvas(rImg);
-            float scale = rImgMat.getRepository().getScale();
-            PointF translate = CoercionBitmap.transBitmap(rImgMat);
-            rImgMat.reset();
-            rImgMat.view(rView).bitmap(new PointF(temp.getWidth(), temp.getHeight()));
-            rImgMat.getRepository().setScale(scale);
-            rImgMat.getRepository().setTranslate(translate);
+            rImgMat.setRepository(mat.getRepository());
             zeroingBitmap(temp);
         }
     }
