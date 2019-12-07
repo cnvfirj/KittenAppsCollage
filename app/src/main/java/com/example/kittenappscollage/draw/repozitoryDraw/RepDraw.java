@@ -2,19 +2,13 @@ package com.example.kittenappscollage.draw.repozitoryDraw;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Point;
-import android.graphics.PointF;
 
-import com.example.kittenappscollage.draw.operations.bitmap.CoercionBitmap;
-import com.example.kittenappscollage.draw.operations.bitmap.DrawBitmap;
-import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
-import com.example.mutablebitmap.CompRep;
-import com.example.mutablebitmap.DeformMat;
+
+import com.example.mutmatrix.CompRep;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class RepDraw extends RepMutable{
 
@@ -34,12 +28,12 @@ public class RepDraw extends RepMutable{
 
 
 
-        public void stepLoadImg(Bitmap b, CompRep rep,boolean single){
+        public void stepLoadImg(Bitmap b, CompRep rep, boolean single){
         if(testBitmap(b)){
             rImg = b;
             rImgMat.view(rView);
                 rImgMat.setRepository(rep.copy());
-                rImgMat.fin();
+//                rImgMat.fin();
                 rImgC = new Canvas(rImg);
             if(single){
                 rAdd.readinessImg(true);
@@ -67,7 +61,7 @@ public class RepDraw extends RepMutable{
             rLyr = b;
             rLyrMat.view(rView);
                 rLyrMat.setRepository(rep.copy());
-                rLyrMat.fin();
+//                rLyrMat.fin();
                 rLyrC = new Canvas(rLyr);
             if(single){
                 rAdd.readinessLyr(true);

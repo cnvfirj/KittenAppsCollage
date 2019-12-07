@@ -1,15 +1,12 @@
 package com.example.kittenappscollage.draw.operations.bitmap;
 
 import android.graphics.Bitmap;
-import android.graphics.Path;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 
 import com.example.kittenappscollage.draw.operations.Operation;
 import com.example.kittenappscollage.draw.operations.TouchPoints;
-import com.example.mutablebitmap.DeformMat;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import com.example.mutmatrix.DeformMat;
 
 
 public abstract class MutableBit extends TouchPoints {

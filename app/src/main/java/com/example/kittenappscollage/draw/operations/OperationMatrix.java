@@ -3,11 +3,8 @@ package com.example.kittenappscollage.draw.operations;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 
-import com.example.mutablebitmap.BaseMat;
-import com.example.mutablebitmap.DeformMat;
-import com.example.mutablebitmap.ScaleMat;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import com.example.mutmatrix.DeformMat;
+import com.example.mutmatrix.actions.Deform;
 
 public class OperationMatrix extends Operation {
 
@@ -15,8 +12,10 @@ public class OperationMatrix extends Operation {
 
     private DeformMat mMat;
     private PointF mPoint;
-    private BaseMat.Command mCommand;
+    private DeformMat.Command mCommand;
     private int mAction;
+
+    private MotionEvent mMotion;
 
 
 
@@ -51,14 +50,14 @@ public class OperationMatrix extends Operation {
     @Override
     public Operation event(Event event) {
         this.event = event;
-        if(event.equals(Event.MATRIX_T))mCommand = BaseMat.Command.TRANSLATE;
-        else if(event.equals(Event.MATRIX_S_P))mCommand = BaseMat.Command.SCALE_PLUS;
-        else if (event.equals(Event.MATRIX_S_M))mCommand = BaseMat.Command.SCALE_MINUS;
-        else if (event.equals(Event.MATRIX_R))mCommand = BaseMat.Command.ROTATE;
-        else if (event.equals(Event.MATRIX_D))mCommand = BaseMat.Command.DEFORM;
-        else if (event.equals(Event.MATRIX_MIRR))mCommand = BaseMat.Command.MIRROR;
-        else if (event.equals(Event.MATRIX_RESET_DR))mCommand = BaseMat.Command.RESET;
-        else mCommand = BaseMat.Command.NULLABLE;
+        if(event.equals(Event.MATRIX_T))mCommand = DeformMat.Command.TRANSLATE;
+        else if(event.equals(Event.MATRIX_S_P))mCommand = DeformMat.Command.SCALE;
+//        else if (event.equals(Event.MATRIX_S_M))mCommand = DeformMat.Command.SCALE_MINUS;
+        else if (event.equals(Event.MATRIX_R))mCommand = DeformMat.Command.ROTATE;
+        else if (event.equals(Event.MATRIX_D))mCommand = DeformMat.Command.DEFORM;
+//        else if (event.equals(Event.MATRIX_MIRR))mCommand = DeformMat.Command.MIRROR;
+//        else if (event.equals(Event.MATRIX_RESET_DR))mCommand = DeformMat.Command.RESET;
+        else mCommand = DeformMat.Command.NON;
         return this;
     }
 
@@ -66,6 +65,7 @@ public class OperationMatrix extends Operation {
     public Operation point(MotionEvent m) {
         mPoint = new PointF(m.getX(),m.getY());
         mAction = m.getAction();
+        mMotion = m;
         return this;
     }
 
@@ -78,12 +78,13 @@ public class OperationMatrix extends Operation {
 
     @Override
     public void apply() {
-        if(mMat==null||mPoint==null||mAction==ACTION_NULL||mCommand==null||mCommand.equals(BaseMat.Command.NULLABLE)){
+        if(mMat==null||mPoint==null||mAction==ACTION_NULL||mCommand==null||mCommand.equals(DeformMat.Command.NON)){
             return;
         }
-        if(TouchBitmap.ifIGotBit(mMat.muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),mPoint)) {
+        if(TouchBitmap.ifIGotBit(mMat.muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM),mPoint)) {
 
-            mMat.command(mCommand).point(mPoint, mAction);
+            mMat.command(mCommand)
+                    .event(mMotion);
             zeroing();
         }
 
@@ -92,11 +93,11 @@ public class OperationMatrix extends Operation {
     @Override
     public void applyAll() {
         super.applyAll();
-        if(mMat==null||mPoint==null||mAction==ACTION_NULL||mCommand==null||mCommand.equals(BaseMat.Command.NULLABLE)){
+        if(mMat==null||mPoint==null||mAction==ACTION_NULL||mCommand==null||mCommand.equals(DeformMat.Command.NON)){
             return;
         }
 
-        mMat.command(mCommand).point(mPoint, mAction);
+        mMat.command(mCommand).event(mMotion);
         zeroing();
 
     }

@@ -1,17 +1,12 @@
 package com.example.kittenappscollage.draw.operations;
 
 import android.graphics.Bitmap;
-import android.graphics.Path;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 
 import com.example.kittenappscollage.draw.operations.bitmap.MutableBit;
-import com.example.kittenappscollage.draw.operations.bitmap.MutableCut;
 import com.example.kittenappscollage.draw.operations.bitmap.MutableElast;
-import com.example.kittenappscollage.draw.operations.bitmap.MutableFill;
-import com.example.mutablebitmap.DeformMat;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import com.example.mutmatrix.DeformMat;
 
 public class OperationBitmap extends Operation{
 

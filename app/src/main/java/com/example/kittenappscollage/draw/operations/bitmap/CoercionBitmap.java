@@ -9,7 +9,8 @@ import android.graphics.PointF;
 import android.util.Pair;
 import android.util.Size;
 
-import com.example.mutablebitmap.DeformMat;
+import com.example.mutmatrix.DeformMat;
+import com.example.mutmatrix.actions.Deform;
 
 import java.util.Arrays;
 
@@ -33,8 +34,8 @@ public class CoercionBitmap {
     }
 
     public static Bitmap blank(DeformMat mat){
-        PointF[]find = mat.findLoc();
-        PointF[]realVerRotate = verticesRealScale(new PointF[]{find[1],find[2],find[3],find[4]},mat.getRepository().getScale());
+        float[][]find = mat.getRepository().getLoc();
+        PointF[]realVerRotate = verticesRealScale(new float[][]{find[1],find[2],find[3],find[4]},mat.getRepository().getScale());
         return createBitmap(size(minMax(realVerRotate)));
     }
 
@@ -46,8 +47,8 @@ public class CoercionBitmap {
     * заданный с учетом искажений. */
     public static Matrix matrixBitmap(DeformMat mat){
         Matrix matrix = new Matrix();
-        final float[]src = {0,0,mat.getBitmap().x,0,mat.getBitmap().x,mat.getBitmap().y,0,mat.getBitmap().y};
-        matrix.setPolyToPoly(src,0,mat.getRepository().getDeform(),0,4);
+        final float[]src = {0,0,mat.getRepository().getBitmap().x,0,mat.getRepository().getBitmap().x,mat.getRepository().getBitmap().y,0,mat.getRepository().getBitmap().y};
+        matrix.setPolyToPoly(src,0,mat.getRepository().getDst(),0,4);
         matrix.postRotate(mat.getRepository().getRotate());
 
         PointF[]ver = verticesScaled(mat);
@@ -90,7 +91,7 @@ public class CoercionBitmap {
     /*получаем координаты вершин с учетом масштаба,
     * сдвига, вращения и деформации*/
     private static PointF[]verticesScaled(DeformMat mat){
-        return mat.muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
+        return mat.muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM);
     }
 
     /*вычисляем координаты вершин с масштабом 1:1
@@ -103,6 +104,16 @@ public class CoercionBitmap {
 
         return p;
     }
+    private static PointF[] verticesRealScale(float[][]ver, float scale){
+        PointF[] p = new PointF[4];
+        for(int i=0;i<p.length;i++){
+            p[i] = new PointF(ver[i][0]/scale,ver[i][1]/scale);
+        }
+
+        return p;
+    }
+
+
 
     private static PointF[]shiftRealVer(PointF min, PointF[]ver){
         PointF[]p = new PointF[4];

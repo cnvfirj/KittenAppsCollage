@@ -7,8 +7,8 @@ import android.graphics.Path;
 import android.graphics.PointF;
 
 import com.example.kittenappscollage.draw.operations.TouchPoints;
-import com.example.mutablebitmap.CompRep;
-import com.example.mutablebitmap.DeformMat;
+import com.example.mutmatrix.DeformMat;
+import com.example.mutmatrix.actions.Deform;
 
 public class ViewDrawHelper {
     private Paint hPaint;
@@ -57,7 +57,7 @@ public class ViewDrawHelper {
         hPaint.setAlpha(255);
         hPaint.setStrokeWidth(2);
         hPaint.setTextSize(50);
-        PointF[]p = img.muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
+        PointF[]p = img.muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM);
         hPath.reset();
         hPath.moveTo(p[0].x,p[0].y);
         hPath.lineTo(p[1].x,p[1].y);
@@ -133,6 +133,6 @@ public class ViewDrawHelper {
         String scale = ""+m.getRepository().getScale();
         if(scale.length()>4)scale = (scale).substring(0,4);
         String rotate = ""+(int)m.getRepository().getRotate();
-        return ""+(int)m.getBitmap().x+"/"+(int)m.getBitmap().y+" |scale: "+scale+" |rotate: "+rotate;
+        return ""+(int)m.getRepository().getBitmap().x+"/"+(int)m.getRepository().getBitmap().y+" |scale: "+scale+" |rotate: "+rotate;
     }
 }

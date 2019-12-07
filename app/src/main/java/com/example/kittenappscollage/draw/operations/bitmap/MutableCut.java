@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.operations.Operation;
 import com.example.kittenappscollage.helpers.Massages;
-import com.example.mutablebitmap.DeformMat;
+import com.example.mutmatrix.DeformMat;
 
 public class MutableCut extends MutableBit {
 
@@ -55,7 +55,7 @@ public class MutableCut extends MutableBit {
     public MutableBit mat(DeformMat mat) {
         mMat = mat;
         mCut.mat(mat);
-        zoneTouch((int) mMat.getCanvas().x/20);
+        zoneTouch((int) RepDraw.get().getView().x/20);
         return super.mat(mat);
     }
 

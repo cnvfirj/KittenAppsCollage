@@ -1,6 +1,5 @@
 package com.example.kittenappscollage.draw.operations.canvas;
 
-import android.graphics.Paint;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 

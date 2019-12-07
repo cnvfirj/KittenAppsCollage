@@ -6,10 +6,9 @@ import android.graphics.Point;
 import android.graphics.PointF;
 
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
-import com.example.mutablebitmap.DeformMat;
-import java.util.ArrayList;
+import com.example.mutmatrix.DeformMat;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import java.util.ArrayList;
 
 public class HelpElast {
 
@@ -18,10 +17,6 @@ public class HelpElast {
         protected MutableBit.Command hCommand;
 
         protected DeformMat hMat;
-
-//        protected int hAlpha;
-
-//        protected float hRadius;
 
         protected boolean hOunStart,hOunProcess;
 

@@ -1,13 +1,7 @@
 package com.example.kittenappscollage.draw.operations;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.PointF;
 import android.view.MotionEvent;
 
-import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ApplyOperation {
 

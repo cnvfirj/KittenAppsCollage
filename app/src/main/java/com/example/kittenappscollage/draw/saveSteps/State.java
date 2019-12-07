@@ -1,6 +1,5 @@
 package com.example.kittenappscollage.draw.saveSteps;
-
-import com.example.mutablebitmap.CompRep;
+import com.example.mutmatrix.CompRep;
 
 import java.io.Serializable;
 

@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.PointF;
 
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
-import com.example.mutablebitmap.CompRep;
+import com.example.mutmatrix.CompRep;
 
 //import static com.example.kittenappscollage.helpers.Massages.LYTE;
 

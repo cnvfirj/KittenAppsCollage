@@ -5,8 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.PointF;
 
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
-import com.example.mutablebitmap.CompRep;
-import com.example.mutablebitmap.DeformMat;
+import com.example.kittenappscollage.helpers.App;
+import com.example.mutmatrix.CompRep;
+import com.example.mutmatrix.DeformMat;
+
 
 public class Repozitory {
 
@@ -45,8 +47,8 @@ public class Repozitory {
     protected int rReadiness;
 
     protected Repozitory() {
-        rLyrMat = new DeformMat();
-        rImgMat = new DeformMat();
+        rLyrMat = new DeformMat(App.getMain());
+        rImgMat = new DeformMat(App.getMain());
         rNameProj = NONAME;
         rReadiness = 0;
     }

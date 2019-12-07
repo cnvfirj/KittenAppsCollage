@@ -9,8 +9,8 @@ import android.graphics.Rect;
 import android.graphics.Region;
 import android.os.Build;
 
-import com.example.mutablebitmap.DeformMat;
-
+import com.example.mutmatrix.DeformMat;
+import com.example.mutmatrix.actions.Deform;
 
 public class DrawBitmap {
     private Canvas dCanvas;
@@ -28,7 +28,7 @@ public class DrawBitmap {
         dCanvas = new Canvas(img);
         dMat = mat;
         dPaint = new Paint();
-        PointF[] pClip = clip.muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
+        PointF[] pClip = clip.muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM);
 
         for (int i=0;i<pClip.length;i++){
             pClip[i] = mat.getPointBitmap(pClip[i]);
@@ -67,7 +67,7 @@ public class DrawBitmap {
         float scaleLyr = mat.getRepository().getScale();
         float scaleCom = scaleLyr/scaleImg;
         Matrix matrix = new Matrix();
-        matrix.setPolyToPoly(mat.getSrc(),0,mat.getRepository().getDeform(),0,4);
+        matrix.setPolyToPoly(mat.getRepository().getSrc(),0,mat.getRepository().getDst(),0,4);
         matrix.postScale(scaleCom,scaleCom);
         matrix.postRotate(mat.getRepository().getRotate());
         PointF pointImg = dMat.getPointBitmap(mat.getRepository().getTranslate());
@@ -83,7 +83,7 @@ public class DrawBitmap {
         float scaleLyr = ovl.getRepository().getScale();
         float scaleCom = scaleLyr/scaleImg;
         Matrix matrix = new Matrix();
-        matrix.setPolyToPoly(ovl.getSrc(),0,ovl.getRepository().getDeform(),0,4);
+        matrix.setPolyToPoly(ovl.getRepository().getSrc(),0,ovl.getRepository().getDst(),0,4);
         matrix.postScale(scaleCom,scaleCom);
         matrix.postRotate(ovl.getRepository().getRotate());
         PointF pointImg = dMat.getPointBitmap(ovl.getRepository().getTranslate());

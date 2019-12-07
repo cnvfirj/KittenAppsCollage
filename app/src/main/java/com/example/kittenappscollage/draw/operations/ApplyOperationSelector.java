@@ -4,7 +4,9 @@ import android.graphics.Bitmap;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
-import com.example.mutablebitmap.DeformMat;
+import com.example.mutmatrix.DeformMat;
+import com.example.mutmatrix.actions.Deform;
+
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.ALL;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_IMG;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.SINGLE;
@@ -31,7 +33,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     }
 
     @Override
-    public void result(Bitmap img, DeformMat mat,int index) {
+    public void result(Bitmap img, DeformMat mat, int index) {
         if(index==RepDraw.LYR_LYR){
 
             RepDraw.get().mutableLyr(img,mat.getRepository(),RepDraw.MUTABLE_SIZE,true);
@@ -139,14 +141,14 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
                       if(event.getAction()==MotionEvent.ACTION_DOWN) {
                           operation.ready(TouchBitmap
                                   .ifIGotBit(
-                                          getOverMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),
+                                          getOverMat().muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM),
                                           new PointF(event.getX(), event.getY())
                                   ));
                                     }
                   }else if(isElast(operation)){
                       if(event.getAction()==MotionEvent.ACTION_DOWN||event.getAction()==MotionEvent.ACTION_MOVE){
                           operation.ready(TouchBitmap
-                                    .ifIGotBitBord(getOverMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM),
+                                    .ifIGotBitBord(getOverMat().muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM),
                                             new PointF(event.getX(), event.getY()),20));
                                       }
                   }
@@ -169,7 +171,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
                 if(isFill(operation)){
                     operation.ready(TouchBitmap
                             .ifIGotBit(getOverMat()
-                                    .muteDeformLoc(DeformMat
+                                    .muteDeformLoc(Deform
                                             .Coordinates.DISPLAY_ROTATE_DEFORM), new PointF(event.getX(), event.getY())));
                     if(operation.isReady()){
                         int index = RepDraw.get().isLyr() ? ALL : LYR_IMG;
@@ -279,13 +281,13 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
         }
     }
     private boolean belongingRegion(DeformMat mat, PointF p){
-        PointF[]region = mat.muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
+        PointF[]region = mat.muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM);
         return TouchBitmap.ifIGotBit(region,p);
     }
 
     private boolean belongingOverlay(){
-        PointF[]lyr = getLMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
-        PointF[]img = getIMat().muteDeformLoc(DeformMat.Coordinates.DISPLAY_ROTATE_DEFORM);
+        PointF[]lyr = getLMat().muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM);
+        PointF[]img = getIMat().muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM);
        for(PointF l:lyr) {
                if(TouchBitmap.ifIGotBit(img,l)) {
                    return true;

@@ -4,9 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.PointF;
 
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
-import com.example.mutablebitmap.DeformMat;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import com.example.mutmatrix.DeformMat;
 
 public class MutableElast extends MutableFill {
 

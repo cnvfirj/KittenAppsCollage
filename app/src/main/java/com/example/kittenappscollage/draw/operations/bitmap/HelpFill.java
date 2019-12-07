@@ -2,11 +2,9 @@ package com.example.kittenappscollage.draw.operations.bitmap;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.graphics.PointF;
 
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
-import com.example.mutablebitmap.DeformMat;
 
 import java.util.LinkedList;
 import java.util.Queue;
