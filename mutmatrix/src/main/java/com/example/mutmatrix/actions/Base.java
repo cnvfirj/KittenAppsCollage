@@ -13,6 +13,8 @@ public abstract class Base {
 
     protected Context context;
 
+    protected DeformMat.Command command;
+
     public Base(Context context) {
         this.context = context;
         reset();
@@ -44,10 +46,18 @@ public abstract class Base {
 
     }
 
-    public void specialCommand(DeformMat.SpecialCommand c, PointF p){
+//    public void specialCommand(DeformMat.SpecialCommand c, PointF p){
+//
+//    }
 
+    public Base command(DeformMat.Command command){
+        this.command = command;
+        return this;
     }
 
+    public void resetMutable(){
+
+    }
     public abstract void reset();
 
     public abstract void start(PointF p);

@@ -51,12 +51,12 @@ public class OperationMatrix extends Operation {
     public Operation event(Event event) {
         this.event = event;
         if(event.equals(Event.MATRIX_T))mCommand = DeformMat.Command.TRANSLATE;
-        else if(event.equals(Event.MATRIX_S_P))mCommand = DeformMat.Command.SCALE;
-//        else if (event.equals(Event.MATRIX_S_M))mCommand = DeformMat.Command.SCALE_MINUS;
+        else if(event.equals(Event.MATRIX_S))mCommand = DeformMat.Command.SCALE;
+        else if(event.equals(Event.MATRIX_S_P))mCommand = DeformMat.Command.SCALE_PLUS;
+        else if (event.equals(Event.MATRIX_S_M))mCommand = DeformMat.Command.SCALE_MINUS;
         else if (event.equals(Event.MATRIX_R))mCommand = DeformMat.Command.ROTATE;
         else if (event.equals(Event.MATRIX_D))mCommand = DeformMat.Command.DEFORM;
-//        else if (event.equals(Event.MATRIX_MIRR))mCommand = DeformMat.Command.MIRROR;
-//        else if (event.equals(Event.MATRIX_RESET_DR))mCommand = DeformMat.Command.RESET;
+        else if (event.equals(Event.MATRIX_RESET_DR))mCommand = DeformMat.Command.RESET;
         else mCommand = DeformMat.Command.NON;
         return this;
     }

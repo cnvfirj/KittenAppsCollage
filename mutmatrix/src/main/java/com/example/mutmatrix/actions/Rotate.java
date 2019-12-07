@@ -81,8 +81,8 @@ public class Rotate extends Base {
     }
 
     @Override
-    public void specialCommand(DeformMat.SpecialCommand c, PointF p) {
-        super.specialCommand(c,p);
+    public void resetMutable() {
+        super.resetMutable();
         rep.setRotate(0);
         rep.setTranslate(new PointF(rep.getTranslate().x-rep.getStep().x,rep.getTranslate().y-rep.getStep().y));
         rep.setStep(new PointF(0,0));

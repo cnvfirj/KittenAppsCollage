@@ -16,25 +16,38 @@ public class DeformMat {
     public enum Command{
         TRANSLATE,
         SCALE,
+        SCALE_PLUS,
+        SCALE_MINUS,
+        SCALE_MAX,
+        SCALE_MIN,
+        SCALE_ADAPT,
+        SCALE_COMMON,
         ROTATE,
         DEFORM,
+        RESET,
+        RESET_ROTATE,
+        RESET_DEFORM,
         NON
     }
 
-    public enum SpecialCommand{
-        MAX,
-        MIN,
-        ADAPT,
-        COMMON,
-        RESET_ROTATE,
-        RESET_DEFORM
-    }
+//    public enum SpecialCommand{
+//        SCALE_PLUS,
+//        SCALE_MINUS,
+//        MAX,
+//        MIN,
+//        ADAPT,
+//        COMMON,
+//        RESET_ROTATE,
+//        RESET_DEFORM
+//    }
 
-    private SpecialCommand[]spec;
+    private Command[]spec;
 
-    private Base base, translate, scale, rotate, deform;
+    private Base translate, scale, rotate, deform;
 
     private CompRep repository;
+
+    private Command command;
 
     public DeformMat(Context context) {
         repository = new CompRep();
@@ -65,31 +78,25 @@ public class DeformMat {
 
 
     public DeformMat command(Command command){
-        spec = null;
-        switch (command){
-            case TRANSLATE:
-                base = translate;
-                break;
-            case ROTATE:
-                base = rotate;
-                break;
-            case SCALE:
-                base = scale;
-                break;
-            case DEFORM:
-                base = deform;
-        }
+        this.command = command;
+
         return this;
     }
 
     public DeformMat event(MotionEvent event){
-        if(base!=null){
-            if(spec==null) {
-                base.touch(event);
-            }else {
-                calculateSpec(new PointF(event.getX(),event.getY()));
-            }
+        if(command.equals(Command.TRANSLATE)){
+            translate.command(command).touch(event);
+        }else if(ifScale()){
+            scale.command(command).touch(event);
+        }else if(ifDeform()){
+            deform.command(command).touch(event);
+        }else if(ifRotate()){
+            rotate.command(command).touch(event);
+        }else if(command.equals(Command.RESET)){
+            deform.resetMutable();
+            rotate.resetMutable();
         }
+
         return this;
     }
 
@@ -123,26 +130,40 @@ public class DeformMat {
         return deform.muteDeformLoc(c);
     }
 
-
-    public void special(SpecialCommand[]resets){
-        spec = resets;
+    private boolean ifScale(){
+        return command.equals(Command.SCALE)||command.equals(Command.SCALE_PLUS)||
+                command.equals(Command.SCALE_MINUS)||command.equals(Command.SCALE_MIN)||
+                command.equals(Command.SCALE_MAX)||command.equals(Command.SCALE_ADAPT)||
+                command.equals(Command.SCALE_COMMON);
     }
 
-     private void calculateSpec(PointF p){
-         for (SpecialCommand c:spec){
-             if(c.equals(SpecialCommand.RESET_DEFORM)){
-                 deform.specialCommand(c,p);
-             }else
-                 if(c.equals(SpecialCommand.RESET_ROTATE)){
-                 rotate.specialCommand(c,p);
-             }else
-                 if(c.equals(SpecialCommand.MAX)||
-                     c.equals(SpecialCommand.MIN)||
-                     c.equals(SpecialCommand.COMMON)||
-                     c.equals(SpecialCommand.ADAPT)){
-                 scale.specialCommand(c,p);
-             }
-         }
-     }
+    private boolean ifDeform(){
+        return command.equals(Command.DEFORM);
+    }
+
+    private boolean ifRotate(){
+        return command.equals(Command.ROTATE);
+    }
+
+//    public void special(SpecialCommand[]resets){
+//        spec = resets;
+//    }
+//
+//     private void calculateSpec(PointF p){
+//         for (SpecialCommand c:spec){
+//             if(c.equals(SpecialCommand.RESET_DEFORM)){
+//                 deform.specialCommand(c,p);
+//             }else
+//                 if(c.equals(SpecialCommand.RESET_ROTATE)){
+//                 rotate.specialCommand(c,p);
+//             }else
+//                 if(c.equals(SpecialCommand.MAX)||
+//                     c.equals(SpecialCommand.MIN)||
+//                     c.equals(SpecialCommand.COMMON)||
+//                     c.equals(SpecialCommand.ADAPT)){
+//                 scale.specialCommand(c,p);
+//             }
+//         }
+//     }
 
 }

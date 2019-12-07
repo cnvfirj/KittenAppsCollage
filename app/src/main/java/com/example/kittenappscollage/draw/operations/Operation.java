@@ -19,39 +19,30 @@ public abstract class Operation {
 
         DRAW_SPOT,
         DRAW_TEXT,
-        DRAW_LINE,
-        DRAW_RECT,
-        DRAW_OVAL,
-        DRAW_NOTE,
-        DRAW_RAD,
-        DRAW_LENGTH,
-        DRAW_ANGLE,
 
         MATR,
         MATRIX_T,
         MATRIX_S_P,
         MATRIX_S_M,
+        MATRIX_S,
+        MATRIX_S_1,
+        MATRIX_S_2,
+        MATRIX_S_3,
+        MATRIX_S_4,
         MATRIX_R,
         MATRIX_D,
         MATRIX_RESET_DR,
-        MATRIX_MIRR,
+        MATRIX_RESET_T,
 
         LAYE,
         LAYERS_FILL_TO_COLOR,
         LAYERS_FILL_TO_BORDER,
         LAYERS_CUT,
-        LAYERS_CUT_BORD,
         LAYERS_ELASTIC_1,
         LAYERS_ELASTIC_2,
         LAYERS_ELASTIC_3,
         LAYERS_ELASTIC_4,
-        LAYERS_SCALE,
-        LAYERS_MIRR_V,
-        LAYERS_MIRR_H,
-        LAYERS_INSCRIBE,
 
-
-        FON,
         NULLABLE
     }
 
@@ -92,10 +83,6 @@ public abstract class Operation {
         return this;
     }
 
-    public Operation mark(boolean vis){
-        return this;
-    }
-
     public Operation size(float size){
         return this;
     }
@@ -106,10 +93,6 @@ public abstract class Operation {
 
     public Operation alpha(int alpha){
         return this;
-    }
-
-    public Path createPath(){
-        return null;
     }
 
     public Operation resultMutable(ResultMutable result){

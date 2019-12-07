@@ -7,10 +7,13 @@ import android.view.ScaleGestureDetector;
 
 import com.example.mutmatrix.DeformMat;
 
-import static com.example.mutmatrix.DeformMat.SpecialCommand.ADAPT;
-import static com.example.mutmatrix.DeformMat.SpecialCommand.COMMON;
-import static com.example.mutmatrix.DeformMat.SpecialCommand.MAX;
-import static com.example.mutmatrix.DeformMat.SpecialCommand.MIN;
+
+import static com.example.mutmatrix.DeformMat.Command.SCALE_ADAPT;
+import static com.example.mutmatrix.DeformMat.Command.SCALE_COMMON;
+import static com.example.mutmatrix.DeformMat.Command.SCALE_MAX;
+import static com.example.mutmatrix.DeformMat.Command.SCALE_MIN;
+import static com.example.mutmatrix.DeformMat.Command.SCALE_MINUS;
+import static com.example.mutmatrix.DeformMat.Command.SCALE_PLUS;
 import static com.example.mutmatrix.Massages.ERROR;
 
 public class Scale extends Base{
@@ -34,12 +37,20 @@ public class Scale extends Base{
     public Base touch(MotionEvent event) {
         int index = event.getActionIndex();
         int id = event.getPointerId(index);
-        if(id==0||id==1){
-            detector.onTouchEvent(event);
-            if(event.getAction()==MotionEvent.ACTION_UP)fin(null);
+        if(command.equals(DeformMat.Command.SCALE)) {
+            if (id == 0 || id == 1) {
+                detector.onTouchEvent(event);
+                if (event.getAction() == MotionEvent.ACTION_UP) fin(null);
+            }
+        }else {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                start(new PointF(event.getX(),event.getY()));
+            }
         }
         return this;
     }
+
+
 
     @Override
     public Base view(PointF v) {
@@ -48,25 +59,8 @@ public class Scale extends Base{
     }
 
     @Override
-    public void specialCommand(DeformMat.SpecialCommand c, PointF p) {
-        super.specialCommand(c,p);
-        float scale = rep.getScale();
-        PointF trans = rep.getTranslate();
-        if(c.equals(MAX))rep.setScale(10.f);
-        else if(c.equals(MIN))rep.setScale(0.1f);
-        else if(c.equals(ADAPT))rep.setScale(adapt());
-        else if(c.equals(COMMON))rep.setScale(1.0f);
-        scale = rep.getScale()/scale;
-        final float x = (p.x-trans.x)*scale;
-        final float y = (p.y-trans.y)*scale;
-        rep.setTranslate(new PointF(p.x-x,p.y-y));
-        fin(null);
-
-    }
-
-    @Override
     public void start(PointF p) {
-
+      calculate(command, p);
     }
 
     @Override
@@ -77,6 +71,35 @@ public class Scale extends Base{
     @Override
     public void fin(PointF p) {
         rep.findLoc();
+    }
+
+    private void calculate(DeformMat.Command c,PointF p){
+        float scale = rep.getScale();
+        PointF trans = rep.getTranslate();
+        if(c.equals(SCALE_MAX))rep.setScale(10.f);
+        else if(c.equals(SCALE_MIN))rep.setScale(0.1f);
+        else if(c.equals(SCALE_ADAPT))rep.setScale(adapt());
+        else if(c.equals(SCALE_COMMON))rep.setScale(1.0f);
+        else if(c.equals(SCALE_MINUS))rep.setScale(scaleM());
+        else if(c.equals(SCALE_PLUS))rep.setScale(scaleP());
+        scale = rep.getScale()/scale;
+        final float x = (p.x-trans.x)*scale;
+        final float y = (p.y-trans.y)*scale;
+        rep.setTranslate(new PointF(p.x-x,p.y-y));
+        fin(null);
+    }
+    private float scaleP(){
+        float scale = rep.getScale();
+        scale = scale+0.1f;
+        if(scale>10)scale = 10;
+        return scale;
+    }
+
+    private float scaleM(){
+        float scale = rep.getScale();
+        scale = scale-0.1f;
+        if(scale<0.1f)scale = 0.1f;
+        return scale;
     }
 
     private float adapt(){
