@@ -10,7 +10,6 @@ import com.example.mutmatrix.actions.Deform;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.ALL;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_IMG;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.SINGLE;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ApplyOperationSelector implements Operation.ResultMutable {
 
@@ -63,6 +62,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     void singleMat(Operation operation, MotionEvent event){
         PointF p = new PointF(event.getX(),event.getY());
         int action = event.getAction();
+        int end = 0;
         boolean touch = false;
         if(RepDraw.get().isImg()){
             if(action==MotionEvent.ACTION_UP){
@@ -73,14 +73,18 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
                 if(action==MotionEvent.ACTION_DOWN){
                     operation.mat(RepDraw.get().getIMat()).ready(true);
                 }
-            }
+            }else end++;
             if(RepDraw.get().isLyr()){
                 if(belongingRegion(RepDraw.get().getLMat(),p)){
 
                     if(action==MotionEvent.ACTION_DOWN){
                         operation.mat(RepDraw.get().getLMat()).ready(true);
                     }
-                }
+                }else end++;
+            }
+            if(end==2){
+                event.setAction(MotionEvent.ACTION_UP);
+                touch = true;
             }
             if(operation.isReady()) operation.point(event).apply();
             if(touch&&operation.isReady()){
@@ -261,17 +265,17 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
         }
     }
 
-    private boolean isZeroing(Bitmap b){
-        if(b!=null&&!b.isRecycled())return true;
-        else return false;
-    }
-
-    private void zeroingBitmap(Bitmap b){
-        if(b!=null){
-            b.recycle();
-            b = null;
-        }
-    }
+//    private boolean isZeroing(Bitmap b){
+//        if(b!=null&&!b.isRecycled())return true;
+//        else return false;
+//    }
+//
+//    private void zeroingBitmap(Bitmap b){
+//        if(b!=null){
+//            b.recycle();
+//            b = null;
+//        }
+//    }
     private boolean belongingRegion(DeformMat mat, PointF p){
         PointF[]region = mat.muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM);
         return TouchBitmap.ifIGotBit(region,p);
