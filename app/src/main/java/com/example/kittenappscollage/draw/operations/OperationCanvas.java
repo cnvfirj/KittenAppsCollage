@@ -77,6 +77,6 @@ public class OperationCanvas extends Operation {
 
     @Override
     public void apply() {
-
+        oDraw.draw();
     }
 }

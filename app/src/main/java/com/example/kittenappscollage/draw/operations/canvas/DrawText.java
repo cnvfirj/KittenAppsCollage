@@ -58,4 +58,8 @@ public class DrawText extends DrawArbitLine implements RepParams.ListParams {
     public void text(String t) {
 
     }
+
+    public void draw(){
+        dText.draw();
+    }
 }
