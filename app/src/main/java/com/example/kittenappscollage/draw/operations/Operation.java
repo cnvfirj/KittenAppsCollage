@@ -59,6 +59,7 @@ public abstract class Operation {
     public boolean isReady(){
         return ready;
     }
+
     public Operation mat(DeformMat mat){
         return this;
     }

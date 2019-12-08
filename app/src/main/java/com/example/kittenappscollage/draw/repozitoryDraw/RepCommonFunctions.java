@@ -103,6 +103,7 @@ public class RepCommonFunctions extends RepParams {
     }
 
     public void correctLyr(){
+        correctOpLyr();
         if(isLyr()){
             Bitmap temp = CoercionBitmap.blankBitmap(rLyrMat);
             CoercionBitmap.drawBitmap(new Canvas(temp), CoercionBitmap.matrixBitmap(rLyrMat), rLyr);
@@ -114,6 +115,21 @@ public class RepCommonFunctions extends RepParams {
             rLyrMat.view(rView).bitmap(new PointF(temp.getWidth(), temp.getHeight()));
             rLyrMat.getRepository().setScale(scale);
             rLyrMat.getRepository().setTranslate(translate);
+            zeroingBitmap(temp);
+        }
+    }
+
+    private void correctOpLyr(){
+        if(isImg()){
+            Bitmap temp = CoercionBitmap.correctBlank(rLyrMat);
+            PointF trans = CoercionBitmap.correctTrans(rLyrMat);
+            DeformMat mat = new DeformMat(App.getMain());
+            mat.view(rView).bitmap(new PointF(temp.getWidth(), temp.getHeight())).getRepository().setScale(rImgMat.getRepository().getScale());
+            mat.getRepository().setTranslate(trans);
+            DrawBitmap.create(new Canvas(temp),mat).draw(rLyr, rLyrMat);
+            rLyr = temp.copy(Bitmap.Config.ARGB_8888, true);
+            rLyrC = new Canvas(rLyr);
+            rLyrMat.setRepository(mat.getRepository());
             zeroingBitmap(temp);
         }
     }

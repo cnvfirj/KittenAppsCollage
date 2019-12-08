@@ -61,11 +61,9 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     }
 
     void singleMat(Operation operation, MotionEvent event){
-
         PointF p = new PointF(event.getX(),event.getY());
         int action = event.getAction();
         boolean touch = false;
-
         if(RepDraw.get().isImg()){
             if(action==MotionEvent.ACTION_UP){
                 touch = true;
@@ -73,28 +71,22 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
             if(belongingRegion(RepDraw.get().getIMat(),p)){
 
                 if(action==MotionEvent.ACTION_DOWN){
-                    operation.mat(RepDraw.get().getIMat());
-                    down = true;
+                    operation.mat(RepDraw.get().getIMat()).ready(true);
                 }
             }
-
             if(RepDraw.get().isLyr()){
                 if(belongingRegion(RepDraw.get().getLMat(),p)){
 
                     if(action==MotionEvent.ACTION_DOWN){
-                        operation.mat(RepDraw.get().getLMat());
-                        down = true;
+                        operation.mat(RepDraw.get().getLMat()).ready(true);
                     }
                 }
             }
-
-            operation.point(event).apply();
-            if(touch&&down){
+            if(operation.isReady()) operation.point(event).apply();
+            if(touch&&operation.isReady()){
                 RepDraw.get().mutableMatrix();
-                down = false;
+                operation.ready(false);
             }
-
-
         }
     }
 
