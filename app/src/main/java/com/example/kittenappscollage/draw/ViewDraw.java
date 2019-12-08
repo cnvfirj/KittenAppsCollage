@@ -14,6 +14,8 @@ import android.view.View;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.operations.ApplyOperation;
 import com.example.kittenappscollage.draw.operations.Operation;
+import com.example.kittenappscollage.draw.operations.OperationCanvas;
+import com.example.kittenappscollage.draw.operations.canvas.DrawText;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
@@ -31,6 +33,10 @@ public class ViewDraw extends View {
     private Paint paint;
 
     private boolean vInfo;
+
+    private boolean vIsDraw;
+
+    private OperationCanvas vDrawPreview;
 
     public ViewDraw(Context context) {
         super(context);
@@ -52,12 +58,16 @@ public class ViewDraw extends View {
         paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
+        vDrawPreview = new OperationCanvas().preview(OperationCanvas.DRAW_PREVIEW);
+        vIsDraw = false;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if(RepDraw.get().isImg()){
 
+        vDrawPreview.canvas(canvas).apply();
+
+        if(RepDraw.get().isImg()){
             canvas.drawBitmap(getImg(),getMatrImg(),null);
         }
         if(RepDraw.get().isLyr()){
@@ -68,7 +78,8 @@ public class ViewDraw extends View {
             if(RepDraw.get().isImg())vHelper.drawInfo(canvas,RepDraw.get().getIMat(),"img",Color.RED);
             if(RepDraw.get().isLyr())vHelper.drawInfo(canvas,RepDraw.get().getLMat(),"lyr",Color.BLUE);
         }
-      if(vAppOp.getEvent()!=null&&vAppOp.getEvent().equals(Operation.Event.LAYERS_CUT)&&RepDraw.get().isImg())
+
+        if(vAppOp.getEvent()!=null&&vAppOp.getEvent().equals(Operation.Event.LAYERS_CUT)&&RepDraw.get().isImg())
         vHelper.drawShadow(canvas,RepDraw.get().getRepers(),getContext().getResources().getColor(R.color.colorShadow));
         super.onDraw(canvas);
     }
@@ -80,6 +91,7 @@ public class ViewDraw extends View {
         if(vNonBlock) {
             if(RepDraw.get().isImg()){
                 vAppOp.point(event);
+                vDrawPreview.point(event);
                 invalidate();
             }
 
@@ -116,6 +128,15 @@ public class ViewDraw extends View {
         return RepDraw.get().getLMat().matrix(vMatrL);
     }
 
+    private boolean isDraw(){
+        Operation.Event e = vAppOp.getEvent();
+        return e.equals(Operation.Event.DRAW_A_LINE_1)||
+                e.equals(Operation.Event.DRAW_A_LINE_2)||
+                e.equals(Operation.Event.DRAW_A_LINE_3)||
+                e.equals(Operation.Event.DRAW_SPOT)||
+                e.equals(Operation.Event.DRAW_TEXT);
+    }
+
     public void groupLyrs(boolean gr){
         vAppOp.grouping(gr);
     }
@@ -126,6 +147,7 @@ public class ViewDraw extends View {
 
     public void setEvent(Operation.Event event){
         vAppOp.event(event);
+        vDrawPreview.event(event);
     }
 
 }

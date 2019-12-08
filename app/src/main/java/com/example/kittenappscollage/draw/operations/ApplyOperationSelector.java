@@ -145,7 +145,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
                       if(event.getAction()==MotionEvent.ACTION_DOWN||event.getAction()==MotionEvent.ACTION_MOVE){
                           operation.ready(TouchBitmap
                                     .ifIGotBitBord(getOverMat().muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM),
-                                            new PointF(event.getX(), event.getY()),20));
+                                            new PointF(event.getX(), event.getY()),25));
                                       }
                   }
                   if(operation.isReady()) {

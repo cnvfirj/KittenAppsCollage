@@ -22,9 +22,9 @@ public class OperationBitmap extends Operation{
 
     public static OperationBitmap get(){
         if(singleton==null){
-            synchronized (OperationBitmap.class){
+//            synchronized (OperationBitmap.class){
                 singleton = new OperationBitmap();
-            }
+//            }
         }
         return singleton;
     }

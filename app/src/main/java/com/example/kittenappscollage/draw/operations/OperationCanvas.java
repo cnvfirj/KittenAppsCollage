@@ -11,6 +11,9 @@ import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class OperationCanvas extends Operation {
 
+    public final static int DRAW_PREVIEW = 145;
+    public final static int DRAW_BITMAP = 129;
+
     private DrawText oDraw;
 
     private static OperationCanvas singleton;
@@ -21,9 +24,9 @@ public class OperationCanvas extends Operation {
 
     public static OperationCanvas get(){
         if(singleton==null){
-            synchronized (OperationCanvas.class){
+//            synchronized (OperationCanvas.class){
                 singleton = new OperationCanvas();
-            }
+//            }
         }
         return singleton;
     }
@@ -39,6 +42,10 @@ public class OperationCanvas extends Operation {
         return this;
     }
 
+    public OperationCanvas preview(int p){
+        oDraw.preview(p);
+        return this;
+    }
     @Override
     public Operation canvas(Canvas canvas) {
         oDraw.canvas(canvas);
@@ -47,7 +54,7 @@ public class OperationCanvas extends Operation {
 
     @Override
     public Operation index(int index) {
-
+        oDraw.index(index);
         return super.index(index);
     }
 

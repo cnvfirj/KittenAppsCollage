@@ -29,9 +29,9 @@ public class OperationMatrix extends Operation {
 
     public static OperationMatrix get(){
         if(singleton==null){
-            synchronized (OperationMatrix.class){
+//            synchronized (OperationMatrix.class){
                 singleton = new OperationMatrix();
-            }
+//            }
         }
         return singleton;
     }
