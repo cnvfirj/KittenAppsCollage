@@ -19,12 +19,22 @@ public abstract class DrawCanvas {
 
     protected Canvas dCanvas;
 
+    protected int dPreview, dIndex;
+
     public void command(Command command){
         dCommand = command;
     }
 
     public void canvas(Canvas canvas){
         dCanvas = canvas;
+    }
+
+    public void preview(int p){
+        dPreview = p;
+    }
+
+    public void index(int i){
+        dIndex = i;
     }
 
     public abstract DrawCanvas point(MotionEvent event);

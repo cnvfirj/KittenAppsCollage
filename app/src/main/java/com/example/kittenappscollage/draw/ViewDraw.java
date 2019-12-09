@@ -15,10 +15,7 @@ import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.operations.ApplyOperation;
 import com.example.kittenappscollage.draw.operations.Operation;
 import com.example.kittenappscollage.draw.operations.OperationCanvas;
-import com.example.kittenappscollage.draw.operations.canvas.DrawText;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ViewDraw extends View {
 
@@ -34,9 +31,6 @@ public class ViewDraw extends View {
 
     private boolean vInfo;
 
-    private boolean vIsDraw;
-
-    private OperationCanvas vDrawPreview;
 
     public ViewDraw(Context context) {
         super(context);
@@ -58,14 +52,11 @@ public class ViewDraw extends View {
         paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
-        vDrawPreview = new OperationCanvas().preview(OperationCanvas.DRAW_PREVIEW);
-        vIsDraw = false;
+
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
-
-        vDrawPreview.canvas(canvas).apply();
 
         if(RepDraw.get().isImg()){
             canvas.drawBitmap(getImg(),getMatrImg(),null);
@@ -84,21 +75,17 @@ public class ViewDraw extends View {
         super.onDraw(canvas);
     }
 
-
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if(vNonBlock) {
             if(RepDraw.get().isImg()){
                 vAppOp.point(event);
-                vDrawPreview.point(event);
                 invalidate();
             }
-
         }
         return true;
     }
-
 
     public void changeInfo(boolean info){
         vInfo = info;
@@ -147,7 +134,6 @@ public class ViewDraw extends View {
 
     public void setEvent(Operation.Event event){
         vAppOp.event(event);
-        vDrawPreview.event(event);
     }
 
 }

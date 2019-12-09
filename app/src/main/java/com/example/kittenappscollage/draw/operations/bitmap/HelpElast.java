@@ -20,12 +20,11 @@ public class HelpElast {
 
         protected boolean hOunStart,hOunProcess;
 
-        protected PointF hPoint,hStartSegment,hFinSegment, hOldPoint, hOldLeft,hOldRight, hOldZeroVector;
+        protected PointF hPoint,hStartSegment,hFinSegment, hOldPoint, hOldZeroVector;
 
         protected ArrayList<PointF> hZeroingPoints,hPointsCenter;
 
         protected ArrayList<PointF> hPointsCircle;
-
 
         protected ArrayList<Integer> hValuesAlpha;
 
@@ -39,7 +38,7 @@ public class HelpElast {
 
         protected Bitmap hBitmap;
 
-        private boolean hConvert;
+        protected boolean hConvert;
 
 
 
@@ -47,7 +46,7 @@ public class HelpElast {
             init();
         }
 
-        private void init(){
+        protected void init(){
             hZeroingPoints = new ArrayList<>();
             hValuesAlpha = new ArrayList<>();
             hPointsCenter = new ArrayList<>();
@@ -137,12 +136,14 @@ public class HelpElast {
             return this;
         }
 
+        /*вызываем при завершении жеста*/
         public HelpElast fin(){
             hOunStart = false;
             hOunProcess = false;
             hConvert = false;
             return this;
         }
+
         public HelpElast apply(){
             if(hCommand.equals(MutableBit.Command.ELAST_1)||hCommand.equals(MutableBit.Command.ELAST_2)||
                     hCommand.equals(MutableBit.Command.ELAST_3)){
@@ -361,6 +362,7 @@ public class HelpElast {
         }
 
         private void fillAlterPointsAlpha(ArrayList<Integer> arr,Point a,Point b,PointF p){
+            /*заполнение с односторонней прозрачностью*/
             PointF fA = new PointF(a.x,a.y);
             PointF fB = new PointF(b.x,b.y);
             float r = widthVector(vector(fA,fB));
@@ -391,7 +393,7 @@ public class HelpElast {
                 for (PointF p:points){
                     addAllPoints(hZeroingPoints,new Point(0,0),extPoint(p),hValuesAlpha);
                 }
-//                 int alpha = hAlpha;
+
                 int alpha = RepDraw.get().getAlpha();
 
                 for (int i=0;i<hZeroingPoints.size();i++){
@@ -413,7 +415,6 @@ public class HelpElast {
 
             addAllPoints(hZeroingPoints,new Point((int)-zero.x,(int)zero.y),new Point((int)zero.x,(int)-zero.y),hValuesAlpha);
 
-//            int alpha = hAlpha;
             int alpha = RepDraw.get().getAlpha();
             for (PointF p:points){
                 for (int i=0;i<hZeroingPoints.size();i++){

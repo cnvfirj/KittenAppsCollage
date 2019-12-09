@@ -28,7 +28,7 @@ public class Repozitory {
 
     protected final String NONAME = "noname";
 
-    protected Bitmap rImg, rLyr, rTemp;
+    protected Bitmap rImg, rLyr, rTemp, rOverlay;
 
     protected DeformMat rImgMat, rLyrMat;
 
@@ -74,6 +74,11 @@ public class Repozitory {
         rImgMat.view(view);
         return this;
     }
+
+    public void createOverlay(){
+        rOverlay = Bitmap.createBitmap((int) rView.x,(int) rView.y, Bitmap.Config.ARGB_8888);
+    }
+
 
     public void setImg(Bitmap b, CompRep rep, boolean single){
         zeroingBitmap(rImg);
@@ -166,6 +171,10 @@ public class Repozitory {
 
     public Bitmap getLyr() {
         return rLyr;
+    }
+
+    public Bitmap getOverlay(){
+        return rOverlay;
     }
 
     public DeformMat getIMat() {

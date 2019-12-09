@@ -5,21 +5,23 @@ import android.graphics.PointF;
 import android.view.MotionEvent;
 
 import com.example.kittenappscollage.draw.operations.canvas.DrawCanvas;
-import com.example.kittenappscollage.draw.operations.canvas.DrawText;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import com.example.kittenappscollage.draw.operations.canvas.DrawLineInCanvas;
+import com.example.kittenappscollage.draw.operations.canvas.DrawTextInCanvas;
 
 public class OperationCanvas extends Operation {
 
     public final static int DRAW_PREVIEW = 145;
     public final static int DRAW_BITMAP = 129;
 
-    private DrawText oDraw;
+    private DrawLineInCanvas oDraw;
+
+    private boolean oIsCanvas;
 
     private static OperationCanvas singleton;
 
     public OperationCanvas() {
-        oDraw = new DrawText();
+        oDraw = new DrawLineInCanvas();
+        oIsCanvas = false;
     }
 
     public static OperationCanvas get(){
@@ -49,6 +51,7 @@ public class OperationCanvas extends Operation {
     @Override
     public Operation canvas(Canvas canvas) {
         oDraw.canvas(canvas);
+        if(canvas!=null)oIsCanvas = true;
         return super.canvas(canvas);
     }
 
@@ -77,6 +80,10 @@ public class OperationCanvas extends Operation {
 
     @Override
     public void apply() {
-        oDraw.draw();
+
+    }
+
+    public boolean isCanvas(){
+        return oIsCanvas;
     }
 }
