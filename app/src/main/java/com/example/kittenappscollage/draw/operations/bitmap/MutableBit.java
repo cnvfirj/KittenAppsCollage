@@ -13,13 +13,15 @@ public abstract class MutableBit extends TouchPoints {
 
     public enum Command{
         CUT,
-        CUT_A,
         FILL_C,
         FILL_B,
         ELAST_1,
         ELAST_2,
         ELAST_3,
         ELAST_4,
+        LINE_1,
+        LINE_2,
+        LINE_3,
         NON
     }
 
