@@ -33,8 +33,16 @@ public class HelpElast extends HelperSershPoints {
         float r = RepDraw.get().getWidth()/ hMat.getRepository().getScale();
         PointF fA = new PointF(b.x,b.y);
         if(arr!=null) {
-            arr.add(computeAlpha(ounCirc(vector(fA,p), r)));
+            if (hCreateAngle) {
+                /*закрашиваем угол в зависимости от поворота отрезка*/
+                if(hRightSegment)arr.add(computeAlpha(ounCirc(vector(hStartAnglePoint, p), r)));
+                else arr.add(computeAlpha(ounCirc(vector(hFinAnglePoint, p), r)));
+            } else {
+                    arr.add(computeAlpha(ounCirc(vector(fA, p), r)));
+
+            }
         }
+
 
     }
 

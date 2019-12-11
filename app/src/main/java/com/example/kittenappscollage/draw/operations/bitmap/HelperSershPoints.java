@@ -22,7 +22,9 @@ public class HelperSershPoints {
 
         protected PointF hPoint,hStartSegment,hFinSegment, hOldPoint, hOldZeroVector;
 
-        protected Point hStartAnglePoint;
+        protected PointF hStartAnglePoint,hFinAnglePoint;
+
+        protected boolean hCreateAngle;
 
         protected boolean hRightSegment;
 
@@ -133,6 +135,7 @@ public class HelperSershPoints {
             if(!hOunStart){
                 hStartSegment = new PointF(point.x,point.y);
                 hOunStart = true;
+                hCreateAngle = false;
             }else {
                 hFinSegment = new PointF(point.x,point.y);
                 hOunProcess = true;
@@ -191,8 +194,10 @@ public class HelperSershPoints {
                 s = new Point((int)(hOldZeroVector.x),(int)(-hOldZeroVector.y));//правая точка
                 f = new Point((int)(zero.x),(int)(-zero.y));//правая точка
             }
+                hCreateAngle = true;
                 hRightSegment = right;
-//                hStartAnglePoint = new Point((-s.x-f.x)/2,(-s.y-f.y)/2);
+                hStartAnglePoint = new PointF((-s.x-f.x)/2,(-s.y-f.y)/2);
+                hFinAnglePoint = new PointF((s.x+f.x)/2,(s.y+f.y)/2);
                 addAllPoints(points,s,f,null);
 
         }
@@ -301,7 +306,7 @@ public class HelperSershPoints {
                     },alpha);
                 }
             }
-
+            hCreateAngle = false;
             /*заполняем сам отрезок*/
             hPointsCenter.clear();
             /*находим все точки от старта к финишу*/
