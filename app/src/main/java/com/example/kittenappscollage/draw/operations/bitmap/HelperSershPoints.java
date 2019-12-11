@@ -1,8 +1,6 @@
 package com.example.kittenappscollage.draw.operations.bitmap;
 
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Point;
 import android.graphics.PointF;
 
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
@@ -12,6 +10,9 @@ import java.util.ArrayList;
 
 public class HelperSershPoints {
 
+    protected final int X = 0;
+    protected final int Y = 1;
+
     private MutableBit.Command hCommand;
 
     private DeformMat hMat;
@@ -20,15 +21,16 @@ public class HelperSershPoints {
 
     private PointF hPoint,hStartSegment,hFinSegment, hOldPoint, hOldZeroVector;
 
-    private PointF hStartAnglePoint,hFinAnglePoint;
+    private int[] hStartAnglePoint,hFinAnglePoint;
+
 
     private boolean hCreateAngle;
 
     private boolean hRightSegment;
 
-    private ArrayList<PointF> hZeroingPoints,hPointsCenter;
+    private ArrayList<int[]> hZeroingPoints,hPointsCenter;
 
-    private ArrayList<PointF> hPointsCircle;
+    private ArrayList<int[]> hPointsCircle;
 
     private ArrayList<Integer> hValuesAlpha;
 
@@ -131,6 +133,8 @@ public class HelperSershPoints {
                 hFinSegment = new PointF(point.x,point.y);
                 hOunProcess = true;
             }
+
+
             return this;
         }
 
@@ -164,48 +168,54 @@ public class HelperSershPoints {
             return hPoint;
         }
 
+
         protected void applyElastPixel(int[]p, int value){
 
         }
-
-        private void searchPointsCirc(ArrayList<PointF> points, PointF zero, boolean right){
-            Point s=null;
-            Point f=null;
+//       private void searchPointsCirc(ArrayList<PointF> points, PointF zero, boolean right){
+        private void searchPointsCirc(ArrayList<int[]> points, PointF zero, boolean right){
+            int[] s=null;
+            int[] f=null;
             /*в зависимости от поворота отрезка, выбираем
             * путь к которому заполним угол*/
             if(right){
-                s = new Point((int)(-hOldZeroVector.x),(int)(hOldZeroVector.y));//левая точка
-                f = new Point((int)(-zero.x),(int)(zero.y));//левая точка
+                s = new int[]{(int)(-hOldZeroVector.x),(int)(hOldZeroVector.y)};//левая точка
+                f = new int[]{(int)(-zero.x),(int)(zero.y)};//левая точка
+
 
             }else {
-                s = new Point((int)(hOldZeroVector.x),(int)(-hOldZeroVector.y));//правая точка
-                f = new Point((int)(zero.x),(int)(-zero.y));//правая точка
+                s = new int[]{(int)(hOldZeroVector.x),(int)(-hOldZeroVector.y)};//правая точка
+                f = new int[]{(int)(zero.x),(int)(-zero.y)};//правая точка
+
             }
                 hCreateAngle = true;
                 hRightSegment = right;
-                hStartAnglePoint = new PointF((-s.x-f.x)/2,(-s.y-f.y)/2);
-                hFinAnglePoint = new PointF((s.x+f.x)/2,(s.y+f.y)/2);
+                hStartAnglePoint = new int[]{(-s[X]-f[X])/2,(-s[Y]-f[Y])/2};
+                hFinAnglePoint = new int[]{(s[X]+f[X])/2,(s[Y]+f[Y])/2};
+//
                 addAllPoints(points,s,f,null);
 
         }
-
-        private void searchZeroCirc(ArrayList<PointF> points, float radius){
+//        private void searchZeroCirc(ArrayList<PointF> points, float radius){
+        private void searchZeroCirc(ArrayList<int[]> points, float radius){
             if(hMat==null)return;
             points.clear();
-            ArrayList<PointF> p1 = new ArrayList<>();
-            ArrayList<PointF> p2 = new ArrayList<>();
-            ArrayList<PointF> p3 = new ArrayList<>();
-            ArrayList<PointF> p4 = new ArrayList<>();
+            ArrayList<int[]> p1 = new ArrayList<>();
+            ArrayList<int[]> p2 = new ArrayList<>();
+            ArrayList<int[]> p3 = new ArrayList<>();
+            ArrayList<int[]> p4 = new ArrayList<>();
+
 
             int x = 0;
             int y =  Math.round(radius/hMat.getRepository().getScale())-1;
             int delta = 1 - 2 * (int) radius;
             int error = 0;
             while (y >= 0){
-                p1.add(new PointF(x,y));
-                p2.add(new PointF(x, - y));
-                p3.add(new PointF( - x, y));
-                p4.add(new PointF(- x, - y));
+                p1.add(new int[]{x,y});
+                p2.add(new int[]{x, - y});
+                p3.add(new int[]{ - x, y});
+                p4.add(new int[]{- x, - y});
+
                 error = 2 * (delta + y) - 1;
                 if ((delta < 0) && (error <= 0)){
                     delta += 2 * ++x + 1;
@@ -222,38 +232,38 @@ public class HelperSershPoints {
             points.addAll(p3);
             points.addAll(p4);
         }
-
-        protected void variableParams(PointF p,ArrayList<PointF>points, ArrayList<Integer>values,Point reperA, Point reperB){
+//        protected void variableParams(PointF p,ArrayList<PointF>points, ArrayList<Integer>values,Point reperA, Point reperB){
+        protected void variableParams(int[] p,ArrayList<int[]>points, ArrayList<Integer>values,int[] reperA, int[] reperB){
            points.add(p);
         }
         /*находим точки между s и f*/
-        private void addAllPoints(ArrayList<PointF> points, Point s, Point f, ArrayList<Integer> alpha){
-        Point a = new Point(s.x,s.y);
-        Point b = new Point(f.x,f.y);
-        int deltaX = Math.abs(b.x - a.x);
-        int deltaY = Math.abs(b.y - a.y);
-        int signX = a.x < b.x ? 1 : -1;
-        int signY = a.y < b.y ? 1 : -1;
+//        private void addAllPoints(ArrayList<PointF> points, Point s, Point f, ArrayList<Integer> alpha){
+        private void addAllPoints(ArrayList<int[]> points, int[] s, int[] f, ArrayList<Integer> alpha){
+        int[] a = s.clone();
+        int[] b = f.clone();
+        int deltaX = Math.abs(b[X] - a[X]);
+        int deltaY = Math.abs(b[Y] - a[Y]);
+        int signX = a[X] < b[X] ? 1 : -1;
+        int signY = a[Y] < b[Y] ? 1 : -1;
         int error = deltaX - deltaY;
-        variableParams(new PointF(b.x,b.y),points,alpha,s,f);
-
-        while (a.x!=b.x||a.y!=b.y){
-            variableParams(new PointF(a.x,a.y),points,alpha,s,f);
+            variableParams(new int[]{b[X],b[Y]},points,alpha,s,f);
+        while (a[X]!=b[X]||a[Y]!=b[Y]){
+            variableParams(new int[]{a[X],a[Y]},points,alpha,s,f);
 
             int shift = 0;
             int error2 = error*2;
             if (error2 > -deltaY) {
                 error -= deltaY;
-                a.x += signX;
+                a[X] += signX;
                 shift++;
             }
             if (error2 < deltaX) {
                 error += deltaX;
-                a.y += signY;
+                a[Y] += signY;
                 shift++;
             }
             if(shift==2){
-                variableParams(new PointF(a.x,a.y-signY),points,alpha,s,f);
+                variableParams(new int[]{a[X],a[Y]-signY},points,alpha,s,f);
 
             }
         }
@@ -270,8 +280,8 @@ public class HelperSershPoints {
                          isRight(vector(start,fin),vector(hMat.getPointBitmap(hOldPoint),start)));
                 hZeroingPoints.clear();
                 hValuesAlpha.clear();
-                for (PointF p:hPointsCenter){
-                    addAllPoints(hZeroingPoints,new Point(0,0),extPoint(p),hValuesAlpha);
+                for (int[] p:hPointsCenter){
+                    addAllPoints(hZeroingPoints,new int[]{0,0},p,hValuesAlpha);
                 }
 
                 int alpha = RepDraw.get().getAlpha();
@@ -281,9 +291,10 @@ public class HelperSershPoints {
                         alpha = hValuesAlpha.get(i);
                     }
                     applyElastPixel(new int[]{
-                            (int)(start.x+hZeroingPoints.get(i).x),
-                            (int)(start.y+hZeroingPoints.get(i).y)
+                            (int)(start.x+hZeroingPoints.get(i)[X]),
+                            (int)(start.y+hZeroingPoints.get(i)[Y])
                     },alpha);
+
                 }
             }
             hCreateAngle = false;
@@ -292,27 +303,26 @@ public class HelperSershPoints {
             /*находим все точки от старта к финишу*/
             addAllPoints(hPointsCenter,extPoint(start),extPoint(fin),null);
 
+
             hZeroingPoints.clear();
             hValuesAlpha.clear();
             /*находим все точки от левой до правой стороны*/
-            addAllPoints(hZeroingPoints,new Point((int)-zero.x,(int)zero.y),new Point((int)zero.x,(int)-zero.y),hValuesAlpha);
+            addAllPoints(hZeroingPoints,new int[]{(int)-zero.x,(int)zero.y},new int[]{(int)zero.x,(int)-zero.y},hValuesAlpha);
 
             /*перебираем оба массива и находим каждую точку отрезка*/
             int alpha = RepDraw.get().getAlpha();
-            for (PointF p:hPointsCenter){
+            for (int[] p:hPointsCenter){
                 for (int i=0;i<hZeroingPoints.size();i++){
                     if(hCommand.equals(MutableBit.Command.ELAST_2)||hCommand.equals(MutableBit.Command.ELAST_3)){
                         alpha = hValuesAlpha.get(i);
                     }
-
                     applyElastPixel(new int[]{
-                            (int)(p.x+hZeroingPoints.get(i).x),
-                            (int)(p.y+hZeroingPoints.get(i).y)
+                             (p[X]+hZeroingPoints.get(i)[X]),
+                             (p[Y]+hZeroingPoints.get(i)[Y]),
                     },alpha);
+
                 }
             }
-
-
             hOldZeroVector = new PointF(zero.x,zero.y);
         }
 
@@ -333,8 +343,8 @@ public class HelperSershPoints {
             return (float) Math.sqrt(vector.x*vector.x+vector.y*vector.y);
         }
 
-        private Point extPoint(PointF p){
-            return new Point((int)p.x,(int)p.y);
+        private int[]extPoint(PointF p){
+            return new int[]{(int)p.x,(int)p.y};
         }
 
         private PointF vector(PointF one, PointF two){
@@ -369,13 +379,14 @@ public class HelperSershPoints {
             return hRightSegment;
         }
 
-        protected PointF getStartAnglePoint(){
+        protected int[] getStartAnglePoint(){
             return hStartAnglePoint;
         }
 
-        protected PointF gethFinAnglePoint(){
+        protected int[] gethFinAnglePoint(){
             return hFinAnglePoint;
         }
+
 
         protected boolean[]getCheckeds(){
             return hCheckPixel;

@@ -1,8 +1,6 @@
 package com.example.kittenappscollage.draw.operations.bitmap;
 
 import android.graphics.Color;
-import android.graphics.Point;
-import android.graphics.PointF;
 
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
@@ -18,32 +16,31 @@ public class HelpElast extends HelperSershPoints {
     }
 
     @Override
-    protected void variableParams(PointF p,ArrayList<PointF> points, ArrayList<Integer> values,Point a, Point b) {
-        super.variableParams(p,points,values,a,b);
-        if(getCommand().equals(MutableBit.Command.ELAST_2)) {
+    protected void variableParams(int[] p, ArrayList<int[]> points, ArrayList<Integer> values, int[] reperA, int[] reperB) {
+        super.variableParams(p, points, values, reperA, reperB);
+        if (getCommand().equals(MutableBit.Command.ELAST_2)) {
             fillPointsAlpha(values, p,
-                    RepDraw.get().getWidth()/2.0f / gethMat().getRepository().getScale());
-        }else if(getCommand().equals(MutableBit.Command.ELAST_3)){
-            fillAlterPointsAlpha(values,p,a,b);
+                    RepDraw.get().getWidth() / 2.0f / gethMat().getRepository().getScale());
+        } else if (getCommand().equals(MutableBit.Command.ELAST_3)) {
+            fillAlterPointsAlpha(values, p, reperA, reperB);
         }
     }
 
-    private void fillAlterPointsAlpha(ArrayList<Integer> arr, PointF p, Point a, Point b ){
+    private void fillAlterPointsAlpha(ArrayList<Integer> arr, int[] p, int[] a, int[] b ){
         /*заполнение с односторонней прозрачностью*/
         float r = RepDraw.get().getWidth()/ gethMat().getRepository().getScale();
-        PointF fA = new PointF(b.x,b.y);
         if(arr!=null) {
             if (isCreateAngle()) {
                 /*закрашиваем угол в зависимости от поворота отрезка*/
                 if(isRightSegment())arr.add(computeAlpha(ounCirc(vector(getStartAnglePoint(), p), r)));
                 else arr.add(computeAlpha(ounCirc(vector(gethFinAnglePoint(), p), r)));
             } else {
-                    arr.add(computeAlpha(ounCirc(vector(fA, p), r)));
+                    arr.add(computeAlpha(ounCirc(vector(b, p), r)));
             }
         }
     }
 
-    private void fillPointsAlpha(ArrayList<Integer> arr, PointF p, float r){
+    private void fillPointsAlpha(ArrayList<Integer> arr, int[] p, float r){
         if(arr!=null) {
             arr.add(computeAlpha(ounCirc(p, r)));
         }
@@ -86,12 +83,12 @@ public class HelpElast extends HelperSershPoints {
         getPixels()[index] = alphaColor(getPixels()[index], alpha);
     }
 
-    protected float ounCirc(PointF p, float r){
-        return (p.x*p.x)/(r*r)+(p.y*p.y)/(r*r);
+    protected float ounCirc(int[] p, float r){
+        return (p[X]*p[X])/(r*r)+(p[Y]*p[Y])/(r*r);
     }
 
-    protected PointF vector(PointF one, PointF two){
-        return new PointF(two.x-one.x,two.y-one.y);
+    protected int[] vector(int[] one, int[] two){
+        return new int[]{two[X]-one[X],two[Y]-one[Y]};
     }
 
     private int alphaColor(int color,int alpha){

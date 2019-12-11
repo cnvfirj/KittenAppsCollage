@@ -6,11 +6,11 @@ import android.graphics.PointF;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutmatrix.DeformMat;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class MutableElast extends MutableFill {
 
     private HelpElast mElast;
-
-    protected PointF mFin;
 
     public MutableElast() {
         mElast = new HelpElast();

@@ -42,6 +42,9 @@ public abstract class Operation {
         LAYERS_ELASTIC_2,
         LAYERS_ELASTIC_3,
         LAYERS_ELASTIC_4,
+        LAYERS_LINE_1,
+        LAYERS_LINE_2,
+        LAYERS_LINE_3,
 
         NULLABLE
     }

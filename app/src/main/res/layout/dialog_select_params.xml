@@ -5,11 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<!--    <com.example.kittenappscollage.view.CustomFon-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:id="@+id/prop_fon"/>-->
-
     <include layout="@layout/include_color_pick_dialog_prop"/>
 
     <ImageView

@@ -50,8 +50,8 @@ public class RepParams extends Repozitory {
     public RepParams setWidth(float width) {
         if(width>0)rWidthTool = width;
         else rWidthTool = 1;
-        if(width<=50)rWidthTool = width;
-        else rWidthTool = 50;
+        if(width<=200)rWidthTool = width;
+        else rWidthTool = 200;
         if(rList!=null)rList.width(rWidthTool);
         return this;
     }

@@ -148,7 +148,7 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
 //        Rect rect = new Rect();
 //        getActivity().getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
         Resources res = getContext().getResources();
-        float height = res.getDimension(R.dimen.param_color_pick)+res.getDimension(R.dimen.param_save)*5;
+        float height = res.getDimension(R.dimen.param_color_pick)+res.getDimension(R.dimen.param_save)*4+res.getDimension(R.dimen.param_save_2);
         height+=res.getDimension(R.dimen.margin_save)*6;
         float width = res.getDimension(R.dimen.param_color_pick)+res.getDimension(R.dimen.margin_save)*2;
         window.setLayout((int) (width), (int)(height));
