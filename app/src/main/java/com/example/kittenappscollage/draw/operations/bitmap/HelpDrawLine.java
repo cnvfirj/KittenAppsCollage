@@ -1,10 +1,10 @@
-package com.example.kittenappscollage.draw.operations.canvas;
+package com.example.kittenappscollage.draw.operations.bitmap;
 
 import com.example.kittenappscollage.draw.operations.bitmap.HelperSershPoints;
 
 import java.util.ArrayList;
 
-public class HelperDrawLine  extends HelperSershPoints {
+public class HelpDrawLine extends HelperSershPoints {
 
 
     @Override

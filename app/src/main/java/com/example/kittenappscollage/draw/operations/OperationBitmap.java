@@ -6,17 +6,18 @@ import android.view.MotionEvent;
 
 import com.example.kittenappscollage.draw.operations.bitmap.MutableBit;
 import com.example.kittenappscollage.draw.operations.bitmap.MutableElast;
+import com.example.kittenappscollage.draw.operations.bitmap.MutableElastLine;
 import com.example.mutmatrix.DeformMat;
 
 public class OperationBitmap extends Operation{
 
     private static OperationBitmap singleton;
 
-    private MutableElast oMutableBit;
+    private MutableElastLine oMutableBit;
 
 
     public OperationBitmap() {
-        oMutableBit = new MutableElast();
+        oMutableBit = new MutableElastLine();
 
     }
 
