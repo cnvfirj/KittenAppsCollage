@@ -51,7 +51,10 @@ public class MutableElast extends MutableFill {
     public MutableBit fin(PointF fin) {
         if(mCommand.equals(Command.ELAST_1)||mCommand.equals(Command.ELAST_2)||
                 mCommand.equals(Command.ELAST_3)||mCommand.equals(Command.ELAST_4)){
-            mElast.point(fin).apply().fin();
+            mElast
+//                    .point(fin)
+//                    .apply()
+                    .fin();
             if(mListener!=null)mListener.result(mBitmap,mMat,mIndex, mLyr, RepDraw.MUTABLE_SIZE);
             return this;
         }else return super.fin(fin);

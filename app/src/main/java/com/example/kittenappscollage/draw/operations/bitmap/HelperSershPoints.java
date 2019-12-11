@@ -12,41 +12,37 @@ import java.util.ArrayList;
 
 public class HelperSershPoints {
 
-        public static final int ZERO_VAL = -121;
+    private MutableBit.Command hCommand;
 
-        protected MutableBit.Command hCommand;
+    private DeformMat hMat;
 
-        protected DeformMat hMat;
+    private boolean hOunStart,hOunProcess;
 
-        protected boolean hOunStart,hOunProcess;
+    private PointF hPoint,hStartSegment,hFinSegment, hOldPoint, hOldZeroVector;
 
-        protected PointF hPoint,hStartSegment,hFinSegment, hOldPoint, hOldZeroVector;
+    private PointF hStartAnglePoint,hFinAnglePoint;
 
-        protected PointF hStartAnglePoint,hFinAnglePoint;
+    private boolean hCreateAngle;
 
-        protected boolean hCreateAngle;
+    private boolean hRightSegment;
 
-        protected boolean hRightSegment;
+    private ArrayList<PointF> hZeroingPoints,hPointsCenter;
 
-        protected ArrayList<PointF> hZeroingPoints,hPointsCenter;
+    private ArrayList<PointF> hPointsCircle;
 
-        protected ArrayList<PointF> hPointsCircle;
+    private ArrayList<Integer> hValuesAlpha;
 
-        protected ArrayList<Integer> hValuesAlpha;
+    private boolean[]hCheckPixel;
 
-        protected boolean[]hCheckPixel;
+    private int[]hAllPixels;
 
-        protected int[]hAllPixels;
+    private int hWidth;
 
-        protected int hWidth;
+    private int hHeight;
 
-        protected int hHeight;
+    private Bitmap hBitmap;
 
-        protected Bitmap hBitmap;
-
-        protected boolean hConvert;
-
-
+    private boolean hConvert;
 
         public HelperSershPoints() {
             init();
@@ -57,8 +53,6 @@ public class HelperSershPoints {
             hValuesAlpha = new ArrayList<>();
             hPointsCenter = new ArrayList<>();
             hPointsCircle = new ArrayList<>();
-//            hRadius = 20;
-//            hAlpha = 0;
             hConvert = false;
         }
 
@@ -66,7 +60,6 @@ public class HelperSershPoints {
         public HelperSershPoints bitmap(Bitmap b, DeformMat mat){
             hBitmap = b;
             hMat = mat;
-//            searchZeroCirc(hPointsCircle,hRadius);
             searchZeroCirc(hPointsCircle,RepDraw.get().getWidth()/2.0f);
 
             return this;
@@ -102,14 +95,13 @@ public class HelperSershPoints {
 
         public HelperSershPoints mat(DeformMat mat){
             hMat = mat;
-//            searchZeroCirc(hPointsCircle,hRadius);
             searchZeroCirc(hPointsCircle,RepDraw.get().getWidth()/2.0f);
 
             return this;
         }
 
         public HelperSershPoints alpha(int alpha){
-//            hAlpha = alpha;
+
             return this;
         }
 
@@ -119,8 +111,7 @@ public class HelperSershPoints {
         }
 
         public HelperSershPoints radius(float radius){
-//            hRadius = radius;
-//            searchZeroCirc(hPointsCircle,hRadius);
+
             return this;
         }
 
@@ -177,10 +168,6 @@ public class HelperSershPoints {
 
         }
 
-//        protected Point getStartAnglePoint(){
-//            return hStartAnglePoint;
-//        }
-        /*searchPointsCirc(points,zero,isRight(vector(start,fin),vector(hMat.getPointBitmap(hOldPoint),start)));*/
         private void searchPointsCirc(ArrayList<PointF> points, PointF zero, boolean right){
             Point s=null;
             Point f=null;
@@ -201,7 +188,6 @@ public class HelperSershPoints {
                 addAllPoints(points,s,f,null);
 
         }
-
 
         private void searchZeroCirc(ArrayList<PointF> points, float radius){
             if(hMat==null)return;
@@ -240,10 +226,8 @@ public class HelperSershPoints {
         protected void variableParams(PointF p,ArrayList<PointF>points, ArrayList<Integer>values,Point reperA, Point reperB){
            points.add(p);
         }
-
-
         /*находим точки между s и f*/
-    private void addAllPoints(ArrayList<PointF> points, Point s, Point f, ArrayList<Integer> alpha){
+        private void addAllPoints(ArrayList<PointF> points, Point s, Point f, ArrayList<Integer> alpha){
         Point a = new Point(s.x,s.y);
         Point b = new Point(f.x,f.y);
         int deltaX = Math.abs(b.x - a.x);
@@ -275,10 +259,6 @@ public class HelperSershPoints {
         }
     }
 
-
-
-
-        /*searchRect(hPointsCenter,mMat.getPointBitmap(hStartSegment),mMat.getPointBitmap(hFinSegment));*/
         private void searchRect(PointF start, PointF fin){
             PointF zero = zeroingVector(start,fin);
             if(zero==null)return;
@@ -336,24 +316,13 @@ public class HelperSershPoints {
             hOldZeroVector = new PointF(zero.x,zero.y);
         }
 
-
-
-        private float ounCirc(PointF p, float r){
-            return (p.x*p.x)/(r*r)+(p.y*p.y)/(r*r);
-        }
-
-
-
         private PointF zeroingVector(PointF start, PointF fin){
             if(start.x==fin.x&&start.y==fin.y){
                 return null;
             }
-//            PointF vector = new PointF(fin.x- start.x, fin.y- start.y);
             PointF vector = vector(start,fin);
             float segment = widthVector(vector) ;
             PointF zeroing = new PointF(vector.x/segment,vector.y/segment);
-//            float x = zeroing.x*hRadius/hMat.getRepository().getScale();
-//            float y = zeroing.y*hRadius/hMat.getRepository().getScale();
             float x = zeroing.x*(RepDraw.get().getWidth()/2.0f)/hMat.getRepository().getScale();
             float y = zeroing.y*(RepDraw.get().getWidth()/2.0f)/hMat.getRepository().getScale();
 
@@ -374,6 +343,46 @@ public class HelperSershPoints {
 
         private boolean isRight(PointF main, PointF vector){
             return (vector.x*main.y-vector.y*main.x)<0;
+        }
+
+        protected DeformMat gethMat(){
+            return hMat;
+        }
+
+        protected MutableBit.Command getCommand(){
+            return hCommand;
+        }
+
+        protected int gethWidth(){
+            return hWidth;
+        }
+
+        protected int gethHeight(){
+            return hHeight;
+        }
+
+        protected boolean isCreateAngle(){
+            return hCreateAngle;
+        }
+
+        protected boolean isRightSegment(){
+            return hRightSegment;
+        }
+
+        protected PointF getStartAnglePoint(){
+            return hStartAnglePoint;
+        }
+
+        protected PointF gethFinAnglePoint(){
+            return hFinAnglePoint;
+        }
+
+        protected boolean[]getCheckeds(){
+            return hCheckPixel;
+        }
+
+        protected int[]getPixels(){
+            return hAllPixels;
         }
 
 }
