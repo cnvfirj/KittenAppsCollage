@@ -88,8 +88,18 @@ public class OperationBitmap extends Operation{
     }
 
     @Override
+    public Operation ready(boolean ready) {
+        oMutableBit.ready(ready);
+        return super.ready(ready);
+    }
+
+    @Override
     public void apply() {
         oMutableBit.apply();
     }
 
+    @Override
+    public int getLyr() {
+         return oMutableBit.getIndexLyr();
+    }
 }

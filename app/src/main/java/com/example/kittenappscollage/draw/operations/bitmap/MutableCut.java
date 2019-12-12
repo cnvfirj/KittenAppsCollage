@@ -181,4 +181,5 @@ public class MutableCut extends MutableBit {
         super.createReperStartFin();
         if(mListener!=null)mListener.repers(getRepersStartFinPoints(), istReadyCorrectStartFin());
     }
-}
+
+ }

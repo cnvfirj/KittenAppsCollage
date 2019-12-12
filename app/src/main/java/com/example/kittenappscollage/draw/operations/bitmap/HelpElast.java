@@ -26,6 +26,11 @@ public class HelpElast extends HelperSershPoints {
         }
     }
 
+    @Override
+    protected int selectValue() {
+        return RepDraw.get().getAlpha();
+    }
+
     private void fillAlterPointsAlpha(ArrayList<Integer> arr, int[] p, int[] a, int[] b ){
         /*заполнение с односторонней прозрачностью*/
         float r = RepDraw.get().getWidth()/ gethMat().getRepository().getScale();

@@ -25,7 +25,7 @@ public class ViewDraw extends View {
 
     private boolean vNonBlock;
 
-    private Matrix vMatrL, vMatrI;
+    private Matrix vMatrL, vMatrI, vMatrO;
 
     private Paint paint;
 
@@ -49,6 +49,7 @@ public class ViewDraw extends View {
         vNonBlock = true;
         vMatrI = new Matrix();
         vMatrL = new Matrix();
+        vMatrO = new Matrix();
         paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
@@ -63,6 +64,9 @@ public class ViewDraw extends View {
         }
         if(RepDraw.get().isLyr()){
             canvas.drawBitmap(getLyr(),getMatrLyr(),null);
+        }
+        if(RepDraw.get().isOver()){
+            canvas.drawBitmap(getOver(), getMatrOver(),null);
         }
 
         if(vInfo){
@@ -106,6 +110,10 @@ public class ViewDraw extends View {
         return RepDraw.get().getLyr();
     }
 
+    private Bitmap getOver(){
+        return RepDraw.get().getOverlay();
+    }
+
     private Matrix getMatrImg(){
 
         return RepDraw.get().getIMat().matrix(vMatrI);
@@ -113,6 +121,10 @@ public class ViewDraw extends View {
 
     private Matrix getMatrLyr(){
         return RepDraw.get().getLMat().matrix(vMatrL);
+    }
+
+    private Matrix getMatrOver(){
+        return RepDraw.get().getOMat().matrix(vMatrO);
     }
 
     private boolean isDraw(){

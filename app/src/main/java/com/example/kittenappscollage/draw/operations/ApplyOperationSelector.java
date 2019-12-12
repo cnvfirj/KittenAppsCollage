@@ -15,8 +15,6 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
     private static ApplyOperationSelector single;
 
-    private boolean down = false;
-
     public static ApplyOperationSelector get(){
         if(single==null){
             synchronized (ApplyOperationSelector.class){
@@ -131,7 +129,9 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     /*для отреза ключевым методом является doneCut()*/
     void singleLay(Operation operation, MotionEvent event){
         if(operation.getEvent().equals(Operation.Event.LAYERS_CUT))operation.point(event);
-        else {
+        else if(isLine(operation)){
+            lineOperation(operation,event,SINGLE);
+        } else {
               if(!operation.isReady()){
                   if(isFill(operation)){
                       if(event.getAction()==MotionEvent.ACTION_DOWN) {
@@ -145,7 +145,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
                       if(event.getAction()==MotionEvent.ACTION_DOWN||event.getAction()==MotionEvent.ACTION_MOVE){
                           operation.ready(TouchBitmap
                                     .ifIGotBitBord(getOverMat().muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM),
-                                            new PointF(event.getX(), event.getY()),25));
+                                            new PointF(event.getX(), event.getY()),RepDraw.get().getWidth()/2));
                                       }
                   }
                   if(operation.isReady()) {
@@ -162,6 +162,9 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
     void groupLay(Operation operation,MotionEvent event){
         if(isCut(operation))operation.point(event);
+        else if(isLine(operation)){
+            lineOperation(operation,event,ALL);
+        }
         else {
             if(!operation.isReady()){
                 if(isFill(operation)){
@@ -220,6 +223,30 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
                 operation.getEvent().equals(Operation.Event.LAYERS_ELASTIC_3);
     }
 
+    private boolean isLine(Operation operation){
+        return operation.getEvent().equals(Operation.Event.LAYERS_LINE_1)||
+                operation.getEvent().equals(Operation.Event.LAYERS_LINE_2)||
+                operation.getEvent().equals(Operation.Event.LAYERS_LINE_3);
+    }
+
+    private void lineOperation(Operation operation,MotionEvent event, int index){
+        readyOver(operation);
+        if(index==SINGLE) {
+//          if(event.getAction()==MotionEvent.ACTION_DOWN){
+//                int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
+//                operation.lyr(lyr).index(index);
+//          }
+//            if(!operation.isReady())operation.ready(TouchBitmap
+//                    .ifIGotBitBord(getOverMat().muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM),
+//                            new PointF(event.getX(), event.getY()),RepDraw.get().getWidth()/2));
+//            if(operation.isReady()){
+//
+//            }
+        }
+
+        operation.point(event);
+    }
+
     void doneCut(Operation operation, boolean isGroup){
         if(!isGroup) {
             int lyr = RepDraw.get().isLyr()?RepDraw.LYR_LYR: LYR_IMG;
@@ -238,6 +265,10 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
 
 
+    private void readyOver(Operation operation){
+        operation.mat(RepDraw.get().getOMat())
+                .bitmap(RepDraw.get().getOverlay());
+    }
 
     private void readyAll(Operation operation){
 
@@ -265,17 +296,6 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
         }
     }
 
-//    private boolean isZeroing(Bitmap b){
-//        if(b!=null&&!b.isRecycled())return true;
-//        else return false;
-//    }
-//
-//    private void zeroingBitmap(Bitmap b){
-//        if(b!=null){
-//            b.recycle();
-//            b = null;
-//        }
-//    }
     private boolean belongingRegion(DeformMat mat, PointF p){
         PointF[]region = mat.muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM);
         return TouchBitmap.ifIGotBit(region,p);

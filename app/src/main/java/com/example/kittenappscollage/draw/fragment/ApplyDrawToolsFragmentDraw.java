@@ -29,6 +29,7 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         else if(dIndexPaint%10==2)dViewDraw.setEvent(Operation.Event.LAYERS_LINE_2);
         else if(dIndexPaint%10==3)dViewDraw.setEvent(Operation.Event.LAYERS_LINE_3);
         else if(dIndexPaint%10==4)dViewDraw.setEvent(Operation.Event.DRAW_SPOT);
+        RepDraw.get().createOverlay();
 //        enabledGrouping(true);
     }
 
@@ -39,6 +40,7 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         else if(dIndexErase%10==2)dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_2);
         else if(dIndexErase%10==3)dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_3);
         else if(dIndexErase%10==4)dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_4);
+        RepDraw.get().recycleOverlay();
 //        enabledGrouping(false);
 
     }
@@ -48,6 +50,7 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         super.toolFill(v);
         if(dIndexFill%10==1)dViewDraw.setEvent(Operation.Event.LAYERS_FILL_TO_COLOR);
         else if(dIndexFill%10==2)dViewDraw.setEvent(Operation.Event.LAYERS_FILL_TO_BORDER);
+        RepDraw.get().recycleOverlay();
 //        enabledGrouping(false);
     }
 
@@ -55,6 +58,7 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     protected void toolText(ImageView v) {
         super.toolText(v);
         dViewDraw.setEvent(Operation.Event.DRAW_TEXT);
+        RepDraw.get().createOverlay();
 //        enabledGrouping(true);
     }
 
@@ -62,6 +66,7 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     protected void toolCut(ImageView v) {
         super.toolCut(v);
         dViewDraw.setEvent(Operation.Event.LAYERS_CUT);
+        RepDraw.get().recycleOverlay();
 //        enabledGrouping(false);
     }
 
@@ -71,6 +76,7 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         if(dIndexDefRot%10==1)dViewDraw.setEvent(Operation.Event.MATRIX_R);
         else if(dIndexDefRot%10==2)dViewDraw.setEvent(Operation.Event.MATRIX_D);
         else if(dIndexDefRot%10==3)dViewDraw.setEvent(Operation.Event.MATRIX_RESET_DR);
+        RepDraw.get().recycleOverlay();
 //        enabledGrouping(false);
 
     }
@@ -79,6 +85,7 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     protected void toolTranslate(ImageView v) {
         super.toolTranslate(v);
         dViewDraw.setEvent(Operation.Event.MATRIX_T);
+        RepDraw.get().recycleOverlay();
 //        enabledGrouping(true);
     }
 
@@ -87,6 +94,7 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         super.toolScale(v);
         if(dIndexScale%10==1)dViewDraw.setEvent(Operation.Event.MATRIX_S_P);
         else if(dIndexScale%10==2)dViewDraw.setEvent(Operation.Event.MATRIX_S_M);
+        RepDraw.get().recycleOverlay();
 
     }
 

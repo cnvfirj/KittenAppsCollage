@@ -2,6 +2,7 @@ package com.example.kittenappscollage.draw.repozitoryDraw;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.PointF;
 
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
@@ -30,11 +31,11 @@ public class Repozitory {
 
     protected Bitmap rImg, rLyr, rTemp, rOverlay;
 
-    protected DeformMat rImgMat, rLyrMat;
+    protected DeformMat rImgMat, rLyrMat, rOverMat;
 
     protected CompRep rTempRep;
 
-    protected Canvas rImgC, rLyrC;
+    protected Canvas rImgC, rLyrC, rOverC;
 
     protected RepDraw.Adding rAdd;
 
@@ -49,6 +50,7 @@ public class Repozitory {
     protected Repozitory() {
         rLyrMat = new DeformMat(App.getMain());
         rImgMat = new DeformMat(App.getMain());
+        rOverMat = new DeformMat(App.getMain());
         rNameProj = NONAME;
         rReadiness = 0;
     }
@@ -76,9 +78,17 @@ public class Repozitory {
     }
 
     public void createOverlay(){
+        zeroingBitmap(rOverlay);
         rOverlay = Bitmap.createBitmap((int) rView.x,(int) rView.y, Bitmap.Config.ARGB_8888);
+        rOverMat.bitmap(new PointF(rOverlay.getWidth(),rOverlay.getHeight()));
+        rOverC = new Canvas(rOverlay);
+
     }
 
+    public void recycleOverlay(){
+            zeroingBitmap(rOverlay);
+
+    }
 
     public void setImg(Bitmap b, CompRep rep, boolean single){
         zeroingBitmap(rImg);
@@ -134,6 +144,10 @@ public class Repozitory {
         return testBitmap(rLyr);
     }
 
+    public boolean isOver(){
+        return testBitmap(rOverlay);
+    }
+
     protected void zeroingBitmap(Bitmap b){
         if(testBitmap(b)){
             b.recycle();
@@ -165,6 +179,10 @@ public class Repozitory {
         return rLyrC;
     }
 
+    public Canvas getOverCanv(){
+        return rOverC;
+    }
+
     public Bitmap getImg() {
         return rImg;
     }
@@ -185,6 +203,9 @@ public class Repozitory {
         return rLyrMat;
     }
 
+    public DeformMat getOMat(){
+        return rOverMat;
+    }
     public PointF getView() {
         return rView;
     }

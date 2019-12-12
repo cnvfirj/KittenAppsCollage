@@ -236,6 +236,10 @@ public class HelperSershPoints {
         protected void variableParams(int[] p,ArrayList<int[]>points, ArrayList<Integer>values,int[] reperA, int[] reperB){
            points.add(p);
         }
+
+        protected int selectValue(){
+            return 0;
+        }
         /*находим точки между s и f*/
 //        private void addAllPoints(ArrayList<PointF> points, Point s, Point f, ArrayList<Integer> alpha){
         private void addAllPoints(ArrayList<int[]> points, int[] s, int[] f, ArrayList<Integer> alpha){
@@ -284,7 +288,9 @@ public class HelperSershPoints {
                     addAllPoints(hZeroingPoints,new int[]{0,0},p,hValuesAlpha);
                 }
 
-                int alpha = RepDraw.get().getAlpha();
+//                int alpha = RepDraw.get().getAlpha();
+                int alpha = selectValue();
+
 
                 for (int i=0;i<hZeroingPoints.size();i++){
                     if(hCommand.equals(MutableBit.Command.ELAST_2)||hCommand.equals(MutableBit.Command.ELAST_3)){
@@ -310,7 +316,7 @@ public class HelperSershPoints {
             addAllPoints(hZeroingPoints,new int[]{(int)-zero.x,(int)zero.y},new int[]{(int)zero.x,(int)-zero.y},hValuesAlpha);
 
             /*перебираем оба массива и находим каждую точку отрезка*/
-            int alpha = RepDraw.get().getAlpha();
+            int alpha = selectValue();
             for (int[] p:hPointsCenter){
                 for (int i=0;i<hZeroingPoints.size();i++){
                     if(hCommand.equals(MutableBit.Command.ELAST_2)||hCommand.equals(MutableBit.Command.ELAST_3)){

@@ -107,6 +107,10 @@ public abstract class Operation {
         return event;
     }
 
+    public int getLyr(){
+        return 0;
+    }
+
     public abstract Operation event(Event event);
 
     public abstract Operation point(MotionEvent m);
