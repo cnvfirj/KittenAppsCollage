@@ -230,7 +230,15 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     }
 
     private void lineOperation(Operation operation,MotionEvent event, int index){
-        readyOver(operation);
+
+        if(event.getAction()==MotionEvent.ACTION_DOWN){
+            RepDraw.get().createOverlay();
+            operation.mat(RepDraw.get().getOMat())
+                    .bitmap(RepDraw.get().getOverlay());
+
+        }else if(event.getAction()==MotionEvent.ACTION_UP){
+            RepDraw.get().recycleOverlay();
+        }
         if(index==SINGLE) {
 //          if(event.getAction()==MotionEvent.ACTION_DOWN){
 //                int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
