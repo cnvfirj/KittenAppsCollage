@@ -1,6 +1,7 @@
 package com.example.kittenappscollage.draw.operations.bitmap;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.PointF;
 
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
@@ -9,6 +10,7 @@ import com.example.mutmatrix.DeformMat;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_IMG;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_LYR;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.SINGLE;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class MutableElastLine extends MutableElast {
 
@@ -57,22 +59,32 @@ public class MutableElastLine extends MutableElast {
         if(mCommand.equals(Command.LINE_1)||mCommand.equals(Command.LINE_2)||
                 mCommand.equals(Command.LINE_3)){
             mLine.fin();
-//            if(mListener!=null)mListener.result(mBitmap,mMat,mIndex, mLyr, RepDraw.MUTABLE_SIZE);
-//            if(mReady){
-//                if(mListener!=null){
-//                    if(mIndex==SINGLE){
-//                        if(mLyr==LYR_IMG){
-//                            if(mListener!=null)DrawBitmap.create(RepDraw.get().getImgCanv(),RepDraw.get().getIMat())
-//                                                         .draw(mBitmap,mMat);
-//                        }else {
-//
-//                        }
-//                    }else {
-//
-//                    }
-//                }
-//                mReady = false;
-//            }
+            if(mListener!=null){
+//                mListener.result(mBitmap,mMat,mIndex, mLyr, RepDraw.MUTABLE_SIZE);
+                LYTE("check result");
+                if(mIndex==RepDraw.ALL){
+                    RepDraw.get().startAllMutable();
+
+                    DrawBitmap.create(new Canvas(getImg()),getIMat()).antiAlias(false).draw(mBitmap,mMat);
+                    mListener.result(getImg(), getIMat(),RepDraw.ALL,RepDraw.LYR_IMG,RepDraw.MUTABLE_SIZE);
+
+                    DrawBitmap.create(new Canvas(getLyr()),getLMat()).antiAlias(false).draw(mBitmap,mMat);
+                    mListener.result(getLyr(), getLMat(),RepDraw.ALL,RepDraw.LYR_LYR,RepDraw.MUTABLE_SIZE);
+
+                } else{
+                    RepDraw.get().startSingleMutable();
+                    if(mLyr==LYR_IMG){
+                        DrawBitmap.create(new Canvas(getImg()),getIMat()).antiAlias(false).draw(mBitmap,mMat);
+                        mListener.result(getImg(), getIMat(), mIndex,mLyr,RepDraw.MUTABLE_SIZE);
+
+                    }else if(mLyr==LYR_LYR){
+                        DrawBitmap.create(new Canvas(getLyr()),getLMat()).antiAlias(false).draw(mBitmap,mMat);
+                        mListener.result(getLyr(), getLMat(), mIndex,mLyr,RepDraw.MUTABLE_SIZE);
+
+                    }
+                }
+            }
+
             return this;
         }else return super.fin(fin);
     }
@@ -99,4 +111,6 @@ public class MutableElastLine extends MutableElast {
     public int getIndexLyr(){
         return mLyr;
     }
+
+
 }
