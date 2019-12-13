@@ -230,21 +230,15 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     }
 
     private void lineOperation(Operation operation,MotionEvent event, int index){
-        readyOver(operation);
-        if(index==SINGLE) {
-//          if(event.getAction()==MotionEvent.ACTION_DOWN){
-//                int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
-//                operation.lyr(lyr).index(index);
-//          }
-//            if(!operation.isReady())operation.ready(TouchBitmap
-//                    .ifIGotBitBord(getOverMat().muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM),
-//                            new PointF(event.getX(), event.getY()),RepDraw.get().getWidth()/2));
-//            if(operation.isReady()){
-//
-//            }
+        if(event.getAction()==MotionEvent.ACTION_DOWN) {
+            readyOver(operation);
         }
 
         operation.point(event);
+
+        if(event.getAction()==MotionEvent.ACTION_UP){
+            RepDraw.get().recycleOverlay();
+        }
     }
 
     void doneCut(Operation operation, boolean isGroup){
@@ -266,6 +260,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
 
     private void readyOver(Operation operation){
+        RepDraw.get().createOverlay();
         operation.mat(RepDraw.get().getOMat())
                 .bitmap(RepDraw.get().getOverlay());
     }
