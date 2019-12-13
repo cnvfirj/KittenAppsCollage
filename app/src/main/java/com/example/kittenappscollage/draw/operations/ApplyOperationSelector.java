@@ -33,7 +33,6 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     @Override
     public void result(Bitmap img, DeformMat mat, int index) {
         if(index== LYR_LYR){
-
             RepDraw.get().mutableLyr(img,mat.getRepository(),RepDraw.MUTABLE_SIZE,true);
         }
         if(index== LYR_IMG){
