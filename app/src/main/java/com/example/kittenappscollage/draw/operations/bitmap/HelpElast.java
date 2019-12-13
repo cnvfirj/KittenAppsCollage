@@ -6,6 +6,8 @@ import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
 import java.util.ArrayList;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class HelpElast extends HelperSershPoints {
 
     @Override
@@ -29,6 +31,11 @@ public class HelpElast extends HelperSershPoints {
     @Override
     protected int selectValue() {
         return RepDraw.get().getAlpha();
+    }
+
+    @Override
+    protected boolean condition() {
+        return getCommand().equals(MutableBit.Command.ELAST_2)||getCommand().equals(MutableBit.Command.ELAST_3);
     }
 
     private void fillAlterPointsAlpha(ArrayList<Integer> arr, int[] p, int[] a, int[] b ){
@@ -60,17 +67,14 @@ public class HelpElast extends HelperSershPoints {
         final int index = p[1]*gethWidth()+p[0];
         if(p[0]>=0&&p[0]<gethWidth()&&p[1]>=0&&p[1]<gethHeight()){
             if(!getCheckeds()[index])implementElast1(index,alpha);
+
         }
-    }
-    private void implementElast1(int index,int alpha){
-        getPixels()[index] = alphaColor(getPixels()[index], alpha);
-        getCheckeds()[index]=true;
     }
 
     private void setGradPixel(int []p,int alpha){
         final int index = p[1]*gethWidth()+p[0];
         if(p[0]>=0&&p[0]<gethWidth()&&p[1]>=0&&p[1]<gethHeight()){
-            implementElast2(index,alpha);
+                implementElast2(index, alpha);
         }
     }
 
@@ -80,13 +84,21 @@ public class HelpElast extends HelperSershPoints {
             implementElast3(index,alpha);
         }
     }
+
+    private void implementElast1(int index,int alpha){
+        getPixels()[index] = alphaColor(getPixels()[index], alpha);
+        getCheckeds()[index]=true;
+    }
+
     private void implementElast2(int index,int alpha){
         getPixels()[index] = alphaColor(getPixels()[index], alpha);
+
     }
 
     private void implementElast3(int index,int alpha){
         getPixels()[index] = alphaColor(getPixels()[index], alpha);
     }
+
 
     protected float ounCirc(int[] p, float r){
         return (p[X]*p[X])/(r*r)+(p[Y]*p[Y])/(r*r);

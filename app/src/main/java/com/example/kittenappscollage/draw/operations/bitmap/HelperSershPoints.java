@@ -237,8 +237,15 @@ public class HelperSershPoints {
            points.add(p);
         }
 
+        /*определяем значение которым будем изменять пиксель*/
         protected int selectValue(){
             return 0;
+        }
+
+        /*определяем условие для взятия значения из массива значений,
+        * которым изменим пиксель*/
+        protected boolean condition(){
+            return false;
         }
         /*находим точки между s и f*/
 //        private void addAllPoints(ArrayList<PointF> points, Point s, Point f, ArrayList<Integer> alpha){
@@ -293,7 +300,9 @@ public class HelperSershPoints {
 
 
                 for (int i=0;i<hZeroingPoints.size();i++){
-                    if(hCommand.equals(MutableBit.Command.ELAST_2)||hCommand.equals(MutableBit.Command.ELAST_3)){
+
+//                    if(hCommand.equals(MutableBit.Command.ELAST_2)||hCommand.equals(MutableBit.Command.ELAST_3)){
+                    if(condition()){
                         alpha = hValuesAlpha.get(i);
                     }
                     applyElastPixel(new int[]{
@@ -319,7 +328,7 @@ public class HelperSershPoints {
             int alpha = selectValue();
             for (int[] p:hPointsCenter){
                 for (int i=0;i<hZeroingPoints.size();i++){
-                    if(hCommand.equals(MutableBit.Command.ELAST_2)||hCommand.equals(MutableBit.Command.ELAST_3)){
+                    if(condition()){
                         alpha = hValuesAlpha.get(i);
                     }
                     applyElastPixel(new int[]{

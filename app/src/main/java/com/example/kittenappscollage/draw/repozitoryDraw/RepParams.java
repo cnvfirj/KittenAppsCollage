@@ -27,6 +27,8 @@ public class RepParams extends Repozitory {
 
     private int rAlphaErase = 0;
 
+    private int rAlphaInColor = 255;
+
     private String rText = "Your Enter Text";
 
     private ListParams rList;
@@ -62,12 +64,17 @@ public class RepParams extends Repozitory {
 
     public  RepParams setColor(int color) {
         this.rColorPaint = color;
+        rAlphaInColor = Color.alpha(color);
         if(rList!=null)rList.color(color);
         return this;
     }
 
     public int getAlpha() {
         return rAlphaErase;
+    }
+
+    public int getAlphaInColor(){
+        return rAlphaInColor;
     }
 
     public  RepParams setAlpha(int alpha) {

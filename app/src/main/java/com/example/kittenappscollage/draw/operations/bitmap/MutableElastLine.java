@@ -60,8 +60,6 @@ public class MutableElastLine extends MutableElast {
                 mCommand.equals(Command.LINE_3)){
             mLine.fin();
             if(mListener!=null){
-//                mListener.result(mBitmap,mMat,mIndex, mLyr, RepDraw.MUTABLE_SIZE);
-                LYTE("check result");
                 if(mIndex==RepDraw.ALL){
                     RepDraw.get().startAllMutable();
 
@@ -70,21 +68,17 @@ public class MutableElastLine extends MutableElast {
 
                     DrawBitmap.create(new Canvas(getLyr()),getLMat()).antiAlias(false).draw(mBitmap,mMat);
                     mListener.result(getLyr(), getLMat(),RepDraw.ALL,RepDraw.LYR_LYR,RepDraw.MUTABLE_SIZE);
-
                 } else{
                     RepDraw.get().startSingleMutable();
                     if(mLyr==LYR_IMG){
                         DrawBitmap.create(new Canvas(getImg()),getIMat()).antiAlias(false).draw(mBitmap,mMat);
                         mListener.result(getImg(), getIMat(), mIndex,mLyr,RepDraw.MUTABLE_SIZE);
-
                     }else if(mLyr==LYR_LYR){
                         DrawBitmap.create(new Canvas(getLyr()),getLMat()).antiAlias(false).draw(mBitmap,mMat);
                         mListener.result(getLyr(), getLMat(), mIndex,mLyr,RepDraw.MUTABLE_SIZE);
-
                     }
                 }
             }
-
             return this;
         }else return super.fin(fin);
     }
