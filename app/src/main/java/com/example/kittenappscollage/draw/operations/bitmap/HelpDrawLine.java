@@ -31,7 +31,6 @@ public class HelpDrawLine extends HelperSershPoints {
 
     @Override
     protected int selectValue() {
-//        return RepDraw.get().getColor();
         return RepDraw.get().getAlphaInColor();
     }
 
@@ -105,11 +104,11 @@ public class HelpDrawLine extends HelperSershPoints {
 //        getCheckeds()[index]=true;
     }
 
-    protected float ounCirc(int[] p, float r){
+    private float ounCirc(int[] p, float r){
         return (p[X]*p[X])/(r*r)+(p[Y]*p[Y])/(r*r);
     }
 
-    protected int[] vector(int[] one, int[] two){
+    private int[] vector(int[] one, int[] two){
         return new int[]{two[X]-one[X],two[Y]-one[Y]};
     }
 }
