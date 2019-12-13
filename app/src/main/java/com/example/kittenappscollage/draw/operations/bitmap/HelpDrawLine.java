@@ -31,8 +31,10 @@ public class HelpDrawLine extends HelperSershPoints {
 
     @Override
     protected int selectValue() {
-        return RepDraw.get().getColor();
+//        return RepDraw.get().getColor();
+        return RepDraw.get().getAlphaInColor();
     }
+
     @Override
     protected boolean condition() {
         return getCommand().equals(MutableBit.Command.LINE_2)||getCommand().equals(MutableBit.Command.LINE_3);
@@ -40,11 +42,8 @@ public class HelpDrawLine extends HelperSershPoints {
 
     private void fillPointsGrad(ArrayList<Integer> arr, int[] p, float r){
         if(arr!=null) {
-            int color = RepDraw.get().getColor();
             int alpha = computeGrad(ounCirc(p, r));
-            color  = Color.argb(alpha,Color.red(color),Color.green(color),Color.blue(color));
-
-            arr.add(color);
+            arr.add(alpha);
         }
     }
 
@@ -76,7 +75,7 @@ public class HelpDrawLine extends HelperSershPoints {
     private void setGradPixel(int[] p, int value){
         final int index = p[1]*gethWidth()+p[0];
         if(p[0]>=0&&p[0]<gethWidth()&&p[1]>=0&&p[1]<gethHeight()){
-            if(!getCheckeds()[index])
+//            if(!getCheckeds()[index])
                 implementColor2(index,value);
         }
     }
@@ -91,15 +90,19 @@ public class HelpDrawLine extends HelperSershPoints {
     }
 
     private void implementColor1(int index,int value){
-
-        getPixels()[index] = RepDraw.get().getColor();
+        getPixels()[index]=RepDraw.get().getColor();
         getCheckeds()[index]=true;
     }
 
     private void implementColor2(int index,int value){
-
-        getPixels()[index] = value;
-        getCheckeds()[index]=true;
+        int a = Color.alpha(getPixels()[index]);
+        int b = RepDraw.get().getColor();
+        if(a<value){
+            getPixels()[index] = Color.argb(value, Color.red(b),Color.green(b),Color.blue(b));
+        }
+        /*интересный эффект*/
+//        getPixels()[index] = value;
+//        getCheckeds()[index]=true;
     }
 
     protected float ounCirc(int[] p, float r){
