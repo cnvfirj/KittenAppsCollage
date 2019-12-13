@@ -9,6 +9,7 @@ import com.example.mutmatrix.actions.Deform;
 
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.ALL;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_IMG;
+import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_LYR;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.SINGLE;
 
 public class ApplyOperationSelector implements Operation.ResultMutable {
@@ -31,7 +32,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
     @Override
     public void result(Bitmap img, DeformMat mat, int index) {
-        if(index==RepDraw.LYR_LYR){
+        if(index== LYR_LYR){
 
             RepDraw.get().mutableLyr(img,mat.getRepository(),RepDraw.MUTABLE_SIZE,true);
         }
@@ -46,7 +47,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
              if(lyr== LYR_IMG){
                  RepDraw.get().mutableImg(img,mat.getRepository(),mutable,index==RepDraw.SINGLE);
              }
-             if(lyr==RepDraw.LYR_LYR){
+             if(lyr== LYR_LYR){
                  RepDraw.get().mutableLyr(img,mat.getRepository(),mutable,index==RepDraw.SINGLE);
              }
 
@@ -149,7 +150,7 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
                                       }
                   }
                   if(operation.isReady()) {
-                      int lyr = RepDraw.get().isLyr() ? RepDraw.LYR_LYR : LYR_IMG;
+                      int lyr = RepDraw.get().isLyr() ? LYR_LYR : LYR_IMG;
                       operation.index(SINGLE);
                       readySingle(operation, lyr);
                   }
@@ -232,6 +233,24 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     private void lineOperation(Operation operation,MotionEvent event, int index){
         if(event.getAction()==MotionEvent.ACTION_DOWN) {
             readyOver(operation);
+            if(index==SINGLE){
+                int lyr = RepDraw.get().isLyr() ? LYR_LYR : LYR_IMG;
+                if(lyr==LYR_LYR){
+                    RepDraw.get().correctLyr();
+                }else {
+                    RepDraw.get().correctImg();
+                }
+                operation.lyr(lyr).index(SINGLE);
+            }else {
+                if(RepDraw.get().isLyr()){
+                    RepDraw.get().correctImg();
+                    RepDraw.get().correctLyr();
+                    operation.index(ALL);
+                }else {
+                    RepDraw.get().correctImg();
+                    operation.lyr(LYR_IMG).index(SINGLE);
+                }
+            }
         }
 
         operation.point(event);
@@ -243,14 +262,14 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
 
     void doneCut(Operation operation, boolean isGroup){
         if(!isGroup) {
-            int lyr = RepDraw.get().isLyr()?RepDraw.LYR_LYR: LYR_IMG;
+            int lyr = RepDraw.get().isLyr()? LYR_LYR: LYR_IMG;
             operation.index(RepDraw.SINGLE);
             readySingle(operation, lyr);
             operation.apply();
         }else {
             RepDraw.get().startAllMutable();
             operation.index(ALL);
-            readySingle(operation,RepDraw.LYR_LYR);
+            readySingle(operation, LYR_LYR);
             operation.apply();
             readySingle(operation, LYR_IMG);
             operation.apply();
@@ -282,12 +301,12 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
                     .mat(RepDraw.get().getIMat())
                     .bitmap(RepDraw.get().getImg())
                     .lyr(LYR_IMG);
-        }else if(lyr==RepDraw.LYR_LYR){
+        }else if(lyr== LYR_LYR){
             RepDraw.get().correctLyr();
             operation
                     .mat(RepDraw.get().getLMat())
                     .bitmap(RepDraw.get().getLyr())
-                    .lyr(RepDraw.LYR_LYR);
+                    .lyr(LYR_LYR);
         }
     }
 
