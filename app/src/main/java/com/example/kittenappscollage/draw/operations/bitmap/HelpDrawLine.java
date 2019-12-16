@@ -1,13 +1,8 @@
 package com.example.kittenappscollage.draw.operations.bitmap;
 
 import android.graphics.Color;
-import android.graphics.PointF;
-
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
-
 import java.util.ArrayList;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class HelpDrawLine extends HelperSershPoints {
 
@@ -74,13 +69,12 @@ public class HelpDrawLine extends HelperSershPoints {
     private void setGradPixel(int[] p, int value){
         final int index = p[1]*gethWidth()+p[0];
         if(p[0]>=0&&p[0]<gethWidth()&&p[1]>=0&&p[1]<gethHeight()){
-//            if(!getCheckeds()[index])
+            if(!getCheckeds()[index])
                 implementColor2(index,value);
         }
     }
 
     private void setSideGradPixel(int[] p, int value){
-
         final int index = p[1]*gethWidth()+p[0];
         if(p[0]>=0&&p[0]<gethWidth()&&p[1]>=0&&p[1]<gethHeight()){
             if(!getCheckeds()[index])
@@ -99,9 +93,6 @@ public class HelpDrawLine extends HelperSershPoints {
         if(a<value){
             getPixels()[index] = Color.argb(value, Color.red(b),Color.green(b),Color.blue(b));
         }
-        /*интересный эффект*/
-//        getPixels()[index] = value;
-//        getCheckeds()[index]=true;
     }
 
     private float ounCirc(int[] p, float r){

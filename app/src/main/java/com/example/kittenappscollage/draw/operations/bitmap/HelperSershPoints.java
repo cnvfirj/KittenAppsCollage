@@ -172,7 +172,7 @@ public class HelperSershPoints {
         protected void applyElastPixel(int[]p, int value){
 
         }
-//       private void searchPointsCirc(ArrayList<PointF> points, PointF zero, boolean right){
+
         private void searchPointsCirc(ArrayList<int[]> points, PointF zero, boolean right){
             int[] s=null;
             int[] f=null;
@@ -192,11 +192,10 @@ public class HelperSershPoints {
                 hRightSegment = right;
                 hStartAnglePoint = new int[]{(-s[X]-f[X])/2,(-s[Y]-f[Y])/2};
                 hFinAnglePoint = new int[]{(s[X]+f[X])/2,(s[Y]+f[Y])/2};
-//
-                addAllPoints(points,s,f,null);
 
+                addAllPoints(points,s,f,null);
         }
-//        private void searchZeroCirc(ArrayList<PointF> points, float radius){
+
         private void searchZeroCirc(ArrayList<int[]> points, float radius){
             if(hMat==null)return;
             points.clear();
@@ -232,7 +231,7 @@ public class HelperSershPoints {
             points.addAll(p3);
             points.addAll(p4);
         }
-//        protected void variableParams(PointF p,ArrayList<PointF>points, ArrayList<Integer>values,Point reperA, Point reperB){
+
         protected void variableParams(int[] p,ArrayList<int[]>points, ArrayList<Integer>values,int[] reperA, int[] reperB){
            points.add(p);
         }
@@ -248,7 +247,6 @@ public class HelperSershPoints {
             return false;
         }
         /*находим точки между s и f*/
-//        private void addAllPoints(ArrayList<PointF> points, Point s, Point f, ArrayList<Integer> alpha){
         private void addAllPoints(ArrayList<int[]> points, int[] s, int[] f, ArrayList<Integer> alpha){
         int[] a = s.clone();
         int[] b = f.clone();
@@ -292,16 +290,13 @@ public class HelperSershPoints {
                 hZeroingPoints.clear();
                 hValuesAlpha.clear();
                 for (int[] p:hPointsCenter){
-                    addAllPoints(hZeroingPoints,new int[]{0,0},p,hValuesAlpha);
+//                    if(isRightSegment())
+                        addAllPoints(hZeroingPoints,hStartAnglePoint,p,hValuesAlpha);
+//                    else addAllPoints(hZeroingPoints,hFinAnglePoint,p,hValuesAlpha);
                 }
-
-//                int alpha = RepDraw.get().getAlpha();
                 int alpha = selectValue();
-
-
                 for (int i=0;i<hZeroingPoints.size();i++){
 
-//                    if(hCommand.equals(MutableBit.Command.ELAST_2)||hCommand.equals(MutableBit.Command.ELAST_3)){
                     if(condition()){
                         alpha = hValuesAlpha.get(i);
                     }
@@ -312,6 +307,7 @@ public class HelperSershPoints {
 
                 }
             }
+
             hCreateAngle = false;
             /*заполняем сам отрезок*/
             hPointsCenter.clear();
