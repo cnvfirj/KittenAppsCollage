@@ -290,9 +290,7 @@ public class HelperSershPoints {
                 hZeroingPoints.clear();
                 hValuesAlpha.clear();
                 for (int[] p:hPointsCenter){
-//                    if(isRightSegment())
                         addAllPoints(hZeroingPoints,hStartAnglePoint,p,hValuesAlpha);
-//                    else addAllPoints(hZeroingPoints,hFinAnglePoint,p,hValuesAlpha);
                 }
                 int alpha = selectValue();
                 for (int i=0;i<hZeroingPoints.size();i++){

@@ -4,6 +4,8 @@ import android.graphics.Color;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import java.util.ArrayList;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class HelpDrawLine extends HelperSershPoints {
 
     @Override
@@ -45,7 +47,12 @@ public class HelpDrawLine extends HelperSershPoints {
         float r = RepDraw.get().getWidth()/ gethMat().getRepository().getScale();
         if(arr!=null) {
             if (isCreateAngle()) {
-                /*закрашиваем угол в зависимости от поворота отрезка*/
+
+                /*закрашиваем nt[]vector = vector(getStartAnglePoint(), p);
+//                if(!isRightSegment())vector = vector(gethFinAnglePoint(), p);
+//                int g = computeGrad(ounCirc(vector,r));
+//                if(arr.size()>2&&g==arr.get(arr.size()-1))LYTE("fill");
+//                arr.add(g);угол в зависимости от поворота отрезка*/
                 if(isRightSegment())arr.add(computeGrad(ounCirc(vector(getStartAnglePoint(), p), r)));
                 else arr.add(computeGrad(ounCirc(vector(gethFinAnglePoint(), p), r)));
             } else {
