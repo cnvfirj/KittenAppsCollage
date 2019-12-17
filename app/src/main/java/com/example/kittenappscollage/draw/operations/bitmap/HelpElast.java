@@ -44,8 +44,8 @@ public class HelpElast extends HelperSershPoints {
         if(arr!=null) {
             if (isCreateAngle()) {
                 /*закрашиваем угол в зависимости от поворота отрезка*/
-                if(isRightSegment())arr.add(computeAlpha(ounCirc(vector(getStartAnglePoint(), p), r)));
-                else arr.add(computeAlpha(ounCirc(vector(gethFinAnglePoint(), p), r)));
+                if(isRightSegment())arr.add(computeAlpha(ounCirc(vector(getStartAnglePoint(), p), getWidthStartToFinAngleSegment())));
+                else arr.add(computeAlpha(ounCirc(vector(gethFinAnglePoint(), p), getWidthStartToFinAngleSegment())));
             } else {
                     arr.add(computeAlpha(ounCirc(vector(b, p), r)));
             }
@@ -81,22 +81,23 @@ public class HelpElast extends HelperSershPoints {
     private void setSideGradPixel(int []p,int alpha){
         final int index = p[1]*gethWidth()+p[0];
         if(p[0]>=0&&p[0]<gethWidth()&&p[1]>=0&&p[1]<gethHeight()){
-            implementElast3(index,alpha);
+            implementElast2(index,alpha);
         }
     }
 
     private void implementElast1(int index,int alpha){
-        getPixels()[index] = alphaColor(getPixels()[index], alpha);
-        getCheckeds()[index]=true;
+        int b = getPixels()[index];
+//        if(Color.alpha(b)<alpha) {
+            getPixels()[index] = Color.argb(alpha, Color.red(b), Color.green(b), Color.blue(b));
+            getCheckeds()[index]=true;
+//        }
+
     }
 
     private void implementElast2(int index,int alpha){
-        getPixels()[index] = alphaColor(getPixels()[index], alpha);
-
-    }
-
-    private void implementElast3(int index,int alpha){
-        getPixels()[index] = alphaColor(getPixels()[index], alpha);
+        int b = getPixels()[index];
+        if(Color.alpha(b)>alpha)
+            getPixels()[index] = Color.argb(alpha, Color.red(b), Color.green(b), Color.blue(b));
     }
 
 
@@ -107,9 +108,9 @@ public class HelpElast extends HelperSershPoints {
     protected int[] vector(int[] one, int[] two){
         return new int[]{two[X]-one[X],two[Y]-one[Y]};
     }
-
-    private int alphaColor(int color,int alpha){
-        if(Color.alpha(color)<alpha)return color;
-        else return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
-    }
+//
+//    private int alphaColor(int color,int alpha){
+//        if(Color.alpha(color)<alpha)return color;
+//        else return Color.argb(alpha, Color.red(color), Color.green(color), Color.blue(color));
+//    }
 }

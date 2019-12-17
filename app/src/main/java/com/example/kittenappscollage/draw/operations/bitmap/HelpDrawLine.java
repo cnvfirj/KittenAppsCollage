@@ -47,14 +47,8 @@ public class HelpDrawLine extends HelperSershPoints {
         float r = RepDraw.get().getWidth()/ gethMat().getRepository().getScale();
         if(arr!=null) {
             if (isCreateAngle()) {
-
-                /*закрашиваем nt[]vector = vector(getStartAnglePoint(), p);
-//                if(!isRightSegment())vector = vector(gethFinAnglePoint(), p);
-//                int g = computeGrad(ounCirc(vector,r));
-//                if(arr.size()>2&&g==arr.get(arr.size()-1))LYTE("fill");
-//                arr.add(g);угол в зависимости от поворота отрезка*/
-                if(isRightSegment())arr.add(computeGrad(ounCirc(vector(getStartAnglePoint(), p), r)));
-                else arr.add(computeGrad(ounCirc(vector(gethFinAnglePoint(), p), r)));
+                if(isRightSegment())arr.add(computeGrad(ounCirc(vector(getStartAnglePoint(), p), getWidthStartToFinAngleSegment())));
+                else arr.add(computeGrad(ounCirc(vector(gethFinAnglePoint(), p), getWidthStartToFinAngleSegment())));
             } else {
                 arr.add(computeGrad(ounCirc(vector(b, p), r)));
             }
@@ -95,9 +89,8 @@ public class HelpDrawLine extends HelperSershPoints {
     }
 
     private void implementColor2(int index,int value){
-        int a = Color.alpha(getPixels()[index]);
         int b = RepDraw.get().getColor();
-        if(a<value){
+        if(Color.alpha(getPixels()[index])<value){
             getPixels()[index] = Color.argb(value, Color.red(b),Color.green(b),Color.blue(b));
         }
     }

@@ -23,6 +23,7 @@ public class HelperSershPoints {
 
     private int[] hStartAnglePoint,hFinAnglePoint;
 
+    private float hWidthStartToFinAngleSegment;
 
     private boolean hCreateAngle;
 
@@ -192,7 +193,7 @@ public class HelperSershPoints {
                 hRightSegment = right;
                 hStartAnglePoint = new int[]{(-s[X]-f[X])/2,(-s[Y]-f[Y])/2};
                 hFinAnglePoint = new int[]{(s[X]+f[X])/2,(s[Y]+f[Y])/2};
-
+                hWidthStartToFinAngleSegment = widthVector(vector(hStartAnglePoint,hFinAnglePoint));
                 addAllPoints(points,s,f,null);
         }
 
@@ -360,6 +361,9 @@ public class HelperSershPoints {
             return new PointF(two.x-one.x,two.y-one.y);
         }
 
+        private PointF vector(int[]one,int[]two){
+            return new PointF(two[X]-one[X],two[Y]-one[Y]);
+        }
         private boolean isRight(PointF main, PointF vector){
             return (vector.x*main.y-vector.y*main.x)<0;
         }
@@ -378,6 +382,10 @@ public class HelperSershPoints {
 
         protected int gethHeight(){
             return hHeight;
+        }
+
+        protected float getWidthStartToFinAngleSegment(){
+            return hWidthStartToFinAngleSegment;
         }
 
         protected boolean isCreateAngle(){
