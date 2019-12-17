@@ -6,7 +6,6 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,7 +13,6 @@ import android.view.View;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.operations.ApplyOperation;
 import com.example.kittenappscollage.draw.operations.Operation;
-import com.example.kittenappscollage.draw.operations.OperationCanvas;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
 public class ViewDraw extends View {
@@ -26,8 +24,6 @@ public class ViewDraw extends View {
     private boolean vNonBlock;
 
     private Matrix vMatrL, vMatrI, vMatrO;
-
-    private Paint paint;
 
     private boolean vInfo;
 
@@ -50,9 +46,6 @@ public class ViewDraw extends View {
         vMatrI = new Matrix();
         vMatrL = new Matrix();
         vMatrO = new Matrix();
-        paint = new Paint();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(5);
 
     }
 
