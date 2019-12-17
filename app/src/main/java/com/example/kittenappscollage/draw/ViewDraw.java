@@ -71,7 +71,7 @@ public class ViewDraw extends View {
 
         if(vInfo){
             if(RepDraw.get().isImg())vHelper.drawInfo(canvas,RepDraw.get().getIMat(),"img",Color.RED);
-            if(RepDraw.get().isLyr())vHelper.drawInfo(canvas,RepDraw.get().getLMat(),"lyr",Color.BLUE);
+            if(RepDraw.get().isLyr())vHelper.drawInfo(canvas,RepDraw.get().getLMat(),"over",Color.BLUE);
         }
 
         if(vAppOp.getEvent()!=null&&vAppOp.getEvent().equals(Operation.Event.LAYERS_CUT)&&RepDraw.get().isImg())
@@ -144,8 +144,9 @@ public class ViewDraw extends View {
         vNonBlock = nonBlock;
     }
 
-    public void setEvent(Operation.Event event){
+    public int setEvent(Operation.Event event){
         vAppOp.event(event);
+        return event.ordinal();
     }
 
 }

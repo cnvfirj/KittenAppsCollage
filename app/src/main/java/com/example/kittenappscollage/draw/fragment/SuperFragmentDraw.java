@@ -1,6 +1,7 @@
 package com.example.kittenappscollage.draw.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Point;
@@ -28,7 +29,16 @@ import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class SuperFragmentDraw extends Fragment implements View.OnClickListener {
 
-    protected SharedPreferences dPreferences;
+    private SharedPreferences dPreferences;
+
+    private SharedPreferences.Editor dEditor;
+
+    private final String KEY_INDEX_TOOL = "key index tool";
+    private final String KEY_UNDER_DRAW = "key under draw";
+    private final String KEY_UNDER_FILL = "key under fill";
+    private final String KEY_UNDER_ELAST = "key under elast";
+    private final String KEY_UNDER_SCALAR = "key under scalar";
+    private final String KEY_UNDER_DEFROT = "key under defrot";
 
     protected final int TOOL_PAINT = 1;
     public final static int OP_PAINT_1 = 11;
@@ -71,15 +81,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected final int TOOL_TEXT = 8;
     public final static int OP_TEXT_1 = 81;
     public final static int OP_TEXT_2 = 82;
-//    private int dIndexText;
-
-    protected final String SAVE_STATE = "state";
-
-    private final String KEY_STATE_INDEX_TOOL = "tool";
-    private final String KEY_STATE_INFO = "info";
-    private final String KEY_STATE_ALLLYRS = "alllyrs";
-
-//    protected int dIndexTool;
 
     protected ViewDraw dViewDraw;
 
@@ -106,21 +107,19 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dVisibleAdd = false;
         dSelectAllLyrs = false;
         dSelectInfo = false;
-//        dIndexTool = TOOL_PAINT;
         dIndexPaint = OP_PAINT_1;
         dIndexErase = OP_ERASE_1;
         dIndexFill = OP_FILL_1;
         dIndexDefRot = OP_DEF_ROT_1;
         dIndexScale = OP_SCALE_1;
-//        dIndexText = OP_TEXT_1;
-//        dIndexTrans = OP_TRANS_1;
-//        dIndexCut = OP_CUT_1;
     }
 
+    @SuppressLint("CommitPrefEdits")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
+        dPreferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        dEditor = dPreferences.edit();
         return inflater.inflate(R.layout.fragment_draw,null);
     }
 
@@ -140,6 +139,28 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
                 dRedo.setEnabled(enable);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        dIndexErase = getPreferences().getInt(KEY_UNDER_ELAST,OP_ERASE_1);
+        dIndexFill = getPreferences().getInt(KEY_UNDER_FILL,OP_FILL_1);
+        dIndexPaint = getPreferences().getInt(KEY_UNDER_DRAW,OP_PAINT_1);
+        dIndexDefRot = getPreferences().getInt(KEY_UNDER_DEFROT,OP_DEF_ROT_1);
+        dIndexScale = getPreferences().getInt(KEY_UNDER_SCALAR,OP_SCALE_1);
+        int index = getPreferences().getInt(KEY_INDEX_TOOL,TOOL_TRANS);
+        selectorIconsDefRot(dDeformRotate);
+        dDeformRotate.setSelected(true);
+        selectorIconsErase(dEraser);
+        dEraser.setSelected(true);
+        selectorIconsFill(dFil);
+        dFil.setSelected(true);
+        selectorIconsPaint(dPaint);
+        dPaint.setSelected(true);
+        selectorIconsScale(dScale);
+        dScale.setSelected(true);
+        selectorButtons(index);
     }
 
     @Override
@@ -274,6 +295,14 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
         appStates();
         addListener();
+    }
+
+    protected SharedPreferences getPreferences(){
+        return dPreferences;
+    }
+
+    protected SharedPreferences.Editor getEditor(){
+        return dEditor;
     }
 
     protected void enabledSlideTools(boolean enable){
@@ -546,7 +575,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     }
 
     protected void toolFill(ImageView v){
-
         if(v.isActivated()){
             dIndexFill++;
             if(dIndexFill>OP_FILL_2)dIndexFill = OP_FILL_1;
@@ -611,23 +639,16 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
 
     protected void selectorButtons(int index){
+        dPaint.setActivated(index == TOOL_PAINT);
+        dEraser.setActivated(index == TOOL_ERASE);
+        dFil.setActivated(index == TOOL_FILL);
+        dText.setActivated(index == TOOL_TEXT);
+        dCut.setActivated(index == TOOL_CUT);
+        dTrans.setActivated(index == TOOL_TRANS);
+        dDeformRotate.setActivated(index == TOOL_DEF_ROT);
+        dScale.setActivated(index == TOOL_SCALE);
 
-            dPaint.setActivated(index == TOOL_PAINT);
-
-            dEraser.setActivated(index == TOOL_ERASE);
-
-            dFil.setActivated(index == TOOL_FILL);
-
-            dText.setActivated(index == TOOL_TEXT);
-
-            dCut.setActivated(index == TOOL_CUT);
-
-            dTrans.setActivated(index == TOOL_TRANS);
-
-            dDeformRotate.setActivated(index == TOOL_DEF_ROT);
-
-            dScale.setActivated(index == TOOL_SCALE);
-
+        dEditor.putInt(KEY_INDEX_TOOL,index);
     }
 
     protected void selectorIconsPaint(ImageView v){
@@ -635,14 +656,14 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         else if(dIndexPaint==OP_PAINT_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_1_to_2,null));
         else if(dIndexPaint==OP_PAINT_3)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_2_to_3,null));
         else if(dIndexPaint==OP_PAINT_4)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_paint_3_to_4,null));
-
+        dEditor.putInt(KEY_UNDER_DRAW,dIndexPaint);
     }
 
     protected void selectorIconsErase(ImageView v){
-
         if(dIndexErase==OP_ERASE_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_erase_3_to_1,null));
         else if(dIndexErase==OP_ERASE_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_erase_1_to_2,null));
         else if(dIndexErase==OP_ERASE_3)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_erase_2_to_3,null));
+        dEditor.putInt(KEY_UNDER_ELAST,dIndexErase);
     }
 
 
@@ -650,20 +671,20 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected void selectorIconsScale(ImageView v){
         if(dIndexScale==OP_SCALE_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_scale_2,null));
         else if(dIndexScale==OP_SCALE_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_scale_1,null));
-
+        dEditor.putInt(KEY_UNDER_SCALAR,dIndexScale);
     }
 
     protected void selectorIconsDefRot(ImageView v){
         if(dIndexDefRot==OP_DEF_ROT_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_deform_rotate_3_to_1,null));
         else if(dIndexDefRot==OP_DEF_ROT_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_deform_rotate_1_to_2,null));
         else if(dIndexDefRot==OP_DEF_ROT_3)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_deform_rotate_2_to_3,null));
-
-
+        dEditor.putInt(KEY_UNDER_DEFROT,dIndexDefRot);
     }
 
     protected void selectorIconsFill(ImageView v){
         if(dIndexFill==OP_FILL_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_fill_2,null));
         else if(dIndexFill==OP_FILL_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_fill_1,null));
+        dEditor.putInt(KEY_UNDER_FILL,dIndexFill);
     }
     /*нажатие на ок запускает отрез по контуру
     * или диалог*/

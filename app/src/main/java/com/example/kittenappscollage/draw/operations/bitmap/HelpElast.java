@@ -6,8 +6,6 @@ import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
 import java.util.ArrayList;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-
 public class HelpElast extends HelperSershPoints {
 
     @Override

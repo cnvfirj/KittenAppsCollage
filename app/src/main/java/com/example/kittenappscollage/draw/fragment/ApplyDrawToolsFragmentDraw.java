@@ -22,80 +22,80 @@ import static com.example.kittenappscollage.helpers.Massages.LYTE;
 /*применяем инструменты обработки изображения*/
 public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
 
+    private final String KEY_EVENT = "key event";
+
+
+
+
     @Override
     protected void toolPaint(ImageView v) {
         super.toolPaint(v);
-        if(dIndexPaint%10==1)dViewDraw.setEvent(Operation.Event.LAYERS_LINE_1);
-        else if(dIndexPaint%10==2)dViewDraw.setEvent(Operation.Event.LAYERS_LINE_2);
-        else if(dIndexPaint%10==3)dViewDraw.setEvent(Operation.Event.LAYERS_LINE_3);
-        else if(dIndexPaint%10==4)dViewDraw.setEvent(Operation.Event.DRAW_SPOT);
-//        RepDraw.get().createOverlay();
-//        enabledGrouping(true);
+        int e = Operation.Event.LAYERS_LINE_1.ordinal();
+        if(dIndexPaint%10==1)e = dViewDraw.setEvent(Operation.Event.LAYERS_LINE_1);
+        else if(dIndexPaint%10==2)e = dViewDraw.setEvent(Operation.Event.LAYERS_LINE_2);
+        else if(dIndexPaint%10==3)e = dViewDraw.setEvent(Operation.Event.LAYERS_LINE_3);
+        else if(dIndexPaint%10==4)e = dViewDraw.setEvent(Operation.Event.DRAW_SPOT);
+        getEditor().putInt(KEY_EVENT,e).apply();
     }
 
     @Override
     protected void toolErase(ImageView v) {
         super.toolErase(v);
-        if(dIndexErase%10==1)dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_1);
-        else if(dIndexErase%10==2)dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_2);
-        else if(dIndexErase%10==3)dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_3);
-        else if(dIndexErase%10==4)dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_4);
-//        RepDraw.get().recycleOverlay();
-//        enabledGrouping(false);
-
+        int e = Operation.Event.LAYERS_ELASTIC_1.ordinal();
+        if(dIndexErase%10==1)e = dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_1);
+        else if(dIndexErase%10==2)e = dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_2);
+        else if(dIndexErase%10==3)e = dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_3);
+        else if(dIndexErase%10==4)e = dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_4);
+        getEditor().putInt(KEY_EVENT,e).apply();
     }
 
     @Override
     protected void toolFill(ImageView v) {
         super.toolFill(v);
-        if(dIndexFill%10==1)dViewDraw.setEvent(Operation.Event.LAYERS_FILL_TO_COLOR);
-        else if(dIndexFill%10==2)dViewDraw.setEvent(Operation.Event.LAYERS_FILL_TO_BORDER);
-//        RepDraw.get().recycleOverlay();
-//        enabledGrouping(false);
+        int e = Operation.Event.LAYERS_FILL_TO_COLOR.ordinal();
+        if(dIndexFill%10==1) e = dViewDraw.setEvent(Operation.Event.LAYERS_FILL_TO_COLOR);
+        else if(dIndexFill%10==2)e = dViewDraw.setEvent(Operation.Event.LAYERS_FILL_TO_BORDER);
+        getEditor().putInt(KEY_EVENT,e).apply();
     }
 
     @Override
     protected void toolText(ImageView v) {
         super.toolText(v);
-        dViewDraw.setEvent(Operation.Event.DRAW_TEXT);
-//        RepDraw.get().createOverlay();
-//        enabledGrouping(true);
+        int e = dViewDraw.setEvent(Operation.Event.DRAW_TEXT);
+        getEditor().putInt(KEY_EVENT,e).apply();
     }
 
     @Override
     protected void toolCut(ImageView v) {
         super.toolCut(v);
-        dViewDraw.setEvent(Operation.Event.LAYERS_CUT);
-//        RepDraw.get().recycleOverlay();
-//        enabledGrouping(false);
+        int e = dViewDraw.setEvent(Operation.Event.LAYERS_CUT);
+        getEditor().putInt(KEY_EVENT,e).apply();
     }
 
     @Override
     protected void toolDeformRotate(ImageView v) {
         super.toolDeformRotate(v);
-        if(dIndexDefRot%10==1)dViewDraw.setEvent(Operation.Event.MATRIX_R);
-        else if(dIndexDefRot%10==2)dViewDraw.setEvent(Operation.Event.MATRIX_D);
-        else if(dIndexDefRot%10==3)dViewDraw.setEvent(Operation.Event.MATRIX_RESET_DR);
-//        RepDraw.get().recycleOverlay();
-//        enabledGrouping(false);
-
+        int e = Operation.Event.MATRIX_R.ordinal();
+        if(dIndexDefRot%10==1)e = dViewDraw.setEvent(Operation.Event.MATRIX_R);
+        else if(dIndexDefRot%10==2)e = dViewDraw.setEvent(Operation.Event.MATRIX_D);
+        else if(dIndexDefRot%10==3)e = dViewDraw.setEvent(Operation.Event.MATRIX_RESET_DR);
+        getEditor().putInt(KEY_EVENT,e).apply();
     }
 
     @Override
     protected void toolTranslate(ImageView v) {
         super.toolTranslate(v);
-        dViewDraw.setEvent(Operation.Event.MATRIX_T);
-//        RepDraw.get().recycleOverlay();
-//        enabledGrouping(true);
+        int e = dViewDraw.setEvent(Operation.Event.MATRIX_T);
+        getEditor().putInt(KEY_EVENT,e).apply();
     }
 
     @Override
     protected void toolScale(ImageView v) {
         super.toolScale(v);
-        if(dIndexScale%10==1)dViewDraw.setEvent(Operation.Event.MATRIX_S_P);
-        else if(dIndexScale%10==2)dViewDraw.setEvent(Operation.Event.MATRIX_S_M);
-//        RepDraw.get().recycleOverlay();
-
+        int e = Operation.Event.MATRIX_S_P.ordinal();
+        if(dIndexScale%10==1)e = dViewDraw.setEvent(Operation.Event.MATRIX_S_P);
+        else if(dIndexScale%10==2)e = dViewDraw.setEvent(Operation.Event.MATRIX_S_M);
+        getEditor().putInt(KEY_EVENT,e).apply();
     }
 
     @Override
@@ -126,10 +126,11 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     @Override
     public void onResume() {
         super.onResume();
-        SharedPreferences p = getActivity().getPreferences(Context.MODE_PRIVATE);
-        RepDraw.get().setAlpha(p.getInt(KEY_SAVE_ALPHA,0));
-        RepDraw.get().setColor(p.getInt(KEY_SAVE_COLOR, Color.BLACK));
-        RepDraw.get().setWidth(p.getFloat(KEY_SAVE_WIDTH,50));
-        RepDraw.get().setText(p.getString(KEY_SAVE_TEXT,"Your Text"));
+        Operation.Event e = Operation.Event.values()[getPreferences().getInt(KEY_EVENT, Operation.Event.MATRIX_T.ordinal())];
+        dViewDraw.setEvent(e);
+        RepDraw.get().setAlpha(getPreferences().getInt(KEY_SAVE_ALPHA,0));
+        RepDraw.get().setColor(getPreferences().getInt(KEY_SAVE_COLOR, Color.BLACK));
+        RepDraw.get().setWidth(getPreferences().getFloat(KEY_SAVE_WIDTH,50));
+        RepDraw.get().setText(getPreferences().getString(KEY_SAVE_TEXT,"Your Text"));
     }
 }
