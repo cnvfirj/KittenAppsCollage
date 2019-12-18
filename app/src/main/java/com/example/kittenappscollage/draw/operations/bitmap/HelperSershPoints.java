@@ -170,8 +170,8 @@ public class HelperSershPoints {
         }
 
         private void searchPointsCirc(ArrayList<int[]> points, PointF zero, boolean right){
-            int[] s=null;
-            int[] f=null;
+            int[] s;
+            int[] f;
             /*в зависимости от поворота отрезка, выбираем
             * путь к которому заполним угол*/
             if(right){
