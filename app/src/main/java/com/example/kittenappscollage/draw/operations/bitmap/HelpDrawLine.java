@@ -53,8 +53,8 @@ public class HelpDrawLine extends HelperSershPoints {
     }
 
     private int computeGrad(float power){
-        int segm =  RepDraw.get().getAlphaInColor();
-        return (segm -(int)(segm*power));
+        float segm =  RepDraw.get().getAlphaInColor();
+        return (int)(segm-(segm*power));
     }
 
     private void setPixel(int[] p, int value){
@@ -76,7 +76,7 @@ public class HelpDrawLine extends HelperSershPoints {
         final int index = p[1]*gethWidth()+p[0];
         if(p[0]>=0&&p[0]<gethWidth()&&p[1]>=0&&p[1]<gethHeight()){
             if(!getCheckeds()[index])
-                implementColor2(index,value);
+                implementColor3(index,value);
         }
     }
 
@@ -86,6 +86,15 @@ public class HelpDrawLine extends HelperSershPoints {
     }
 
     private void implementColor2(int index,int value){
+        value -= value%5;
+        int b = RepDraw.get().getColor();
+        if(Color.alpha(getPixels()[index])<value){
+            getPixels()[index] = Color.argb(value, Color.red(b),Color.green(b),Color.blue(b));
+        }
+    }
+
+    private void implementColor3(int index, int value){
+        value -= value%5;
         int b = RepDraw.get().getColor();
         if(Color.alpha(getPixels()[index])<value){
             getPixels()[index] = Color.argb(value, Color.red(b),Color.green(b),Color.blue(b));
@@ -93,7 +102,7 @@ public class HelpDrawLine extends HelperSershPoints {
     }
 
     private float ounCirc(int[] p, float r){
-        return (p[X]*p[X])/(r*r)+(p[Y]*p[Y])/(r*r);
+        return (float)(p[X]*p[X])/(r*r)+(float) (p[Y]*p[Y])/(r*r);
     }
 
     private int[] vector(int[] one, int[] two){
