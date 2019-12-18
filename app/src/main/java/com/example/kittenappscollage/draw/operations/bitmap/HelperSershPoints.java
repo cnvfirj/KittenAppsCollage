@@ -345,8 +345,8 @@ public class HelperSershPoints {
             PointF vector = vector(start,fin);
             float segment = widthVector(vector) ;
             PointF zeroing = new PointF(vector.x/segment,vector.y/segment);
-            float x = zeroing.x*(RepDraw.get().getWidth()/2.0f)/hMat.getRepository().getScale();
-            float y = zeroing.y*(RepDraw.get().getWidth()/2.0f)/hMat.getRepository().getScale();
+            float x = zeroing.x*getRadiusLine();
+            float y = zeroing.y*getRadiusLine();
 
             return new PointF(y,x);
         }
