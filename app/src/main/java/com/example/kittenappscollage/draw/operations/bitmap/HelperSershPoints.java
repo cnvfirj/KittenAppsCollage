@@ -345,10 +345,10 @@ public class HelperSershPoints {
             PointF vector = vector(start,fin);
             float segment = widthVector(vector) ;
             PointF zeroing = new PointF(vector.x/segment,vector.y/segment);
-            float x = zeroing.x*getRadiusLine();
-            float y = zeroing.y*getRadiusLine();
+            final float y = zeroing.x*getRadiusLine();
+            final float x = zeroing.y*getRadiusLine();
 
-            return new PointF(y,x);
+            return new PointF(x,y);
         }
 
         private float widthVector(PointF vector){
