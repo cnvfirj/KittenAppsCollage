@@ -23,7 +23,7 @@ public class HelperSershPoints {
 
     private int[] hStartAnglePoint,hFinAnglePoint;
 
-    private float hWidthStartToFinAngleSegment;
+    private float hWidthStartToFinAngleSegment, hDiameterLine, hRadiusLine;
 
     private boolean hCreateAngle;
 
@@ -130,6 +130,8 @@ public class HelperSershPoints {
                 hStartSegment = new PointF(point.x,point.y);
                 hOunStart = true;
                 hCreateAngle = false;
+                hDiameterLine = RepDraw.get().getWidth()/ gethMat().getRepository().getScale();
+                hRadiusLine = hDiameterLine/2.0f;
             }else {
                 hFinSegment = new PointF(point.x,point.y);
                 hOunProcess = true;
@@ -193,7 +195,7 @@ public class HelperSershPoints {
                 hRightSegment = right;
                 hStartAnglePoint = new int[]{(-s[X]-f[X])/2,(-s[Y]-f[Y])/2};
                 hFinAnglePoint = new int[]{(s[X]+f[X])/2,(s[Y]+f[Y])/2};
-                hWidthStartToFinAngleSegment = widthVector(vector(hStartAnglePoint,hFinAnglePoint));
+                hWidthStartToFinAngleSegment = (widthVector(vector(hStartAnglePoint,hFinAnglePoint))+getDiameterLine())/2;
                 addAllPoints(points,s,f,null);
         }
 
@@ -386,6 +388,14 @@ public class HelperSershPoints {
 
         protected float getWidthStartToFinAngleSegment(){
             return hWidthStartToFinAngleSegment;
+        }
+
+        protected float getDiameterLine(){
+            return hDiameterLine;
+        }
+
+        protected float getRadiusLine(){
+            return hRadiusLine;
         }
 
         protected boolean isCreateAngle(){

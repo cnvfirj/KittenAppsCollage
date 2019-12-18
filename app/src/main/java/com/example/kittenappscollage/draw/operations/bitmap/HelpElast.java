@@ -20,7 +20,7 @@ public class HelpElast extends HelperSershPoints {
         super.variableParams(p, points, values, reperA, reperB);
         if (getCommand().equals(MutableBit.Command.ELAST_2)) {
             fillPointsAlpha(values, p,
-                    RepDraw.get().getWidth() / 2.0f / gethMat().getRepository().getScale());
+                    getRadiusLine());
         } else if (getCommand().equals(MutableBit.Command.ELAST_3)) {
             fillAlterPointsAlpha(values, p, reperA, reperB);
         }
@@ -38,14 +38,14 @@ public class HelpElast extends HelperSershPoints {
 
     private void fillAlterPointsAlpha(ArrayList<Integer> arr, int[] p, int[] a, int[] b ){
         /*заполнение с односторонней прозрачностью*/
-        float r = RepDraw.get().getWidth()/ gethMat().getRepository().getScale();
+//        float r = getDiameterLine();
         if(arr!=null) {
             if (isCreateAngle()) {
                 /*закрашиваем угол в зависимости от поворота отрезка*/
                 if(isRightSegment())arr.add(computeAlpha(ounCirc(vector(getStartAnglePoint(), p), getWidthStartToFinAngleSegment())));
                 else arr.add(computeAlpha(ounCirc(vector(gethFinAnglePoint(), p), getWidthStartToFinAngleSegment())));
             } else {
-                    arr.add(computeAlpha(ounCirc(vector(b, p), r)));
+                    arr.add(computeAlpha(ounCirc(vector(b, p), getDiameterLine())));
             }
         }
     }

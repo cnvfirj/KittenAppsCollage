@@ -18,7 +18,7 @@ public class HelpDrawLine extends HelperSershPoints {
         super.variableParams(p, points, values, reperA, reperB);
         if (getCommand().equals(MutableBit.Command.LINE_2)) {
             fillPointsGrad(values, p,
-                    RepDraw.get().getWidth() / 2.0f / gethMat().getRepository().getScale());
+                    getRadiusLine());
         } else if (getCommand().equals(MutableBit.Command.LINE_3)) {
             fillAlterPointsGrad(values, p, reperA, reperB);
         }
@@ -42,13 +42,12 @@ public class HelpDrawLine extends HelperSershPoints {
     }
 
     private void fillAlterPointsGrad(ArrayList<Integer> arr, int[] p, int[] a, int[] b){
-        float r = RepDraw.get().getWidth()/ gethMat().getRepository().getScale();
         if(arr!=null) {
             if (isCreateAngle()) {
                 if(isRightSegment())arr.add(computeGrad(ounCirc(vector(getStartAnglePoint(), p), getWidthStartToFinAngleSegment())));
                 else arr.add(computeGrad(ounCirc(vector(gethFinAnglePoint(), p), getWidthStartToFinAngleSegment())));
             } else {
-                arr.add(computeGrad(ounCirc(vector(b, p), r)));
+                arr.add(computeGrad(ounCirc(vector(b, p), getDiameterLine())));
             }
         }
     }
