@@ -2,15 +2,14 @@ package com.example.kittenappscollage.draw.operations.bitmap;
 
 import android.graphics.Bitmap;
 import android.graphics.PointF;
-
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutmatrix.DeformMat;
-
 import java.util.ArrayList;
 
 public class HelperSershPoints {
 
     protected final int X = 0;
+
     protected final int Y = 1;
 
     private MutableBit.Command hCommand;
@@ -59,7 +58,6 @@ public class HelperSershPoints {
             hConvert = false;
         }
 
-
         public HelperSershPoints bitmap(Bitmap b, DeformMat mat){
             hBitmap = b;
             hMat = mat;
@@ -73,7 +71,6 @@ public class HelperSershPoints {
             return this;
         }
 
-
         public HelperSershPoints convert(){
             hWidth = hBitmap.getWidth();
             hHeight = hBitmap.getHeight();
@@ -86,7 +83,6 @@ public class HelperSershPoints {
             hConvert = true;
             return this;
         }
-
 
         public HelperSershPoints resetOun(){
             hOunStart = false;
@@ -117,8 +113,6 @@ public class HelperSershPoints {
 
             return this;
         }
-
-
 
         public HelperSershPoints point(PointF point){
             hPoint = point;
@@ -171,7 +165,6 @@ public class HelperSershPoints {
             return hPoint;
         }
 
-
         protected void applyElastPixel(int[]p, int value){
 
         }
@@ -206,7 +199,6 @@ public class HelperSershPoints {
             ArrayList<int[]> p2 = new ArrayList<>();
             ArrayList<int[]> p3 = new ArrayList<>();
             ArrayList<int[]> p4 = new ArrayList<>();
-
 
             int x = 0;
             int y =  Math.round(radius/hMat.getRepository().getScale())-1;
@@ -305,7 +297,6 @@ public class HelperSershPoints {
                             (int)(start.x+hZeroingPoints.get(i)[X]),
                             (int)(start.y+hZeroingPoints.get(i)[Y])
                     },alpha);
-
                 }
             }
 
@@ -314,7 +305,6 @@ public class HelperSershPoints {
             hPointsCenter.clear();
             /*находим все точки от старта к финишу*/
             addAllPoints(hPointsCenter,extPoint(start),extPoint(fin),null);
-
 
             hZeroingPoints.clear();
             hValuesAlpha.clear();
