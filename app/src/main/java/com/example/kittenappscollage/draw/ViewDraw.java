@@ -13,6 +13,7 @@ import android.view.View;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.operations.ApplyOperation;
 import com.example.kittenappscollage.draw.operations.Operation;
+import com.example.kittenappscollage.draw.operations.OperationCanvas;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
 public class ViewDraw extends View {
@@ -26,6 +27,8 @@ public class ViewDraw extends View {
     private Matrix vMatrL, vMatrI, vMatrO;
 
     private boolean vInfo;
+
+    private OperationCanvas vPreview;
 
 
     public ViewDraw(Context context) {
@@ -46,7 +49,7 @@ public class ViewDraw extends View {
         vMatrI = new Matrix();
         vMatrL = new Matrix();
         vMatrO = new Matrix();
-
+        vPreview = new OperationCanvas().preview(true);
     }
 
     @Override
@@ -60,6 +63,9 @@ public class ViewDraw extends View {
         }
         if(RepDraw.get().isOver()){
             canvas.drawBitmap(getOver(), getMatrOver(),null);
+        }
+        if(isDraw()){
+            vPreview.canvas(canvas).apply();
         }
 
         if(vInfo){
@@ -78,6 +84,7 @@ public class ViewDraw extends View {
         if(vNonBlock) {
             if(RepDraw.get().isImg()){
                 vAppOp.point(event);
+                if(isDraw())vPreview.point(event);
                 invalidate();
             }
         }
@@ -121,12 +128,8 @@ public class ViewDraw extends View {
     }
 
     private boolean isDraw(){
-        Operation.Event e = vAppOp.getEvent();
-        return e.equals(Operation.Event.DRAW_A_LINE_1)||
-                e.equals(Operation.Event.DRAW_A_LINE_2)||
-                e.equals(Operation.Event.DRAW_A_LINE_3)||
-                e.equals(Operation.Event.DRAW_SPOT)||
-                e.equals(Operation.Event.DRAW_TEXT);
+        return vAppOp.getEvent().equals(Operation.Event.DRAW_SPOT)||
+                vAppOp.getEvent().equals(Operation.Event.DRAW_TEXT);
     }
 
     public void groupLyrs(boolean gr){
@@ -139,6 +142,7 @@ public class ViewDraw extends View {
 
     public int setEvent(Operation.Event event){
         vAppOp.event(event);
+        vPreview.event(event);
         return event.ordinal();
     }
 

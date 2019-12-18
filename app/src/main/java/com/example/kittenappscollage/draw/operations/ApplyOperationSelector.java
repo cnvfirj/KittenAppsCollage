@@ -201,6 +201,22 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     }
 
     void singleCanv(Operation operation, MotionEvent event){
+        if(event.getAction()==MotionEvent.ACTION_DOWN){
+            readyOver(operation);
+                int lyr = RepDraw.get().isLyr() ? LYR_LYR : LYR_IMG;
+                if(lyr==LYR_LYR){
+                    RepDraw.get().correctLyr();
+                }else {
+                    RepDraw.get().correctImg();
+                }
+                operation.lyr(lyr).index(SINGLE);
+            }
+        operation.point(event);
+
+        if(event.getAction()==MotionEvent.ACTION_UP){
+            operation.apply();
+            RepDraw.get().recycleOverlay();
+        }
 
     }
 
@@ -280,7 +296,8 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     private void readyOver(Operation operation){
         RepDraw.get().createOverlay();
         operation.mat(RepDraw.get().getOMat())
-                .bitmap(RepDraw.get().getOverlay());
+                .bitmap(RepDraw.get().getOverlay())
+                 .canvas(RepDraw.get().getOverCanv());
     }
 
     private void readyAll(Operation operation){

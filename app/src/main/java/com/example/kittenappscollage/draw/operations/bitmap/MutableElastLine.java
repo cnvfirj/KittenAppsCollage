@@ -63,18 +63,18 @@ public class MutableElastLine extends MutableElast {
                 if(mIndex==RepDraw.ALL){
                     RepDraw.get().startAllMutable();
 
-                    DrawBitmap.create(new Canvas(getImg()),getIMat()).antiAlias(false).draw(mBitmap,mMat);
+                    DrawBitmap.create(new Canvas(getImg()),getIMat()).antiAlias(true).draw(mBitmap,mMat);
                     mListener.result(getImg(), getIMat(),RepDraw.ALL,RepDraw.LYR_IMG,RepDraw.MUTABLE_SIZE);
 
-                    DrawBitmap.create(new Canvas(getLyr()),getLMat()).antiAlias(false).draw(mBitmap,mMat);
+                    DrawBitmap.create(new Canvas(getLyr()),getLMat()).antiAlias(true).draw(mBitmap,mMat);
                     mListener.result(getLyr(), getLMat(),RepDraw.ALL,RepDraw.LYR_LYR,RepDraw.MUTABLE_SIZE);
                 } else{
                     RepDraw.get().startSingleMutable();
                     if(mLyr==LYR_IMG){
-                        DrawBitmap.create(new Canvas(getImg()),getIMat()).antiAlias(false).draw(mBitmap,mMat);
+                        DrawBitmap.create(new Canvas(getImg()),getIMat()).antiAlias(true).draw(mBitmap,mMat);
                         mListener.result(getImg(), getIMat(), mIndex,mLyr,RepDraw.MUTABLE_SIZE);
                     }else if(mLyr==LYR_LYR){
-                        DrawBitmap.create(new Canvas(getLyr()),getLMat()).antiAlias(false).draw(mBitmap,mMat);
+                        DrawBitmap.create(new Canvas(getLyr()),getLMat()).antiAlias(true).draw(mBitmap,mMat);
                         mListener.result(getLyr(), getLMat(), mIndex,mLyr,RepDraw.MUTABLE_SIZE);
                     }
                 }

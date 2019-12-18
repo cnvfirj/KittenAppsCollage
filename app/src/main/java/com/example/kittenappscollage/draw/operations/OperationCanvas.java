@@ -4,31 +4,31 @@ import android.graphics.Canvas;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 
-import com.example.kittenappscollage.draw.operations.canvas.DrawCanvas;
-import com.example.kittenappscollage.draw.operations.canvas.DrawLineInCanvas;
-import com.example.kittenappscollage.draw.operations.canvas.DrawTextInCanvas;
+import com.example.kittenappscollage.draw.operations.canvas.BuildPath;
+import com.example.kittenappscollage.draw.operations.canvas.DrawText;
+import com.example.mutmatrix.DeformMat;
 
 public class OperationCanvas extends Operation {
 
     public final static int DRAW_PREVIEW = 145;
     public final static int DRAW_BITMAP = 129;
 
-    private DrawLineInCanvas oDraw;
+//    private DrawLineInCanvas oDraw;
+
+    private DrawText oDraw;
 
     private boolean oIsCanvas;
 
     private static OperationCanvas singleton;
 
     public OperationCanvas() {
-        oDraw = new DrawLineInCanvas();
+        oDraw = new DrawText();
         oIsCanvas = false;
     }
 
     public static OperationCanvas get(){
         if(singleton==null){
-//            synchronized (OperationCanvas.class){
                 singleton = new OperationCanvas();
-//            }
         }
         return singleton;
     }
@@ -36,15 +36,12 @@ public class OperationCanvas extends Operation {
     @Override
     public Operation event(Event event) {
         this.event = event;
-        if(event.equals(Event.DRAW_A_LINE_1))oDraw.command(DrawCanvas.Command.ARBIT_LINE_1);
-        else if(event.equals(Event.DRAW_A_LINE_2))oDraw.command(DrawCanvas.Command.ARBIT_LINE_2);
-        else if(event.equals(Event.DRAW_A_LINE_3))oDraw.command(DrawCanvas.Command.ARBIT_LINE_3);
-        else if(event.equals(Event.DRAW_SPOT))oDraw.command(DrawCanvas.Command.ARBIT_SPOT);
-        else if(event.equals(Event.DRAW_TEXT))oDraw.command(DrawCanvas.Command.TEXT);
+        if(event.equals(Event.DRAW_SPOT))oDraw.command(BuildPath.Command.SPOT);
+        else if(event.equals(Event.DRAW_TEXT))oDraw.command(BuildPath.Command.TEXT);
         return this;
     }
 
-    public OperationCanvas preview(int p){
+    public OperationCanvas preview(boolean p){
         oDraw.preview(p);
         return this;
     }
@@ -58,19 +55,25 @@ public class OperationCanvas extends Operation {
     @Override
     public Operation index(int index) {
         oDraw.index(index);
-        return super.index(index);
+        return this;
     }
 
     @Override
     public Operation lyr(int lyr) {
+        oDraw.lyr(lyr);
+        return this;
+    }
 
-        return super.lyr(lyr);
+    @Override
+    public Operation resultMutable(ResultMutable result) {
+        oDraw.listener(result);
+        return this;
     }
 
     @Override
     public Operation point(MotionEvent m) {
         oDraw.point(m);
-        return null;
+        return this;
     }
 
     @Override
@@ -79,8 +82,13 @@ public class OperationCanvas extends Operation {
     }
 
     @Override
-    public void apply() {
+    public Operation mat(DeformMat mat) {
+        return this;
+    }
 
+    @Override
+    public void apply() {
+         oDraw.draw();
     }
 
     public boolean isCanvas(){

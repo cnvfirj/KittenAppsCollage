@@ -67,7 +67,7 @@ public class OperationBitmap extends Operation{
     @Override
     public Operation lyr(int lyr) {
         oMutableBit.lyr(lyr);
-        return super.lyr(lyr);
+        return this;
     }
 
     @Override
@@ -79,7 +79,7 @@ public class OperationBitmap extends Operation{
     @Override
     public Operation resultMutable(ResultMutable result) {
         oMutableBit.listener(result);
-        return super.resultMutable(result);
+        return this;
     }
 
     @Override
