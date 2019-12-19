@@ -99,7 +99,6 @@ public class HelpElast extends HelperSershPoints {
 
     protected float ounCirc(int[] p, float r){
         return (float)Math.sqrt(p[X]*p[X]+p[Y]*p[Y])/r;
-//        return (p[X]*p[X])/(r*r)+(p[Y]*p[Y])/(r*r);
     }
 
     protected int[] vector(int[] one, int[] two){
