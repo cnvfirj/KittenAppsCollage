@@ -42,7 +42,7 @@ public class BuildPath  {
     }
 
     protected void fin(PointF f){
-        hPath.close();
+//        hPath.close();
     }
 
     protected Path getPath(){
