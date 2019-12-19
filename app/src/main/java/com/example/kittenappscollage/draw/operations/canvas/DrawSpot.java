@@ -27,10 +27,6 @@ public class DrawSpot extends BuildPath {
 
     private Operation.ResultMutable hListener;
 
-    private DeformMat hMat;
-
-
-
     public DrawSpot() {
         hPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         hPaint.setStyle(Paint.Style.FILL);
@@ -69,7 +65,7 @@ public class DrawSpot extends BuildPath {
     }
 
     public void mat(DeformMat m){
-        hMat = m;
+
     }
 
     public void preview(boolean p){
@@ -111,6 +107,7 @@ public class DrawSpot extends BuildPath {
                     getListener().result(getLyr(), getLMat(), getIndex(),getIndexLyr(),RepDraw.MUTABLE_SIZE);
                 }
             }
+
         }
     }
 

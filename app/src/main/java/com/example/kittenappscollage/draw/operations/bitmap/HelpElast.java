@@ -38,7 +38,6 @@ public class HelpElast extends HelperSershPoints {
 
     private void fillAlterPointsAlpha(ArrayList<Integer> arr, int[] p, int[] a, int[] b ){
         /*заполнение с односторонней прозрачностью*/
-//        float r = getDiameterLine();
         if(arr!=null) {
             if (isCreateAngle()) {
                 /*закрашиваем угол в зависимости от поворота отрезка*/

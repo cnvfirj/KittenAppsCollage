@@ -29,14 +29,21 @@ public class RepParams extends Repozitory {
 
     private int rAlphaInColor = 255;
 
+    private boolean rTextItalic;
+
+    private boolean rTextFill;
+
     private String rText = "Your Enter Text";
 
     private ListParams rList;
 
-    public void allParams(float width, int color, int alpha, String text){
+    public void drawParams(float width, int color, int alpha){
         setWidth(width);
         setColor(color);
         setAlpha(alpha);
+    }
+
+    public void textParams(String text,boolean italis, boolean fill){
         setText(text);
     }
 
@@ -94,6 +101,24 @@ public class RepParams extends Repozitory {
         if(text.length()>0)rText = text;
         if(rList!=null)rList.text(text);
         return this;
+    }
+
+    public RepParams textItalic(boolean i){
+        rTextItalic = i;
+        return this;
+    }
+
+    public boolean isTextItalic(){
+        return rTextItalic;
+    }
+
+    public RepParams textFill(boolean f){
+        rTextFill = f;
+        return this;
+    }
+
+    public boolean isTextFill(){
+        return rTextFill;
     }
 
     public interface ListParams{
