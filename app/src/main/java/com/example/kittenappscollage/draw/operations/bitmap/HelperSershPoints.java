@@ -6,6 +6,8 @@ import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.mutmatrix.DeformMat;
 import java.util.ArrayList;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class HelperSershPoints {
 
     protected final int X = 0;
@@ -177,18 +179,17 @@ public class HelperSershPoints {
             if(right){
                 s = new int[]{(int)(-hOldZeroVector.x),(int)(hOldZeroVector.y)};//левая точка
                 f = new int[]{(int)(-zero.x),(int)(zero.y)};//левая точка
-
-
             }else {
                 s = new int[]{(int)(hOldZeroVector.x),(int)(-hOldZeroVector.y)};//правая точка
                 f = new int[]{(int)(zero.x),(int)(-zero.y)};//правая точка
-
             }
                 hCreateAngle = true;
                 hRightSegment = right;
                 hStartAnglePoint = new int[]{(-s[X]-f[X])/2,(-s[Y]-f[Y])/2};
                 hFinAnglePoint = new int[]{(s[X]+f[X])/2,(s[Y]+f[Y])/2};
-                hWidthStartToFinAngleSegment = (widthVector(vector(hStartAnglePoint,hFinAnglePoint))+getDiameterLine())/2;
+                hWidthStartToFinAngleSegment = (widthVector(vector(hStartAnglePoint,hFinAnglePoint))+getDiameterLine())/2f;
+//                hWidthStartToFinAngleSegment =  getDiameterLine();
+
                 addAllPoints(points,s,f,null);
         }
 

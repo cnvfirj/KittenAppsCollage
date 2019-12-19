@@ -85,14 +85,12 @@ public class HelpElast extends HelperSershPoints {
 
     private void implementElast1(int index,int alpha){
         int b = getPixels()[index];
-//        if(Color.alpha(b)<alpha) {
             getPixels()[index] = Color.argb(alpha, Color.red(b), Color.green(b), Color.blue(b));
             getCheckeds()[index]=true;
-//        }
-
     }
 
     private void implementElast2(int index,int alpha){
+        alpha -= alpha%5;
         int b = getPixels()[index];
         if(Color.alpha(b)>alpha)
             getPixels()[index] = Color.argb(alpha, Color.red(b), Color.green(b), Color.blue(b));
