@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.PointF;
+import android.graphics.Typeface;
 
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
@@ -62,12 +63,12 @@ public class DrawText extends DrawSpot {
     private void initParams(){
         hText = RepDraw.get().getText();
         hSizeText = RepDraw.get().getWidth()*1.3f;
+        getPaintText().setTypeface(Typeface.create(Typeface.SERIF, Typeface.NORMAL));
         getPaintText().setColor(RepDraw.get().getColor());
         getPaintText().setTextSize(getTextSize());
         getPaintText().setStrokeWidth(2);
         getPaintText().setPathEffect(new CornerPathEffect(RepDraw.get().getWidth()*3));
         getPaintText().setStyle(RepDraw.get().isTextFill()? Paint.Style.FILL_AND_STROKE: Paint.Style.STROKE);
-        getPaintText().setTextSkewX(RepDraw.get().isTextFill()?-0.6f:0);
 
         getPaintSpot().setColor(inversion(RepDraw.get().getColor()));
         getPaintSpot().setStyle(Paint.Style.STROKE);
