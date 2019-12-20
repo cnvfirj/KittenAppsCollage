@@ -37,6 +37,7 @@ public class DrawSpot extends BuildPath {
     protected void start(PointF s) {
         super.start(s);
         color(RepDraw.get().getColor());
+        hPaint.setStyle(Paint.Style.FILL);
     }
 
     @Override
