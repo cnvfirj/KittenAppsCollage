@@ -75,17 +75,6 @@ public class MutableFill extends MutableCut {
         return RepDraw.get().isLyr();
     }
 
-    private boolean isImg(){
-        return RepDraw.get().isImg();
-    }
-
-    protected Canvas getLyrCanv(){
-        return RepDraw.get().getrLyrCanv();
-    }
-
-    protected Canvas getImgCanv(){
-        return RepDraw.get().getImgCanv();
-    }
 
     protected Bitmap getImg(){
         return RepDraw.get().getImg();
