@@ -37,8 +37,6 @@ public class DrawSpot extends BuildPath {
     protected void start(PointF s) {
         super.start(s);
         if(getCommand().equals(Command.SPOT)) {
-//            color(RepDraw.get().getColor());
-//            hPaint.setStyle(Paint.Style.FILL);
             initParams();
         }
     }
@@ -99,8 +97,10 @@ public class DrawSpot extends BuildPath {
         if(getListener()!=null){
             if(getIndex()==RepDraw.ALL){
                 RepDraw.get().startAllMutable();
+
                 DrawBitmap.create(new Canvas(getImg()),getIMat()).antiAlias(true).draw(getOverlay(),getOMat());
                 getListener().result(getImg(), getIMat(), RepDraw.ALL,RepDraw.LYR_IMG,RepDraw.MUTABLE_SIZE);
+
                 DrawBitmap.create(new Canvas(getLyr()),getLMat()).antiAlias(true).draw(getOverlay(),getOMat());
                 getListener().result(getLyr(), getLMat(), RepDraw.ALL,RepDraw.LYR_LYR,RepDraw.MUTABLE_SIZE);
             } else{

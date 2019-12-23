@@ -25,7 +25,6 @@ public class MutableFill extends MutableCut {
 
     @Override
     public MutableBit start(PointF start) {
-
         if(mCommand.equals(Command.FILL_B)||mCommand.equals(Command.FILL_C)){
             applyFill(start);
             return this;
@@ -35,7 +34,6 @@ public class MutableFill extends MutableCut {
     @Override
     public void apply() {
         if(mCommand.equals(Command.FILL_B)||mCommand.equals(Command.FILL_C)){
-
         }else super.apply();
     }
 
@@ -53,7 +51,6 @@ public class MutableFill extends MutableCut {
 
             DrawBitmap.create(new Canvas(getLyr()),getLMat()).antiAlias(true).draw(temp,mMat);
             mListener.result(getLyr(), getLMat(),RepDraw.ALL,RepDraw.LYR_LYR,RepDraw.MUTABLE_SIZE);
-
         } else{
             RepDraw.get().startSingleMutable();
             DrawBitmap.create(new Canvas(mBitmap),mMat).antiAlias(true).draw(temp,mMat);
