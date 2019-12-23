@@ -36,8 +36,11 @@ public class DrawSpot extends BuildPath {
     @Override
     protected void start(PointF s) {
         super.start(s);
-        color(RepDraw.get().getColor());
-        hPaint.setStyle(Paint.Style.FILL);
+        if(getCommand().equals(Command.SPOT)) {
+//            color(RepDraw.get().getColor());
+//            hPaint.setStyle(Paint.Style.FILL);
+            initParams();
+        }
     }
 
     @Override
@@ -96,8 +99,10 @@ public class DrawSpot extends BuildPath {
         if(getListener()!=null){
             if(getIndex()==RepDraw.ALL){
                 RepDraw.get().startAllMutable();
-
-
+                DrawBitmap.create(new Canvas(getImg()),getIMat()).antiAlias(true).draw(getOverlay(),getOMat());
+                getListener().result(getImg(), getIMat(), RepDraw.ALL,RepDraw.LYR_IMG,RepDraw.MUTABLE_SIZE);
+                DrawBitmap.create(new Canvas(getLyr()),getLMat()).antiAlias(true).draw(getOverlay(),getOMat());
+                getListener().result(getLyr(), getLMat(), RepDraw.ALL,RepDraw.LYR_LYR,RepDraw.MUTABLE_SIZE);
             } else{
                 RepDraw.get().startSingleMutable();
                 if(getIndexLyr()==LYR_IMG){
@@ -108,8 +113,13 @@ public class DrawSpot extends BuildPath {
                     getListener().result(getLyr(), getLMat(), getIndex(),getIndexLyr(),RepDraw.MUTABLE_SIZE);
                 }
             }
-
         }
+    }
+
+    private void initParams(){
+        color(RepDraw.get().getColor());
+        hPaint.setStyle(Paint.Style.FILL);
+
     }
 
     protected Operation.ResultMutable getListener(){

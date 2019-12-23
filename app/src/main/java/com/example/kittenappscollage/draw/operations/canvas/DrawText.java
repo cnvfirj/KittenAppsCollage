@@ -8,8 +8,6 @@ import android.graphics.Typeface;
 
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-
 public class DrawText extends DrawSpot {
 
     private PointF hStart, hMove;
@@ -20,7 +18,7 @@ public class DrawText extends DrawSpot {
 
     private String hText;
 
-    private float hLengthPath;
+//    private float hLengthPath;
 
     public DrawText() {
         hPaintText = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -29,19 +27,23 @@ public class DrawText extends DrawSpot {
     @Override
     protected void start(PointF s) {
         super.start(s);
-        initParams();
-        hStart = new PointF(s.x,s.y);
-        hLengthPath = 0;
+        if(getCommand().equals(Command.TEXT)) {
+            initParams();
+            hStart = new PointF(s.x, s.y);
+//            hLengthPath = 0;
+        }
     }
 
     @Override
     protected void move(PointF m) {
         super.move(m);
-        if(hMove!=null){
-            hStart = new PointF(hMove.x,hMove.y);
+        if(getCommand().equals(Command.TEXT)) {
+            if (hMove != null) {
+                hStart = new PointF(hMove.x, hMove.y);
+            }
+            hMove = new PointF(m.x, m.y);
+//            hLengthPath += lengthVector(vector());
         }
-        hMove = new PointF(m.x,m.y);
-        hLengthPath+=lengthVector(vector());
     }
 
     @Override

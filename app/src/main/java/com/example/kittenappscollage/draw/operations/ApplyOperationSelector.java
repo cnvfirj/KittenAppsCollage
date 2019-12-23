@@ -221,7 +221,21 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     }
 
     void groupCanv(Operation operation, MotionEvent event){
-
+        if(!RepDraw.get().isLyr()){
+            singleLay(operation,event);
+            return;
+        }
+        if(event.getAction()==MotionEvent.ACTION_DOWN) {
+            readyOver(operation);
+            RepDraw.get().correctLyr();
+            RepDraw.get().correctImg();
+            operation.index(ALL);
+        }
+        operation.point(event);
+        if(event.getAction()==MotionEvent.ACTION_UP){
+            operation.apply();
+            RepDraw.get().recycleOverlay();
+        }
     }
 
     private boolean isCut(Operation operation){

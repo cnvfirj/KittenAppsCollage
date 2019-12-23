@@ -48,15 +48,15 @@ public class MutableFill extends MutableCut {
         if(mIndex==RepDraw.ALL){
             RepDraw.get().startAllMutable();
 
-            DrawBitmap.create(new Canvas(getImg()),getIMat()).antiAlias(false).draw(temp,mMat);
+            DrawBitmap.create(new Canvas(getImg()),getIMat()).antiAlias(true).draw(temp,mMat);
             mListener.result(getImg(), getIMat(),RepDraw.ALL,RepDraw.LYR_IMG,RepDraw.MUTABLE_SIZE);
 
-            DrawBitmap.create(new Canvas(getLyr()),getLMat()).antiAlias(false).draw(temp,mMat);
+            DrawBitmap.create(new Canvas(getLyr()),getLMat()).antiAlias(true).draw(temp,mMat);
             mListener.result(getLyr(), getLMat(),RepDraw.ALL,RepDraw.LYR_LYR,RepDraw.MUTABLE_SIZE);
 
         } else{
             RepDraw.get().startSingleMutable();
-            DrawBitmap.create(new Canvas(mBitmap),mMat).antiAlias(false).draw(temp,mMat);
+            DrawBitmap.create(new Canvas(mBitmap),mMat).antiAlias(true).draw(temp,mMat);
             mListener.result(mBitmap, mMat,mIndex,mLyr,RepDraw.MUTABLE_SIZE);
         }
 
