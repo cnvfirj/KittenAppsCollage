@@ -41,8 +41,6 @@ public class RequestFolder {
         return DCIM+"/Camera";
     }
     public static String getCacheFolder(Context context){
-//            return getPersonalFolder(context) + FOLDER_CASH ;
-//        return GENERAL+GENERAL_FOLDER+FOLDER_CASH;
         return getPersonalFolder(context)+FOLDER_CASH;
 
     }
@@ -59,6 +57,10 @@ public class RequestFolder {
 
     public static String getFolderPhotos(){
         return DCIM;
+    }
+
+    public static String getFolderDown(){
+        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
     }
 
     /*проверяем наличие папки, если ее нет создаем

@@ -39,4 +39,10 @@
     <string name="wrong_link">не правильная ссылка</string>
     <string name="condition_apply_tools">открой или создай холст</string>
     <string name="click_again">нажми еще раз</string>
+
+
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 </resources>
