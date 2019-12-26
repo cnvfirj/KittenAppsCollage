@@ -28,8 +28,9 @@
     <string name="OR"> или </string>
     <string name="IMG_SAVED">изображение сохранено</string>
     <string name="ERROR_SAVED">ошибка сохранения</string>
-    <string name="FOTO">Фото</string>
+    <string name="PHOTO">Фото</string>
     <string name="COLLECT">Галерея</string>
+    <string name="DOWNLOADS">Загрузки</string>
     <string name="INPUT_TEXT_SELECT_TEXT">Введи нужный текст</string>
     <string name="FILL_FIGURE">закрасить</string>
     <string name="ITALIC">курсив</string>
@@ -45,4 +46,5 @@
     <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
     <string name="KEY_ADAPTER_ID">key adapter id</string>
     <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
 </resources>

@@ -11,9 +11,6 @@ public class AdapterPhoto extends AdapterProject {
         super(aContext, source);
     }
 
-    @Override
-    public void requestList() {
-//        RequestImagesInStorage.get(aContext,sListImageListener).loadImages(RequestFolder.getFolderPhotos());
-    }
+
 
 }

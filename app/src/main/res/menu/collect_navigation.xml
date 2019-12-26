@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/m_navigation_gallery"
+        android:title="@string/COLLECT"
+        android:icon="@drawable/ic_add"/>
+    <item
+        android:id="@+id/m_navigation_photo"
+        android:title="@string/PHOTO"
+        android:icon="@drawable/ic_add"/>
+    <item
+        android:id="@+id/m_navigation_down"
+        android:title="@string/DOWNLOADS"
+        android:icon="@drawable/ic_add"/>
+
+
+</menu>

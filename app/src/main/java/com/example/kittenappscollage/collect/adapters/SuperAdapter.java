@@ -2,8 +2,6 @@ package com.example.kittenappscollage.collect.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Environment;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,12 +42,6 @@ public abstract class SuperAdapter
     private File[] listImg;
     private boolean[]listChecked;
     private TouchViewListener listener;
-
-    public SuperAdapter(Context c, String d) {
-        dir = d;
-        context = c;
-        requestList();
-    }
 
     public SuperAdapter(Context c, int source){
         context = c;
@@ -108,6 +100,10 @@ public abstract class SuperAdapter
         return listImg;
     }
 
+    protected boolean[]getChecked(){
+        return listChecked;
+    }
+
     protected Context getContext(){
         return context;
     }
@@ -144,12 +140,17 @@ public abstract class SuperAdapter
         public boolean onTouch(View v, MotionEvent event) {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 checkable = true;
+                getChecked()[getAdapterPosition()]= true;
             }
             return true;
         }
 
         public ImageView getImage() {
             return image;
+        }
+
+        public void setChecked(){
+
         }
 
 
