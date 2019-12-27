@@ -51,15 +51,11 @@ public class SelectorAdapter{
     }
 
     public SelectorAdapter setListener(View.OnClickListener listener){
-        /*слушатель добавим в основной активити*/
-//        sDownAdapter.setListener(listener);
-//        sFileAdapter.setListener(listener);
-//        sPhotoAdapter.setListener(listener);
+
         return this;
     }
 
     public FileAdapter adapter(int source){
-        LYTE("adapter "+source);
         switch (source){
             case SOURCE_DOWNLOAD:
                 return sDownAdapter;

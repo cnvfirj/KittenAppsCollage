@@ -91,7 +91,7 @@ public class FileAdapter extends SuperAdapter {
             @Override
             public void subscribe(ObservableEmitter<File[]> emitter) throws Exception {
 
-                if(testFolder(fileDir))emitter.onNext(scanDir(fileDir));
+//                if(testFolder(fileDir))emitter.onNext(scanDir(fileDir));
                 emitter.onComplete();
             }
         }).compose(new ThreadTransformers.InputOutput<>())
