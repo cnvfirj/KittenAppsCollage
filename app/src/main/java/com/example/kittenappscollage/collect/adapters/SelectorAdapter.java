@@ -1,22 +1,28 @@
 package com.example.kittenappscollage.collect.adapters;
 
 import android.content.Context;
+import android.view.View;
 
 import com.example.kittenappscollage.collect.TouchViewListener;
 
 import java.util.ArrayList;
+
+import static com.example.kittenappscollage.collect.adapters.FileAdapter.SOURCE_DOWNLOAD;
+import static com.example.kittenappscollage.collect.adapters.FileAdapter.SOURCE_PHOTO;
+import static com.example.kittenappscollage.collect.adapters.FileAdapter.SOURCE_PROJECT;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 /*в этом классе получаем адаптер в зависимости от полученной константы*/
 public class SelectorAdapter{
 
     private static SelectorAdapter singleton = null;
 
-    private SuperAdapter sDownAdapter,sFileAdapter,sPhotoAdapter;
+    private FileAdapter sDownAdapter,sFileAdapter,sPhotoAdapter;
 
     public SelectorAdapter(Context context) {
-        sDownAdapter = new AdapterDownloads(context,SuperAdapter.SOURCE_DOWNLOAD);
-        sFileAdapter = new AdapterProject(context,SuperAdapter.SOURCE_PROJECT);
-        sPhotoAdapter = new AdapterPhoto(context,SuperAdapter.SOURCE_PHOTO);
+        sDownAdapter = new FileAdapter(context,SOURCE_DOWNLOAD);
+        sFileAdapter = new FileAdapter(context,SOURCE_PROJECT);
+        sPhotoAdapter = new FileAdapter(context,SOURCE_PHOTO);
     }
 
     public static SelectorAdapter get(Context context){
@@ -26,15 +32,15 @@ public class SelectorAdapter{
         return singleton;
     }
 
-    public SelectorAdapter setListImg(ArrayList<String> imgs, int source){
+    public SelectorAdapter setListImg( int source){
         switch (source){
-            case SuperAdapter.SOURCE_DOWNLOAD:
+            case SOURCE_DOWNLOAD:
 //                sDownAdapter.setListImg(imgs);
                 break;
-            case SuperAdapter.SOURCE_PROJECT:
+            case SOURCE_PROJECT:
 //                sFileAdapter.setListImg(imgs);
                 break;
-            case SuperAdapter.SOURCE_PHOTO:
+            case SOURCE_PHOTO:
 //                    sPhotoAdapter.setListImg(imgs);
                 break;
 
@@ -44,7 +50,7 @@ public class SelectorAdapter{
         return this;
     }
 
-    public SelectorAdapter setListener(TouchViewListener listener){
+    public SelectorAdapter setListener(View.OnClickListener listener){
         /*слушатель добавим в основной активити*/
 //        sDownAdapter.setListener(listener);
 //        sFileAdapter.setListener(listener);
@@ -52,13 +58,14 @@ public class SelectorAdapter{
         return this;
     }
 
-    public SuperAdapter adapter(int source){
+    public FileAdapter adapter(int source){
+        LYTE("adapter "+source);
         switch (source){
-            case SuperAdapter.SOURCE_DOWNLOAD:
+            case SOURCE_DOWNLOAD:
                 return sDownAdapter;
-            case SuperAdapter.SOURCE_PROJECT:
+            case SOURCE_PROJECT:
                 return sFileAdapter;
-            case SuperAdapter.SOURCE_PHOTO:
+            case SOURCE_PHOTO:
                 return sPhotoAdapter;
                      default:
                 return null;

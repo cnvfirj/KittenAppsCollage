@@ -17,143 +17,83 @@ import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.functions.Consumer;
 
-public abstract class SuperAdapter
-        extends RecyclerView.Adapter<SuperAdapter.MyViewHolder>
-        implements Serializable {
+public abstract class SuperAdapter extends RecyclerView.Adapter<SuperAdapter.MyViewHolder> implements Serializable {
 
 
-    public static final int SOURCE_DOWNLOAD = 222;
-    public static final int SOURCE_PROJECT = 111;
-    public static final int SOURCE_PHOTO = 333;
+    protected void click(ImageView image, ImageView check, int position){
 
-    private String dir;
-    private boolean checkable;
-    private boolean scroll;
-
-
-    private Context context;
-    private View view;
-    private File[] listImg;
-    private boolean[]listChecked;
-    private TouchViewListener listener;
-
-    public SuperAdapter(Context c, int source){
-        context = c;
-        if(source==SOURCE_DOWNLOAD){
-            dir = RequestFolder.getFolderDown();
-        }else if(source==SOURCE_PROJECT){
-            dir = RequestFolder.getFolderImages();
-        }else if(source==SOURCE_PHOTO){
-            dir = RequestFolder.getFolderPhotos();
-        }
-        requestList();
     }
 
-    @NonNull
-    @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    protected void clickLong(ImageView image, ImageView check,int position){
+
     }
 
-    @Override
-    public int getItemCount() {
-        return listImg.length;
+    protected void touch(View image, MotionEvent event){
+
     }
 
-    public void checkable(boolean check){
-        checkable = check;
+    protected void longTouch(View view){
+
     }
 
-    @SuppressLint("CheckResult")
-    public void requestList(){
-        Observable.create(new ObservableOnSubscribe<File[]>() {
-            @Override
-            public void subscribe(ObservableEmitter<File[]> emitter) throws Exception {
-                emitter.onNext(scanDir(new File(dir)));
-            }
-        }).compose(new ThreadTransformers.InputOutput<>())
-                .subscribe(new Consumer<File[]>() {
-                    @Override
-                    public void accept(File[] files) throws Exception {
-                        listImg = files;
-                        listChecked = new boolean[listImg.length];
-                        notifyDataSetChanged();
-                    }
-                });
+    protected void createdItems(ImageView image, ImageView check){
+
     }
 
-    private File[] scanDir(File dir){
-        if(dir.isDirectory()) {
-            return dir.listFiles();
-        }else {
-            return new File[1];
-        }
+    protected void createHolder(View holder){
+
     }
 
-    protected File[] getListImg(){
-        return listImg;
-    }
-
-    protected boolean[]getChecked(){
-        return listChecked;
-    }
-
-    protected Context getContext(){
-        return context;
-    }
-
-    public  class MyViewHolder extends RecyclerView.ViewHolder
-            implements View.OnClickListener
-    , View.OnTouchListener {
+    protected   class MyViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener,View.OnTouchListener, View.OnLongClickListener {
 
         private ImageView image;
         private ImageView check;
+        private boolean longTouch = false;
 
+        @SuppressLint("ClickableViewAccessibility")
         public MyViewHolder(View itemView) {
             super(itemView);
-
+            createHolder(itemView);
             image = itemView.findViewById(R.id.collect_item_gallery_image);
-            image.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            image.setOnClickListener(this);
             check = itemView.findViewById(R.id.collect_item_select);
-
+            createdItems(image, check);
+            image.setOnClickListener(this);
+            image.setOnTouchListener(this);
+            image.setOnLongClickListener(this);
+            image.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         }
 
         @Override
         public void onClick(View view) {
-//            listener.clickItemGallery(view);
-            if(checkable){
-
-            }else{
-
-            }
+            click(image,check,getAdapterPosition());
         }
 
+        @SuppressLint("ClickableViewAccessibility")
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                checkable = true;
-                getChecked()[getAdapterPosition()]= true;
+            if(longTouch){
+                clickLong(image,check, getAdapterPosition());
+                longTouch = false;
             }
+            touch(v,event);
             return true;
         }
 
-        public ImageView getImage() {
-            return image;
+        @Override
+        public boolean onLongClick(View view) {
+            longTouch = true;
+            longTouch(view);
+            return true;
         }
-
-        public void setChecked(){
-
-        }
-
-
     }
 
 
