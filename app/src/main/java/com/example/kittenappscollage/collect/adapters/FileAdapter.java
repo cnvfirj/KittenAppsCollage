@@ -2,22 +2,30 @@ package com.example.kittenappscollage.collect.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Environment;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
+import com.bumptech.glide.Glide;
+import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.helpers.RequestFolder;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.functions.Consumer;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 
 public class FileAdapter extends SuperAdapter {
@@ -26,20 +34,25 @@ public class FileAdapter extends SuperAdapter {
     public static final int SOURCE_PROJECT = 111;
     public static final int SOURCE_PHOTO = 333;
 
+    private final String PNG = "png";
+    private final String JPEG = "jpeg";
+    private final String JPG = "jpg";
+
     private Context context;
 
     private String dir;
 
     private File fileDir;
 
-    private boolean modeSelected;
+//    private boolean modeSelected;
 
 
-    private File[] arrFiles;
-    private boolean[]arrChecks;
+    private ArrayList<File> arrFiles;
+    private boolean[] arrChecks;
 
     public FileAdapter(Context c, int source) {
-        modeSelected = false;
+//        modeSelected = false;
+        arrFiles = new ArrayList();
         context = c;
         if(source==SOURCE_DOWNLOAD){
             dir = RequestFolder.getFolderDown();
@@ -47,6 +60,12 @@ public class FileAdapter extends SuperAdapter {
             dir = RequestFolder.getFolderImages();
         }else if(source==SOURCE_PHOTO){
             dir = RequestFolder.getFolderPhotos();
+            File[] dirs = ContextCompat.getExternalFilesDirs(getContext(), null);
+            for (File f:dirs){
+                LYTE("dir - "+ f.getAbsolutePath());
+                LYTE("name - "+ f.getName());
+
+            }
         }
 
         fileDir = new File(dir);
@@ -56,12 +75,16 @@ public class FileAdapter extends SuperAdapter {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        SuperAdapter.MyViewHolder holder = new SuperAdapter.MyViewHolder(LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.collect_item,parent,false));
+        return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        Glide.with(getContext())
+                .load(arrFiles.get(position))
+                .into(holder.getImage());
     }
 
     @Override
@@ -70,43 +93,55 @@ public class FileAdapter extends SuperAdapter {
         return arrChecks.length;
     }
 
-    @Override
-    protected void click(ImageView image, ImageView check, int pos) {
-         if(modeSelected){
-             arrChecks[pos] = true;
-             check.setVisibility(View.VISIBLE);
-         }
-    }
-
-    @Override
-    protected void clickLong(ImageView image, ImageView check, int pos) {
-         arrChecks[pos] = true;
-         check.setVisibility(View.VISIBLE);
-         modeSelected = true;
-    }
+//    @Override
+//    protected void click(ImageView image, ImageView check, int pos) {
+//         if(modeSelected){
+//             arrChecks[pos] = true;
+//             check.setVisibility(View.VISIBLE);
+//         }
+//    }
+//
+//    @Override
+//    protected void clickLong(ImageView image, ImageView check, int pos) {
+//         arrChecks[pos] = true;
+//         check.setVisibility(View.VISIBLE);
+//         modeSelected = true;
+//    }
 
     @SuppressLint("CheckResult")
     public void requestList(){
-        Observable.create(new ObservableOnSubscribe<File[]>() {
+        Observable.create(new ObservableOnSubscribe<ArrayList<File>>() {
             @Override
-            public void subscribe(ObservableEmitter<File[]> emitter) throws Exception {
+            public void subscribe(ObservableEmitter<ArrayList<File>> emitter) throws Exception {
 
-//                if(testFolder(fileDir))emitter.onNext(scanDir(fileDir));
+                if(testFolder(fileDir))emitter.onNext(sort(scanDir(fileDir)));
                 emitter.onComplete();
             }
         }).compose(new ThreadTransformers.InputOutput<>())
-                .subscribe(new Consumer<File[]>() {
+                .subscribe(new Consumer<ArrayList<File>>() {
                     @Override
-                    public void accept(File[] files) throws Exception {
+                    public void accept(ArrayList<File> files) throws Exception {
                         arrFiles = files;
-                        arrChecks = new boolean[arrFiles.length];
+                        arrChecks = new boolean[arrFiles.size()];
                         notifyDataSetChanged();
                     }
                 });
     }
 
-    public void setModeSelected(boolean mode){
-        modeSelected = mode;
+//    public void setModeSelected(boolean mode){
+//        modeSelected = mode;
+//    }
+
+    private ArrayList<File>sort(File[]files){
+        ArrayList<File>arr = new ArrayList<>();
+
+        for (File f:files){
+            String[] name = f.getName().split("[.]");
+            if(name[name.length-1].equals(PNG)||
+                    name[name.length-1].equals(JPEG)||
+                    name[name.length-1].equals(JPG))arr.add(f);
+        }
+        return arr;
     }
 
     private File[] scanDir(File dir){
@@ -122,7 +157,11 @@ public class FileAdapter extends SuperAdapter {
         if(!file.exists()){
             success = file.mkdirs();
         }
-        return success;
+         return success;
+    }
+
+    protected Context getContext(){
+        return context;
     }
 
 

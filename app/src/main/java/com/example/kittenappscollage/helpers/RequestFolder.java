@@ -24,12 +24,11 @@ public class RequestFolder {
     /*доступен только из приложения*/
     /*внутреннее хранилище*/
     public final static String FOLDER_CASH = "/cash";
-
-    public final static String FOLDER_ICONS = "/icons";
     /*общий адрес для видимых из других приложения папок*/
     public final static String GENERAL = Environment.getExternalStorageDirectory().getPath();
 
     public final static String DCIM = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
+
 
 
     /*получаем директорию доступную только из приложения*/
@@ -37,15 +36,9 @@ public class RequestFolder {
         return context.getFilesDir().getPath();
     }
 
-    public static String getCameraDefaultFolder(){
-        return DCIM+"/Camera";
-    }
     public static String getCacheFolder(Context context){
         return getPersonalFolder(context)+FOLDER_CASH;
 
-    }
-    public static String getPathCacheImg(Context context, String key){
-        return getCacheFolder(context)+"/"+key+".png";
     }
     public static String getMainFolder(){
         return GENERAL+GENERAL_FOLDER;
@@ -56,7 +49,7 @@ public class RequestFolder {
     }
 
     public static String getFolderPhotos(){
-        return DCIM;
+        return DCIM+"/Camera";
     }
 
     public static String getFolderDown(){

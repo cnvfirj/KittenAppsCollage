@@ -94,6 +94,10 @@ public abstract class SuperAdapter extends RecyclerView.Adapter<SuperAdapter.MyV
             longTouch(view);
             return true;
         }
+
+        public ImageView getImage(){
+            return image;
+        }
     }
 
 

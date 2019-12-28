@@ -17,12 +17,12 @@ public class SelectorAdapter{
 
     private static SelectorAdapter singleton = null;
 
-    private FileAdapter sDownAdapter,sFileAdapter,sPhotoAdapter;
+    private LoaderImgAdapter sDownAdapter,sFileAdapter,sPhotoAdapter;
 
     public SelectorAdapter(Context context) {
-        sDownAdapter = new FileAdapter(context,SOURCE_DOWNLOAD);
-        sFileAdapter = new FileAdapter(context,SOURCE_PROJECT);
-        sPhotoAdapter = new FileAdapter(context,SOURCE_PHOTO);
+        sDownAdapter = new LoaderImgAdapter(context,SOURCE_DOWNLOAD);
+        sFileAdapter = new LoaderImgAdapter(context,SOURCE_PROJECT);
+        sPhotoAdapter = new LoaderImgAdapter(context,SOURCE_PHOTO);
     }
 
     public static SelectorAdapter get(Context context){
