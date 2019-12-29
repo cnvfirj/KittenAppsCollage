@@ -24,6 +24,7 @@ public class PresentAdapter extends FileAdapter {
     public PresentAdapter resetChecks(){
         resetArrChecks();
         modeSelected = false;
+        notifyDataSetChanged();
         return this;
     }
 
@@ -33,6 +34,8 @@ public class PresentAdapter extends FileAdapter {
         if(modeSelected){
             getArrChecks()[position] = !getArrChecks()[position];
             check.setVisibility(getArrChecks()[position]?View.VISIBLE:View.INVISIBLE);
+        }else {
+
         }
     }
 
