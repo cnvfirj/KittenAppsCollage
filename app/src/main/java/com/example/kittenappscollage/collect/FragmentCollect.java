@@ -49,7 +49,7 @@ public class FragmentCollect extends Fragment {
     }
 
     private void init(View view){
-        int widz = getContext().getResources().getDisplayMetrics().widthPixels;
+        SelectorAdapter.get(getContext()).setParams(getContext().getResources().getDisplayMetrics().widthPixels);
         recycler = view.findViewById(R.id.gallery_list);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new GridLayoutManager(getContext(),3));

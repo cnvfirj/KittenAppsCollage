@@ -34,24 +34,19 @@ public class FileAdapter extends SuperAdapter {
     public static final int SOURCE_PROJECT = 111;
     public static final int SOURCE_PHOTO = 333;
 
-    private final String PNG = "png";
-    private final String JPEG = "jpeg";
-    private final String JPG = "jpg";
-
     private Context context;
 
     private String dir;
 
+    private int source;
+
     private File fileDir;
-
-//    private boolean modeSelected;
-
 
     private ArrayList<File> arrFiles;
     private boolean[] arrChecks;
 
     public FileAdapter(Context c, int source) {
-//        modeSelected = false;
+        this.source = source;
         arrFiles = new ArrayList();
         context = c;
         if(source==SOURCE_DOWNLOAD){
@@ -61,13 +56,14 @@ public class FileAdapter extends SuperAdapter {
         }else if(source==SOURCE_PHOTO){
             dir = RequestFolder.getFolderPhotos();
             File[] dirs = ContextCompat.getExternalFilesDirs(getContext(), null);
-            if(dirs.length>0&&dirs.length<2){
+            if(dirs.length == 1){
                 dir = RequestFolder.getFolderPhotos();
             }else if(dirs.length>1){
                 dir = RequestFolder.getSDFolderPhotos(dirs[1].getAbsolutePath());
             }else return;
 
         }
+        assert dir != null;
         fileDir = new File(dir);
         requestList();
     }
@@ -75,9 +71,8 @@ public class FileAdapter extends SuperAdapter {
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        SuperAdapter.MyViewHolder holder = new SuperAdapter.MyViewHolder(LayoutInflater.from(parent.getContext())
+        return new MyViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.collect_item,parent,false));
-        return holder;
     }
 
     @Override
@@ -92,21 +87,6 @@ public class FileAdapter extends SuperAdapter {
         if(arrChecks==null)return 0;
         return arrChecks.length;
     }
-
-//    @Override
-//    protected void click(ImageView image, ImageView check, int pos) {
-//         if(modeSelected){
-//             arrChecks[pos] = true;
-//             check.setVisibility(View.VISIBLE);
-//         }
-//    }
-//
-//    @Override
-//    protected void clickLong(ImageView image, ImageView check, int pos) {
-//         arrChecks[pos] = true;
-//         check.setVisibility(View.VISIBLE);
-//         modeSelected = true;
-//    }
 
     @SuppressLint("CheckResult")
     public void requestList(){
@@ -128,18 +108,14 @@ public class FileAdapter extends SuperAdapter {
                 });
     }
 
-//    public void setModeSelected(boolean mode){
-//        modeSelected = mode;
-//    }
-
     private ArrayList<File>sort(File[]files){
         ArrayList<File>arr = new ArrayList<>();
 
         for (File f:files){
             String[] name = f.getName().split("[.]");
-            if(name[name.length-1].equals(PNG)||
-                    name[name.length-1].equals(JPEG)||
-                    name[name.length-1].equals(JPG))arr.add(f);
+            if(name[name.length-1].equals("png")||
+                    name[name.length-1].equals("jpeg")||
+                    name[name.length-1].equals("jpg"))arr.add(f);
         }
         return arr;
     }
@@ -162,6 +138,18 @@ public class FileAdapter extends SuperAdapter {
 
     protected Context getContext(){
         return context;
+    }
+
+    protected int getSource(){
+        return source;
+    }
+
+    protected boolean[]getArrChecks(){
+        return arrChecks;
+    }
+
+    protected void resetArrChecks(){
+        arrChecks = new boolean[arrFiles.size()];
     }
 
 

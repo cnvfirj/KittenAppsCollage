@@ -2,27 +2,26 @@ package com.example.kittenappscollage.collect.adapters;
 
 import android.content.Context;
 import android.view.View;
-
-import com.example.kittenappscollage.collect.TouchViewListener;
-
-import java.util.ArrayList;
+import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import static com.example.kittenappscollage.collect.adapters.FileAdapter.SOURCE_DOWNLOAD;
 import static com.example.kittenappscollage.collect.adapters.FileAdapter.SOURCE_PHOTO;
 import static com.example.kittenappscollage.collect.adapters.FileAdapter.SOURCE_PROJECT;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 /*в этом классе получаем адаптер в зависимости от полученной константы*/
 public class SelectorAdapter{
 
     private static SelectorAdapter singleton = null;
 
-    private LoaderImgAdapter sDownAdapter,sFileAdapter,sPhotoAdapter;
+    private PresentAdapter sDownAdapter,sFileAdapter,sPhotoAdapter;
+
+    private FrameLayout.LayoutParams params;
 
     public SelectorAdapter(Context context) {
-        sDownAdapter = new LoaderImgAdapter(context,SOURCE_DOWNLOAD);
-        sFileAdapter = new LoaderImgAdapter(context,SOURCE_PROJECT);
-        sPhotoAdapter = new LoaderImgAdapter(context,SOURCE_PHOTO);
+        sDownAdapter = new PresentAdapter(context,SOURCE_DOWNLOAD);
+        sFileAdapter = new PresentAdapter(context,SOURCE_PROJECT);
+        sPhotoAdapter = new PresentAdapter(context,SOURCE_PHOTO);
     }
 
     public static SelectorAdapter get(Context context){
@@ -50,6 +49,14 @@ public class SelectorAdapter{
         return this;
     }
 
+    public void setParams(int width){
+        int w = width/3;
+       params = new FrameLayout.LayoutParams(w,w);
+       sDownAdapter.setParams(params);
+       sPhotoAdapter.setParams(params);
+       sFileAdapter.setParams(params);
+    }
+
     public SelectorAdapter setListener(View.OnClickListener listener){
 
         return this;
@@ -58,11 +65,11 @@ public class SelectorAdapter{
     public FileAdapter adapter(int source){
         switch (source){
             case SOURCE_DOWNLOAD:
-                return sDownAdapter;
+                return sDownAdapter.resetChecks();
             case SOURCE_PROJECT:
-                return sFileAdapter;
+                return sFileAdapter.resetChecks();
             case SOURCE_PHOTO:
-                return sPhotoAdapter;
+                return sPhotoAdapter.resetChecks();
                      default:
                 return null;
         }
