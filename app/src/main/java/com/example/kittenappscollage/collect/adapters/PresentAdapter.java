@@ -9,7 +9,7 @@ import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import java.util.List;
 
 public class PresentAdapter extends FileAdapter {
 
@@ -45,9 +45,9 @@ public class PresentAdapter extends FileAdapter {
     }
 
     @Override
-    protected void createdItems(ImageView image, ImageView check, int position) {
-        super.createdItems(image, check, position);
-//        check.setVisibility(getArrChecks()[position]?View.VISIBLE:View.INVISIBLE);
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull List<Object> payloads) {
+        holder.getCheck().setVisibility(getArrChecks()[position]?View.VISIBLE:View.INVISIBLE);
+        super.onBindViewHolder(holder, position, payloads);
     }
 
     @Override

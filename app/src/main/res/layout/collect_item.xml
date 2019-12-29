@@ -16,7 +16,8 @@
         android:layout_height="match_parent"
         android:clickable="true"
         android:focusable="true"
-        android:id="@+id/collect_item_gallery_image"/>
+        android:id="@+id/collect_item_gallery_image"
+        android:foreground="?android:attr/selectableItemBackground"/>
 
     <ImageView
         style="@style/common_buttons"

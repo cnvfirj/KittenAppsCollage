@@ -67,6 +67,10 @@ public abstract class SuperAdapter extends RecyclerView.Adapter<SuperAdapter.MyV
         public ImageView getImage(){
             return image;
         }
+
+        public ImageView getCheck(){
+            return check;
+        }
     }
 
 
