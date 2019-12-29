@@ -52,6 +52,11 @@ public class RequestFolder {
         return DCIM+"/Camera";
     }
 
+    public static String getSDFolderPhotos(String sd){
+        String[]arr = sd.split("[/]");
+        return arr[1]+"/"+arr[2]+"/"+Environment.DIRECTORY_DCIM+"/Camera";
+    }
+
     public static String getFolderDown(){
         return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
     }

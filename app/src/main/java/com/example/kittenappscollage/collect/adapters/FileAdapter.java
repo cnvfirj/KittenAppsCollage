@@ -61,13 +61,13 @@ public class FileAdapter extends SuperAdapter {
         }else if(source==SOURCE_PHOTO){
             dir = RequestFolder.getFolderPhotos();
             File[] dirs = ContextCompat.getExternalFilesDirs(getContext(), null);
-            for (File f:dirs){
-                LYTE("dir - "+ f.getAbsolutePath());
-                LYTE("name - "+ f.getName());
+            if(dirs.length>0&&dirs.length<2){
+                dir = RequestFolder.getFolderPhotos();
+            }else if(dirs.length>1){
+                dir = RequestFolder.getSDFolderPhotos(dirs[1].getAbsolutePath());
+            }else return;
 
-            }
         }
-
         fileDir = new File(dir);
         requestList();
     }
