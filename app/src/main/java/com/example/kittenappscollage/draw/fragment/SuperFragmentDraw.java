@@ -67,7 +67,8 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected final int TOOL_SCALE = 5;
     public final static int OP_SCALE_1 = 51;
     public final static int OP_SCALE_2 = 52;
-    protected int dIndexScale;
+    public final static int OP_SCALE_3 = 53;
+        protected int dIndexScale;
 
     protected final int TOOL_TRANS = 6;
     public final static int OP_TRANS_1 = 61;
@@ -623,7 +624,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
     protected void toolScale(ImageView v){
         if(v.isActivated()){
             dIndexScale++;
-            if(dIndexScale>OP_SCALE_2)dIndexScale=OP_SCALE_1;
+            if(dIndexScale>OP_SCALE_3)dIndexScale=OP_SCALE_1;
             v.setSelected(false);
             selectorIconsScale(v);
             v.setSelected(true);
@@ -669,8 +670,10 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
 
     protected void selectorIconsScale(ImageView v){
-        if(dIndexScale==OP_SCALE_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_scale_2,null));
-        else if(dIndexScale==OP_SCALE_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_scale_1,null));
+        if(dIndexScale==OP_SCALE_1)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_scale_1,null));
+        else if(dIndexScale==OP_SCALE_2)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_scale_2,null));
+        else if(dIndexScale==OP_SCALE_3)v.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_scale_3,null));
+
         dEditor.putInt(KEY_UNDER_SCALAR,dIndexScale);
     }
 

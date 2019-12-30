@@ -7,8 +7,8 @@
       android:pathData="M2.977,10.647C2.977,6.411 6.369,2.977 10.554,2.977C14.738,2.977 18.13,6.411 18.13,10.647C18.13,14.883 14.738,18.318 10.554,18.318C6.369,18.318 2.977,14.883 2.977,10.647Z"
       android:strokeWidth="2"
       android:fillColor="#00000000"
-      android:strokeColor="#000000"/>
+      android:strokeColor="#FFFFFF"/>
   <path
       android:pathData="M14.407,15.979L15.921,14.466L18.496,16.946L18.456,16.919L20.05,18.592L20.038,18.583L22.534,21.079L21.021,22.593L18.525,20.097L18.507,20.088L16.886,18.487L16.903,18.475Z"
-      android:fillColor="#000000"/>
+      android:fillColor="#FFFFFF"/>
 </vector>

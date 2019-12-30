@@ -4,16 +4,16 @@
 
     <item
         android:id="@+id/scale1"
-        android:drawable="@drawable/ic_scale_min"
+        android:drawable="@drawable/ic_scale_plus"
         android:state_selected="false"/>
 
     <item
         android:id="@+id/scale2"
-        android:drawable="@drawable/ic_scale_plus"
+        android:drawable="@drawable/ic_scale_all"
         android:state_selected="true"/>
 
     <transition
-        android:drawable="@drawable/anim_scale_mi_to_pl"
+        android:drawable="@drawable/anim_scale_pl_to_all"
         android:fromId="@+id/scale1"
         android:toId="@+id/scale2"/>
 

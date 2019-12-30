@@ -1,18 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <animated-selector
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/scale1"
-        android:drawable="@drawable/ic_scale_min"
+        android:drawable="@drawable/ic_scale_all"
         android:state_selected="false"/>
 
     <item
         android:id="@+id/scale2"
-        android:drawable="@drawable/ic_scale_plus"
+        android:drawable="@drawable/ic_scale_min"
         android:state_selected="true"/>
 
     <transition
-        android:drawable="@drawable/anim_scale_mi_to_pl"
+        android:drawable="@drawable/anim_scale_all_to_mi"
         android:fromId="@+id/scale1"
         android:toId="@+id/scale2"/>
 

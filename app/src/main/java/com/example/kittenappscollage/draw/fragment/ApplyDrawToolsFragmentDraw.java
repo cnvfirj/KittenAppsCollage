@@ -94,7 +94,8 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         super.toolScale(v);
         int e = Operation.Event.MATRIX_S_P.ordinal();
         if(dIndexScale%10==1)e = dViewDraw.setEvent(Operation.Event.MATRIX_S_P);
-        else if(dIndexScale%10==2)e = dViewDraw.setEvent(Operation.Event.MATRIX_S_M);
+        else if(dIndexScale%10==2)e = dViewDraw.setEvent(Operation.Event.MATRIX_S);
+        else if(dIndexScale%10==3)e = dViewDraw.setEvent(Operation.Event.MATRIX_S_M);
         getEditor().putInt(KEY_EVENT,e).apply();
     }
 
