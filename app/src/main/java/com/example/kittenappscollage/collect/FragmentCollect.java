@@ -29,7 +29,7 @@ public class FragmentCollect extends Fragment {
 
     private RecyclerView recycler;
 
-    private FileAdapter adapter;
+//    private FileAdapter adapter;
 
     private int indexAdapter;
 
@@ -71,18 +71,19 @@ public class FragmentCollect extends Fragment {
         recycler.setAdapter(SelectorAdapter.get(getContext()).adapter(indexAdapter));
         navigation = view.findViewById(R.id.gallery_navigation_ex);
         navigation.inflateMenu(R.menu.collect_navigation);
+//        navigation.setTextVisibility(false);
+        navigation.enableAnimation(false);
+        navigation.enableShiftingMode(true);
+        navigation.setTextSize(5);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 if(menuItem.getItemId()==R.id.m_navigation_gallery){
                     indexAdapter = FileAdapter.SOURCE_PROJECT;
-//                    adapter = SelectorAdapter.get(getContext()).adapter(FileAdapter.SOURCE_PROJECT);
                 }else if(menuItem.getItemId()==R.id.m_navigation_photo){
                     indexAdapter = FileAdapter.SOURCE_PHOTO;
-//                    adapter = SelectorAdapter.get(getContext()).adapter(FileAdapter.SOURCE_PHOTO);
                 }else if(menuItem.getItemId()==R.id.m_navigation_down){
                     indexAdapter = FileAdapter.SOURCE_DOWNLOAD;
-//                    adapter = SelectorAdapter.get(getContext()).adapter(FileAdapter.SOURCE_DOWNLOAD);
                 }
                 recycler.setAdapter(SelectorAdapter.get(getContext()).adapter(indexAdapter));
                 return true;

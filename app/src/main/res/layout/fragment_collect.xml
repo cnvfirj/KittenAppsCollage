@@ -12,6 +12,8 @@
         android:background="@color/colorPrimary"
         android:scrollbars="horizontal" />
 
+
+
     <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
         android:id="@+id/gallery_navigation_ex"
         android:layout_width="match_parent"
