@@ -73,7 +73,7 @@ public class FragmentCollect extends Fragment {
         navigation.inflateMenu(R.menu.collect_navigation);
         navigation.enableAnimation(false);
         navigation.enableShiftingMode(true);
-        navigation.setTextSize(5);
+        navigation.setTextSize(7);
         navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

@@ -20,10 +20,6 @@ import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.ViewDraw;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
 
-import java.util.Objects;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-
 /*описываем основную анимацию движения кнопок и панели
 * инструментов. Присваиваем им иконки*/
 
@@ -72,12 +68,9 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
 
     protected final int TOOL_TRANS = 6;
     public final static int OP_TRANS_1 = 61;
-//    private int dIndexTrans;
-
     protected final int TOOL_CUT = 7;
     public final static int OP_CUT_1 = 71;
     public final static int OP_CUT_2 = 72;
-//    private int dIndexCut;
 
     protected final int TOOL_TEXT = 8;
     public final static int OP_TEXT_1 = 81;
