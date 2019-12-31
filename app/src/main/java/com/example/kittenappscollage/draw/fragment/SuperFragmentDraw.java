@@ -433,11 +433,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         return 500;
     }
 
-    private long getTymeAnimView(){
-        return 300;
-    }
-
-
     private void addListener(){
         dSlideTools.setOnClickListener(this);
         dSlideTools.setOnClickListener(this);

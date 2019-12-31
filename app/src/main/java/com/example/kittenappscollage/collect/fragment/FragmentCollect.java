@@ -1,4 +1,4 @@
-package com.example.kittenappscollage.collect;
+package com.example.kittenappscollage.collect.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,27 +29,27 @@ public class FragmentCollect extends Fragment {
 
     private RecyclerView recycler;
 
-//    private FileAdapter adapter;
-
     private int indexAdapter;
+
+    private SelectorAdapter selector;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         indexAdapter = FileAdapter.SOURCE_PROJECT;
+        selector = new SelectorAdapter(getContext());
         return inflater.inflate(R.layout.fragment_collect,null);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        adapter = SelectorAdapter.get(getContext()).adapter(FileAdapter.SOURCE_PROJECT);
         init(view);
     }
 
     private void init(View view){
-        SelectorAdapter.get(getContext()).setParams(getContext().getResources().getDisplayMetrics().widthPixels);
+        selector.setParams(getContext().getResources().getDisplayMetrics().widthPixels);
         recycler = view.findViewById(R.id.gallery_list);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new GridLayoutManager(getContext(),3));
@@ -68,10 +68,9 @@ public class FragmentCollect extends Fragment {
 
             }
         });
-        recycler.setAdapter(SelectorAdapter.get(getContext()).adapter(indexAdapter));
+        recycler.setAdapter(selector.adapter(indexAdapter));
         navigation = view.findViewById(R.id.gallery_navigation_ex);
         navigation.inflateMenu(R.menu.collect_navigation);
-//        navigation.setTextVisibility(false);
         navigation.enableAnimation(false);
         navigation.enableShiftingMode(true);
         navigation.setTextSize(5);
@@ -85,10 +84,14 @@ public class FragmentCollect extends Fragment {
                 }else if(menuItem.getItemId()==R.id.m_navigation_down){
                     indexAdapter = FileAdapter.SOURCE_DOWNLOAD;
                 }
-                recycler.setAdapter(SelectorAdapter.get(getContext()).adapter(indexAdapter));
+                recycler.setAdapter(selector.adapter(indexAdapter));
                 return true;
             }
         });
+    }
+
+    protected SelectorAdapter getSelector(){
+        return selector;
     }
 
 

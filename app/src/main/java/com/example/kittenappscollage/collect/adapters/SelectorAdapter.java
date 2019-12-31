@@ -12,7 +12,7 @@ import static com.example.kittenappscollage.collect.adapters.FileAdapter.SOURCE_
 /*в этом классе получаем адаптер в зависимости от полученной константы*/
 public class SelectorAdapter{
 
-    private static SelectorAdapter singleton = null;
+//    private static SelectorAdapter singleton = null;
 
     private PresentAdapter sDownAdapter,sFileAdapter,sPhotoAdapter;
 
@@ -24,12 +24,12 @@ public class SelectorAdapter{
         sPhotoAdapter = new PresentAdapter(context,SOURCE_PHOTO);
     }
 
-    public static SelectorAdapter get(Context context){
-        if (singleton==null){
-                singleton = new SelectorAdapter(context);
-        }
-        return singleton;
-    }
+//    public static SelectorAdapter get(Context context){
+//        if (singleton==null){
+//                singleton = new SelectorAdapter(context);
+//        }
+//        return singleton;
+//    }
 
     public SelectorAdapter setListImg( int source){
         switch (source){

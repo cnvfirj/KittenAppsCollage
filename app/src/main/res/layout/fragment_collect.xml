@@ -9,10 +9,11 @@
         android:id="@+id/gallery_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorPrimaryLight"
         android:scrollbars="horizontal" />
 
 
+    <include layout="@layout/include_menu_selected_collect"/>
 
     <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
         android:id="@+id/gallery_navigation_ex"

@@ -9,8 +9,8 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.example.kittenappscollage.collect.FragmentCollect;
-import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
+import com.example.kittenappscollage.collect.fragment.FragmentCollect;
+import com.example.kittenappscollage.collect.fragment.FragmentModeSelected;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
@@ -23,14 +23,12 @@ import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-
 
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery{
 
     private ApplyDrawToolsFragmentDraw mFragDraw;
 
-    private FragmentCollect mFragColl;
+    private FragmentModeSelected mFragColl;
 
     private TabLayout mTabLayout;
 
@@ -50,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private ViewPageAdapter addFragments(){
         mFragDraw = new ApplyDrawToolsFragmentDraw();
-        mFragColl = new FragmentCollect();
+        mFragColl = new FragmentModeSelected();
         ViewPageAdapter a = new ViewPageAdapter(getSupportFragmentManager());
         a.addFragment(mFragDraw);
         a.addFragment(mFragColl);
