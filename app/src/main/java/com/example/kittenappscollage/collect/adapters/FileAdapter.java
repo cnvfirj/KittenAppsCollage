@@ -110,7 +110,6 @@ public class FileAdapter extends SuperAdapter {
 
     private ArrayList<File>sort(File[]files){
         ArrayList<File>arr = new ArrayList<>();
-
         for (File f:files){
             String[] name = f.getName().split("[.]");
             if(name[name.length-1].equals("png")||
