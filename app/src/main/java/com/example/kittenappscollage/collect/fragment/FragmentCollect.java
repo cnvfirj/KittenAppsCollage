@@ -94,5 +94,9 @@ public class FragmentCollect extends Fragment {
         return selector;
     }
 
+    protected int getIndexAdapter(){
+        return indexAdapter;
+    }
+
 
 }

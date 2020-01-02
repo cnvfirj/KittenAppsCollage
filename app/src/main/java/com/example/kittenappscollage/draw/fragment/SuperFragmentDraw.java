@@ -23,7 +23,7 @@ import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
 /*описываем основную анимацию движения кнопок и панели
 * инструментов. Присваиваем им иконки*/
 
-public class SuperFragmentDraw extends Fragment implements View.OnClickListener {
+public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
 
     private SharedPreferences dPreferences;
 
@@ -156,6 +156,11 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dScale.setSelected(true);
         selectorButtons(index);
     }
+
+//    @Override
+//    public boolean onLongClick(View view) {
+//        return true;
+//    }
 
     @Override
     public void onClick(View view) {
@@ -457,8 +462,41 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener 
         dAddLink.setOnClickListener(this);
         dAddCam.setOnClickListener(this);
         dAddColl.setOnClickListener(this);
-
+//         addLongClick();
     }
+
+//    private void addLongClick(){
+//        dSlideTools.setOnLongClickListener(this);
+//        dSlideTools.setOnLongClickListener(this);
+//        dUndo.setOnLongClickListener(this);
+//        dRedo.setOnLongClickListener(this);
+//        dInfo.setOnLongClickListener(this);
+//        dAllLyrs.setOnLongClickListener(this);
+//        dUnion.setOnLongClickListener(this);
+//        dDeleteLyr.setOnLongClickListener(this);
+//        dChangeLyrs.setOnLongClickListener(this);
+//        dDeleteAll.setOnLongClickListener(this);
+//        dProperties.setOnLongClickListener(this);
+//
+//        dPaint.setOnLongClickListener(this);
+//        dFil.setOnLongClickListener(this);
+//        dEraser.setOnLongClickListener(this);
+//        dText.setOnLongClickListener(this);
+//        dCut.setOnLongClickListener(this);
+//        dTrans.setOnLongClickListener(this);
+//        dScale.setOnLongClickListener(this);
+//        dDeformRotate.setOnLongClickListener(this);
+//
+//        dSlideSave.setOnLongClickListener(this);
+//        dSaveTel.setOnLongClickListener(this);
+//        dSaveNet.setOnLongClickListener(this);
+//
+//        dSlideAdd.setOnLongClickListener(this);
+//        dAddCreated.setOnLongClickListener(this);
+//        dAddLink.setOnLongClickListener(this);
+//        dAddCam.setOnLongClickListener(this);
+//        dAddColl.setOnLongClickListener(this);
+//    }
 
     protected void saveNet(ImageView v){
         slideSave();

@@ -43,6 +43,7 @@ public class FileAdapter extends SuperAdapter {
     private File fileDir;
 
     private ArrayList<File> arrFiles;
+
     private boolean[] arrChecks;
 
     public FileAdapter(Context c, int source) {
@@ -145,6 +146,10 @@ public class FileAdapter extends SuperAdapter {
 
     protected boolean[]getArrChecks(){
         return arrChecks;
+    }
+
+    protected ArrayList<File>getArrFiles(){
+        return arrFiles;
     }
 
     protected void resetArrChecks(){
