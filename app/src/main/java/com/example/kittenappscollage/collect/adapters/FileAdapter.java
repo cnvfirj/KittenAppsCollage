@@ -90,7 +90,7 @@ public class FileAdapter extends SuperAdapter {
     }
 
     @SuppressLint("CheckResult")
-    public void requestList(){
+    public FileAdapter requestList(){
         Observable.create(new ObservableOnSubscribe<ArrayList<File>>() {
             @Override
             public void subscribe(ObservableEmitter<ArrayList<File>> emitter) throws Exception {
@@ -103,10 +103,12 @@ public class FileAdapter extends SuperAdapter {
                     @Override
                     public void accept(ArrayList<File> files) throws Exception {
                         arrFiles = files;
-                        arrChecks = new boolean[arrFiles.size()];
+
+//                        arrChecks = new boolean[arrFiles.size()];
                         notifyDataSetChanged();
                     }
                 });
+        return this;
     }
 
     private ArrayList<File>sort(File[]files){

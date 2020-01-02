@@ -59,7 +59,22 @@ public class SelectorAdapter{
         return this;
     }
 
-    public PresentAdapter adapter(int source){
+    public PresentAdapter update(int source){
+        switch (source){
+            case SOURCE_DOWNLOAD:
+                sDownAdapter.requestList();
+                return sDownAdapter;
+            case SOURCE_PROJECT:
+                sFileAdapter.requestList();
+                return sFileAdapter;
+            case SOURCE_PHOTO:
+                sPhotoAdapter.requestList();
+                return sPhotoAdapter;
+        }
+        sFileAdapter.requestList();
+        return sFileAdapter;
+    }
+    public PresentAdapter reset(int source){
         switch (source){
             case SOURCE_DOWNLOAD:
                 return sDownAdapter.resetChecks();
@@ -68,7 +83,20 @@ public class SelectorAdapter{
             case SOURCE_PHOTO:
                 return sPhotoAdapter.resetChecks();
         }
-        return sFileAdapter.resetChecks();
+        sFileAdapter.resetChecks();
+        return sFileAdapter;
+    }
+
+    public PresentAdapter adapter(int source){
+        switch (source){
+            case SOURCE_DOWNLOAD:
+                return sDownAdapter;
+            case SOURCE_PROJECT:
+                return sFileAdapter;
+            case SOURCE_PHOTO:
+                return sPhotoAdapter;
+        }
+        return sFileAdapter;
     }
 
 

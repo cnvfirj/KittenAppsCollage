@@ -48,6 +48,11 @@ public class FragmentCollect extends Fragment {
         init(view);
     }
 
+    public void checkFiles(){
+        selector.update(getIndexAdapter());
+        selector.reset(getIndexAdapter());
+    }
+
     private void init(View view){
         selector.setParams(getContext().getResources().getDisplayMetrics().widthPixels);
         recycler = view.findViewById(R.id.gallery_list);
@@ -60,15 +65,16 @@ public class FragmentCollect extends Fragment {
                 super.onScrollStateChanged(recyclerView, newState);
                 if(newState==0){
                     /*передаем в адаптер стоп отображение*/
+
                 }
                 if(newState==1){
-
                     /*передаем в адаптнр старт отображение*/
                 }
 
             }
         });
-        recycler.setAdapter(selector.adapter(indexAdapter));
+        recycler.setAdapter(selector.adapter(indexAdapter).requestList());
+        selector.adapter(indexAdapter).resetChecks();
         navigation = view.findViewById(R.id.gallery_navigation_ex);
         navigation.inflateMenu(R.menu.collect_navigation);
         navigation.enableAnimation(false);
@@ -84,12 +90,17 @@ public class FragmentCollect extends Fragment {
                 }else if(menuItem.getItemId()==R.id.m_navigation_down){
                     indexAdapter = FileAdapter.SOURCE_DOWNLOAD;
                 }
-                recycler.setAdapter(selector.adapter(indexAdapter));
+                checkBottomNavigation(menuItem.getItemId());
+                recycler.setAdapter(selector.adapter(indexAdapter).requestList());
+                selector.adapter(indexAdapter).resetChecks();
                 return true;
             }
         });
     }
 
+    protected void checkBottomNavigation(int id){
+
+    }
     protected SelectorAdapter getSelector(){
         return selector;
     }

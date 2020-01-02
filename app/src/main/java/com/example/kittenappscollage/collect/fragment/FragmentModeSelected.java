@@ -74,7 +74,7 @@ public class FragmentModeSelected extends FragmentCollect implements View.OnClic
     public void selected(boolean mode) {
         if(mode){
             slideMenu(true,500);
-           getSelector().adapter(getIndexAdapter()).setMap(selectedImages);
+           getSelector().update(getIndexAdapter()).setMap(selectedImages);
         }else {
             selectedImages.clear();
             slideMenu(false,500);
@@ -84,6 +84,11 @@ public class FragmentModeSelected extends FragmentCollect implements View.OnClic
     @Override
     public void click(File file) {
         /*open dialog fragment*/
+    }
+
+    @Override
+    protected void checkBottomNavigation(int id) {
+        slideMenu(false, 500);
     }
 
     protected void slideMenu(boolean s, int time){
@@ -112,36 +117,42 @@ public class FragmentModeSelected extends FragmentCollect implements View.OnClic
     protected void selectedDelete(ImageView view){
         slideMenu(false,500);
         threadTaskDelete(selectedImages.values());
-        Set<Integer> positions = selectedImages.keySet();
-        /*implement deleted items in adapter*/
+        getSelector().adapter(getIndexAdapter()).deleteItems(selectedImages.keySet());
         selectedImages.clear();
     }
 
     @SuppressLint("CheckResult")
     private void threadTaskDelete(Collection<File> map){
-        Observable.create(new ObservableOnSubscribe<Void>() {
+        Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
-            public void subscribe(ObservableEmitter<Void> emitter) throws Exception {
-                if(map.size()>0)
-                    for (File f:map){
-                        delete(f);
-                    }
+            public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
+                File[]files = new File[map.size()];
+                emitter.onNext(deleteAll(map.toArray(files)));
                 emitter.onComplete();
             }
-        }).compose(new ThreadTransformers.InputOutput<>()).subscribe(new Consumer<Void>() {
+        }).compose(new ThreadTransformers.InputOutput<>()).subscribe(new Consumer<Boolean>() {
             @Override
-            public void accept(Void aVoid) throws Exception {
-                SHOW_MASSAGE(getContext(),"выбранные файлы удалены");
+            public void accept(Boolean b) throws Exception {
+                String text = "выбранные файлы удалены";
+                if(!b)text = "ошибка удаления";
+                SHOW_MASSAGE(getContext(),text);
                 map.clear();
             }
         });
     }
 
-    private void delete(File file){
-        if (file.exists()) {
-           file.delete();
+    private boolean deleteAll(File[] map){
+        boolean d = true;
+        if(map.length>0) {
+            for (File f : map) {
+                if(!delete(f))d = false;
+            }
         }
-
+        return d;
+    }
+    private boolean delete(File file){
+        if(file.exists())return file.delete();
+        return false;
     }
 
 

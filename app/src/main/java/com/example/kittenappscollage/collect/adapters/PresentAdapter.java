@@ -8,8 +8,12 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class PresentAdapter extends FileAdapter {
 
@@ -20,6 +24,7 @@ public class PresentAdapter extends FileAdapter {
     private HashMap<Integer, File>map;
 
     private ModeSelected listenModeSelected;
+
 
     public PresentAdapter(Context c, int source) {
         super(c, source);
@@ -47,13 +52,30 @@ public class PresentAdapter extends FileAdapter {
         return this;
     }
 
+    public void deleteItems(Collection<Integer>c){
+//      Integer[]positions = new Integer[c.size()];
+//      c.toArray(positions);
+      File[]files = new File[getArrFiles().size()];
+        getArrFiles().toArray(files);
+        getArrFiles().clear();
+        for (int i=0;i<files.length;i++){
+            if(!c.contains(i))getArrFiles().add(files[i]);
+        }
+
+      resetChecks();
+    }
+
+    public void deleteItem(int position){
+        getArrFiles().remove(position);
+    }
+
     @Override
     protected void click(ImageView image, ImageView check, int position) {
         super.click(image, check, position);
-        if(modeSelected){
-            getArrChecks()[position] = !getArrChecks()[position];
-            check.setVisibility(getArrChecks()[position]?View.VISIBLE:View.INVISIBLE);
-            if(map!=null) {
+             if(modeSelected){
+                getArrChecks()[position] = !getArrChecks()[position];
+                check.setVisibility(getArrChecks()[position]?View.VISIBLE:View.INVISIBLE);
+                 if(map!=null) {
                 if (getArrChecks()[position]) {
                     map.put(position, getArrFiles().get(position));
                 } else {

@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
             public void onPageSelected(int position) {
                 if(position==0) v.setSweep(false);
                 if(position==1) {
+                    mFragColl.checkFiles();
                     v.setSweep(true);
 
                 }
