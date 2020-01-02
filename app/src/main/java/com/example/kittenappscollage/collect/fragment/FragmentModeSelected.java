@@ -1,5 +1,6 @@
 package com.example.kittenappscollage.collect.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,9 +10,21 @@ import androidx.annotation.Nullable;
 
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.collect.adapters.PresentAdapter;
+import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Objects;
+import java.util.Set;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.functions.Consumer;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 public class FragmentModeSelected extends FragmentCollect implements View.OnClickListener, PresentAdapter.ModeSelected {
 
@@ -98,14 +111,37 @@ public class FragmentModeSelected extends FragmentCollect implements View.OnClic
 
     protected void selectedDelete(ImageView view){
         slideMenu(false,500);
+        threadTaskDelete(selectedImages.values());
+        Set<Integer> positions = selectedImages.keySet();
+        /*implement deleted items in adapter*/
         selectedImages.clear();
     }
 
-    private boolean delete(File file){
+    @SuppressLint("CheckResult")
+    private void threadTaskDelete(Collection<File> map){
+        Observable.create(new ObservableOnSubscribe<Void>() {
+            @Override
+            public void subscribe(ObservableEmitter<Void> emitter) throws Exception {
+                if(map.size()>0)
+                    for (File f:map){
+                        delete(f);
+                    }
+                emitter.onComplete();
+            }
+        }).compose(new ThreadTransformers.InputOutput<>()).subscribe(new Consumer<Void>() {
+            @Override
+            public void accept(Void aVoid) throws Exception {
+                SHOW_MASSAGE(getContext(),"выбранные файлы удалены");
+                map.clear();
+            }
+        });
+    }
+
+    private void delete(File file){
         if (file.exists()) {
-            return file.delete();
+           file.delete();
         }
-        return false;
+
     }
 
 
