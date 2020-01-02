@@ -73,11 +73,6 @@ public class FragmentModeSelected extends FragmentCollect implements View.OnClic
         /*open dialog fragment*/
     }
 
-    @Override
-    public void adapter(PresentAdapter adapter) {
-
-    }
-
     protected void slideMenu(boolean s, int time){
         if(s){
             selectedClose.animate().translationY(0).setDuration(time).start();

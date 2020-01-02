@@ -105,6 +105,5 @@ public class PresentAdapter extends FileAdapter {
     public interface ModeSelected{
         void selected(boolean mode);
         void click(File file);
-        void adapter(PresentAdapter adapter);
     }
 }
