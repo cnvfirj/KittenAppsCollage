@@ -60,7 +60,11 @@ public class FragmentModeSelected extends FragmentCollect implements View.OnClic
     @Override
     public void selected(boolean mode) {
         if(mode){
+            slideMenu(true,500);
            getSelector().adapter(getIndexAdapter()).setMap(selectedImages);
+        }else {
+            selectedImages.clear();
+            slideMenu(false,500);
         }
     }
 
