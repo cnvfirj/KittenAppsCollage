@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kittenappscollage.R;
-import com.example.kittenappscollage.collect.adapters.FileAdapter;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class FragmentGallery extends FragmentScanAllImages {
 

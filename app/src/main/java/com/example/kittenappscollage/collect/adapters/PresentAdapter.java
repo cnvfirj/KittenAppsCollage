@@ -60,7 +60,6 @@ public class PresentAdapter extends FileAdapter {
         for (int i=0;i<files.length;i++){
             if(!c.contains(i))getArrFiles().add(files[i]);
         }
-
       resetChecks();
     }
 
@@ -98,7 +97,6 @@ public class PresentAdapter extends FileAdapter {
         check.setVisibility(View.VISIBLE);
         modeSelected = true;
         if(map!=null)map.put(position,getArrFiles().get(position));
-
     }
 
     @Override

@@ -13,11 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.kittenappscollage.R;
-import com.example.kittenappscollage.collect.adapters.SuperAdapter;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 
 public class StartLoadFoldAdapter extends RecyclerView.Adapter<StartLoadFoldAdapter.FoldHolder> implements Serializable {
@@ -123,5 +121,5 @@ public class StartLoadFoldAdapter extends RecyclerView.Adapter<StartLoadFoldAdap
         }
 
     }
-    
+
 }
