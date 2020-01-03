@@ -48,15 +48,21 @@ public class FragmentScanAllImages extends Fragment {
 
         cursor.moveToFirst();
         while (cursor.moveToNext()) {
+
             listAllImg.add(cursor.getString(col_path));
             listFoldersImg.add(cursor.getString(col_fold));
 
+            String[] data = cursor.getString(col_fold).split("[.]");
+            String pref = data[data.length-1].toLowerCase();
+            boolean pik = pref.equals("png")||pref.equals("jpeg")||pref.equals("jpg");
             if(listImagesToFolder.containsKey(cursor.getString(col_fold))){
-                listImagesToFolder.get(cursor.getString(col_fold)).add(cursor.getString(col_path));
+                if(pik)listImagesToFolder.get(cursor.getString(col_fold)).add(cursor.getString(col_path));
             } else {
-                ArrayList<String> imgs = new ArrayList<>();
-                imgs.add(cursor.getString(col_path));
-                listImagesToFolder.put(cursor.getString(col_fold),imgs);
+                if(pik) {
+                    ArrayList<String> imgs = new ArrayList<>();
+                    imgs.add(cursor.getString(col_path));
+                    listImagesToFolder.put(cursor.getString(col_fold), imgs);
+                }
             }
         }
     }
