@@ -2,6 +2,7 @@ package com.example.kittenappscollage.collect.fragment;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.ImageView;
 
