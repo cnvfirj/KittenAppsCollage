@@ -44,6 +44,13 @@ public class FragmentModeSelected extends FragmentCollect implements View.OnClic
         slideMenu(false,0);
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getSelector().scanAll();
+    }
+
     private void init(View v){
         selectedClose = v.findViewById(R.id.selected_collect_exit);
         selectedClose.setOnClickListener(this);
@@ -106,7 +113,7 @@ public class FragmentModeSelected extends FragmentCollect implements View.OnClic
     protected void selectedExit(ImageView view){
           slideMenu(false,500);
           selectedImages.clear();
-          getSelector().adapter(getIndexAdapter()).resetChecks();
+          getSelector().reset(getIndexAdapter());
     }
 
     protected void selectedShare(ImageView view){
@@ -135,6 +142,7 @@ public class FragmentModeSelected extends FragmentCollect implements View.OnClic
             public void accept(Boolean b) throws Exception {
                 String text = "выбранные файлы удалены";
                 if(!b)text = "ошибка удаления";
+//                else getSelector().reset(getIndexAdapter());
                 SHOW_MASSAGE(getContext(),text);
                 map.clear();
             }

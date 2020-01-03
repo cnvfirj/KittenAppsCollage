@@ -19,12 +19,13 @@ import com.example.kittenappscollage.draw.saveSteps.State;
 import com.example.kittenappscollage.draw.saveSteps.Steps;
 import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.App;
+import com.example.kittenappscollage.helpers.SaveImageToFile;
 import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 
-public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery{
+public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery, SaveImageToFile.ActionSave {
 
     private ApplyDrawToolsFragmentDraw mFragDraw;
 
@@ -37,8 +38,14 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         App.setMain(this);
+        SaveImageToFile.setReport(this);
         setupViewPager((SelectSweepViewPager) findViewById(R.id.select_sweep_viewpager));
         requestOldProj();
+    }
+
+    @Override
+    public void saved(boolean saved) {
+        if(saved)mFragColl.ifSaved();
     }
 
     private void setupViewPager(SelectSweepViewPager v){
@@ -73,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
             public void onPageSelected(int position) {
                 if(position==0) v.setSweep(false);
                 if(position==1) {
-                    mFragColl.checkFiles();
+//                    mFragColl.checkFiles();
                     v.setSweep(true);
 
                 }

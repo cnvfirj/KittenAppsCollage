@@ -59,6 +59,12 @@ public class SelectorAdapter{
         return this;
     }
 
+    public SelectorAdapter scanAll(){
+        sDownAdapter.requestList().resetArrChecks();
+        sFileAdapter.requestList().resetArrChecks();
+        sPhotoAdapter.requestList().resetArrChecks();
+        return this;
+    }
     public PresentAdapter update(int source){
         switch (source){
             case SOURCE_DOWNLOAD:

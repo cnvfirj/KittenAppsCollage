@@ -24,6 +24,12 @@ public class SaveImageToFile {
 
     private static byte quality = 100;
 
+    private static ActionSave report;
+
+    public static void setReport(ActionSave r){
+        report = r;
+    }
+
     /*сохраняем в рисунок*/
     @SuppressLint("CheckResult")
     public static void saveImage(Context context, Bitmap bitmap) {
@@ -36,12 +42,14 @@ public class SaveImageToFile {
         if(RequestFolder.testFolder(folder)) {
             requestSaveFile(folder.getAbsolutePath() + name, bitmap)
                     .subscribe(aBoolean -> {
-                        if (aBoolean) SHOW_MASSAGE(context, "image saved");
-                        else SHOW_MASSAGE(context, "error saved");
-//                        EventBus.getDefault().post(new FragmentCollections.SaveFile(aBoolean));
+                        if(report!=null)report.saved(aBoolean);
+                        if (aBoolean) {
+                            SHOW_MASSAGE(context, "изображение сохранено");
+                        }
+                        else SHOW_MASSAGE(context, "ошибка сохранения");
                     });
         }else {
-            SHOW_MASSAGE(context, "check device memory");
+            SHOW_MASSAGE(context, "проверь память устройства");
         }
 
     }
@@ -56,6 +64,7 @@ public class SaveImageToFile {
         if(RequestFolder.testFolder(folder)) {
             requestSaveFile(folder.getAbsolutePath() + name, bitmap)
                     .subscribe(aBoolean -> {
+                        if(report!=null)report.saved(aBoolean);
                         if (aBoolean) SHOW_MASSAGE(context, "image saved");
                         else SHOW_MASSAGE(context, "error saved");
 //                        EventBus.getDefault().post(new FragmentCollections.SaveFile(aBoolean));

@@ -53,8 +53,7 @@ public class PresentAdapter extends FileAdapter {
     }
 
     public void deleteItems(Collection<Integer>c){
-//      Integer[]positions = new Integer[c.size()];
-//      c.toArray(positions);
+
       File[]files = new File[getArrFiles().size()];
         getArrFiles().toArray(files);
         getArrFiles().clear();
