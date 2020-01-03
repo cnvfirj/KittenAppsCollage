@@ -26,17 +26,32 @@ public class StartLoadFoldAdapter extends RecyclerView.Adapter<StartLoadFoldAdap
 
     private Context context;
 
-    public StartLoadFoldAdapter(Context context,HashMap<String, ArrayList<String>> all) {
+    public StartLoadFoldAdapter(Context context) {
+        this.context = context;
+    }
+
+    public StartLoadFoldAdapter(Context context, HashMap<String, ArrayList<String>> all) {
         this.all = all;
         this.context = context;
+        folds = new String[all.size()];
         all.keySet().toArray(folds);
     }
+
+    public StartLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all) {
+        this.all = all;
+        folds = new String[all.size()];
+        all.keySet().toArray(folds);
+        notifyDataSetChanged();
+        return this;
+    }
+
+
 
     protected void click(ImageView img, ImageView check, int pos){
 
     }
 
-    protected void longCkick(ImageView img, ImageView check, int pos){
+    protected void longClick(ImageView img, ImageView check, int pos){
 
     }
 
@@ -60,8 +75,6 @@ public class StartLoadFoldAdapter extends RecyclerView.Adapter<StartLoadFoldAdap
         return folds;
     }
 
-
-
     @NonNull
     @Override
     public FoldHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -82,7 +95,7 @@ public class StartLoadFoldAdapter extends RecyclerView.Adapter<StartLoadFoldAdap
 
     @Override
     public int getItemCount() {
-        return 0;
+        return getAll().size();
     }
 
     protected class FoldHolder extends CollectHolder{
@@ -108,7 +121,7 @@ public class StartLoadFoldAdapter extends RecyclerView.Adapter<StartLoadFoldAdap
 
         @Override
         public boolean onLongClick(View view) {
-            longCkick(getImage(),getCheck(),getAdapterPosition());
+            longClick(getImage(),getCheck(),getAdapterPosition());
             return true;
         }
 

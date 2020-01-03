@@ -6,11 +6,13 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.kittenappscollage.collect.fragment.FragmentCollect;
 import com.example.kittenappscollage.collect.fragment.FragmentModeSelected;
+import com.example.kittenappscollage.collect.fragment.up.FragmentGallery;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
@@ -24,12 +26,16 @@ import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.File;
+
 
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery, SaveImageToFile.ActionSave {
 
     private ApplyDrawToolsFragmentDraw mFragDraw;
 
-    private FragmentModeSelected mFragColl;
+//    private FragmentModeSelected mFragColl;
+
+    private FragmentGallery mFragGal;
 
     private TabLayout mTabLayout;
 
@@ -45,7 +51,15 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     @Override
     public void saved(boolean saved) {
-        if(saved)mFragColl.ifSaved();
+//        if(saved)mFragColl.ifSaved();
+    }
+
+    @Override
+    public void saved(boolean saved, String path) {
+        if(saved){
+            File file = new File(path);
+            sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+        }
     }
 
     private void setupViewPager(SelectSweepViewPager v){
@@ -55,10 +69,11 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private ViewPageAdapter addFragments(){
         mFragDraw = new ApplyDrawToolsFragmentDraw();
-        mFragColl = new FragmentModeSelected();
+//        mFragColl = new FragmentModeSelected();
+        mFragGal = new FragmentGallery();
         ViewPageAdapter a = new ViewPageAdapter(getSupportFragmentManager());
         a.addFragment(mFragDraw);
-        a.addFragment(mFragColl);
+        a.addFragment(mFragGal);
         return a;
     }
 

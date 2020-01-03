@@ -17,13 +17,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class FragmentScanAllImages extends Fragment {
 
     private HashMap<String,ArrayList<String>>listImagesToFolder;
 
      @SuppressLint("Recycle")
-    @RequiresApi(api = Build.VERSION_CODES.Q)
     public void scanDevice(){
+         if(getListImagesInFolders()==null)initListImagesInFolders();
+         else getListImagesInFolders().clear();
         String[] projection = {
                 MediaStore.MediaColumns.DATA,
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME };
@@ -39,10 +42,10 @@ public class FragmentScanAllImages extends Fragment {
 
         cursor.moveToFirst();
         while (cursor.moveToNext()) {
-
-            String[] data = cursor.getString(col_fold).split("[.]");
+            String[] data = cursor.getString(col_path).split("[.]");
             String pref = data[data.length-1].toLowerCase();
             boolean pik = pref.equals("png")||pref.equals("jpeg")||pref.equals("jpg");
+
             if(listImagesToFolder.containsKey(cursor.getString(col_fold))){
                 if(pik) listImagesToFolder.get(cursor.getString(col_fold)).add(cursor.getString(col_path));
             } else {
@@ -52,10 +55,11 @@ public class FragmentScanAllImages extends Fragment {
                     listImagesToFolder.put(cursor.getString(col_fold), imgs);
                 }
             }
+
         }
     }
 
-    protected HashMap getListImagesInFolders(){
+    protected HashMap<String,ArrayList<String>> getListImagesInFolders(){
         return listImagesToFolder;
     }
 
@@ -67,8 +71,8 @@ public class FragmentScanAllImages extends Fragment {
         listImagesToFolder = new HashMap<>();
     }
 
-    public void mut(File file){
-        /*report in broad cast reciver*/
-        getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
-    }
+//    public void mut(File file){
+//        /*report in broad cast reciver*/
+//        getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+//    }
 }

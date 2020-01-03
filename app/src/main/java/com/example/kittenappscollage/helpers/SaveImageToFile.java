@@ -42,7 +42,7 @@ public class SaveImageToFile {
         if(RequestFolder.testFolder(folder)) {
             requestSaveFile(folder.getAbsolutePath() + name, bitmap)
                     .subscribe(aBoolean -> {
-                        if(report!=null)report.saved(aBoolean);
+                        if(report!=null)report.saved(aBoolean,folder.getAbsolutePath() + name);
                         if (aBoolean) {
                             SHOW_MASSAGE(context, "изображение сохранено");
                         }
@@ -139,6 +139,7 @@ public class SaveImageToFile {
 
     public interface ActionSave{
         public void saved(boolean saved);
+        public void saved(boolean saved, String path);
     }
 
 

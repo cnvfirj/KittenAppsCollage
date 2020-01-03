@@ -26,10 +26,23 @@ public class StartLoadImgAdapter extends RecyclerView.Adapter<StartLoadImgAdapte
 
     private String fold;
 
-    public StartLoadImgAdapter(Context context,HashMap<String, ArrayList<String>> all) {
+    public StartLoadImgAdapter(Context context) {
+        this.context = context;
+    }
+
+    public StartLoadImgAdapter(Context context, HashMap<String, ArrayList<String>> all) {
         this.all = all;
         this.context = context;
+        folds = new String[all.size()];
         all.keySet().toArray(folds);
+    }
+
+    public StartLoadImgAdapter setAll(HashMap<String, ArrayList<String>> all){
+        this.all = all;
+        folds = new String[all.size()];
+        all.keySet().toArray(folds);
+        notifyDataSetChanged();
+        return this;
     }
 
     public StartLoadImgAdapter stepInFold(String fold){
