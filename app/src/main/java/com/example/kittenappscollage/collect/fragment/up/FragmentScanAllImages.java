@@ -1,4 +1,4 @@
-package com.example.kittenappscollage.collect.fragment;
+package com.example.kittenappscollage.collect.fragment.up;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -15,22 +15,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class FragmentScanAllImages extends Fragment {
 
-    private RecyclerView recycler;
-
-    private ArrayList<String>listFoldersImg,listAllImg ;
     private HashMap<String,ArrayList<String>>listImagesToFolder;
 
-    public FragmentScanAllImages() {
-        listFoldersImg = new ArrayList<>();
-        listAllImg = new ArrayList<>();
-        listImagesToFolder = new HashMap<>();
-
-    }
-
-    @SuppressLint("Recycle")
+     @SuppressLint("Recycle")
     @RequiresApi(api = Build.VERSION_CODES.Q)
     public void scanDevice(){
         String[] projection = {
@@ -49,14 +40,11 @@ public class FragmentScanAllImages extends Fragment {
         cursor.moveToFirst();
         while (cursor.moveToNext()) {
 
-            listAllImg.add(cursor.getString(col_path));
-            listFoldersImg.add(cursor.getString(col_fold));
-
             String[] data = cursor.getString(col_fold).split("[.]");
             String pref = data[data.length-1].toLowerCase();
             boolean pik = pref.equals("png")||pref.equals("jpeg")||pref.equals("jpg");
             if(listImagesToFolder.containsKey(cursor.getString(col_fold))){
-                if(pik)listImagesToFolder.get(cursor.getString(col_fold)).add(cursor.getString(col_path));
+                if(pik) listImagesToFolder.get(cursor.getString(col_fold)).add(cursor.getString(col_path));
             } else {
                 if(pik) {
                     ArrayList<String> imgs = new ArrayList<>();
@@ -67,8 +55,20 @@ public class FragmentScanAllImages extends Fragment {
         }
     }
 
+    protected HashMap getListImagesInFolders(){
+        return listImagesToFolder;
+    }
+
+    protected void clearListImagesInFolders(){
+        listImagesToFolder.clear();
+    }
+
+    protected void initListImagesInFolders(){
+        listImagesToFolder = new HashMap<>();
+    }
 
     public void mut(File file){
+        /*report in broad cast reciver*/
         getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
     }
 }

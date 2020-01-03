@@ -12,7 +12,6 @@
         android:background="@color/colorPrimaryLight"
         android:scrollbars="horizontal" />
 
-
     <include layout="@layout/include_menu_selected_collect"/>
 
     <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx

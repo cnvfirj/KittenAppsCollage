@@ -2,12 +2,8 @@ package com.example.kittenappscollage.collect.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Environment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -24,8 +20,6 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.functions.Consumer;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 
 public class FileAdapter extends SuperAdapter {
@@ -73,7 +67,7 @@ public class FileAdapter extends SuperAdapter {
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new MyViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.collect_item,parent,false));
+                .inflate(R.layout.collect_img_item,parent,false));
     }
 
     @Override
