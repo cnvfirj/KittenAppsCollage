@@ -27,6 +27,7 @@ public class FragmentScanAllImages extends Fragment {
         listFoldersImg = new ArrayList<>();
         listAllImg = new ArrayList<>();
         listImagesToFolder = new HashMap<>();
+
     }
 
     @SuppressLint("Recycle")

@@ -161,6 +161,7 @@ public class FragmentModeSelected extends FragmentCollect implements View.OnClic
     }
     private boolean delete(File file){
         if(file.exists())return file.delete();
+        /*if(file.exists())return getContext().deleteFile(file.getAbsolutePath());*/
         return false;
     }
 
