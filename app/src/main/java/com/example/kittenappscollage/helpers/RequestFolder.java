@@ -3,6 +3,8 @@ package com.example.kittenappscollage.helpers;
 import android.content.Context;
 import android.os.Environment;
 
+import com.example.kittenappscollage.R;
+
 import java.io.File;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
@@ -14,7 +16,8 @@ import static com.example.kittenappscollage.helpers.Massages.LYTE;
 public class RequestFolder {
     /*внешнее хранилище*/
     public final static String GENERAL_FOLDER = "/Kitten Paint Folder";
-    public final static String FOLDER_IMAGES = "/images";
+
+    public final static String FOLDER_IMAGES = "/My Collages";
     public final static String FOLDER_PROJECTS = "/projects";
     public final static String FOLDER_PHOTO = "/photo";
     /*префиксы в папке проекта*/

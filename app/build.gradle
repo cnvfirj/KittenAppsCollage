@@ -55,10 +55,7 @@ dependencies {
 
     implementation 'com.otaliastudios:cameraview:1.5.1'
 
-//    implementation 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
-    implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
-
-    implementation 'org.greenrobot:eventbus:3.0.0'
+//    implementation 'org.greenrobot:eventbus:3.0.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation project(path: ':mutmatrix')
 }

@@ -6,7 +6,7 @@
 
     <ImageView
         style="@style/slide_style_all_tools"
-        android:id="@+id/selected_collect_exit"
+        android:id="@+id/selected_collect_exit_mode"
         android:src="@drawable/ic_close"
         android:background="@drawable/background_under_button_reset"
         android:layout_gravity="start"/>
@@ -19,15 +19,28 @@
 
         <ImageView
             style="@style/slide_style_all_tools"
-            android:id="@+id/selected_collect_share"
+            android:id="@+id/selected_collect_1"
             android:src="@drawable/ic_share"
             android:background="@drawable/background_main_button_reset"/>
 
         <ImageView
             style="@style/slide_style_all_tools"
-            android:id="@+id/selected_collect_delete"
+            android:id="@+id/selected_collect_2"
             android:src="@drawable/ic_delete"
             android:background="@drawable/background_main_button_reset"/>
+
+        <ImageView
+            style="@style/slide_style_all_tools"
+            android:id="@+id/selected_collect_3"
+            android:src="@drawable/ic_share"
+            android:background="@drawable/background_main_button_reset"/>
+
+        <ImageView
+            style="@style/slide_style_all_tools"
+            android:id="@+id/selected_collect_4"
+            android:src="@drawable/ic_delete"
+            android:background="@drawable/background_main_button_reset"/>
+
 
 
     </LinearLayout>

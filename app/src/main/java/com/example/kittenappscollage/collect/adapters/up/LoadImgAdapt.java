@@ -7,18 +7,15 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class LoadImgAdapt extends StartLoadImgAdapter {
+public class LoadImgAdapt extends ListenLoadImgAdapter {
 
     private FrameLayout.LayoutParams params;
+
+
 
     public LoadImgAdapt(Context context) {
         super(context);
     }
-
-    public LoadImgAdapt(Context context, HashMap<String, ArrayList<String>> all) {
-        super(context, all);
-    }
-
 
     public void setParams(int width){
         int w = width/3;
@@ -26,8 +23,9 @@ public class LoadImgAdapt extends StartLoadImgAdapter {
     }
 
     @Override
-    protected void createHolder(View holder) {
-        super.createHolder(holder);
+    public void createHolder(View holder, int pos) {
+        super.createHolder(holder, pos);
         if(params!=null)holder.setLayoutParams(params);
     }
+
 }

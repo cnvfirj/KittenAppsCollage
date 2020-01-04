@@ -53,29 +53,29 @@ public class FragmentModeSelected extends FragmentCollect implements View.OnClic
     }
 
     private void init(View v){
-        selectedClose = v.findViewById(R.id.selected_collect_exit);
-        selectedClose.setOnClickListener(this);
-        selectedDelete = v.findViewById(R.id.selected_collect_delete);
-        selectedDelete.setOnClickListener(this);
-        selectedShare = v.findViewById(R.id.selected_collect_share);
-        selectedShare.setOnClickListener(this);
+//        selectedClose = v.findViewById(R.id.selected_collect_exit);
+//        selectedClose.setOnClickListener(this);
+//        selectedDelete = v.findViewById(R.id.selected_collect_delete);
+//        selectedDelete.setOnClickListener(this);
+//        selectedShare = v.findViewById(R.id.selected_collect_share);
+//        selectedShare.setOnClickListener(this);
     }
 
 
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.selected_collect_delete:
-                selectedDelete((ImageView) view);
-                break;
-            case R.id.selected_collect_share:
-                selectedShare((ImageView) view);
-                break;
-            case R.id.selected_collect_exit:
-                selectedExit((ImageView) view);
-                break;
-        }
+//        switch (view.getId()){
+//            case R.id.selected_collect_delete:
+//                selectedDelete((ImageView) view);
+//                break;
+//            case R.id.selected_collect_share:
+//                selectedShare((ImageView) view);
+//                break;
+//            case R.id.selected_collect_exit:
+//                selectedExit((ImageView) view);
+//                break;
+//        }
     }
 
     @Override

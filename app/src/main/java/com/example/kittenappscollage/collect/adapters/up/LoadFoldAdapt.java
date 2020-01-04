@@ -7,7 +7,7 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class LoadFoldAdapt extends StartLoadFoldAdapter {
+public class LoadFoldAdapt extends ListenLoadFoldAdapter {
 
     private FrameLayout.LayoutParams params;
 
@@ -15,12 +15,9 @@ public class LoadFoldAdapt extends StartLoadFoldAdapter {
         super(context);
     }
 
-    public LoadFoldAdapt(Context context, HashMap<String, ArrayList<String>> all) {
-        super(context, all);
-    }
 
     @Override
-    public StartLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all) {
+    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all) {
         return super.setAll(all);
     }
 
@@ -30,8 +27,9 @@ public class LoadFoldAdapt extends StartLoadFoldAdapter {
     }
 
     @Override
-    protected void createHolder(View holder) {
-        super.createHolder(holder);
+    public void createHolder(View holder, int pos) {
+        super.createHolder(holder, pos);
         if(params!=null)holder.setLayoutParams(params);
+
     }
 }

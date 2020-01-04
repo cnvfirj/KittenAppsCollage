@@ -46,5 +46,6 @@
     <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
     <string name="KEY_ADAPTER_ID">key adapter id</string>
     <string name="KEY_ADAPTER_FILE">key adapter file</string>
+    <string name="MY_COLLAGES">Мои Коллажи</string>
 
 </resources>

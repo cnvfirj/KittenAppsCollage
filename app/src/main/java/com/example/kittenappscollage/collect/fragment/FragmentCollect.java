@@ -17,15 +17,11 @@ import com.bumptech.glide.Glide;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.collect.adapters.FileAdapter;
 import com.example.kittenappscollage.collect.adapters.SelectorAdapter;
-import com.example.kittenappscollage.collect.adapters.SuperAdapter;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentCollect extends Fragment {
-
-    private BottomNavigationViewEx navigation;
 
     private RecyclerView recycler;
 
@@ -78,26 +74,26 @@ public class FragmentCollect extends Fragment {
             }
         });
         recycler.setAdapter(selector.adapter(indexAdapter));
-        navigation = view.findViewById(R.id.gallery_navigation_ex);
-        navigation.inflateMenu(R.menu.collect_navigation);
-        navigation.enableAnimation(false);
-        navigation.enableShiftingMode(true);
-        navigation.setTextSize(7);
-        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                if(menuItem.getItemId()==R.id.m_navigation_gallery){
-                    indexAdapter = FileAdapter.SOURCE_PROJECT;
-                }else if(menuItem.getItemId()==R.id.m_navigation_photo){
-                    indexAdapter = FileAdapter.SOURCE_PHOTO;
-                }else if(menuItem.getItemId()==R.id.m_navigation_down){
-                    indexAdapter = FileAdapter.SOURCE_DOWNLOAD;
-                }
-                checkBottomNavigation(menuItem.getItemId());
-                recycler.setAdapter(selector.adapter(indexAdapter));
-                return true;
-            }
-        });
+//        navigation = view.findViewById(R.id.gallery_navigation_ex);
+//        navigation.inflateMenu(R.menu.collect_navigation);
+//        navigation.enableAnimation(false);
+//        navigation.enableShiftingMode(true);
+//        navigation.setTextSize(7);
+//        navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//                if(menuItem.getItemId()==R.id.m_navigation_gallery){
+//                    indexAdapter = FileAdapter.SOURCE_PROJECT;
+//                }else if(menuItem.getItemId()==R.id.m_navigation_photo){
+//                    indexAdapter = FileAdapter.SOURCE_PHOTO;
+//                }else if(menuItem.getItemId()==R.id.m_navigation_down){
+//                    indexAdapter = FileAdapter.SOURCE_DOWNLOAD;
+//                }
+//                checkBottomNavigation(menuItem.getItemId());
+//                recycler.setAdapter(selector.adapter(indexAdapter));
+//                return true;
+//            }
+//        });
     }
 
     protected void checkBottomNavigation(int id){

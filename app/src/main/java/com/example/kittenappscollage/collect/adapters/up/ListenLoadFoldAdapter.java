@@ -18,7 +18,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class StartLoadFoldAdapter extends RecyclerView.Adapter<StartLoadFoldAdapter.FoldHolder> implements Serializable {
+public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAdapter.FoldHolder> implements Serializable{
+
+    public static final int ROOT_ADAPTER = -5;
 
     private HashMap<String, ArrayList<String>> all;
 
@@ -26,18 +28,18 @@ public class StartLoadFoldAdapter extends RecyclerView.Adapter<StartLoadFoldAdap
 
     private Context context;
 
-    public StartLoadFoldAdapter(Context context) {
+    private ListenAdapter listen;
+
+    public ListenLoadFoldAdapter(Context context) {
         this.context = context;
     }
 
-    public StartLoadFoldAdapter(Context context, HashMap<String, ArrayList<String>> all) {
-        this.all = all;
-        this.context = context;
-        folds = new String[all.size()];
-        all.keySet().toArray(folds);
+    public ListenLoadFoldAdapter setListen(ListenAdapter listen){
+        this.listen = listen;
+        return this;
     }
 
-    public StartLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all) {
+    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all) {
         this.all = all;
         folds = new String[all.size()];
         all.keySet().toArray(folds);
@@ -45,22 +47,20 @@ public class StartLoadFoldAdapter extends RecyclerView.Adapter<StartLoadFoldAdap
         return this;
     }
 
+    protected void createHolder(View holder, int pos){
+        if(listen!=null)listen.createHolder(ROOT_ADAPTER, holder, pos);
+    }
 
+    protected void createContentHolder(View[]content, int pos){
+        if(listen!=null)listen.createContentHolder(ROOT_ADAPTER, content, pos);
+    }
 
     protected void click(ImageView img, ImageView check, int pos){
-
+        if(listen!=null)listen.click(ROOT_ADAPTER, img,check, pos);
     }
 
-    protected void longClick(ImageView img, ImageView check, int pos){
-
-    }
-
-    protected void createHolder(View holder){
-
-    }
-
-    protected void createContentHolder(ImageView img, ImageView check,TextView name, TextView col, int pos){
-
+    protected void longClick(ImageView img, ImageView check, int pos) {
+        if(listen!=null)listen.longClick(ROOT_ADAPTER, img, check, pos);
     }
 
     protected Context getContext(){
@@ -107,10 +107,10 @@ public class StartLoadFoldAdapter extends RecyclerView.Adapter<StartLoadFoldAdap
 
         public FoldHolder(@NonNull View itemView) {
             super(itemView);
-            createHolder(itemView);
             name = itemView.findViewById(R.id.collect_item_name_dir);
             col = itemView.findViewById(R.id.collect_item_col_img_in_dir);
-            createContentHolder(getImage(),getCheck(),getName(),getCol(),getAdapterPosition());
+            createHolder(itemView, getAdapterPosition());
+            createContentHolder(new View[]{getImage(),getCheck(),getName(),getCol()},getAdapterPosition());
         }
 
 
