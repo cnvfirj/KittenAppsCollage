@@ -112,6 +112,7 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
 
         private TextView col;
 
+
         public FoldHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.collect_item_name_dir);

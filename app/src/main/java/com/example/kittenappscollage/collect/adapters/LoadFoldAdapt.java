@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,6 +23,12 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
         modeSelected = false;
     }
 
+
+    @Override
+    public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
+         if(getArrChecks()!=null)holder.getCheck().setVisibility(getArrChecks()[position]?View.VISIBLE:View.INVISIBLE);
+        super.onBindViewHolder(holder, position);
+    }
 
     @Override
     public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all) {
@@ -40,6 +48,19 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
 
     private void resetCheckeds(){
         checkSelect = new boolean[getAll().size()];
+    }
+
+    @Override
+    protected void click(ImageView img, ImageView check, int pos) {
+        super.click(img, check, pos);
+        if(isModeSelected()){
+            if(getArrChecks()[pos]!=true){
+                resetCheckeds();
+                check.setVisibility(View.VISIBLE);
+                getArrChecks()[pos]=true;
+                notifyDataSetChanged();
+            }
+        }
     }
 
     @Override

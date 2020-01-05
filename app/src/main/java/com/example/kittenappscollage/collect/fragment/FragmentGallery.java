@@ -76,11 +76,13 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     @Override
     public void click(int adapter, ImageView img, ImageView check, int pos) {
-        if(adapter== ROOT_ADAPTER){
-            imgAdapt.setIndexKey(pos);
-            gridLayoutManager.setSpanCount(3);
-            recycler.setAdapter(imgAdapt);
-            setIndexAdapter(pos);
+        if(adapter==ROOT_ADAPTER){
+            if(!foldAdapt.isModeSelected()) {
+                imgAdapt.setIndexKey(pos);
+                gridLayoutManager.setSpanCount(3);
+                recycler.setAdapter(imgAdapt);
+                setIndexAdapter(pos);
+            }
         }
     }
 

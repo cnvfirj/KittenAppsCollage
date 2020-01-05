@@ -182,7 +182,7 @@ protected void slideSel_4(boolean s){
 
 
     private boolean modeSel(){
-        if(getIndexAdapter()>0){
+        if(getIndexAdapter()!=ROOT_ADAPTER){
             return getImgAdapt().isModeSelected();
         }else {
             return getFoldAdapt().isModeSelected();
