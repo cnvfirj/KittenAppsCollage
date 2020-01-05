@@ -1,25 +1,25 @@
-package com.example.kittenappscollage.collect.fragment.up;
+package com.example.kittenappscollage.collect.fragment;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kittenappscollage.R;
-import com.example.kittenappscollage.collect.adapters.up.ListenAdapter;
-import com.example.kittenappscollage.collect.adapters.up.LoadFoldAdapt;
-import com.example.kittenappscollage.collect.adapters.up.LoadImgAdapt;
+import com.example.kittenappscollage.collect.adapters.ListenAdapter;
+import com.example.kittenappscollage.collect.adapters.LoadFoldAdapt;
+import com.example.kittenappscollage.collect.adapters.LoadImgAdapt;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 
 public class FragmentGallery extends FragmentScanAllImages implements ListenAdapter{
 
@@ -36,13 +36,11 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        indexAdapter = ROOT_ADAPTER;
         foldAdapt = new LoadFoldAdapt(getContext());
         imgAdapt = new LoadImgAdapt(getContext());
         foldAdapt.setParams(getContext().getResources().getDisplayMetrics().widthPixels);
         imgAdapt.setParams(getContext().getResources().getDisplayMetrics().widthPixels);
-        scanDevice();
-        foldAdapt.setAll(getListImagesInFolders()).setListen(this);
-        imgAdapt.setAll(getListImagesInFolders()).setListen(this);
         return inflater.inflate(R.layout.fragment_gallery,null);
     }
 
@@ -52,35 +50,33 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         init(view);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initListImagesInFolders();
+        scanDevice();
+    }
+
     private void init(View v){
         gridLayoutManager = new GridLayoutManager(getContext(),2);
         recycler = v.findViewById(R.id.gallery_list);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(gridLayoutManager);
-//        recycler.addOnScrollListener(new RecyclerView.OnScrollListener() {
-//
-//            @Override
-//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-//                super.onScrollStateChanged(recyclerView, newState);
-//                if(newState==0){
-//                    /*передаем в адаптер стоп отображение*/
-//
-//                }
-//                if(newState==1){
-//                    /*передаем в адаптнр старт отображение*/
-//                }
-//
-//            }
-//        });
         recycler.setAdapter(foldAdapt);
 
 
     }
 
+    @Override
+    protected void setListImagesInFolders(HashMap<String, ArrayList<String>> list) {
+        super.setListImagesInFolders(list);
+        foldAdapt.setAll(list).setListen(this);
+        imgAdapt.setAll(list).setListen(this);
+    }
 
     @Override
     public void click(int adapter, ImageView img, ImageView check, int pos) {
-        if(adapter==LoadFoldAdapt.ROOT_ADAPTER){
+        if(adapter== ROOT_ADAPTER){
             imgAdapt.setIndexKey(pos);
             gridLayoutManager.setSpanCount(3);
             recycler.setAdapter(imgAdapt);
@@ -90,7 +86,9 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     @Override
     public void longClick(int adapter, ImageView img, ImageView check, int pos) {
-
+            if(imgAdapt.isModeSelected()||foldAdapt.isModeSelected()){
+                visibleMenu();
+            }
     }
 
     @Override
@@ -103,6 +101,14 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     }
 
+
+    protected void visibleMenu(){
+
+    }
+
+    protected void invisibleMenu(){
+
+    }
 
 
     protected void setIndexAdapter(int i){

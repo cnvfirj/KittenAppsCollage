@@ -18,20 +18,17 @@ public class RequestFolder {
     public final static String GENERAL_FOLDER = "/Kitten Paint Folder";
 
     public final static String FOLDER_IMAGES = "/My Collages";
-    public final static String FOLDER_PROJECTS = "/projects";
-    public final static String FOLDER_PHOTO = "/photo";
-    /*префиксы в папке проекта*/
-    public final static String NAME_PROP = "prop.proj";
-    public final static String NAME_IMAGE = "img.png";
-    public final static String NAME_LAYER = "lyr.png";
+//    public final static String FOLDER_PROJECTS = "/projects";
+//    public final static String FOLDER_PHOTO = "/photo";
+//    /*префиксы в папке проекта*/
+//    public final static String NAME_PROP = "prop.proj";
+//    public final static String NAME_IMAGE = "img.png";
+//    public final static String NAME_LAYER = "lyr.png";
     /*доступен только из приложения*/
     /*внутреннее хранилище*/
     public final static String FOLDER_CASH = "/cash";
     /*общий адрес для видимых из других приложения папок*/
     public final static String GENERAL = Environment.getExternalStorageDirectory().getPath();
-
-    public final static String DCIM = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM).toString();
-
 
 
     /*получаем директорию доступную только из приложения*/
@@ -51,19 +48,9 @@ public class RequestFolder {
         return getMainFolder()+FOLDER_IMAGES;
     }
 
-    public static String getFolderPhotos(){
-        return DCIM+"/Camera";
+    public static String getNameFoldCollages(){
+        return FOLDER_IMAGES.substring(1);
     }
-
-    public static String getSDFolderPhotos(String sd){
-        String[]arr = sd.split("[/]");
-        return arr[1]+"/"+arr[2]+"/"+Environment.DIRECTORY_DCIM+"/Camera";
-    }
-
-    public static String getFolderDown(){
-        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-    }
-
     /*проверяем наличие папки, если ее нет создаем
     *в зависимости от успеха возвращаем да/нет*/
     public static boolean testFolder(File file){

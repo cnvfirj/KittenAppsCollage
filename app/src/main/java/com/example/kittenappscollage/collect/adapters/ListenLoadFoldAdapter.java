@@ -1,4 +1,4 @@
-package com.example.kittenappscollage.collect.adapters.up;
+package com.example.kittenappscollage.collect.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,6 +17,8 @@ import com.example.kittenappscollage.R;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAdapter.FoldHolder> implements Serializable{
 
@@ -95,7 +97,12 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
 
     @Override
     public int getItemCount() {
-        return getAll().size();
+
+        if(getAll()==null){
+            return 0;
+        } else {
+            return getAll().size();
+        }
     }
 
     protected class FoldHolder extends CollectHolder{

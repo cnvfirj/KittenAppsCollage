@@ -1,4 +1,4 @@
-package com.example.kittenappscollage.collect.adapters.up;
+package com.example.kittenappscollage.collect.adapters;
 
 import android.view.View;
 import android.widget.ImageView;

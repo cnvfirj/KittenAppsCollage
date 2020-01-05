@@ -1,18 +1,15 @@
-package com.example.kittenappscollage.collect.fragment.up;
+package com.example.kittenappscollage.collect.fragment;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.example.kittenappscollage.R;
-import com.example.kittenappscollage.collect.adapters.up.LoadFoldAdapt;
 
-import static com.example.kittenappscollage.collect.adapters.up.ListenLoadFoldAdapter.ROOT_ADAPTER;
+import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentSlideGallery extends FragmentGallery implements View.OnClickListener {
@@ -86,14 +83,14 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
     }
 
     protected void clickExit(ImageView v){
-        if(!modeSelected){
+        if(!modeSel()){
             if(getIndexAdapter()!= ROOT_ADAPTER){
                 setIndexAdapter(ROOT_ADAPTER);
                 getGridLayoutManager().setSpanCount(2);
                 getRecycler().setAdapter(getFoldAdapt());
-                            }
+             }
         }else {
-
+            invisibleMenu();
         }
     }
     protected void clickSel_1(ImageView v){
@@ -109,11 +106,86 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
 
     }
 
+    @Override
+    protected void visibleMenu() {
+        LYTE("adapte "+getIndexAdapter());
+      if(getIndexAdapter()==ROOT_ADAPTER){
+          slideExit(true);
+          slideSel_1(true);
+          slideSel_2(true);
+          getRecycler().setEnabled(false);
+      }else{
+          /*implement animation exit*/
+      }
+        slideSel_3(true);
+        slideSel_4(true);
+
+    }
+
+    @Override
+    protected void invisibleMenu() {
+        if(getIndexAdapter()==ROOT_ADAPTER){
+            slideExit(false);
+            slideSel_1(false);
+            slideSel_2(false);
+            getFoldAdapt().setModeSelected(false);
+            getRecycler().setEnabled(true);
+        }else {
+            /*implement animation exit*/
+            getImgAdapt().setModeSelected(false);
+        }
+        slideSel_3(false);
+        slideSel_4(false);
+    }
+
     protected void slideExit(boolean s){
         if(s){
             selectExitMode.animate().translationY(0).setDuration(500).start();
         }else {
             selectExitMode.animate().translationY(-slide).setDuration(500).start();
+        }
+    }
+
+    protected void slideSel_1(boolean s){
+        if(s){
+            selected_1.animate().translationY(0).setDuration(500).start();
+        }else {
+            selected_1.animate().translationY(-slide).setDuration(500).start();
+        }
+    }
+
+    protected void slideSel_2(boolean s){
+        if(s){
+            selected_2.animate().translationY(0).setDuration(500).start();
+        }else {
+            selected_2.animate().translationY(-slide).setDuration(500).start();
+        }
+    }
+
+    protected void slideSel_3(boolean s){
+        if(s){
+            selected_3.animate().translationY(0).setDuration(500).start();
+        }else {
+            selected_3.animate().translationY(-slide).setDuration(500).start();
+        }
+    }
+
+
+protected void slideSel_4(boolean s){
+        if(s){
+            selected_4.animate().translationY(0).setDuration(500).start();
+        }else {
+            selected_4.animate().translationY(-slide).setDuration(500).start();
+        }
+    }
+
+
+
+    private boolean modeSel(){
+        if(getIndexAdapter()>0){
+            return getImgAdapt().isModeSelected();
+        }else {
+            return getFoldAdapt().isModeSelected();
         }
     }
 
