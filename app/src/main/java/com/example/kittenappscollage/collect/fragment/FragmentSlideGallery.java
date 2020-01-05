@@ -28,7 +28,6 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
 
     private float slide;
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -108,7 +107,6 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
 
     @Override
     protected void visibleMenu() {
-        LYTE("adapte "+getIndexAdapter());
       if(getIndexAdapter()==ROOT_ADAPTER){
           slideExit(true);
           slideSel_1(true);
