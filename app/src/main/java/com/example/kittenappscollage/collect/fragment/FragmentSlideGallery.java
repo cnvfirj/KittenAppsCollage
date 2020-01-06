@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import com.example.kittenappscollage.R;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentSlideGallery extends FragmentGallery implements View.OnClickListener {
 
@@ -23,8 +22,6 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
     *         выйти из режима
     *       режим клика - выйти в главную галлерею  */
     private ImageView selectExitMode,selected_1, selected_2, selected_3, selected_4;
-
-    private boolean modeSelected;
 
     private float slide;
 
@@ -92,17 +89,33 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
             invisibleMenu();
         }
     }
-    protected void clickSel_1(ImageView v){
 
+    protected void clickSel_1(ImageView v){
+       /*скріть папку*/
+        /*візов диалога*/
     }
     protected void clickSel_2(ImageView v){
-
+        /*переименовать*/
+        /*візов диалога*/
     }
-    protected void clickSel_3(ImageView v){
 
+    protected void clickSel_3(ImageView v){
+        if(getIndexAdapter()!= ROOT_ADAPTER){
+            /*переместить на карту*/
+            /*візов диалога*/
+        }else {
+            /*поделиться вібранное*/
+            /*візов диалога*/
+        }
     }
     protected void clickSel_4(ImageView v){
-
+        if(getIndexAdapter()!= ROOT_ADAPTER){
+            /*удалить папку*/
+            /*візов диалога*/
+        }else {
+            /*удалить вібраное*/
+            /*візов диалога*/
+        }
     }
 
     @Override

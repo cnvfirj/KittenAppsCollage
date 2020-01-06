@@ -54,7 +54,7 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
     protected void click(ImageView img, ImageView check, int pos) {
         super.click(img, check, pos);
         if(isModeSelected()){
-            if(getArrChecks()[pos]!=true){
+            if(!getArrChecks()[pos]){
                 resetCheckeds();
                 check.setVisibility(View.VISIBLE);
                 getArrChecks()[pos]=true;
@@ -72,7 +72,6 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
             getArrChecks()[pos]=true;
         }
         super.longClick(img, check, pos);
-
     }
 
     public boolean isModeSelected() {

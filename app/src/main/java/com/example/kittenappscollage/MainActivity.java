@@ -26,7 +26,6 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.io.File;
 
-
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery, SaveImageToFile.ActionSave {
 
     private ApplyDrawToolsFragmentDraw mFragDraw;
@@ -67,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private ViewPageAdapter addFragments(){
         mFragDraw = new ApplyDrawToolsFragmentDraw();
-//        mFragColl = new FragmentModeSelected();
         mFragGal = new FragmentSlideGallery();
         ViewPageAdapter a = new ViewPageAdapter(getSupportFragmentManager());
         a.addFragment(mFragDraw);
