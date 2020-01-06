@@ -78,7 +78,6 @@ public class FragmentScanAllImages extends Fragment {
                     list.put(cursor.getString(col_fold), imgs);
                 }
             }
-
         }
         return list;
     }
@@ -88,11 +87,9 @@ public class FragmentScanAllImages extends Fragment {
         if(listImagesToFolder.containsKey(key)){
             listImagesToFolder.get(key).add(path);
         } else {
-
                 ArrayList<String> imgs = new ArrayList<>();
                 imgs.add(path);
             listImagesToFolder.put(key, imgs);
-
         }
         setListImagesInFolders(listImagesToFolder);
     }
