@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/select"
+        android:drawable="@drawable/ic_select_close"
+        android:state_selected="true"/>
+
+    <item
+        android:id="@+id/inselect"
+        android:drawable="@drawable/ic_select_back"
+        android:state_selected="false"/>
+
+    <transition
+        android:fromId="@+id/select"
+        android:toId="@+id/inselect"
+        android:drawable="@drawable/anim_sel_exit_to_arrow"/>
+
+    <transition
+        android:fromId="@+id/inselect"
+        android:toId="@+id/select"
+        android:drawable="@drawable/anim_sel_arrow_to_exit"/>
+
+
+</animated-selector>

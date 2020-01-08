@@ -74,6 +74,8 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         if(i==ROOT_ADAPTER){
             slideExit(false);
         }else {
+            selectExitMode.setSelected(false);
+            selectExitMode.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_select_back,null));
             slideExit(true);
         }
     }
@@ -121,12 +123,17 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
     @Override
     protected void visibleMenu() {
       if(getIndexAdapter()==ROOT_ADAPTER){
+          selectExitMode.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_collect_selected_menu,null));
+          selectExitMode.setSelected(true);
           slideExit(true);
           slideSel_1(true);
           slideSel_2(true);
           getRecycler().setEnabled(false);
       }else{
           /*implement animation exit*/
+          selectExitMode.setSelected(false);
+          selectExitMode.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_collect_selected_menu,null));
+          selectExitMode.setSelected(true);
       }
         slideSel_3(true);
         slideSel_4(true);
@@ -143,6 +150,8 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
             getRecycler().setEnabled(true);
         }else {
             /*implement animation exit*/
+            selectExitMode.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_collect_selected_menu,null));
+            selectExitMode.setSelected(false);
             getImgAdapt().setModeSelected(false);
         }
         slideSel_3(false);
