@@ -12,6 +12,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class PresentPaint extends View {
 
     public static final int TEXT = 1;
@@ -72,12 +74,20 @@ public class PresentPaint extends View {
         } else if(type==TEXT){
             clip.reset();
             clip.moveTo(0,(float) canvas.getHeight()/2);
-            clip.lineTo(text.length()*(width/2f),(float) canvas.getHeight()/2);
+            clip.lineTo((float)canvas.getWidth(),(float) canvas.getHeight()/2);
             paint.setTextSize(width*1.2f);
             paint.setStrokeWidth((float) width/9);
             paint.setTextAlign(Paint.Align.CENTER);
-            if(getWidth()<(text.length()*(width/2f)))paint.setTextAlign(Paint.Align.LEFT);
-            canvas.drawTextOnPath(text, clip, 0, (float) width/3, paint);
+            float length = text.length()*(width/2f);
+            clip.lineTo(length,(float) canvas.getHeight()/2);
+            if(getWidth()<length){
+                float c = length/text.length();
+                int step = (int)(getWidth()/c);
+                String subText = text.substring(0,step);
+                paint.setTextAlign(Paint.Align.LEFT);
+                canvas.drawTextOnPath(subText, clip, 0, (float) width/3, paint);
+            }else canvas.drawTextOnPath(text, clip, 0, (float) width/3, paint);
+
 
         }
     }

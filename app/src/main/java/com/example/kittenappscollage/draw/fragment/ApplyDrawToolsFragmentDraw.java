@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 
+import com.example.kittenappscollage.draw.DialogSelecledTextFragment;
 import com.example.kittenappscollage.draw.DialogSelectParams;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.operations.Operation;
@@ -23,9 +24,6 @@ import static com.example.kittenappscollage.helpers.Massages.LYTE;
 public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
 
     private final String KEY_EVENT = "key event";
-
-
-
 
     @Override
     protected void toolPaint(ImageView v) {
@@ -115,6 +113,7 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     @Override
     protected void enterText() {
         super.enterText();
+        DialogSelecledTextFragment.get().show(getChildFragmentManager(),DialogSelecledTextFragment.DIALOG_SEL_TXT);
     }
 
     @Override

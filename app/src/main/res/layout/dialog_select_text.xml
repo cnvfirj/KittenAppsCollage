@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        style="@style/common_buttons"
+        android:layout_width="match_parent"
+        android:singleLine="true"
+        android:textSize="20dp"
+        android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:id="@+id/dialog_edit_text"/>
+
+
+    <include layout="@layout/item_present_draw"/>
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <ImageView
+            style="@style/common_buttons"
+            android:background="@drawable/background_buttons_add_lyr"
+            android:id="@+id/dialog_clear_text"
+            android:layout_gravity="start|bottom"/>
+        <ImageView
+            style="@style/common_buttons"
+            android:background="@drawable/background_buttons_add_lyr"
+            android:id="@+id/dialog_done_text"
+            android:layout_gravity="center_horizontal|bottom"/>
+        <ImageView
+            style="@style/common_buttons"
+            android:background="@drawable/background_buttons_add_lyr"
+            android:id="@+id/dialog_exit"
+            android:layout_gravity="end|bottom"/>
+
+    </FrameLayout>
+
+
+</LinearLayout>
