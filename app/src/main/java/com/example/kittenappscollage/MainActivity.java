@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.kittenappscollage.collect.fragment.FragmentSelectedGallery;
 import com.example.kittenappscollage.collect.fragment.FragmentSlideGallery;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private ApplyDrawToolsFragmentDraw mFragDraw;
 
-    private FragmentSlideGallery mFragGal;
+    private FragmentSelectedGallery mFragGal;
 
     private TabLayout mTabLayout;
 
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private ViewPageAdapter addFragments(){
         mFragDraw = new ApplyDrawToolsFragmentDraw();
-        mFragGal = new FragmentSlideGallery();
+        mFragGal = new FragmentSelectedGallery();
         ViewPageAdapter a = new ViewPageAdapter(getSupportFragmentManager());
         a.addFragment(mFragDraw);
         a.addFragment(mFragGal);

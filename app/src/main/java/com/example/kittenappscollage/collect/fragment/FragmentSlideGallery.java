@@ -93,31 +93,17 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
     }
 
     protected void clickSel_1(ImageView v){
-       /*скріть папку*/
-        /*візов диалога*/
+
     }
     protected void clickSel_2(ImageView v){
-        /*переименовать*/
-        /*візов диалога*/
+
     }
 
     protected void clickSel_3(ImageView v){
-        if(getIndexAdapter()!= ROOT_ADAPTER){
-            /*переместить на карту*/
-            /*візов диалога*/
-        }else {
-            /*поделиться вібранное*/
-            /*візов диалога*/
-        }
+
     }
     protected void clickSel_4(ImageView v){
-        if(getIndexAdapter()!= ROOT_ADAPTER){
-            /*удалить папку*/
-            /*візов диалога*/
-        }else {
-            /*удалить вібраное*/
-            /*візов диалога*/
-        }
+
     }
 
     @Override

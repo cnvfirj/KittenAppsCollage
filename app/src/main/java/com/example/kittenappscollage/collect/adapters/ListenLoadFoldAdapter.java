@@ -105,6 +105,10 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         }
     }
 
+    public String[]getKeys(){
+        return folds;
+    }
+
     protected class FoldHolder extends CollectHolder{
 
 
