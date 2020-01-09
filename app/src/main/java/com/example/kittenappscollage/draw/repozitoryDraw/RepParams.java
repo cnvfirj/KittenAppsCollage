@@ -3,6 +3,7 @@ package com.example.kittenappscollage.draw.repozitoryDraw;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 
 import com.example.kittenappscollage.helpers.App;
 
@@ -36,6 +37,8 @@ public class RepParams extends Repozitory {
     private String rText = "Your Enter Text";
 
     private ListParams rList;
+
+    private Typeface rShrift;
 
     public void drawParams(float width, int color, int alpha){
         setWidth(width);
@@ -119,6 +122,15 @@ public class RepParams extends Repozitory {
 
     public boolean isTextFill(){
         return rTextFill;
+    }
+
+    public RepParams setShrift(Typeface shrift){
+        rShrift = shrift;
+        return this;
+    }
+
+    public Typeface getShrift(){
+        return rShrift;
     }
 
     public interface ListParams{

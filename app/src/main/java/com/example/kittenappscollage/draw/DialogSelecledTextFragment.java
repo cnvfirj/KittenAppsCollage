@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.kittenappscollage.R;
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.view.PresentPaint;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
@@ -30,11 +32,13 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
 
     public final static String DIALOG_SEL_TXT = "sel txt";
 
-    private Typeface typeface;
-
     private EditText editText;
 
     private PresentPaint presentPaint;
+
+    private ExpandableLayout expandable;
+
+    private ListView listShrift;
 
     public static DialogSelecledTextFragment get(){
         DialogSelecledTextFragment d = new DialogSelecledTextFragment();
@@ -45,6 +49,7 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(getContext().getResources().getColor(R.color.colorPrimaryTransparent)));
+//        RepDraw.get().setShrift(Typeface.createFromAsset(getContext().getAssets(),"fonts/lt_ki_Ouroboros_Regular.ttf"));
         return inflater.inflate(R.layout.dialog_select_text,null);
     }
 
@@ -56,6 +61,7 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         presentPaint.setText("Shrift");
         presentPaint.setType(PresentPaint.TEXT);
         presentPaint.setWidthPaint((int) (getContext().getResources().getDimension(R.dimen.param_save)/1.4f));
+        presentPaint.setOnClickListener(this);
         editText = view.findViewById(R.id.dialog_edit_text);
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -73,6 +79,8 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
 
             }
         });
+        expandable = view.findViewById(R.id.item_present_draw_expadable);
+        listShrift = view.findViewById(R.id.item_present_draw_list_shrift);
     }
 
     @Override
@@ -85,15 +93,20 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         float width = res.getDimension(R.dimen.param_color_pick)+res.getDimension(R.dimen.margin_save)*2;
         window.setLayout((int) (width), (int)(height));
         window.setGravity(Gravity.CENTER);
-
     }
 
     @Override
     public void onClick(View view) {
-
+       switch (view.getId()){
+           case R.id.item_present_draw:
+               LYTE("click present");
+               if(!expandable.isExpanded())expandable.expand();
+               else expandable.collapse();
+           break;
+       }
     }
 
     private void type(){
-        typeface = Typeface.create(Typeface.SERIF, Typeface.NORMAL);
+       Typeface.create(Typeface.SERIF, Typeface.NORMAL);
     }
 }

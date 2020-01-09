@@ -18,12 +18,7 @@ public class RequestFolder {
     public final static String GENERAL_FOLDER = "/Kitten Paint Folder";
 
     public final static String FOLDER_IMAGES = "/My Collages";
-//    public final static String FOLDER_PROJECTS = "/projects";
-//    public final static String FOLDER_PHOTO = "/photo";
-//    /*префиксы в папке проекта*/
-//    public final static String NAME_PROP = "prop.proj";
-//    public final static String NAME_IMAGE = "img.png";
-//    public final static String NAME_LAYER = "lyr.png";
+    public final static String FOLDER_SHRIFT = "/fonts";
     /*доступен только из приложения*/
     /*внутреннее хранилище*/
     public final static String FOLDER_CASH = "/cash";
@@ -50,6 +45,10 @@ public class RequestFolder {
 
     public static String getNameFoldCollages(){
         return FOLDER_IMAGES.substring(1);
+    }
+
+    public static String getFolderShrift(){
+        return getMainFolder()+FOLDER_SHRIFT;
     }
     /*проверяем наличие папки, если ее нет создаем
     *в зависимости от успеха возвращаем да/нет*/

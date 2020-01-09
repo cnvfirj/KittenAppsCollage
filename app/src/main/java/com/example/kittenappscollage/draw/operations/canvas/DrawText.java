@@ -7,6 +7,7 @@ import android.graphics.PointF;
 import android.graphics.Typeface;
 
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
+import com.example.kittenappscollage.helpers.App;
 
 public class DrawText extends DrawSpot {
 
@@ -18,8 +19,6 @@ public class DrawText extends DrawSpot {
 
     private String hText;
 
-//    private float hLengthPath;
-
     public DrawText() {
         hPaintText = new Paint(Paint.ANTI_ALIAS_FLAG);
     }
@@ -30,7 +29,7 @@ public class DrawText extends DrawSpot {
         if(getCommand().equals(Command.TEXT)) {
             initParams();
             hStart = new PointF(s.x, s.y);
-//            hLengthPath = 0;
+            setShrift(RepDraw.get().getShrift());
         }
     }
 
@@ -42,7 +41,6 @@ public class DrawText extends DrawSpot {
                 hStart = new PointF(hMove.x, hMove.y);
             }
             hMove = new PointF(m.x, m.y);
-//            hLengthPath += lengthVector(vector());
         }
     }
 
@@ -51,6 +49,10 @@ public class DrawText extends DrawSpot {
         if (getCommand().equals(Command.TEXT)) {
             drawText();
         }else super.draw();
+    }
+
+    public void setShrift(Typeface t){
+        if(t!=null)getPaintText().setTypeface(t);
     }
 
     private void drawText(){
@@ -65,7 +67,6 @@ public class DrawText extends DrawSpot {
     private void initParams(){
         hText = RepDraw.get().getText();
         hSizeText = RepDraw.get().getWidth()*1.3f;
-        getPaintText().setTypeface(Typeface.create(Typeface.SERIF, Typeface.NORMAL));
         getPaintText().setColor(RepDraw.get().getColor());
         getPaintText().setTextSize(getTextSize());
         getPaintText().setStrokeWidth(2);
@@ -92,6 +93,8 @@ public class DrawText extends DrawSpot {
     private float lengthVector(PointF vector){
         return (float) Math.sqrt(vector.x*vector.x+vector.y*vector.y);
     }
+
+
 
     private int inversion(int color){
         return Color.rgb(255-Color.red(color),255-Color.green(color),255-Color.blue(color));

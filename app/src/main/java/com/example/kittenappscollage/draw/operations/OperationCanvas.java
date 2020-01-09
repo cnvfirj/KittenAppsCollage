@@ -10,11 +10,6 @@ import com.example.mutmatrix.DeformMat;
 
 public class OperationCanvas extends Operation {
 
-    public final static int DRAW_PREVIEW = 145;
-    public final static int DRAW_BITMAP = 129;
-
-//    private DrawLineInCanvas oDraw;
-
     private DrawText oDraw;
 
     private boolean oIsCanvas;

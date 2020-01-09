@@ -11,6 +11,10 @@
     <com.example.kittenappscollage.view.PresentPaint
         style="@style/common_buttons"
         android:layout_width="match_parent"
-        android:id="@+id/item_present_draw"/>
+        android:id="@+id/item_present_draw"
+        android:clickable="true"
+        android:focusable="true" />
+    </FrameLayout>
 
-</FrameLayout>
+
+

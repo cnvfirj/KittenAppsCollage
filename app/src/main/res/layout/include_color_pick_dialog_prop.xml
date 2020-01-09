@@ -53,26 +53,32 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/param_save_2"/>
 
-        <com.example.kittenappscollage.view.PresentPaint
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            android:layout_width="70dp"
-            android:layout_height="@dimen/param_save_2"
-            android:id="@+id/present_paint"
-            android:layout_gravity="start"/>
+            <com.example.kittenappscollage.view.PresentPaint
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/param_save_2"
+                android:id="@+id/present_paint"
+                android:layout_weight="1"/>
 
-        <com.example.kittenappscollage.view.PresentPaint
-            android:layout_width="70dp"
-            android:layout_height="@dimen/param_save_2"
-            android:id="@+id/present_erase"
-            android:layout_gravity="center_horizontal"/>
+            <com.example.kittenappscollage.view.PresentPaint
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/param_save_2"
+                android:id="@+id/present_erase"
+                android:layout_weight="1"/>
 
-        <com.example.kittenappscollage.view.PresentPaint
-            android:layout_width="70dp"
-            android:layout_height="@dimen/param_save_2"
-            android:id="@+id/present_text"
-            android:layout_gravity="end" />
+            <com.example.kittenappscollage.view.PresentPaint
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/param_save_2"
+                android:id="@+id/present_text"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
     </FrameLayout>
-
 
 
 

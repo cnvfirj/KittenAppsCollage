@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -77,14 +78,13 @@ public class PresentPaint extends View {
             clip.lineTo((float)canvas.getWidth(),(float) canvas.getHeight()/2);
             paint.setTextSize(width*1.2f);
             paint.setStrokeWidth((float) width/9);
-            paint.setTextAlign(Paint.Align.CENTER);
+            paint.setTextAlign(Paint.Align.LEFT);
             float length = text.length()*(width/2f);
             clip.lineTo(length,(float) canvas.getHeight()/2);
             if(getWidth()<length){
                 float c = length/text.length();
                 int step = (int)(getWidth()/c);
                 String subText = text.substring(0,step);
-                paint.setTextAlign(Paint.Align.LEFT);
                 canvas.drawTextOnPath(subText, clip, 0, (float) width/3, paint);
             }else canvas.drawTextOnPath(text, clip, 0, (float) width/3, paint);
 
@@ -120,8 +120,13 @@ public class PresentPaint extends View {
 
     public void setWidthPaint(int width) {
         paint.setStrokeWidth(width);
+
         this.width = width;
         invalidate();
+    }
+
+    public void setShrift(Typeface t){
+        if(t!=null)paint.setTypeface(t);
     }
 
     public int getWidthPaint(){

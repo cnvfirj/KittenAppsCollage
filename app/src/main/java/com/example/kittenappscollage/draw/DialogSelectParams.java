@@ -60,6 +60,7 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
         presentErase.setType(PresentPaint.ERASER);
         presentText = view.findViewById(R.id.present_text);
         presentText.setType(PresentPaint.TEXT);
+        presentText.setShrift(RepDraw.get().getShrift());
         barPaintAlpha = view.findViewById(R.id.prop_paint_alpha);
         barPaintWidth = view.findViewById(R.id.prop_paint_width);
         barEraseAlpha = view.findViewById(R.id.prop_erase_alpha);
@@ -145,8 +146,6 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
     public void onResume() {
         super.onResume();
         Window window = getDialog().getWindow();
-//        Rect rect = new Rect();
-//        getActivity().getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
         Resources res = getContext().getResources();
         float height = res.getDimension(R.dimen.param_color_pick)+res.getDimension(R.dimen.param_save)*4+res.getDimension(R.dimen.param_save_2);
         height+=res.getDimension(R.dimen.margin_save)*6;
