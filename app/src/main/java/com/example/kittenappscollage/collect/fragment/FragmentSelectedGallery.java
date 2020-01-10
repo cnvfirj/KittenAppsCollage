@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentSelectedGallery extends FragmentSlideGallery {
 
@@ -32,6 +31,8 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
+
+
     @Override
     public void click(int adapter, ImageView img, ImageView check, int pos) {
         super.click(adapter, img, check, pos);
@@ -45,7 +46,16 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                 getFoldAdapt().setModeSelected(false);
             }
         }else {
+             if(selectFiles.contains(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos))){
+                 selectFiles.remove(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
+                 if(selectFiles.size()==0){
+                     invisibleMenu();
+                     getImgAdapt().setModeSelected(false);
+                 }
+             }else {
+                 selectFiles.add(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
 
+             }
         }
     }
 
@@ -66,6 +76,27 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
         }
     }
 
+    public boolean onBackPressed(int index){
+        if(index==1) {
+            if (getIndexAdapter() == ROOT_ADAPTER) {
+                if (getFoldAdapt().isModeSelected()) {
+                    invisibleMenu();
+                    getFoldAdapt().setModeSelected(false);
+                    return true;
+                }
+            } else {
+                if (getImgAdapt().isModeSelected()) {
+                    invisibleMenu();
+                    getImgAdapt().setModeSelected(false);
+                    return true;
+                }
+            }
+        }
+
+        return false;
+
+    }
+
     private void addPathFolder(){
         if(under.size()>0){
             String[]split = under.get(0).split("[/]");
@@ -84,55 +115,9 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
         modeSel = false;
     }
 
-    @Override
-    protected void clickSel_1(ImageView v) {
-        super.clickSel_1(v);
-        /*скріть папку*/
-        /*візов диалога*/
-        for (String s:selectFiles) {
-            LYTE("invis fold "+s);
-        }
+    protected HashSet<String >getSelectFiles(){
+        return selectFiles;
     }
 
-    @Override
-    protected void clickSel_2(ImageView v) {
-        super.clickSel_2(v);
-        /*переименовать*/
-        /*візов диалога*/
-        for (String s:selectFiles) {
-            LYTE("rename fold "+s);
-        }
-    }
 
-    @Override
-    protected void clickSel_3(ImageView v) {
-        super.clickSel_3(v);
-        if(getIndexAdapter()== ROOT_ADAPTER){
-            /*переместить на карту*/
-            /*візов диалога*/
-            for (String s:selectFiles) {
-                LYTE("exp in sd fold "+s);
-            }
-        }else {
-            /*поделиться вібранное*/
-            /*візов диалога*/
-            LYTE("share sel");
-        }
-    }
-
-    @Override
-    protected void clickSel_4(ImageView v) {
-        super.clickSel_4(v);
-        if(getIndexAdapter()== ROOT_ADAPTER){
-            /*удалить папку*/
-            /*візов диалога*/
-            for (String s:selectFiles) {
-                LYTE("del fold "+s);
-            }
-        }else {
-            /*удалить вібраное*/
-            /*візов диалога*/
-            LYTE("del sel");
-        }
-    }
 }

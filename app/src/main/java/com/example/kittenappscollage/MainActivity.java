@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.kittenappscollage.collect.fragment.FragmentGalleryAction;
 import com.example.kittenappscollage.collect.fragment.FragmentSelectedGallery;
 import com.example.kittenappscollage.collect.fragment.FragmentSlideGallery;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private ApplyDrawToolsFragmentDraw mFragDraw;
 
-    private FragmentSelectedGallery mFragGal;
+    private FragmentGalleryAction mFragGal;
 
     private TabLayout mTabLayout;
 
@@ -60,6 +61,13 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if(!mFragGal.onBackPressed(mTabLayout.getSelectedTabPosition())){
+            super.onBackPressed();
+        }
+    }
+
     private void setupViewPager(SelectSweepViewPager v){
         v.setAdapter(addFragments());
         addTabs(v);
@@ -67,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private ViewPageAdapter addFragments(){
         mFragDraw = new ApplyDrawToolsFragmentDraw();
-        mFragGal = new FragmentSelectedGallery();
+        mFragGal = new FragmentGalleryAction();
         ViewPageAdapter a = new ViewPageAdapter(getSupportFragmentManager());
         a.addFragment(mFragDraw);
         a.addFragment(mFragGal);
