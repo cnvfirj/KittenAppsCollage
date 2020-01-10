@@ -121,6 +121,7 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
           selectExitMode.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_collect_selected_menu,null));
           selectExitMode.setSelected(true);
       }
+        selectIconAction3(selected_3);
         slideSel_3(true);
         slideSel_4(true);
 
@@ -142,6 +143,17 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         }
         slideSel_3(false);
         slideSel_4(false);
+    }
+
+    protected void selectIconAction3(ImageView view){
+        if(getIndexAdapter()==ROOT_ADAPTER){
+            view.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_trans_device_to_sd,null));
+            /*если нет карты памяти сделать неактивной и назначить иконку с у-ва на карту*/
+            /*здесь сделать автоматом выбор переносом на карту памяти*/
+            /*если выбранная папка на карте памяти то перенос на у-во*/
+        }else {
+            view.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_share,null));
+        }
     }
 
     protected void slideExit(boolean s){

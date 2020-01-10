@@ -20,13 +20,13 @@
         <ImageView
             style="@style/slide_style_all_tools"
             android:id="@+id/selected_collect_1"
-            android:src="@drawable/ic_share"
+            android:src="@drawable/ic_no_vision"
             android:background="@drawable/background_main_button_reset"/>
 
         <ImageView
             style="@style/slide_style_all_tools"
             android:id="@+id/selected_collect_2"
-            android:src="@drawable/ic_delete"
+            android:src="@drawable/ic_rename"
             android:background="@drawable/background_main_button_reset"/>
 
         <ImageView
