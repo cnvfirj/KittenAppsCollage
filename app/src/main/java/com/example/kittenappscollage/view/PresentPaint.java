@@ -77,7 +77,7 @@ public class PresentPaint extends View {
             clip.moveTo(0,(float) canvas.getHeight()/2);
             clip.lineTo((float)canvas.getWidth(),(float) canvas.getHeight()/2);
             paint.setTextSize(width*1.2f);
-            paint.setStrokeWidth((float) width/9);
+            paint.setStrokeWidth(2);
             paint.setTextAlign(Paint.Align.LEFT);
             float length = text.length()*(width/2f);
             clip.lineTo(length,(float) canvas.getHeight()/2);

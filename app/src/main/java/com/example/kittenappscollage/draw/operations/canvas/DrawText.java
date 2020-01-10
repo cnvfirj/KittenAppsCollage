@@ -72,10 +72,10 @@ public class DrawText extends DrawSpot {
         getPaintText().setStrokeWidth(2);
         getPaintText().setPathEffect(new CornerPathEffect(RepDraw.get().getWidth()*3));
         getPaintText().setStyle(RepDraw.get().isTextFill()? Paint.Style.FILL_AND_STROKE: Paint.Style.STROKE);
-
+        getPaintText().setTextSkewX(RepDraw.get().getItalicText());//наклон
         getPaintSpot().setColor(inversion(RepDraw.get().getColor()));
         getPaintSpot().setStyle(Paint.Style.STROKE);
-        getPaintSpot().setStrokeWidth(2);
+        getPaintSpot().setStrokeWidth(3);
     }
 
     private Paint getPaintText(){

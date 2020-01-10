@@ -11,9 +11,7 @@
         android:singleLine="true"
         android:textSize="20dp"
         android:textColor="@android:color/white"
-        android:background="@color/colorPrimary"
         android:id="@+id/dialog_edit_text"/>
-
 
     <include layout="@layout/item_present_draw"/>
 
@@ -27,34 +25,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/item_present_draw_list_shrift"/>
-
     </net.cachapa.expandablelayout.ExpandableLayout>
 
+    <include layout="@layout/include_param_text"/>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
-
-        <ImageView
-            style="@style/common_buttons"
-            android:background="@drawable/background_buttons_add_lyr"
-            android:id="@+id/dialog_clear_text"
-            android:layout_gravity="start|bottom"/>
-        <ImageView
-            style="@style/common_buttons"
-            android:background="@drawable/background_buttons_add_lyr"
-            android:id="@+id/dialog_done_text"
-            android:layout_gravity="center_horizontal|bottom"/>
-        <ImageView
-            style="@style/common_buttons"
-            android:background="@drawable/background_buttons_add_lyr"
-            android:id="@+id/dialog_exit"
-            android:layout_gravity="end|bottom"/>
-
-    </FrameLayout>
-
-
-
+    <include layout="@layout/include_action_buttons"/>
 
 </LinearLayout>

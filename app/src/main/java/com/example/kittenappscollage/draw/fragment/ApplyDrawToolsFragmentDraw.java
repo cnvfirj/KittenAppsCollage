@@ -1,24 +1,18 @@
 package com.example.kittenappscollage.draw.fragment;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.widget.ImageView;
 
-import androidx.annotation.Nullable;
-
-import com.example.kittenappscollage.draw.DialogSelecledTextFragment;
+import com.example.kittenappscollage.draw.textProp.DialogSelecledTextFragment;
 import com.example.kittenappscollage.draw.DialogSelectParams;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.operations.Operation;
+import com.example.kittenappscollage.draw.textProp.DialogSelectShrift;
 
 import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_ALPHA;
 import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_COLOR;
 import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_TEXT;
 import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_WIDTH;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 /*применяем инструменты обработки изображения*/
 public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
@@ -113,7 +107,7 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     @Override
     protected void enterText() {
         super.enterText();
-        DialogSelecledTextFragment.get().show(getChildFragmentManager(),DialogSelecledTextFragment.DIALOG_SEL_TXT);
+        DialogSelectShrift.get().show(getChildFragmentManager(),DialogSelecledTextFragment.DIALOG_SEL_TXT);
     }
 
     @Override

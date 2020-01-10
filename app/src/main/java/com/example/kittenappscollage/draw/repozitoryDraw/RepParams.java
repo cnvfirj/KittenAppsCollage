@@ -24,6 +24,8 @@ public class RepParams extends Repozitory {
 
     private float rWidthTool = 50;
 
+    private float rItalicText = 0;
+
     private int rColorPaint = Color.BLACK;
 
     private int rAlphaErase = 0;
@@ -132,6 +134,17 @@ public class RepParams extends Repozitory {
     public Typeface getShrift(){
         return rShrift;
     }
+
+    public RepParams setItalicText(float angle){
+        rItalicText = angle;
+        return this;
+    }
+
+    public float getItalicText(){
+        return rItalicText;
+    }
+
+
 
     public interface ListParams{
         public void color(int c);
