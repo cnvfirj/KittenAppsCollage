@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:id="@+id/dialog_action_gallery_massage"
-        android:text="select action"/>
-
     <EditText
         style="@style/common_buttons"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/dialog_action_gallery_enter_name"
-        android:background="@color/colorPrimary"
         android:textColor="@android:color/white"
+        android:background="@color/colorPrimary"
+        android:inputType="textMultiLine"
+        android:text="Set Name"
+        android:textAlignment="center"
         android:textSize="20dp"
-        android:visibility="invisible"/>
+        android:focusable="false"
+        android:longClickable="false"
+        android:cursorVisible="false"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -29,12 +29,14 @@
             style="@style/common_buttons"
             android:id="@+id/dialog_action_gallery_done"
             android:background="@drawable/background_main_button_reset"
+            android:src="@drawable/ic_done"
             android:layout_gravity="bottom|start"/>
 
         <ImageView
             style="@style/common_buttons"
             android:id="@+id/dialog_action_gallery_close"
             android:background="@drawable/background_main_button_reset"
+            android:src="@drawable/ic_close"
             android:layout_gravity="bottom|end"/>
 
 

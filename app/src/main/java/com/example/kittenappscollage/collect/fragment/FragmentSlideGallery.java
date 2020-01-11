@@ -6,10 +6,15 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.example.kittenappscollage.R;
 
+import java.io.File;
+import java.util.ArrayList;
+
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentSlideGallery extends FragmentGallery implements View.OnClickListener {
 
@@ -25,9 +30,13 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
 
     private float slide;
 
+    private ArrayList<String>dirs;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        dirs = new ArrayList<>();
+        checkNamesDirs();
         slide = getContext().getResources().getDimension(R.dimen.param_save)+getContext().getResources().getDimension(R.dimen.margin_save);
         init(view);
         hideMenu();
@@ -55,6 +64,12 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         }
     }
 
+    private void checkNamesDirs(){
+        File[] d = ContextCompat.getExternalFilesDirs(getContext(), null);
+        for (File f:d){
+            dirs.add(f.getAbsolutePath().split("Android")[0]);
+        }
+    }
     private void init(View v){
         selectExitMode = v.findViewById(R.id.selected_collect_exit_mode);/*выход или отмена*/
         selectExitMode.setOnClickListener(this);
@@ -116,10 +131,10 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
           slideSel_2(true);
           getRecycler().setEnabled(false);
       }else{
-          /*implement animation exit*/
           selectExitMode.setSelected(false);
           selectExitMode.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_collect_selected_menu,null));
           selectExitMode.setSelected(true);
+          selected_3.setEnabled(true);
       }
         selectIconAction3(selected_3);
         slideSel_3(true);
@@ -137,7 +152,7 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
             getRecycler().setEnabled(true);
         }else {
             /*implement animation exit*/
-            selectExitMode.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_collect_selected_menu,null));
+//            selectExitMode.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_collect_selected_menu,null));
             selectExitMode.setSelected(false);
             getImgAdapt().setModeSelected(false);
         }
@@ -147,7 +162,7 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
 
     protected void selectIconAction3(ImageView view){
         if(getIndexAdapter()==ROOT_ADAPTER){
-            view.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_trans_device_to_sd,null));
+            view.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_collect_selected_trans,null));
             /*если нет карты памяти сделать неактивной и назначить иконку с у-ва на карту*/
             /*здесь сделать автоматом выбор переносом на карту памяти*/
             /*если выбранная папка на карте памяти то перенос на у-во*/
@@ -155,6 +170,8 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
             view.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_share,null));
         }
     }
+
+
 
     protected void slideExit(boolean s){
         if(s){
@@ -197,6 +214,13 @@ protected void slideSel_4(boolean s){
         }
     }
 
+    protected ImageView getSelected_3(){
+        return selected_3;
+    }
+
+    protected ArrayList<String>getNamesDirs(){
+        return dirs;
+    }
 
 
     private boolean modeSel(){

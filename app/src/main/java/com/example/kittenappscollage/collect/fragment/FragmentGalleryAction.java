@@ -1,11 +1,32 @@
 package com.example.kittenappscollage.collect.fragment;
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+
+import com.example.kittenappscollage.collect.dialogActions.DialogAction;
+import com.example.kittenappscollage.collect.dialogActions.ListenActions;
+
+import java.io.File;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
-public class FragmentGalleryAction extends FragmentSelectedGallery{
+public class FragmentGalleryAction extends FragmentSelectedGallery implements ListenActions {
+
+    private final String TAG_DIALOG = "dialog act";
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
 
     @Override
     protected void clickSel_1(ImageView v) {
@@ -55,7 +76,20 @@ public class FragmentGalleryAction extends FragmentSelectedGallery{
         }else {
             /*удалить вібраное*/
             /*візов диалога*/
-            LYTE("del sel");
+            for (String s:getSelectFiles()) {
+                LYTE("del sel "+s);
+            }
         }
+        DialogAction.inst(DialogAction.ACTION_DELETE, getIndexAdapter(),this).show(getFragmentManager().beginTransaction(),TAG_DIALOG);
+    }
+
+    @Override
+    public void result(boolean done, int action) {
+        LYTE("result "+done);
+    }
+
+    @Override
+    public void result(boolean done, String name) {
+
     }
 }

@@ -10,14 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentSelectedGallery extends FragmentSlideGallery {
 
 
-    private HashSet<String> selectFiles;
+    private ArrayList<String> selectFiles;
 
     private ArrayList<String>under;
 
@@ -26,7 +26,7 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       selectFiles = new HashSet<>();
+       selectFiles = new ArrayList<>();
        modeSel = false;
         return super.onCreateView(inflater, container, savedInstanceState);
     }
@@ -45,6 +45,7 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                 invisibleMenu();
                 getFoldAdapt().setModeSelected(false);
             }
+            checkFolder();
         }else {
              if(selectFiles.contains(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos))){
                  selectFiles.remove(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
@@ -61,7 +62,7 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
 
     @Override
     public void longClick(int adapter, ImageView img, ImageView check, int pos) {
-        super.longClick(adapter, img, check, pos);
+
         if(!modeSel){
             if(getImgAdapt().isModeSelected()||getFoldAdapt().isModeSelected()){
                 modeSel = true;
@@ -74,6 +75,7 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                 }
             }
         }
+        super.longClick(adapter, img, check, pos);
     }
 
     public boolean onBackPressed(int index){
@@ -109,14 +111,38 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
         }
     }
 
+
+
+    @Override
+    protected void selectIconAction3(ImageView view) {
+        super.selectIconAction3(view);
+        if(getIndexAdapter()==ROOT_ADAPTER) {
+            view.setEnabled(false);
+            checkFolder();
+        }else {
+            view.setEnabled(true);
+        }
+    }
+
     @Override
     protected void invisibleMenu() {
         super.invisibleMenu();
         modeSel = false;
     }
 
-    protected HashSet<String >getSelectFiles(){
+    protected ArrayList<String >getSelectFiles(){
         return selectFiles;
+    }
+
+    private void checkFolder() {
+        if (getNamesDirs().size() > 1) {
+            getSelected_3().setEnabled(true);
+            if (selectFiles.get(0).contains(getNamesDirs().get(0))) {
+                getSelected_3().setSelected(true);
+            } else {
+                getSelected_3().setSelected(false);
+            }
+        }
     }
 
 
