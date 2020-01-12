@@ -36,9 +36,6 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         super.clickSel_1(v);
         /*скріть папку*/
         /*візов диалога*/
-        for (String s:getSelectFiles()) {
-            LYTE("invis fold "+s);
-        }
     }
 
     @Override
@@ -46,9 +43,6 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         super.clickSel_2(v);
         /*переименовать*/
         /*візов диалога*/
-//        for (String s:getSelectFiles()) {
-//            LYTE("rename fold "+s);
-//        }
         DialogAction.inst(DialogAction.ACTION_RENAME, getIndexAdapter(),this)
                 .show(getFragmentManager().beginTransaction(),TAG_DIALOG);
     }
@@ -59,13 +53,9 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         if(getIndexAdapter()== ROOT_ADAPTER){
             /*переместить на карту*/
             /*візов диалога*/
-            for (String s:getSelectFiles()) {
-                LYTE("exp in sd fold "+s);
-            }
         }else {
             /*поделиться вібранное*/
             /*візов диалога*/
-            LYTE("share sel");
         }
     }
 
@@ -75,15 +65,11 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         if(getIndexAdapter()== ROOT_ADAPTER){
             /*удалить папку*/
             /*візов диалога*/
-            for (String s:getSelectFiles()) {
-                LYTE("del fold "+s);
-            }
+
         }else {
             /*удалить вібраное*/
             /*візов диалога*/
-            for (String s:getSelectFiles()) {
-                LYTE("del sel "+s);
-            }
+
         }
         DialogAction.inst(ACTION_DELETE, getIndexAdapter(),this)
                 .show(getFragmentManager().beginTransaction(),TAG_DIALOG);
