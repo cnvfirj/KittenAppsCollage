@@ -91,7 +91,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     }
 
     @Override
-    public void result(boolean done, int action) {
+    public void result(boolean done, int action, int indexAdapter) {
         LYTE("d "+done);
         for (String f:getSelectFiles()){
 //            if(action==ACTION_DELETE){
@@ -103,6 +103,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     }
 
+    /*это применимо только в корневом адаптере*/
     @Override
     public void result(boolean done, String name) {
         if(done&&!name.isEmpty()) {
@@ -113,7 +114,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 //            LYTE(getUnder().get(0));
 //            File oldfile = new File(getUnder().get(0));
 //            File newfile = new File(newPath+"/"+newName);
-//            boolean b = oldfile.delete();
+//            boolean b = oldfile.renameTo(newfile);
 //            LYTE("rename "+b);
 
 

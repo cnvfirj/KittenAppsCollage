@@ -116,14 +116,14 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
         switch (v.getId()){
             case R.id.dialog_action_gallery_done:
                 listen = (ListenActions)getTargetFragment();
-                listen.result(true, indexAction);
+                listen.result(true, indexAction,indexAdapter);
                 if(indexAction==ACTION_RENAME){
                     listen.result(true,text.getText().toString());
                 }
                 break;
             case R.id.dialog_action_gallery_close:
                 listen = (ListenActions)getTargetFragment();
-                listen.result(false, indexAction);
+                listen.result(false, indexAction,indexAdapter);
                 break;
             case R.id.dialog_action_gallery_clear:
                 text.setText("");

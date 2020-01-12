@@ -31,7 +31,7 @@ public class FragmentScanAllImages extends Fragment {
 
     private HashMap<String,ArrayList<String>>listImagesToFolder;
 
-    private ArrayList<String>listFolds;
+    private HashMap<String,String>listFolds;
 
     public void scanDevice(){
          check();
@@ -47,7 +47,7 @@ public class FragmentScanAllImages extends Fragment {
     }
 
      @SuppressLint("Recycle")
-    private HashMap<String,ArrayList<String>> scan(HashMap<String,ArrayList<String>>list,ArrayList<String>folds){
+    private HashMap<String,ArrayList<String>> scan(HashMap<String,ArrayList<String>>list,HashMap<String,String>folds){
          if(getListImagesInFolders()==null)initListImagesInFolders();
          else getListImagesInFolders().clear();
         String[] projection = {
@@ -79,7 +79,7 @@ public class FragmentScanAllImages extends Fragment {
                     imgs.add(cursor.getString(col_path));
                     list.put(cursor.getString(col_fold), imgs);
                     String pathFold = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);
-                    folds.add(pathFold);
+                    folds.put(cursor.getString(col_fold),pathFold);
                 }
             }
         }
@@ -106,7 +106,7 @@ public class FragmentScanAllImages extends Fragment {
         return listImagesToFolder;
     }
 
-    protected ArrayList<String>getListFolds(){
+    protected HashMap<String,String>getListFolds(){
         return listFolds;
     }
 
@@ -117,7 +117,7 @@ public class FragmentScanAllImages extends Fragment {
 
     protected void initListImagesInFolders(){
         listImagesToFolder = new HashMap<>();
-        listFolds = new ArrayList<>();
+        listFolds = new HashMap<>();
     }
 
 }

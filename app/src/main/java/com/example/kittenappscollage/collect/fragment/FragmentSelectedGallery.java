@@ -31,8 +31,6 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-
-
     @Override
     public void click(int adapter, ImageView img, ImageView check, int pos) {
         super.click(adapter, img, check, pos);
@@ -56,7 +54,6 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                         }
                     } else {
                         selectFiles.add(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
-
                     }
             }
         }
