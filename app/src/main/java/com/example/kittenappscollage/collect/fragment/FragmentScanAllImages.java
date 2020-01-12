@@ -67,9 +67,11 @@ public class FragmentScanAllImages extends Fragment {
         if(list==null)initListImagesInFolders();
         clearListImagesInFolders();
         while (cursor.moveToNext()) {
-            String[] data = cursor.getString(col_path).split("[.]");
-            String pref = data[data.length-1].toLowerCase();
-            boolean pik = pref.equals("png")||pref.equals("jpeg")||pref.equals("jpg");
+//            String[] data = cursor.getString(col_path).split("[.]");
+//            String pref = data[data.length-1].toLowerCase();
+//            boolean pik = pref.equals("png")||pref.equals("jpeg")||pref.equals("jpg");
+            String path = cursor.getString(col_path).toLowerCase();
+            boolean pik = path.endsWith(".png")||path.endsWith(".jpeg")||path.endsWith("jpg");
 
             if(list.containsKey(cursor.getString(col_fold))){
                 if(pik) list.get(cursor.getString(col_fold)).add(cursor.getString(col_path));

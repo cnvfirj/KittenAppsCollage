@@ -33,6 +33,8 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     private int indexAdapter;
 
+    private String key;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -82,6 +84,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
                 gridLayoutManager.setSpanCount(3);
                 recycler.setAdapter(imgAdapt);
                 setIndexAdapter(pos);
+                key = getFoldAdapt().getKeys()[pos];
             }
         }
     }
@@ -112,6 +115,14 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     }
 
+
+    protected String getKey(){
+        return key;
+    }
+
+    protected void setKey(String k){
+        key = k;
+    }
 
     protected void setIndexAdapter(int i){
         indexAdapter = i;

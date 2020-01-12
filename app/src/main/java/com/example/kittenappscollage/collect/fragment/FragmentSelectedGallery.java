@@ -37,6 +37,7 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
         if(modeSel) {
             if (getIndexAdapter() == ROOT_ADAPTER) {
                     if (!under.get(0).equals(getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]).get(0))) {
+                        setKey(getFoldAdapt().getKeys()[pos]);
                         selectFiles.clear();
                         under = getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]);
                         addPathFolder(pos);
@@ -72,9 +73,10 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                 }else {
                   selectFiles.add(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
                 }
+                super.longClick(adapter, img, check, pos);
             }
         }
-        super.longClick(adapter, img, check, pos);
+//        super.longClick(adapter, img, check, pos);
     }
 
     public boolean onBackPressed(int index){
@@ -105,6 +107,7 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
 
     private void addPathFolder(int pos){
         if(under.size()>0){
+            setKey(getFoldAdapt().getKeys()[pos]);
             String[]split = under.get(0).split(getFoldAdapt().getKeys()[pos]);
             String file = split[0]+getFoldAdapt().getKeys()[pos];
             selectFiles.clear();

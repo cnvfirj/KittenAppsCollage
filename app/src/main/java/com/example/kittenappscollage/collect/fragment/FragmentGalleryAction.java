@@ -11,7 +11,6 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 import com.example.kittenappscollage.collect.dialogActions.DialogAction;
 import com.example.kittenappscollage.collect.dialogActions.ListenActions;
@@ -47,9 +46,9 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         super.clickSel_2(v);
         /*переименовать*/
         /*візов диалога*/
-        for (String s:getSelectFiles()) {
-            LYTE("rename fold "+s);
-        }
+//        for (String s:getSelectFiles()) {
+//            LYTE("rename fold "+s);
+//        }
         DialogAction.inst(DialogAction.ACTION_RENAME, getIndexAdapter(),this)
                 .show(getFragmentManager().beginTransaction(),TAG_DIALOG);
     }
@@ -92,7 +91,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     @Override
     public void result(boolean done, int action, int indexAdapter) {
-        LYTE("d "+done);
+        LYTE("d "+done+"|"+getKey());
         for (String f:getSelectFiles()){
 //            if(action==ACTION_DELETE){
 //                File d = new File(f);
@@ -107,6 +106,29 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     @Override
     public void result(boolean done, String name) {
         if(done&&!name.isEmpty()) {
+//            getListFolds();
+//            getListImagesInFolders();
+//            getUnder();
+            String oldFold = getSelectFiles().get(0);
+            String[] splitFold = oldFold.split("[/]");
+            String oldName = splitFold[splitFold.length-1];
+            String excludeNameFold = oldFold.split(oldName)[0];
+            String newFold = excludeNameFold+name;
+            LYTE("old fold in rename "+oldFold);
+            LYTE("old name "+oldName);
+            LYTE("key name "+getKey());
+            LYTE("ex fold in rename "+excludeNameFold);
+            LYTE("new fold in rename "+newFold);
+            File oldfile = new File(oldFold);
+            File newfile = new File(newFold);
+//            if(oldfile.renameTo(newfile)){
+//                getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(newfile)));
+//                getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(oldfile)));
+//
+//            }
+
+
+
 //            String[] splitOldName = getUnder().get(0).split("[/]");
 //            String newName = splitOldName[splitOldName.length-1];
 //            String[] split = getSelectFiles().get(0).split("[/]");
