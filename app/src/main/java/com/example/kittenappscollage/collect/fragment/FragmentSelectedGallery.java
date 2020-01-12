@@ -36,27 +36,29 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
     @Override
     public void click(int adapter, ImageView img, ImageView check, int pos) {
         super.click(adapter, img, check, pos);
-        if(getIndexAdapter()== ROOT_ADAPTER){
-            if(!under.get(0).equals(getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]).get(0))) {
-                selectFiles.clear();
-                under = getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]);
-                addPathFolder(pos);
-            }else {
-                invisibleMenu();
-                getFoldAdapt().setModeSelected(false);
-            }
-            checkFolder();
-        }else {
-             if(selectFiles.contains(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos))){
-                 selectFiles.remove(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
-                 if(selectFiles.size()==0){
-                     invisibleMenu();
-                     getImgAdapt().setModeSelected(false);
-                 }
-             }else {
-                 selectFiles.add(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
+        if(modeSel) {
+            if (getIndexAdapter() == ROOT_ADAPTER) {
+                    if (!under.get(0).equals(getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]).get(0))) {
+                        selectFiles.clear();
+                        under = getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]);
+                        addPathFolder(pos);
+                    } else {
+                        invisibleMenu();
+                        getFoldAdapt().setModeSelected(false);
+                    }
+                    checkFolder();
+            } else {
+                    if (selectFiles.contains(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos))) {
+                        selectFiles.remove(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
+                        if (selectFiles.size() == 0) {
+                            invisibleMenu();
+                            getImgAdapt().setModeSelected(false);
+                        }
+                    } else {
+                        selectFiles.add(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
 
-             }
+                    }
+            }
         }
     }
 
