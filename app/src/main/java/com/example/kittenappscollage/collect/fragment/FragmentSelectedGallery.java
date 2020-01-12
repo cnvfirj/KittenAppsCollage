@@ -40,7 +40,7 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
             if(!under.get(0).equals(getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]).get(0))) {
                 selectFiles.clear();
                 under = getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]);
-                addPathFolder();
+                addPathFolder(pos);
             }else {
                 invisibleMenu();
                 getFoldAdapt().setModeSelected(false);
@@ -69,7 +69,7 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                 selectFiles.clear();
                 if(getIndexAdapter()== ROOT_ADAPTER){
                   under = getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]);
-                  addPathFolder();
+                  addPathFolder(pos);
                 }else {
                   selectFiles.add(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
                 }
@@ -99,13 +99,10 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
 
     }
 
-    private void addPathFolder(){
+    private void addPathFolder(int pos){
         if(under.size()>0){
-            String[]split = under.get(0).split("[/]");
-            String file = "";
-            for(int i=0;i<split.length-1;i++){
-                file+=split[i]+"/";
-            }
+            String[]split = under.get(0).split(getFoldAdapt().getKeys()[pos]);
+            String file = split[0]+getFoldAdapt().getKeys()[pos];
             selectFiles.clear();
             selectFiles.add(file);
         }
@@ -132,6 +129,10 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
 
     protected ArrayList<String >getSelectFiles(){
         return selectFiles;
+    }
+
+    protected ArrayList<String>getUnder(){
+        return under;
     }
 
     private void checkFolder() {

@@ -43,7 +43,7 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
 
     private int indexAdapter;
 
-    private ImageView done, close;
+    private ImageView done, close, clear;
 
     private EditText text;
 
@@ -92,6 +92,8 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
         done.setOnClickListener(this);
         close = view.findViewById(R.id.dialog_action_gallery_close);
         close.setOnClickListener(this);
+        clear = view.findViewById(R.id.dialog_action_gallery_clear);
+        clear.setOnClickListener(this);
         text = view.findViewById(R.id.dialog_action_gallery_enter_name);
         selectText();
 
@@ -115,11 +117,18 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
             case R.id.dialog_action_gallery_done:
                 listen = (ListenActions)getTargetFragment();
                 listen.result(true, indexAction);
+                if(indexAction==ACTION_RENAME){
+                    listen.result(true,text.getText().toString());
+                }
                 break;
             case R.id.dialog_action_gallery_close:
                 listen = (ListenActions)getTargetFragment();
                 listen.result(false, indexAction);
                 break;
+            case R.id.dialog_action_gallery_clear:
+                text.setText("");
+                break;
+
         }
     }
 
@@ -133,6 +142,7 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
             case ACTION_INVIS:
                 break;
             case ACTION_RENAME:
+                rename();
                 break;
             case ACTION_TRANSFER:
                 break;
@@ -141,12 +151,27 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
         paramView(text);
     }
 
+    private void rename(){
+        implementPropEdit(true);
+        text.setText("Имя папки");
+
+    }
+
     private void delete(){
+        implementPropEdit(false);
         String text = "Выбранные объекты будут удалены";
         if(indexAdapter==ROOT_ADAPTER)text = "Выбранная папка будет удалена со всем содержимым";
         this.text.setText(text);
+
     }
 
+    private void implementPropEdit(boolean v){
+        text.setFocusable(v);
+        text.setClickable(v);
+        text.setCursorVisible(v);
+        text.setEnabled(v);
+        clear.setVisibility(v?View.VISIBLE:View.INVISIBLE);
+    }
     protected void paramView(final View view){
         ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {

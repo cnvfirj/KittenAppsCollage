@@ -31,6 +31,8 @@ public class FragmentScanAllImages extends Fragment {
 
     private HashMap<String,ArrayList<String>>listImagesToFolder;
 
+    private ArrayList<String>listFolds;
+
     public void scanDevice(){
          check();
     }
@@ -38,14 +40,14 @@ public class FragmentScanAllImages extends Fragment {
     @SuppressLint("CheckResult")
     private void check(){
         Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> {
-          emitter.onNext(scan(getListImagesInFolders()));
+          emitter.onNext(scan(getListImagesInFolders(), getListFolds()));
           emitter.onComplete();
         }).compose(new ThreadTransformers.NewThread<>())
           .subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
     }
 
      @SuppressLint("Recycle")
-    private HashMap<String,ArrayList<String>> scan(HashMap<String,ArrayList<String>>list){
+    private HashMap<String,ArrayList<String>> scan(HashMap<String,ArrayList<String>>list,ArrayList<String>folds){
          if(getListImagesInFolders()==null)initListImagesInFolders();
          else getListImagesInFolders().clear();
         String[] projection = {
@@ -76,6 +78,8 @@ public class FragmentScanAllImages extends Fragment {
                     ArrayList<String> imgs = new ArrayList<>();
                     imgs.add(cursor.getString(col_path));
                     list.put(cursor.getString(col_fold), imgs);
+                    String pathFold = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);
+                    folds.add(pathFold);
                 }
             }
         }
@@ -102,12 +106,18 @@ public class FragmentScanAllImages extends Fragment {
         return listImagesToFolder;
     }
 
+    protected ArrayList<String>getListFolds(){
+        return listFolds;
+    }
+
     protected void clearListImagesInFolders(){
         listImagesToFolder.clear();
+        listFolds.clear();
     }
 
     protected void initListImagesInFolders(){
         listImagesToFolder = new HashMap<>();
+        listFolds = new ArrayList<>();
     }
 
 }
