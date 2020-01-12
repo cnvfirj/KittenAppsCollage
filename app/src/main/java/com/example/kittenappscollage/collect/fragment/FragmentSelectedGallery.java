@@ -90,6 +90,11 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                     invisibleMenu();
                     getImgAdapt().setModeSelected(false);
                     return true;
+                }else {
+                    setIndexAdapter(ROOT_ADAPTER);
+                    getGridLayoutManager().setSpanCount(2);
+                    getRecycler().setAdapter(getFoldAdapt());
+                    return true;
                 }
             }
         }
