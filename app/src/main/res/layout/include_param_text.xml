@@ -10,9 +10,10 @@
         android:layout_width="match_parent"
         android:id="@+id/dialog_edit_text_angle"
         app:max_value="90"
-        app:visible_text="true"
         app:text_size="18"
-        app:color_way="@color/colorAccent"/>
+        app:progress_value="45"
+        app:color_way="@color/colorAccent"
+        app:color_mark="@color/colorAccent"/>
 
     <ImageView
         style="@style/common_buttons"

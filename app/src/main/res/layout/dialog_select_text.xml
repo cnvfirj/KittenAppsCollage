@@ -6,14 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        style="@style/common_buttons"
-        android:layout_width="match_parent"
-        android:singleLine="true"
-        android:textSize="20dp"
-        android:textColor="@android:color/white"
-        android:id="@+id/dialog_edit_text"/>
-
     <include layout="@layout/item_present_draw"/>
 
     <net.cachapa.expandablelayout.ExpandableLayout
@@ -22,14 +14,24 @@
         android:id="@+id/item_present_draw_expadable"
         app:el_expanded="false">
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/item_present_draw_list_shrift"/>
+            android:id="@+id/item_present_draw_list_shrift" />
+
     </net.cachapa.expandablelayout.ExpandableLayout>
 
     <include layout="@layout/include_param_text"/>
 
+    <EditText
+        style="@style/common_buttons"
+        android:layout_width="match_parent"
+        android:singleLine="true"
+        android:textSize="20dp"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:id="@+id/dialog_edit_text"/>
+
     <include layout="@layout/include_action_buttons"/>
 
-</LinearLayout>
+    </LinearLayout>

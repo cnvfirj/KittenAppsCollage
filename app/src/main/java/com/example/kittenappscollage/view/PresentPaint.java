@@ -27,6 +27,8 @@ public class PresentPaint extends View {
 
     private int width;
 
+    private float widthText;
+
     private String text;
 
     private Paint paint;
@@ -49,6 +51,8 @@ public class PresentPaint extends View {
         type = PAINT;
         circ = false;
         text = "Your Text";
+        width = 0;
+        widthText = 0;
     }
 
     @SuppressLint("DrawAllocation")
@@ -74,19 +78,22 @@ public class PresentPaint extends View {
             canvas.drawLine(0,(float) canvas.getHeight()/2,getWidth(),(float) canvas.getHeight()/2,paint);
         } else if(type==TEXT){
             clip.reset();
-            clip.moveTo(0,(float) canvas.getHeight()/2);
-            clip.lineTo((float)canvas.getWidth(),(float) canvas.getHeight()/2);
-            paint.setTextSize(width*1.2f);
+            clip.moveTo(0,(float) canvas.getHeight()/2+width/2);
             paint.setStrokeWidth(2);
+            if(widthText==0){
+                setWidthPaint((int)(canvas.getHeight()/1.3f));
+            }
             paint.setTextAlign(Paint.Align.LEFT);
-            float length = text.length()*(width/2f);
-            clip.lineTo(length,(float) canvas.getHeight()/2);
+            float length = text.length()*(width*1.4f/2f);
+            clip.lineTo(length,(float) canvas.getHeight()/2+width/2);
             if(getWidth()<length){
                 float c = length/text.length();
                 int step = (int)(getWidth()/c);
                 String subText = text.substring(0,step);
-                canvas.drawTextOnPath(subText, clip, 0, (float) width/3, paint);
-            }else canvas.drawTextOnPath(text, clip, 0, (float) width/3, paint);
+                canvas.drawTextOnPath(subText, clip, 0, 0, paint);
+
+                canvas.drawPath(clip,paint);
+            }else canvas.drawTextOnPath(text, clip, 0, 0, paint);
 
 
         }
@@ -120,7 +127,8 @@ public class PresentPaint extends View {
 
     public void setWidthPaint(int width) {
         paint.setStrokeWidth(width);
-
+        widthText = width*1.4f;
+        paint.setTextSize(widthText);
         this.width = width;
         invalidate();
     }
@@ -132,6 +140,7 @@ public class PresentPaint extends View {
     public int getWidthPaint(){
         return width;
     }
+
 
     private int implementParams(){
         return Color.argb(alpha,Color.red(color),Color.green(color),Color.blue(color));

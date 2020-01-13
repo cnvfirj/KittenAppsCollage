@@ -66,7 +66,7 @@ public class DrawText extends DrawSpot {
 
     private void initParams(){
         hText = RepDraw.get().getText();
-        hSizeText = RepDraw.get().getWidth()*1.3f;
+        hSizeText = RepDraw.get().getWidth()*1.4f;
         getPaintText().setColor(RepDraw.get().getColor());
         getPaintText().setTextSize(getTextSize());
         getPaintText().setStrokeWidth(2);

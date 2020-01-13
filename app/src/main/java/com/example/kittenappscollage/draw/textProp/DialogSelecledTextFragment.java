@@ -20,6 +20,8 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dynamikseekbar.DynamicSeekBar;
 import com.example.kittenappscollage.R;
@@ -27,6 +29,9 @@ import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.view.PresentPaint;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
@@ -40,13 +45,15 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
 
     private ExpandableLayout expandable;
 
-    private ListView listShrift;
+    private RecyclerView listShrift;
 
     private ImageView action_1, action_2, action_3;
 
     private DynamicSeekBar angleText;
 
     private ImageView resetAngleText, fillText;
+
+    private AdapterShrift adapterShrift;
 
 
     @Nullable
@@ -64,9 +71,9 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         presentPaint = view.findViewById(R.id.item_present_draw);
         presentPaint.setText("Shrift");
         presentPaint.setType(PresentPaint.TEXT);
-        presentPaint.setWidthPaint((int) (getContext().getResources().getDimension(R.dimen.param_save)/1.4f));
         presentPaint.setOnClickListener(this);
         editText = view.findViewById(R.id.dialog_edit_text);
+        editText.setText(RepDraw.get().getText());
 //        editText.addTextChangedListener(new TextWatcher() {
 //            @Override
 //            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -84,22 +91,11 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
 //            }
 //        });
         expandable = view.findViewById(R.id.item_present_draw_expadable);
-        listShrift = view.findViewById(R.id.item_present_draw_list_shrift);
-        action_1 = view.findViewById(R.id.action_1);
-        action_1.setOnClickListener(this);
-        action_1.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_done,null));
-        action_2 = view.findViewById(R.id.action_2);
-        action_2.setOnClickListener(this);
-        action_2.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_clear_link,null));
-        action_3 = view.findViewById(R.id.action_3);
-        action_3.setOnClickListener(this);
-        action_3.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_close,null));
+        initListShrift(view);
         angleText = view.findViewById(R.id.dialog_edit_text_angle);
         angleText.setOnSeekBarChangeListener(this);
-        resetAngleText = view.findViewById(R.id.dialog_edit_text_reset_angle);
-        resetAngleText.setOnClickListener(this);
-        fillText = view.findViewById(R.id.dialog_edit_text_fill_text);
-        fillText.setOnClickListener(this);
+
+        initButtons(view);
 
         paramView(view);
     }
@@ -190,7 +186,7 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         return expandable;
     }
 
-    protected ListView getListShrift(){
+    protected RecyclerView getListShrift(){
         return listShrift;
     }
 
@@ -200,5 +196,36 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
 
     protected EditText getEnterText(){
         return editText;
+    }
+
+    private void initListShrift(View view){
+        listShrift = view.findViewById(R.id.item_present_draw_list_shrift);
+        listShrift.setHasFixedSize(true);
+        listShrift.setLayoutManager(new GridLayoutManager(getContext(),1));
+        String[]fonts = null;
+        try {
+            fonts = getContext().getAssets().list("fonts");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        adapterShrift = new AdapterShrift(getContext(),fonts);
+        listShrift.setAdapter(adapterShrift);
+
+    }
+
+    private void initButtons(View view){
+        action_1 = view.findViewById(R.id.action_1);
+        action_1.setOnClickListener(this);
+        action_1.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_done,null));
+        action_2 = view.findViewById(R.id.action_2);
+        action_2.setOnClickListener(this);
+        action_2.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_clear_link,null));
+        action_3 = view.findViewById(R.id.action_3);
+        action_3.setOnClickListener(this);
+        action_3.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_close,null));
+        resetAngleText = view.findViewById(R.id.dialog_edit_text_reset_angle);
+        resetAngleText.setOnClickListener(this);
+        fillText = view.findViewById(R.id.dialog_edit_text_fill_text);
+        fillText.setOnClickListener(this);
     }
 }
