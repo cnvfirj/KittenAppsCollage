@@ -85,6 +85,11 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
         if(listen!=null)listen.longClick(0, img, check, pos);
     }
 
+    /*получаем вариант из конца списка*/
+    protected int getPositionInEnd(int position){
+        return getItemCount()-(position+1);
+    }
+
     @NonNull
     @Override
     public ImgHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -95,7 +100,7 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     @Override
     public void onBindViewHolder(@NonNull ImgHolder holder, int position) {
         Glide.with(getContext())
-                .load(getAll().get(getFolds()[indexKey]).get(position))
+                .load(getAll().get(getFolds()[indexKey]).get(getPositionInEnd(position)))
                 .into(holder.getImage());
     }
 
@@ -103,7 +108,6 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     public int getItemCount() {
         return getAll().get(getFolds()[indexKey]).size();
     }
-
 
     protected class ImgHolder extends CollectHolder{
 

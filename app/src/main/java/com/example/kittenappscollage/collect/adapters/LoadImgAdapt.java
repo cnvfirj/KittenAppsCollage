@@ -7,6 +7,9 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class LoadImgAdapt extends ListenLoadImgAdapter {
 
     private FrameLayout.LayoutParams params;
@@ -29,6 +32,12 @@ public class LoadImgAdapt extends ListenLoadImgAdapter {
     public void onBindViewHolder(@NonNull ImgHolder holder, int position) {
         holder.getCheck().setVisibility(getArrChecks()[position]?View.VISIBLE:View.INVISIBLE);
         super.onBindViewHolder(holder, position);
+    }
+
+    @Override
+    public ListenLoadImgAdapter setAll(HashMap<String, ArrayList<String>> all) {
+        resetChecks(all.size());
+        return super.setAll(all);
     }
 
     @Override
@@ -56,8 +65,13 @@ public class LoadImgAdapt extends ListenLoadImgAdapter {
 
     }
 
+    private void resetChecks(int size){
+        checkSelect = new boolean[size];
+    }
+
     private void resetCheckeds(){
-        checkSelect = new boolean[getAll().get(getFolds()[getIndexAdapter()]).size()];
+        checkSelect = new boolean[getAll().get(getFolds()[getIndexAdapter()])
+                                          .size()];
     }
 
     @Override
@@ -67,6 +81,7 @@ public class LoadImgAdapt extends ListenLoadImgAdapter {
             checkSelect[pos] = !checkSelect[pos];
             check.setVisibility(getArrChecks()[pos]?View.VISIBLE:View.INVISIBLE);
         }
+        int position = getPositionInEnd(pos);
     }
 
     @Override

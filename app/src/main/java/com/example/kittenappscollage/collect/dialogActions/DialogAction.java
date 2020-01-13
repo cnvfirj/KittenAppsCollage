@@ -131,11 +131,13 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
                     listen.result(true,text.getText().toString());
                 }
                 imm.hideSoftInputFromWindow(text.getWindowToken(), 0);
+                dismiss();
                 break;
             case R.id.dialog_action_gallery_close:
                 listen = (ListenActions)getTargetFragment();
                 listen.result(false, indexAction,indexAdapter);
                 imm.hideSoftInputFromWindow(text.getWindowToken(), 0);
+                dismiss();
                 break;
             case R.id.dialog_action_gallery_clear:
                 text.setText("");

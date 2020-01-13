@@ -3,7 +3,6 @@ package com.example.kittenappscollage.collect.fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.FileUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +15,7 @@ import com.example.kittenappscollage.collect.dialogActions.DialogAction;
 import com.example.kittenappscollage.collect.dialogActions.ListenActions;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 import static com.example.kittenappscollage.collect.dialogActions.DialogAction.ACTION_DELETE;
@@ -77,54 +77,44 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     @Override
     public void result(boolean done, int action, int indexAdapter) {
-        LYTE("d "+done+"|"+getKey());
-        for (String f:getSelectFiles()){
-//            if(action==ACTION_DELETE){
-//                File d = new File(f);
-//                LYTE("delete "+d.delete());
-//                getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(d)));
-//            }
-        }
+        invisibleMenu();
 
     }
 
     /*это применимо только в корневом адаптере*/
+    /*применить другое сканирование почему то старую папку не удаляет*/
     @Override
     public void result(boolean done, String name) {
+        invisibleMenu();
         if(done&&!name.isEmpty()) {
-//            getListFolds();
-//            getListImagesInFolders();
-//            getUnder();
             String oldFold = getSelectFiles().get(0);
-            String[] splitFold = oldFold.split("[/]");
-            String oldName = splitFold[splitFold.length-1];
-            String excludeNameFold = oldFold.split(oldName)[0];
+            String excludeNameFold = oldFold.split(getKey())[0];
             String newFold = excludeNameFold+name;
-            LYTE("old fold in rename "+oldFold);
-            LYTE("old name "+oldName);
-            LYTE("key name "+getKey());
-            LYTE("ex fold in rename "+excludeNameFold);
-            LYTE("new fold in rename "+newFold);
+
             File oldfile = new File(oldFold);
             File newfile = new File(newFold);
-//            if(oldfile.renameTo(newfile)){
+            if(oldfile.renameTo(newfile)){
+                ArrayList<String>imgs = getListImagesInFolders().get(getKey());
+                ArrayList<String >newImgs = new ArrayList<>();
+                for (String path:imgs){
+                    String[]split = path.split(getKey());
+                    String p = split[0]+name+split[1];
+                    newImgs.add(p);
+                    getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(p))));
+                    getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(path))));
+
+                }
+                getListImagesInFolders().remove(getKey());
+                getListImagesInFolders().put(name,newImgs);
+                getListFolds().remove(getKey());
+                getListFolds().put(name, newFold);
+
 //                getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(newfile)));
 //                getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(oldfile)));
-//
-//            }
 
-
-
-//            String[] splitOldName = getUnder().get(0).split("[/]");
-//            String newName = splitOldName[splitOldName.length-1];
-//            String[] split = getSelectFiles().get(0).split("[/]");
-//            String newPath = getSelectFiles().get(0).split(split[split.length - 1])[0] + name;
-//            LYTE(getUnder().get(0));
-//            File oldfile = new File(getUnder().get(0));
-//            File newfile = new File(newPath+"/"+newName);
-//            boolean b = oldfile.renameTo(newfile);
-//            LYTE("rename "+b);
-
+            }
+                 getFoldAdapt().setAll(getListImagesInFolders());
+                 getImgAdapt().setAll(getListImagesInFolders());
 
         }
     }

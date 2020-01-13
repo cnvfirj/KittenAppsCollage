@@ -88,7 +88,7 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     @Override
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
         Glide.with(getContext())
-                .load(getAll().get(getFolds()[position]).get(0))
+                .load(getAll().get(getFolds()[position]).get(getAll().get(getFolds()[position]).size()-1))
                 .into(holder.getImage());
         String name = getFolds()[position];
         holder.getName().setText(name);
@@ -97,7 +97,6 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
 
     @Override
     public int getItemCount() {
-
         if(getAll()==null){
             return 0;
         } else {

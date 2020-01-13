@@ -32,6 +32,7 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
 
     @Override
     public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all) {
+        resetChecks(all.size());
         return super.setAll(all);
     }
 
@@ -46,6 +47,9 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
         if(params!=null)holder.setLayoutParams(params);
     }
 
+    private void resetChecks(int size){
+        checkSelect = new boolean[size];
+    }
     private void resetCheckeds(){
         checkSelect = new boolean[getAll().size()];
     }
