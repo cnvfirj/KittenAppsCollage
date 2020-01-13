@@ -42,6 +42,10 @@ public class RepParams extends Repozitory {
 
     private Typeface rShrift;
 
+    private int sourceFont;
+
+    private String pathFont;
+
     public void drawParams(float width, int color, int alpha){
         setWidth(width);
         setColor(color);
@@ -142,6 +146,24 @@ public class RepParams extends Repozitory {
 
     public float getItalicText(){
         return rItalicText;
+    }
+
+    public RepParams setSourceFont(int s){
+        sourceFont = s;
+        return this;
+    }
+
+    public int getSourceFont(){
+        return sourceFont;
+    }
+
+    public RepParams setPathFont(String path){
+        pathFont = path;
+        return this;
+    }
+
+    public String getPathFont(){
+        return pathFont;
     }
 
 

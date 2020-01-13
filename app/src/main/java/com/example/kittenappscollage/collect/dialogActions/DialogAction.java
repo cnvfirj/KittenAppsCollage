@@ -1,5 +1,6 @@
 package com.example.kittenappscollage.collect.dialogActions;
 
+import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -49,6 +51,8 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
 
     private ListenActions listen;
 
+    private InputMethodManager imm;
+
     public static DialogAction inst(int index, int adapter, Fragment target){
         DialogAction d = new DialogAction();
 
@@ -76,6 +80,7 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(getContext().getResources().getColor(R.color.colorPrimaryTransparent)));
+        imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         indexAction = 1;
         Bundle b = getArguments();
         if(b!=null){
@@ -127,6 +132,8 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
                 break;
             case R.id.dialog_action_gallery_clear:
                 text.setText("");
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                text.requestFocus();
                 break;
 
         }

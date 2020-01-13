@@ -35,9 +35,6 @@ public class AdapterShrift  extends RecyclerView.Adapter<AdapterShrift.ShriftHol
         fonts = new ArrayList<>();
         if(base!=null){
             fonts.addAll(Arrays.asList(base));
-            for (String s:fonts){
-                LYTE(s);
-            }
         }
         this.context = context;
     }
@@ -52,11 +49,10 @@ public class AdapterShrift  extends RecyclerView.Adapter<AdapterShrift.ShriftHol
     }
 
     protected void clickItem(PresentPaint view, int pos){
-        LYTE("click item "+pos);
     }
 
     protected void createHolder(View holder, PresentPaint view, int pos){
-        LYTE("created holder "+pos);
+
     }
 
     protected ArrayList<String>getFonts(){
@@ -73,7 +69,7 @@ public class AdapterShrift  extends RecyclerView.Adapter<AdapterShrift.ShriftHol
     @Override
     public void onBindViewHolder(@NonNull ShriftHolder holder, int position) {
         if(fonts.get(position)!=null) {
-            if (position <= 3) {
+            if (position <= 3) {//количество шрифтов в активе
                 holder.getPresent().setShrift(Typeface.createFromAsset(
                         context.getAssets(), "fonts/"+fonts.get(position)
                 ));

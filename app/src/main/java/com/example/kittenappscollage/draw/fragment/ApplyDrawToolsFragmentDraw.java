@@ -1,7 +1,9 @@
 package com.example.kittenappscollage.draw.fragment;
 
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.widget.ImageView;
+
 
 import com.example.kittenappscollage.draw.textProp.DialogSelecledTextFragment;
 import com.example.kittenappscollage.draw.DialogSelectParams;
@@ -18,6 +20,14 @@ import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SA
 public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
 
     private final String KEY_EVENT = "key event";
+
+    private final String SOURCE_FONT = "source font";
+
+    private final String PATH_FONT = "path font";
+
+    public static final int S_STORAGE = 77;
+
+    public static final int S_ASSETS = 88;
 
     @Override
     protected void toolPaint(ImageView v) {
@@ -118,6 +128,14 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        getEditor().putInt(SOURCE_FONT, RepDraw.get().getSourceFont());
+        getEditor().putString(PATH_FONT,RepDraw.get().getPathFont());
+        getEditor().apply();
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         Operation.Event e = Operation.Event.values()[getPreferences().getInt(KEY_EVENT, Operation.Event.MATRIX_T.ordinal())];
@@ -126,5 +144,14 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         RepDraw.get().setColor(getPreferences().getInt(KEY_SAVE_COLOR, Color.BLACK));
         RepDraw.get().setWidth(getPreferences().getFloat(KEY_SAVE_WIDTH,50));
         RepDraw.get().setText(getPreferences().getString(KEY_SAVE_TEXT,"Your Text"));
+        int s = getPreferences().getInt(SOURCE_FONT,-1);
+        String p = getPreferences().getString(PATH_FONT,"");
+        if(s==S_ASSETS){
+            RepDraw.get().setShrift(Typeface.createFromAsset(getContext().getAssets(),"fonts/"+p));
+        }else if(s==S_STORAGE){
+            RepDraw.get().setShrift(Typeface.createFromFile(p));
+        }else {
+            RepDraw.get().setShrift(Typeface.createFromAsset(getContext().getAssets(),"fonts/font_1.otf"));
+        }
     }
 }

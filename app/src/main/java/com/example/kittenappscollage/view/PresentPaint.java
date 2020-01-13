@@ -13,6 +13,8 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
+
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class PresentPaint extends View {
@@ -77,22 +79,21 @@ public class PresentPaint extends View {
             canvas.restore();
             canvas.drawLine(0,(float) canvas.getHeight()/2,getWidth(),(float) canvas.getHeight()/2,paint);
         } else if(type==TEXT){
-            clip.reset();
-            clip.moveTo(0,(float) canvas.getHeight()/2+width/2);
             paint.setStrokeWidth(2);
             if(widthText==0){
                 setWidthPaint((int)(canvas.getHeight()/1.3f));
             }
             paint.setTextAlign(Paint.Align.LEFT);
             float length = text.length()*(width*1.4f/2f);
-            clip.lineTo(length,(float) canvas.getHeight()/2+width/2);
+            clip.reset();
+            clip.moveTo(0,(float) canvas.getHeight()/2+width/2);
+            clip.lineTo(getWidth(),(float) canvas.getHeight()/2+width/2);
             if(getWidth()<length){
                 float c = length/text.length();
                 int step = (int)(getWidth()/c);
                 String subText = text.substring(0,step);
                 canvas.drawTextOnPath(subText, clip, 0, 0, paint);
-
-                canvas.drawPath(clip,paint);
+            
             }else canvas.drawTextOnPath(text, clip, 0, 0, paint);
 
 
@@ -135,6 +136,11 @@ public class PresentPaint extends View {
 
     public void setShrift(Typeface t){
         if(t!=null)paint.setTypeface(t);
+        invalidate();
+    }
+
+    public Typeface getShrift(){
+        return paint.getTypeface();
     }
 
     public int getWidthPaint(){

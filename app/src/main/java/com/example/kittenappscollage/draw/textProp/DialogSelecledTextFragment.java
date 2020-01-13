@@ -31,9 +31,6 @@ import com.example.kittenappscollage.view.PresentPaint;
 import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class DialogSelecledTextFragment extends DialogFragment implements View.OnClickListener, DynamicSeekBar.OnSeekBarChangeListener {
 
@@ -53,14 +50,13 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
 
     private ImageView resetAngleText, fillText;
 
-    private AdapterShrift adapterShrift;
+    private WorkAdapterShrift adapterShrift;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(getContext().getResources().getColor(R.color.colorPrimaryTransparent)));
-//        RepDraw.get().setShrift(Typeface.createFromAsset(getContext().getAssets(),"fonts/font_4.ttf"));
         return inflater.inflate(R.layout.dialog_select_text,null);
     }
 
@@ -70,26 +66,12 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
 
         presentPaint = view.findViewById(R.id.item_present_draw);
         presentPaint.setText("Shrift");
+        if(RepDraw.get().getShrift()!=null)presentPaint.setShrift(RepDraw.get().getShrift());
         presentPaint.setType(PresentPaint.TEXT);
         presentPaint.setOnClickListener(this);
         editText = view.findViewById(R.id.dialog_edit_text);
         editText.setText(RepDraw.get().getText());
-//        editText.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//
-//            }
-//        });
+
         expandable = view.findViewById(R.id.item_present_draw_expadable);
         initListShrift(view);
         angleText = view.findViewById(R.id.dialog_edit_text_angle);
@@ -198,7 +180,11 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         return editText;
     }
 
-    private void initListShrift(View view){
+    protected WorkAdapterShrift getAdapter(){
+        return adapterShrift;
+    }
+
+    protected void initListShrift(View view){
         listShrift = view.findViewById(R.id.item_present_draw_list_shrift);
         listShrift.setHasFixedSize(true);
         listShrift.setLayoutManager(new GridLayoutManager(getContext(),1));
@@ -208,7 +194,7 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         } catch (IOException e) {
             e.printStackTrace();
         }
-        adapterShrift = new AdapterShrift(getContext(),fonts);
+        adapterShrift = new WorkAdapterShrift(getContext(),fonts);
         listShrift.setAdapter(adapterShrift);
 
     }
