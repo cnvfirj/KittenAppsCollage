@@ -15,15 +15,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kittenappscollage.R;
-import com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter;
 import com.example.kittenappscollage.view.CustomFon;
 import com.example.kittenappscollage.view.PresentPaint;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class AdapterShrift  extends RecyclerView.Adapter<AdapterShrift.ShriftHolder> implements Serializable {
 
@@ -31,10 +27,13 @@ public class AdapterShrift  extends RecyclerView.Adapter<AdapterShrift.ShriftHol
 
     private Context context;
 
+    private int sizeBase;
     public AdapterShrift(Context context,@NonNull String[]base){
         fonts = new ArrayList<>();
+
         if(base!=null){
             fonts.addAll(Arrays.asList(base));
+            sizeBase = base.length;
         }
         this.context = context;
     }
@@ -69,7 +68,7 @@ public class AdapterShrift  extends RecyclerView.Adapter<AdapterShrift.ShriftHol
     @Override
     public void onBindViewHolder(@NonNull ShriftHolder holder, int position) {
         if(fonts.get(position)!=null) {
-            if (position <= 3) {//количество шрифтов в активе
+            if (position < sizeBase) {//количество шрифтов в активе
                 holder.getPresent().setShrift(Typeface.createFromAsset(
                         context.getAssets(), "fonts/"+fonts.get(position)
                 ));

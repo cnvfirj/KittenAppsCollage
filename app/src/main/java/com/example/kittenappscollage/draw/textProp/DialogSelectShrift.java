@@ -68,6 +68,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
         RepDraw.get().setShrift(getPresent().getShrift()).setPathFont(pathFont).setSourceFont(sourceFont);
         if(!getEnterText().getText().toString().isEmpty()){
             RepDraw.get().setText(getEnterText().getText().toString());
+            imm.hideSoftInputFromWindow(getEnterText().getWindowToken(), 0);
             dismiss();
         }else {
             SHOW_MASSAGE(getContext(),"Некорректный текст");
@@ -89,6 +90,13 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
         super.clickAction_3(view);
         sourceFont = -1;
         pathFont = "";
+        imm.hideSoftInputFromWindow(getEnterText().getWindowToken(), 0);
         dismiss();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        imm.hideSoftInputFromWindow(getEnterText().getWindowToken(), 0);
     }
 }

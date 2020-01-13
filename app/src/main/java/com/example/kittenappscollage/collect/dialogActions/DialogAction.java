@@ -101,7 +101,12 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
         clear.setOnClickListener(this);
         text = view.findViewById(R.id.dialog_action_gallery_enter_name);
         selectText();
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        imm.hideSoftInputFromWindow(text.getWindowToken(), 0);
     }
 
     @Override
@@ -125,10 +130,12 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
                 if(indexAction==ACTION_RENAME){
                     listen.result(true,text.getText().toString());
                 }
+                imm.hideSoftInputFromWindow(text.getWindowToken(), 0);
                 break;
             case R.id.dialog_action_gallery_close:
                 listen = (ListenActions)getTargetFragment();
                 listen.result(false, indexAction,indexAdapter);
+                imm.hideSoftInputFromWindow(text.getWindowToken(), 0);
                 break;
             case R.id.dialog_action_gallery_clear:
                 text.setText("");
