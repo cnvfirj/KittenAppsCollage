@@ -78,6 +78,11 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     @Override
     public void result(boolean done, int action, int indexAdapter) {
         invisibleMenu();
+        if(!done)return;
+        if(action==ACTION_DELETE){
+            if(indexAdapter==ROOT_ADAPTER)deleteFolder();
+            else deleteSelectedImg();
+        }
 
     }
 
@@ -117,5 +122,23 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
                  getImgAdapt().setAll(getListImagesInFolders());
 
         }
+    }
+
+    /*вывести это все в паралельный поток*/
+    private void deleteFolder(){
+        String key = getKey();
+        ArrayList<String>imgs = getListImagesInFolders().get(key);
+        for (String img:imgs){
+            File file = new File(img);
+            if(file.exists())file.delete();
+            getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+        }
+        getListImagesInFolders().remove(key);
+        getFoldAdapt().setAll(getListImagesInFolders());
+        getImgAdapt().setAll(getListImagesInFolders());
+    }
+
+    private void deleteSelectedImg(){
+        String key = getKey();
     }
 }
