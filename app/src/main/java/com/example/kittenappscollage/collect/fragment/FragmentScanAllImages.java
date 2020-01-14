@@ -34,7 +34,7 @@ public class FragmentScanAllImages extends Fragment {
     private HashMap<String,String>listFolds;
 
     public void scanDevice(){
-        LYTE("scan ");
+//        LYTE("scan ");
          check();
     }
 

@@ -16,8 +16,6 @@ public class RepParams extends Repozitory {
 
     public final static String KEY_SAVE_WIDTH = "save width";
 
-    public final static String KEY_SAVE_TEXT = "save text";
-
     public final static String KEY_SAVE_COLOR = "save color";
 
     public final static String KEY_SAVE_ALPHA = "save alpha";

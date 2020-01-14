@@ -13,23 +13,24 @@ import com.example.kittenappscollage.draw.textProp.DialogSelectShrift;
 
 import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_ALPHA;
 import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_COLOR;
-import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_TEXT;
 import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_WIDTH;
 
 /*применяем инструменты обработки изображения*/
 public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
 
-    private final String KEY_EVENT = "key event";
+    private final String KEY_EVENT = "key event ApplyDrawToolsFragmentDraw";
 
-    private final String SOURCE_FONT = "source font";
+    private final String SOURCE_FONT = "source font ApplyDrawToolsFragmentDraw";
 
-    private final String PATH_FONT = "path font";
+    private final String PATH_FONT = "path font ApplyDrawToolsFragmentDraw";
 
-    private final String KEY_ITALIC = "key italic";
+    private final String KEY_ITALIC = "key italic ApplyDrawToolsFragmentDraw";
 
-    private final String KEY_FILL = "key fill";
+    private final String KEY_FILL = "key fill ApplyDrawToolsFragmentDraw";
 
-    private final String KEY_ANGLE_TEXT = "key angle text";
+    private final String KEY_ANGLE_TEXT = "key angle text ApplyDrawToolsFragmentDraw";
+
+    private final String KEY_TEXT = "key text ApplyDrawToolsFragmentDraw";
 
     public static final int S_STORAGE = 77;
 
@@ -141,6 +142,7 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         getEditor().putBoolean(KEY_ITALIC,RepDraw.get().isTextItalic());
         getEditor().putBoolean(KEY_FILL,RepDraw.get().isTextFill());
         getEditor().putFloat(KEY_ANGLE_TEXT,RepDraw.get().getItalicText());
+        getEditor().putString(KEY_TEXT,RepDraw.get().getText());
         getEditor().apply();
     }
 
@@ -149,13 +151,15 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         super.onResume();
         Operation.Event e = Operation.Event.values()[getPreferences().getInt(KEY_EVENT, Operation.Event.MATRIX_T.ordinal())];
         dViewDraw.setEvent(e);
-        RepDraw.get().setAlpha(getPreferences().getInt(KEY_SAVE_ALPHA,0));
-        RepDraw.get().setColor(getPreferences().getInt(KEY_SAVE_COLOR, Color.BLACK));
-        RepDraw.get().setWidth(getPreferences().getFloat(KEY_SAVE_WIDTH,50));
-        RepDraw.get().setText(getPreferences().getString(KEY_SAVE_TEXT,"Your Text"));
-        RepDraw.get().textFill(getPreferences().getBoolean(KEY_FILL,true));
-        RepDraw.get().textItalic(getPreferences().getBoolean(KEY_ITALIC,false));
-        RepDraw.get().setItalicText(getPreferences().getFloat(KEY_ANGLE_TEXT,0));
+
+        RepDraw.get().setWidth(getPreferences().getFloat(KEY_SAVE_WIDTH,50))
+                     .setText(getPreferences().getString(KEY_TEXT,"Your Text"))
+                     .textFill(getPreferences().getBoolean(KEY_FILL,true))
+                     .textItalic(getPreferences().getBoolean(KEY_ITALIC,false))
+                     .setItalicText(getPreferences().getFloat(KEY_ANGLE_TEXT,0))
+                     .setAlpha(getPreferences().getInt(KEY_SAVE_ALPHA,0))
+                     .setColor(getPreferences().getInt(KEY_SAVE_COLOR, Color.BLACK));
+
         int s = getPreferences().getInt(SOURCE_FONT,-1);
         String p = getPreferences().getString(PATH_FONT,"");
         if(s==S_ASSETS){

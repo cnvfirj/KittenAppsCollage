@@ -60,7 +60,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
     @Override
     public void onProgressChanged(DynamicSeekBar seekBar, int progress, boolean isTouch) {
         super.onProgressChanged(seekBar, progress, isTouch);
-        float angle = (progress-100f)/100f;
+        float angle = -(progress-100f)/100f;
         if(getActItal().isSelected())getPresent().setItalic(getActItal().isSelected(),angle);
     }
 
@@ -84,6 +84,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
     @Override
     protected void enableAngle(ImageView view) {
         super.enableAngle(view);
+        LYTE("set angle");
         view.setSelected(!view.isSelected());
         enableBarAngle(view.isSelected());
         getPresent().setItalic(view.isSelected(),computeAngleBar());
@@ -144,10 +145,10 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
         getBarAngle().setColorProgress(enable?getResources().getColor(R.color.colorAccent):Color.GRAY);
     }
 
-    private int computeAngleBar(){
-        return (getBarAngle().getProgress()-100)/100;
+    private float computeAngleBar(){
+        return -(getBarAngle().getProgress()-100f)/100f;
     }
     private int computeProgressBar(){
-        return ((int)(RepDraw.get().getItalicText()*100)+100);
+        return ((int)(-RepDraw.get().getItalicText()*100)+100);
     }
 }
