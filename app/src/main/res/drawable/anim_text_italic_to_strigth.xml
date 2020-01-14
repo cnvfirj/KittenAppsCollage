@@ -10,7 +10,7 @@
             android:viewportHeight="24">
             <path
                 android:name="text"
-                android:pathData="M 6.019 2.958 L 5.046 6.993 L 10.982 6.991 L 9.011 21.016 L 13.054 20.987 L 15.028 7.022 L 19.99 6.964 L 20.937 3.016 Z"
+                android:pathData="M 5.081 2.958 L 3.99 6.993 L 9.808 6.991 L 5.832 21.016 L 10.11 20.987 L 14.09 7.022 L 18.816 6.964 L 19.999 3.016 Z"
                 android:fillColor="#FFFFFF"/>
         </vector>
     </aapt:attr>
@@ -19,7 +19,7 @@
             <objectAnimator
                 android:propertyName="pathData"
                 android:duration="300"
-                android:valueFrom="M 6.019 2.958 L 5.046 6.993 L 10.982 6.991 L 9.011 21.016 L 13.054 20.987 L 15.028 7.022 L 19.99 6.964 L 20.937 3.016 Z"
+                android:valueFrom="M 5.081 2.958 L 3.99 6.993 L 9.808 6.991 L 5.832 21.016 L 10.11 20.987 L 14.09 7.022 L 18.816 6.964 L 19.999 3.016 Z"
                 android:valueTo="M 4.013 2.958 L 3.984 6.993 L 9.982 7.022 L 9.982 21.016 L 13.993 21.016 L 13.966 7.022 L 19.99 6.964 L 19.993 3.016 Z"
                 android:valueType="pathType"
                 android:interpolator="@android:anim/linear_interpolator"/>

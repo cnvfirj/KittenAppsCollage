@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/yes"
+        android:drawable="@drawable/ic_text_italic"
+        android:state_selected="true"/>
+
+    <item
+        android:id="@+id/no"
+        android:drawable="@drawable/ic_text_strigth"
+        android:state_selected="false"/>
+
+    <transition
+        android:drawable="@drawable/anim_text_italic_to_strigth"
+        android:fromId="@id/yes"
+        android:toId="@id/no"/>
+
+    <transition
+        android:drawable="@drawable/anim_text_strigth_to_italic"
+        android:fromId="@id/no"
+        android:toId="@id/yes"/>
+
+</animated-selector>

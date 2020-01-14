@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/yes"
+        android:drawable="@drawable/ic_text_fill"
+        android:state_selected="true"/>
+
+    <item
+        android:id="@+id/no"
+        android:drawable="@drawable/ic_text_stroke"
+        android:state_selected="false"/>
+
+    <transition
+        android:drawable="@drawable/anim_text_fill_to_stroke"
+        android:fromId="@id/yes"
+        android:toId="@id/no"/>
+
+    <transition
+        android:drawable="@drawable/anim_text_stroke_to_fill"
+        android:fromId="@id/no"
+        android:toId="@id/yes"/>
+
+</animated-selector>
