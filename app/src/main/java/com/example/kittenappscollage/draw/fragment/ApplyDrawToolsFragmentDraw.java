@@ -25,6 +25,12 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
 
     private final String PATH_FONT = "path font";
 
+    private final String KEY_ITALIC = "key italic";
+
+    private final String KEY_FILL = "key fill";
+
+    private final String KEY_ANGLE_TEXT = "key angle text";
+
     public static final int S_STORAGE = 77;
 
     public static final int S_ASSETS = 88;
@@ -132,6 +138,9 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         super.onPause();
         getEditor().putInt(SOURCE_FONT, RepDraw.get().getSourceFont());
         getEditor().putString(PATH_FONT,RepDraw.get().getPathFont());
+        getEditor().putBoolean(KEY_ITALIC,RepDraw.get().isTextItalic());
+        getEditor().putBoolean(KEY_FILL,RepDraw.get().isTextFill());
+        getEditor().putFloat(KEY_ANGLE_TEXT,RepDraw.get().getItalicText());
         getEditor().apply();
     }
 
@@ -144,6 +153,9 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         RepDraw.get().setColor(getPreferences().getInt(KEY_SAVE_COLOR, Color.BLACK));
         RepDraw.get().setWidth(getPreferences().getFloat(KEY_SAVE_WIDTH,50));
         RepDraw.get().setText(getPreferences().getString(KEY_SAVE_TEXT,"Your Text"));
+        RepDraw.get().textFill(getPreferences().getBoolean(KEY_FILL,true));
+        RepDraw.get().textItalic(getPreferences().getBoolean(KEY_ITALIC,false));
+        RepDraw.get().setItalicText(getPreferences().getFloat(KEY_ANGLE_TEXT,0));
         int s = getPreferences().getInt(SOURCE_FONT,-1);
         String p = getPreferences().getString(PATH_FONT,"");
         if(s==S_ASSETS){

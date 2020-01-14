@@ -31,6 +31,8 @@ public class PresentPaint extends View {
 
     private float widthText;
 
+    private float angleText;
+
     private String text;
 
     private Paint paint;
@@ -40,6 +42,10 @@ public class PresentPaint extends View {
     private int type;
 
     private boolean circ;
+
+    private boolean italicText;
+
+    private boolean fillText;
 
     public PresentPaint(Context context) {
         super(context);
@@ -55,6 +61,7 @@ public class PresentPaint extends View {
         text = "Your Text";
         width = 0;
         widthText = 0;
+        angleText = 0;
     }
 
     @SuppressLint("DrawAllocation")
@@ -145,6 +152,32 @@ public class PresentPaint extends View {
 
     public int getWidthPaint(){
         return width;
+    }
+
+    public void setItalic(boolean isItalic, float angleItalic){
+        if(isItalic){
+            italicText = isItalic;
+            angleText = angleItalic;
+            paint.setTextSkewX(angleItalic);
+        }else {
+            paint.setTextSkewX(0);
+        }
+        LYTE("italik "+angleItalic);
+        invalidate();
+    }
+
+    public void selFill(boolean isFill){
+        fillText = isFill;
+        paint.setStyle(isFill?Paint.Style.FILL: Paint.Style.STROKE);
+        invalidate();
+    }
+
+    public boolean isTextFill(){
+        return fillText;
+    }
+
+    public boolean isTextItalic(){
+        return italicText;
     }
 
 

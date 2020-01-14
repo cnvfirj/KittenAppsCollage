@@ -104,10 +104,10 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
                clickAction_3((ImageView)view);
                break;
             case R.id.dialog_edit_text_reset_angle:
-
+                enableAngle((ImageView)view);
                break;
            case R.id.dialog_edit_text_fill_text:
-
+               fillText((ImageView)view);
                break;
 
        }
@@ -125,6 +125,14 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
 
     @Override
     public void onStopTrackingTouch(DynamicSeekBar seekBar) {
+
+    }
+
+    protected void enableAngle(ImageView view){
+
+    }
+
+    protected void fillText(ImageView view){
 
     }
 
@@ -186,6 +194,22 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         return adapterShrift;
     }
 
+    protected int getSizeBaseFonts(){
+        return sizeBaseFonts;
+    }
+
+    protected DynamicSeekBar getBarAngle(){
+        return angleText;
+    }
+
+    protected ImageView getActFill(){
+        return fillText;
+    }
+
+    protected ImageView getActItal(){
+        return resetAngleText;
+    }
+
     protected void initListShrift(View view){
         listShrift = view.findViewById(R.id.item_present_draw_list_shrift);
         listShrift.setHasFixedSize(true);
@@ -200,10 +224,6 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         adapterShrift = new WorkAdapterShrift(getContext(),fonts);
         listShrift.setAdapter(adapterShrift);
 
-    }
-
-    protected int getSizeBaseFonts(){
-        return sizeBaseFonts;
     }
 
     private void initButtons(View view){

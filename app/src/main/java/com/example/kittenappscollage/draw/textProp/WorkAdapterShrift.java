@@ -35,6 +35,10 @@ public class WorkAdapterShrift extends AdapterShrift {
         }
     }
 
+    public void setParams(boolean isFill, boolean isItalic, float angleItalic){
+
+    }
+
 
 
 }

@@ -1,6 +1,7 @@
 package com.example.kittenappscollage.draw.textProp;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,10 +15,10 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
-import static android.text.InputType.TYPE_CLASS_TEXT;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
@@ -45,6 +46,16 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        enableBarAngle(RepDraw.get().isTextItalic());
+        getBarAngle().setProgress(computeProgressBar());
+        getPresent().selFill(RepDraw.get().isTextFill());
+        getActItal().setSelected(RepDraw.get().isTextItalic());
+        getActFill().setSelected(RepDraw.get().isTextFill());
+    }
+
+    @Override
     protected void initListShrift(View view) {
         super.initListShrift(view);
         getAdapter().setListen(new ListenAdapterShrift() {
@@ -61,6 +72,20 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
         });
     }
 
+    @Override
+    protected void enableAngle(ImageView view) {
+        super.enableAngle(view);
+        view.setSelected(!view.isSelected());
+        enableBarAngle(view.isSelected());
+        getPresent().setItalic(view.isSelected(),computeAngleBar());
+    }
+
+    @Override
+    protected void fillText(ImageView view) {
+        super.fillText(view);
+        view.setSelected(!view.isSelected());
+        getPresent().selFill(view.isSelected());
+    }
 
     @Override
     protected void clickAction_1(ImageView view) {
@@ -69,6 +94,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
         if(!getEnterText().getText().toString().isEmpty()){
             RepDraw.get().setText(getEnterText().getText().toString());
             imm.hideSoftInputFromWindow(getEnterText().getWindowToken(), 0);
+            RepDraw.get().textFill(getPresent().isTextFill());
             dismiss();
         }else {
             SHOW_MASSAGE(getContext(),"Некорректный текст");
@@ -82,7 +108,6 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
         getEnterText().setText("");
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
         getEnterText().requestFocus();
-//        imm.showSoftInput(getEnterText(), InputMethodManager.SHOW_IMPLICIT);
     }
 
     @Override
@@ -98,5 +123,19 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
     public void onPause() {
         super.onPause();
         imm.hideSoftInputFromWindow(getEnterText().getWindowToken(), 0);
+    }
+
+    private void enableBarAngle(boolean enable){
+        getBarAngle().setEnabled(enable);
+        getBarAngle().setColorWay(enable?getResources().getColor(R.color.colorPrimary):Color.GRAY);
+        getBarAngle().setColorMark(enable?getResources().getColor(R.color.colorPrimary):Color.GRAY);
+        getBarAngle().setColorProgress(enable?getResources().getColor(R.color.colorAccent):Color.GRAY);
+    }
+
+    private int computeAngleBar(){
+        return getBarAngle().getProgress()-45;
+    }
+    private int computeProgressBar(){
+        return ((int)RepDraw.get().getItalicText()+45);
     }
 }
