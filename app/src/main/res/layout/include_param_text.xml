@@ -9,9 +9,9 @@
         style="@style/common_buttons"
         android:layout_width="match_parent"
         android:id="@+id/dialog_edit_text_angle"
-        app:max_value="90"
+        app:max_value="200"
         app:text_size="18"
-        app:progress_value="45"
+        app:progress_value="100"
         app:color_way="@color/colorAccent"
         app:color_mark="@color/colorAccent"/>
 

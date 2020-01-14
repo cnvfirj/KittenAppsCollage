@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.dynamikseekbar.DynamicSeekBar;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
@@ -51,8 +52,16 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
         enableBarAngle(RepDraw.get().isTextItalic());
         getBarAngle().setProgress(computeProgressBar());
         getPresent().selFill(RepDraw.get().isTextFill());
+        getPresent().setItalic(RepDraw.get().isTextItalic(),RepDraw.get().getItalicText());
         getActItal().setSelected(RepDraw.get().isTextItalic());
         getActFill().setSelected(RepDraw.get().isTextFill());
+    }
+
+    @Override
+    public void onProgressChanged(DynamicSeekBar seekBar, int progress, boolean isTouch) {
+        super.onProgressChanged(seekBar, progress, isTouch);
+        float angle = (progress-100f)/100f;
+        if(getActItal().isSelected())getPresent().setItalic(getActItal().isSelected(),angle);
     }
 
     @Override
@@ -92,9 +101,12 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
         super.clickAction_1(view);
         RepDraw.get().setShrift(getPresent().getShrift()).setPathFont(pathFont).setSourceFont(sourceFont);
         if(!getEnterText().getText().toString().isEmpty()){
-            RepDraw.get().setText(getEnterText().getText().toString());
             imm.hideSoftInputFromWindow(getEnterText().getWindowToken(), 0);
-            RepDraw.get().textFill(getPresent().isTextFill());
+            RepDraw.get()
+                    .setText(getEnterText().getText().toString())
+                    .textFill(getPresent().isTextFill())
+                    .textItalic(getPresent().isTextItalic())
+                    .setItalicText(getPresent().getAngleItalic());
             dismiss();
         }else {
             SHOW_MASSAGE(getContext(),"Некорректный текст");
@@ -133,9 +145,9 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
     }
 
     private int computeAngleBar(){
-        return getBarAngle().getProgress()-45;
+        return (getBarAngle().getProgress()-100)/100;
     }
     private int computeProgressBar(){
-        return ((int)RepDraw.get().getItalicText()+45);
+        return ((int)(RepDraw.get().getItalicText()*100)+100);
     }
 }

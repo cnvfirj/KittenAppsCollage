@@ -155,14 +155,13 @@ public class PresentPaint extends View {
     }
 
     public void setItalic(boolean isItalic, float angleItalic){
+        italicText = isItalic;
         if(isItalic){
-            italicText = isItalic;
             angleText = angleItalic;
             paint.setTextSkewX(angleItalic);
         }else {
             paint.setTextSkewX(0);
         }
-        LYTE("italik "+angleItalic);
         invalidate();
     }
 
@@ -178,6 +177,10 @@ public class PresentPaint extends View {
 
     public boolean isTextItalic(){
         return italicText;
+    }
+
+    public float getAngleItalic(){
+        return angleText;
     }
 
 
