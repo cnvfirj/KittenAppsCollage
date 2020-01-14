@@ -155,7 +155,6 @@ public class PresentPaint extends View {
     }
 
     public void setItalic(boolean isItalic, float angleItalic){
-        LYTE("ital "+isItalic+"}"+angleItalic);
         italicText = isItalic;
         if(isItalic){
             angleText = angleItalic;
