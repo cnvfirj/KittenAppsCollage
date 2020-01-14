@@ -148,9 +148,11 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         String p = getPreferences().getString(PATH_FONT,"");
         if(s==S_ASSETS){
             RepDraw.get().setShrift(Typeface.createFromAsset(getContext().getAssets(),"fonts/"+p));
-        }else if(s==S_STORAGE){
+        }
+        else if(s==S_STORAGE){
             RepDraw.get().setShrift(Typeface.createFromFile(p));
-        }else {
+        }
+        else {
             RepDraw.get().setShrift(Typeface.createFromAsset(getContext().getAssets(),"fonts/font_1.otf"));
         }
     }

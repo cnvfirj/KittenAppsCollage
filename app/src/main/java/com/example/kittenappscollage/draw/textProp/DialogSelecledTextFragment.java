@@ -52,6 +52,8 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
 
     private WorkAdapterShrift adapterShrift;
 
+    private int sizeBaseFonts;
+
 
     @Nullable
     @Override
@@ -191,12 +193,17 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         String[]fonts = null;
         try {
             fonts = getContext().getAssets().list("fonts");
+            sizeBaseFonts = fonts.length;
         } catch (IOException e) {
             e.printStackTrace();
         }
         adapterShrift = new WorkAdapterShrift(getContext(),fonts);
         listShrift.setAdapter(adapterShrift);
 
+    }
+
+    protected int getSizeBaseFonts(){
+        return sizeBaseFonts;
     }
 
     private void initButtons(View view){

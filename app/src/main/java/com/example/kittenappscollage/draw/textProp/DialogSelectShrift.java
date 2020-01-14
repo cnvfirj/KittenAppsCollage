@@ -50,7 +50,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
         getAdapter().setListen(new ListenAdapterShrift() {
             @Override
             public void item(int position, String path) {
-              sourceFont = position<=3? ApplyDrawToolsFragmentDraw.S_ASSETS:ApplyDrawToolsFragmentDraw.S_STORAGE;
+              sourceFont = position<getSizeBaseFonts()? ApplyDrawToolsFragmentDraw.S_ASSETS:ApplyDrawToolsFragmentDraw.S_STORAGE;
               pathFont = path;
             }
 
