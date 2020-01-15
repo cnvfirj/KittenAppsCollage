@@ -166,19 +166,19 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
             try {
                 RepDraw.get().setShrift(Typeface.createFromAsset(getContext().getAssets(), "fonts/" + p));
             }catch (RuntimeException e1){
-                RepDraw.get().setShrift(Typeface.createFromAsset(getContext().getAssets(),"fonts/font_1.otf"));
+                RepDraw.get().setShrift(Typeface.create(Typeface.DEFAULT,Typeface.NORMAL));
             }
         }
         else if(s==S_STORAGE){
             try {
                 RepDraw.get().setShrift(Typeface.createFromFile(p));
             }catch (RuntimeException e1){
-                RepDraw.get().setShrift(Typeface.createFromAsset(getContext().getAssets(),"fonts/font_1.otf"));
+                RepDraw.get().setShrift(Typeface.create(Typeface.DEFAULT,Typeface.NORMAL));
             }
 
         }
         else {
-            RepDraw.get().setShrift(Typeface.createFromAsset(getContext().getAssets(),"fonts/font_1.otf"));
+            RepDraw.get().setShrift(Typeface.create(Typeface.DEFAULT,Typeface.NORMAL));
         }
     }
 }
