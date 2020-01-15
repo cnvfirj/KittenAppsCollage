@@ -30,9 +30,9 @@ import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.OnSeekBarChangeListener{
 
-    private final String KEY_COLOR_FON = "key color fon";
-    private final String KEY_WIDTH_BLANK = "width blank";
-    private final String KEY_HEIGHT_BLANK = "height blank";
+    private final String KEY_COLOR_FON = "key color fon AddLyrInCreator";
+    private final String KEY_WIDTH_BLANK = "width blank AddLyrInCreator";
+    private final String KEY_HEIGHT_BLANK = "height blank AddLyrInCreator";
 
     private SharedPreferences aPreferences;
 
@@ -59,16 +59,14 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
     public void onResume() {
         super.onResume();
         aPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
-            int color = aPreferences.getInt(KEY_COLOR_FON, Color.WHITE);
-            aPreview.fon(color);
-            aSelectColor.setColor(color);
-            aColorPickCall.setImageTintList(ColorStateList.valueOf(color));
+            aColor = aPreferences.getInt(KEY_COLOR_FON, Color.WHITE);
+            aPreview.fon(aColor);
+            aSelectColor.setColor(aColor);
+            aColorPickCall.setImageTintList(ColorStateList.valueOf(aColor));
             int width = aPreferences.getInt(KEY_WIDTH_BLANK, 0);
             int height = aPreferences.getInt(KEY_HEIGHT_BLANK, 0);
             aPreview.size(new Size(width, height));
             paramView(aPreview);
-
-
     }
 
     @Override
@@ -176,6 +174,7 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
                 super.onColorSelected(color);
                 aColor = color;
                 aColorPickCall.setImageTintList(ColorStateList.valueOf(color));
+                aPreview.fon(aColor);
 
             }
         });
@@ -195,6 +194,7 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
             aSeekWidth.animate().translationY(-aSeekWidth.getBottom()).setDuration(500).start();
             aExitAll.animate().translationX(aExitAll.getWidth()+aDoneParams.getLeft()).setDuration(500).start();
             aDoneParams.animate().translationX(-aDoneParams.getRight()).setDuration(500).start();
+            aPreview.shadow(true);
         }else {
             applyTransform(true,500);
             aPreview.fon(aColor);
@@ -203,6 +203,7 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
             aSeekWidth.animate().translationY(0).setDuration(500).start();
             aExitAll.animate().translationX(0).setDuration(500).start();
             aDoneParams.animate().translationX(0).setDuration(500).start();
+            aPreview.shadow(false);
         }
         aColorPickCall.setActivated(!aColorPickCall.isActivated());
     }

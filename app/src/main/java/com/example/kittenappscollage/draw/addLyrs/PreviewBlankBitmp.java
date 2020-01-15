@@ -13,6 +13,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.view.CustomFon;
 import com.madrapps.pikolo.HSLColorPicker;
 
@@ -31,6 +32,8 @@ public class PreviewBlankBitmp extends CustomFon {
 
     private Paint cPaintBitmap;
 
+    private boolean cShadow;
+
 
 
     public PreviewBlankBitmp(Context context) {
@@ -45,18 +48,29 @@ public class PreviewBlankBitmp extends CustomFon {
 
     private void initVars(){
         cCorrect = false;
+        cShadow = false;
         cColorFon = Color.WHITE;
         cPaintBitmap = new Paint();
         cPaintBitmap.setStyle(Paint.Style.FILL);
         cPaintBitmap.setColor(cColorFon);
         cPaintBitmap.setStrokeWidth(1);
-
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        cPaintBitmap.setColor(cColorFon);
         canvas.drawRect(rect(),cPaintBitmap);
+        if(cShadow){
+            drawShadow(canvas);
+        }
+    }
+
+    private void drawShadow(Canvas canvas){
+        if(getContext()!=null) {
+            cPaintBitmap.setColor(getContext().getResources().getColor(R.color.colorShadow));
+            canvas.drawRect(0, 0, canvas.getWidth(), canvas.getHeight(), cPaintBitmap);
+        }
     }
 
     private RectF rect(){
@@ -64,7 +78,6 @@ public class PreviewBlankBitmp extends CustomFon {
             createSize();
         }
            return new RectF(location(new SizeF(getWidth(),getHeight()),new SizeF(cSize.getWidth(),cSize.getHeight())));
-
     }
 
     private void createSize(){
@@ -87,6 +100,11 @@ public class PreviewBlankBitmp extends CustomFon {
             cSize = size;
             cCorrect = true;
         }else cCorrect = false;
+        invalidate();
+    }
+
+    public void shadow(boolean shadow){
+        cShadow = shadow;
         invalidate();
     }
 
