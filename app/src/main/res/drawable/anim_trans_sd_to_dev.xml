@@ -1,0 +1,124 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="24dp"
+            android:height="24dp"
+            android:viewportWidth="24"
+            android:viewportHeight="24">
+            <group
+                android:name="group_sd_to_dev"
+                android:pivotX="12"
+                android:pivotY="12">
+                <group android:name="group_dev">
+                    <clip-path
+                        android:name="clip_path"
+                        android:pathData="M 23.005 0.893 L 23.108 22.932 L 0.999 23.001 L 0.93 0.895 L 10.177 1.061 L 10.002 13.021 L 9.981 14.363 L 11.129 15.524 L 10 15.523 L 10.001 16.471 L 11.152 16.47 L 9.966 17.656 L 10.002 18.973 L 11.194 17.78 L 11.197 14.217 L 9.946 12.969 L 10.121 1.009 Z M 0 0"/>
+                    <path
+                        android:name="dev"
+                        android:pathData="M 18.7 5.2 L 12.3 5.2 C 10.972 5.2 9.9 6.272 9.9 7.6 L 9.9 20.4 C 9.9 21.728 10.972 22.8 12.3 22.8 L 18.7 22.8 C 20.028 22.8 21.1 21.728 21.1 20.4 L 21.1 7.6 C 21.1 6.272 20.028 5.2 18.7 5.2 Z M 17.1 21.2 L 13.9 21.2 L 13.9 20.4 L 17.1 20.4 L 17.1 21.2 Z M 19.7 18.8 L 11.3 18.8 L 11.3 7.6 L 19.7 7.6 L 19.7 18.8 Z"
+                        android:fillColor="#FFFFFF"/>
+                </group>
+                <group
+                    android:name="group_arr"
+                    android:pivotX="12"
+                    android:pivotY="12">
+                    <clip-path
+                        android:name="clip_path_1"
+                        android:pathData="M 23.005 0.893 L 23.108 22.932 L 0.999 23.001 L 0.93 0.895 L 10.177 1.061 L 10.002 13.021 L 9.981 14.363 L 11.129 15.524 L 10 15.523 L 10.001 16.471 L 11.152 16.47 L 9.966 17.656 L 10.002 18.973 L 11.194 17.78 L 11.197 14.217 L 9.946 12.969 L 10.121 1.009 Z M 0 0"/>
+                    <path
+                        android:name="arr"
+                        android:pathData="M 3.5 13.507 L 3.499 16.497 L 11.085 16.5 L 9.295 18.295 L 10 19 L 13 16 L 10 13 L 9.295 13.705 L 11.085 15.5 L 4.502 15.482 L 4.492 13.516 Z"
+                        android:fillColor="#FFFFFF"/>
+                </group>
+                <group android:name="group_sd">
+                    <clip-path
+                        android:name="clip_path_2"
+                        android:pathData="M 23.005 0.893 L 23.108 22.932 L 0.999 23.001 L 0.93 0.895 L 10.177 1.061 L 10.002 13.021 L 9.981 14.363 L 11.129 15.524 L 10 15.523 L 10.001 16.471 L 11.152 16.47 L 9.966 17.656 L 10.002 18.973 L 11.194 17.78 L 11.197 14.217 L 9.946 12.969 L 10.121 1.009 Z M 0 0"/>
+                    <path
+                        android:name="sd"
+                        android:pathData="M 8.8 2 L 4.8 2 L 1.81 5 L 1.8 11 C 1.8 11.55 2.25 12 2.8 12 L 8.8 12 C 9.35 12 9.8 11.55 9.8 11 L 9.8 3 C 9.8 2.45 9.35 2 8.8 2 Z M 5.8 5 L 4.8 5 L 4.8 3 L 5.8 3 L 5.8 5 Z M 7.3 5 L 6.3 5 L 6.3 3 L 7.3 3 L 7.3 5 Z M 8.8 5 L 7.8 5 L 7.8 3 L 8.8 3 L 8.8 5 Z"
+                        android:fillColor="#000000"/>
+                </group>
+            </group>
+            <group
+                android:name="group_dev_to_sd"
+                android:pivotX="12"
+                android:pivotY="12"
+                android:scaleX="0"
+                android:rotation="45">
+                <group android:name="group_dev_1">
+                    <clip-path
+                        android:name="clip_path_3"
+                        android:pathData="M 23.005 0.893 L 23.108 22.932 L 0.999 23.001 L 0.93 0.895 L 10.177 1.061 L 10.002 13.021 L 9.332 13.706 L 11.129 15.524 L 9.368 15.523 L 9.364 16.471 L 11.152 16.47 L 9.327 18.295 L 10.002 18.973 L 12.979 15.994 L 9.906 12.954 L 10.121 1.009 Z M 0 0"/>
+                    <path
+                        android:name="dev_1"
+                        android:pathData="M 7.5 2 L 3.5 2 C 2.67 2 2 2.67 2 3.5 L 2 11.5 C 2 12.33 2.67 13 3.5 13 L 7.5 13 C 8.33 13 9 12.33 9 11.5 L 9 3.5 C 9 2.67 8.33 2 7.5 2 Z M 6.5 12 L 4.5 12 L 4.5 11.5 L 6.5 11.5 L 6.5 12 Z M 8.125 10.5 L 2.875 10.5 L 2.875 3.5 L 8.125 3.5 L 8.125 10.5 Z"
+                        android:fillColor="#000000"/>
+                </group>
+                <group android:name="group_arr_1">
+                    <clip-path
+                        android:name="clip_path_4"
+                        android:pathData="M 23.005 0.893 L 23.108 22.932 L 0.999 23.001 L 0.93 0.895 L 10.177 1.061 L 10.002 13.021 L 9.332 13.706 L 11.129 15.524 L 9.368 15.523 L 9.364 16.471 L 11.152 16.47 L 9.327 18.295 L 10.002 18.973 L 12.979 15.994 L 9.906 12.954 L 10.121 1.009 Z M 0 0"/>
+                    <path
+                        android:name="arr_1"
+                        android:pathData="M 3.5 13.507 L 3.499 16.497 L 11.085 16.5 L 9.295 18.295 L 10 19 L 13 16 L 10 13 L 9.295 13.705 L 11.085 15.5 L 4.502 15.482 L 4.492 13.516 Z"
+                        android:fillColor="#000000"/>
+                </group>
+                <group android:name="group_sd_1">
+                    <clip-path
+                        android:name="clip_path_5"
+                        android:pathData="M 23.005 0.893 L 23.108 22.932 L 0.999 23.001 L 0.93 0.895 L 10.177 1.061 L 10.002 13.021 L 9.332 13.706 L 11.129 15.524 L 9.368 15.523 L 9.364 16.471 L 11.152 16.47 L 9.327 18.295 L 10.002 18.973 L 12.979 15.994 L 9.906 12.954 L 10.121 1.009 Z M 0 0"/>
+                    <path
+                        android:name="sd_1"
+                        android:pathData="M 20.3 6 L 13.9 6 L 9.116 10.8 L 9.1 20.4 C 9.1 21.28 9.82 22 10.7 22 L 20.3 22 C 21.18 22 21.9 21.28 21.9 20.4 L 21.9 7.6 C 21.9 6.72 21.18 6 20.3 6 Z M 15.5 10.8 L 13.9 10.8 L 13.9 7.6 L 15.5 7.6 L 15.5 10.8 Z M 17.9 10.8 L 16.3 10.8 L 16.3 7.6 L 17.9 7.6 L 17.9 10.8 Z M 20.3 10.8 L 18.7 10.8 L 18.7 7.6 L 20.3 7.6 L 20.3 10.8 Z"
+                        android:fillColor="#000000"/>
+                </group>
+            </group>
+        </vector>
+    </aapt:attr>
+    <target android:name="group_dev_to_sd">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="rotation"
+                    android:startOffset="150"
+                    android:duration="150"
+                    android:valueFrom="45"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="scaleX"
+                    android:startOffset="150"
+                    android:duration="150"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="group_sd_to_dev">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="scaleX"
+                    android:duration="150"
+                    android:valueFrom="1"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+                <objectAnimator
+                    android:propertyName="rotation"
+                    android:duration="150"
+                    android:valueFrom="0"
+                    android:valueTo="45"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/linear_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+</animated-vector>
