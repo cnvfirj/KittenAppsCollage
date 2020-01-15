@@ -1,21 +1,15 @@
 package com.example.kittenappscollage.draw.textProp;
 
-import android.content.res.Resources;
-import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.Window;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -45,6 +39,8 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
     private RecyclerView listShrift;
 
     private ImageView action_1, action_2, action_3;
+
+    private ImageView downFonts;
 
     private DynamicSeekBar angleText;
 
@@ -109,7 +105,9 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
            case R.id.dialog_edit_text_fill_text:
                fillText((ImageView)view);
                break;
-
+           case R.id.dialog_edit_text_down_fonts:
+               searchFonts((ImageView)view);
+               break;
        }
     }
 
@@ -136,6 +134,10 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
 
     }
 
+    protected void searchFonts(ImageView view){
+
+    }
+
     protected void paramView(final View view){
         ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {
@@ -149,6 +151,7 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
                     LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)angleText.getLayoutParams();
                     params.width =width- (int) step;
                     angleText.setLayoutParams(params);
+
                 }
             });
         }
@@ -210,6 +213,10 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         return resetAngleText;
     }
 
+    protected ImageView getVisibleInstruct(){
+        return downFonts;
+    }
+
     protected void initListShrift(View view){
         listShrift = view.findViewById(R.id.item_present_draw_list_shrift);
         listShrift.setHasFixedSize(true);
@@ -240,5 +247,7 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         resetAngleText.setOnClickListener(this);
         fillText = view.findViewById(R.id.dialog_edit_text_fill_text);
         fillText.setOnClickListener(this);
+        downFonts = view.findViewById(R.id.dialog_edit_text_down_fonts);
+        downFonts.setOnClickListener(this);
     }
 }

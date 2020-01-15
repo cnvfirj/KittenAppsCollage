@@ -41,6 +41,8 @@
     <string name="condition_apply_tools">открой или создай холст</string>
     <string name="click_again">нажми еще раз</string>
 
+    <string name="instruct_down_fonts">Для установки дополнительных шрифтов, скачай их на свое устройство. При запуске приложения они будут найдены. Скачанный шрифт должен иметь расширение(окончание в названии файла) ".ttf" или ".otf".</string>
+
 
     <string name="KEY_ADAPTER_POSITION">key adapter position</string>
     <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>

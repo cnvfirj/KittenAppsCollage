@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +34,8 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
 
     private InputMethodManager imm;
 
+    private TextView instruct;
+
 
     public static DialogSelectShrift get(){
         DialogSelectShrift d = new DialogSelectShrift();
@@ -49,6 +52,8 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        instruct = view.findViewById(R.id.dialog_edit_text_instruct);
+        slideTextInstruct(true,0);
         enableBarAngle(RepDraw.get().isTextItalic());
         getBarAngle().setProgress(computeProgressBar());
         getPresent().selFill(RepDraw.get().isTextFill());
@@ -84,7 +89,6 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
     @Override
     protected void enableAngle(ImageView view) {
         super.enableAngle(view);
-        LYTE("set angle");
         view.setSelected(!view.isSelected());
         enableBarAngle(view.isSelected());
         getPresent().setItalic(view.isSelected(),computeAngleBar());
@@ -95,6 +99,13 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
         super.fillText(view);
         view.setSelected(!view.isSelected());
         getPresent().selFill(view.isSelected());
+    }
+
+    @Override
+    protected void searchFonts(ImageView view) {
+        super.searchFonts(view);
+//        view.setActivated(!view.isActivated());
+        slideTextInstruct(!view.isActivated(),500);
     }
 
     @Override
@@ -136,6 +147,17 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
     public void onPause() {
         super.onPause();
         imm.hideSoftInputFromWindow(getEnterText().getWindowToken(), 0);
+    }
+
+    private void slideTextInstruct(boolean invisible, int tyme){
+        getVisibleInstruct().setActivated(invisible);
+        if(invisible){
+            instruct.animate().alpha(0).scaleY(0).setDuration(tyme).start();
+            getVisibleInstruct().animate().alpha(1).setDuration(tyme).start();
+        }else {
+            instruct.animate().alpha(1).scaleY(1).setDuration(tyme).start();
+            getVisibleInstruct().animate().alpha(0.5f).setDuration(tyme).start();
+        }
     }
 
     private void enableBarAngle(boolean enable){
