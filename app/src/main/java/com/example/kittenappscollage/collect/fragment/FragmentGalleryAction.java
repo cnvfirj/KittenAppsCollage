@@ -3,6 +3,8 @@ package com.example.kittenappscollage.collect.fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,6 +100,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
             File oldfile = new File(oldFold);
             File newfile = new File(newFold);
+            oldfile.canWrite();
             if(oldfile.renameTo(newfile)){
                 ArrayList<String>imgs = getListImagesInFolders().get(getKey());
                 ArrayList<String >newImgs = new ArrayList<>();
@@ -114,13 +117,9 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
                 getListFolds().remove(getKey());
                 getListFolds().put(name, newFold);
 
-//                getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(newfile)));
-//                getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(oldfile)));
-
             }
                  getFoldAdapt().setAll(getListImagesInFolders());
                  getImgAdapt().setAll(getListImagesInFolders());
-
         }
     }
 
@@ -139,6 +138,16 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     }
 
     private void deleteSelectedImg(){
-        String key = getKey();
+        for (String img:getSelectFiles()){
+            File file = new File(img);
+            if(file.exists())file.delete();
+            getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
+            getListImagesInFolders().get(getKey()).remove(img);
+        }
+
+        getFoldAdapt().setAll(getListImagesInFolders());
+        getImgAdapt().setAll(getListImagesInFolders());
+
+
     }
 }

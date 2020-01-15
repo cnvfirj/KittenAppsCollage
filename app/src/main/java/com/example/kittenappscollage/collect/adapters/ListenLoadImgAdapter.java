@@ -70,19 +70,19 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     }
 
     protected void createHolder(View holder, int pos){
-        if(listen!=null)listen.createHolder(0, holder, pos);
+        if(listen!=null)listen.createHolder(0, holder, getPositionInEnd(pos));
     }
 
     protected void createContentHolder(View[]content, int pos){
-        if(listen!=null)listen.createContentHolder(0, content, pos);
+        if(listen!=null)listen.createContentHolder(0, content, getPositionInEnd(pos));
     }
 
     protected void click(ImageView img, ImageView check, int pos){
-        if(listen!=null)listen.click(0, img,check, pos);
+        if(listen!=null)listen.click(0, img,check, getPositionInEnd(pos));
     }
 
     protected void longClick(ImageView img, ImageView check, int pos) {
-        if(listen!=null)listen.longClick(0, img, check, pos);
+        if(listen!=null)listen.longClick(0, img, check, getPositionInEnd(pos));
     }
 
     /*получаем вариант из конца списка*/

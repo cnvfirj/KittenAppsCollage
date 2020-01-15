@@ -36,7 +36,7 @@ public class LoadImgAdapt extends ListenLoadImgAdapter {
 
     @Override
     public ListenLoadImgAdapter setAll(HashMap<String, ArrayList<String>> all) {
-        resetChecks(all.size());
+//        resetChecks(all.size());
         return super.setAll(all);
     }
 
@@ -48,8 +48,9 @@ public class LoadImgAdapt extends ListenLoadImgAdapter {
 
     @Override
     public void setIndexKey(int index) {
+        resetCheckeds(getAll().get(getFolds()[index]).size());
         super.setIndexKey(index);
-        resetCheckeds();
+
     }
 
     public boolean isModeSelected() {
@@ -65,7 +66,7 @@ public class LoadImgAdapt extends ListenLoadImgAdapter {
 
     }
 
-    private void resetChecks(int size){
+    private void resetCheckeds(int size){
         checkSelect = new boolean[size];
     }
 
@@ -81,7 +82,6 @@ public class LoadImgAdapt extends ListenLoadImgAdapter {
             checkSelect[pos] = !checkSelect[pos];
             check.setVisibility(getArrChecks()[pos]?View.VISIBLE:View.INVISIBLE);
         }
-        int position = getPositionInEnd(pos);
     }
 
     @Override
