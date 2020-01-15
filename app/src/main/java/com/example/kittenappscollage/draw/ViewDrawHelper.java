@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
+import android.graphics.RectF;
 
 import com.example.kittenappscollage.draw.operations.TouchPoints;
 import com.example.mutmatrix.DeformMat;
@@ -58,18 +59,35 @@ public class ViewDrawHelper {
         hPaint.setStrokeWidth(2);
         hPaint.setTextSize(50);
         PointF[]p = img.muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM);
-        hPath.reset();
-        hPath.moveTo(p[0].x,p[0].y);
-        hPath.lineTo(p[1].x,p[1].y);
-        hPath.lineTo(p[2].x,p[2].y);
-        hPath.lineTo(p[3].x,p[3].y);
-        hPath.close();
+        createPathInfo(p);
         c.drawPath(hPath,hPaint);
         String info = text+":"+createInfo(img);
         hPaint.setTextSize(25);
         hPaint.setStrokeWidth(1);
         hPaint.setStyle(Paint.Style.FILL);
         c.drawTextOnPath(info,hPath,0,0,hPaint);
+    }
+
+    private void createPathInfo(PointF[]points){
+        hPath.reset();
+        /*sersh min*/
+        PointF min = new PointF();
+        PointF max = new PointF();
+        for (int i=0;i<points.length;i++){
+            if(i==0){
+                min.set(points[i].x,points[i].y);
+                max.set(points[i].x,points[i].y);
+                continue;
+            }
+            if(points[i].x<min.x)min.set(points[i].x,min.y);
+            if(points[i].y<min.y)min.set(min.x,points[i].y);
+
+            if(points[i].x>max.x)max.set(points[i].x,max.y);
+            if(points[i].y>max.y)max.set(max.x,points[i].y);
+        }
+
+        hPath.addRect(min.x,min.y,max.x,max.y, Path.Direction.CW);
+
     }
 
     private void addRepers(Canvas c, PointF[] repers){
