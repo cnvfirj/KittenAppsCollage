@@ -115,9 +115,14 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
                 }
                 getListImagesInFolders().remove(getKey());
-                getListImagesInFolders().put(name,newImgs);
+                getListImagesInFolders().put(nameFold,newImgs);
+
                 getListFolds().remove(getKey());
-                getListFolds().put(name, newFold);
+                getListFolds().put(nameFold, newFold);
+
+                getIndexesStorage().put(nameFold,getIndexesStorage().get(getKey()));
+                getIndexesStorage().remove(getKey());
+
 
             }
                  getFoldAdapt().setAll(getListImagesInFolders());
@@ -133,13 +138,13 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
             if(file.exists())file.delete();
             getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
         }
-
         File file = new File(getKey());
         if(file.exists())file.delete();
 
         getListImagesInFolders().remove(getKey());
         getListFolds().remove(getKey());
         getIndexesStorage().remove(getKey());
+
         getFoldAdapt().setAll(getListImagesInFolders());
         getImgAdapt().setAll(getListImagesInFolders());
     }
