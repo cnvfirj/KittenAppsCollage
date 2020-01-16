@@ -1,11 +1,15 @@
 package com.example.kittenappscollage.collect.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -13,6 +17,7 @@ import com.example.kittenappscollage.helpers.RequestFolder;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,12 +34,15 @@ public class FragmentScanAllImages extends Fragment {
 
     private HashMap<String,String>listFolds;
 
+    private HashMap<String,String>listPartition;
+
     private HashMap<String, Integer>listStorages;
 
     private ArrayList<String> storage;
 
     public void scanDevice(){
          check();
+//        content();
     }
 
     @SuppressLint("CheckResult")
@@ -46,7 +54,7 @@ public class FragmentScanAllImages extends Fragment {
           .subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
     }
 
-     @SuppressLint("Recycle")
+        @SuppressLint("Recycle")
     private HashMap<String,ArrayList<String>> scan(HashMap<String,ArrayList<String>>list,HashMap<String,String>folds){
          definitionStorage();
          if(getListImagesInFolders()==null)initListImagesInFolders();
@@ -83,13 +91,14 @@ public class FragmentScanAllImages extends Fragment {
                     imgs.add(cursor.getString(col_path));
                     list.put(key, imgs);
                     folds.put(key,cursor.getString(col_fold));
-                    if(getNamesStorage().size()>1){
-                        for(int i=1;i<getNamesStorage().size();i++) {
-                            if(key.contains(getNamesStorage().get(i)))listStorages.put(key, getNamesStorage().indexOf(getNamesStorage().get(i)));
+                        for(int i=0;i<getNamesStorage().size();i++) {
+                            if(key.contains(getNamesStorage().get(i))){
+                                getIndexesStorage().put(key, getNamesStorage().indexOf(getNamesStorage().get(i)));
+                                getListPartition().put(key,getNamesStorage().get(i));
+                            }
+
                         }
-                    }else {
-                        listStorages.put(key,0);
-                    }
+
                 }
             }
         }
@@ -106,7 +115,7 @@ public class FragmentScanAllImages extends Fragment {
     }
 
     public void setSavingCollage(String path){
-        String key = RequestFolder.getNameFoldCollages();
+        String key = RequestFolder.getFolderImages();
         if(listImagesToFolder.containsKey(key)){
             listImagesToFolder.get(key).add(path);
         } else {
@@ -133,6 +142,9 @@ public class FragmentScanAllImages extends Fragment {
         return listFolds;
     }
 
+    protected HashMap<String,String>getListPartition(){
+        return listPartition;
+    }
     /*индекс хранилища из getNamesStorage()*/
     protected HashMap<String,Integer>getIndexesStorage(){
         return listStorages;
@@ -142,12 +154,75 @@ public class FragmentScanAllImages extends Fragment {
         listImagesToFolder.clear();
         listFolds.clear();
         listStorages.clear();
+        listPartition.clear();
     }
 
     protected void initListImagesInFolders(){
         listImagesToFolder = new HashMap<>();
         listFolds = new HashMap<>();
         listStorages = new HashMap<>();
+        listPartition = new HashMap<>();
     }
+
+//    private void  content(){
+//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//        intent.addCategory(Intent.CATEGORY_OPENABLE);
+//        intent.setType("image/jpeg");
+//        intent.setType("image/pjpeg");
+//        intent.setType("image/png");
+//        startActivityForResult(intent, FragmentGallery.REQUEST_READ_STORAGE);
+//    }
+//
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if(requestCode==FragmentGallery.REQUEST_READ_STORAGE){
+//            if(resultCode == Activity.RESULT_OK && data!= null && data.getData() != null){
+//                definitionStorage();
+//                if(getListImagesInFolders()==null)initListImagesInFolders();
+//                else getListImagesInFolders().clear();
+//
+//                Uri uri = data.getData();
+//
+//                String[] projection = {
+//                        MediaStore.MediaColumns.DATA,
+//                        MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
+//
+//                Cursor cursor = getActivity().getContentResolver().query(uri, projection, null,
+//                        null, null);
+//
+//                int col_path, col_fold;
+//                col_path = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+//                col_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+//
+//                cursor.moveToFirst();
+//
+//                while (cursor.moveToNext()) {
+//                    String key = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);;
+//
+//                    if(getListImagesInFolders().containsKey(key)){
+//
+//                            getListImagesInFolders().get(key).add(cursor.getString(col_path));
+//
+//                    } else {
+//                            ArrayList<String> imgs = new ArrayList<>();
+//                            imgs.add(cursor.getString(col_path));
+//                            getListImagesInFolders().put(key, imgs);
+//                            getListFolds().put(key,cursor.getString(col_fold));
+//                            for(int i=0;i<getNamesStorage().size();i++) {
+//                                if(key.contains(getNamesStorage().get(i))){
+//                                    getIndexesStorage().put(key, getNamesStorage().indexOf(getNamesStorage().get(i)));
+//                                    getListPartition().put(key,getNamesStorage().get(i));
+//                                }
+//
+//                            }
+//
+//                        }
+//                    }
+//
+//                setListImagesInFolders(getListImagesInFolders());
+//                }
+//            }
+//        }
 
 }

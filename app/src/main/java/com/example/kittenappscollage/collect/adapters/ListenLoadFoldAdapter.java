@@ -45,6 +45,7 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     }
 
     public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all) {
+        names = null;
         this.all = all;
         folds = new String[all.size()];
         all.keySet().toArray(folds);

@@ -87,7 +87,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     @Override
     protected void setListImagesInFolders(HashMap<String, ArrayList<String>> list) {
         super.setListImagesInFolders(list);
-        foldAdapt.setAll(list).setListen(this);
+        foldAdapt.setAll(list,getListFolds()).setListen(this);
         imgAdapt.setAll(list).setListen(this);
     }
 

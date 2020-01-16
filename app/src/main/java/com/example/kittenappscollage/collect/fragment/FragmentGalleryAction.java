@@ -3,8 +3,6 @@ package com.example.kittenappscollage.collect.fragment;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -95,14 +93,13 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         invisibleMenu();
         if(done&&!name.isEmpty()) {
 
-            final String oldFold = getKey();//адрес папки
             final String nameFold = getListFolds().get(getKey());//имя папки
-            final String excludeNameFold = oldFold.split(nameFold)[0];
+            final String excludeNameFold = getKey().split(nameFold)[0];
             final String newFold = excludeNameFold+name;//новое имя папки
 
-            File oldfile = new File(oldFold);
+            File oldfile = new File(getKey());
             File newfile = new File(newFold);
-//            oldfile.canWrite();
+            oldfile.canWrite();
             if(oldfile.renameTo(newfile)){
                 ArrayList<String>imgs = getListImagesInFolders().get(getKey());//все коллажи
                 ArrayList<String >newImgs = new ArrayList<>();
@@ -114,19 +111,22 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
                     getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(path))));
 
                 }
+
+                getListImagesInFolders().put(newFold,newImgs);
                 getListImagesInFolders().remove(getKey());
-                getListImagesInFolders().put(nameFold,newImgs);
 
+                getListFolds().put(newFold, nameFold);
                 getListFolds().remove(getKey());
-                getListFolds().put(nameFold, newFold);
 
-                getIndexesStorage().put(nameFold,getIndexesStorage().get(getKey()));
+                getIndexesStorage().put(newFold,getIndexesStorage().get(getKey()));
                 getIndexesStorage().remove(getKey());
 
+                getListPartition().put(nameFold,getListPartition().get(getKey()));
+                getListPartition().remove(getKey());
 
             }
-                 getFoldAdapt().setAll(getListImagesInFolders());
-                 getImgAdapt().setAll(getListImagesInFolders());
+            getFoldAdapt().setAll(getListImagesInFolders());
+            getImgAdapt().setAll(getListImagesInFolders());
         }
     }
 
@@ -144,6 +144,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         getListImagesInFolders().remove(getKey());
         getListFolds().remove(getKey());
         getIndexesStorage().remove(getKey());
+        getListPartition().remove(getKey());
 
         getFoldAdapt().setAll(getListImagesInFolders());
         getImgAdapt().setAll(getListImagesInFolders());
