@@ -10,6 +10,12 @@ import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
 public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
 
+    public static final int REQUEST_SAVED = 91;
+
+    public void reSave(){
+        if(RepDraw.get().isImg())SaveImageToFile.saveImage(getContext(),RepDraw.get().getImg());
+    }
+
 
     @Override
     protected void saveNet(ImageView v) {
@@ -22,7 +28,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         if (AllPermissions.create().activity(getActivity()).reqSingle(AllPermissions.STORAGE).isStorage()) {
             if(RepDraw.get().isImg())SaveImageToFile.saveImage(getContext(),RepDraw.get().getImg());
         } else {
-            AllPermissions.create().activity(getActivity()).callDialog(AllPermissions.STORAGE);
+            AllPermissions.create().activity(getActivity()).callDialog(AllPermissions.STORAGE,REQUEST_SAVED);
         }
 
     }

@@ -1,29 +1,25 @@
 package com.example.kittenappscollage.collect.fragment;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
+import android.os.Environment;
 import android.provider.MediaStore;
 
-import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kittenappscollage.helpers.RequestFolder;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Objects;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Consumer;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
@@ -33,8 +29,11 @@ public class FragmentScanAllImages extends Fragment {
 
     private HashMap<String,String>listFolds;
 
+    private HashMap<String, Integer>listStorages;
+
+    private ArrayList<String> storage;
+
     public void scanDevice(){
-//        LYTE("scan ");
          check();
     }
 
@@ -49,11 +48,12 @@ public class FragmentScanAllImages extends Fragment {
 
      @SuppressLint("Recycle")
     private HashMap<String,ArrayList<String>> scan(HashMap<String,ArrayList<String>>list,HashMap<String,String>folds){
+         definitionStorage();
          if(getListImagesInFolders()==null)initListImagesInFolders();
          else getListImagesInFolders().clear();
         String[] projection = {
                 MediaStore.MediaColumns.DATA,
-                MediaStore.Images.Media.BUCKET_DISPLAY_NAME };
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
 
         Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 
@@ -69,21 +69,40 @@ public class FragmentScanAllImages extends Fragment {
         clearListImagesInFolders();
         while (cursor.moveToNext()) {
             String path = cursor.getString(col_path).toLowerCase();
-            boolean pik = path.endsWith(".png")||path.endsWith(".jpeg")||path.endsWith("jpg");
 
-            if(list.containsKey(cursor.getString(col_fold))){
-                if(pik) list.get(cursor.getString(col_fold)).add(cursor.getString(col_path));
+
+            String key = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);;
+            boolean pik = path.endsWith(".png")||path.endsWith(".jpeg")||path.endsWith("jpg");
+            if(list.containsKey(key)){
+                if(pik) {
+                    list.get(key).add(cursor.getString(col_path));
+                }
             } else {
                 if(pik) {
                     ArrayList<String> imgs = new ArrayList<>();
                     imgs.add(cursor.getString(col_path));
-                    list.put(cursor.getString(col_fold), imgs);
-                    String pathFold = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);
-                    folds.put(cursor.getString(col_fold),pathFold);
+                    list.put(key, imgs);
+                    folds.put(key,cursor.getString(col_fold));
+                    if(getNamesStorage().size()>1){
+                        for(int i=1;i<getNamesStorage().size();i++) {
+                            if(key.contains(getNamesStorage().get(i)))listStorages.put(key, getNamesStorage().indexOf(getNamesStorage().get(i)));
+                        }
+                    }else {
+                        listStorages.put(key,0);
+                    }
                 }
             }
         }
         return list;
+    }
+
+    /*определяем тома в устройстве*/
+    private void definitionStorage(){
+        File[] files = ContextCompat.getExternalFilesDirs(getContext(), null);
+        storage = new ArrayList<>();
+        for (int i=0;i<files.length;i++){
+            storage.add(files[i].getAbsolutePath().split("Android")[0]);
+        }
     }
 
     public void setSavingCollage(String path){
@@ -102,6 +121,10 @@ public class FragmentScanAllImages extends Fragment {
          listImagesToFolder = list;
     }
 
+    protected ArrayList<String>getNamesStorage(){
+        return storage;
+    }
+
     protected HashMap<String,ArrayList<String>> getListImagesInFolders(){
         return listImagesToFolder;
     }
@@ -110,14 +133,21 @@ public class FragmentScanAllImages extends Fragment {
         return listFolds;
     }
 
+    /*индекс хранилища из getNamesStorage()*/
+    protected HashMap<String,Integer>getIndexesStorage(){
+        return listStorages;
+    }
+
     protected void clearListImagesInFolders(){
         listImagesToFolder.clear();
         listFolds.clear();
+        listStorages.clear();
     }
 
     protected void initListImagesInFolders(){
         listImagesToFolder = new HashMap<>();
         listFolds = new HashMap<>();
+        listStorages = new HashMap<>();
     }
 
 }

@@ -28,6 +28,9 @@ public class AllPermissions {
     public final static int STORAGE = 15;
     public final static int CAMERA = 14;
     public final static int ACCOUNT = 13;
+    private final int REQUEST_DEFAULT = 11;
+
+    private int request = REQUEST_DEFAULT;
 
 
     private boolean storage = false;
@@ -82,6 +85,26 @@ public class AllPermissions {
 
     /*запускаем запрос на разрешение*/
     public void callDialog(int perm){
+        request = REQUEST_DEFAULT;
+        if(activity==null){
+            Massages.ERROR("В класс AllPermissions не добален активити",getClass());
+            return ;
+        }
+        switch (perm){
+            case STORAGE:
+                callDialogStorage();
+                break;
+            case CAMERA:
+                callDialogCamera();
+                break;
+            case ACCOUNT:
+                callDialogAccount();
+                break;
+        }
+    }
+
+    public void callDialog(int perm, int request){
+        this.request = request;
         if(activity==null){
             Massages.ERROR("В класс AllPermissions не добален активити",getClass());
             return ;
@@ -280,8 +303,10 @@ public class AllPermissions {
     }
 
     private void callDialogStorage(){
-        ActivityCompat.requestPermissions(activity, new String[]{
+        if(request==REQUEST_DEFAULT)ActivityCompat.requestPermissions(activity, new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE},STORAGE);
+        else ActivityCompat.requestPermissions(activity, new String[]{
+                Manifest.permission.WRITE_EXTERNAL_STORAGE},request);
     }
 
     private void callDialogCamera(){

@@ -21,6 +21,8 @@ import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 /*обрабатываем добавление слоя или начало коллажа*/
 public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Adding{
 
+    public static final int REQUEST_READ_COLLECT = 93;
+
 
     public final static String DIALOG = "dialog";
 
@@ -90,10 +92,23 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
     @Override
     protected void addColl(ImageView v) {
         super.addColl(v);
-        aDialog = FrameDialogAdd.instance(FrameDialogAdd.ADD_COLL);
-        aDialog.show(getChildFragmentManager(),DIALOG);
+        if(AllPermissions.create()
+                .activity(getActivity())
+                .reqSingle(AllPermissions.STORAGE).isStorage()) {/*запрос на чтение данных*/
+            aDialog = FrameDialogAdd.instance(FrameDialogAdd.ADD_COLL);
+            aDialog.show(getChildFragmentManager(), DIALOG);
+        }else {
+            AllPermissions.create()
+                    .activity(getActivity())
+                    .callDialog(AllPermissions.STORAGE,REQUEST_READ_COLLECT);
+        }
+
     }
 
+    public void reVisCollect(){
+        aDialog = FrameDialogAdd.instance(FrameDialogAdd.ADD_COLL);
+        aDialog.show(getChildFragmentManager(), DIALOG);
+    }
     @Override
     public void readinessImg(boolean is) {
         if(is)dViewDraw.invalidate();

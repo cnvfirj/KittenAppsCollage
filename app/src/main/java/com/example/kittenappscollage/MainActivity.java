@@ -10,10 +10,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.kittenappscollage.collect.fragment.FragmentGallery;
 import com.example.kittenappscollage.collect.fragment.FragmentGalleryAction;
 import com.example.kittenappscollage.collect.fragment.FragmentSelectedGallery;
 import com.example.kittenappscollage.collect.fragment.FragmentSlideGallery;
+import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
+import com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
 import com.example.kittenappscollage.draw.saveSteps.ClearCatch;
@@ -28,7 +31,10 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.io.File;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery, SaveImageToFile.ActionSave {
+
 
     private ApplyDrawToolsFragmentDraw mFragDraw;
 
@@ -116,12 +122,22 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        AllPermissions.create()
-                .activity(this)
-                .setPerm(grantResults[0]== PackageManager.PERMISSION_GRANTED,requestCode);
-        if(grantResults[0]== PackageManager.PERMISSION_GRANTED)Toast.makeText(this,getString(R.string.click_again),Toast.LENGTH_SHORT).show();
-
+        if(requestCode== SavedKollagesFragmentDraw.REQUEST_SAVED){
+            AllPermissions.create()
+                    .activity(this)
+                    .setPerm(grantResults[0]== PackageManager.PERMISSION_GRANTED,requestCode);
+            if(grantResults[0]== PackageManager.PERMISSION_GRANTED)mFragDraw.reSave();
+        }else if(requestCode== FragmentGallery.REQUEST_READ_STORAGE){
+            AllPermissions.create()
+                    .activity(this)
+                    .setPerm(grantResults[0]== PackageManager.PERMISSION_GRANTED,requestCode);
+            if(grantResults[0]== PackageManager.PERMISSION_GRANTED)mFragGal.scanDevice();
+        }else if(requestCode== AddLyrsFragmentDraw.REQUEST_READ_COLLECT){
+            AllPermissions.create()
+                    .activity(this)
+                    .setPerm(grantResults[0]== PackageManager.PERMISSION_GRANTED,requestCode);
+            if(grantResults[0]== PackageManager.PERMISSION_GRANTED)mFragDraw.reVisCollect();
+        }
     }
 
     @Override

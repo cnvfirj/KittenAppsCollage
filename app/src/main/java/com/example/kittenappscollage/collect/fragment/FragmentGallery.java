@@ -15,6 +15,7 @@ import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.collect.adapters.ListenAdapter;
 import com.example.kittenappscollage.collect.adapters.LoadFoldAdapt;
 import com.example.kittenappscollage.collect.adapters.LoadImgAdapt;
+import com.example.kittenappscollage.helpers.AllPermissions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,6 +23,8 @@ import java.util.HashMap;
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 
 public class FragmentGallery extends FragmentScanAllImages implements ListenAdapter{
+
+    public static final int REQUEST_READ_STORAGE = 92;
 
     private RecyclerView recycler;
 
@@ -56,7 +59,19 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     public void onResume() {
         super.onResume();
         initListImagesInFolders();
-        scanDevice();
+        stateReadStorage(AllPermissions.create()
+                .activity(getActivity())
+                .reqSingle(AllPermissions.STORAGE).isStorage());
+    }
+
+    private void stateReadStorage(boolean state){
+        if(state) {
+            scanDevice();
+        }else {
+            AllPermissions.create()
+                    .activity(getActivity())
+                    .callDialog(AllPermissions.STORAGE,REQUEST_READ_STORAGE);
+        }
     }
 
     private void init(View v){

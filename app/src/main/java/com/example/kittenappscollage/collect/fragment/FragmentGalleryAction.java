@@ -94,18 +94,20 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     public void result(boolean done, String name) {
         invisibleMenu();
         if(done&&!name.isEmpty()) {
-            String oldFold = getSelectFiles().get(0);
-            String excludeNameFold = oldFold.split(getKey())[0];
-            String newFold = excludeNameFold+name;
+
+            final String oldFold = getKey();//адрес папки
+            final String nameFold = getListFolds().get(getKey());//имя папки
+            final String excludeNameFold = oldFold.split(nameFold)[0];
+            final String newFold = excludeNameFold+name;//новое имя папки
 
             File oldfile = new File(oldFold);
             File newfile = new File(newFold);
-            oldfile.canWrite();
+//            oldfile.canWrite();
             if(oldfile.renameTo(newfile)){
-                ArrayList<String>imgs = getListImagesInFolders().get(getKey());
+                ArrayList<String>imgs = getListImagesInFolders().get(getKey());//все коллажи
                 ArrayList<String >newImgs = new ArrayList<>();
                 for (String path:imgs){
-                    String[]split = path.split(getKey());
+                    String[]split = path.split(nameFold);
                     String p = split[0]+name+split[1];
                     newImgs.add(p);
                     getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(p))));
@@ -125,14 +127,19 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     /*вывести это все в паралельный поток*/
     private void deleteFolder(){
-        String key = getKey();
-        ArrayList<String>imgs = getListImagesInFolders().get(key);
+        ArrayList<String>imgs = getListImagesInFolders().get(getKey());
         for (String img:imgs){
             File file = new File(img);
             if(file.exists())file.delete();
             getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
         }
-        getListImagesInFolders().remove(key);
+
+        File file = new File(getKey());
+        if(file.exists())file.delete();
+
+        getListImagesInFolders().remove(getKey());
+        getListFolds().remove(getKey());
+        getIndexesStorage().remove(getKey());
         getFoldAdapt().setAll(getListImagesInFolders());
         getImgAdapt().setAll(getListImagesInFolders());
     }

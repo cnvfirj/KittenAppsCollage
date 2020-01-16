@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.kittenappscollage.R;
+import com.example.kittenappscollage.collect.fragment.FragmentScanAllImages;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     public static final int ROOT_ADAPTER = -5;
 
     private HashMap<String, ArrayList<String>> all;
+
+    private HashMap<String, String>names;
 
     private String[] folds;
 
@@ -42,6 +45,15 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     }
 
     public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all) {
+        this.all = all;
+        folds = new String[all.size()];
+        all.keySet().toArray(folds);
+        notifyDataSetChanged();
+        return this;
+    }
+
+    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all,HashMap<String, String>names){
+        this.names = names;
         this.all = all;
         folds = new String[all.size()];
         all.keySet().toArray(folds);
@@ -73,6 +85,10 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         return all;
     }
 
+    protected HashMap<String,String>getNames(){
+        return names;
+    }
+
     protected String[] getFolds(){
         return folds;
     }
@@ -90,8 +106,12 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         Glide.with(getContext())
                 .load(getAll().get(getFolds()[position]).get(getAll().get(getFolds()[position]).size()-1))
                 .into(holder.getImage());
-        String name = getFolds()[position];
-        holder.getName().setText(name);
+        if(names!=null&&names.size()==all.size()){
+            holder.getName().setText(getNames().get(getFolds()[position]));
+        }else {
+            String[]split = getFolds()[position].split("[/]");
+            holder.getName().setText(split[split.length-1]);
+        }
         holder.getCol().setText(Integer.toString(getAll().get(getFolds()[position]).size()));
     }
 
@@ -107,6 +127,7 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     public String[]getKeys(){
         return folds;
     }
+
 
     protected class FoldHolder extends CollectHolder{
 

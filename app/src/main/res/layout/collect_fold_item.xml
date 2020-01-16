@@ -29,14 +29,20 @@
             android:textColor="@android:color/white"
             android:singleLine="true"
             android:id="@+id/collect_item_name_dir"/>
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:text="col"
-            android:textSize="10dp"
-            android:textColor="@android:color/white"
-            android:id="@+id/collect_item_col_img_in_dir"/>
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="col"
+                android:textSize="10dp"
+                android:textColor="@android:color/white"
+                android:id="@+id/collect_item_col_img_in_dir"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
