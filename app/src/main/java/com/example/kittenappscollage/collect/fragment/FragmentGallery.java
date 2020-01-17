@@ -1,6 +1,12 @@
 package com.example.kittenappscollage.collect.fragment;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.storage.StorageManager;
+import android.os.storage.StorageVolume;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +14,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,11 +27,16 @@ import com.example.kittenappscollage.helpers.AllPermissions;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static android.app.Activity.RESULT_OK;
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 
 public class FragmentGallery extends FragmentScanAllImages implements ListenAdapter{
 
     public static final int REQUEST_READ_STORAGE = 92;
+
+    public static final int REQUEST_WRITE_ROOT = 94;
+
+
 
     private RecyclerView recycler;
 
@@ -55,6 +67,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         init(view);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onResume() {
         super.onResume();
@@ -64,6 +77,8 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
                 .reqSingle(AllPermissions.STORAGE).isStorage());
     }
 
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
     private void stateReadStorage(boolean state){
         if(state) {
             scanDevice();
@@ -71,6 +86,24 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
             AllPermissions.create()
                     .activity(getActivity())
                     .callDialog(AllPermissions.STORAGE,REQUEST_READ_STORAGE);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==REQUEST_WRITE_ROOT){
+            if(resultCode==RESULT_OK){
+                if(AllPermissions.create()
+                        .activity(getActivity())
+                        .reqSingle(AllPermissions.STORAGE).isStorage()) {
+                    scanDevice();
+                }else {
+                    AllPermissions.create()
+                            .activity(getActivity())
+                            .callDialog(AllPermissions.STORAGE,REQUEST_READ_STORAGE);
+                }
+            }
         }
     }
 
@@ -87,7 +120,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     @Override
     protected void setListImagesInFolders(HashMap<String, ArrayList<String>> list) {
         super.setListImagesInFolders(list);
-        foldAdapt.setAll(list,getListFolds()).setListen(this);
+        foldAdapt.setAll(list).setListen(this);
         imgAdapt.setAll(list).setListen(this);
     }
 

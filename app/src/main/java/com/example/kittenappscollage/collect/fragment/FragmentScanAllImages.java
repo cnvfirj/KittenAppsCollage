@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
+import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -42,7 +43,6 @@ public class FragmentScanAllImages extends Fragment {
 
     public void scanDevice(){
          check();
-//        content();
     }
 
     @SuppressLint("CheckResult")
@@ -77,8 +77,6 @@ public class FragmentScanAllImages extends Fragment {
         clearListImagesInFolders();
         while (cursor.moveToNext()) {
             String path = cursor.getString(col_path).toLowerCase();
-
-
             String key = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);;
             boolean pik = path.endsWith(".png")||path.endsWith(".jpeg")||path.endsWith("jpg");
             if(list.containsKey(key)){
@@ -96,9 +94,7 @@ public class FragmentScanAllImages extends Fragment {
                                 getIndexesStorage().put(key, getNamesStorage().indexOf(getNamesStorage().get(i)));
                                 getListPartition().put(key,getNamesStorage().get(i));
                             }
-
                         }
-
                 }
             }
         }
@@ -116,14 +112,14 @@ public class FragmentScanAllImages extends Fragment {
 
     public void setSavingCollage(String path){
         String key = RequestFolder.getFolderImages();
-        if(listImagesToFolder.containsKey(key)){
-            listImagesToFolder.get(key).add(path);
+        if(getListImagesInFolders().containsKey(key)){
+            getListImagesInFolders().get(key).add(path);
         } else {
                 ArrayList<String> imgs = new ArrayList<>();
                 imgs.add(path);
-            listImagesToFolder.put(key, imgs);
+            getListImagesInFolders().put(key, imgs);
         }
-        setListImagesInFolders(listImagesToFolder);
+        setListImagesInFolders(getListImagesInFolders());
     }
 
     protected void setListImagesInFolders(HashMap<String,ArrayList<String>> list){
@@ -165,14 +161,16 @@ public class FragmentScanAllImages extends Fragment {
     }
 
 //    private void  content(){
-//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//        intent.addCategory(Intent.CATEGORY_OPENABLE);
+//        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+//        intent.addCategory(Intent.CATEGORY_DEFAULT);
 //        intent.setType("image/jpeg");
 //        intent.setType("image/pjpeg");
 //        intent.setType("image/png");
 //        startActivityForResult(intent, FragmentGallery.REQUEST_READ_STORAGE);
 //    }
-//
+
+
+    //
 //    @Override
 //    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);

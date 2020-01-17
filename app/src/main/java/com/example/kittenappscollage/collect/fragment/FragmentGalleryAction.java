@@ -1,8 +1,10 @@
 package com.example.kittenappscollage.collect.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.storage.StorageManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,6 +102,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
             File oldfile = new File(getKey());
             File newfile = new File(newFold);
             oldfile.canWrite();
+
             if(oldfile.renameTo(newfile)){
                 ArrayList<String>imgs = getListImagesInFolders().get(getKey());//все коллажи
                 ArrayList<String >newImgs = new ArrayList<>();
