@@ -14,8 +14,6 @@ import android.widget.Toast;
 
 import com.example.kittenappscollage.collect.fragment.FragmentGallery;
 import com.example.kittenappscollage.collect.fragment.FragmentGalleryAction;
-import com.example.kittenappscollage.collect.fragment.FragmentSelectedGallery;
-import com.example.kittenappscollage.collect.fragment.FragmentSlideGallery;
 import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
@@ -36,7 +34,6 @@ import java.io.File;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery, SaveImageToFile.ActionSave {
-
 
     private ApplyDrawToolsFragmentDraw mFragDraw;
 

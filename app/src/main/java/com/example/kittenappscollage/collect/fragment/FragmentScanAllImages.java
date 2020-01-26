@@ -2,13 +2,19 @@ package com.example.kittenappscollage.collect.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.UriPermission;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.os.storage.StorageManager;
+import android.os.storage.StorageVolume;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
+import androidx.annotation.AttrRes;
 import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
@@ -22,7 +28,9 @@ import java.io.FileNotFoundException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
@@ -40,6 +48,10 @@ public class FragmentScanAllImages extends Fragment {
     private HashMap<String, Integer>listStorages;
 
     private ArrayList<String> storage;
+
+    private List<StorageVolume> volumes;
+
+//    private List<UriPermission>permissions;
 
     public void scanDevice(){
          check();
@@ -103,6 +115,16 @@ public class FragmentScanAllImages extends Fragment {
 
     /*определяем тома в устройстве*/
     private void definitionStorage(){
+
+        /*Затем мы вызываем getStorageVolumes()на StorageManager,
+        чтобы получить список доступных StorageVolume объектов.*/
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            volumes=((StorageManager)getActivity()
+                    .getSystemService(Context.STORAGE_SERVICE)).getStorageVolumes();
+        }else volumes = null;
+
+//        permissions = getContext().getContentResolver().getPersistedUriPermissions();
+
         File[] files = ContextCompat.getExternalFilesDirs(getContext(), null);
         storage = new ArrayList<>();
         for (int i=0;i<files.length;i++){
@@ -146,6 +168,14 @@ public class FragmentScanAllImages extends Fragment {
         return listStorages;
     }
 
+    public List<StorageVolume> getVolumes() {
+        return volumes;
+    }
+
+//    public List<UriPermission> getPermissions() {
+//        return permissions;
+//    }
+
     protected void clearListImagesInFolders(){
         listImagesToFolder.clear();
         listFolds.clear();
@@ -159,68 +189,5 @@ public class FragmentScanAllImages extends Fragment {
         listStorages = new HashMap<>();
         listPartition = new HashMap<>();
     }
-
-//    private void  content(){
-//        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-//        intent.addCategory(Intent.CATEGORY_DEFAULT);
-//        intent.setType("image/jpeg");
-//        intent.setType("image/pjpeg");
-//        intent.setType("image/png");
-//        startActivityForResult(intent, FragmentGallery.REQUEST_READ_STORAGE);
-//    }
-
-
-    //
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if(requestCode==FragmentGallery.REQUEST_READ_STORAGE){
-//            if(resultCode == Activity.RESULT_OK && data!= null && data.getData() != null){
-//                definitionStorage();
-//                if(getListImagesInFolders()==null)initListImagesInFolders();
-//                else getListImagesInFolders().clear();
-//
-//                Uri uri = data.getData();
-//
-//                String[] projection = {
-//                        MediaStore.MediaColumns.DATA,
-//                        MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
-//
-//                Cursor cursor = getActivity().getContentResolver().query(uri, projection, null,
-//                        null, null);
-//
-//                int col_path, col_fold;
-//                col_path = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
-//                col_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
-//
-//                cursor.moveToFirst();
-//
-//                while (cursor.moveToNext()) {
-//                    String key = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);;
-//
-//                    if(getListImagesInFolders().containsKey(key)){
-//
-//                            getListImagesInFolders().get(key).add(cursor.getString(col_path));
-//
-//                    } else {
-//                            ArrayList<String> imgs = new ArrayList<>();
-//                            imgs.add(cursor.getString(col_path));
-//                            getListImagesInFolders().put(key, imgs);
-//                            getListFolds().put(key,cursor.getString(col_fold));
-//                            for(int i=0;i<getNamesStorage().size();i++) {
-//                                if(key.contains(getNamesStorage().get(i))){
-//                                    getIndexesStorage().put(key, getNamesStorage().indexOf(getNamesStorage().get(i)));
-//                                    getListPartition().put(key,getNamesStorage().get(i));
-//                                }
-//
-//                            }
-//
-//                        }
-//                    }
-//
-//                setListImagesInFolders(getListImagesInFolders());
-//                }
-//            }
-//        }
 
 }
