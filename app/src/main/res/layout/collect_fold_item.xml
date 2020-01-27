@@ -40,7 +40,16 @@
                 android:text="col"
                 android:textSize="10dp"
                 android:textColor="@android:color/white"
-                android:id="@+id/collect_item_col_img_in_dir"/>
+                android:id="@+id/collect_item_col_img_in_dir"
+                android:layout_gravity="bottom|center"/>
+
+            <ImageView
+                style="@style/imgs_lock"
+                android:layout_marginStart="5dp"
+                android:layout_marginBottom="2dp"
+                android:id="@+id/collect_item_lock"
+                android:src="@drawable/ic_item_lock"
+                android:layout_gravity="bottom|center"/>
 
         </LinearLayout>
 
@@ -56,11 +65,5 @@
         android:src="@drawable/ic_done"
         android:visibility="invisible"/>
 
-    <ImageView
-        style="@style/imgs_lock"
-        android:background="@color/colorPrimary"
-        android:id="@+id/collect_item_lock"
-        android:layout_gravity="bottom|center_horizontal"
-        android:src="@drawable/ic_item_lock"/>
 
 </FrameLayout>

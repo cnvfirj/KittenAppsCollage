@@ -3,7 +3,9 @@ package com.example.kittenappscollage.collect.fragment;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.UriPermission;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.storage.StorageManager;
 import android.provider.DocumentsContract;
@@ -18,10 +20,12 @@ import androidx.documentfile.provider.DocumentFile;
 
 import com.example.kittenappscollage.collect.dialogActions.DialogAction;
 import com.example.kittenappscollage.collect.dialogActions.ListenActions;
+import com.example.kittenappscollage.helpers.Massages;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 import static com.example.kittenappscollage.collect.dialogActions.DialogAction.ACTION_DELETE;
@@ -31,7 +35,11 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     private final int REQUEST_STORAGE = 121;
 
+    private final String KEY_PERMS = "key perms FragmentGalleryAction";
+
     private final String TAG_DIALOG = "dialog act";
+
+    private String listPerms;
 
     @Nullable
     @Override
@@ -95,50 +103,72 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     }
 
+    private boolean version(){
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
+    }
     /*это применимо только в корневом адаптере*/
     /*применить другое сканирование почему то старую папку не удаляет*/
     @Override
     public void result(boolean done, String name) {
         invisibleMenu();
-//        if(done&&!name.isEmpty()) {
-////
-//            final String nameFold = getListFolds().get(getKey());//имя папки
-//            final String excludeNameFold = getKey().split(nameFold)[0];
-//            final String newFold = excludeNameFold+name;//новое имя папки
-//            File oldfile = new File(getKey());
-//            File newfile = new File(newFold);
-////            oldfile.canWrite();
-//            if(oldfile.renameTo(newfile)){
-////            if(rename(getKey(),nameFold)){
-//
-//                ArrayList<String>imgs = getListImagesInFolders().get(getKey());//все коллажи
-//                ArrayList<String >newImgs = new ArrayList<>();
-//                for (String path:imgs){
-//                    String[]split = path.split(nameFold);
-//                    String p = split[0]+name+split[1];
-//                    newImgs.add(p);
-//                    getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(p))));
-//                    getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(path))));
-//
-//                }
-//
-//                getListImagesInFolders().put(newFold,newImgs);
-//                getListImagesInFolders().remove(getKey());
-//
-//                getListFolds().put(newFold, nameFold);
-//                getListFolds().remove(getKey());
-//
-//                getIndexesStorage().put(newFold,getIndexesStorage().get(getKey()));
-//                getIndexesStorage().remove(getKey());
-//
-//                getListPartition().put(nameFold,getListPartition().get(getKey()));
-//                getListPartition().remove(getKey());
-//
-//            }
-//            getFoldAdapt().setAll(getListImagesInFolders());
-//            getImgAdapt().setAll(getListImagesInFolders());
+        if(done&&!name.isEmpty()) {
+            if (version()) renameFoldAPI21(name);
+            else renameFoldAPI29(name);
+        }
+//        List<UriPermission>up = getContext().getContentResolver().getPersistedUriPermissions();
+//        for (UriPermission u:up){
+//            LYTE("perms "+u.getUri().toString());
 //        }
+
     }
+
+    private void renameFoldAPI21(String name){
+
+
+       if(getIndexesStorage().get(getKey())==0) {
+           final String nameFold = getListFolds().get(getKey());//имя папки
+           LYTE("FragmentGalleryAction name fold - " + nameFold + " -|- key - " + getKey());
+           final String excludeNameFold = getKey().split(nameFold)[0];
+
+           final String newFold = excludeNameFold + name;//новое имя папки
+           File oldfile = new File(getKey());
+           File newfile = new File(newFold);
+           if (getListFolds().keySet().contains(newFold)) {
+               Massages.SHOW_MASSAGE(getContext(), "Выбери другое имя папке");
+           } else {
+               File[] old = oldfile.listFiles();
+               if (oldfile.renameTo(newfile)) {
+
+                   File[] young = newfile.listFiles();
+                   for (int i = 0; i < young.length; i++) {
+                       getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(old[i])));
+                       getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(young[i])));
+                   }
+
+                   getListImagesInFolders().remove(getKey());
+                   getListFolds().remove(getKey());
+                   getIndexesStorage().remove(getKey());
+                   getListPartition().remove(getKey());
+
+                   getFoldAdapt().setAll(getListImagesInFolders());
+                   getImgAdapt().setAll(getListImagesInFolders());
+               } else {
+                   Massages.SHOW_MASSAGE(getContext(), "Не удалось переименовать папку");
+               }
+
+           }
+
+       }else renameFoldAPI29(name);
+
+    }
+
+
+
+    private void renameFoldAPI29(String name){
+
+    }
+
+
 
     /*вывести это все в паралельный поток*/
     private void deleteFolder(){

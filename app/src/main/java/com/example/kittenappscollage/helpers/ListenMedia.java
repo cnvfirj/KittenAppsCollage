@@ -37,6 +37,7 @@ public class ListenMedia extends ContentObserver {
     @Override
     public void onChange(boolean selfChange, Uri uri) {
         super.onChange(selfChange, uri);
+        if(uri.getPathSegments().size()==1)return;
         if(fragment!=null&&context!=null){
             String[] projection = {
                     MediaStore.MediaColumns.DATA,
@@ -55,8 +56,6 @@ public class ListenMedia extends ContentObserver {
                 *  по этому проверяем последний адрес*/
                 if(!lostPath.equals(path)){
                     lostPath = path;
-//                    LYTE("path - "+path);
-//                    LYTE("key - "+key);
                     fragment.setSavingCollage(path,key);
                 }
             }

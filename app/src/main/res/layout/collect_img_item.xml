@@ -31,9 +31,10 @@
 
     <ImageView
         style="@style/imgs_lock"
-        android:background="@color/colorPrimary"
         android:id="@+id/collect_item_lock"
-        android:layout_gravity="bottom|center_horizontal"
-        android:src="@drawable/ic_item_lock"/>
+        android:layout_gravity="bottom|start"
+        android:src="@drawable/ic_item_lock"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="2dp"/>
 
 </FrameLayout>

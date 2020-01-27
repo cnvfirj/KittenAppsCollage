@@ -1,5 +1,6 @@
 package com.example.kittenappscollage.draw.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -85,6 +86,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
     }
 
+    @SuppressLint("CheckResult")
     private void saveAPI29(){
        String data = getPreferences().getString(KEY_PERM_SAVE,ZHOPA);
        if(data.equals(ZHOPA)){
