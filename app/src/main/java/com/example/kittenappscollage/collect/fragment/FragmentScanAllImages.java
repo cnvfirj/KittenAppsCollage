@@ -76,7 +76,7 @@ public class FragmentScanAllImages extends Fragment {
     private HashMap<String,ArrayList<String>> scan(HashMap<String,ArrayList<String>>list,HashMap<String,String>folds){
          definitionStorage();
          if(getListImagesInFolders()==null)initListImagesInFolders();
-         else getListImagesInFolders().clear();
+         else clearListImagesInFolders();
         String[] projection = {
                 MediaStore.MediaColumns.DATA,
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
