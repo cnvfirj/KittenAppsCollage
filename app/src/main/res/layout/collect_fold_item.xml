@@ -48,10 +48,19 @@
 
     <ImageView
         style="@style/common_buttons"
+        android:clickable="false"
+        android:focusable="false"
         android:layout_gravity="bottom|end"
         android:id="@+id/collect_item_select"
         android:background="@color/colorPrimary"
         android:src="@drawable/ic_done"
         android:visibility="invisible"/>
+
+    <ImageView
+        style="@style/imgs_lock"
+        android:background="@color/colorPrimary"
+        android:id="@+id/collect_item_lock"
+        android:layout_gravity="bottom|center_horizontal"
+        android:src="@drawable/ic_item_lock"/>
 
 </FrameLayout>

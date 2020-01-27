@@ -21,7 +21,8 @@
         style="@style/slide_style_all_tools"
         android:id="@+id/slide_all_tools"
         android:src="@drawable/icon_tools"
-        android:background="@drawable/background_main_button_reset"/>
+        android:background="@drawable/background_main_button_reset"
+        android:elevation="@dimen/margin_save_2"/>
 
 
 
@@ -31,7 +32,8 @@
         style="@style/slide_style_add_img"
         android:id="@+id/slide_add_lyr"
         android:src="@drawable/icon_add"
-        android:background="@drawable/background_main_button_reset"/>
+        android:background="@drawable/background_main_button_reset"
+        android:elevation="@dimen/margin_save_2"/>
 
 
 
@@ -41,7 +43,8 @@
         style="@style/slide_style_save"
         android:id="@+id/slide_save_img"
         android:src="@drawable/icon_save"
-        android:background="@drawable/background_main_button_reset"/>
+        android:background="@drawable/background_main_button_reset"
+        android:elevation="@dimen/margin_save_2"/>
 
 
 

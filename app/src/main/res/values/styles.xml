@@ -23,6 +23,11 @@
 
 
 
+    <style name="imgs_lock">
+        <item name="android:layout_width">@dimen/param_tools</item>
+        <item name="android:layout_height">@dimen/param_tools</item>
+        <item name="android:layout_marginTop">@dimen/margin_tool</item>
+    </style>
 
     <style name="common_style_tools" parent="Clickable">
         <item name="android:layout_width">@dimen/param_tools</item>

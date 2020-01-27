@@ -1,34 +1,24 @@
 package com.example.kittenappscollage.collect.fragment;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
-import android.content.UriPermission;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
+import android.os.Handler;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
-import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
-import androidx.annotation.AttrRes;
-import androidx.annotation.IntDef;
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.kittenappscollage.helpers.ListenMedia;
 import com.example.kittenappscollage.helpers.RequestFolder;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -51,10 +41,26 @@ public class FragmentScanAllImages extends Fragment {
 
     private List<StorageVolume> volumes;
 
-//    private List<UriPermission>permissions;
+    private Handler handler;
+
+    private ListenMedia observer;
 
     public void scanDevice(){
          check();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        handler = new Handler();
+        observer = new ListenMedia(handler).setFragment(this).setContext(getContext());
+        getContext().getContentResolver().registerContentObserver(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,true,observer);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getContext().getContentResolver().unregisterContentObserver(observer);
     }
 
     @SuppressLint("CheckResult")
@@ -66,7 +72,7 @@ public class FragmentScanAllImages extends Fragment {
           .subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
     }
 
-        @SuppressLint("Recycle")
+    @SuppressLint("Recycle")
     private HashMap<String,ArrayList<String>> scan(HashMap<String,ArrayList<String>>list,HashMap<String,String>folds){
          definitionStorage();
          if(getListImagesInFolders()==null)initListImagesInFolders();
@@ -77,13 +83,12 @@ public class FragmentScanAllImages extends Fragment {
 
         Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 
-        Cursor cursor = getActivity().getContentResolver().query(uri, projection, null,
+        Cursor cursor = getContext().getContentResolver().query(uri, projection, null,
                 null, null);
 
         int col_path, col_fold;
         col_path = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
         col_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
-
         cursor.moveToFirst();
         if(list==null)initListImagesInFolders();
         clearListImagesInFolders();
@@ -143,6 +148,19 @@ public class FragmentScanAllImages extends Fragment {
         }
         setListImagesInFolders(getListImagesInFolders());
     }
+
+    public void setSavingCollage(String path,String key){
+        if(getListImagesInFolders().containsKey(key)){
+            getListImagesInFolders().get(key).add(path);
+        } else {
+                ArrayList<String> imgs = new ArrayList<>();
+                imgs.add(path);
+            getListImagesInFolders().put(key, imgs);
+        }
+        setListImagesInFolders(getListImagesInFolders());
+    }
+
+
 
     protected void setListImagesInFolders(HashMap<String,ArrayList<String>> list){
          listImagesToFolder = list;

@@ -58,11 +58,12 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     @Override
     public void saved(boolean saved, String path) {
         if(saved){
-            File file = new File(path);
+            final File file = new File(path);
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
             /*вместо пересканирования добавляем алрес изображения в массив
             * отсканированных данных*/
-            mFragGal.setSavingCollage(path);
+//            mFragGal.setSavingCollage(path);
+            /*сделал слушатель медиа сторе и перенес его в фрагмент*/
         }
     }
 
@@ -179,4 +180,5 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
            d.show(getSupportFragmentManager(), DialogLoadOldProject.TAG);
        }else BackNextStep.get().remove();
     }
+
 }

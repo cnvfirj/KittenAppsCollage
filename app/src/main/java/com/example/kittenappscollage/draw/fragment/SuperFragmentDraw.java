@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -157,11 +158,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         selectorButtons(index);
     }
 
-//    @Override
-//    public boolean onLongClick(View view) {
-//        return true;
-//    }
-
     @Override
     public void onClick(View view) {
 
@@ -170,7 +166,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
                 slideTools();
                 break;
             case R.id.slide_save_img:
-                slideSave();
+                slideSave((ImageView)view);
                 break;
             case R.id.slide_add_lyr:
                 slideAdd();
@@ -283,6 +279,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         shiftTools(dSlideTools);
 
         dSlideSave = view.findViewById(R.id.slide_save_img);
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)dSlideSave.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_save,null));
         dSaveNet = view.findViewById(R.id.save_net);
         dSaveTel = view.findViewById(R.id.save_tel);
 
@@ -330,7 +327,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
     }
 
     /*анимация выдвижения сохранений*/
-    protected void slideSave(){
+    protected void slideSave(ImageView view){
         if(!dVisibleSave){
             dVisibleSave = true;
             dSaveNet.animate().translationX(-getSlideSave()).setDuration(getTimeSlide()).start();
@@ -499,11 +496,11 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
 //    }
 
     protected void saveNet(ImageView v){
-        slideSave();
+        slideSave(null);
     }
 
     protected void saveTel(ImageView v){
-        slideSave();
+        slideSave(null);
     }
 
     protected void addCreated(ImageView v){

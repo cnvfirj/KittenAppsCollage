@@ -1,19 +1,13 @@
 package com.example.kittenappscollage.draw.fragment;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Environment;
-import android.os.storage.StorageManager;
-import android.os.storage.StorageVolume;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 import androidx.documentfile.provider.DocumentFile;
 
 import com.example.kittenappscollage.helpers.AllPermissions;
@@ -22,11 +16,8 @@ import com.example.kittenappscollage.helpers.SaveImageToFile;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
@@ -59,6 +50,11 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     @Override
     protected void saveNet(ImageView v) {
         super.saveNet(v);
+        if (AllPermissions.create().activity(getActivity()).reqSingle(AllPermissions.STORAGE).isStorage()) {
+            requestFold();
+        } else {
+            AllPermissions.create().activity(getActivity()).callDialog(AllPermissions.STORAGE,REQUEST_SAVED);
+        }
     }
 
     @Override
@@ -71,12 +67,23 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         }
     }
 
-    private void saved(){
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N)saveAPI21();
-        else saveAPI29();
-
+    @Override
+    protected void slideSave(ImageView v) {
+        if (version()&&v!=null){
+            v.setSelected(!v.isSelected());
+            saved();
+        }
+        else super.slideSave(v);
     }
 
+    private void saved(){
+        if (version())saveAPI21();
+        else saveAPI29();
+    }
+
+    private boolean version(){
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
+    }
 
     private void saveAPI29(){
        String data = getPreferences().getString(KEY_PERM_SAVE,ZHOPA);
@@ -100,16 +107,13 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         if(RepDraw.get().isImg())SaveImageToFile.saveImage(getContext(),RepDraw.get().getImg());
     }
 
-    private boolean saved(Uri perm){
+    private boolean saved(Uri uri){
         try {
-            int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-            getContext().getContentResolver().takePersistableUriPermission(perm, takeFlags);
-            DocumentFile pickedDir = DocumentFile.fromTreeUri(getContext(),perm);
+            DocumentFile pickedDir = DocumentFile.fromTreeUri(getContext(),uri);
             DocumentFile img = pickedDir.createFile(MIME_PNG, RepDraw.PropertiesImage.NAME_IMAGE());
             OutputStream out = getContext().getContentResolver().openOutputStream(img.getUri());
             boolean save = RepDraw.get().getImg().compress(Bitmap.CompressFormat.PNG, 100, out);
             out.close();
-            getContext().getContentResolver().releasePersistableUriPermission(perm, takeFlags);
             return save;
 
         } catch (IOException e) {
@@ -155,8 +159,10 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                 .onErrorResumeNext(new Observable<Boolean>() {
                     @Override
                     protected void subscribeActual(Observer<? super Boolean> observer) {
-                        LYTE("Error");
-                        requestFold();
+                        LYTE("Error - "+perm.toString());
+                        getEditor().putString(KEY_PERM_SAVE, ZHOPA);
+                        getEditor().apply();
+                        saveAPI29();
                     }
                 });
     }
