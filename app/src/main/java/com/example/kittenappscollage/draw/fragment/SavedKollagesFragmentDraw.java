@@ -28,8 +28,6 @@ import io.reactivex.functions.Consumer;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
-/*здесь обработаем нажатие кнопок сохранения*/
-
 public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
 
 
