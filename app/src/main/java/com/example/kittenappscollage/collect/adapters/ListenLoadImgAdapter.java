@@ -16,6 +16,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdapter.ImgHolder> implements Serializable{
 
     private HashMap<String, ArrayList<String>> all;
@@ -44,6 +46,7 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
         this.all = all;
         folds = new String[all.size()];
         all.keySet().toArray(folds);
+        resetCheckeds();
         notifyDataSetChanged();
         return this;
     }
@@ -51,6 +54,10 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     public void setIndexKey(int index){
         indexKey = index;
         notifyDataSetChanged();
+    }
+
+    protected void resetCheckeds(){
+
     }
 
     protected Context getContext(){

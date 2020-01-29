@@ -64,6 +64,9 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         }
     }
 
+
+
+
     private void checkNamesDirs(){
         File[] d = ContextCompat.getExternalFilesDirs(getContext(), null);
         for (File f:d){
@@ -121,6 +124,7 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
 
     }
 
+
     @Override
     protected void visibleMenu() {
       if(getIndexAdapter()==ROOT_ADAPTER){
@@ -139,7 +143,6 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         selectIconAction3(selected_3);
         slideSel_3(true);
         slideSel_4(true);
-
     }
 
     @Override
@@ -152,13 +155,13 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
             getRecycler().setEnabled(true);
         }else {
             /*implement animation exit*/
-//            selectExitMode.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_collect_selected_menu,null));
             selectExitMode.setSelected(false);
             getImgAdapt().setModeSelected(false);
         }
         slideSel_3(false);
         slideSel_4(false);
     }
+
 
     protected void selectIconAction3(ImageView view){
         if(getIndexAdapter()==ROOT_ADAPTER){
@@ -231,7 +234,18 @@ protected void slideSel_4(boolean s){
         }
     }
 
-    private void hideMenu(){
+    protected void hideMenuInAction(){
+        selected_1.animate().translationY(-slide).setDuration(500).start();
+        selected_2.animate().translationY(-slide).setDuration(500).start();
+        selected_3.animate().translationY(-slide).setDuration(500).start();
+        selected_4.animate().translationY(-slide).setDuration(500).start();
+        if(getIndexAdapter()!=ROOT_ADAPTER) {
+            selectExitMode.animate().translationY(-slide).setDuration(500).start();
+        }else {
+            selectExitMode.setSelected(false);
+        }
+    }
+    protected void hideMenu(){
         selectExitMode.animate().translationY(-slide).setDuration(0).start();
         selected_1.animate().translationY(-slide).setDuration(0).start();
         selected_2.animate().translationY(-slide).setDuration(0).start();

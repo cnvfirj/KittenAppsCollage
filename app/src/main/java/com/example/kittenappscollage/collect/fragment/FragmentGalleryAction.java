@@ -96,7 +96,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     @Override
     public void result(boolean done, int action, int indexAdapter) {
-        invisibleMenu();
+        hideMenuInAction();
         if(!done)return;
         if(action==ACTION_DELETE){
             if(indexAdapter==ROOT_ADAPTER)deleteFolder();
@@ -112,7 +112,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     /*применить другое сканирование почему то старую папку не удаляет*/
     @Override
     public void result(boolean done, String name) {
-        invisibleMenu();
+        hideMenuInAction();
         if(done&&!name.isEmpty()) {
             if (version()) renameFoldAPI21(name);
             else renameFoldAPI29(name);
@@ -124,52 +124,17 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     }
 
+
     private void renameFoldAPI21(String name){
 
-
        if(getIndexesStorage().get(getKey())==0) {
-           if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsDataBasePerms.NON_PERM)){
+           if(getKey().equals(RequestFolder.getFolderImages())){
+               renameInDevise(name);
+           }else if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsDataBasePerms.NON_PERM)){
                Massages.SHOW_MASSAGE(getContext(),"Нет прав для переименования");
-               return;
-           }
-           final String nameFold = getListFolds().get(getKey());//имя папки
-           LYTE("FragmentGalleryAction name fold - " + nameFold + " -|- key - " + getKey());
-           final String excludeNameFold = getKey().split(nameFold)[0];
-           final String newFold = excludeNameFold + name;//новое имя папки
-           File oldfile = new File(getKey());
-           File newfile = new File(newFold);
-           if (getListFolds().keySet().contains(newFold)) {
-               Massages.SHOW_MASSAGE(getContext(), "Выбери другое имя папке");
-           } else {
-               File[] old = oldfile.listFiles();
-               if (oldfile.renameTo(newfile)) {
-/***********************************************/
-                    ActionsDataBasePerms.create(getContext()).initInThread(newFold,ActionsDataBasePerms.GRAND);
-                    getListPerms().put(newFold,ActionsDataBasePerms.GRAND);
-/*************************************/
-                   File[] young = newfile.listFiles();
-                   for (int i = 0; i < young.length; i++) {
-                       getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(old[i])));
-                       getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(young[i])));
-                   }
-/***************************************************/
-                   if(!getKey().equals(RequestFolder.getFolderImages())){
-                       getListPerms().remove(getKey());
-                       ActionsDataBasePerms.create(getContext()).deleteInThread(getKey());
-                   }
-                   /**********************************/
-                   getListImagesInFolders().remove(getKey());
-                   getListFolds().remove(getKey());
-                   getIndexesStorage().remove(getKey());
-//                   getListPartition().remove(getKey());
+               invisibleMenu();
 
-                   getFoldAdapt().setAll(getListImagesInFolders());
-                   getImgAdapt().setAll(getListImagesInFolders());
-               } else {
-                   Massages.SHOW_MASSAGE(getContext(), "Не удалось переименовать папку");
-               }
-
-           }
+           }else renameInDevise(name);
 
        }else renameFoldAPI29(name);
 
@@ -181,78 +146,62 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     }
 
+    private void renameInSD(String name){
 
+    }
+
+    private void renameInDevise(String name){
+        final String nameFold = getListFolds().get(getKey());//имя папки
+        LYTE("FragmentGalleryAction name fold - " + nameFold + " -|- key - " + getKey());
+        final String excludeNameFold = getKey().split(nameFold)[0];
+        final String newFold = excludeNameFold + name;//новое имя папки
+        File oldfile = new File(getKey());
+        File newfile = new File(newFold);
+        if (getListFolds().keySet().contains(newFold)) {
+            Massages.SHOW_MASSAGE(getContext(), "Выбери другое имя папке");
+        } else {
+            File[] old = oldfile.listFiles();
+            if (oldfile.renameTo(newfile)) {
+
+                ActionsDataBasePerms.create(getContext()).initInThread(newFold,ActionsDataBasePerms.GRAND);
+                getListPerms().put(newFold,ActionsDataBasePerms.GRAND);
+                File[] young = newfile.listFiles();
+                for (int i = 0; i < young.length; i++) {
+                    getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(old[i])));
+                    getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(young[i])));
+                }
+                if(!getKey().equals(RequestFolder.getFolderImages())){
+                    getListPerms().remove(getKey());
+                    ActionsDataBasePerms.create(getContext()).deleteInThread(getKey());
+                }
+                getListImagesInFolders().remove(getKey());
+                getListFolds().remove(getKey());
+                getIndexesStorage().remove(getKey());
+            } else {
+                Massages.SHOW_MASSAGE(getContext(), "Не удалось переименовать папку");
+            }
+
+        }
+    }
 
     /*вывести это все в паралельный поток*/
     private void deleteFolder(){
-//        ArrayList<String>imgs = getListImagesInFolders().get(getKey());
-//        for (String img:imgs){
-//            File file = new File(img);
-//            if(file.exists())file.delete();
-//            getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
-//        }
-//        File file = new File(getKey());
-//        if(file.exists())file.delete();
-//
-//        getListImagesInFolders().remove(getKey());
-//        getListFolds().remove(getKey());
-//        getIndexesStorage().remove(getKey());
-//        getListPartition().remove(getKey());
-//
-//        getFoldAdapt().setAll(getListImagesInFolders());
-//        getImgAdapt().setAll(getListImagesInFolders());
+
     }
 
     private void deleteSelectedImg(){
-//        for (String img:getSelectFiles()){
-//            File file = new File(img);
-//            if(file.exists())file.delete();
-//            getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
-//            getListImagesInFolders().get(getKey()).remove(img);
-//        }
-//
-//        getFoldAdapt().setAll(getListImagesInFolders());
-//        getImgAdapt().setAll(getListImagesInFolders());
-
 
     }
 
-    private boolean rename(String oldName, String newName){
-        boolean b = false;
-        LYTE(oldName);
-        Uri treeUri = Uri.parse("/tree/2E26-1C24/Download");
 
-//            DocumentFile folder = DocumentFile.fromTreeUri(getContext(), treeUri);
-//            DocumentFile fileToRename = folder.listFiles()[0];
-            try{
-                DocumentsContract.renameDocument(getContext().getContentResolver(), treeUri, newName);
-                b = true;
-            }
-            catch(FileNotFoundException exception){
-
-            }
-            return b;
-    }
 
 
     private void permission(){
-//        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-//        startActivityForResult(intent, REQUEST_STORAGE);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        if(requestCode == REQUEST_STORAGE && resultCode == Activity.RESULT_OK && data!= null && data.getData() != null){
-//            Uri treeUri = data.getData();
-//            int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-//            getContext().getContentResolver().takePersistableUriPermission(treeUri, takeFlags);
-//        }
-//        else {
-//            super.onActivityResult(requestCode, resultCode, data);
-//        }
-    }
-
-    private void publicUri(Uri uri){
 
     }
+
 }

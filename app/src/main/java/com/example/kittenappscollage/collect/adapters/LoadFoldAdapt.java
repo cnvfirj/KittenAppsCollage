@@ -26,8 +26,9 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
 
     @Override
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
-         if(getArrChecks()!=null)holder.getCheck().setVisibility(getArrChecks()[position]?View.VISIBLE:View.INVISIBLE);
-        super.onBindViewHolder(holder, position);
+         if(getArrChecks()!=null&&modeSelected)holder.getCheck().setVisibility(getArrChecks()[position]?View.VISIBLE:View.INVISIBLE);
+         else holder.getCheck().setVisibility(View.INVISIBLE);
+         super.onBindViewHolder(holder, position);
     }
 
     @Override

@@ -165,6 +165,7 @@ public class FragmentScanAllImages extends Fragment {
         if(getListImagesInFolders().containsKey(key)){
             getListImagesInFolders().get(key).add(path);
         } else {
+            LYTE("create fold key");
                 ArrayList<String> imgs = new ArrayList<>();
                 imgs.add(path);
             getListImagesInFolders().put(key, imgs);

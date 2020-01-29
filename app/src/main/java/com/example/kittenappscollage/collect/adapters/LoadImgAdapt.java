@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class LoadImgAdapt extends ListenLoadImgAdapter {
 
     private FrameLayout.LayoutParams params;
@@ -30,14 +32,10 @@ public class LoadImgAdapt extends ListenLoadImgAdapter {
 
     @Override
     public void onBindViewHolder(@NonNull ImgHolder holder, int position) {
-        holder.getCheck().setVisibility(getArrChecks()[position]?View.VISIBLE:View.INVISIBLE);
+        if(getArrChecks()!=null&&modeSelected){
+            holder.getCheck().setVisibility(getArrChecks()[position]?View.VISIBLE:View.INVISIBLE);
+        }else holder.getCheck().setVisibility(View.INVISIBLE);
         super.onBindViewHolder(holder, position);
-    }
-
-    @Override
-    public ListenLoadImgAdapter setAll(HashMap<String, ArrayList<String>> all) {
-//        resetChecks(all.size());
-        return super.setAll(all);
     }
 
     @Override
@@ -70,8 +68,11 @@ public class LoadImgAdapt extends ListenLoadImgAdapter {
         checkSelect = new boolean[size];
     }
 
-    private void resetCheckeds(){
-        checkSelect = new boolean[getAll().get(getFolds()[getIndexAdapter()])
+
+    @Override
+    protected void resetCheckeds(){
+        super.resetCheckeds();
+        if(getIndexAdapter()>-1)checkSelect = new boolean[getAll().get(getFolds()[getIndexAdapter()])
                                           .size()];
     }
 

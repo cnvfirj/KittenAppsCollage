@@ -56,6 +56,7 @@ public class ListenMedia extends ContentObserver {
                 *  по этому проверяем последний адрес*/
                 if(!lostPath.equals(path)){
                     lostPath = path;
+//                    LYTE("ListenMedia report - "+key);
                     fragment.setSavingCollage(path,key);
                 }
             }

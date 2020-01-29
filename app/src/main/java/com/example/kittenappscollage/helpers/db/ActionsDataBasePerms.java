@@ -71,9 +71,7 @@ public class ActionsDataBasePerms {
         Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
             public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
-                LYTE("do "+permsDataBase.workPerms().loadAll().size());
                 emitter.onNext(delete(key));
-                LYTE("while "+permsDataBase.workPerms().loadAll().size());
                 emitter.onComplete();
             }
         }).compose(new ThreadTransformers.InputOutput<>()).subscribe();
