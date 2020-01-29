@@ -35,13 +35,7 @@ import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentGalleryAction extends FragmentSelectedGallery implements ListenActions {
 
-    private final int REQUEST_STORAGE = 121;
-
-    private final String KEY_PERMS = "key perms FragmentGalleryAction";
-
     private final String TAG_DIALOG = "dialog act";
-
-    private String listPerms;
 
     @Nullable
     @Override
@@ -108,6 +102,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     private boolean version(){
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
     }
+
     /*это применимо только в корневом адаптере*/
     /*применить другое сканирование почему то старую папку не удаляет*/
     @Override
@@ -117,11 +112,6 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
             if (version()) renameFoldAPI21(name);
             else renameFoldAPI29(name);
         }
-//        List<UriPermission>up = getContext().getContentResolver().getPersistedUriPermissions();
-//        for (UriPermission u:up){
-//            LYTE("perms "+u.getUri().toString());
-//        }
-
     }
 
 
@@ -152,7 +142,6 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     private void renameInDevise(String name){
         final String nameFold = getListFolds().get(getKey());//имя папки
-        LYTE("FragmentGalleryAction name fold - " + nameFold + " -|- key - " + getKey());
         final String excludeNameFold = getKey().split(nameFold)[0];
         final String newFold = excludeNameFold + name;//новое имя папки
         File oldfile = new File(getKey());
@@ -186,6 +175,16 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     /*вывести это все в паралельный поток*/
     private void deleteFolder(){
+        if(version()) {
+            if (getIndexesStorage().get(getKey()) == 0) {
+                if (getKey().equals(RequestFolder.getFolderImages())) {
+                    File file = new File(getKey());
+
+                }
+            }
+        }else {
+
+        }
 
     }
 
