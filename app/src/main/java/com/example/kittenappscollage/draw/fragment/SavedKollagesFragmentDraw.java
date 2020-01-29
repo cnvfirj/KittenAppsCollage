@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.documentfile.provider.DocumentFile;
 
 import com.example.kittenappscollage.helpers.AllPermissions;
+import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.SaveImageToFile;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
@@ -83,7 +84,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     }
 
     private boolean version(){
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
+        return App.checkVersion();
     }
 
     @SuppressLint("CheckResult")

@@ -1,0 +1,110 @@
+package com.example.kittenappscollage.helpers.db;
+
+import android.content.Context;
+import android.net.Uri;
+import android.os.Build;
+
+import androidx.room.Room;
+
+import com.example.kittenappscollage.helpers.App;
+import com.example.kittenappscollage.helpers.RequestFolder;
+import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
+public class ActionsDataBasePerms {
+
+    public static final String GRAND = "(_GRAND_)";
+
+    public static final String NON_PERM = "(_NON_)";
+
+    private PermsDataBase permsDataBase;
+
+    private static ActionsDataBasePerms singleton;
+
+    private ActionsDataBasePerms(Context context){
+        permsDataBase = Room.databaseBuilder(context,PermsDataBase.class,"perms.db").build();
+        Observable.create(new ObservableOnSubscribe<Boolean>() {
+            @Override
+            public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
+                emitter.onNext(check());
+                emitter.onComplete();
+            }
+        }).compose(new ThreadTransformers.InputOutput<>()).subscribe();
+    }
+
+    public static ActionsDataBasePerms create(Context context){
+        if(singleton==null){
+            synchronized (ActionsDataBasePerms.class){
+                singleton = new ActionsDataBasePerms(context);
+            }
+        }
+       return singleton;
+    }
+
+    public PermsDataBase getPermsDataBase(){
+        return permsDataBase;
+    }
+
+    public void initInThread(String key, String uri){
+        Observable.create(new ObservableOnSubscribe<Boolean>() {
+            @Override
+            public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
+                emitter.onNext(init(key,uri));
+                emitter.onComplete();
+            }
+        }).compose(new ThreadTransformers.InputOutput<>()).subscribe();
+    }
+
+    private boolean init(String key, String uri){
+        PermStorage ps = new PermStorage(key);
+         ps.setUri(uri).setVis(true);
+         permsDataBase.workPerms().insert(ps);
+         return true;
+    }
+
+    public void deleteInThread(String key){
+        Observable.create(new ObservableOnSubscribe<Boolean>() {
+            @Override
+            public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
+                LYTE("do "+permsDataBase.workPerms().loadAll().size());
+                emitter.onNext(delete(key));
+                LYTE("while "+permsDataBase.workPerms().loadAll().size());
+                emitter.onComplete();
+            }
+        }).compose(new ThreadTransformers.InputOutput<>()).subscribe();
+    }
+
+    private boolean delete(String key){
+        permsDataBase.workPerms().delete(permsDataBase.workPerms().getPerm(key));
+        return true;
+    }
+
+    private boolean version(){
+        return App.checkVersion();
+    }
+
+    private boolean check(){
+        if(version()){
+           if(permsDataBase.workPerms().getPerm(RequestFolder.getFolderImages())==null){
+               permsDataBase.workPerms().insert(
+                       new PermStorage(RequestFolder.getFolderImages())
+               .setVis(true)
+               .setUri(GRAND));
+               return true;
+           }else {
+               PermStorage ps = permsDataBase.workPerms().getPerm(RequestFolder.getFolderImages());
+               if(ps.getUri()==null||ps.getUri().equals(NON_PERM))
+               permsDataBase.workPerms().update(permsDataBase.workPerms().getPerm(RequestFolder.getFolderImages()).setUri(GRAND));
+               if(!ps.isVisible())permsDataBase.workPerms().update(permsDataBase.workPerms().getPerm(RequestFolder.getFolderImages()).setVis(true));
+
+
+           }
+        }
+        return false;
+    }
+}

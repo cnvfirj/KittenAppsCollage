@@ -1,6 +1,7 @@
 package com.example.kittenappscollage.helpers;
 
 import android.content.Context;
+import android.os.Build;
 
 public class App {
     private static Context main;
@@ -17,5 +18,9 @@ public class App {
 
     public static void  setChild(Context context){
         App.child = context;
+    }
+
+    public static boolean checkVersion(){
+        return Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q;
     }
 }

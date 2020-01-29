@@ -21,6 +21,8 @@ import androidx.documentfile.provider.DocumentFile;
 import com.example.kittenappscollage.collect.dialogActions.DialogAction;
 import com.example.kittenappscollage.collect.dialogActions.ListenActions;
 import com.example.kittenappscollage.helpers.Massages;
+import com.example.kittenappscollage.helpers.RequestFolder;
+import com.example.kittenappscollage.helpers.db.ActionsDataBasePerms;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -126,10 +128,13 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
 
        if(getIndexesStorage().get(getKey())==0) {
+           if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsDataBasePerms.NON_PERM)){
+               Massages.SHOW_MASSAGE(getContext(),"Нет прав для переименования");
+               return;
+           }
            final String nameFold = getListFolds().get(getKey());//имя папки
            LYTE("FragmentGalleryAction name fold - " + nameFold + " -|- key - " + getKey());
            final String excludeNameFold = getKey().split(nameFold)[0];
-
            final String newFold = excludeNameFold + name;//новое имя папки
            File oldfile = new File(getKey());
            File newfile = new File(newFold);
@@ -138,17 +143,25 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
            } else {
                File[] old = oldfile.listFiles();
                if (oldfile.renameTo(newfile)) {
-
+/***********************************************/
+                    ActionsDataBasePerms.create(getContext()).initInThread(newFold,ActionsDataBasePerms.GRAND);
+                    getListPerms().put(newFold,ActionsDataBasePerms.GRAND);
+/*************************************/
                    File[] young = newfile.listFiles();
                    for (int i = 0; i < young.length; i++) {
                        getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(old[i])));
                        getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(young[i])));
                    }
-
+/***************************************************/
+                   if(!getKey().equals(RequestFolder.getFolderImages())){
+                       getListPerms().remove(getKey());
+                       ActionsDataBasePerms.create(getContext()).deleteInThread(getKey());
+                   }
+                   /**********************************/
                    getListImagesInFolders().remove(getKey());
                    getListFolds().remove(getKey());
                    getIndexesStorage().remove(getKey());
-                   getListPartition().remove(getKey());
+//                   getListPartition().remove(getKey());
 
                    getFoldAdapt().setAll(getListImagesInFolders());
                    getImgAdapt().setAll(getListImagesInFolders());

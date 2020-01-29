@@ -25,6 +25,7 @@ import com.example.kittenappscollage.draw.saveSteps.Steps;
 import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.SaveImageToFile;
+import com.example.kittenappscollage.helpers.db.ActionsDataBasePerms;
 import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActionsDataBasePerms.create(getApplicationContext());
         setContentView(R.layout.activity_main);
         App.setMain(this);
         SaveImageToFile.setReport(this);

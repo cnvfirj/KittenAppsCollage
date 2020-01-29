@@ -15,6 +15,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.kittenappscollage.helpers.ListenMedia;
 import com.example.kittenappscollage.helpers.RequestFolder;
+import com.example.kittenappscollage.helpers.db.ActionsDataBasePerms;
+import com.example.kittenappscollage.helpers.db.PermStorage;
+import com.example.kittenappscollage.helpers.db.PermsDataBase;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
@@ -33,13 +36,15 @@ public class FragmentScanAllImages extends Fragment {
 
     private HashMap<String,String>listFolds;
 
-    private HashMap<String,String>listPartition;
+//    private HashMap<String,String>listPartition;
 
     private HashMap<String, Integer>listStorages;
 
+    private HashMap<String,String>listPerms;
+
     private ArrayList<String> storage;
 
-    private List<StorageVolume> volumes;
+//    private List<StorageVolume> volumes;
 
     private Handler handler;
 
@@ -101,15 +106,16 @@ public class FragmentScanAllImages extends Fragment {
                     list.get(key).add(cursor.getString(col_path));
                 }
             } else {
-                if(pik) {
+                if(pik&&addPerm(key)) {
                     ArrayList<String> imgs = new ArrayList<>();
                     imgs.add(cursor.getString(col_path));
                     list.put(key, imgs);
+
                     folds.put(key,cursor.getString(col_fold));
                         for(int i=0;i<getNamesStorage().size();i++) {
                             if(key.contains(getNamesStorage().get(i))){
                                 getIndexesStorage().put(key, getNamesStorage().indexOf(getNamesStorage().get(i)));
-                                getListPartition().put(key,getNamesStorage().get(i));
+//                                getListPartition().put(key,getNamesStorage().get(i));
                             }
                         }
                 }
@@ -118,15 +124,32 @@ public class FragmentScanAllImages extends Fragment {
         return list;
     }
 
+    private boolean addPerm(String fold){
+        boolean visible = true;
+        if(getPermsDataBase().workPerms().getPerm(fold)==null){
+            getPermsDataBase().workPerms().insert(new PermStorage(fold)
+            .setVis(true)
+            .setUri(ActionsDataBasePerms.NON_PERM));
+        }else {
+            String uri = getPermsDataBase().workPerms().getPerm(fold).uri;
+            if(uri!=null) {
+                visible = getPermsDataBase().workPerms().getPerm(fold).isVisible();
+                if (!uri.equals(ActionsDataBasePerms.NON_PERM)) {
+                    getListPerms().put(fold, uri);
+                }
+            }
+        }
+        return visible;
+    }
     /*определяем тома в устройстве*/
     private void definitionStorage(){
 
         /*Затем мы вызываем getStorageVolumes()на StorageManager,
         чтобы получить список доступных StorageVolume объектов.*/
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            volumes=((StorageManager)getActivity()
-                    .getSystemService(Context.STORAGE_SERVICE)).getStorageVolumes();
-        }else volumes = null;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            volumes=((StorageManager)getActivity()
+//                    .getSystemService(Context.STORAGE_SERVICE)).getStorageVolumes();
+//        }else volumes = null;
 
 //        permissions = getContext().getContentResolver().getPersistedUriPermissions();
 
@@ -137,17 +160,6 @@ public class FragmentScanAllImages extends Fragment {
         }
     }
 
-    public void setSavingCollage(String path){
-        String key = RequestFolder.getFolderImages();
-        if(getListImagesInFolders().containsKey(key)){
-            getListImagesInFolders().get(key).add(path);
-        } else {
-                ArrayList<String> imgs = new ArrayList<>();
-                imgs.add(path);
-            getListImagesInFolders().put(key, imgs);
-        }
-        setListImagesInFolders(getListImagesInFolders());
-    }
 
     public void setSavingCollage(String path,String key){
         if(getListImagesInFolders().containsKey(key)){
@@ -156,6 +168,17 @@ public class FragmentScanAllImages extends Fragment {
                 ArrayList<String> imgs = new ArrayList<>();
                 imgs.add(path);
             getListImagesInFolders().put(key, imgs);
+
+            String[]split = key.split("[/]");
+
+            getListFolds().put(key,split[split.length-1]);
+
+            for(int i=0;i<getNamesStorage().size();i++) {
+                if(key.contains(getNamesStorage().get(i))){
+                    getIndexesStorage().put(key, getNamesStorage().indexOf(getNamesStorage().get(i)));
+//                    getListPartition().put(key,getNamesStorage().get(i));
+                }
+            }
         }
         setListImagesInFolders(getListImagesInFolders());
     }
@@ -178,16 +201,24 @@ public class FragmentScanAllImages extends Fragment {
         return listFolds;
     }
 
-    protected HashMap<String,String>getListPartition(){
-        return listPartition;
-    }
+//    protected HashMap<String,String>getListPartition(){
+//        return listPartition;
+//    }
     /*индекс хранилища из getNamesStorage()*/
     protected HashMap<String,Integer>getIndexesStorage(){
         return listStorages;
     }
 
-    public List<StorageVolume> getVolumes() {
-        return volumes;
+    protected HashMap<String,String>getListPerms(){
+        return listPerms;
+    }
+
+//    public List<StorageVolume> getVolumes() {
+//        return volumes;
+//    }
+
+    protected PermsDataBase getPermsDataBase(){
+        return ActionsDataBasePerms.create(getContext()).getPermsDataBase();
     }
 
 //    public List<UriPermission> getPermissions() {
@@ -198,14 +229,17 @@ public class FragmentScanAllImages extends Fragment {
         listImagesToFolder.clear();
         listFolds.clear();
         listStorages.clear();
-        listPartition.clear();
+//        listPartition.clear();
+        listPerms.clear();
     }
 
     protected void initListImagesInFolders(){
         listImagesToFolder = new HashMap<>();
         listFolds = new HashMap<>();
         listStorages = new HashMap<>();
-        listPartition = new HashMap<>();
+//        listPartition = new HashMap<>();
+        listPerms = new HashMap<>();
+
     }
 
 }
