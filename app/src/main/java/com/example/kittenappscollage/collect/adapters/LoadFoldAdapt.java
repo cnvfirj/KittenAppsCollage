@@ -37,12 +37,6 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
         return super.setAll(all);
     }
 
-    @Override
-    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String, String> names) {
-        resetChecks(all.size());
-        return super.setAll(all, names);
-    }
-
     public void setParams(int width){
         int w = width/2;
         params = new FrameLayout.LayoutParams(w,w);

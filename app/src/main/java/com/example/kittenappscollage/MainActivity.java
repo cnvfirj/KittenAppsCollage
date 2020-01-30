@@ -62,9 +62,6 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         if(saved){
             final File file = new File(path);
             sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
-            /*вместо пересканирования добавляем алрес изображения в массив
-            * отсканированных данных*/
-//            mFragGal.setSavingCollage(path);
             /*сделал слушатель медиа сторе и перенес его в фрагмент*/
         }
     }

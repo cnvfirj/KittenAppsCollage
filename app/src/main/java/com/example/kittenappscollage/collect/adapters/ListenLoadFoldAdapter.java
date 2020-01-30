@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.collect.fragment.FragmentScanAllImages;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,8 +27,6 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     public static final int ROOT_ADAPTER = -5;
 
     private HashMap<String, ArrayList<String>> all;
-
-    private HashMap<String, String>names;
 
     private String[] folds;
 
@@ -45,22 +44,38 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     }
 
     public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all) {
-        names = null;
         this.all = all;
-        folds = new String[all.size()];
-        all.keySet().toArray(folds);
+        final String[]names = new String[all.size()];
+        all.keySet().toArray(names);
+        final long data[] = new long[names.length];
+        for (int i=0;i<names.length;i++){
+            data[i] = new File(names[i]).lastModified();
+        }
+
+        sort(data,names);
         notifyDataSetChanged();
         return this;
     }
 
-    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all,HashMap<String, String>names){
-        this.names = names;
-        this.all = all;
-        folds = new String[all.size()];
-        all.keySet().toArray(folds);
-        notifyDataSetChanged();
-        return this;
+    private void sort(long[]data,String[]names){
+        for(int i = data.length-1 ; i > 0 ; i--){
+            for(int j = 0 ; j < i ; j++){
+
+            if( data[j] < data[j+1] ){
+                long tmp = data[j];
+                String name = names[j];
+
+                data[j] = data[j+1];
+                names[j] = names[j+1];
+
+                data[j+1] = tmp;
+                names[j+1] = name;
+            }
+        }
     }
+        folds = names;
+    }
+
 
     protected void createHolder(View holder, int pos){
         if(listen!=null)listen.createHolder(ROOT_ADAPTER, holder, pos);
@@ -86,10 +101,6 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         return all;
     }
 
-    protected HashMap<String,String>getNames(){
-        return names;
-    }
-
     protected String[] getFolds(){
         return folds;
     }
@@ -107,12 +118,8 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         Glide.with(getContext())
                 .load(getAll().get(getFolds()[position]).get(getAll().get(getFolds()[position]).size()-1))
                 .into(holder.getImage());
-        if(names!=null&&names.size()==all.size()){
-            holder.getName().setText(getNames().get(getFolds()[position]));
-        }else {
             String[]split = getFolds()[position].split("[/]");
             holder.getName().setText(split[split.length-1]);
-        }
         holder.getCol().setText(Integer.toString(getAll().get(getFolds()[position]).size()));
     }
 

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.kittenappscollage.R;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,11 +45,35 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
 
     public ListenLoadImgAdapter setAll(HashMap<String, ArrayList<String>> all){
         this.all = all;
-        folds = new String[all.size()];
-        all.keySet().toArray(folds);
+        final String[]names = new String[all.size()];
+        all.keySet().toArray(names);
+        final long data[] = new long[names.length];
+        for (int i=0;i<names.length;i++){
+            data[i] = new File(names[i]).lastModified();
+        }
+        sort(data,names);
         resetCheckeds();
         notifyDataSetChanged();
         return this;
+    }
+
+    private void sort(long[]data,String[]names){
+        for(int i = data.length-1 ; i > 0 ; i--){
+            for(int j = 0 ; j < i ; j++){
+
+                if( data[j] < data[j+1] ){
+                    long tmp = data[j];
+                    String name = names[j];
+
+                    data[j] = data[j+1];
+                    names[j] = names[j+1];
+
+                    data[j+1] = tmp;
+                    names[j+1] = name;
+                }
+            }
+        }
+        folds = names;
     }
 
     public void setIndexKey(int index){

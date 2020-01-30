@@ -157,6 +157,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     }
 
 
+
     protected void visibleMenu(){
 
     }

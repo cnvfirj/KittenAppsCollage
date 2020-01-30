@@ -36,15 +36,13 @@ public class FragmentScanAllImages extends Fragment {
 
     private HashMap<String,String>listFolds;
 
-//    private HashMap<String,String>listPartition;
-
     private HashMap<String, Integer>listStorages;
 
     private HashMap<String,String>listPerms;
 
-    private ArrayList<String> storage;
+    private HashMap<String,Long>listDatesFolds;
 
-//    private List<StorageVolume> volumes;
+    private ArrayList<String> storage;
 
     private Handler handler;
 
@@ -91,7 +89,7 @@ public class FragmentScanAllImages extends Fragment {
         Cursor cursor = getContext().getContentResolver().query(uri, projection, null,
                 null, null);
 
-        int col_path, col_fold;
+        int col_path, col_fold,col_date;
         col_path = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
         col_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
         cursor.moveToFirst();
@@ -99,7 +97,9 @@ public class FragmentScanAllImages extends Fragment {
         clearListImagesInFolders();
         while (cursor.moveToNext()) {
             String path = cursor.getString(col_path).toLowerCase();
-            String key = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);;
+            String key = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);
+
+
             boolean pik = path.endsWith(".png")||path.endsWith(".jpeg")||path.endsWith("jpg");
             if(list.containsKey(key)){
                 if(pik) {
@@ -115,7 +115,6 @@ public class FragmentScanAllImages extends Fragment {
                         for(int i=0;i<getNamesStorage().size();i++) {
                             if(key.contains(getNamesStorage().get(i))){
                                 getIndexesStorage().put(key, getNamesStorage().indexOf(getNamesStorage().get(i)));
-//                                getListPartition().put(key,getNamesStorage().get(i));
                             }
                         }
                 }
@@ -134,9 +133,10 @@ public class FragmentScanAllImages extends Fragment {
             String uri = getPermsDataBase().workPerms().getPerm(fold).uri;
             if(uri!=null) {
                 visible = getPermsDataBase().workPerms().getPerm(fold).isVisible();
-                if (!uri.equals(ActionsDataBasePerms.NON_PERM)) {
                     getListPerms().put(fold, uri);
-                }
+            }else {
+                visible = getPermsDataBase().workPerms().getPerm(fold).isVisible();
+                getListPerms().put(fold, ActionsDataBasePerms.NON_PERM);
             }
         }
         return visible;
@@ -165,7 +165,7 @@ public class FragmentScanAllImages extends Fragment {
         if(getListImagesInFolders().containsKey(key)){
             getListImagesInFolders().get(key).add(path);
         } else {
-            LYTE("create fold key");
+            LYTE("FragmentScanAllImages create fold key");
                 ArrayList<String> imgs = new ArrayList<>();
                 imgs.add(path);
             getListImagesInFolders().put(key, imgs);
@@ -230,7 +230,7 @@ public class FragmentScanAllImages extends Fragment {
         listImagesToFolder.clear();
         listFolds.clear();
         listStorages.clear();
-//        listPartition.clear();
+        listDatesFolds.clear();
         listPerms.clear();
     }
 
@@ -238,7 +238,7 @@ public class FragmentScanAllImages extends Fragment {
         listImagesToFolder = new HashMap<>();
         listFolds = new HashMap<>();
         listStorages = new HashMap<>();
-//        listPartition = new HashMap<>();
+        listDatesFolds = new HashMap<>();
         listPerms = new HashMap<>();
 
     }

@@ -108,9 +108,6 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
     private void addPathFolder(int pos){
         if(under.size()>0){
             setKey(getFoldAdapt().getKeys()[pos]);
-//            LYTE("KEY "+getFoldAdapt().getKeys()[pos]);
-//            String[]split = under.get(0).split(getFoldAdapt().getKeys()[pos]);
-//            String file = split[0]+getFoldAdapt().getKeys()[pos];
             selectFiles.clear();
             selectFiles.add(getFoldAdapt().getKeys()[pos]);
         }
