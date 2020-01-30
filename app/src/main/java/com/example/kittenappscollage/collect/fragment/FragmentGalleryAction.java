@@ -76,22 +76,12 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     @Override
     protected void clickSel_4(ImageView v) {
         super.clickSel_4(v);
-        if(getIndexAdapter()== ROOT_ADAPTER){
-            /*удалить папку*/
-            /*візов диалога*/
-
-        }else {
-            /*удалить вібраное*/
-            /*візов диалога*/
-
-        }
         DialogAction.inst(ACTION_DELETE, getIndexAdapter(),this)
                 .show(getFragmentManager().beginTransaction(),TAG_DIALOG);
     }
 
     @Override
     public void result(boolean done, int action, int indexAdapter) {
-//        invisibleMenu();
         if(!done)return;
         if(action==ACTION_DELETE){
             if(indexAdapter==ROOT_ADAPTER)deleteFolder();
@@ -179,15 +169,15 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     private void deleteFolder(){
         if(version()) {
             if (getIndexesStorage().get(getKey()) == 0) {
-                if (getKey().equals(RequestFolder.getFolderImages())) {
-                    File file = new File(getKey());
-
-                }
+                deleteInDevVer21(getKey());
             }
         }else {
 
         }
 
+    }
+    private void deleteInDevVer21(String fold){
+        LYTE("FragmentGalleryAction delete "+fold);
     }
 
     private void deleteSelectedImg(){
