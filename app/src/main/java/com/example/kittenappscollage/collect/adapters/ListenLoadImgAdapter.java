@@ -44,6 +44,7 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     }
 
     public ListenLoadImgAdapter setAll(HashMap<String, ArrayList<String>> all){
+        LYTE("ListenLoadImgAdapter set All");
         this.all = all;
         final String[]names = new String[all.size()];
         all.keySet().toArray(names);

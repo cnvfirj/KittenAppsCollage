@@ -51,8 +51,8 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         for (int i=0;i<names.length;i++){
             data[i] = new File(names[i]).lastModified();
         }
-
         sort(data,names);
+        LYTE("ListenLoadFoldAdapter set all ");
         notifyDataSetChanged();
         return this;
     }
@@ -115,6 +115,7 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
+
         Glide.with(getContext())
                 .load(getAll().get(getFolds()[position]).get(getAll().get(getFolds()[position]).size()-1))
                 .into(holder.getImage());

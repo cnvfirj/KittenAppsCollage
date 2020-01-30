@@ -23,7 +23,6 @@ import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
@@ -39,8 +38,6 @@ public class FragmentScanAllImages extends Fragment {
     private HashMap<String, Integer>listStorages;
 
     private HashMap<String,String>listPerms;
-
-    private HashMap<String,Long>listDatesFolds;
 
     private ArrayList<String> storage;
 
@@ -144,15 +141,6 @@ public class FragmentScanAllImages extends Fragment {
     /*определяем тома в устройстве*/
     private void definitionStorage(){
 
-        /*Затем мы вызываем getStorageVolumes()на StorageManager,
-        чтобы получить список доступных StorageVolume объектов.*/
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            volumes=((StorageManager)getActivity()
-//                    .getSystemService(Context.STORAGE_SERVICE)).getStorageVolumes();
-//        }else volumes = null;
-
-//        permissions = getContext().getContentResolver().getPersistedUriPermissions();
-
         File[] files = ContextCompat.getExternalFilesDirs(getContext(), null);
         storage = new ArrayList<>();
         for (int i=0;i<files.length;i++){
@@ -177,7 +165,6 @@ public class FragmentScanAllImages extends Fragment {
             for(int i=0;i<getNamesStorage().size();i++) {
                 if(key.contains(getNamesStorage().get(i))){
                     getIndexesStorage().put(key, getNamesStorage().indexOf(getNamesStorage().get(i)));
-//                    getListPartition().put(key,getNamesStorage().get(i));
                 }
             }
         }
@@ -202,9 +189,6 @@ public class FragmentScanAllImages extends Fragment {
         return listFolds;
     }
 
-//    protected HashMap<String,String>getListPartition(){
-//        return listPartition;
-//    }
     /*индекс хранилища из getNamesStorage()*/
     protected HashMap<String,Integer>getIndexesStorage(){
         return listStorages;
@@ -214,23 +198,14 @@ public class FragmentScanAllImages extends Fragment {
         return listPerms;
     }
 
-//    public List<StorageVolume> getVolumes() {
-//        return volumes;
-//    }
 
     protected PermsDataBase getPermsDataBase(){
         return ActionsDataBasePerms.create(getContext()).getPermsDataBase();
     }
-
-//    public List<UriPermission> getPermissions() {
-//        return permissions;
-//    }
-
     protected void clearListImagesInFolders(){
         listImagesToFolder.clear();
         listFolds.clear();
         listStorages.clear();
-        listDatesFolds.clear();
         listPerms.clear();
     }
 
@@ -238,7 +213,6 @@ public class FragmentScanAllImages extends Fragment {
         listImagesToFolder = new HashMap<>();
         listFolds = new HashMap<>();
         listStorages = new HashMap<>();
-        listDatesFolds = new HashMap<>();
         listPerms = new HashMap<>();
 
     }

@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class LoadFoldAdapt extends ListenLoadFoldAdapter {
 
     private FrameLayout.LayoutParams params;
@@ -63,6 +65,7 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
                 resetCheckeds();
                 check.setVisibility(View.VISIBLE);
                 getArrChecks()[pos]=true;
+                LYTE("ListenLoadFoldAdapter click ");
                 notifyDataSetChanged();
             }
         }
@@ -87,6 +90,7 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
         if(mode!=modeSelected) {
             modeSelected = mode;
             resetCheckeds();
+            LYTE("ListenLoadFoldAdapter mode selected");
             notifyDataSetChanged();
         }
     }

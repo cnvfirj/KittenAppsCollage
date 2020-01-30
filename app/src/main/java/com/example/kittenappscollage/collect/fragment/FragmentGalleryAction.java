@@ -20,6 +20,7 @@ import androidx.documentfile.provider.DocumentFile;
 
 import com.example.kittenappscollage.collect.dialogActions.DialogAction;
 import com.example.kittenappscollage.collect.dialogActions.ListenActions;
+import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.RequestFolder;
 import com.example.kittenappscollage.helpers.db.ActionsDataBasePerms;
@@ -90,7 +91,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     @Override
     public void result(boolean done, int action, int indexAdapter) {
-        hideMenuInAction();
+//        invisibleMenu();
         if(!done)return;
         if(action==ACTION_DELETE){
             if(indexAdapter==ROOT_ADAPTER)deleteFolder();
@@ -100,14 +101,14 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     }
 
     private boolean version(){
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
+        return App.checkVersion();
     }
 
     /*это применимо только в корневом адаптере*/
     /*применить другое сканирование почему то старую папку не удаляет*/
     @Override
     public void result(boolean done, String name) {
-        hideMenuInAction();
+//        invisibleMenu();
         if(done&&!name.isEmpty()) {
             if (version()) renameFoldAPI21(name);
             else renameFoldAPI29(name);
@@ -141,36 +142,37 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     }
 
     private void renameInDevise(String name){
-//        final String nameFold = getListFolds().get(getKey());//имя папки
-//        final String excludeNameFold = getKey().split(nameFold)[0];
-//        final String newFold = excludeNameFold + name;//новое имя папки
-//        File oldfile = new File(getKey());
-//        File newfile = new File(newFold);
-//        if (getListFolds().keySet().contains(newFold)) {
-//            Massages.SHOW_MASSAGE(getContext(), "Выбери другое имя папке");
-//        } else {
-//            File[] old = oldfile.listFiles();
-//            if (oldfile.renameTo(newfile)) {
-//
-//                ActionsDataBasePerms.create(getContext()).initInThread(newFold,ActionsDataBasePerms.GRAND);
-//                getListPerms().put(newFold,ActionsDataBasePerms.GRAND);
-//                File[] young = newfile.listFiles();
-//                for (int i = 0; i < young.length; i++) {
-//                    getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(old[i])));
-//                    getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(young[i])));
-//                }
-//                if(!getKey().equals(RequestFolder.getFolderImages())){
-//                    getListPerms().remove(getKey());
-//                    ActionsDataBasePerms.create(getContext()).deleteInThread(getKey());
-//                }
-//                getListImagesInFolders().remove(getKey());
-//                getListFolds().remove(getKey());
-//                getIndexesStorage().remove(getKey());
-//            } else {
-//                Massages.SHOW_MASSAGE(getContext(), "Не удалось переименовать папку");
-//            }
-//
-//        }
+        final String nameFold = getListFolds().get(getKey());//имя папки
+        final String excludeNameFold = getKey().split(nameFold)[0];
+        final String newFold = excludeNameFold + name;//новое имя папки
+        File oldfile = new File(getKey());
+        File newfile = new File(newFold);
+        if (getListFolds().keySet().contains(newFold)) {
+            Massages.SHOW_MASSAGE(getContext(), "Выбери другое имя папке");
+        } else {
+            File[] old = oldfile.listFiles();
+            if (oldfile.renameTo(newfile)) {
+
+                ActionsDataBasePerms.create(getContext()).initInThread(newFold,ActionsDataBasePerms.GRAND);
+                getListPerms().put(newFold,ActionsDataBasePerms.GRAND);
+
+                File[] young = newfile.listFiles();
+                for (int i = 0; i < young.length; i++) {
+                    getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(old[i])));
+                    getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(young[i])));
+                }
+                if(!getKey().equals(RequestFolder.getFolderImages())){
+                    getListPerms().remove(getKey());
+                    ActionsDataBasePerms.create(getContext()).deleteInThread(getKey());
+                }
+                getListImagesInFolders().remove(getKey());
+                getListFolds().remove(getKey());
+                getIndexesStorage().remove(getKey());
+            } else {
+                Massages.SHOW_MASSAGE(getContext(), "Не удалось переименовать папку");
+            }
+
+        }
     }
 
     /*вывести это все в паралельный поток*/

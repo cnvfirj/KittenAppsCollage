@@ -122,8 +122,9 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         super.setListImagesInFolders(list);
         invisibleMenu();
         foldAdapt.setAll(getListImagesInFolders()).setListen(this);
-        imgAdapt.setModeSelected(false);
+//        imgAdapt.setModeSelected(false);
         imgAdapt.setAll(getListImagesInFolders()).setListen(this);
+//        invisibleMenu();
     }
 
     @Override
