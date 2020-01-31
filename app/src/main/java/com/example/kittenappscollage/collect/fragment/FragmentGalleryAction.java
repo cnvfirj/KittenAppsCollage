@@ -85,7 +85,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         if(!done)return;
         if(action==ACTION_DELETE){
             if(indexAdapter==ROOT_ADAPTER)deleteFolder();
-            else deleteSelectedImg();
+            else deleteSelectedImg(indexAdapter);
         }
     }
 
@@ -152,13 +152,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
                 }
 
                 cleadLists(getKey());
-//                if(!getKey().equals(RequestFolder.getFolderImages())){
-//                    getListPerms().remove(getKey());
-//                    ActionsDataBasePerms.create(getContext()).deleteInThread(getKey());
-//                }
-//                getListImagesInFolders().remove(getKey());
-//                getListFolds().remove(getKey());
-//                getIndexesStorage().remove(getKey());
+
             } else {
                 Massages.SHOW_MASSAGE(getContext(), "Не удалось переименовать папку");
             }
@@ -190,35 +184,103 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         }
 
     }
+
+    private void deleteSelectedImg(int adapter){
+        if(version()) {
+            if (getIndexesStorage().get(getKey()) == 0) {
+               applyDeleteSelectedFiles(adapter);
+            }else {
+                /*delete in sd card*/
+            }
+        }else {
+            Massages.SHOW_MASSAGE(getContext(),"версия выше");
+            invisibleMenu();
+        }
+    }
+
+
     private void deleteInDevVer21(String fold){
         LYTE("FragmentGalleryAction delete "+fold);
         if(fold.equals(RequestFolder.getFolderImages())){
-            deletedFold(fold);
+            deletedFoldFile(fold);
         } else if(!fold.equals(RequestFolder.getFolderImages())&&getListPerms().get(fold).equals(ActionsDataBasePerms.GRAND)){
-           deletedFold(fold);
+           deletedFoldFile(fold);
         }else {
             Massages.SHOW_MASSAGE(getContext(),"Нет прав для даления папки");
         }
     }
 
-    private void deletedFold(String fold){
+    private void applyDeleteSelectedFiles(int index){
+       boolean[]checks = getImgAdapt().getArrChecks();
+       ArrayList<String>imgs = getListImagesInFolders().get(getKey());
+       int sum = 0;
+       int all = imgs.size();
+       for (int i=0;i<checks.length;i++){
+           if(checks[i]){
+               sum++;
+               File f = new File(imgs.get(all-(i+1)));
+               if(f.exists())f.delete();
+               getListImagesInFolders().get(getKey()).remove(f.getAbsolutePath());
+               setListImagesInFolders(getListImagesInFolders());
+               getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(f)));
+           }
+       }
+
+       if(sum>0&&sum<all){
+           /*так как изменение произошло в текущей директрии
+           * то в адаптере эта папка получит индекс 0.
+           * Это связанос сортировкой по времени изменения*/
+           getImgAdapt().setIndexKey(0);
+       }
+
+       if(sum==all){
+           File f = new File(getKey());
+           if(f.exists()){
+               if(f.delete()){
+                   if(!getKey().equals(RequestFolder.getFolderImages()))
+                   ActionsDataBasePerms.create(getContext()).deleteInThread(getKey());
+               }
+           }
+           cleadLists(getKey());
+           if (getImgAdapt().isModeSelected()) {
+               invisibleMenu();
+               getImgAdapt().setModeSelected(false);
+           }
+
+           setIndexAdapter(ROOT_ADAPTER);
+           getGridLayoutManager().setSpanCount(2);
+           getRecycler().setAdapter(getFoldAdapt());
+
+           setListImagesInFolders(getListImagesInFolders());
+       }
+
+    }
+
+
+    private void deletedFoldFile(String fold){
         File file = new File(fold);
         File[]files = file.listFiles();
         for (File f:files){
-            if(f.exists()) f.delete();
+            if(f.exists()) {
+                if(f.delete()){
+                    if(!fold.equals(RequestFolder.getFolderImages()))
+                        ActionsDataBasePerms.create(getContext()).deleteInThread(fold);
+                }
+            }
             getListImagesInFolders().get(fold).remove(f.getAbsolutePath());
             setListImagesInFolders(getListImagesInFolders());
             getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(f)));
         }
-        if(file.exists())file.delete();
+        if(file.exists()){
+            if(file.delete())ActionsDataBasePerms.create(getContext()).deleteInThread(fold);
+
+        }
 
         cleadLists(fold);
         setListImagesInFolders(getListImagesInFolders());
     }
 
-    private void deleteSelectedImg(){
 
-    }
 
 
 

@@ -78,7 +78,9 @@ public class ActionsDataBasePerms {
     }
 
     private boolean delete(String key){
-        permsDataBase.workPerms().delete(permsDataBase.workPerms().getPerm(key));
+        LYTE("ActionsDataBasePerms delete  perm in "+key);
+        PermStorage p = permsDataBase.workPerms().getPerm(key);
+        if(p!=null) permsDataBase.workPerms().delete(p);
         return true;
     }
 

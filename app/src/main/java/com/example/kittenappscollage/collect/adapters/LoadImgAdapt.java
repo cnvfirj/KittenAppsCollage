@@ -95,7 +95,7 @@ public class LoadImgAdapt extends ListenLoadImgAdapter {
         super.longClick(img, check, pos);
     }
 
-    protected boolean[]getArrChecks(){
+    public boolean[]getArrChecks(){
         return checkSelect;
     }
 

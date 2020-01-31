@@ -29,6 +29,7 @@ import java.util.HashMap;
 
 import static android.app.Activity.RESULT_OK;
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentGallery extends FragmentScanAllImages implements ListenAdapter{
 
@@ -146,8 +147,9 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     }
 
     @Override
-    protected void correctAdapter() {
-        super.correctAdapter();
+    protected void correctAdapterPostSave() {
+        super.correctAdapterPostSave();
+        LYTE("correct adapter");
         if(getIndexAdapter()!=ROOT_ADAPTER) {
             indexAdapter++;
             imgAdapt.setIndexKey(indexAdapter);

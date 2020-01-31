@@ -152,7 +152,7 @@ public class FragmentScanAllImages extends Fragment {
         if(getListImagesInFolders().containsKey(key)){
             getListImagesInFolders().get(key).add(path);
         } else {
-            correctAdapter();
+            correctAdapterPostSave();
             ArrayList<String> imgs = new ArrayList<>();
             imgs.add(path);
             getListImagesInFolders().put(key, imgs);
@@ -170,11 +170,12 @@ public class FragmentScanAllImages extends Fragment {
         setListImagesInFolders(getListImagesInFolders());
     }
 
-    protected void correctAdapter(){
+    protected void correctAdapterPostSave(){
         /*если в момент сохранения окрыт подкаталог галереи,
         * то при создании директории индекс открыто не изменяется
         * и отображается предыдущая по порядку*/
     }
+
     protected void setListImagesInFolders(HashMap<String,ArrayList<String>> list){
          listImagesToFolder = list;
     }
