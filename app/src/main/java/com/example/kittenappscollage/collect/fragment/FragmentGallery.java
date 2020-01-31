@@ -122,9 +122,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         super.setListImagesInFolders(list);
         invisibleMenu();
         foldAdapt.setAll(getListImagesInFolders()).setListen(this);
-//        imgAdapt.setModeSelected(false);
         imgAdapt.setAll(getListImagesInFolders()).setListen(this);
-//        invisibleMenu();
     }
 
     @Override
@@ -145,6 +143,16 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
             if(imgAdapt.isModeSelected()||foldAdapt.isModeSelected()){
                 visibleMenu();
             }
+    }
+
+    @Override
+    protected void correctAdapter() {
+        super.correctAdapter();
+        if(getIndexAdapter()!=ROOT_ADAPTER) {
+            indexAdapter++;
+            imgAdapt.setIndexKey(indexAdapter);
+        }
+
     }
 
     @Override

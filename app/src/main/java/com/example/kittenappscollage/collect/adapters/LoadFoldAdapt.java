@@ -51,6 +51,7 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
     }
 
     private void resetChecks(int size){
+        modeSelected = false;
         checkSelect = new boolean[size];
     }
     private void resetCheckeds(){
@@ -90,7 +91,7 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
         if(mode!=modeSelected) {
             modeSelected = mode;
             resetCheckeds();
-            LYTE("ListenLoadFoldAdapter mode selected");
+            LYTE("ListenLoadFoldAdapter mode selected - "+mode);
             notifyDataSetChanged();
         }
     }

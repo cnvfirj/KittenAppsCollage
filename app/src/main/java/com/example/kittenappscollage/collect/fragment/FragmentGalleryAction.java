@@ -87,7 +87,6 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
             if(indexAdapter==ROOT_ADAPTER)deleteFolder();
             else deleteSelectedImg();
         }
-
     }
 
     private boolean version(){
@@ -151,13 +150,15 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
                     getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(old[i])));
                     getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(young[i])));
                 }
-                if(!getKey().equals(RequestFolder.getFolderImages())){
-                    getListPerms().remove(getKey());
-                    ActionsDataBasePerms.create(getContext()).deleteInThread(getKey());
-                }
-                getListImagesInFolders().remove(getKey());
-                getListFolds().remove(getKey());
-                getIndexesStorage().remove(getKey());
+
+                cleadLists(getKey());
+//                if(!getKey().equals(RequestFolder.getFolderImages())){
+//                    getListPerms().remove(getKey());
+//                    ActionsDataBasePerms.create(getContext()).deleteInThread(getKey());
+//                }
+//                getListImagesInFolders().remove(getKey());
+//                getListFolds().remove(getKey());
+//                getIndexesStorage().remove(getKey());
             } else {
                 Massages.SHOW_MASSAGE(getContext(), "Не удалось переименовать папку");
             }
@@ -165,19 +166,54 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         }
     }
 
+    private void cleadLists(String key){
+        if(!key.equals(RequestFolder.getFolderImages())){
+            getListPerms().remove(key);
+            ActionsDataBasePerms.create(getContext()).deleteInThread(key);
+        }
+        getListImagesInFolders().remove(key);
+        getListFolds().remove(key);
+        getIndexesStorage().remove(key);
+    }
+
     /*вывести это все в паралельный поток*/
     private void deleteFolder(){
         if(version()) {
             if (getIndexesStorage().get(getKey()) == 0) {
                 deleteInDevVer21(getKey());
+            }else {
+                /*delete in sd card*/
             }
         }else {
-
+            Massages.SHOW_MASSAGE(getContext(),"версия выше");
+            invisibleMenu();
         }
 
     }
     private void deleteInDevVer21(String fold){
         LYTE("FragmentGalleryAction delete "+fold);
+        if(fold.equals(RequestFolder.getFolderImages())){
+            deletedFold(fold);
+        } else if(!fold.equals(RequestFolder.getFolderImages())&&getListPerms().get(fold).equals(ActionsDataBasePerms.GRAND)){
+           deletedFold(fold);
+        }else {
+            Massages.SHOW_MASSAGE(getContext(),"Нет прав для даления папки");
+        }
+    }
+
+    private void deletedFold(String fold){
+        File file = new File(fold);
+        File[]files = file.listFiles();
+        for (File f:files){
+            if(f.exists()) f.delete();
+            getListImagesInFolders().get(fold).remove(f.getAbsolutePath());
+            setListImagesInFolders(getListImagesInFolders());
+            getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(f)));
+        }
+        if(file.exists())file.delete();
+
+        cleadLists(fold);
+        setListImagesInFolders(getListImagesInFolders());
     }
 
     private void deleteSelectedImg(){

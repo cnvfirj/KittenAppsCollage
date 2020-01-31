@@ -52,7 +52,7 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
             data[i] = new File(names[i]).lastModified();
         }
         sort(data,names);
-        LYTE("ListenLoadFoldAdapter set all ");
+//        LYTE("ListenLoadFoldAdapter set all ");
         notifyDataSetChanged();
         return this;
     }
@@ -115,12 +115,17 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
+//        LYTE("ListenLoadFoldAdapter fold - "+getFolds()[position]);
+        int index = getAll().get(getFolds()[position]).size();
+        if(index>0) {
+            Glide.with(getContext())
+                    .load(getAll().get(getFolds()[position]).get(index - 1))
+                    .into(holder.getImage());
+        }
 
-        Glide.with(getContext())
-                .load(getAll().get(getFolds()[position]).get(getAll().get(getFolds()[position]).size()-1))
-                .into(holder.getImage());
-            String[]split = getFolds()[position].split("[/]");
-            holder.getName().setText(split[split.length-1]);
+            String[] split = getFolds()[position].split("[/]");
+            holder.getName().setText(split[split.length - 1]);
+
         holder.getCol().setText(Integer.toString(getAll().get(getFolds()[position]).size()));
     }
 

@@ -148,14 +148,13 @@ public class FragmentScanAllImages extends Fragment {
         }
     }
 
-
     public void setSavingCollage(String path,String key){
         if(getListImagesInFolders().containsKey(key)){
             getListImagesInFolders().get(key).add(path);
         } else {
-            LYTE("FragmentScanAllImages create fold key");
-                ArrayList<String> imgs = new ArrayList<>();
-                imgs.add(path);
+            correctAdapter();
+            ArrayList<String> imgs = new ArrayList<>();
+            imgs.add(path);
             getListImagesInFolders().put(key, imgs);
 
             String[]split = key.split("[/]");
@@ -171,8 +170,11 @@ public class FragmentScanAllImages extends Fragment {
         setListImagesInFolders(getListImagesInFolders());
     }
 
-
-
+    protected void correctAdapter(){
+        /*если в момент сохранения окрыт подкаталог галереи,
+        * то при создании директории индекс открыто не изменяется
+        * и отображается предыдущая по порядку*/
+    }
     protected void setListImagesInFolders(HashMap<String,ArrayList<String>> list){
          listImagesToFolder = list;
     }
