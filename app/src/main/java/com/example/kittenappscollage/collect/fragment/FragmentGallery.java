@@ -20,8 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.collect.adapters.ListenAdapter;
-import com.example.kittenappscollage.collect.adapters.LoadFoldAdapt;
+//import com.example.kittenappscollage.collect.adapters.LoadFoldAdapt;
 import com.example.kittenappscollage.collect.adapters.LoadImgAdapt;
+import com.example.kittenappscollage.collect.adapters.LockFoldAdapter;
 import com.example.kittenappscollage.helpers.AllPermissions;
 
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     private RecyclerView recycler;
 
-    private LoadFoldAdapt foldAdapt;
+    private LockFoldAdapter foldAdapt;
 
     private LoadImgAdapt imgAdapt;
 
@@ -55,7 +56,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         indexAdapter = ROOT_ADAPTER;
-        foldAdapt = new LoadFoldAdapt(getContext());
+        foldAdapt = new LockFoldAdapter(getContext());
         imgAdapt = new LoadImgAdapt(getContext());
         foldAdapt.setParams(getContext().getResources().getDisplayMetrics().widthPixels);
         imgAdapt.setParams(getContext().getResources().getDisplayMetrics().widthPixels);
@@ -114,14 +115,13 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(gridLayoutManager);
         recycler.setAdapter(foldAdapt);
-
-
     }
 
     @Override
     protected void setListImagesInFolders(HashMap<String, ArrayList<String>> list) {
         super.setListImagesInFolders(list);
         invisibleMenu();
+        foldAdapt.setPerms(getListPerms());
         foldAdapt.setAll(getListImagesInFolders()).setListen(this);
         imgAdapt.setAll(getListImagesInFolders()).setListen(this);
     }
@@ -198,7 +198,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         return gridLayoutManager;
     }
 
-    protected LoadFoldAdapt getFoldAdapt(){
+    protected LockFoldAdapter getFoldAdapt(){
         return foldAdapt;
     }
 

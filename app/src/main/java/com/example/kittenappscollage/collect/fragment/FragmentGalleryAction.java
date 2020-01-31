@@ -104,20 +104,15 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         }
     }
 
-
     private void renameFoldAPI21(String name){
-
        if(getIndexesStorage().get(getKey())==0) {
            if(getKey().equals(RequestFolder.getFolderImages())){
                renameInDevise(name);
            }else if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsDataBasePerms.NON_PERM)){
-               Massages.SHOW_MASSAGE(getContext(),"Нет прав для переименования");
+               Massages.SHOW_MASSAGE(getContext(),"Нет прав для переименования этой папки");
                invisibleMenu();
-
            }else renameInDevise(name);
-
        }else renameFoldAPI29(name);
-
     }
 
     private void deleteFolder(){
@@ -131,13 +126,12 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
             /*при андроид 11*/
             invisibleMenu();
         }
-
     }
 
     private void deleteSelectedImg(int adapter){
         if(version()) {
             if (getIndexesStorage().get(getKey()) == 0) {
-                applyDeleteSelectedFiles(adapter);
+                applyDeleteSelectedFiles();
             }else {
                 /*delete in sd card*/
             }
@@ -200,11 +194,17 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         } else if(!fold.equals(RequestFolder.getFolderImages())&&getListPerms().get(fold).equals(ActionsDataBasePerms.GRAND)){
            deletedFoldFile(fold);
         }else {
-            Massages.SHOW_MASSAGE(getContext(),"Нет прав для даления папки");
+            Massages.SHOW_MASSAGE(getContext(),"Нет прав для удаления папки");
+            invisibleMenu();
         }
     }
 
-    private void applyDeleteSelectedFiles(int index){
+    private void applyDeleteSelectedFiles(){
+        if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsDataBasePerms.NON_PERM)){
+            Massages.SHOW_MASSAGE(getContext(),"Нет прав для удаления из этой папки");
+            invisibleMenu();
+            return;
+        }
        boolean[]checks = getImgAdapt().getArrChecks();
        ArrayList<String>imgs = getListImagesInFolders().get(getKey());
        int sum = 0;
