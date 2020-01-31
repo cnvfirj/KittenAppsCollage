@@ -120,13 +120,36 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     }
 
-
-
-    private void renameFoldAPI29(String name){
+    private void deleteFolder(){
+        if(version()) {
+            if (getIndexesStorage().get(getKey()) == 0) {
+                deleteInDevVer21(getKey());
+            }else {
+                /*delete in sd card*/
+            }
+        }else {
+            /*при андроид 11*/
+            invisibleMenu();
+        }
 
     }
 
-    private void renameInSD(String name){
+    private void deleteSelectedImg(int adapter){
+        if(version()) {
+            if (getIndexesStorage().get(getKey()) == 0) {
+                applyDeleteSelectedFiles(adapter);
+            }else {
+                /*delete in sd card*/
+            }
+        }else {
+            /*при андроид 11*/
+            invisibleMenu();
+        }
+    }
+
+
+
+    private void renameFoldAPI29(String name){
 
     }
 
@@ -151,7 +174,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
                     getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(young[i])));
                 }
 
-                cleadLists(getKey());
+                cleaкLists(getKey());
 
             } else {
                 Massages.SHOW_MASSAGE(getContext(), "Не удалось переименовать папку");
@@ -160,7 +183,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         }
     }
 
-    private void cleadLists(String key){
+    private void cleaкLists(String key){
         if(!key.equals(RequestFolder.getFolderImages())){
             getListPerms().remove(key);
             ActionsDataBasePerms.create(getContext()).deleteInThread(key);
@@ -169,35 +192,6 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         getListFolds().remove(key);
         getIndexesStorage().remove(key);
     }
-
-    /*вывести это все в паралельный поток*/
-    private void deleteFolder(){
-        if(version()) {
-            if (getIndexesStorage().get(getKey()) == 0) {
-                deleteInDevVer21(getKey());
-            }else {
-                /*delete in sd card*/
-            }
-        }else {
-            Massages.SHOW_MASSAGE(getContext(),"версия выше");
-            invisibleMenu();
-        }
-
-    }
-
-    private void deleteSelectedImg(int adapter){
-        if(version()) {
-            if (getIndexesStorage().get(getKey()) == 0) {
-               applyDeleteSelectedFiles(adapter);
-            }else {
-                /*delete in sd card*/
-            }
-        }else {
-            Massages.SHOW_MASSAGE(getContext(),"версия выше");
-            invisibleMenu();
-        }
-    }
-
 
     private void deleteInDevVer21(String fold){
         LYTE("FragmentGalleryAction delete "+fold);
@@ -218,6 +212,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
        for (int i=0;i<checks.length;i++){
            if(checks[i]){
                sum++;
+               /*перебираем файлы в обратном порядке*/
                File f = new File(imgs.get(all-(i+1)));
                if(f.exists())f.delete();
                getListImagesInFolders().get(getKey()).remove(f.getAbsolutePath());
@@ -229,7 +224,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
        if(sum>0&&sum<all){
            /*так как изменение произошло в текущей директрии
            * то в адаптере эта папка получит индекс 0.
-           * Это связанос сортировкой по времени изменения*/
+           * Это связано с сортировкой по времени изменения*/
            getImgAdapt().setIndexKey(0);
        }
 
@@ -241,7 +236,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
                    ActionsDataBasePerms.create(getContext()).deleteInThread(getKey());
                }
            }
-           cleadLists(getKey());
+           cleaкLists(getKey());
            if (getImgAdapt().isModeSelected()) {
                invisibleMenu();
                getImgAdapt().setModeSelected(false);
@@ -253,7 +248,6 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
            setListImagesInFolders(getListImagesInFolders());
        }
-
     }
 
 
@@ -276,7 +270,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
         }
 
-        cleadLists(fold);
+        cleaкLists(fold);
         setListImagesInFolders(getListImagesInFolders());
     }
 
