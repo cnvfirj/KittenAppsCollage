@@ -80,6 +80,6 @@ public class ListenMedia extends ContentObserver {
     }
 
     private void contentEmpty(Uri uri){
-
+        LYTE("ListenMedia content save - null");
     }
 }

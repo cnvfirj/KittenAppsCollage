@@ -27,15 +27,13 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
 
     public static final int DIALOG_ACTION = -12;
 
-    public static final String KEY_ACTION = "key action";
+    public static final String KEY_ACTION = "DialogAction key action";
 
-    public static final String KEY_ADAPTER = "key adapter";
+    public static final String KEY_ADAPTER = "DialogAction key adapter";
 
     public static final int ACTION_DELETE = 1;
 
     public static final int ACTION_SHARE = 2;
-
-    public static final int ACTION_TRANSFER = 3;
 
     public static final int ACTION_RENAME = 4;
 
@@ -154,17 +152,28 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
                 delete();
                 break;
             case ACTION_SHARE:
+                share();
                 break;
             case ACTION_INVIS:
+                invis();
                 break;
             case ACTION_RENAME:
                 rename();
                 break;
-            case ACTION_TRANSFER:
-                break;
 
         }
         paramView(text);
+    }
+
+    private void share(){
+        implementPropEdit(false);
+        String text = "Поделиться выбранными изображениями?";
+        if(indexAdapter==ROOT_ADAPTER)text = "Копировать выбранную папку?";
+        this.text.setText(text);
+    }
+    private void invis(){
+        implementPropEdit(false);
+       text.setText("В этом приложении эту папку больше не увидеть");
     }
 
     private void rename(){

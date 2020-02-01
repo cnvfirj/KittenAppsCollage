@@ -86,7 +86,7 @@ public class FragmentScanAllImages extends Fragment {
         Cursor cursor = getContext().getContentResolver().query(uri, projection, null,
                 null, null);
 
-        int col_path, col_fold,col_date;
+        int col_path, col_fold;
         col_path = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
         col_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
         cursor.moveToFirst();
@@ -95,7 +95,6 @@ public class FragmentScanAllImages extends Fragment {
         while (cursor.moveToNext()) {
             String path = cursor.getString(col_path).toLowerCase();
             String key = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);
-
 
             boolean pik = path.endsWith(".png")||path.endsWith(".jpeg")||path.endsWith("jpg");
             if(list.containsKey(key)){

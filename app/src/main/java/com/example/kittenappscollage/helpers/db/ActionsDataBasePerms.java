@@ -28,13 +28,7 @@ public class ActionsDataBasePerms {
 
     private ActionsDataBasePerms(Context context){
         permsDataBase = Room.databaseBuilder(context,PermsDataBase.class,"perms.db").build();
-//        Observable.create(new ObservableOnSubscribe<Boolean>() {
-//            @Override
-//            public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
-//                emitter.onNext(check());
-//                emitter.onComplete();
-//            }
-//        }).compose(new ThreadTransformers.InputOutput<>()).subscribe();
+
     }
 
     public static ActionsDataBasePerms create(Context context){
@@ -88,23 +82,4 @@ public class ActionsDataBasePerms {
         return App.checkVersion();
     }
 
-//    private boolean check(){
-//        if(version()){
-//           if(permsDataBase.workPerms().getPerm(RequestFolder.getFolderImages())==null){
-//               permsDataBase.workPerms().insert(
-//                       new PermStorage(RequestFolder.getFolderImages())
-//               .setVis(true)
-//               .setUri(GRAND));
-//               return true;
-//           }else {
-//               PermStorage ps = permsDataBase.workPerms().getPerm(RequestFolder.getFolderImages());
-//               if(ps.getUri()==null||ps.getUri().equals(NON_PERM))
-//               permsDataBase.workPerms().update(permsDataBase.workPerms().getPerm(RequestFolder.getFolderImages()).setUri(GRAND));
-//               if(!ps.isVisible())permsDataBase.workPerms().update(permsDataBase.workPerms().getPerm(RequestFolder.getFolderImages()).setVis(true));
-//
-//
-//           }
-//        }
-//        return false;
-//    }
 }

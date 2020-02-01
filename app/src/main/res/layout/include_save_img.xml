@@ -17,6 +17,12 @@
         style="@style/slide_style_save"
         android:id="@+id/save_net"
         android:background="@color/colorAccent"
+        android:src="@drawable/ic_share"/>
+
+    <ImageView
+        style="@style/slide_style_save"
+        android:id="@+id/save_is"
+        android:background="@color/colorAccent"
         android:src="@drawable/icon_google_drive"/>
 
 </FrameLayout>

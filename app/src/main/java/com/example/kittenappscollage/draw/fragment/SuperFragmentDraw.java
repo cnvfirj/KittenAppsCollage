@@ -85,7 +85,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
 
     private ImageView dSlideTools,dSlideSave, dSlideAdd;
 
-    private ImageView dSaveTel, dSaveNet;
+    private ImageView dSaveTel, dSaveNet, dSaveIs;
 
     private ImageView dAddCreated, dAddLink, dAddCam, dAddColl;
 
@@ -176,6 +176,9 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
                 break;
             case R.id.save_tel:
                 saveTel((ImageView)view);
+                break;
+            case R.id.save_is:
+                saveIs((ImageView)view);
                 break;
             case R.id.add_created:
                 addCreated((ImageView)view);
@@ -279,17 +282,16 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         shiftTools(dSlideTools);
 
         dSlideSave = view.findViewById(R.id.slide_save_img);
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)dSlideSave.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_save,null));
+//        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)dSlideSave.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_save,null));
         dSaveNet = view.findViewById(R.id.save_net);
         dSaveTel = view.findViewById(R.id.save_tel);
-
+        dSaveIs = view.findViewById(R.id.save_is);
         dSlideAdd = view.findViewById(R.id.slide_add_lyr);
         dAddCreated = view.findViewById(R.id.add_created);
         dAddLink = view.findViewById(R.id.add_link);
         dAddCam = view.findViewById(R.id.add_camera);
         dAddColl = view.findViewById(R.id.add_collect);
 
-        appStates();
         addListener();
     }
 
@@ -332,10 +334,12 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
             dVisibleSave = true;
             dSaveNet.animate().translationX(-getSlideSave()).setDuration(getTimeSlide()).start();
             dSaveTel.animate().translationY(getSlideSave()).setDuration(getTimeSlide()).start();
+            dSaveIs.animate().translationX(-getSlideSave()).translationY(getSlideSave()).setDuration(getTimeSlide()).start();
         }else {
             dVisibleSave = false;
             dSaveNet.animate().translationX(0).setDuration(getTimeSlide()).start();
             dSaveTel.animate().translationY(0).setDuration(getTimeSlide()).start();
+            dSaveIs.animate().translationX(0).translationY(0).setDuration(getTimeSlide()).start();
         }
         dSlideSave.setSelected(dVisibleSave);
     }
@@ -404,13 +408,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         dProperties.animate().translationY(step*9).setDuration(time).start();
     }
 
-    /*здесь на все элементы применяем состояния*/
-    protected void appStates(){
-//        selectorIconsPaint(dPaint);
-//        selectorButtons(dIndexTool);
-//        dInfo.setSelected(dSelectInfo);
-//        dAllLyrs.setSelected(dSelectAllLyrs);
-    }
 
     private float getSlideAdd1(){
         return getResources().getDimension(R.dimen.SLIDE_ADD);
@@ -453,7 +450,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         dSlideSave.setOnClickListener(this);
         dSaveTel.setOnClickListener(this);
         dSaveNet.setOnClickListener(this);
-
+        dSaveIs.setOnClickListener(this);
         dSlideAdd.setOnClickListener(this);
         dAddCreated.setOnClickListener(this);
         dAddLink.setOnClickListener(this);
@@ -462,43 +459,14 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
 //         addLongClick();
     }
 
-//    private void addLongClick(){
-//        dSlideTools.setOnLongClickListener(this);
-//        dSlideTools.setOnLongClickListener(this);
-//        dUndo.setOnLongClickListener(this);
-//        dRedo.setOnLongClickListener(this);
-//        dInfo.setOnLongClickListener(this);
-//        dAllLyrs.setOnLongClickListener(this);
-//        dUnion.setOnLongClickListener(this);
-//        dDeleteLyr.setOnLongClickListener(this);
-//        dChangeLyrs.setOnLongClickListener(this);
-//        dDeleteAll.setOnLongClickListener(this);
-//        dProperties.setOnLongClickListener(this);
-//
-//        dPaint.setOnLongClickListener(this);
-//        dFil.setOnLongClickListener(this);
-//        dEraser.setOnLongClickListener(this);
-//        dText.setOnLongClickListener(this);
-//        dCut.setOnLongClickListener(this);
-//        dTrans.setOnLongClickListener(this);
-//        dScale.setOnLongClickListener(this);
-//        dDeformRotate.setOnLongClickListener(this);
-//
-//        dSlideSave.setOnLongClickListener(this);
-//        dSaveTel.setOnLongClickListener(this);
-//        dSaveNet.setOnLongClickListener(this);
-//
-//        dSlideAdd.setOnLongClickListener(this);
-//        dAddCreated.setOnLongClickListener(this);
-//        dAddLink.setOnLongClickListener(this);
-//        dAddCam.setOnLongClickListener(this);
-//        dAddColl.setOnLongClickListener(this);
-//    }
 
     protected void saveNet(ImageView v){
         slideSave(null);
     }
 
+    protected void saveIs(ImageView v){
+        slideSave(null);
+    }
     protected void saveTel(ImageView v){
         slideSave(null);
     }

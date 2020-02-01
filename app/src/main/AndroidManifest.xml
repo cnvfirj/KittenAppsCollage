@@ -24,6 +24,17 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.kittenappscollage.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <service
             android:name=".draw.saveSteps.ClearCatch"
             android:enabled="true"
