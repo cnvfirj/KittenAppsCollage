@@ -15,6 +15,7 @@ import java.io.OutputStream;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 import static com.example.kittenappscollage.helpers.RequestFolder.testFolder;
 
@@ -37,8 +38,10 @@ public class SaveImageToFile {
         if(bitmap==null||bitmap.isRecycled())return;
 
         quality = 100;
+
         final File folder = new File(RequestFolder.getFolderImages());
         final String name = "/"+ RepDraw.PropertiesImage.NAME_IMAGE();
+        LYTE("SaveImageToFile Save img "+name);
         if(RequestFolder.testFolder(folder)) {
             requestSaveFile(folder.getAbsolutePath() + name, bitmap)
                     .subscribe(aBoolean -> {

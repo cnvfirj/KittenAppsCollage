@@ -97,13 +97,13 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     /*применить другое сканирование почему то старую папку не удаляет*/
     @Override
     public void result(boolean done, String name) {
-//        invisibleMenu();
         if(done&&!name.isEmpty()) {
             if (version()) renameFoldAPI21(name);
             else renameFoldAPI29(name);
         }
     }
 
+    /**/
     private void renameFoldAPI21(String name){
        if(getIndexesStorage().get(getKey())==0) {
            if(getKey().equals(RequestFolder.getFolderImages())){

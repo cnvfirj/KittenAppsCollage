@@ -45,7 +45,7 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                         invisibleMenu();
                         getFoldAdapt().setModeSelected(false);
                     }
-                    checkFolder();
+//                    checkFolder();
             } else {
                     if (selectFiles.contains(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos))) {
                         selectFiles.remove(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
@@ -113,19 +113,6 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
         }
     }
 
-
-
-    @Override
-    protected void selectIconAction3(ImageView view) {
-        super.selectIconAction3(view);
-        if(getIndexAdapter()==ROOT_ADAPTER) {
-            view.setEnabled(false);
-            checkFolder();
-        }else {
-            view.setEnabled(true);
-        }
-    }
-
     @Override
     protected void invisibleMenu() {
         super.invisibleMenu();
@@ -140,16 +127,16 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
         return under;
     }
 
-    private void checkFolder() {
-        if (getNamesDirs().size() > 1) {
-            getSelected_3().setEnabled(true);
-            if (selectFiles.get(0).contains(getNamesDirs().get(0))) {
-                getSelected_3().setSelected(true);
-            } else {
-                getSelected_3().setSelected(false);
-            }
-        }
-    }
+//    private void checkFolder() {
+//        if (getNamesDirs().size() > 1) {
+//            getSelected_3().setEnabled(true);
+//            if (selectFiles.get(0).contains(getNamesDirs().get(0))) {
+//                getSelected_3().setSelected(true);
+//            } else {
+//                getSelected_3().setSelected(false);
+//            }
+//        }
+//    }
 
 
 }

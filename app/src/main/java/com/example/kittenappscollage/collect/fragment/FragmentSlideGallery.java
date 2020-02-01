@@ -165,10 +165,8 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
 
     protected void selectIconAction3(ImageView view){
         if(getIndexAdapter()==ROOT_ADAPTER){
-            view.setImageDrawable(getContext().getResources().getDrawable(R.drawable.icon_collect_selected_trans,null));
-            /*если нет карты памяти сделать неактивной и назначить иконку с у-ва на карту*/
-            /*здесь сделать автоматом выбор переносом на карту памяти*/
-            /*если выбранная папка на карте памяти то перенос на у-во*/
+            view.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_selected_copy,null));
+
         }else {
             view.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_share,null));
         }
