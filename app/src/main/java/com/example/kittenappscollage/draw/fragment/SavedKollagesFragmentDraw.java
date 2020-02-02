@@ -226,26 +226,22 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
             RepDraw.get().getImg().compress(Bitmap.CompressFormat.PNG, 100, os);
             os.flush();
             os.close();
-        } catch (IOException e) {
-
-        }
+        } catch (IOException e) { }
         if(file.exists()) {
-            Uri uri = FileProvider.getUriForFile(getContext(), "com.example.kittenappscollage.fileprovider", file);
             try {
                 Intent intent = new Intent();
                 intent.setAction(Intent.ACTION_SEND);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    Uri uri = FileProvider.getUriForFile(getContext(), "com.example.kittenappscollage.fileprovider", file);
                     intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     intent.putExtra(Intent.EXTRA_STREAM, uri);
                     intent.setType("image/png");
                 } else {
-                    intent.setDataAndType(uri, "image/png");
+                    intent.setDataAndType(Uri.fromFile(file), "image/png");
                 }
                 startActivity(Intent.createChooser(intent, null));
-            } catch (ActivityNotFoundException anfe) {
-
-            }
+            } catch (ActivityNotFoundException anfe) { }
         }
     }
 }
