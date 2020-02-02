@@ -106,7 +106,7 @@ public class FragmentScanAllImages extends Fragment {
                     ArrayList<String> imgs = new ArrayList<>();
                     imgs.add(cursor.getString(col_path));
                     list.put(key, imgs);
-
+//                    LYTE("key "+key);
                     folds.put(key,cursor.getString(col_fold));
                         for(int i=0;i<getNamesStorage().size();i++) {
                             if(key.contains(getNamesStorage().get(i))){

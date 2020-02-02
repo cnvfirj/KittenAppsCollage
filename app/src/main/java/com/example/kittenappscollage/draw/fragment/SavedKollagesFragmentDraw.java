@@ -3,6 +3,7 @@ package com.example.kittenappscollage.draw.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -20,11 +21,14 @@ import androidx.documentfile.provider.DocumentFile;
 import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.Massages;
+import com.example.kittenappscollage.helpers.RequestFolder;
 import com.example.kittenappscollage.helpers.SaveImageToFile;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.helpers.db.ActionsDataBasePerms;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -70,6 +74,8 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     protected void saveNet(ImageView v) {
         super.saveNet(v);
         /*расшарить изображение*/
+        share();
+
     }
 
     @Override
@@ -102,6 +108,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                @Override
                public void accept(String str) throws Exception {
                    if(!str.equals(ZHOPA)){
+//                       getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(str)));
                        Massages.SHOW_MASSAGE(getContext(), "Изображение сохранено");
                    } else {
                        Massages.SHOW_MASSAGE(getContext(), "Изображение не сохранено. Проверь память устройства");
@@ -165,9 +172,32 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     }
 
     private void reportPerm(Uri perm, DocumentFile fold){
-//        LYTE("perm "+perm.toString());
-//        LYTE("fold "+fold.getUri().toString());
+        String storage = "/storage";
+        String[]split = getRealPathFromURI(getContext(),fold.getUri()).split("[/]");
+        if(split!=null&&split.length>=3) {
+            for (int i = 3; i < split.length; i++) {
+                storage+="/"+split[i];
+            }
+        }
+           ActionsDataBasePerms.create(getContext()).queryInitInThread(storage,perm.toString());
 
+    }
+
+    private String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } catch (Exception e) {
+            return "";
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
     }
     /**/
     private Observable<String> requestSaveFile(Uri perm){
@@ -184,5 +214,38 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                         saveAPI29();
                     }
                 });
+    }
+
+    private void share(){
+        final String folder = RequestFolder.getPersonalFolder(getContext());
+        final String name = folder+"/collage share.png";
+        final File file = new File(name);
+        OutputStream os = null;
+        try {
+            os = new FileOutputStream(file);
+            RepDraw.get().getImg().compress(Bitmap.CompressFormat.PNG, 100, os);
+            os.flush();
+            os.close();
+        } catch (IOException e) {
+
+        }
+        if(file.exists()) {
+            Uri uri = FileProvider.getUriForFile(getContext(), "com.example.kittenappscollage.fileprovider", file);
+            try {
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_SEND);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    intent.putExtra(Intent.EXTRA_STREAM, uri);
+                    intent.setType("image/png");
+                } else {
+                    intent.setDataAndType(uri, "image/png");
+                }
+                startActivity(Intent.createChooser(intent, null));
+            } catch (ActivityNotFoundException anfe) {
+
+            }
+        }
     }
 }

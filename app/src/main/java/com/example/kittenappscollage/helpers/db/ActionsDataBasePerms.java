@@ -44,6 +44,16 @@ public class ActionsDataBasePerms {
         return permsDataBase;
     }
 
+    public void queryInitInThread(String key, String uri){
+        Observable.create(new ObservableOnSubscribe<Boolean>() {
+            @Override
+            public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
+                emitter.onNext(query(key,uri));
+                emitter.onComplete();
+            }
+        }).compose(new ThreadTransformers.InputOutput<>()).subscribe();
+    }
+
     public void initInThread(String key, String uri){
         Observable.create(new ObservableOnSubscribe<Boolean>() {
             @Override
@@ -52,6 +62,14 @@ public class ActionsDataBasePerms {
                 emitter.onComplete();
             }
         }).compose(new ThreadTransformers.InputOutput<>()).subscribe();
+    }
+
+    private boolean query(String key, String uri){
+        PermStorage ps = permsDataBase.workPerms().getPerm(key);
+        if(ps==null){
+            init(key,uri);
+        }
+        return true;
     }
 
     private boolean init(String key, String uri){

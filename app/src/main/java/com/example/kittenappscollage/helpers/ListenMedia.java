@@ -39,6 +39,8 @@ public class ListenMedia extends ContentObserver {
     public void onChange(boolean selfChange, Uri uri) {
         super.onChange(selfChange, uri);
 
+        LYTE("ListenMedia selfChange - "+selfChange);
+
         if(uri.getPathSegments().size()<=1){
             contentEmpty(uri);
             return;

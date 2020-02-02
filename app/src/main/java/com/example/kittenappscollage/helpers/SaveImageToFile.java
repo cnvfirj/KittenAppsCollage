@@ -41,7 +41,6 @@ public class SaveImageToFile {
 
         final File folder = new File(RequestFolder.getFolderImages());
         final String name = "/"+ RepDraw.PropertiesImage.NAME_IMAGE();
-        LYTE("SaveImageToFile Save img "+name);
         if(RequestFolder.testFolder(folder)) {
             requestSaveFile(folder.getAbsolutePath() + name, bitmap)
                     .subscribe(aBoolean -> {
