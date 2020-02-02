@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -108,6 +109,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                @Override
                public void accept(String str) throws Exception {
                    if(!str.equals(ZHOPA)){
+//                       new MediaScannerConnection(getContext(),null).scanFile(str,"image/png");
 //                       getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(str)));
                        Massages.SHOW_MASSAGE(getContext(), "Изображение сохранено");
                    } else {
