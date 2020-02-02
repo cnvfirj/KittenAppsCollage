@@ -160,7 +160,6 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
                 shareSelectedImgs(selected);
             }
         }
-
     }
 
     private void shareSingleImg(Uri uri, String path){
