@@ -7,6 +7,8 @@ import android.graphics.PointF;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
 import com.example.mutmatrix.CompRep;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 //import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class RepMutable extends RepCommonFunctions {
@@ -39,12 +41,11 @@ public class RepMutable extends RepCommonFunctions {
     }
 
     public void mutableImg(Bitmap b, CompRep rep, int type, boolean single){
-//        LYTE("mut img");
         if(testBitmap(b)){
             rImg = b;
+            rImgC = new Canvas(rImg);
             if(type==MUTABLE_SIZE){
                 rImgMat
-//                        .reset()
                         .setRepository(rep.copy());
                 rImgC = new Canvas(rImg);
             }
@@ -52,28 +53,24 @@ public class RepMutable extends RepCommonFunctions {
             if(single){
                 rAdd.readinessImg(true);
 
-//                LYTE("single img "+BackNextStep.TARGET_IMG+"|mut "+BackNextStep.MUT_SCALAR);
 
                 BackNextStep.get().save(BackNextStep.TARGET_IMG,BackNextStep.MUT_SCALAR);
             }else {
-//                LYTE("read img start "+rReadiness);
                 rReadiness++;
-//                LYTE("read img fin "+rReadiness);
                 if (rReadiness == 2) {
                     rAdd.readinessAll(true);
 
-//                    LYTE("all img "+BackNextStep.TARGET_ALL+"|mut "+BackNextStep.MUT_SCALAR);
                     BackNextStep.get().save(BackNextStep.TARGET_ALL,BackNextStep.MUT_SCALAR);
                 }
             }
         }
-//        else LYTE("bed img");
 
     }
 
     public void mutableLyr(Bitmap b, CompRep rep, int type, boolean single){
 //        LYTE("mut lyr");
         if(testBitmap(b)){
+//            zeroingBitmap(rLyr);
             rLyr = b;
             if(type==MUTABLE_SIZE){
                 rLyrMat
@@ -83,15 +80,11 @@ public class RepMutable extends RepCommonFunctions {
             }
             if(single){
                 rAdd.readinessLyr(true);
-//                LYTE("single lyr "+BackNextStep.TARGET_LYR+"|mut "+BackNextStep.MUT_SCALAR);
                 BackNextStep.get().save(BackNextStep.TARGET_LYR,BackNextStep.MUT_SCALAR);
             }else {
-//                LYTE("read lyr start "+rReadiness);
                 rReadiness++;
-//                LYTE("read lyr fin "+rReadiness);
                 if (rReadiness == 2) {
                     rAdd.readinessAll(true);
-//                    LYTE("all lyr "+BackNextStep.TARGET_ALL+"|mut "+BackNextStep.MUT_SCALAR);
                     BackNextStep.get().save(BackNextStep.TARGET_ALL,BackNextStep.MUT_SCALAR);
                 }
             }

@@ -1,6 +1,7 @@
 package com.example.kittenappscollage.draw.operations;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.PointF;
 import android.view.MotionEvent;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
@@ -11,6 +12,7 @@ import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.ALL;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_IMG;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.LYR_LYR;
 import static com.example.kittenappscollage.draw.repozitoryDraw.Repozitory.SINGLE;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ApplyOperationSelector implements Operation.ResultMutable {
 
@@ -55,6 +57,26 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
     @Override
     public void repers(PointF[] points, boolean is) {
         RepDraw.get().correctRepers(is).repers(points);
+    }
+
+    public int colorBit(MotionEvent e){
+        if(RepDraw.get().isImg()){
+            PointF p = new PointF(e.getX(),e.getY());
+            if(RepDraw.get().isImg()){
+                if(RepDraw.get().isLyr()) {
+                    if (belongingRegion(RepDraw.get().getLMat(), p)) {
+                        return color(RepDraw.get().getLyr(), RepDraw.get().getLMat().getPointBitmap(p));
+                    } else if (belongingRegion(RepDraw.get().getIMat(), p)) {
+                        return color(RepDraw.get().getImg(), RepDraw.get().getIMat().getPointBitmap(p));
+                    }
+                }else {
+                        if(belongingRegion(RepDraw.get().getIMat(),p)){
+                            return color(RepDraw.get().getImg(),RepDraw.get().getIMat().getPointBitmap(p));
+                        }
+                }
+            }
+        }
+        return 0;
     }
 
     void singleMat(Operation operation, MotionEvent event){
@@ -238,6 +260,11 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
         }
     }
 
+    private int color(Bitmap b, PointF p){
+        final int x = (int)p.x;
+        final int y = (int)p.y;
+        return b.getPixel(x,y);
+    }
     private boolean isCut(Operation operation){
         return operation.getEvent().equals(Operation.Event.LAYERS_CUT);
     }

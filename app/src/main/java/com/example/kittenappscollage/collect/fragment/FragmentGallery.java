@@ -149,7 +149,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     @Override
     protected void correctAdapterPostSave() {
         super.correctAdapterPostSave();
-        LYTE("correct adapter");
+        LYTE("FragmentScanAllImages correct adapter");
         if(getIndexAdapter()!=ROOT_ADAPTER) {
             indexAdapter++;
             imgAdapt.setIndexKey(indexAdapter);

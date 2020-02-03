@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/tool_color"
+        android:src="@drawable/ic_get_color"
+        style="@style/slide_style_all_tools"
+        android:background="@drawable/background_buttons_selected_state"/>
+</FrameLayout>

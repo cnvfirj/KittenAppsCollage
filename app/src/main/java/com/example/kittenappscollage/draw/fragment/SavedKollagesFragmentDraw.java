@@ -10,6 +10,9 @@ import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
+import android.provider.DocumentsContract;
+import android.provider.DocumentsProvider;
 import android.provider.MediaStore;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
@@ -21,6 +24,7 @@ import androidx.documentfile.provider.DocumentFile;
 
 import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.App;
+import com.example.kittenappscollage.helpers.ListenMedia;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.RequestFolder;
 import com.example.kittenappscollage.helpers.SaveImageToFile;
@@ -109,9 +113,13 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                @Override
                public void accept(String str) throws Exception {
                    if(!str.equals(ZHOPA)){
-//                       new MediaScannerConnection(getContext(),null).scanFile(str,"image/png");
-//                       getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(str)));
+//                       ListenMedia lm = new ListenMedia(new Handler());
+//                       getContext().getContentResolver().registerContentObserver(
+//                               MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+//                               true,
+//                               lm);
                        Massages.SHOW_MASSAGE(getContext(), "Изображение сохранено");
+//                       getContext().getContentResolver().unregisterContentObserver(lm);
                    } else {
                        Massages.SHOW_MASSAGE(getContext(), "Изображение не сохранено. Проверь память устройства");
                    }
@@ -165,7 +173,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         if(exists) {
             /*отсюда ввести в базу данных ActionsDataBasePerms разрешение
             * для этого надо юри, адрес папки как ключ*/
-            reportPerm(uri, fold);
+
             getEditor().putString(KEY_PERM_SAVE, uri.toString());
             getEditor().apply();
         }
@@ -173,34 +181,34 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         return exists;
     }
 
-    private void reportPerm(Uri perm, DocumentFile fold){
-        String storage = "/storage";
-        String[]split = getRealPathFromURI(getContext(),fold.getUri()).split("[/]");
-        if(split!=null&&split.length>=3) {
-            for (int i = 3; i < split.length; i++) {
-                storage+="/"+split[i];
-            }
-        }
-           ActionsDataBasePerms.create(getContext()).queryInitInThread(storage,perm.toString());
-
-    }
-
-    private String getRealPathFromURI(Context context, Uri contentUri) {
-        Cursor cursor = null;
-        try {
-            String[] proj = { MediaStore.Images.Media.DATA };
-            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        } catch (Exception e) {
-            return "";
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
-    }
+//    private void reportPerm(Uri perm, DocumentFile fold){
+//        String storage = "/storage";
+//        String[]split = getRealPathFromURI(getContext(),fold.getUri()).split("[/]");
+//        if(split!=null&&split.length>=3) {
+//            for (int i = 3; i < split.length; i++) {
+//                storage+="/"+split[i];
+//            }
+//        }
+//           ActionsDataBasePerms.create(getContext()).queryInitInThread(storage,perm.toString());
+//
+//    }
+//
+//    private String getRealPathFromURI(Context context, Uri contentUri) {
+//        Cursor cursor = null;
+//        try {
+//            String[] proj = { MediaStore.Images.Media.DATA };
+//            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+//            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//            cursor.moveToFirst();
+//            return cursor.getString(column_index);
+//        } catch (Exception e) {
+//            return "";
+//        } finally {
+//            if (cursor != null) {
+//                cursor.close();
+//            }
+//        }
+//    }
     /**/
     private Observable<String> requestSaveFile(Uri perm){
         return Observable.create((ObservableOnSubscribe<String>) emitter -> {

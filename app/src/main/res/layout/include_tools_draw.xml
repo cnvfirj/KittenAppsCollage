@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent">
+
     <ImageView
         android:id="@+id/tool_translate"
         android:src="@drawable/icon_translate"
@@ -13,6 +14,7 @@
         android:src="@drawable/icon_scale_1"
         style="@style/slide_style_all_tools"
         android:background="@drawable/background_buttons_selected_tools"/>
+
     <ImageView
         android:id="@+id/tool_deform_rotate"
         android:src="@drawable/icon_deform_rotate_1_to_2"
@@ -36,11 +38,13 @@
         android:src="@drawable/icon_fill_1"
         style="@style/slide_style_all_tools"
         android:background="@drawable/background_buttons_selected_tools"/>
+
     <ImageView
         android:id="@+id/tool_text"
         android:src="@drawable/icon_text"
         style="@style/slide_style_all_tools"
         android:background="@drawable/background_buttons_selected_tools"/>
+
     <ImageView
         android:id="@+id/tool_cut"
         android:src="@drawable/icon_cut"

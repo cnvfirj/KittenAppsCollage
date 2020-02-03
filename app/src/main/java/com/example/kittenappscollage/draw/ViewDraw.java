@@ -6,15 +6,20 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.PointF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.kittenappscollage.R;
+import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.example.kittenappscollage.draw.operations.ApplyOperation;
 import com.example.kittenappscollage.draw.operations.Operation;
 import com.example.kittenappscollage.draw.operations.OperationCanvas;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 public class ViewDraw extends View {
 
@@ -24,11 +29,15 @@ public class ViewDraw extends View {
 
     private boolean vNonBlock;
 
+    private boolean vPipette;
+
     private Matrix vMatrL, vMatrI, vMatrO;
 
     private boolean vInfo;
 
     private OperationCanvas vPreview;
+
+    private ApplyDrawToolsFragmentDraw.Pipette vListenPipette;
 
 
     public ViewDraw(Context context) {
@@ -50,45 +59,65 @@ public class ViewDraw extends View {
         vMatrL = new Matrix();
         vMatrO = new Matrix();
         vPreview = new OperationCanvas().preview(true);
+        vPipette = false;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
 
-        if(RepDraw.get().isImg()){
-            canvas.drawBitmap(getImg(),getMatrImg(),null);
-        }
-        if(RepDraw.get().isLyr()){
-            canvas.drawBitmap(getLyr(),getMatrLyr(),null);
-        }
-        if(RepDraw.get().isOver()){
-            canvas.drawBitmap(getOver(), getMatrOver(),null);
-        }
-        if(isDraw()){
-            vPreview.canvas(canvas).apply();
-        }
+          if (RepDraw.get().isImg()) {
+              canvas.drawBitmap(getImg(), getMatrImg(), null);
+          }
+          if (RepDraw.get().isLyr()) {
+              canvas.drawBitmap(getLyr(), getMatrLyr(), null);
+          }
+          if (RepDraw.get().isOver()) {
+              canvas.drawBitmap(getOver(), getMatrOver(), null);
+          }
+          if (isDraw()) {
+              vPreview.canvas(canvas).apply();
+          }
 
-        if(vInfo){
-            if(RepDraw.get().isImg())vHelper.drawInfo(canvas,RepDraw.get().getIMat(),"img",Color.RED);
-            if(RepDraw.get().isLyr())vHelper.drawInfo(canvas,RepDraw.get().getLMat(),"over",Color.BLUE);
-        }
+          if (vInfo) {
+              if (RepDraw.get().isImg())
+                  vHelper.drawInfo(canvas, RepDraw.get().getIMat(), "img", Color.RED);
+              if (RepDraw.get().isLyr())
+                  vHelper.drawInfo(canvas, RepDraw.get().getLMat(), "over", Color.BLUE);
+          }
 
-        if(vAppOp.getEvent()!=null&&vAppOp.getEvent().equals(Operation.Event.LAYERS_CUT)&&RepDraw.get().isImg())
-        vHelper.drawShadow(canvas,RepDraw.get().getRepers(),getContext().getResources().getColor(R.color.colorShadow));
+          if (vAppOp.getEvent() != null && vAppOp.getEvent().equals(Operation.Event.LAYERS_CUT) && RepDraw.get().isImg())
+              vHelper.drawShadow(canvas, RepDraw.get().getRepers(), getContext().getResources().getColor(R.color.colorShadow));
+
         super.onDraw(canvas);
     }
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(vNonBlock) {
-            if(RepDraw.get().isImg()){
-                vAppOp.point(event);
-                if(isDraw())vPreview.point(event);
-                invalidate();
+        if(!vPipette) {
+            if (vNonBlock) {
+                if (RepDraw.get().isImg()) {
+                    if(!vPipette) {
+                        vAppOp.point(event);
+                        if (isDraw()) vPreview.point(event);
+                        invalidate();
+                    }
+
+                }
             }
+        }else {
+                if (vAppOp.getColorBitmap(event) != 0) {
+                    if (vListenPipette != null) {
+                        vListenPipette.listen(false);
+                    }
+                } else SHOW_MASSAGE(getContext(), "Выбери точку на заполненной и не прозрачной области рисунка");
+
         }
         return true;
+    }
+
+    public void setListPipette(ApplyDrawToolsFragmentDraw.Pipette p){
+        vListenPipette = p;
     }
 
     public void changeInfo(boolean info){
@@ -138,6 +167,10 @@ public class ViewDraw extends View {
 
     public void nonBlockTouch(boolean nonBlock){
         vNonBlock = nonBlock;
+    }
+
+    public void applyPipette(boolean p){
+        vPipette = p;
     }
 
     public int setEvent(Operation.Event event){

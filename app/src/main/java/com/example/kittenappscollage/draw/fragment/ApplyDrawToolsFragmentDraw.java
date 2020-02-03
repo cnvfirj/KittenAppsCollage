@@ -2,8 +2,13 @@ package com.example.kittenappscollage.draw.fragment;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.kittenappscollage.draw.textProp.DialogSelecledTextFragment;
 import com.example.kittenappscollage.draw.DialogSelectParams;
@@ -37,6 +42,17 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     public static final int S_ASSETS = 88;
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        dViewDraw.setListPipette(new Pipette() {
+            @Override
+            public void listen(boolean l) {
+                toolColor(null);
+            }
+        });
+    }
+
+    @Override
     protected void toolPaint(ImageView v) {
         super.toolPaint(v);
         int e = Operation.Event.LAYERS_LINE_1.ordinal();
@@ -56,6 +72,13 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         else if(dIndexErase%10==3)e = dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_3);
         else if(dIndexErase%10==4)e = dViewDraw.setEvent(Operation.Event.LAYERS_ELASTIC_4);
         getEditor().putInt(KEY_EVENT,e).apply();
+    }
+
+    @Override
+    protected void toolColor(ImageView v) {
+        super.toolColor(v);
+        if(v!=null)dViewDraw.applyPipette(v.isActivated());
+        else dViewDraw.applyPipette(false);
     }
 
     @Override
@@ -180,5 +203,9 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         else {
             RepDraw.get().setShrift(Typeface.create(Typeface.DEFAULT,Typeface.NORMAL));
         }
+    }
+
+    public interface Pipette{
+        void listen(boolean l);
     }
 }
