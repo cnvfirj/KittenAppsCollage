@@ -18,11 +18,6 @@ import java.util.Objects;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ClearCatch extends Service {
 
@@ -78,7 +73,6 @@ public class ClearCatch extends Service {
             !file.getAbsolutePath().equals(state.getPathLyr())){
                 file.delete();
             }
-//            else LYTE("non del "+file.getAbsolutePath());
         }
         return false;
     }

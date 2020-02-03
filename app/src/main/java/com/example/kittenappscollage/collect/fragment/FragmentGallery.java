@@ -55,6 +55,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        initListImagesInFolders();
         indexAdapter = ROOT_ADAPTER;
         foldAdapt = new LockFoldAdapter(getContext());
         imgAdapt = new LoadImgAdapt(getContext());
@@ -73,7 +74,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     @Override
     public void onResume() {
         super.onResume();
-        initListImagesInFolders();
+
         stateReadStorage(AllPermissions.create()
                 .activity(getActivity())
                 .reqSingle(AllPermissions.STORAGE).isStorage());
@@ -149,7 +150,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     @Override
     protected void correctAdapterPostSave() {
         super.correctAdapterPostSave();
-        LYTE("correct adapter");
+        LYTE("FragmentScanAllImages correct adapter");
         if(getIndexAdapter()!=ROOT_ADAPTER) {
             indexAdapter++;
             imgAdapt.setIndexKey(indexAdapter);

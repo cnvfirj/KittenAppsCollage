@@ -168,7 +168,7 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
     private void share(){
         implementPropEdit(false);
         String text = "Поделиться выбранными изображениями?";
-        if(indexAdapter==ROOT_ADAPTER)text = "Копировать выбранную папку?";
+        if(indexAdapter==ROOT_ADAPTER)text = "Копировать изображения вместе с папкой?";
         this.text.setText(text);
     }
     private void invis(){
@@ -184,8 +184,8 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
 
     private void delete(){
         implementPropEdit(false);
-        String text = "Выбранные объекты будут удалены";
-        if(indexAdapter==ROOT_ADAPTER)text = "Выбранная папка будет удалена со всем содержимым";
+        String text = "Выбранные изображения будут удалены";
+        if(indexAdapter==ROOT_ADAPTER)text = "Все изображения из этой папки будут удалены";
         this.text.setText(text);
 
     }

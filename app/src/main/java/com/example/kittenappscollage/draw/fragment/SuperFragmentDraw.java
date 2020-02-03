@@ -91,9 +91,11 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
 
     protected ImageView dUndo, dRedo, dInfo, dAllLyrs, dUnion, dDeleteLyr, dChangeLyrs, dDeleteAll;
 
-    private ImageView dPaint, dFil, dEraser, dText, dCut, dTrans, dScale, dDeformRotate,dProperties;
+    private ImageView dPaint, dFil, dEraser, dText, dCut, dTrans, dScale, dDeformRotate,dProperties, dGetColor;
 
     private float dSlideStep;
+
+
 
 
     public SuperFragmentDraw() {
@@ -251,6 +253,8 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
             case R.id.tool_properties:
                 toolProperties((ImageView)view);
                 break;
+            case R.id.tool_color:
+                toolColor((ImageView)view);
 
 
         }
@@ -278,7 +282,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         dScale = view.findViewById(R.id.tool_scale);
         dDeformRotate = view.findViewById(R.id.tool_deform_rotate);
         dProperties = view.findViewById(R.id.tool_properties);
-
+        dGetColor = view.findViewById(R.id.tool_color);
         shiftTools(dSlideTools);
 
         dSlideSave = view.findViewById(R.id.slide_save_img);
@@ -406,6 +410,8 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         dTrans.animate().translationY(step*7).setDuration(time).start();
         dScale.animate().translationY(step*8).setDuration(time).start();
         dProperties.animate().translationY(step*9).setDuration(time).start();
+        dGetColor.animate().translationY(step).translationX(step).setDuration(time).start();
+        if(step==0)toolColor(null);
     }
 
 
@@ -446,6 +452,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         dTrans.setOnClickListener(this);
         dScale.setOnClickListener(this);
         dDeformRotate.setOnClickListener(this);
+        dGetColor.setOnClickListener(this);
 
         dSlideSave.setOnClickListener(this);
         dSaveTel.setOnClickListener(this);
@@ -628,7 +635,10 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         v.setSelected(!v.isSelected());
     }
 
-
+    protected void toolColor(ImageView v){
+        if(v!=null) v.setActivated(!v.isActivated());
+        else dGetColor.setActivated(false);
+    }
 
     protected void selectorButtons(int index){
         dPaint.setActivated(index == TOOL_PAINT);
@@ -728,6 +738,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         dCut.setEnabled(enable);
         dTrans.setEnabled(enable);
         dScale.setEnabled(enable);
+        dGetColor.setEnabled(enable);
     }
 
 

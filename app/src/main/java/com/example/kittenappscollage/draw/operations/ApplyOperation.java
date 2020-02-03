@@ -1,6 +1,12 @@
 package com.example.kittenappscollage.draw.operations;
 
+import android.graphics.Color;
+import android.graphics.PointF;
 import android.view.MotionEvent;
+
+import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 
 public class ApplyOperation {
@@ -39,6 +45,14 @@ public class ApplyOperation {
     public ApplyOperation grouping(boolean gr){
         aGroupingLyrs = gr;
         return this;
+    }
+
+    public int getColorBitmap(MotionEvent e){
+        int color = ApplyOperationSelector.get().colorBit(e);
+
+        if(color!=0) RepDraw.get().setColor(color);
+
+        return color;
     }
 
     public void doneCut(){

@@ -3,19 +3,21 @@ package com.example.kittenappscollage.draw.fragment;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
+import android.content.ContentValues;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.MediaStore;
-import android.webkit.MimeTypeMap;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.documentfile.provider.DocumentFile;
 
@@ -23,9 +25,8 @@ import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.RequestFolder;
-import com.example.kittenappscollage.helpers.SaveImageToFile;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
-import com.example.kittenappscollage.helpers.db.ActionsDataBasePerms;
+import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
@@ -39,11 +40,26 @@ import io.reactivex.Observer;
 import io.reactivex.functions.Consumer;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
 
 
     private final String MIME_PNG = "image/png";
+
+    private final String REPORT_DELIMITER = "_%%_Saved_%%_Kollages_%%_Fragment_&&_Draw_%%_";
+
+    public static final int INDEX_PATH_IMG = 0;
+
+    public static final int INDEX_PATH_FOLD = 1;
+
+    public static final int INDEX_URI_PERM_FOLD = 2;
+
+    public static final int INDEX_URI_DF_IMG = 3;
+
+    public static final int INDEX_URI_DF_FOLD = 4;
+
+    public static final int INDEX_NAME_IMG = 5;
 
     public static final int REQUEST_SAVED = 91;
 
@@ -55,6 +71,8 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
 
     private final String ZHOPA = "(_!_)";
 
+    private ActionSave report;
+
     public void reSave(){
         saved();
     }
@@ -63,11 +81,15 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     @Override
     protected void saveIs(ImageView v) {
         super.saveIs(v);
-        if (AllPermissions.create().activity(getActivity()).reqSingle(AllPermissions.STORAGE).isStorage()) {
-            requestFold();
-        } else {
-            AllPermissions.create().activity(getActivity()).callDialog(AllPermissions.STORAGE,REQUEST_SAVED);
-        }
+        if(ContextCompat.getExternalFilesDirs(getContext(), null).length>1) {
+            if (RepDraw.get().isImg()) {
+                if (AllPermissions.create().activity(getActivity()).reqSingle(AllPermissions.STORAGE).isStorage()) {
+                    requestFold();
+                } else {
+                    AllPermissions.create().activity(getActivity()).callDialog(AllPermissions.STORAGE, REQUEST_SAVED);
+                }
+            } else Massages.SHOW_MASSAGE(getContext(), "Создай холст");
+        }else Massages.SHOW_MASSAGE(getContext(),"Подключи SD card или накопитель и перезапусти приложение");
     }
 
 
@@ -75,18 +97,20 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     protected void saveNet(ImageView v) {
         super.saveNet(v);
         /*расшарить изображение*/
-        share();
-
+        if(RepDraw.get().isImg()) share();
+        else Massages.SHOW_MASSAGE(getContext(), "Создай холст");
     }
 
     @Override
     protected void saveTel(ImageView v) {
         super.saveTel(v);
-        if (AllPermissions.create().activity(getActivity()).reqSingle(AllPermissions.STORAGE).isStorage()) {
-            saved();
-        } else {
-            AllPermissions.create().activity(getActivity()).callDialog(AllPermissions.STORAGE,REQUEST_SAVED);
-        }
+        if(RepDraw.get().isImg()) {
+            if (AllPermissions.create().activity(getActivity()).reqSingle(AllPermissions.STORAGE).isStorage()) {
+                saved();
+            } else {
+                AllPermissions.create().activity(getActivity()).callDialog(AllPermissions.STORAGE, REQUEST_SAVED);
+            }
+        }else Massages.SHOW_MASSAGE(getContext(), "Создай холст");
     }
 
     private void saved(){
@@ -109,9 +133,8 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                @Override
                public void accept(String str) throws Exception {
                    if(!str.equals(ZHOPA)){
-//                       new MediaScannerConnection(getContext(),null).scanFile(str,"image/png");
-//                       getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse(str)));
                        Massages.SHOW_MASSAGE(getContext(), "Изображение сохранено");
+                       reportSave(str);
                    } else {
                        Massages.SHOW_MASSAGE(getContext(), "Изображение не сохранено. Проверь память устройства");
                    }
@@ -120,18 +143,47 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
        }
     }
 
+
+    /*получаем доклад о сохранении
+    * [REPORT_DELIMITER] - разделитель строки на сегменты
+    *
+    * */
+    private void reportSave(String path){
+        report = (ActionSave)getContext();
+        if(report!=null){
+            report.request(false);
+            report.savedStorage(true,path,REPORT_DELIMITER);
+        }
+
+    }
+
+
     private void saveAPI21(){
-        if(RepDraw.get().isImg())SaveImageToFile.saveImage(getContext(),RepDraw.get().getImg());
+        if(RepDraw.get().isImg())saveImage(RepDraw.get().getImg());
     }
 
     private String saved(Uri uri){
         try {
-            DocumentFile pickedDir = DocumentFile.fromTreeUri(getContext(),uri);
-            DocumentFile img = pickedDir.createFile(MIME_PNG, RepDraw.PropertiesImage.NAME_IMAGE());
+            final String nameImg = RepDraw.PropertiesImage.NAME_IMAGE();
+            DocumentFile dir = DocumentFile.fromTreeUri(getContext(),uri);
+            DocumentFile img = dir.createFile(MIME_PNG, nameImg);
             OutputStream out = getContext().getContentResolver().openOutputStream(img.getUri());
             boolean save = RepDraw.get().getImg().compress(Bitmap.CompressFormat.PNG, 100, out);
             out.close();
-            if(save)return img.getUri().toString();
+
+            String sDir = getRealPath(dir.getUri().getLastPathSegment());
+            String sImg = getRealPath(img.getUri().getLastPathSegment());
+
+            if(save){
+                String report = sImg+           REPORT_DELIMITER+
+                        sDir+                   REPORT_DELIMITER+
+                        uri.toString()+         REPORT_DELIMITER+
+                        img.getUri().toString()+REPORT_DELIMITER+
+                        dir.getUri().toString()+REPORT_DELIMITER+
+                        nameImg+                REPORT_DELIMITER;
+//                addContentAPI21(report);
+                return report;
+            }
             else return ZHOPA;
 
         } catch (IOException e) {
@@ -141,6 +193,8 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     }
 
     private void requestFold(){
+        report = (ActionSave)getContext();
+        if(report!=null)report.request(true);
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
         startActivityForResult(intent, REQUEST_FOLDER);
     }
@@ -157,15 +211,26 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         }super.onActivityResult(requestCode, resultCode, data);
     }
 
+    /*метод не создает папку а находит. Создание происходит в пользовательском
+    * интерфейсе САФ*/
     private boolean createFolder(Uri uri){
-        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION ;
         getContext().getContentResolver().takePersistableUriPermission(uri, takeFlags);
         DocumentFile fold = DocumentFile.fromTreeUri(getContext(), uri);
         boolean exists = fold.exists();
         if(exists) {
             /*отсюда ввести в базу данных ActionsDataBasePerms разрешение
             * для этого надо юри, адрес папки как ключ*/
-            reportPerm(uri, fold);
+            String key = getRealPath(fold.getUri().getLastPathSegment());
+            /*создаем итем в базу данных*/
+            ActionsContentPerms.create(getContext()).queryItemDB(
+                    key,
+                    uri.toString(),
+                    fold.getUri().toString(),
+                    ActionsContentPerms.SYS_DF,
+                    ActionsContentPerms.NON_LOC_STOR,
+                    View.VISIBLE);
+
             getEditor().putString(KEY_PERM_SAVE, uri.toString());
             getEditor().apply();
         }
@@ -173,33 +238,11 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         return exists;
     }
 
-    private void reportPerm(Uri perm, DocumentFile fold){
-        String storage = "/storage";
-        String[]split = getRealPathFromURI(getContext(),fold.getUri()).split("[/]");
-        if(split!=null&&split.length>=3) {
-            for (int i = 3; i < split.length; i++) {
-                storage+="/"+split[i];
-            }
-        }
-           ActionsDataBasePerms.create(getContext()).queryInitInThread(storage,perm.toString());
-
-    }
-
-    private String getRealPathFromURI(Context context, Uri contentUri) {
-        Cursor cursor = null;
-        try {
-            String[] proj = { MediaStore.Images.Media.DATA };
-            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
-            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        } catch (Exception e) {
-            return "";
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-        }
+    private String getRealPath(String lastSegment) {
+        String[]split = lastSegment.split("[:]");
+        String[]sub = lastSegment.split(split[0]+":");
+        String[]storage = getContext().getExternalFilesDir(null).getAbsolutePath().split("[/]");
+        return "/"+storage[1]+"/"+split[0]+"/"+sub[1];
     }
     /**/
     private Observable<String> requestSaveFile(Uri perm){
@@ -245,5 +288,67 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                 startActivity(Intent.createChooser(intent, null));
             } catch (ActivityNotFoundException anfe) { }
         }
+    }
+
+    /*сохраняем в рисунок*/
+    @SuppressLint("CheckResult")
+    private  void saveImage(Bitmap bitmap) {
+
+        if(bitmap==null||bitmap.isRecycled())return;
+
+        final File folder = new File(RequestFolder.getFolderCollages(getContext()));
+        final String name = RepDraw.PropertiesImage.NAME_IMAGE();
+        if(RequestFolder.testFolder(folder)) {
+            final File image = new File(folder.getAbsolutePath() + "/"+ name);
+            requestSaveFile(image, bitmap)
+                    .subscribe(aBoolean -> {
+                        report = (ActionSave)getContext();
+                        if(report!=null){
+                            report.savedFile(aBoolean,
+                                    folder.getAbsolutePath(),
+                                    image.getAbsolutePath(),
+                                    name);
+                        }else SHOW_MASSAGE(getContext(), "перезапусти приложение");
+                        if (aBoolean) {
+                            SHOW_MASSAGE(getContext(), "изображение сохранено");
+                        }
+                        else SHOW_MASSAGE(getContext(), "ошибка сохранения");
+                    });
+        }else {
+            SHOW_MASSAGE(getContext(), "проверь память устройства");
+        }
+
+    }
+
+
+    private Observable<Boolean> requestSaveFile(File file, Bitmap bitmap){
+        return Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
+            emitter.onNext(save(file, bitmap));
+            emitter.onComplete();
+
+
+        }).compose(new ThreadTransformers.InputOutput<>());
+    }
+
+
+
+    private boolean save(File file, Bitmap bitmap){
+
+        OutputStream os = null;
+        try {
+            os = new FileOutputStream(file);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
+            os.flush();
+            os.close();
+        } catch (IOException e) {
+
+        }
+        return file.exists();
+    }
+
+    public interface ActionSave{
+        public void request(boolean block);
+        public void savedFile(boolean saved, String fold, String img, String name);
+        public void savedStorage(boolean saved, String report, String delimiter);
     }
 }

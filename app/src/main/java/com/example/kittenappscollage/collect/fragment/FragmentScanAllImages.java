@@ -1,23 +1,26 @@
 package com.example.kittenappscollage.collect.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
-import android.os.storage.StorageManager;
-import android.os.storage.StorageVolume;
 import android.provider.MediaStore;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
+import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.ListenMedia;
 import com.example.kittenappscollage.helpers.RequestFolder;
-import com.example.kittenappscollage.helpers.db.ActionsDataBasePerms;
-import com.example.kittenappscollage.helpers.db.PermStorage;
-import com.example.kittenappscollage.helpers.db.PermsDataBase;
+import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
+import com.example.kittenappscollage.helpers.db.aller.ContentPermis;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
@@ -27,6 +30,9 @@ import java.util.HashMap;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 
+import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_FOLD;
+import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
+import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentScanAllImages extends Fragment {
@@ -41,42 +47,66 @@ public class FragmentScanAllImages extends Fragment {
 
     private ArrayList<String> storage;
 
-    private Handler handler;
-
-    private ListenMedia observer;
+    private boolean blockScan;
 
     public void scanDevice(){
-         check();
+         if(!blockScan)check();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        handler = new Handler();
-        observer = new ListenMedia(handler).setFragment(this).setContext(getContext());
-        getContext().getContentResolver().registerContentObserver(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,true,observer);
+    public void setBlock(boolean block){
+        blockScan = block;
     }
 
+    @Nullable
     @Override
-    public void onPause() {
-        super.onPause();
-        getContext().getContentResolver().unregisterContentObserver(observer);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        blockScan = false;
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @SuppressLint("CheckResult")
     private void check(){
         Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> {
-          emitter.onNext(scan(getListImagesInFolders(), getListFolds()));
+          if(App.checkVersion())emitter.onNext(scanAPI21(getListImagesInFolders(), getListFolds()));
+          else emitter.onNext(scanAPI29(getListImagesInFolders(), getListFolds()));
           emitter.onComplete();
         }).compose(new ThreadTransformers.NewThread<>())
-          .subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
+          .subscribe(stringArrayListHashMap -> {
+              setListImagesInFolders(stringArrayListHashMap);
+          });
     }
 
+    /*android > 9*/
+    private HashMap<String,ArrayList<String>>scanAPI29(HashMap<String,ArrayList<String>>list,HashMap<String,String>folds){
+        definitionStorage();
+        if(getListImagesInFolders()==null)initListImagesInFolders();
+        else clearListImagesInFolders();
+        String[]projection = {
+                MediaStore.Images.Media._ID,
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
+        Uri uri = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL);
+        Cursor cursor = getContext().getContentResolver().query(uri, projection, null,
+                null, null);
+        int col_id,col_fold;
+        col_id = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+        col_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+        cursor.moveToFirst();
+        while (cursor.moveToNext()){
+            String id = cursor.getString(col_id);
+            String fold = cursor.getString(col_fold);
+
+        }
+        return list;
+    }
+
+
+    /*android 9*/
     @SuppressLint("Recycle")
-    private HashMap<String,ArrayList<String>> scan(HashMap<String,ArrayList<String>>list,HashMap<String,String>folds){
-         definitionStorage();
-         if(getListImagesInFolders()==null)initListImagesInFolders();
-         else clearListImagesInFolders();
+    private HashMap<String,ArrayList<String>> scanAPI21(HashMap<String,ArrayList<String>>list,HashMap<String,String>folds){
+
+        definitionStorage();
+        if(list==null) initListImagesInFolders();
+        clearListImagesInFolders();
         String[] projection = {
                 MediaStore.MediaColumns.DATA,
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
@@ -90,8 +120,7 @@ public class FragmentScanAllImages extends Fragment {
         col_path = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
         col_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
         cursor.moveToFirst();
-        if(list==null)initListImagesInFolders();
-        clearListImagesInFolders();
+
         while (cursor.moveToNext()) {
             String path = cursor.getString(col_path).toLowerCase();
             String key = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);
@@ -106,7 +135,6 @@ public class FragmentScanAllImages extends Fragment {
                     ArrayList<String> imgs = new ArrayList<>();
                     imgs.add(cursor.getString(col_path));
                     list.put(key, imgs);
-//                    LYTE("key "+key);
                     folds.put(key,cursor.getString(col_fold));
                         for(int i=0;i<getNamesStorage().size();i++) {
                             if(key.contains(getNamesStorage().get(i))){
@@ -121,22 +149,20 @@ public class FragmentScanAllImages extends Fragment {
 
     private boolean addPerm(String fold){
         boolean visible = true;
-        if(getPermsDataBase().workPerms().getPerm(fold)==null){
-            getPermsDataBase().workPerms().insert(new PermStorage(fold)
-            .setVis(true)
-            .setUri(ActionsDataBasePerms.NON_PERM));
+        if(ActionsContentPerms.create(getContext()).check(fold)){
+            ContentPermis cp = ActionsContentPerms.create(getContext()).getItem(fold);
+            if(cp.visible==View.INVISIBLE)visible = false;
+            getListPerms().put(fold,cp.uriPerm);
         }else {
-            String uri = getPermsDataBase().workPerms().getPerm(fold).uri;
-            if(uri!=null) {
-                visible = getPermsDataBase().workPerms().getPerm(fold).isVisible();
-                    getListPerms().put(fold, uri);
-            }else {
-                visible = getPermsDataBase().workPerms().getPerm(fold).isVisible();
-                getListPerms().put(fold, ActionsDataBasePerms.NON_PERM);
-            }
+            ActionsContentPerms.create(getContext()).queryItemDB(
+                    fold,ActionsContentPerms.NON_PERM,
+                    ActionsContentPerms.ZHOPA,ActionsContentPerms.ZHOPA,
+                    ActionsContentPerms.NON_LOC_STOR, View.VISIBLE);
+            getListPerms().put(fold,ActionsContentPerms.NON_PERM);
         }
         return visible;
     }
+
     /*определяем тома в устройстве*/
     private void definitionStorage(){
 
@@ -146,10 +172,36 @@ public class FragmentScanAllImages extends Fragment {
             storage.add(files[i].getAbsolutePath().split("Android")[0]);
         }
     }
+    /*android 9 storage system*/
+    public void setSavingInStorageCollage(String report, String delimiter){
+        String[] split = report.split(delimiter);
 
-    public void setSavingCollage(String path,String key){
+        getListPerms().put(split[INDEX_PATH_FOLD],split[INDEX_URI_PERM_FOLD]);
+        addImgCollect(split[INDEX_PATH_FOLD],split[INDEX_PATH_IMG]);
+    }
+
+    /*android > 9 or storage*/
+    public void setSavingInStorageCollage(Uri uri){
+
+    }
+
+    /*android 9 file system*/
+    public void setSavingInFileCollage(String path,String key){
+            ActionsContentPerms.create(getContext()).queryItemDB(
+                    key,
+                    ActionsContentPerms.GRAND,
+                    ActionsContentPerms.ZHOPA,
+                    ActionsContentPerms.SYS_FILE,
+                    ActionsContentPerms.NON_LOC_STOR,
+                    View.VISIBLE);
+
+        getListPerms().put(key,ActionsContentPerms.GRAND);
+        addImgCollect(key,path);
+    }
+
+    private void addImgCollect(String key, String path){
         if(getListImagesInFolders().containsKey(key)){
-            getListImagesInFolders().get(key).add(path);
+            if(!getListImagesInFolders().get(key).contains(path))getListImagesInFolders().get(key).add(path);
         } else {
             correctAdapterPostSave();
             ArrayList<String> imgs = new ArrayList<>();
@@ -168,7 +220,6 @@ public class FragmentScanAllImages extends Fragment {
         }
         setListImagesInFolders(getListImagesInFolders());
     }
-
     protected void correctAdapterPostSave(){
         /*если в момент сохранения окрыт подкаталог галереи,
         * то при создании директории индекс открыто не изменяется
@@ -200,10 +251,6 @@ public class FragmentScanAllImages extends Fragment {
         return listPerms;
     }
 
-
-    protected PermsDataBase getPermsDataBase(){
-        return ActionsDataBasePerms.create(getContext()).getPermsDataBase();
-    }
     protected void clearListImagesInFolders(){
         listImagesToFolder.clear();
         listFolds.clear();

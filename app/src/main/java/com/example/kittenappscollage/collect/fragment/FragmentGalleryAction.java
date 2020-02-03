@@ -7,7 +7,7 @@ import com.example.kittenappscollage.collect.dialogActions.ListenActions;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.RequestFolder;
-import com.example.kittenappscollage.helpers.db.ActionsDataBasePerms;
+import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 import static com.example.kittenappscollage.collect.dialogActions.DialogAction.ACTION_DELETE;
@@ -86,9 +86,9 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     private void renameFoldFile(String name){
        if(getIndexesStorage().get(getKey())==0) {
-           if(getKey().equals(RequestFolder.getFolderImages())){
+           if(getKey().equals(RequestFolder.getFolderCollages(getContext()))){
                renameFoldFileDevise(name);
-           }else if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsDataBasePerms.NON_PERM)){
+           }else if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)){
                Massages.SHOW_MASSAGE(getContext(),"Нет прав для переименования этой папки");
                invisibleMenu();
            }else renameFoldFileDevise(name);
@@ -124,9 +124,9 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     }
 
     private void deleteFoldDeviseFile(String fold){
-        if(fold.equals(RequestFolder.getFolderImages())){
+        if(fold.equals(RequestFolder.getFolderCollages(getContext()))){
             deletedFoldFile(fold);
-        } else if(getListPerms().get(fold).equals(ActionsDataBasePerms.GRAND)){
+        } else if(getListPerms().get(fold).equals(ActionsContentPerms.GRAND)){
             deletedFoldFile(fold);
         }else {
             Massages.SHOW_MASSAGE(getContext(),"Нет прав для удаления папки");
@@ -168,7 +168,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     protected void renameFoldStorage(String name){
        /*переименовать как Storage Assets Framework*/
-        if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsDataBasePerms.NON_PERM)) {
+        if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)) {
             Massages.SHOW_MASSAGE(getContext(), "Нет прав для переименования этой папки");
             invisibleMenu();
             return;
@@ -176,21 +176,45 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     }
 
 
+    /*android 9 file system*/
     protected void renameFoldFileDevise(String name){
        /*переименовать как файл*/
+        if(!getKey().equals(RequestFolder.getFolderCollages(getContext()))) {
+            if (getListPerms().get(getKey()) == null || getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)) {
+                Massages.SHOW_MASSAGE(getContext(), "Нет прав для переименования этой папки");
+                invisibleMenu();
+                return;
+            }
+        }
     }
 
+    /*android >= 9 file system*/
     protected void applyDeleteSelectedFiles(){
        /*удалить выбранные изображения как Storage Assets Framework*/
+        if(!getKey().equals(RequestFolder.getFolderCollages(getContext()))) {
+            if (getListPerms().get(getKey()) == null || getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)) {
+                Massages.SHOW_MASSAGE(getContext(), "Нет прав для удаления файлов из этой папки");
+                invisibleMenu();
+                return;
+            }
+        }
     }
 
     protected void applyDeleteSelectedStorage(){
        /*удалить выбранные изображения как файлы*/
+        if(!getKey().equals(RequestFolder.getFolderCollages(getContext()))) {
+            if (getListPerms().get(getKey()) == null || getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)) {
+                Massages.SHOW_MASSAGE(getContext(), "Нет прав для удаления файлов из этой папки");
+                invisibleMenu();
+                return;
+            }
+        }
     }
 
+    /*android > 9 file system*/
     protected void deleteFoldStorage(String fold){
         /*удалить папку как Storage Assets Framework*/
-        if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsDataBasePerms.NON_PERM)) {
+        if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)) {
             Massages.SHOW_MASSAGE(getContext(), "Нет прав для удаления этой папки");
             invisibleMenu();
             return;
@@ -199,6 +223,11 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     protected void deletedFoldFile(String fold){
         /*удалить выбранную папку как файл*/
+        if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)) {
+            Massages.SHOW_MASSAGE(getContext(), "Нет прав для удаления этой папки");
+            invisibleMenu();
+            return;
+        }
     }
 
 

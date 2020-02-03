@@ -127,16 +127,5 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
         return under;
     }
 
-//    private void checkFolder() {
-//        if (getNamesDirs().size() > 1) {
-//            getSelected_3().setEnabled(true);
-//            if (selectFiles.get(0).contains(getNamesDirs().get(0))) {
-//                getSelected_3().setSelected(true);
-//            } else {
-//                getSelected_3().setSelected(false);
-//            }
-//        }
-//    }
-
 
 }

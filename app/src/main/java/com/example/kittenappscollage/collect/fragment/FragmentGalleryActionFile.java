@@ -4,12 +4,14 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.view.View;
 import android.webkit.MimeTypeMap;
 import androidx.core.content.FileProvider;
 
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.RequestFolder;
-import com.example.kittenappscollage.helpers.db.ActionsDataBasePerms;
+import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
+import com.example.kittenappscollage.helpers.db.aller.ContentPermis;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,32 +19,6 @@ import java.util.ArrayList;
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 
 public class FragmentGalleryActionFile extends FragmentGalleryAction {
-
-    @Override
-    protected void deletedFoldFile(String fold){
-        super.deletedFoldFile(fold);
-        File file = new File(fold);
-        File[]files = file.listFiles();
-        for (File f:files){
-            if(f.exists()) {
-                if(f.delete()){
-                    if(!fold.equals(RequestFolder.getFolderImages()))
-                        ActionsDataBasePerms.create(getContext()).deleteInThread(fold);
-                }
-            }
-            getListImagesInFolders().get(fold).remove(f.getAbsolutePath());
-            setListImagesInFolders(getListImagesInFolders());
-            getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(f)));
-        }
-        if(file.exists()){
-            if(file.delete())ActionsDataBasePerms.create(getContext()).deleteInThread(fold);
-
-        }
-
-        clearLists(fold);
-        setListImagesInFolders(getListImagesInFolders());
-    }
-
 
     @Override
     protected void renameFoldFileDevise(String name){
@@ -58,34 +34,38 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
             File[] old = oldfile.listFiles();
             if (oldfile.renameTo(newfile)) {
 
-                ActionsDataBasePerms.create(getContext()).initInThread(newFold,ActionsDataBasePerms.GRAND);
-                getListPerms().put(newFold,ActionsDataBasePerms.GRAND);
+                ActionsContentPerms.create(getContext()).deleteItemDB(getKey());
+                ActionsContentPerms.create(getContext()).queryItemDB(newfile.getAbsolutePath(),
+                        ActionsContentPerms.GRAND,ActionsContentPerms.ZHOPA,ActionsContentPerms.SYS_FILE,
+                        ActionsContentPerms.NON_LOC_STOR, View.VISIBLE);
 
                 File[] young = newfile.listFiles();
+                ArrayList<String>renamed = new ArrayList<>();
                 for (int i = 0; i < young.length; i++) {
+                    renamed.add(i,young[i].getAbsolutePath());
                     getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(old[i])));
                     getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(young[i])));
+
                 }
 
+                getListFolds().put(newfile.getAbsolutePath(),name);
+                getListPerms().put(newfile.getAbsolutePath(),ActionsContentPerms.GRAND);
+                getIndexesStorage().put(newfile.getAbsolutePath(),getIndexesStorage().get(getKey()));
+                getListImagesInFolders().put(newfile.getAbsolutePath(),renamed);
+
                 clearLists(getKey());
+
+                setListImagesInFolders(getListImagesInFolders());
 
             } else {
                 Massages.SHOW_MASSAGE(getContext(), "Не удалось переименовать папку");
             }
-
         }
     }
 
     @Override
     protected void applyDeleteSelectedFiles(){
         super.applyDeleteSelectedFiles();
-        if(!getKey().equals(RequestFolder.getFolderImages())) {
-            if (getListPerms().get(getKey()) == null || getListPerms().get(getKey()).equals(ActionsDataBasePerms.NON_PERM)) {
-                Massages.SHOW_MASSAGE(getContext(), "Нет прав для удаления из этой папки");
-                invisibleMenu();
-                return;
-            }
-        }
 
         boolean[]checks = getImgAdapt().getArrChecks();
         ArrayList<String> imgs = getListImagesInFolders().get(getKey());
@@ -114,8 +94,9 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
             File f = new File(getKey());
             if(f.exists()){
                 if(f.delete()){
-                    if(!getKey().equals(RequestFolder.getFolderImages()))
-                        ActionsDataBasePerms.create(getContext()).deleteInThread(getKey());
+                    if(!getKey().equals(RequestFolder.getFolderCollages(getContext()))){
+                        ActionsContentPerms.create(getContext()).deleteItemDB(getKey());
+                    }
                 }
             }
             clearLists(getKey());
@@ -130,6 +111,31 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
             setListImagesInFolders(getListImagesInFolders());
         }
+    }
+
+    @Override
+    protected void deletedFoldFile(String fold){
+        super.deletedFoldFile(fold);
+        File file = new File(fold);
+        File[]files = file.listFiles();
+        for (File f:files){
+            if(f.exists()) {
+                if(f.delete()){
+                    if(!fold.equals(RequestFolder.getFolderCollages(getContext())))
+                        ActionsContentPerms.create(getContext()).deleteItemDB(fold);
+                }
+            }
+            getListImagesInFolders().get(fold).remove(f.getAbsolutePath());
+            setListImagesInFolders(getListImagesInFolders());
+            getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(f)));
+        }
+        if(file.exists()){
+            if(file.delete())ActionsContentPerms.create(getContext()).deleteItemDB(fold);
+
+        }
+
+        clearLists(fold);
+        setListImagesInFolders(getListImagesInFolders());
     }
 
     @Override
@@ -204,13 +210,12 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
     }
 
-    private void clearLists(String key){
-        if(!key.equals(RequestFolder.getFolderImages())){
-            getListPerms().remove(key);
-            ActionsDataBasePerms.create(getContext()).deleteInThread(key);
-        }
+    protected void clearLists(String key){
+        getListPerms().remove(key);
         getListImagesInFolders().remove(key);
         getListFolds().remove(key);
         getIndexesStorage().remove(key);
+
+
     }
 }

@@ -35,10 +35,25 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
+
+
+
         <service
             android:name=".draw.saveSteps.ClearCatch"
             android:enabled="true"
             android:exported="true" />
+
+        <service
+            android:name=".collect.services.DeleteStorage"
+            android:enabled="true"
+            android:exported="true" />
+
+        <service
+            android:name=".collect.services.DeleteFile"
+            android:enabled="true"
+            android:exported="true" />
+
+
 
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait">

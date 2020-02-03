@@ -2,10 +2,16 @@ package com.example.kittenappscollage.helpers;
 
 import android.content.Context;
 import android.os.Environment;
+import android.util.Log;
 
 import com.example.kittenappscollage.R;
+import com.example.kittenappscollage.helpers.db.aller.ContentPermis;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
@@ -35,21 +41,15 @@ public class RequestFolder {
         return getPersonalFolder(context)+FOLDER_CASH;
 
     }
+
+    public static String getFolderCollages(Context context){
+        String fold = context.getExternalFilesDir(null).getAbsolutePath().split("Android")[0]+GENERAL_FOLDER+FOLDER_IMAGES;
+        return fold;
+    }
     public static String getMainFolder(){
         return GENERAL+GENERAL_FOLDER;
     }
 
-    public static String getFolderImages(){
-        return getMainFolder()+FOLDER_IMAGES;
-    }
-
-    public static String getNameFoldCollages(){
-        return FOLDER_IMAGES.substring(1);
-    }
-
-    public static String getFolderShrift(){
-        return getMainFolder()+FOLDER_SHRIFT;
-    }
     /*проверяем наличие папки, если ее нет создаем
     *в зависимости от успеха возвращаем да/нет*/
     public static boolean testFolder(File file){
@@ -59,4 +59,5 @@ public class RequestFolder {
         }
         return success;
     }
+
 }

@@ -6,9 +6,11 @@ import androidx.annotation.NonNull;
 
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.helpers.RequestFolder;
-import com.example.kittenappscollage.helpers.db.ActionsDataBasePerms;
+import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
 
 import java.util.HashMap;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class LockFoldAdapter extends LoadFoldAdapt {
 
@@ -20,22 +22,21 @@ public class LockFoldAdapter extends LoadFoldAdapt {
 
     public void setPerms(HashMap<String,String>perms){
         this.perms = perms;
+        LYTE("LockFoldAdapter set perms - "+perms.size());
     }
 
     @Override
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
-        if(getFolds()[position].equals(RequestFolder.getFolderImages())) {
-            holder.getLock().setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_item_unlok,null));
-        }else {
+
             if(perms!=null){
                 String p = perms.get(getFolds()[position]);
-                if(p!=null&&!p.equals(ActionsDataBasePerms.NON_PERM)){
+                if(p!=null&&!p.equals(ActionsContentPerms.NON_PERM)){
                     holder.getLock().setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_item_unlok,null));
                 }else {
                     holder.getLock().setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_item_lock,null));
                 }
             }
-        }
+//        }
         super.onBindViewHolder(holder, position);
     }
 }
