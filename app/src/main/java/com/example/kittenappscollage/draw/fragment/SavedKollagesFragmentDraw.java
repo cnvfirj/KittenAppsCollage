@@ -137,7 +137,6 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
        }
     }
 
-
     /*получаем доклад о сохранении
     * [REPORT_DELIMITER] - разделитель строки на сегменты
     *
