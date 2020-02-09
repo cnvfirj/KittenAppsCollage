@@ -8,9 +8,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -23,6 +20,7 @@ import androidx.documentfile.provider.DocumentFile;
 
 import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.App;
+import com.example.kittenappscollage.helpers.ListenMedia;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.RequestFolder;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
@@ -181,7 +179,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                         img.getUri().toString()+REPORT_DELIMITER+
                         dir.getUri().toString()+REPORT_DELIMITER+
                         nameImg+                REPORT_DELIMITER;
-//                addContentAPI21(report);
+
                 return report;
             }
             else return ZHOPA;
@@ -221,6 +219,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         if(exists) {
             /*отсюда ввести в базу данных ActionsDataBasePerms разрешение
             * для этого надо юри, адрес папки как ключ*/
+
             String key = getRealPath(fold.getUri().getLastPathSegment());
             /*создаем итем в базу данных*/
             ActionsContentPerms.create(getContext()).queryItemDB(
@@ -230,6 +229,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                     ActionsContentPerms.SYS_DF,
                     ActionsContentPerms.NON_LOC_STOR,
                     View.VISIBLE);
+
 
             getEditor().putString(KEY_PERM_SAVE, uri.toString());
             getEditor().apply();
@@ -244,6 +244,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         String[]storage = getContext().getExternalFilesDir(null).getAbsolutePath().split("[/]");
         return "/"+storage[1]+"/"+split[0]+"/"+sub[1];
     }
+
     /**/
     private Observable<String> requestSaveFile(Uri perm){
         return Observable.create((ObservableOnSubscribe<String>) emitter -> {

@@ -45,8 +45,8 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                         invisibleMenu();
                         getFoldAdapt().setModeSelected(false);
                     }
-//                    checkFolder();
             } else {
+                int index =  getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).size()-(pos+1);
                     if (selectFiles.contains(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos))) {
                         selectFiles.remove(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
                         if (selectFiles.size() == 0) {
@@ -71,12 +71,12 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                   under = getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]);
                   addPathFolder(pos);
                 }else {
+                   int index =  getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).size()-(pos+1);
                   selectFiles.add(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
                 }
                 super.longClick(adapter, img, check, pos);
             }
         }
-//        super.longClick(adapter, img, check, pos);
     }
 
     public boolean onBackPressed(int index){

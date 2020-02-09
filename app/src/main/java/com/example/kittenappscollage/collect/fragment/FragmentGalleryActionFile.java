@@ -66,50 +66,24 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
     @Override
     protected void applyDeleteSelectedFiles(){
         super.applyDeleteSelectedFiles();
-
-        boolean[]checks = getImgAdapt().getArrChecks();
         ArrayList<String> imgs = getListImagesInFolders().get(getKey());
-        int sum = 0;
         int all = imgs.size();
-        for (int i=0;i<checks.length;i++){
-            if(checks[i]){
-                sum++;
-                /*перебираем файлы в обратном порядке*/
-                File f = new File(imgs.get(all-(i+1)));
+        if(getSelectFiles().size()==all){
+            String fold = getKey();
+            setIndexAdapter(ROOT_ADAPTER);
+            getGridLayoutManager().setSpanCount(2);
+            getRecycler().setAdapter(getFoldAdapt());
+            deletedFoldFile(fold);
+        }else {
+            for (String i:getSelectFiles()){
+                File f = new File(i);
                 if(f.exists())f.delete();
                 getListImagesInFolders().get(getKey()).remove(f.getAbsolutePath());
                 setListImagesInFolders(getListImagesInFolders());
                 getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(f)));
             }
-        }
-
-        if(sum>0&&sum<all){
-            /*так как изменение произошло в текущей директрии
-             * то в адаптере эта папка получит индекс 0.
-             * Это связано с сортировкой по времени изменения*/
+            getSelectFiles().clear();
             getImgAdapt().setIndexKey(0);
-        }
-
-        if(sum==all){
-            File f = new File(getKey());
-            if(f.exists()){
-                if(f.delete()){
-                    if(!getKey().equals(RequestFolder.getFolderCollages(getContext()))){
-                        ActionsContentPerms.create(getContext()).deleteItemDB(getKey());
-                    }
-                }
-            }
-            clearLists(getKey());
-            if (getImgAdapt().isModeSelected()) {
-                invisibleMenu();
-                getImgAdapt().setModeSelected(false);
-            }
-
-            setIndexAdapter(ROOT_ADAPTER);
-            getGridLayoutManager().setSpanCount(2);
-            getRecycler().setAdapter(getFoldAdapt());
-
-            setListImagesInFolders(getListImagesInFolders());
         }
     }
 
