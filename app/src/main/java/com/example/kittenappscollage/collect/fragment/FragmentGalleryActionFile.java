@@ -108,6 +108,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
         }
 
+        getSelectFiles().clear();
         clearLists(fold);
         setListImagesInFolders(getListImagesInFolders());
     }
@@ -116,30 +117,25 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
     protected void shareSelImagesFile(){
         super.shareSelImagesFile();
 
-        boolean[]checks = getImgAdapt().getArrChecks();
-        ArrayList<String>imgs = getListImagesInFolders().get(getKey());
         ArrayList<Uri>selected = new ArrayList<>();
-        int all = imgs.size();
-        String lostPath = "";
-        for (int i=0;i<checks.length;i++){
-            if(checks[i]){
-                /*перебираем файлы в обратном порядке*/
-                lostPath = imgs.get(all-(i+1));
-                File file = new File(lostPath);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    selected.add(FileProvider.getUriForFile(getContext(), "com.example.kittenappscollage.fileprovider", file));
-                }else {
-                    selected.add(Uri.fromFile(file));
-                }
+        for (String s:getSelectFiles()){
+            File file = new File(s);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                selected.add(FileProvider.getUriForFile(getContext(), "com.example.kittenappscollage.fileprovider", file));
+            }else {
+                selected.add(Uri.fromFile(file));
             }
         }
+
         if(selected.size()>0){
             if(selected.size()==1){
-                shareSingleImg(selected.get(0), lostPath);
+                shareSingleImg(selected.get(0), getSelectFiles().get(0));
             }else {
                 shareSelectedImgs(selected);
             }
         }
+        getSelectFiles().clear();
+
     }
 
     private void shareSingleImg(Uri uri, String path){
