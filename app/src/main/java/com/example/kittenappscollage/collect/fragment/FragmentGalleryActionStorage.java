@@ -72,36 +72,20 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
     protected void applyDeleteSelectedStorage() {
         super.applyDeleteSelectedStorage();
 
-        boolean[]checks = getImgAdapt().getArrChecks();
         ArrayList<String> imgs = getListImagesInFolders().get(getKey());
-        ArrayList<String>names = new ArrayList<>();
-        int sum = 0;
         int all = imgs.size();
-        for (int i=0;i<checks.length;i++) {
-            if (checks[i]) {
-                sum++;
-                names.add(new File(imgs.get(all-(i+1))).getName());
-                getListImagesInFolders().get(getKey()).remove(imgs.get(all-(i+1)));
-                setListImagesInFolders(getListImagesInFolders());
 
-            }
-        }
-        if(sum>=0&&sum<all){
-            threadDelSelect(getKey(),names);
-            editAdapter = true;
-            /*так как изменение произошло в текущей директрии
-             * то в адаптере эта папка получит индекс 0.
-             * Это связано с сортировкой по времени изменения*/
-//            getImgAdapt().setIndexKey(0);
-        }else if(sum==all){
+        if(getSelectFiles().size()<all){
+            delSelectSteps(getKey(),(ArrayList<String>)getSelectFiles().clone());
 
+        }else if(getSelectFiles().size()==all){
             deleteFoldStorage(getKey());
 
             setIndexAdapter(ROOT_ADAPTER);
             getGridLayoutManager().setSpanCount(2);
             getRecycler().setAdapter(getFoldAdapt());
-
         }
+        getSelectFiles().clear();
 
 
 
@@ -152,51 +136,50 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
 
 
     @SuppressLint("CheckResult")
-    private void threadDelSelect(String key, ArrayList<String>names){
+    private void delSelectSteps(String key, ArrayList<String>names){
         Uri treeUri = Uri.parse(getListPerms().get(key));
         DocumentFile folder = DocumentFile.fromTreeUri(getContext(),treeUri);
         DocumentFile[] content = folder.listFiles();
-
-        Observable.create(new ObservableOnSubscribe<Boolean>() {
+        final int[] index = {names.size()};
+        Observable.create(new ObservableOnSubscribe<String>() {
 
             @Override
-            public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
-                emitter.onNext(delSelect(names,content));
+            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
+                for (String n:names){
+                    File f = new File(n);
+                    for (DocumentFile df:content){
+                        if(df.isFile()) {
+                            if (df.getName().equals(f.getName())) {
+                                    if(df.delete())emitter.onNext(n);
+                                    break;
+                            }
+                        }
+                    }
+                }
                 emitter.onComplete();
             }
         }).compose(new ThreadTransformers.InputOutput<>())
-                .onErrorResumeNext(new Observable<Boolean>() {
+                .doOnNext(new Consumer<String>() {
                     @Override
-                    protected void subscribeActual(Observer<? super Boolean> observer) {
+                    public void accept(String aBoolean) throws Exception {
+                        getListImagesInFolders().get(getKey()).remove(aBoolean);
+                        setListImagesInFolders(getListImagesInFolders());
+                        getImgAdapt().setIndexKey(0);
+                    }
+                })
+                .onErrorResumeNext(new Observable<String>() {
+                    @Override
+                    protected void subscribeActual(Observer<? super String> observer) {
                         Massages.SHOW_MASSAGE(getContext(), "Не удалось удалить выбранное");
                     }
                 })
-                .subscribe(new Consumer<Boolean>() {
+                .subscribe(new Consumer<String>() {
                     @Override
-                    public void accept(Boolean aBoolean) throws Exception {
-                        Massages.SHOW_MASSAGE(getContext(), "Выбранные изображения удалены");
+                    public void accept(String aBoolean) throws Exception {
+                        index[0]--;
+                        if(index[0]==0)Massages.SHOW_MASSAGE(getContext(), "Выбранные изображения удалены ");
                     }
                 });
-
-    }
-
-    private boolean delSelect(ArrayList<String>names, DocumentFile[]content){
-        for (String name:names){
-            for (DocumentFile df:content){
-                if(df.isFile()) {
-                    if (df.getName().equals(name)) {
-                        try {
-                            df.delete();
-                        }catch (Exception e){
-
-                        }
-
-                        break;
-                    }
-                }
-            }
-        }
-        return false;
     }
 
     private boolean delFold(DocumentFile folder){
