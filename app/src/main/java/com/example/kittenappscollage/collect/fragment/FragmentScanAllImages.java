@@ -1,8 +1,10 @@
 package com.example.kittenappscollage.collect.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.ContentUris;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -12,7 +14,9 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
+import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.Fragment;
 
 import com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
@@ -30,6 +34,7 @@ import java.util.HashMap;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 
+import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_FOLD;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD;
@@ -76,31 +81,70 @@ public class FragmentScanAllImages extends Fragment {
           });
     }
 
+
     /*android > 9*/
     private HashMap<String,ArrayList<String>>scanAPI29(HashMap<String,ArrayList<String>>list,HashMap<String,String>folds){
         definitionStorage();
         if(getListImagesInFolders()==null)initListImagesInFolders();
         else clearListImagesInFolders();
-        String[]projection = {
-                MediaStore.Images.Media._ID,
-                MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
-        Uri uri = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL);
-        Cursor cursor = getContext().getContentResolver().query(uri, projection, null,
-                null, null);
-        int col_id,col_fold;
+        String[]projection = {MediaStore.Images.Media._ID,
+                MediaStore.Images.Media.BUCKET_ID,
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
+                MediaStore.Images.Media.DISPLAY_NAME};
+
+
+        Uri content = null;
+        if(App.checkVersion())content = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+        else content = MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL);
+
+        Cursor cursor = getContext().getContentResolver().query(content,projection,null,null,null);
+        int col_id,col_name,col_fold,col_fold_id;
         col_id = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+        col_name = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME);
         col_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+        col_fold_id = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
+
         cursor.moveToFirst();
         while (cursor.moveToNext()){
-            String id = cursor.getString(col_id);
-            String fold = cursor.getString(col_fold);
+            long id = cursor.getLong(col_id);
+            String name = cursor.getString(col_name);//name img
+            String fold = cursor.getString(col_fold);//name fold
+            String uriImg = ContentUris.withAppendedId(content,id).toString();//uri img
+            long f_id = cursor.getLong(col_fold_id);
+            String uriFold = ContentUris.withAppendedId(content,f_id).toString();//uri fold
+
 
         }
+
+
+//        String query = MediaStore.Images.Media.DISPLAY_NAME + " = ?";
+//        String nameImg = "2020_41_6541.png";
+//        Cursor search = getContext().getContentResolver().query(content,new String[]{MediaStore.Images.Media._ID},query,new String[]{nameImg},null);
+//        col_id = search.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+//
+//        search.moveToFirst();
+//        int index =0;
+//        LYTE("start ");
+//        while (search.moveToNext()){
+//            LYTE("index "+index);
+//            long id = cursor.getLong(col_id);
+//            LYTE("id "+id);
+////            String name = cursor.getString(col_name);//name img
+////            LYTE("name "+name);
+////            String fold = cursor.getString(col_fold);//name fold
+////            LYTE("fold "+fold);
+////            Uri uri = ContentUris.withAppendedId(content,id);//uri img
+////            long f_id = cursor.getLong(col_fold_id);
+////            LYTE("fold id "+f_id);
+////            Uri fUri = ContentUris.withAppendedId(content,f_id);//uri fold
+//            index++;
+//        }
         return list;
     }
 
 
     /*android 9*/
+
     @SuppressLint("Recycle")
     private HashMap<String,ArrayList<String>> scanAPI21(HashMap<String,ArrayList<String>>list,HashMap<String,String>folds){
 
@@ -108,9 +152,15 @@ public class FragmentScanAllImages extends Fragment {
         if(list==null) initListImagesInFolders();
         clearListImagesInFolders();
         String[] projection = {
+                MediaStore.Images.Media.DISPLAY_NAME,
                 MediaStore.MediaColumns.DATA,
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
-
+//        String selection = MediaStore.Images.Media.MIME_TYPE+" = ?";
+//        String[]selectionArgs = new String[]{
+//                "image/png"
+////                ,"image/jpg"
+////                ,"image/jpeg"
+//        };
         Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 
         Cursor cursor = getContext().getContentResolver().query(uri, projection, null,
@@ -123,9 +173,10 @@ public class FragmentScanAllImages extends Fragment {
 
         while (cursor.moveToNext()) {
             String path = cursor.getString(col_path).toLowerCase();
+            LYTE("path "+path);
             String key = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);
 
-            boolean pik = path.endsWith(".png")||path.endsWith(".jpeg")||path.endsWith("jpg");
+            boolean pik = path.endsWith(".png")||path.endsWith(".jpeg")||path.endsWith(".jpg");
             if(list.containsKey(key)){
                 if(pik) {
                     list.get(key).add(cursor.getString(col_path));
@@ -173,7 +224,7 @@ public class FragmentScanAllImages extends Fragment {
         }
     }
     /*android 9 storage system*/
-    public void setSavingInStorageCollage(String report, String delimiter){
+    public void setSavingInStorageCollage(Uri uri, String report, String delimiter){
         String[] split = report.split(delimiter);
 
         getListPerms().put(split[INDEX_PATH_FOLD],split[INDEX_URI_PERM_FOLD]);

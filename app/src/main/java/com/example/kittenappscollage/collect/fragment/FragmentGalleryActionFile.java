@@ -45,7 +45,6 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
                     renamed.add(i,young[i].getAbsolutePath());
                     getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(old[i])));
                     getContext().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(young[i])));
-
                 }
 
                 getListFolds().put(newfile.getAbsolutePath(),name);

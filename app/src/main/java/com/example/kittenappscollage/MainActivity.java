@@ -85,8 +85,9 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                 values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
                 values.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
                 values.put(MediaStore.MediaColumns.DATA, split[INDEX_PATH_IMG]);
-                getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-                mFragGal.setSavingInStorageCollage(report,delimiter);
+                Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
+                mFragGal.setSavingInStorageCollage(uri, report,delimiter);
             }
         }
     }
