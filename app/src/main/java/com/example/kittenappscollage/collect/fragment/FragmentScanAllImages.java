@@ -3,6 +3,8 @@ package com.example.kittenappscollage.collect.fragment;
 import android.annotation.SuppressLint;
 import android.content.ContentUris;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,6 +21,7 @@ import androidx.core.content.ContextCompat;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.ListenMedia;
@@ -28,6 +31,8 @@ import com.example.kittenappscollage.helpers.db.aller.ContentPermis;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -95,6 +100,7 @@ public class FragmentScanAllImages extends Fragment {
         };
 
 
+
         Uri content = null;
         if(App.checkVersion())content = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         else content = MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL);
@@ -113,8 +119,17 @@ public class FragmentScanAllImages extends Fragment {
             LYTE("name "+name);
             String fold = cursor.getString(col_fold);//name fold
             LYTE("fold "+fold);
-            String uriImg = ContentUris.withAppendedId(content,id).toString();//uri img
-            LYTE("uriImg "+name);
+            Uri uriImg = ContentUris.withAppendedId(content,id);//uri img
+            LYTE("uriImg "+uriImg.toString());
+//            try {
+//                InputStream is = getContext().getContentResolver().openInputStream(uriImg);
+                DocumentFile df = DocumentFile.fromSingleUri(getContext(),uriImg);
+                LYTE("df "+df.exists());
+//                Bitmap b = BitmapFactory.decodeStream(is);
+//                LYTE("bitmap "+b.getHeight());
+//            } catch (FileNotFoundException e) {
+//                e.printStackTrace();
+//            }
             long f_id = cursor.getLong(col_fold_id);
             LYTE("f id "+f_id);
 
@@ -147,9 +162,7 @@ public class FragmentScanAllImages extends Fragment {
         return list;
     }
 
-
     /*android 9*/
-
     @SuppressLint("Recycle")
     private HashMap<String,ArrayList<String>> scanAPI21(HashMap<String,ArrayList<String>>list,HashMap<String,String>folds){
 
@@ -178,7 +191,6 @@ public class FragmentScanAllImages extends Fragment {
 
         while (cursor.moveToNext()) {
             String path = cursor.getString(col_path).toLowerCase();
-            LYTE("path "+path);
             String key = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);
 
             boolean pik = path.endsWith(".png")||path.endsWith(".jpeg")||path.endsWith(".jpg");
