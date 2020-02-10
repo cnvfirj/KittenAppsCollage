@@ -37,7 +37,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.functions.Consumer;
 
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_FOLD;
@@ -60,7 +62,10 @@ public class FragmentScanAllImages extends Fragment {
     private boolean blockScan;
 
     public void scanDevice(){
-         if(!blockScan)check();
+//         if(!blockScan)check();
+        if(!blockScan){
+            if(App.checkVersion())checkStepsSearchCursor();
+        }
     }
 
     public void setBlock(boolean block){
@@ -78,7 +83,7 @@ public class FragmentScanAllImages extends Fragment {
     private void check(){
         Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> {
           if(App.checkVersion())emitter.onNext(scanAPI21(getListImagesInFolders(), getListFolds()));
-          else emitter.onNext(scanAPI29(getListImagesInFolders(), getListFolds()));
+          else emitter.onNext(scanAPI30(getListImagesInFolders(), getListFolds()));
           emitter.onComplete();
         }).compose(new ThreadTransformers.NewThread<>())
           .subscribe(stringArrayListHashMap -> {
@@ -86,8 +91,131 @@ public class FragmentScanAllImages extends Fragment {
           });
     }
 
+    @SuppressLint("CheckResult")
+    public void checkStepsSearchCursor(){
+        definitionStorage();
+        if(getListImagesInFolders()==null) initListImagesInFolders();
+        else clearListImagesInFolders();
+        Observable.create(new ObservableOnSubscribe<Cursor>() {
+            @Override
+            public void subscribe(ObservableEmitter<Cursor> emitter) throws Exception {
+                emitter.onNext(getCursorApi29());
+                emitter.onComplete();
+            }
+        }).compose(new ThreadTransformers.InputOutput<>())
+                .subscribe(new Consumer<Cursor>() {
+                    @Override
+                    public void accept(Cursor cursor) throws Exception {
+                        scanFoldApi29(cursor);
+                    }
+                });
+    }
+
+    @SuppressLint("CheckResult")
+    private void scanFoldApi29(Cursor cursor){
+       Observable.create(new ObservableOnSubscribe<HashMap<String, ArrayList<String>>>() {
+           @Override
+           public void subscribe(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) throws Exception {
+               final int col_path = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
+               final int col_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+               final int col_mime = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE);
+
+               cursor.moveToFirst();
+               while (cursor.moveToNext()){
+                   final String mime = cursor.getString(col_mime);
+                   final String key = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);
+                   if(mime.equals("image/png")||mime.equals("image/jpeg")||mime.equals("image/jpg")){
+
+                       ContentPermis cp = getContentPermis(key);
+                       if(cp.system.equals(ActionsContentPerms.SYS_DF)&&
+                               !cp.uriPerm.equals(ActionsContentPerms.GRAND)&&
+                               !cp.uriPerm.equals(ActionsContentPerms.NON_PERM)) {
+                           if(!getListImagesInFolders().containsKey(key)){
+                               getListPerms().put(key,cp.uriPerm);
+                               if(cp.visible==View.VISIBLE)emitter.onNext(scanAPI29(getListImagesInFolders(), cp, key));
+                           }
+                       }else {
+                           if(!getListImagesInFolders().containsKey(key)){
+
+                               if(cp.visible==View.VISIBLE){
+
+                                   getListPerms().put(key,cp.uriPerm);
+
+                                   ArrayList<String> imgs = new ArrayList<>();
+                                   imgs.add(Uri.parse(cursor.getString(col_path)).toString());
+                                   getListImagesInFolders().put(key, imgs);
+                                   getListFolds().put(key,cursor.getString(col_fold));
+                                   for(int i=0;i<getNamesStorage().size();i++) {
+                                       if(key.contains(getNamesStorage().get(i))){
+                                           getIndexesStorage().put(key, getNamesStorage().indexOf(getNamesStorage().get(i)));
+                                       }
+                                   }
+                               }
+                           }else {
+                               getListImagesInFolders().get(key).add(cursor.getString(col_path));
+                           }
+
+                       }
+
+                   }
+
+               }
+               emitter.onNext(getListImagesInFolders());
+               emitter.onComplete();
+           }
+       }).compose(new ThreadTransformers.Processor<>())
+               .subscribe(new Consumer<HashMap<String, ArrayList<String>>>() {
+                   @Override
+                   public void accept(HashMap<String, ArrayList<String>> stringArrayListHashMap) throws Exception {
+
+                       setListImagesInFolders(stringArrayListHashMap);
+                   }
+               });
+
+    }
+
+    private Cursor getCursorApi29(){
+        String[] projection = {
+                MediaStore.Images.Media.DISPLAY_NAME,
+                MediaStore.MediaColumns.DATA,
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
+                MediaStore.Images.Media.MIME_TYPE};
+
+        Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+
+        Cursor cursor = getContext().getContentResolver().query(uri, projection, null,
+                null, null);
+        return cursor;
+    }
+
+    private HashMap<String,ArrayList<String>>scanAPI29(HashMap<String,ArrayList<String>>list, ContentPermis cp, String key){
+        DocumentFile df = DocumentFile.fromTreeUri(getContext(),Uri.parse(cp.uriDocFile));
+        DocumentFile[]files = df.listFiles();
+        ArrayList<String>images = new ArrayList<>();
+        for(DocumentFile f:files){
+            images.add(f.getUri().toString());
+        }
+        list.put(key,images);
+        return list;
+    }
+
+    private ContentPermis getContentPermis(String key){
+        ContentPermis cp = ActionsContentPerms.create(getContext()).getItem(key);
+        if(cp!=null)return cp;
+        else {
+            ActionsContentPerms.create(getContext()).queryItemDB(
+                    key,
+                    ActionsContentPerms.NON_PERM,
+                    ActionsContentPerms.ZHOPA,
+                    ActionsContentPerms.ZHOPA,
+                    ActionsContentPerms.NON_LOC_STOR,
+                    View.VISIBLE);
+
+            return ActionsContentPerms.create(getContext()).getItem(key);
+        }
+    }
     /*android > 9*/
-    private HashMap<String,ArrayList<String>>scanAPI29(HashMap<String,ArrayList<String>>list,HashMap<String,String>folds){
+    private HashMap<String,ArrayList<String>>scanAPI30(HashMap<String,ArrayList<String>>list,HashMap<String,String>folds){
         definitionStorage();
         if(getListImagesInFolders()==null)initListImagesInFolders();
         else clearListImagesInFolders();
@@ -98,8 +226,6 @@ public class FragmentScanAllImages extends Fragment {
                 MediaStore.Images.Media.DISPLAY_NAME
 //                , MediaStore.Images.Media.RELATIVE_PATH
         };
-
-
 
         Uri content = null;
         if(App.checkVersion())content = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
@@ -168,7 +294,7 @@ public class FragmentScanAllImages extends Fragment {
 
         definitionStorage();
         if(list==null) initListImagesInFolders();
-        clearListImagesInFolders();
+        else clearListImagesInFolders();
         String[] projection = {
                 MediaStore.Images.Media.DISPLAY_NAME,
                 MediaStore.MediaColumns.DATA,
@@ -176,8 +302,8 @@ public class FragmentScanAllImages extends Fragment {
 //        String selection = MediaStore.Images.Media.MIME_TYPE+" = ?";
 //        String[]selectionArgs = new String[]{
 //                "image/png"
-////                ,"image/jpg"
-////                ,"image/jpeg"
+//                ,"image/jpg"
+//                ,"image/jpeg"
 //        };
         Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
 

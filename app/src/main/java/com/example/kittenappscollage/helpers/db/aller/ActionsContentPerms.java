@@ -116,6 +116,11 @@ public class ActionsContentPerms {
         }).compose(new ThreadTransformers.InputOutput<>()).subscribe();
     }
 
+    public void insertCP(ContentPermis cp){
+        perms.put(cp.keyPath,cp.uriPerm);
+        db.work().insert(cp);
+    }
+
     private boolean query(String key, String uriPerm, String uriDF, String system, int storage, int visible){
         boolean insert = false;
         ContentPermis cp = db.work().getPerm(key);
