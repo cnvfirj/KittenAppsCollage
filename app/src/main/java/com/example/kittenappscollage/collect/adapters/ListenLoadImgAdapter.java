@@ -134,6 +134,7 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     @Override
     public void onBindViewHolder(@NonNull ImgHolder holder, int position) {
         Glide.with(getContext())
+
                 .load(getAll().get(getFolds()[indexKey]).get(getPositionInEnd(position)))
                 .into(holder.getImage());
     }

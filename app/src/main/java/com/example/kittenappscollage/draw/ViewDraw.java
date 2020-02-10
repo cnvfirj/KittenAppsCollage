@@ -106,12 +106,14 @@ public class ViewDraw extends View {
                 }
             }
         }else {
+            if(event.getAction()==MotionEvent.ACTION_DOWN) {
                 if (vAppOp.getColorBitmap(event) != 0) {
                     if (vListenPipette != null) {
                         vListenPipette.listen(false);
                     }
-                } else SHOW_MASSAGE(getContext(), "Выбери точку на заполненной и не прозрачной области рисунка");
-
+                } else
+                    SHOW_MASSAGE(getContext(), "Выбери точку на заполненной и не прозрачной области рисунка");
+            }
         }
         return true;
     }
