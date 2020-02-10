@@ -40,6 +40,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.io.File;
 
+import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
@@ -86,8 +87,9 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                 values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
                 values.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
                 values.put(MediaStore.MediaColumns.DATA, split[INDEX_PATH_IMG]);
-                Uri uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-
+                Uri uri = null;
+                if(Build.VERSION.SDK_INT<Build.VERSION_CODES.Q)uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                else uri = MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL);
                 mFragGal.setSavingInStorageCollage(uri, report,delimiter);
             }
         }
