@@ -81,16 +81,18 @@ public class FragmentScanAllImages extends Fragment {
           });
     }
 
-
     /*android > 9*/
     private HashMap<String,ArrayList<String>>scanAPI29(HashMap<String,ArrayList<String>>list,HashMap<String,String>folds){
         definitionStorage();
         if(getListImagesInFolders()==null)initListImagesInFolders();
         else clearListImagesInFolders();
-        String[]projection = {MediaStore.Images.Media._ID,
+        String[]projection = {
+                MediaStore.Images.Media._ID,
                 MediaStore.Images.Media.BUCKET_ID,
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
-                MediaStore.Images.Media.DISPLAY_NAME};
+                MediaStore.Images.Media.DISPLAY_NAME
+//                , MediaStore.Images.Media.RELATIVE_PATH
+        };
 
 
         Uri content = null;
@@ -108,10 +110,13 @@ public class FragmentScanAllImages extends Fragment {
         while (cursor.moveToNext()){
             long id = cursor.getLong(col_id);
             String name = cursor.getString(col_name);//name img
+            LYTE("name "+name);
             String fold = cursor.getString(col_fold);//name fold
+            LYTE("fold "+fold);
             String uriImg = ContentUris.withAppendedId(content,id).toString();//uri img
+            LYTE("uriImg "+name);
             long f_id = cursor.getLong(col_fold_id);
-            String uriFold = ContentUris.withAppendedId(content,f_id).toString();//uri fold
+            LYTE("f id "+f_id);
 
 
         }
