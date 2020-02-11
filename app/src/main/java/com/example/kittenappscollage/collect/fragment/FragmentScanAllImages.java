@@ -153,30 +153,28 @@ public class FragmentScanAllImages extends Fragment {
                    if(mime.equals("image/png")||mime.equals("image/jpeg")||mime.equals("image/jpg")){
 
                        ContentPermis cp = getContentPermis(key);
-                       if(cp.system.equals(ActionsContentPerms.SYS_DF)&&
-                               !cp.uriPerm.equals(ActionsContentPerms.GRAND)&&
-                               !cp.uriPerm.equals(ActionsContentPerms.NON_PERM)) {
+                       if(cp.system.equals(ActionsContentPerms.SYS_DF)) {
                            if(!getListImagesInFolders().containsKey(key)){
-                               LYTE("add key in df "+key);
+
                                getListPerms().put(key,cp.uriPerm);
                                getIndexesStorage().put(key,cp.storage);
                                getListFolds().put(key,cursor.getString(col_fold));
                                if(cp.visible==View.VISIBLE)emitter.onNext(scanStorageAPI29(getListImagesInFolders(), cp, key));
                            }
-                       } else if(cp.storage==0){
+                       } else if(cp.storage==0&&cp.uriPerm.equals(ActionsContentPerms.GRAND)){
                            if(!getListImagesInFolders().containsKey(key)){
-                               LYTE("add key in dev "+key);
+
                                getListPerms().put(key,cp.uriPerm);
                                getIndexesStorage().put(key,cp.storage);
                                getListFolds().put(key,cursor.getString(col_fold));
                                if(cp.visible==View.VISIBLE)
-//                               emitter.onNext(
-                                       scanFileAPI29(getListImagesInFolders(),key);
-//                               );
+                               emitter.onNext(
+                                       scanFileAPI29(getListImagesInFolders(),key)
+                               );
                            }
                        } else {
                            if(!getListImagesInFolders().containsKey(key)){
-                               LYTE("add key in other "+key);
+
                                getListPerms().put(key,cp.uriPerm);
                                getIndexesStorage().put(key,cp.storage);
                                getListFolds().put(key,cursor.getString(col_fold));
@@ -285,10 +283,10 @@ public class FragmentScanAllImages extends Fragment {
             storage.add(files[i].getAbsolutePath().split("Android")[0]);
         }
     }
-
-    private void correctListFold(String[]split){
-
-    }
+//
+//    private void correctListFold(String[]split){
+//
+//    }
 
        private void addImgCollect(String key, String path){
         if(getListImagesInFolders().containsKey(key)){
