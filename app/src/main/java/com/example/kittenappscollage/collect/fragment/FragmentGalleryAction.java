@@ -124,9 +124,10 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     }
 
     private void deleteFoldDeviseFile(String fold){
-        if(fold.equals(RequestFolder.getFolderCollages(getContext()))){
-            deletedFoldFile(fold);
-        } else if(getListPerms().get(fold).equals(ActionsContentPerms.GRAND)){
+//        if(fold.equals(RequestFolder.getFolderCollages(getContext()))){
+//            deletedFoldFile(fold);
+//        } else
+            if(getListPerms().get(fold).equals(ActionsContentPerms.GRAND)){
             deletedFoldFile(fold);
         }else {
             Massages.SHOW_MASSAGE(getContext(),"Нет прав для удаления папки");

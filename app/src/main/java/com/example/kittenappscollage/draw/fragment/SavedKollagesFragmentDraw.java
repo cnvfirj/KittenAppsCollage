@@ -22,6 +22,7 @@ import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.RequestFolder;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
+import com.example.kittenappscollage.helpers.db.aller.ContentPermis;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
@@ -39,7 +40,6 @@ import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
 
-
     private final String MIME_PNG = "image/png";
 
     private final String REPORT_DELIMITER = "_%%_Saved_%%_Kollages_%%_Fragment_&&_Draw_%%_";
@@ -55,6 +55,8 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     public static final int INDEX_URI_DF_FOLD = 4;
 
     public static final int INDEX_NAME_IMG = 5;
+
+    public static final int INDEX_TYPE_SYSTEM = 6;
 
     public static final int REQUEST_SAVED = 91;
 
@@ -72,7 +74,6 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         saved();
     }
 
-
     @Override
     protected void saveIs(ImageView v) {
         super.saveIs(v);
@@ -86,7 +87,6 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
             } else Massages.SHOW_MASSAGE(getContext(), "Создай холст");
         }else Massages.SHOW_MASSAGE(getContext(),"Подключи SD card или накопитель и перезапусти приложение");
     }
-
 
     @Override
     protected void saveNet(ImageView v) {
@@ -167,23 +167,29 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
 
             String sDir = getRealPath(dir.getUri().getLastPathSegment());
             String sImg = getRealPath(img.getUri().getLastPathSegment());
+            String system = ZHOPA;
+
+            ContentPermis cp = ActionsContentPerms.create(getContext()).getItem(sDir);
+            if(cp!=null){
+                if(cp.system.equals(ActionsContentPerms.SYS_DF))system = cp.system;
+            }
 
             if(save){
-                String report = sImg+           REPORT_DELIMITER+
-                        sDir+                   REPORT_DELIMITER+
-                        uri.toString()+         REPORT_DELIMITER+
-                        img.getUri().toString()+REPORT_DELIMITER+
-                        dir.getUri().toString()+REPORT_DELIMITER+
-                        nameImg+                REPORT_DELIMITER;
-
+                String report =
+                        sImg+                   REPORT_DELIMITER+ //адрез изображения
+                        sDir+                   REPORT_DELIMITER+ //адрес папки
+                        uri.toString()+         REPORT_DELIMITER+ //разрешение на редакт папки
+                        img.getUri().toString()+REPORT_DELIMITER+ //юри дф изображения
+                        dir.getUri().toString()+REPORT_DELIMITER+ //юри дф папки
+                        nameImg+                REPORT_DELIMITER+ //имя изображения
+                        system;                                   //файловая система в папке, если она до этого
+                                                                  //не дф, то надо пересканировать всю папку
                 return report;
             }
             else return ZHOPA;
-
         } catch (IOException e) {
             return ZHOPA;
         }
-
     }
 
     private void requestFold(){
@@ -216,16 +222,15 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
             /*отсюда ввести в базу данных ActionsDataBasePerms разрешение
             * для этого надо юри, адрес папки как ключ*/
 
-            String key = getRealPath(fold.getUri().getLastPathSegment());
-            /*создаем итем в базу данных*/
-            ActionsContentPerms.create(getContext()).queryItemDB(
-                    key,
-                    uri.toString(),
-                    fold.getUri().toString(),
-                    ActionsContentPerms.SYS_DF,
-                    ActionsContentPerms.NON_LOC_STOR,
-                    View.VISIBLE);
-
+//            String key = getRealPath(fold.getUri().getLastPathSegment());
+//            /*создаем итем в базу данных*/
+//            ActionsContentPerms.create(getContext()).queryItemDB(
+//                    key,
+//                    uri.toString(),
+//                    fold.getUri().toString(),
+//                    ActionsContentPerms.SYS_DF,
+//                    ActionsContentPerms.NON_LOC_STOR,
+//                    View.VISIBLE);
 
             getEditor().putString(KEY_PERM_SAVE, uri.toString());
             getEditor().apply();

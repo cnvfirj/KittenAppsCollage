@@ -46,7 +46,7 @@ public class LoadImgAdapt extends ListenLoadImgAdapter {
 
     @Override
     public void setIndexKey(int index) {
-        resetCheckeds(getAll().get(getFolds()[index]).size());
+//        resetCheckeds(getAll().get(getFolds()[index]).size());
         super.setIndexKey(index);
 
     }
@@ -72,8 +72,7 @@ public class LoadImgAdapt extends ListenLoadImgAdapter {
     @Override
     protected void resetCheckeds(){
         super.resetCheckeds();
-        if(getIndexAdapter()>-1)checkSelect = new boolean[getAll().get(getFolds()[getIndexAdapter()])
-                                          .size()];
+        if(getIndexAdapter()>-1)checkSelect = new boolean[getAll().get(getFolds()[getIndexAdapter()]).size()];
     }
 
     @Override
@@ -88,6 +87,7 @@ public class LoadImgAdapt extends ListenLoadImgAdapter {
     @Override
     protected void longClick(ImageView img, ImageView check, int pos) {
         if(!modeSelected){
+            resetCheckeds();
             modeSelected = true;
             check.setVisibility(View.VISIBLE);
             checkSelect[pos] = true;

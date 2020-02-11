@@ -54,7 +54,7 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
             data[i] = new File(names[i]).lastModified();
         }
         sort(data,names);
-        resetCheckeds();
+//        resetCheckeds();
         notifyDataSetChanged();
         return this;
     }

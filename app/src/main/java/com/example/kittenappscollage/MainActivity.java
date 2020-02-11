@@ -81,8 +81,18 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     @Override
     public void savedStorage(boolean saved, String report, String delimiter) {
         if(saved){
+
+            String[]split = report.split(delimiter);
+            /*создаем итем в базу данных*/
+            ActionsContentPerms.create(getApplicationContext()).queryItemDB(
+                    split[SavedKollagesFragmentDraw.INDEX_PATH_FOLD],
+                    split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD],
+                    split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+                    ActionsContentPerms.SYS_DF,
+                    ActionsContentPerms.NON_LOC_STOR,
+                    View.VISIBLE);
+
             if(App.checkVersion()) {
-                String[] split = report.split(delimiter);
                 ContentValues values = new ContentValues();
                 values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
                 values.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
@@ -90,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                 Uri uri = null;
                 if(Build.VERSION.SDK_INT<Build.VERSION_CODES.Q)uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
                 else uri = MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL);
-                mFragGal.setSavingInStorageCollage(uri, report,delimiter);
+                mFragGal.setSavingInStorageCollage(uri, report, delimiter);
             }
         }
     }
