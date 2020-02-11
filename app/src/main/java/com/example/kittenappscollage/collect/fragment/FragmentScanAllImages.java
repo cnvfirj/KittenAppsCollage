@@ -35,12 +35,6 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.functions.Consumer;
 
-import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_FOLD;
-import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
-import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_URI_DF_IMG;
-import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-
 public class FragmentScanAllImages extends Fragment {
 
     private HashMap<String,ArrayList<String>>listImagesToFolder;
@@ -93,11 +87,11 @@ public class FragmentScanAllImages extends Fragment {
     /*android 9 storage system*/
     public void setSavingInStorageCollage(Uri uri, String report, String delimiter){
         String[] split = report.split(delimiter);
-        getListPerms().put(split[INDEX_PATH_FOLD],split[INDEX_URI_PERM_FOLD]);
+        getListPerms().put(split[SavedKollagesFragmentDraw.INDEX_PATH_FOLD],split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD]);
         String system = split[SavedKollagesFragmentDraw.INDEX_TYPE_SYSTEM];
         if(system.equals(ActionsContentPerms.ZHOPA)){
          correctSavingFoldInStorage(split);
-        }else addImgCollect(split[INDEX_PATH_FOLD],split[INDEX_URI_DF_IMG]);
+        }else addImgCollect(split[SavedKollagesFragmentDraw.INDEX_PATH_FOLD],split[SavedKollagesFragmentDraw.INDEX_URI_DF_IMG]);
     }
 
     /*android > 9 or storage*/
