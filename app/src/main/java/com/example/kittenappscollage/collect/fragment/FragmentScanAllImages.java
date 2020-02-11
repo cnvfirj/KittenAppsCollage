@@ -74,9 +74,7 @@ public class FragmentScanAllImages extends Fragment {
 
     @SuppressLint("CheckResult")
     public void checkStepsSearchCursor(){
-        definitionStorage();
-        if(getListImagesInFolders()==null) initListImagesInFolders();
-        else clearListImagesInFolders();
+
         Observable.create(new ObservableOnSubscribe<Cursor>() {
             @Override
             public void subscribe(ObservableEmitter<Cursor> emitter) throws Exception {
@@ -140,6 +138,11 @@ public class FragmentScanAllImages extends Fragment {
     }
     @SuppressLint("CheckResult")
     private void scanFoldApi29(Cursor cursor){
+
+        definitionStorage();
+        if(getListImagesInFolders()==null) initListImagesInFolders();
+        else clearListImagesInFolders();
+
        Observable.create(new ObservableOnSubscribe<HashMap<String, ArrayList<String>>>() {
            @Override
            public void subscribe(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) throws Exception {
