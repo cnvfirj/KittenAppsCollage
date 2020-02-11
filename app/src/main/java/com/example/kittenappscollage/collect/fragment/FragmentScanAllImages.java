@@ -35,6 +35,8 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.functions.Consumer;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class FragmentScanAllImages extends Fragment {
 
     private HashMap<String,ArrayList<String>>listImagesToFolder;
@@ -155,20 +157,26 @@ public class FragmentScanAllImages extends Fragment {
                                !cp.uriPerm.equals(ActionsContentPerms.GRAND)&&
                                !cp.uriPerm.equals(ActionsContentPerms.NON_PERM)) {
                            if(!getListImagesInFolders().containsKey(key)){
+                               LYTE("add key in df "+key);
                                getListPerms().put(key,cp.uriPerm);
                                getIndexesStorage().put(key,cp.storage);
                                getListFolds().put(key,cursor.getString(col_fold));
                                if(cp.visible==View.VISIBLE)emitter.onNext(scanStorageAPI29(getListImagesInFolders(), cp, key));
                            }
-                       }else if(cp.storage==0){
+                       } else if(cp.storage==0){
                            if(!getListImagesInFolders().containsKey(key)){
+                               LYTE("add key in dev "+key);
                                getListPerms().put(key,cp.uriPerm);
                                getIndexesStorage().put(key,cp.storage);
                                getListFolds().put(key,cursor.getString(col_fold));
-                               if(cp.visible==View.VISIBLE)emitter.onNext(scanFileAPI29(getListImagesInFolders(),key));
+                               if(cp.visible==View.VISIBLE)
+//                               emitter.onNext(
+                                       scanFileAPI29(getListImagesInFolders(),key);
+//                               );
                            }
-                       }else {
+                       } else {
                            if(!getListImagesInFolders().containsKey(key)){
+                               LYTE("add key in other "+key);
                                getListPerms().put(key,cp.uriPerm);
                                getIndexesStorage().put(key,cp.storage);
                                getListFolds().put(key,cursor.getString(col_fold));
@@ -179,9 +187,7 @@ public class FragmentScanAllImages extends Fragment {
                                getListImagesInFolders().get(key).add(Uri.parse(cursor.getString(col_path)).toString());
                            }
                        }
-
                    }
-
                }
                emitter.onNext(getListImagesInFolders());
                emitter.onComplete();
@@ -219,6 +225,7 @@ public class FragmentScanAllImages extends Fragment {
     }
 
     private HashMap<String, ArrayList<String>>scanFileAPI29(HashMap<String,ArrayList<String>>list, String key){
+
         File[]files = new File(key).listFiles();
         ArrayList<String>images = new ArrayList<>();
         for (File f:files){

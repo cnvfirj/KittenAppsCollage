@@ -72,6 +72,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
             setIndexAdapter(ROOT_ADAPTER);
             getGridLayoutManager().setSpanCount(2);
             getRecycler().setAdapter(getFoldAdapt());
+            getImgAdapt().setModeSelected(false);
             deletedFoldFile(fold);
         }else {
             for (String i:getSelectFiles()){
