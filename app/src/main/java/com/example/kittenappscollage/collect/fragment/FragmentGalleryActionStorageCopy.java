@@ -20,13 +20,7 @@ public class FragmentGalleryActionStorageCopy extends FragmentGalleryActionStora
 
     /*android <= 9*/
     private void copyFoldAPI21(String fold){
-        int index = getIndexesStorage().get(fold);
-        LYTE("FragmentGalleryActionStorageCopy index stor - "+index);
-        if(index==0){
 
-        }else{
-
-        }
     }
 
     /*android > 9*/

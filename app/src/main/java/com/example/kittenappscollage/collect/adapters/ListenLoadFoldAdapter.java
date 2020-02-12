@@ -2,6 +2,7 @@ package com.example.kittenappscollage.collect.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.example.kittenappscollage.collect.fragment.FragmentScanAllImages;
 
 import java.io.File;
 import java.io.Serializable;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -27,6 +29,8 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     public static final int ROOT_ADAPTER = -5;
 
     private HashMap<String, ArrayList<String>> all;
+
+    private HashMap<String,String>namesFolds;
 
     private String[] folds;
 
@@ -43,16 +47,12 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         return this;
     }
 
-    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all) {
+    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds) {
         this.all = all;
-        final String[]names = new String[all.size()];
-        all.keySet().toArray(names);
-        final long data[] = new long[names.length];
-        for (int i=0;i<names.length;i++){
-            data[i] = new File(names[i]).lastModified();
-        }
-        sort(data,names);
-//        LYTE("ListenLoadFoldAdapter set all ");
+        this.namesFolds = namesFolds;
+        folds = new String[all.size()];
+        all.keySet().toArray(folds);
+
         notifyDataSetChanged();
         return this;
     }
@@ -101,6 +101,10 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         return all;
     }
 
+    protected HashMap<String, String>getNamesFolds(){
+        return namesFolds;
+    }
+
     protected String[] getFolds(){
         return folds;
     }
@@ -115,17 +119,16 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
-//        LYTE("ListenLoadFoldAdapter fold - "+getFolds()[position]);
         int index = getAll().get(getFolds()[position]).size();
+        Uri uri = Uri.parse(getAll().get(getFolds()[position]).get(index - 1));
         if(index>0) {
             Glide.with(getContext())
-                    .load(getAll().get(getFolds()[position]).get(index - 1))
+                    .load(uri)
+//                    .load(getAll().get(getFolds()[position]).get(index - 1))
                     .into(holder.getImage());
         }
 
-            String[] split = getFolds()[position].split("[/]");
-            holder.getName().setText(split[split.length - 1]);
-
+            holder.getName().setText(getNamesFolds().get(getFolds()[position]));
         holder.getCol().setText(Integer.toString(getAll().get(getFolds()[position]).size()));
     }
 

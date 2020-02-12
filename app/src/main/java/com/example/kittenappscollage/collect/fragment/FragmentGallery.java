@@ -123,7 +123,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         super.setListImagesInFolders(list);
         invisibleMenu();
         foldAdapt.setPerms(getListPerms());
-        foldAdapt.setAll(getListImagesInFolders()).setListen(this);
+        foldAdapt.setAll(getListImagesInFolders(), getListFolds()).setListen(this);
         imgAdapt.setAll(getListImagesInFolders()).setListen(this);
     }
 

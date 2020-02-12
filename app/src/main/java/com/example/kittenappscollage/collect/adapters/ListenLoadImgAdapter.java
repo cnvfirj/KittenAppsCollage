@@ -49,36 +49,36 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     public ListenLoadImgAdapter setAll(HashMap<String, ArrayList<String>> all){
         LYTE("ListenLoadImgAdapter set All");
         this.all = all;
-        final String[]names = new String[all.size()];
-        all.keySet().toArray(names);
-        final long data[] = new long[names.length];
-        for (int i=0;i<names.length;i++){
-            data[i] = new File(names[i]).lastModified();
-        }
-        sort(data,names);
+        folds = new String[all.size()];
+        all.keySet().toArray(folds);
+//        final long data[] = new long[names.length];
+//        for (int i=0;i<names.length;i++){
+//            data[i] = new File(names[i]).lastModified();
+//        }
+//        sort(data,names);
 //        resetCheckeds();
         notifyDataSetChanged();
         return this;
     }
 
-    private void sort(long[]data,String[]names){
-        for(int i = data.length-1 ; i > 0 ; i--){
-            for(int j = 0 ; j < i ; j++){
-
-                if( data[j] < data[j+1] ){
-                    long tmp = data[j];
-                    String name = names[j];
-
-                    data[j] = data[j+1];
-                    names[j] = names[j+1];
-
-                    data[j+1] = tmp;
-                    names[j+1] = name;
-                }
-            }
-        }
-        folds = names;
-    }
+//    private void sort(long[]data,String[]names){
+//        for(int i = data.length-1 ; i > 0 ; i--){
+//            for(int j = 0 ; j < i ; j++){
+//
+//                if( data[j] < data[j+1] ){
+//                    long tmp = data[j];
+//                    String name = names[j];
+//
+//                    data[j] = data[j+1];
+//                    names[j] = names[j+1];
+//
+//                    data[j+1] = tmp;
+//                    names[j+1] = name;
+//                }
+//            }
+//        }
+//        folds = names;
+//    }
 
     public void setIndexKey(int index){
         indexKey = index;
@@ -137,7 +137,7 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     public void onBindViewHolder(@NonNull ImgHolder holder, int position) {
 //        String s = getAll().get(getFolds()[indexKey]).get(getPositionInEnd(position));
 //        LYTE("add img "+s);
-        Uri uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,68699);
+        Uri uri = Uri.parse(getAll().get(getFolds()[indexKey]).get(getPositionInEnd(position)));
         Glide.with(getContext())
                 .load(uri)
 //                .load(getAll().get(getFolds()[indexKey]).get(getPositionInEnd(position)))

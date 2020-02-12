@@ -49,7 +49,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
                 getListFolds().put(newfile.getAbsolutePath(),name);
                 getListPerms().put(newfile.getAbsolutePath(),ActionsContentPerms.GRAND);
-                getIndexesStorage().put(newfile.getAbsolutePath(),getIndexesStorage().get(getKey()));
+//                getIndexesStorage().put(newfile.getAbsolutePath(),getIndexesStorage().get(getKey()));
                 getListImagesInFolders().put(newfile.getAbsolutePath(),renamed);
 
                 clearLists(getKey());
@@ -184,7 +184,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
         getListPerms().remove(key);
         getListImagesInFolders().remove(key);
         getListFolds().remove(key);
-        getIndexesStorage().remove(key);
+//        getIndexesStorage().remove(key);
 
 
     }

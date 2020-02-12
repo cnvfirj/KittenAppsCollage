@@ -85,42 +85,43 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     }
 
     private void renameFoldFile(String name){
-       if(getIndexesStorage().get(getKey())==0) {
+
            if(getKey().equals(RequestFolder.getFolderCollages(getContext()))){
                renameFoldFileDevise(name);
            }else if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)){
                Massages.SHOW_MASSAGE(getContext(),"Нет прав для переименования этой папки");
                invisibleMenu();
            }else renameFoldFileDevise(name);
-       }else renameFoldStorage(name);
+
     }
 
     private void deleteFolder(){
-        if(version()) {
-            if (getIndexesStorage().get(getKey()) == 0) {
-                deleteFoldDeviseFile(getKey());
-            }else {
-                /*delete in sd card*/
-                deleteFoldStorage(getKey());
-            }
-        }else {
-            /*при андроид 11*/
-            invisibleMenu();
-        }
+
+//        if(version()) {
+//            if (getIndexesStorage().get(getKey()) == 0) {
+//                deleteFoldDeviseFile(getKey());
+//            }else {
+//                /*delete in sd card*/
+//                deleteFoldStorage(getKey());
+//            }
+//        }else {
+//            /*при андроид 11*/
+//            invisibleMenu();
+//        }
     }
 
     private void deleteSelectedImg(int adapter){
-        if(version()) {
-            if (getIndexesStorage().get(getKey()) == 0) {
-                applyDeleteSelectedFiles();
-            }else {
-                /*delete in sd card*/
-                applyDeleteSelectedStorage();
-            }
-        }else {
-            /*при андроид 11*/
-            invisibleMenu();
-        }
+//        if(version()) {
+//            if (getIndexesStorage().get(getKey()) == 0) {
+//                applyDeleteSelectedFiles();
+//            }else {
+//                /*delete in sd card*/
+//                applyDeleteSelectedStorage();
+//            }
+//        }else {
+//            /*при андроид 11*/
+//            invisibleMenu();
+//        }
     }
 
     private void deleteFoldDeviseFile(String fold){
