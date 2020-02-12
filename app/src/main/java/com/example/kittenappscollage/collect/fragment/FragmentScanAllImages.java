@@ -51,16 +51,6 @@ public class FragmentScanAllImages extends Fragment {
 
     private boolean blockScan;
 
-    public void scanDevice(){
-        if(!blockScan){
-            if(App.checkVersion())checkStepsSearchCursor();
-        }
-    }
-
-    public void setBlock(boolean block){
-        blockScan = block;
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,60 +58,63 @@ public class FragmentScanAllImages extends Fragment {
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
-    @SuppressLint("CheckResult")
-    public void checkStepsSearchCursor(){
-
-        Observable.create(new ObservableOnSubscribe<Cursor>() {
-            @Override
-            public void subscribe(ObservableEmitter<Cursor> emitter) throws Exception {
-                emitter.onNext(getCursorApi29());
-                emitter.onComplete();
-            }
-        }).compose(new ThreadTransformers.InputOutput<>())
-                .subscribe(new Consumer<Cursor>() {
-                    @Override
-                    public void accept(Cursor cursor) throws Exception {
-                        scanFoldApi29(cursor);
-                    }
-                });
+    public void scanDevice(){
+        if(!blockScan){
+            scanFoldAll(cursor());
+        }
     }
 
-    /*android 9 storage system*/
-    public void setSavingInStorageCollage(Uri uri, String report, String delimiter){
-        String[] split = report.split(delimiter);
-        getListPerms().put(split[SavedKollagesFragmentDraw.INDEX_PATH_FOLD],split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD]);
-        String system = split[SavedKollagesFragmentDraw.INDEX_TYPE_SYSTEM];
-        if(system.equals(ActionsContentPerms.ZHOPA)){
-         correctSavingFoldInStorage(split);
-        }else addImgCollect(split[SavedKollagesFragmentDraw.INDEX_PATH_FOLD],split[SavedKollagesFragmentDraw.INDEX_URI_DF_IMG]);
-    }
-
-    /*android > 9 or storage*/
-    public void setSavingInStorageCollage(Uri uri){
-
-    }
-
-    /*android 9 file system*/
-    public void setSavingInFileCollage(String path,String key){
-        ActionsContentPerms.create(getContext()).queryItemDB(
-                key,
-                ActionsContentPerms.GRAND,
-                ActionsContentPerms.ZHOPA,
-                ActionsContentPerms.SYS_FILE,
-                ActionsContentPerms.NON_LOC_STOR,
-                View.VISIBLE);
-        getListPerms().put(key,ActionsContentPerms.GRAND);
-        addImgCollect(key,Uri.parse(path).toString());
+    public void setBlock(boolean block){
+        blockScan = block;
     }
 
     @SuppressLint("CheckResult")
-    private void correctSavingFoldInStorage(String[]split){
+    private void scanFoldAll(Cursor cursor){
+        definitionStorage();
+        if(getListImagesInFolders()==null) initListImagesInFolders();
+        else clearListImagesInFolders();
+
         Observable.create(new ObservableOnSubscribe<HashMap<String, ArrayList<String>>>() {
             @Override
             public void subscribe(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) throws Exception {
-                String udf = split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD];
-                String key = split[SavedKollagesFragmentDraw.INDEX_PATH_FOLD];
-                emitter.onNext(scanFoldStorageAPI29(getListImagesInFolders(),udf,key));
+                cursor.moveToFirst();
+
+                final int col_id_img = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+                final int col_id_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
+                final int col_name_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+                final int col_mime = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE);
+                while (cursor.moveToNext()) {
+                    final String mime = cursor.getString(col_mime);
+                    if (mime.equals("image/png") || mime.equals("image/jpg") || mime.equals("image/jpeg")) {
+                        final String id_img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cursor.getLong(col_id_img)).toString();
+                        final String id_fold = ""+cursor.getLong(col_id_fold);
+                        final String name_fold = cursor.getString(col_name_fold);
+                        ContentPermis cp = getContentPermis(id_fold);
+                        if(cp.system!=null&&cp.system.equals(ActionsContentPerms.SYS_DF)){
+                            if(!getListImagesInFolders().containsKey(id_fold)){
+                                if(cp.visible==View.VISIBLE) {
+                                    getListPerms().put(id_fold,cp.uriPerm);
+                                    getListFolds().put(id_fold,name_fold);
+                                    emitter.onNext(scanFoldStorageAPI29(getListImagesInFolders(),cp.uriDocFile,id_fold));
+                                }
+                            }
+                        }else {
+                            if(getListImagesInFolders().containsKey(id_fold)){
+                                getListImagesInFolders().get(id_fold).add(id_img);
+                            }else {
+
+                                if(cp.visible==View.VISIBLE) {
+                                    ArrayList<String> imgs = new ArrayList<>();
+                                    imgs.add(id_img);
+                                    getListImagesInFolders().put(id_fold, imgs);
+                                    getListFolds().put(id_fold,name_fold);
+                                    getListPerms().put(id_fold,cp.uriPerm);
+                                }
+                            }
+                        }
+                    }
+                }
+                emitter.onNext(getListImagesInFolders());
                 emitter.onComplete();
             }
         }).compose(new ThreadTransformers.InputOutput<>())
@@ -131,118 +124,7 @@ public class FragmentScanAllImages extends Fragment {
                         setListImagesInFolders(stringArrayListHashMap);
                     }
                 });
-    }
-    @SuppressLint("CheckResult")
-    private void scanFoldApi29(Cursor cursor){
 
-        definitionStorage();
-        if(getListImagesInFolders()==null) initListImagesInFolders();
-        else clearListImagesInFolders();
-
-       Observable.create(new ObservableOnSubscribe<HashMap<String, ArrayList<String>>>() {
-           @Override
-           public void subscribe(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) throws Exception {
-               final int col_path = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DATA);
-               final int col_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
-               final int col_mime = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE);
-               String etalon = "";
-               cursor.moveToFirst();
-               while (cursor.moveToNext()){
-                   final String mime = cursor.getString(col_mime);
-                   final String key = cursor.getString(col_path).split(cursor.getString(col_fold))[0]+cursor.getString(col_fold);
-                   if(mime.equals("image/png")||mime.equals("image/jpeg")||mime.equals("image/jpg")){
-
-                       ContentPermis cp = getContentPermis(key);
-                       if(cp.system.equals(ActionsContentPerms.SYS_DF)) {
-                           if(!getListImagesInFolders().containsKey(key)){
-
-                               getListPerms().put(key,cp.uriPerm);
-                               getIndexesStorage().put(key,cp.storage);
-                               getListFolds().put(key,cursor.getString(col_fold));
-                               if(cp.visible==View.VISIBLE)emitter.onNext(scanStorageAPI29(getListImagesInFolders(), cp, key));
-                           }
-                       } else if(cp.storage==0&&cp.uriPerm.equals(ActionsContentPerms.GRAND)){
-                           if(!getListImagesInFolders().containsKey(key)){
-
-                               getListPerms().put(key,cp.uriPerm);
-                               getIndexesStorage().put(key,cp.storage);
-                               getListFolds().put(key,cursor.getString(col_fold));
-                               if(cp.visible==View.VISIBLE)
-                               emitter.onNext(
-                                       scanFileAPI29(getListImagesInFolders(),key)
-                               );
-                           }
-                       } else {
-                           if(!getListImagesInFolders().containsKey(key)){
-
-                               getListPerms().put(key,cp.uriPerm);
-                               getIndexesStorage().put(key,cp.storage);
-                               getListFolds().put(key,cursor.getString(col_fold));
-                               if(cp.visible==View.VISIBLE){
-                                   putNonPermStorageFiles(cursor.getString(col_path),cursor.getString(col_fold),cp);
-                               }
-                           }else {
-                               getListImagesInFolders().get(key).add(Uri.parse(cursor.getString(col_path)).toString());
-                           }
-                       }
-                   }
-               }
-               emitter.onNext(getListImagesInFolders());
-               emitter.onComplete();
-           }
-       }).compose(new ThreadTransformers.Processor<>())
-               .subscribe(new Consumer<HashMap<String, ArrayList<String>>>() {
-                   @Override
-                   public void accept(HashMap<String, ArrayList<String>> stringArrayListHashMap) throws Exception {
-                       setListImagesInFolders(stringArrayListHashMap);
-                   }
-               });
-
-    }
-
-    private Cursor getCursorApi29(){
-        String[] projection = {
-                MediaStore.Images.Media.DISPLAY_NAME,
-                MediaStore.MediaColumns.DATA,
-                MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
-                MediaStore.Images.Media.MIME_TYPE};
-
-        Uri uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-
-        Cursor cursor = getContext().getContentResolver().query(uri, projection, null,
-                null, null);
-        return cursor;
-    }
-
-    private void putNonPermStorageFiles(String path, String fold, ContentPermis cp){
-        ArrayList<String>images = new ArrayList<>();
-        images.add(Uri.parse(path).toString());
-        getListImagesInFolders().put(cp.keyPath, images);
-        getListFolds().put(cp.keyPath,fold);
-        getIndexesStorage().put(cp.keyPath,cp.storage);
-    }
-
-    private HashMap<String, ArrayList<String>>scanFileAPI29(HashMap<String,ArrayList<String>>list, String key){
-
-        File[]files = new File(key).listFiles();
-        ArrayList<String>images = new ArrayList<>();
-        for (File f:files){
-            images.add(Uri.parse(f.getAbsolutePath()).toString());
-        }
-        list.put(key,images);
-
-        return list;
-    }
-
-    private HashMap<String,ArrayList<String>>scanStorageAPI29(HashMap<String,ArrayList<String>>list, ContentPermis cp, String key){
-        DocumentFile df = DocumentFile.fromTreeUri(getContext(),Uri.parse(cp.uriDocFile));
-        DocumentFile[]files = df.listFiles();
-        ArrayList<String>images = new ArrayList<>();
-        for(DocumentFile f:files){
-            images.add(f.getUri().toString());
-        }
-        list.put(key,images);
-        return list;
     }
 
     private HashMap<String,ArrayList<String>>scanFoldStorageAPI29(HashMap<String,ArrayList<String>>list,String udf,String key){
@@ -273,6 +155,111 @@ public class FragmentScanAllImages extends Fragment {
         }
     }
 
+    /*android 9 storage system*/
+    public void setSavingInStorageCollage(Uri uri, String report, String delimiter){
+        String[]split = report.split(delimiter);
+        Cursor cursor = getContext().getContentResolver().query(uri,projection(),null,null,null);
+        final int col_id_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
+
+        final int col_name_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+        cursor.moveToFirst();
+        final String id_fold = ""+cursor.getLong(col_id_fold);
+        final String name_fold = cursor.getString(col_name_fold);
+
+        addImgCollect(id_fold, uri.toString(),name_fold, split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD]);
+
+    }
+
+    /*android > 9 or storage*/
+    public void setSavingInStorageCollage(Uri uri){
+
+    }
+
+    /*android 9 file system*/
+    public void setSavingInFileCollage(Uri uri,String path,String key){
+
+        Cursor cursor = getContext().getContentResolver().query(uri,projection(),null,null,null);
+
+        final int col_id_img = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+        final int col_id_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
+        final int col_name_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+        cursor.moveToFirst();
+        final String id_img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cursor.getLong(col_id_img)).toString();;
+        final String id_fold = "" + cursor.getLong(col_id_fold);
+        final String nameFold = cursor.getString(col_name_fold);
+
+
+        ActionsContentPerms.create(getContext()).queryItemDB(
+                key,
+                ActionsContentPerms.GRAND,
+                ActionsContentPerms.ZHOPA,
+                ActionsContentPerms.SYS_FILE,
+                0,
+                View.VISIBLE);
+
+        getListPerms().put(id_fold,ActionsContentPerms.GRAND);
+        addImgCollect(id_fold,id_img,nameFold,ActionsContentPerms.GRAND);
+    }
+
+    @SuppressLint("CheckResult")
+    private void correctSavingFoldInStorage(String[]split){
+        Observable.create(new ObservableOnSubscribe<HashMap<String, ArrayList<String>>>() {
+            @Override
+            public void subscribe(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) throws Exception {
+                String udf = split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD];
+                String key = split[SavedKollagesFragmentDraw.INDEX_PATH_FOLD];
+                emitter.onNext(scanFoldStorageAPI29(getListImagesInFolders(),udf,key));
+                emitter.onComplete();
+            }
+        }).compose(new ThreadTransformers.InputOutput<>())
+                .subscribe(new Consumer<HashMap<String, ArrayList<String>>>() {
+                    @Override
+                    public void accept(HashMap<String, ArrayList<String>> stringArrayListHashMap) throws Exception {
+                        setListImagesInFolders(stringArrayListHashMap);
+                    }
+                });
+    }
+
+    private Cursor cursor(){
+        return getContext().getContentResolver().query(question(),projection(),null,null,sort());
+    }
+
+    private Cursor cursor(String nameImg){
+        return getContext().getContentResolver().query(question(),projection(),selectImg(),args(nameImg),null);
+    }
+
+    private Uri question(){
+        Uri uri = null;
+        if(App.checkVersion())uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+        else uri = MediaStore.Images.Media.getContentUri(
+                MediaStore.VOLUME_EXTERNAL);
+        return uri;
+    }
+
+    private String[]projection(){
+        return new String[]{
+                MediaStore.Images.Media._ID,
+                MediaStore.Images.Media.BUCKET_ID,
+                MediaStore.Images.Media.MIME_TYPE,
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
+    }
+
+    private String sort(){
+        return MediaStore.Images.Media.BUCKET_ID;
+    }
+
+    private String selectFold(){
+        return MediaStore.Images.Media.BUCKET_DISPLAY_NAME+" = ? ";
+    }
+
+    private String selectImg(){
+        return MediaStore.Images.Media.DISPLAY_NAME+" = ? ";
+    }
+
+    private String[]args(String name){
+        return new String[]{name};
+    }
+
 
     /*определяем тома в устройстве*/
     private void definitionStorage(){
@@ -283,29 +270,17 @@ public class FragmentScanAllImages extends Fragment {
             storage.add(files[i].getAbsolutePath().split("Android")[0]);
         }
     }
-//
-//    private void correctListFold(String[]split){
-//
-//    }
 
-       private void addImgCollect(String key, String path){
+    private void addImgCollect(String key, String img, String fold, String permis){
         if(getListImagesInFolders().containsKey(key)){
-            if(!getListImagesInFolders().get(key).contains(path))getListImagesInFolders().get(key).add(path);
+            if(!getListImagesInFolders().containsKey(key))getListImagesInFolders().get(key).add(img);
         } else {
             correctAdapterPostSave();
             ArrayList<String> imgs = new ArrayList<>();
-            imgs.add(path);
+            imgs.add(img);
             getListImagesInFolders().put(key, imgs);
-
-            String[]split = key.split("[/]");
-
-            getListFolds().put(key,split[split.length-1]);
-
-            for(int i=0;i<getNamesStorage().size();i++) {
-                if(key.contains(getNamesStorage().get(i))){
-                    getIndexesStorage().put(key, getNamesStorage().indexOf(getNamesStorage().get(i)));
-                }
-            }
+            getListFolds().put(key,fold);
+            getListPerms().put(key,permis);
         }
         setListImagesInFolders(getListImagesInFolders());
     }

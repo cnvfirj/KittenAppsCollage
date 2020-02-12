@@ -1,7 +1,9 @@
 package com.example.kittenappscollage.collect.adapters;
 
+import android.content.ContentUris;
 import android.content.Context;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -135,8 +137,10 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     public void onBindViewHolder(@NonNull ImgHolder holder, int position) {
 //        String s = getAll().get(getFolds()[indexKey]).get(getPositionInEnd(position));
 //        LYTE("add img "+s);
+        Uri uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,68699);
         Glide.with(getContext())
-                .load(getAll().get(getFolds()[indexKey]).get(getPositionInEnd(position)))
+                .load(uri)
+//                .load(getAll().get(getFolds()[indexKey]).get(getPositionInEnd(position)))
                 .into(holder.getImage());
     }
 

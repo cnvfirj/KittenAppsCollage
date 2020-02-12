@@ -133,16 +133,7 @@ public class ActionsContentPerms {
         if(uriPerm!=null)cp.uriPerm = uriPerm;
         if(uriDF!=null)cp.uriDocFile = uriDF;
         if(system!=null)cp.system = system;
-        if(storage==NON_LOC_STOR){
-            if(listStor!=null)
-            for(int i=0;i<listStor.size();i++){
-                if(key.contains(listStor.get(i))){
-                    cp.storage = i;
-                    break;
-                }
-            }
-        }else if(storage>=0) cp.storage = storage;
-
+        cp.storage = storage;
         if(visible== View.VISIBLE||visible==View.INVISIBLE)cp.visible = visible;
 
         if(insert)db.work().insert(cp);

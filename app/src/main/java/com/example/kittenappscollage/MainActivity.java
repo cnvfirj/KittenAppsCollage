@@ -71,9 +71,14 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     public void savedFile(boolean saved, String fold, String img, String name) {
         if(saved){
             if(App.checkVersion()) {
-                final File file = new File(img);
-                sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(file)));
-                mFragGal.setSavingInFileCollage(img, fold);
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
+                values.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
+                values.put(MediaStore.MediaColumns.DATA, img);
+                Uri uri = null;
+                if(Build.VERSION.SDK_INT<Build.VERSION_CODES.Q)uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                else uri = getContentResolver().insert(MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL), values);
+                mFragGal.setSavingInFileCollage(uri,img, fold);
             }
         }
     }
@@ -99,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                 values.put(MediaStore.MediaColumns.DATA, split[INDEX_PATH_IMG]);
                 Uri uri = null;
                 if(Build.VERSION.SDK_INT<Build.VERSION_CODES.Q)uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-                else uri = MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL);
+                else uri = getContentResolver().insert(MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL), values);
                 mFragGal.setSavingInStorageCollage(uri, report, delimiter);
             }
         }
