@@ -79,86 +79,58 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     @Override
     public void result(boolean done, String name) {
         if(done&&!name.isEmpty()) {
-            if (version()) renameFoldFile(name);
-            else renameFoldStorage(name);
+            final String perm = getListPerms().get(getKey());
+            if(perm==null||perm.equals(ActionsContentPerms.NON_PERM)){
+                Massages.SHOW_MASSAGE(getContext(),"Нет прав для переименования этой папки");
+                invisibleMenu();
+            }else if(perm.equals(ActionsContentPerms.GRAND)){
+                renameFoldFile(name, getKey());
+            }else {
+               renameFoldStorage(name, getKey());
+            }
         }
-    }
-
-    private void renameFoldFile(String name){
-
-           if(getKey().equals(RequestFolder.getFolderCollages(getContext()))){
-               renameFoldFileDevise(name);
-           }else if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)){
-               Massages.SHOW_MASSAGE(getContext(),"Нет прав для переименования этой папки");
-               invisibleMenu();
-           }else renameFoldFileDevise(name);
-
     }
 
     private void deleteFolder(){
+        final String perm = getListPerms().get(getKey());
+       if(perm==null||perm.equals(ActionsContentPerms.NON_PERM)){
+           Massages.SHOW_MASSAGE(getContext(),"Нет прав для удаления этой папки");
+           invisibleMenu();
+       }else if(perm.equals(ActionsContentPerms.GRAND)){
+           deletedFoldFile(getKey());
+       }else {
+           deletedFoldStorage(getKey());
+       }
 
-//        if(version()) {
-//            if (getIndexesStorage().get(getKey()) == 0) {
-//                deleteFoldDeviseFile(getKey());
-//            }else {
-//                /*delete in sd card*/
-//                deleteFoldStorage(getKey());
-//            }
-//        }else {
-//            /*при андроид 11*/
-//            invisibleMenu();
-//        }
-    }
-
-    private void deleteSelectedImg(int adapter){
-//        if(version()) {
-//            if (getIndexesStorage().get(getKey()) == 0) {
-//                applyDeleteSelectedFiles();
-//            }else {
-//                /*delete in sd card*/
-//                applyDeleteSelectedStorage();
-//            }
-//        }else {
-//            /*при андроид 11*/
-//            invisibleMenu();
-//        }
-    }
-
-    private void deleteFoldDeviseFile(String fold){
-//        if(fold.equals(RequestFolder.getFolderCollages(getContext()))){
-//            deletedFoldFile(fold);
-//        } else
-            if(getListPerms().get(fold).equals(ActionsContentPerms.GRAND)){
-            deletedFoldFile(fold);
-        }else {
-            Massages.SHOW_MASSAGE(getContext(),"Нет прав для удаления папки");
-            invisibleMenu();
-        }
     }
 
     private void copyFolder(){
         LYTE("FragmentGalleryAction copy folder - "+getKey());
-        if(getNamesStorage().size()>1){
-            copyFolderStorage(getKey());
-        }else {
-            Massages.SHOW_MASSAGE(getContext(), "Копировать папку с ее содержимым можно только при наличии карты SD");
-        }
+
     }
 
     private void shareSelectedImg(int adapter){
-        if(version()){
-            shareSelImagesFile();
-        }
+
+    }
+
+    private void deleteSelectedImg(int adapter){
+
     }
 
     protected boolean version(){
         return App.checkVersion();
     }
 
-    protected void copyFolderStorage(String fold){
+    protected void copyFolderInStorage(String key){
         /*копирование папки с карты сд на у-во или обратно
         * рассмотреть возможность это делать со съемным носителем*/
     }
+
+    protected void copyFolderInDevice(String key){
+
+    }
+
+
     protected void invisFolder(){
         /*делает невидимой папку в этом приложении
         * файловая система не имеет значение.
@@ -168,68 +140,35 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
         /*расшарить как файловой системы*/
     }
 
-    protected void renameFoldStorage(String name){
-       /*переименовать как Storage Assets Framework*/
-        if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)) {
-            Massages.SHOW_MASSAGE(getContext(), "Нет прав для переименования этой папки");
-            invisibleMenu();
-            return;
-        }
+    protected void renameFoldFile(String name, String key){
+
+
     }
 
+    protected void renameFoldStorage(String name, String key){
 
-    /*android 9 file system*/
-    protected void renameFoldFileDevise(String name){
-       /*переименовать как файл*/
-        if(!getKey().equals(RequestFolder.getFolderCollages(getContext()))) {
-            if (getListPerms().get(getKey()) == null || getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)) {
-                Massages.SHOW_MASSAGE(getContext(), "Нет прав для переименования этой папки");
-                invisibleMenu();
-                return;
-            }
-        }
     }
 
     /*android >= 9 file system*/
-    protected void applyDeleteSelectedFiles(){
+    protected void applyDeleteSelectedFile(){
        /*удалить выбранные изображения как Storage Assets Framework*/
-        if(!getKey().equals(RequestFolder.getFolderCollages(getContext()))) {
-            if (getListPerms().get(getKey()) == null || getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)) {
-                Massages.SHOW_MASSAGE(getContext(), "Нет прав для удаления файлов из этой папки");
-                invisibleMenu();
-                return;
-            }
-        }
+
     }
 
     protected void applyDeleteSelectedStorage(){
        /*удалить выбранные изображения как файлы*/
-        if(!getKey().equals(RequestFolder.getFolderCollages(getContext()))) {
-            if (getListPerms().get(getKey()) == null || getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)) {
-                Massages.SHOW_MASSAGE(getContext(), "Нет прав для удаления файлов из этой папки");
-                invisibleMenu();
-                return;
-            }
-        }
+
     }
 
     /*android > 9 file system*/
-    protected void deleteFoldStorage(String fold){
+    protected void deletedFoldStorage(String fold){
         /*удалить папку как Storage Assets Framework*/
-        if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)) {
-            Massages.SHOW_MASSAGE(getContext(), "Нет прав для удаления этой папки");
-            invisibleMenu();
-            return;
-        }
+
     }
 
     protected void deletedFoldFile(String fold){
         /*удалить выбранную папку как файл*/
-        if(getListPerms().get(getKey())==null||getListPerms().get(getKey()).equals(ActionsContentPerms.NON_PERM)) {
-            Massages.SHOW_MASSAGE(getContext(), "Нет прав для удаления этой папки");
-            invisibleMenu();
-            return;
-        }
+
     }
 
 

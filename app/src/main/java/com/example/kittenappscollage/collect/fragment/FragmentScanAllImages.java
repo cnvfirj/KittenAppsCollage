@@ -43,8 +43,6 @@ public class FragmentScanAllImages extends Fragment {
 
     private HashMap<String,String>listFolds;
 
-//    private HashMap<String, Integer>listStorages;
-
     private HashMap<String,String>listPerms;
 
     private ArrayList<String> storage;
@@ -77,7 +75,7 @@ public class FragmentScanAllImages extends Fragment {
         Observable.create(new ObservableOnSubscribe<HashMap<String, ArrayList<String>>>() {
             @Override
             public void subscribe(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) throws Exception {
-                cursor.moveToFirst();
+//                cursor.moveToFirst();
 
                 final int col_id_img = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
                 final int col_id_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
@@ -233,7 +231,7 @@ public class FragmentScanAllImages extends Fragment {
         return getContext().getContentResolver().query(question(),projection(),null,null,sort());
     }
 
-    private Uri question(){
+    protected Uri question(){
         Uri uri = null;
         if(App.checkVersion())uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         else uri = MediaStore.Images.Media.getContentUri(
@@ -253,17 +251,17 @@ public class FragmentScanAllImages extends Fragment {
         return MediaStore.Images.Media.BUCKET_ID;
     }
 
-    private String selectFold(){
-        return MediaStore.Images.Media.BUCKET_DISPLAY_NAME+" = ? ";
-    }
-
-    private String selectImg(){
-        return MediaStore.Images.Media.DISPLAY_NAME+" = ? ";
-    }
-
-    private String[]args(String name){
-        return new String[]{name};
-    }
+//    private String selectFold(){
+//        return MediaStore.Images.Media.BUCKET_DISPLAY_NAME+" = ? ";
+//    }
+//
+//    private String selectImg(){
+//        return MediaStore.Images.Media.DISPLAY_NAME+" = ? ";
+//    }
+//
+//    private String[]args(String name){
+//        return new String[]{name};
+//    }
 
 
     /*определяем тома в устройстве*/
@@ -276,7 +274,7 @@ public class FragmentScanAllImages extends Fragment {
         }
     }
 
-    private void addImgCollect(String key, String img, String fold, String permis){
+    protected void addImgCollect(String key, String img, String fold, String permis){
 
         if(getListImagesInFolders().containsKey(key)){
             LYTE("FragmentScanAllImages add do "+getListImagesInFolders().get(key).size());

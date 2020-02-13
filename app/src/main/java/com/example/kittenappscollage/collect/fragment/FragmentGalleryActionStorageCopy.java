@@ -8,8 +8,8 @@ import static com.example.kittenappscollage.helpers.Massages.LYTE;
 public class FragmentGalleryActionStorageCopy extends FragmentGalleryActionStorage {
 
     @Override
-    protected void copyFolderStorage(String fold) {
-        super.copyFolderStorage(fold);
+    protected void copyFolderInStorage(String fold) {
+        super.copyFolderInStorage(fold);
         if(getNamesStorage().size()>0){
             /*copy continued*/
             if(App.checkVersion())copyFoldAPI21(fold);

@@ -35,8 +35,8 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
 
 
     @Override
-    protected void renameFoldStorage(String name) {
-        super.renameFoldStorage(name);
+    protected void renameFoldStorage(String name,String key) {
+        super.renameFoldStorage(name,key);
         Uri treeUri = Uri.parse(getListPerms().get(getKey()));
         int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
         getContext().getContentResolver().takePersistableUriPermission(treeUri, takeFlags);
@@ -56,7 +56,7 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
             delSelectSteps(getKey(),(ArrayList<String>)getSelectFiles().clone());
 
         }else if(getSelectFiles().size()==all){
-            deleteFoldStorage(getKey());
+            deletedFoldStorage(getKey());
 
             setIndexAdapter(ROOT_ADAPTER);
             getGridLayoutManager().setSpanCount(2);
@@ -73,8 +73,8 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
     }
 
     @Override
-    protected void deleteFoldStorage(String fold) {
-        super.deleteFoldStorage(fold);
+    protected void deletedFoldStorage(String fold) {
+        super.deletedFoldStorage(fold);
         threadDelFold(fold);
         clearLists(fold);
         setListImagesInFolders(getListImagesInFolders());
