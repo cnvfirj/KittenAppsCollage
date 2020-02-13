@@ -16,7 +16,6 @@ import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentSelectedGallery extends FragmentSlideGallery {
 
-
     private ArrayList<String> selectFiles;
 
     private ArrayList<String>under;
@@ -71,7 +70,7 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                   under = getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]);
                   addPathFolder(pos);
                 }else {
-                   int index =  getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).size()-(pos+1);
+//                   int index =  getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).size()-(pos+1);
                   selectFiles.add(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
                 }
                 super.longClick(adapter, img, check, pos);
@@ -100,9 +99,7 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                 }
             }
         }
-
         return false;
-
     }
 
     private void addPathFolder(int pos){

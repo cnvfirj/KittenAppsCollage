@@ -148,15 +148,16 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
     @Override
     protected void invisibleMenu() {
         if(getIndexAdapter()==ROOT_ADAPTER){
+            getFoldAdapt().setModeSelected(false);
             slideExit(false);
             slideSel_1(false);
             slideSel_2(false);
-            getFoldAdapt().setModeSelected(false);
             getRecycler().setEnabled(true);
         }else {
             /*implement animation exit*/
-            selectExitMode.setSelected(false);
             getImgAdapt().setModeSelected(false);
+            selectExitMode.setSelected(false);
+
         }
         slideSel_3(false);
         slideSel_4(false);

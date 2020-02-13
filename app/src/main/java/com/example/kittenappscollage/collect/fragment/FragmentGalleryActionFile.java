@@ -1,48 +1,39 @@
 package com.example.kittenappscollage.collect.fragment;
 
-import android.content.ActivityNotFoundException;
-import android.content.ContentUris;
+
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.view.View;
-import android.webkit.MimeTypeMap;
-import androidx.core.content.FileProvider;
-import androidx.documentfile.provider.DocumentFile;
 
 import com.example.kittenappscollage.helpers.Massages;
-import com.example.kittenappscollage.helpers.RequestFolder;
 import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
-import com.example.kittenappscollage.helpers.db.aller.ContentPermis;
+import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.lang.reflect.Array;
-import java.nio.channels.FileChannel;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.HashMap;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
-import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
     @Override
     protected void renameFoldFile(String name,String key){
         super.renameFoldFile(name, key);
-        LYTE("FragmentGalleryActionFile rename "+key);
-        renameFold(name,key);
+        invisibleMenu();
+        threadRename(name,key);
 
     }
 
@@ -58,40 +49,89 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
     }
 
-
-
     protected void clearLists(String key){
-        getListPerms().remove(key);
-        getListImagesInFolders().remove(key);
-        getListFolds().remove(key);
+        if(getListImagesInFolders().containsKey(key)) {
+            getListImagesInFolders().remove(key);
+            getListPerms().remove(key);
+            getListFolds().remove(key);
+        }
     }
 
-    protected void removeImgInCollect(String key,String img){
-        getListImagesInFolders().get(key).remove(img);
+    @SuppressLint("CheckResult")
+    private void threadRename(String name, String key){
+        Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> renameFold(name,key, emitter)).compose(new ThreadTransformers.InputOutput<>())
+                .subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
     }
 
-    private void renameFold(String name, String key){
+    private void renameFold(String name, String key, ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         File fold = createNewFold(name,key);
         ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
         Cursor cursor = null;
-        for(String img:images){
+        for(int i=0;i<images.size();i++){
             try {
-                cursor = getContext().getContentResolver().query(Uri.parse(img),getPathAndNameImg(),null,null,null);
+                cursor = getContext().getContentResolver().query(Uri.parse(images.get(i)),getPathAndNameImg(),null,null,null);
                 cursor.moveToFirst();
                 final int col_name_img = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME);
                 final String image = fold.getAbsolutePath()+"/"+cursor.getString(col_name_img);
-                if(transfer(new File(image),getContext().getContentResolver().openInputStream(Uri.parse(img)))){
-                    Uri uri = report(image);
-                    getContext().getContentResolver().delete(Uri.parse(img),null,null);
+
+                if(transfer(new File(image),getContext().getContentResolver().openInputStream(Uri.parse(images.get(i))))){
+                    addImage(report(image));
+                    /*отслеживаем итератор*/
+                    if(i==images.size()-1) delImage(Uri.parse(images.get(i)),-5);
+                    else delImage(Uri.parse(images.get(i)),i);
+                    emitter.onNext(getListImagesInFolders());
                 }else {
                     Massages.SHOW_MASSAGE(getContext(),"Не удалось переместить "+cursor.getString(col_name_img));
                 }
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        emitter.onNext(getListImagesInFolders());
+        emitter.onComplete();
 
+    }
+
+    /*удаляем все изображения из галереи
+    * в последней итерации удаляем разрешение на редактирование*/
+    private void delImage(Uri uri, int i){
+        Cursor cursor  = getContext().getContentResolver().query(uri,getIdAndNameFold(),null,null,null);
+        cursor.moveToFirst();
+        final int col_id_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
+        final String id_fold = ""+cursor.getLong(col_id_fold);
+
+        if(i==0)clearLists(id_fold);
+        if(i<0)ActionsContentPerms.create(getContext()).deleteItemDB(id_fold);
+        getContext().getContentResolver().delete(uri,null,null);
+
+    }
+
+    /*добавляем изображение в галерею*/
+    private void addImage(Uri uri){
+        Cursor cursor  = getContext().getContentResolver().query(uri,getIdAndNameFold(),null,null,null);
+        cursor.moveToFirst();
+        final int col_id_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
+        final int col_name_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+        final String id_fold = ""+cursor.getLong(col_id_fold);
+        final String name_fold = cursor.getString(col_name_fold);
+
+        ActionsContentPerms.create(getContext()).queryItemDB(
+                id_fold,
+                ActionsContentPerms.GRAND,
+                ActionsContentPerms.ZHOPA,
+                ActionsContentPerms.SYS_FILE,
+                0,
+                View.VISIBLE);
+
+        if(getListImagesInFolders().containsKey(id_fold)){
+            getListImagesInFolders().get(id_fold).add(uri.toString());
+        }else {
+                ArrayList<String> imgs = new ArrayList<>();
+                imgs.add(uri.toString());
+                getListImagesInFolders().put(id_fold, imgs);
+                getListFolds().put(id_fold,name_fold);
+                getListPerms().put(id_fold,ActionsContentPerms.GRAND);
+        }
     }
 
     private Uri report(String img){
@@ -111,6 +151,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
         return getContext(). getContentResolver().insert(MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL), values);
     }
 
+    /*перенос инпут в файл*/
     private boolean transfer(File newImg, InputStream is) throws IOException {
             OutputStream os = new FileOutputStream(newImg);
             copyStream(is,os);
@@ -119,6 +160,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
             return newImg.exists();
     }
 
+    /*пишем из инпут в оутпут*/
     private  void copyStream(InputStream input, OutputStream output)
             throws IOException
     {
@@ -169,11 +211,6 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
     private String[] args(String name){
         return new String[]{name};
-    }
-
-    protected Uri reportMedia(ContentValues cv){
-        if(Build.VERSION.SDK_INT<Build.VERSION_CODES.Q)return getContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cv);
-        else return getContext().getContentResolver().insert(MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL), cv);
     }
 
 }

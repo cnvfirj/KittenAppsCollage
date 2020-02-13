@@ -93,6 +93,7 @@ public class FragmentScanAllImages extends Fragment {
                                 if(cp.visible==View.VISIBLE) {
                                     getListPerms().put(id_fold,cp.uriPerm);
                                     getListFolds().put(id_fold,name_fold);
+//                                    scanFoldStorageAPI29(getListImagesInFolders(),cp.uriDocFile,id_fold);
                                     emitter.onNext(scanFoldStorageAPI29(getListImagesInFolders(),cp.uriDocFile,id_fold));
                                 }
                             }
@@ -177,11 +178,6 @@ public class FragmentScanAllImages extends Fragment {
                 split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD]);
     }
 
-    /*android > 9 or storage*/
-    public void setSavingInStorageCollage(Uri uri){
-
-    }
-
     /*android 9 file system*/
     public void setSavingInFileCollage(Uri uri,String pathImg,String pathFold){
 
@@ -251,19 +247,6 @@ public class FragmentScanAllImages extends Fragment {
         return MediaStore.Images.Media.BUCKET_ID;
     }
 
-//    private String selectFold(){
-//        return MediaStore.Images.Media.BUCKET_DISPLAY_NAME+" = ? ";
-//    }
-//
-//    private String selectImg(){
-//        return MediaStore.Images.Media.DISPLAY_NAME+" = ? ";
-//    }
-//
-//    private String[]args(String name){
-//        return new String[]{name};
-//    }
-
-
     /*определяем тома в устройстве*/
     private void definitionStorage(){
 
@@ -277,11 +260,7 @@ public class FragmentScanAllImages extends Fragment {
     protected void addImgCollect(String key, String img, String fold, String permis){
 
         if(getListImagesInFolders().containsKey(key)){
-            LYTE("FragmentScanAllImages add do "+getListImagesInFolders().get(key).size());
-
             getListImagesInFolders().get(key).add(img);
-
-            LYTE("FragmentScanAllImages add while "+getListImagesInFolders().get(key).size());
         } else {
             correctAdapterPostSave();
             ArrayList<String> imgs = new ArrayList<>();
@@ -321,14 +300,12 @@ public class FragmentScanAllImages extends Fragment {
     protected void clearListImagesInFolders(){
         listImagesToFolder.clear();
         listFolds.clear();
-//        listStorages.clear();
         listPerms.clear();
     }
 
     protected void initListImagesInFolders(){
         listImagesToFolder = new HashMap<>();
         listFolds = new HashMap<>();
-//        listStorages = new HashMap<>();
         listPerms = new HashMap<>();
 
     }

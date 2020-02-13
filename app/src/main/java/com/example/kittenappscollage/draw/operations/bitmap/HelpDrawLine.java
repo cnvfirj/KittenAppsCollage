@@ -93,7 +93,9 @@ public class HelpDrawLine extends HelperSershPoints {
     }
 
     private float ounCirc(int[] p, float r){
-        return (float)Math.sqrt(p[X]*p[X]+p[Y]*p[Y])/r;
+        float f = (float)Math.sqrt(p[X]*p[X]+p[Y]*p[Y])/r;
+
+        return f;
     }
 
     private int[] vector(int[] one, int[] two){
