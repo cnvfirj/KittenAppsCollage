@@ -127,17 +127,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
                 View.VISIBLE);
 
         addImgCollect(id_fold,uri.toString(),name_fold,ActionsContentPerms.GRAND,mod_img);
-//        if(getListImagesInFolders().containsKey(id_fold)){
-//            getListImagesInFolders().get(id_fold).add(uri.toString());
-//            getListMutable().put(id_fold,mod_img);
-//        }else {
-//                ArrayList<String> imgs = new ArrayList<>();
-//                imgs.add(uri.toString());
-//                getListImagesInFolders().put(id_fold, imgs);
-//                getListFolds().put(id_fold,name_fold);
-//                getListPerms().put(id_fold,ActionsContentPerms.GRAND);
-//                getListMutable().put(id_fold,mod_img);
-//        }
+
     }
 
     private Uri report(String img){
