@@ -36,7 +36,7 @@ public class LockFoldAdapter extends LoadFoldAdapt {
                     holder.getLock().setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_item_lock,null));
                 }
             }
-//        }
+
         super.onBindViewHolder(holder, position);
     }
 }

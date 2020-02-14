@@ -46,17 +46,14 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
         return this;
     }
 
-    public ListenLoadImgAdapter setAll(HashMap<String, ArrayList<String>> all){
+    public ListenLoadImgAdapter setAll(HashMap<String, ArrayList<String>> all,String[] folds){
         LYTE("ListenLoadImgAdapter set All");
         this.all = all;
-        folds = new String[all.size()];
-        all.keySet().toArray(folds);
-//        final long data[] = new long[names.length];
-//        for (int i=0;i<names.length;i++){
-//            data[i] = new File(names[i]).lastModified();
-//        }
-//        sort(data,names);
-//        resetCheckeds();
+       if(folds==null) {
+           this.folds = new String[all.size()];
+           all.keySet().toArray(this.folds);
+       }else this.folds = folds;
+
         notifyDataSetChanged();
         return this;
     }

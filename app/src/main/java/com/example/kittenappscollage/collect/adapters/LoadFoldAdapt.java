@@ -34,9 +34,9 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
     }
 
     @Override
-    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds) {
+    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds, HashMap<String,Long>mutableFolds) {
         resetChecks(all.size());
-        return super.setAll(all,namesFolds);
+        return super.setAll(all,namesFolds,mutableFolds);
     }
 
     public void setParams(int width){

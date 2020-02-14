@@ -38,8 +38,6 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     public static final int REQUEST_WRITE_ROOT = 94;
 
-
-
     private RecyclerView recycler;
 
     private LockFoldAdapter foldAdapt;
@@ -123,8 +121,8 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         super.setListImagesInFolders(list);
         invisibleMenu();
         foldAdapt.setPerms(getListPerms());
-        foldAdapt.setAll(getListImagesInFolders(), getListFolds()).setListen(this);
-        imgAdapt.setAll(getListImagesInFolders()).setListen(this);
+        foldAdapt.setAll(getListImagesInFolders(), getListFolds(),getListMutable()).setListen(this);
+        imgAdapt.setAll(getListImagesInFolders(),foldAdapt.sortKeys()).setListen(this);
     }
 
     @Override

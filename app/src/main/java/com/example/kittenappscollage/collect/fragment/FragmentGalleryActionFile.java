@@ -54,6 +54,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
             getListImagesInFolders().remove(key);
             getListPerms().remove(key);
             getListFolds().remove(key);
+            getListMutable().remove(key);
         }
     }
 
@@ -79,6 +80,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
                     /*отслеживаем итератор*/
                     if(i==images.size()-1) delImage(Uri.parse(images.get(i)),-5);
                     else delImage(Uri.parse(images.get(i)),i);
+
                     emitter.onNext(getListImagesInFolders());
                 }else {
                     Massages.SHOW_MASSAGE(getContext(),"Не удалось переместить "+cursor.getString(col_name_img));
@@ -112,9 +114,10 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
         cursor.moveToFirst();
         final int col_id_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
         final int col_name_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+        final int col_mod_img = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED);
         final String id_fold = ""+cursor.getLong(col_id_fold);
         final String name_fold = cursor.getString(col_name_fold);
-
+        final long mod_img = cursor.getLong(col_mod_img);
         ActionsContentPerms.create(getContext()).queryItemDB(
                 id_fold,
                 ActionsContentPerms.GRAND,
@@ -123,15 +126,18 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
                 0,
                 View.VISIBLE);
 
-        if(getListImagesInFolders().containsKey(id_fold)){
-            getListImagesInFolders().get(id_fold).add(uri.toString());
-        }else {
-                ArrayList<String> imgs = new ArrayList<>();
-                imgs.add(uri.toString());
-                getListImagesInFolders().put(id_fold, imgs);
-                getListFolds().put(id_fold,name_fold);
-                getListPerms().put(id_fold,ActionsContentPerms.GRAND);
-        }
+        addImgCollect(id_fold,uri.toString(),name_fold,ActionsContentPerms.GRAND,mod_img);
+//        if(getListImagesInFolders().containsKey(id_fold)){
+//            getListImagesInFolders().get(id_fold).add(uri.toString());
+//            getListMutable().put(id_fold,mod_img);
+//        }else {
+//                ArrayList<String> imgs = new ArrayList<>();
+//                imgs.add(uri.toString());
+//                getListImagesInFolders().put(id_fold, imgs);
+//                getListFolds().put(id_fold,name_fold);
+//                getListPerms().put(id_fold,ActionsContentPerms.GRAND);
+//                getListMutable().put(id_fold,mod_img);
+//        }
     }
 
     private Uri report(String img){
@@ -201,7 +207,8 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
     private String[] getIdAndNameFold(){
         return new String[]{
                 MediaStore.Images.Media.BUCKET_ID,
-                MediaStore.Images.Media.BUCKET_DISPLAY_NAME
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
+                MediaStore.Images.Media.DATE_MODIFIED
         };
     }
 

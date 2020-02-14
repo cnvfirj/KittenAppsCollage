@@ -45,6 +45,8 @@ public class FragmentScanAllImages extends Fragment {
 
     private HashMap<String,String>listPerms;
 
+    private HashMap<String,Long>listMutable;
+
     private ArrayList<String> storage;
 
     private boolean blockScan;
@@ -75,25 +77,27 @@ public class FragmentScanAllImages extends Fragment {
         Observable.create(new ObservableOnSubscribe<HashMap<String, ArrayList<String>>>() {
             @Override
             public void subscribe(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) throws Exception {
-//                cursor.moveToFirst();
 
                 final int col_id_img = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
                 final int col_id_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
                 final int col_name_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
                 final int col_mime = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE);
+                final int col_date_mod = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED);
+
                 while (cursor.moveToNext()) {
                     final String mime = cursor.getString(col_mime);
                     if (mime.equals("image/png") || mime.equals("image/jpg") || mime.equals("image/jpeg")) {
                         final String id_img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cursor.getLong(col_id_img)).toString();
                         final String id_fold = ""+cursor.getLong(col_id_fold);
                         final String name_fold = cursor.getString(col_name_fold);
+                        final long date_mod = cursor.getLong(col_date_mod);
+                        addDateMod(id_fold,date_mod);
                         ContentPermis cp = getContentPermis(id_fold);
                         if(cp.system!=null&&cp.system.equals(ActionsContentPerms.SYS_DF)){
                             if(!getListImagesInFolders().containsKey(id_fold)){
                                 if(cp.visible==View.VISIBLE) {
                                     getListPerms().put(id_fold,cp.uriPerm);
                                     getListFolds().put(id_fold,name_fold);
-//                                    scanFoldStorageAPI29(getListImagesInFolders(),cp.uriDocFile,id_fold);
                                     emitter.onNext(scanFoldStorageAPI29(getListImagesInFolders(),cp.uriDocFile,id_fold));
                                 }
                             }
@@ -157,11 +161,12 @@ public class FragmentScanAllImages extends Fragment {
         String[]split = report.split(delimiter);
         Cursor cursor = getContext().getContentResolver().query(uri,projection(),null,null,null);
         final int col_id_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
-
         final int col_name_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+        final int col_date_mod = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED);
         cursor.moveToFirst();
         final String id_fold = ""+cursor.getLong(col_id_fold);
         final String name_fold = cursor.getString(col_name_fold);
+        final long date_mod = cursor.getLong(col_date_mod);
 
         ActionsContentPerms.create(getContext().getApplicationContext()).queryItemDB(
                 id_fold,
@@ -175,7 +180,9 @@ public class FragmentScanAllImages extends Fragment {
                 id_fold,
                 split[SavedKollagesFragmentDraw.INDEX_URI_DF_IMG],
                 name_fold,
-                split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD]);
+                split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD],
+                date_mod);
+        setListImagesInFolders(getListImagesInFolders());
     }
 
     /*android 9 file system*/
@@ -185,9 +192,11 @@ public class FragmentScanAllImages extends Fragment {
 
         final int col_id_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
         final int col_name_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
+        final int col_date_mod = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED);
         cursor.moveToFirst();
         final String id_fold = "" + cursor.getLong(col_id_fold);
         final String nameFold = cursor.getString(col_name_fold);
+        final long date_mod = cursor.getLong(col_date_mod);
 
         ActionsContentPerms.create(getContext()).queryItemDB(
                 id_fold,
@@ -201,8 +210,11 @@ public class FragmentScanAllImages extends Fragment {
                 id_fold,
                 uri.toString(),
                 nameFold,
-                ActionsContentPerms.GRAND);
+                ActionsContentPerms.GRAND,
+                date_mod);
+        setListImagesInFolders(getListImagesInFolders());
     }
+
 
 //    @SuppressLint("CheckResult")
 //    private void correctSavingFoldInStorage(String[]split){
@@ -240,7 +252,8 @@ public class FragmentScanAllImages extends Fragment {
                 MediaStore.Images.Media._ID,
                 MediaStore.Images.Media.BUCKET_ID,
                 MediaStore.Images.Media.MIME_TYPE,
-                MediaStore.Images.Media.BUCKET_DISPLAY_NAME};
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
+                MediaStore.Images.Media.DATE_MODIFIED};
     }
 
     private String sort(){
@@ -257,10 +270,20 @@ public class FragmentScanAllImages extends Fragment {
         }
     }
 
-    protected void addImgCollect(String key, String img, String fold, String permis){
+    protected void addDateMod(String key, long date){
+        if(getListMutable().containsKey(key)){
+            long d = getListMutable().get(key);
+            if(date>d)getListMutable().put(key,d);
+        }else {
+            getListMutable().put(key,date);
+        }
+    }
 
+    protected void addImgCollect(String key, String img, String fold, String permis,long date){
+        addDateMod(key,date);
         if(getListImagesInFolders().containsKey(key)){
             getListImagesInFolders().get(key).add(img);
+            getListMutable().put(key,date);
         } else {
             correctAdapterPostSave();
             ArrayList<String> imgs = new ArrayList<>();
@@ -268,8 +291,9 @@ public class FragmentScanAllImages extends Fragment {
             getListImagesInFolders().put(key, imgs);
             getListFolds().put(key,fold);
             getListPerms().put(key,permis);
+            getListMutable().put(key,date);
         }
-        setListImagesInFolders(getListImagesInFolders());
+//        setListImagesInFolders(getListImagesInFolders());
     }
     protected void correctAdapterPostSave(){
         /*если в момент сохранения окрыт подкаталог галереи,
@@ -279,6 +303,10 @@ public class FragmentScanAllImages extends Fragment {
 
     protected void setListImagesInFolders(HashMap<String,ArrayList<String>> list){
          listImagesToFolder = list;
+    }
+
+    public HashMap<String, Long> getListMutable() {
+        return listMutable;
     }
 
     protected ArrayList<String>getNamesStorage(){
@@ -301,12 +329,14 @@ public class FragmentScanAllImages extends Fragment {
         listImagesToFolder.clear();
         listFolds.clear();
         listPerms.clear();
+        listMutable.clear();
     }
 
     protected void initListImagesInFolders(){
         listImagesToFolder = new HashMap<>();
         listFolds = new HashMap<>();
         listPerms = new HashMap<>();
+        listMutable = new HashMap<>();
 
     }
 

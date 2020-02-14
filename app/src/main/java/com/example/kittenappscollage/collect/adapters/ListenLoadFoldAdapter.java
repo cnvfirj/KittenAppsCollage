@@ -19,8 +19,12 @@ import com.example.kittenappscollage.collect.fragment.FragmentScanAllImages;
 import java.io.File;
 import java.io.Serializable;
 import java.net.URI;
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Set;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
@@ -31,6 +35,8 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     private HashMap<String, ArrayList<String>> all;
 
     private HashMap<String,String>namesFolds;
+
+    private HashMap<String,Long>mutableFolds;
 
     private String[] folds;
 
@@ -47,17 +53,23 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         return this;
     }
 
-    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds) {
+    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds,HashMap<String,Long>mutable) {
         this.all = all;
         this.namesFolds = namesFolds;
-        folds = new String[all.size()];
-        all.keySet().toArray(folds);
+        this.mutableFolds = mutable;
 
+        folds = mutable.keySet().toArray(new String[mutable.keySet().size()]);
+        Long[]val = mutable.values().toArray(new Long[mutable.values().size()]);
+        sort(val,folds);
         notifyDataSetChanged();
         return this;
     }
 
-    private void sort(long[]data,String[]names){
+    public String[]sortKeys(){
+        return folds;
+    }
+
+    private void sort(Long[]data,String[]names){
         for(int i = data.length-1 ; i > 0 ; i--){
             for(int j = 0 ; j < i ; j++){
 
