@@ -24,15 +24,18 @@ import java.util.HashMap;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
     @Override
     protected void renameFoldFile(String name,String key){
         super.renameFoldFile(name, key);
-        invisibleMenu();
+//        invisibleMenu();
         threadRename(name,key);
 
     }
@@ -46,7 +49,8 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
     @Override
     protected void deletedFoldFile(String fold){
         super.deletedFoldFile(fold);
-
+//        invisibleMenu();
+        threadDelete(fold);
     }
 
     protected void clearLists(String key){
@@ -61,7 +65,30 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
     @SuppressLint("CheckResult")
     private void threadRename(String name, String key){
         Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> renameFold(name,key, emitter)).compose(new ThreadTransformers.InputOutput<>())
+                .doOnComplete(() -> Massages.SHOW_MASSAGE(getContext(),"Папка переименована"))
                 .subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
+    }
+
+    @SuppressLint("CheckResult")
+    private void threadDelete(String key){
+        Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> deleteFold(key,emitter)).compose(new ThreadTransformers.InputOutput<>())
+                .doOnComplete(() -> Massages.SHOW_MASSAGE(getContext(),"Папка удалена"))
+                .subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
+    }
+
+
+    private void deleteFold(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+        ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
+        for (int i=0;i<images.size();i++){
+//            if(i>0) {
+                if (i == images.size() - 1) delImage(Uri.parse(images.get(i)), -5);
+                else delImage(Uri.parse(images.get(i)), i);
+//            }else delImage(Uri.parse(images.get(i)), 1);
+            emitter.onNext(getListImagesInFolders());
+        }
+        clearLists(key);
+        emitter.onNext(getListImagesInFolders());
+        emitter.onComplete();
     }
 
     private void renameFold(String name, String key, ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
@@ -82,13 +109,12 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
                     else delImage(Uri.parse(images.get(i)),i);
 
                     emitter.onNext(getListImagesInFolders());
-                }else {
-                    Massages.SHOW_MASSAGE(getContext(),"Не удалось переместить "+cursor.getString(col_name_img));
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        clearLists(key);
         emitter.onNext(getListImagesInFolders());
         emitter.onComplete();
 
@@ -101,11 +127,16 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
         cursor.moveToFirst();
         final int col_id_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
         final String id_fold = ""+cursor.getLong(col_id_fold);
-
         if(i==0)clearLists(id_fold);
-        if(i<0)ActionsContentPerms.create(getContext()).deleteItemDB(id_fold);
+        if(i<0){
+            cursor = getContext().getContentResolver().query(uri,getPathAndNameImg(),null,null,null);
+            cursor.moveToFirst();
+            final int col_data = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            File data = new File(cursor.getString(col_data));
+            data.getParentFile().delete();
+            ActionsContentPerms.create(getContext()).deleteItemDB(id_fold);
+        }
         getContext().getContentResolver().delete(uri,null,null);
-
     }
 
     /*добавляем изображение в галерею*/
@@ -127,7 +158,6 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
                 View.VISIBLE);
 
         addImgCollect(id_fold,uri.toString(),name_fold,ActionsContentPerms.GRAND,mod_img);
-
     }
 
     private Uri report(String img){

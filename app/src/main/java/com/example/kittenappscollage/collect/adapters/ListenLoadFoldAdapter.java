@@ -57,7 +57,9 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         this.all = all;
         this.namesFolds = namesFolds;
         this.mutableFolds = mutable;
-
+//        for(String name:namesFolds.values()){
+//            LYTE("name "+name);
+//        }
         folds = mutable.keySet().toArray(new String[mutable.keySet().size()]);
         Long[]val = mutable.values().toArray(new Long[mutable.values().size()]);
         sort(val,folds);
@@ -131,17 +133,19 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
-        int index = getAll().get(getFolds()[position]).size();
-        Uri uri = Uri.parse(getAll().get(getFolds()[position]).get(index - 1));
-        if(index>0) {
-            Glide.with(getContext())
-                    .load(uri)
-//                    .load(getAll().get(getFolds()[position]).get(index - 1))
-                    .into(holder.getImage());
-        }
+//        LYTE("positions "+getAll().size()+" }}} pos "+getNamesFolds().get(getFolds()[position]));
+
+            final int index = getAll().get(sortKeys()[position]).size();
+            final Uri uri = Uri.parse(getAll().get(sortKeys()[position]).get(index - 1));
+            if (index > 0) {
+                Glide.with(getContext())
+                        .load(uri)
+                        .into(holder.getImage());
+            }
 
             holder.getName().setText(getNamesFolds().get(getFolds()[position]));
-        holder.getCol().setText(Integer.toString(getAll().get(getFolds()[position]).size()));
+            holder.getCol().setText(Integer.toString(getAll().get(getFolds()[position]).size()));
+        
     }
 
     @Override
@@ -157,6 +161,9 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         return folds;
     }
 
+    private boolean check(int pos){
+        return sortKeys()[pos]!=null&&getAll().get(sortKeys()[pos])!=null;
+    }
 
     protected class FoldHolder extends CollectHolder{
 

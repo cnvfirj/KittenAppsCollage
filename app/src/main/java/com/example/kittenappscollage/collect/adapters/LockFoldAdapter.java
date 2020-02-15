@@ -28,7 +28,7 @@ public class LockFoldAdapter extends LoadFoldAdapt {
     @Override
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
 
-            if(perms!=null){
+            if(perms!=null&&position<getFolds().length){
                 String p = perms.get(getFolds()[position]);
                 if(p!=null&&!p.equals(ActionsContentPerms.NON_PERM)){
                     holder.getLock().setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_item_unlok,null));
