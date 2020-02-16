@@ -177,42 +177,42 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
 
     protected void slideExit(boolean s){
         if(s){
-            selectExitMode.animate().translationY(0).setDuration(500).start();
+            selectExitMode.animate().translationY(0).setDuration(300).start();
         }else {
-            selectExitMode.animate().translationY(-slide).setDuration(500).start();
+            selectExitMode.animate().translationY(-slide).setDuration(300).start();
         }
     }
 
     protected void slideSel_1(boolean s){
         if(s){
-            selected_1.animate().translationY(0).setDuration(500).start();
+            selected_1.animate().translationY(0).setDuration(300).start();
         }else {
-            selected_1.animate().translationY(-slide).setDuration(500).start();
+            selected_1.animate().translationY(-slide).setDuration(300).start();
         }
     }
 
     protected void slideSel_2(boolean s){
         if(s){
-            selected_2.animate().translationY(0).setDuration(500).start();
+            selected_2.animate().translationY(0).setDuration(300).start();
         }else {
-            selected_2.animate().translationY(-slide).setDuration(500).start();
+            selected_2.animate().translationY(-slide).setDuration(300).start();
         }
     }
 
     protected void slideSel_3(boolean s){
         if(s){
-            selected_3.animate().translationY(0).setDuration(500).start();
+            selected_3.animate().translationY(0).setDuration(300).start();
         }else {
-            selected_3.animate().translationY(-slide).setDuration(500).start();
+            selected_3.animate().translationY(-slide).setDuration(300).start();
         }
     }
 
 
 protected void slideSel_4(boolean s){
         if(s){
-            selected_4.animate().translationY(0).setDuration(500).start();
+            selected_4.animate().translationY(0).setDuration(300).start();
         }else {
-            selected_4.animate().translationY(-slide).setDuration(500).start();
+            selected_4.animate().translationY(-slide).setDuration(300).start();
         }
     }
 
@@ -234,12 +234,12 @@ protected void slideSel_4(boolean s){
     }
 
     protected void hideMenuInAction(){
-        selected_1.animate().translationY(-slide).setDuration(500).start();
-        selected_2.animate().translationY(-slide).setDuration(500).start();
-        selected_3.animate().translationY(-slide).setDuration(500).start();
-        selected_4.animate().translationY(-slide).setDuration(500).start();
+        selected_1.animate().translationY(-slide).setDuration(300).start();
+        selected_2.animate().translationY(-slide).setDuration(300).start();
+        selected_3.animate().translationY(-slide).setDuration(300).start();
+        selected_4.animate().translationY(-slide).setDuration(300).start();
         if(getIndexAdapter()!=ROOT_ADAPTER) {
-            selectExitMode.animate().translationY(-slide).setDuration(500).start();
+            selectExitMode.animate().translationY(-slide).setDuration(300).start();
         }else {
             selectExitMode.setSelected(false);
         }

@@ -114,7 +114,15 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     }
 
     private void deleteSelectedImg(int adapter){
-
+        final String perm = getListPerms().get(getKey());
+        if(perm==null||perm.equals(ActionsContentPerms.NON_PERM)){
+            Massages.SHOW_MASSAGE(getContext(),"Нет прав для редактирования этойпапки");
+            invisibleMenu();
+        }else if(perm.equals(ActionsContentPerms.GRAND)){
+            applyDeleteSelectedFile();
+        }else {
+            applyDeleteSelectedStorage();
+        }
     }
 
     protected boolean version(){

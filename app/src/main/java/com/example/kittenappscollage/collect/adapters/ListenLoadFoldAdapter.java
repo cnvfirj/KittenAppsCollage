@@ -54,16 +54,17 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     }
 
     public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds,HashMap<String,Long>mutable) {
+//        final int old = this.all.size();
         this.all = all;
         this.namesFolds = namesFolds;
         this.mutableFolds = mutable;
-//        for(String name:namesFolds.values()){
-//            LYTE("name "+name);
-//        }
         folds = mutable.keySet().toArray(new String[mutable.keySet().size()]);
         Long[]val = mutable.values().toArray(new Long[mutable.values().size()]);
         sort(val,folds);
         notifyDataSetChanged();
+//        notifyItemRangeRemoved(0, old);
+//        final int young = this.all.size();
+//        notifyItemRangeInserted(0, young);
         return this;
     }
 
@@ -133,8 +134,7 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
-//        LYTE("positions "+getAll().size()+" }}} pos "+getNamesFolds().get(getFolds()[position]));
-
+        if(getAll().get(sortKeys()[position])!=null) {
             final int index = getAll().get(sortKeys()[position]).size();
             final Uri uri = Uri.parse(getAll().get(sortKeys()[position]).get(index - 1));
             if (index > 0) {
@@ -145,6 +145,7 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
 
             holder.getName().setText(getNamesFolds().get(getFolds()[position]));
             holder.getCol().setText(Integer.toString(getAll().get(getFolds()[position]).size()));
+        }
         
     }
 

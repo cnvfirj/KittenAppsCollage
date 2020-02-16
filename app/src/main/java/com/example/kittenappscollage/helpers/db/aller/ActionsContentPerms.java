@@ -102,7 +102,6 @@ public class ActionsContentPerms {
         if(cp!=null){
             db.work().delete(cp);
         }
-        LYTE("ActionsContentPerms delete - "+key);
         return true;
     }
 

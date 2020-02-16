@@ -28,8 +28,11 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
 
     @Override
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
-         if(getArrChecks()!=null&&modeSelected)holder.getCheck().setVisibility(getArrChecks()[position]?View.VISIBLE:View.INVISIBLE);
-         else holder.getCheck().setVisibility(View.INVISIBLE);
+        if(position<getArrChecks().length) {
+            if (getArrChecks() != null && modeSelected)
+                holder.getCheck().setVisibility(getArrChecks()[position] ? View.VISIBLE : View.INVISIBLE);
+            else holder.getCheck().setVisibility(View.INVISIBLE);
+        }
          super.onBindViewHolder(holder, position);
     }
 
@@ -66,7 +69,6 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
                 resetCheckeds();
                 check.setVisibility(View.VISIBLE);
                 getArrChecks()[pos]=true;
-                LYTE("ListenLoadFoldAdapter click ");
                 notifyDataSetChanged();
             }
         }

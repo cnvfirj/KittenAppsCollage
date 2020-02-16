@@ -40,12 +40,12 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                         selectFiles.clear();
                         under = getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]);
                         addPathFolder(pos);
+                        setSelectItemRootAdapter(pos);
                     } else {
                         invisibleMenu();
                         getFoldAdapt().setModeSelected(false);
                     }
             } else {
-                int index =  getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).size()-(pos+1);
                     if (selectFiles.contains(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos))) {
                         selectFiles.remove(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
                         if (selectFiles.size() == 0) {
@@ -69,8 +69,8 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                 if(getIndexAdapter()== ROOT_ADAPTER){
                   under = getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]);
                   addPathFolder(pos);
+                  setSelectItemRootAdapter(pos);
                 }else {
-//                   int index =  getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).size()-(pos+1);
                   selectFiles.add(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
                 }
                 super.longClick(adapter, img, check, pos);

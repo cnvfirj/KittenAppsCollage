@@ -1,6 +1,7 @@
 package com.example.kittenappscollage.collect.adapters;
 
 import android.content.Context;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 
@@ -16,17 +17,33 @@ public class LockFoldAdapter extends LoadFoldAdapt {
 
     private HashMap<String,String>perms;
 
+    private HashMap<String, Boolean>progress;
+
     public LockFoldAdapter(Context context) {
         super(context);
     }
 
     public void setPerms(HashMap<String,String>perms){
         this.perms = perms;
-        LYTE("LockFoldAdapter set perms - "+perms.size());
+    }
+
+    public void correctProgress(String key, boolean vis){
+//        if(progress==null)progress = new HashMap<>();
+//        progress.put(key, vis);
+//        LYTE("correct "+vis);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
+//
+//        if(progress!=null&&progress.containsKey(getFolds()[position])){
+//            boolean b = progress.get(getFolds()[position]);
+//            if(b)holder.getProgress().setVisibility(View.VISIBLE);
+//            else holder.getProgress().setVisibility(View.INVISIBLE);
+//        }else {
+//            LYTE("correct progress invis");
+//            holder.getProgress().setVisibility(View.INVISIBLE);
+//        }
 
             if(perms!=null&&position<getFolds().length){
                 String p = perms.get(getFolds()[position]);

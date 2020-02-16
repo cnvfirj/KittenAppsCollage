@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.kittenappscollage.R;
+import com.example.kittenappscollage.collect.ExLayoutManager;
 import com.example.kittenappscollage.collect.adapters.ListenAdapter;
 //import com.example.kittenappscollage.collect.adapters.LoadFoldAdapt;
 import com.example.kittenappscollage.collect.adapters.LoadImgAdapt;
@@ -44,9 +45,11 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     private LoadImgAdapt imgAdapt;
 
-    private GridLayoutManager gridLayoutManager;
+    private ExLayoutManager gridLayoutManager;
 
-    private int indexAdapter;
+    private int indexClickAdapter;
+
+    private int indexLongClickAdapter;
 
     private String key;
 
@@ -54,7 +57,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         initListImagesInFolders();
-        indexAdapter = ROOT_ADAPTER;
+        indexClickAdapter = ROOT_ADAPTER;
         foldAdapt = new LockFoldAdapter(getContext());
         imgAdapt = new LoadImgAdapt(getContext());
         foldAdapt.setParams(getContext().getResources().getDisplayMetrics().widthPixels);
@@ -72,7 +75,6 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     @Override
     public void onResume() {
         super.onResume();
-
         stateReadStorage(AllPermissions.create()
                 .activity(getActivity())
                 .reqSingle(AllPermissions.STORAGE).isStorage());
@@ -109,7 +111,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     }
 
     private void init(View v){
-        gridLayoutManager = new GridLayoutManager(getContext(),2);
+        gridLayoutManager = new ExLayoutManager(getContext(),2);
         recycler = v.findViewById(R.id.gallery_list);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(gridLayoutManager);
@@ -150,8 +152,8 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         super.correctAdapterPostSave();
         LYTE("FragmentScanAllImages correct adapter");
         if(getIndexAdapter()!=ROOT_ADAPTER) {
-            indexAdapter++;
-            imgAdapt.setIndexKey(indexAdapter);
+            indexClickAdapter++;
+            imgAdapt.setIndexKey(indexClickAdapter);
         }
 
     }
@@ -186,7 +188,11 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     }
 
     protected void setIndexAdapter(int i){
-        indexAdapter = i;
+        indexClickAdapter = i;
+    }
+
+    protected void setSelectItemRootAdapter(int i){
+        indexLongClickAdapter = i;
     }
 
     protected RecyclerView getRecycler(){
@@ -206,8 +212,10 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     }
 
     protected int getIndexAdapter(){
-        return indexAdapter;
+        return indexClickAdapter;
     }
 
-
+    public int getSelectItemRootAdapter() {
+        return indexLongClickAdapter;
+    }
 }

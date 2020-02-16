@@ -6,8 +6,15 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
@@ -19,23 +26,52 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
+import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import static com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms.ZHOPA;
 
 public class FragmentGalleryActionFile extends FragmentGalleryAction {
+
+    private Set<Integer> blockItems;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        blockItems = new HashSet<>();
+        return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void click(int adapter, ImageView img, ImageView check, int pos) {
+        if(blockItems.contains(pos)){
+            Massages.SHOW_MASSAGE(getContext(),"Дождись выполнения операции");
+        }else super.click(adapter, img, check, pos);
+
+    }
+
+    @Override
+    public void longClick(int adapter, ImageView img, ImageView check, int pos) {
+        if(blockItems.contains(pos)){
+            Massages.SHOW_MASSAGE(getContext(),"Дождись выполнения операции");
+        }else super.longClick(adapter, img, check, pos);
+
+    }
 
     @Override
     protected void renameFoldFile(String name,String key){
         super.renameFoldFile(name, key);
-//        invisibleMenu();
         threadRename(name,key);
 
     }
@@ -43,13 +79,12 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
     @Override
     protected void applyDeleteSelectedFile(){
         super.applyDeleteSelectedFile();
-
+        threadDelSelected(getKey());
     }
 
     @Override
     protected void deletedFoldFile(String fold){
         super.deletedFoldFile(fold);
-//        invisibleMenu();
         threadDelete(fold);
     }
 
@@ -64,34 +99,89 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
     @SuppressLint("CheckResult")
     private void threadRename(String name, String key){
-        Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> renameFold(name,key, emitter)).compose(new ThreadTransformers.InputOutput<>())
-                .doOnComplete(() -> Massages.SHOW_MASSAGE(getContext(),"Папка переименована"))
-                .subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
+        /*чистим пул утилизации если этого не сделать перриодически
+        * вылетает приложение*/
+//        getRecycler().getRecycledViewPool().clear();
+        Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter ->
+                renameFold(name,key, emitter)).compose(new ThreadTransformers.InputOutput<>())
+                .doOnComplete(() -> {
+                    blockItems.remove(getSelectItemRootAdapter());
+                    Massages.SHOW_MASSAGE(getContext(),"Папка переименована");
+                })
+                .subscribe(stringArrayListHashMap -> {
+                    setListImagesInFolders(stringArrayListHashMap);
+                });
     }
 
     @SuppressLint("CheckResult")
     private void threadDelete(String key){
+        /*чистим пул утилизации если этого не сделать перриодически
+         * вылетает приложение*/
+//        getRecycler().getRecycledViewPool().clear();
         Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> deleteFold(key,emitter)).compose(new ThreadTransformers.InputOutput<>())
-                .doOnComplete(() -> Massages.SHOW_MASSAGE(getContext(),"Папка удалена"))
-                .subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
+                .doOnComplete(() -> {
+                    blockItems.remove(getSelectItemRootAdapter());
+                    Massages.SHOW_MASSAGE(getContext(),"Папка удалена");
+                })
+                .subscribe(stringArrayListHashMap -> {
+                    setListImagesInFolders(stringArrayListHashMap);
+                });
     }
 
+    @SuppressLint("CheckResult")
+    private void threadDelSelected(String key){
+        /*чистим пул утилизации если этого не сделать перриодически
+         * вылетает приложение*/
+        final int sel = getSelectFiles().size();
+        final int all = getListImagesInFolders().get(key).size();
+        if(sel==all){
+            setIndexAdapter(ROOT_ADAPTER);
+            getGridLayoutManager().setSpanCount(2);
+            getRecycler().setAdapter(getFoldAdapt());
 
-    private void deleteFold(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
-        ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
-        for (int i=0;i<images.size();i++){
-//            if(i>0) {
-                if (i == images.size() - 1) delImage(Uri.parse(images.get(i)), -5);
-                else delImage(Uri.parse(images.get(i)), i);
-//            }else delImage(Uri.parse(images.get(i)), 1);
+            threadDelete(key);
+        } else {
+//            getRecycler().getRecycledViewPool().clear();
+            Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>)
+                    emitter -> deleteSelected(key, emitter)).compose(new ThreadTransformers.InputOutput<>())
+                    .doOnComplete(() -> {
+                        Massages.SHOW_MASSAGE(getContext(), "Выбранные изображения удалены");
+                    })
+                    .subscribe(stringArrayListHashMap -> {
+                        setListImagesInFolders(stringArrayListHashMap);
+                    });
+        }
+    }
+
+    private void deleteSelected(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+        for (String img:getSelectFiles()){
+            delImage(Uri.parse(img),1);
+            getListImagesInFolders().get(key).remove(img);
             emitter.onNext(getListImagesInFolders());
         }
-        clearLists(key);
         emitter.onNext(getListImagesInFolders());
         emitter.onComplete();
     }
 
+    private void deleteFold(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+        blockItems.add(getSelectItemRootAdapter());
+        ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
+        for (int i=0;i<images.size();i++){
+            if(i>0) {
+                if (i == images.size() - 1) delImage(Uri.parse(images.get(i)), -5);
+                else delImage(Uri.parse(images.get(i)), i);
+            }else delImage(Uri.parse(images.get(i)), 1);
+
+            getListImagesInFolders().get(key).remove(images.get(i));
+            if(emitter!=null)emitter.onNext(getListImagesInFolders());
+        }
+        clearLists(key);
+        if(emitter!=null)emitter.onNext(getListImagesInFolders());
+        if(emitter!=null)emitter.onComplete();
+    }
+
     private void renameFold(String name, String key, ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+        blockItems.add(getSelectItemRootAdapter());
         File fold = createNewFold(name,key);
         ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
         Cursor cursor = null;
@@ -152,12 +242,13 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
         ActionsContentPerms.create(getContext()).queryItemDB(
                 id_fold,
                 ActionsContentPerms.GRAND,
-                ActionsContentPerms.ZHOPA,
+                ZHOPA,
                 ActionsContentPerms.SYS_FILE,
                 0,
                 View.VISIBLE);
 
         addImgCollect(id_fold,uri.toString(),name_fold,ActionsContentPerms.GRAND,mod_img);
+
     }
 
     private Uri report(String img){

@@ -2,6 +2,7 @@ package com.example.kittenappscollage.collect.adapters;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,6 +16,8 @@ public class CollectHolder extends RecyclerView.ViewHolder
     private ImageView check;
     private ImageView lock;
 
+    private ProgressBar progress;
+
     public CollectHolder(@NonNull View itemView) {
         super(itemView);
         image = itemView.findViewById(R.id.collect_item_gallery_image);
@@ -23,6 +26,9 @@ public class CollectHolder extends RecyclerView.ViewHolder
         image.setScaleType(ImageView.ScaleType.CENTER_CROP);
         check = itemView.findViewById(R.id.collect_item_select);
         lock = itemView.findViewById(R.id.collect_item_lock);
+        progress = itemView.findViewById(R.id.collect_item_gallery_progress);
+        progress.setOnClickListener(this);
+        progress.setOnLongClickListener(this);
     }
 
     @Override
@@ -45,5 +51,9 @@ public class CollectHolder extends RecyclerView.ViewHolder
 
     public ImageView getLock(){
         return lock;
+    }
+
+    public ProgressBar getProgress(){
+        return progress;
     }
 }
