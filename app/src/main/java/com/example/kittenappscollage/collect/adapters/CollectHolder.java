@@ -16,7 +16,7 @@ public class CollectHolder extends RecyclerView.ViewHolder
     private ImageView check;
     private ImageView lock;
 
-    private ProgressBar progress;
+//    private ProgressBar progress;
 
     public CollectHolder(@NonNull View itemView) {
         super(itemView);
@@ -26,9 +26,9 @@ public class CollectHolder extends RecyclerView.ViewHolder
         image.setScaleType(ImageView.ScaleType.CENTER_CROP);
         check = itemView.findViewById(R.id.collect_item_select);
         lock = itemView.findViewById(R.id.collect_item_lock);
-        progress = itemView.findViewById(R.id.collect_item_gallery_progress);
-        progress.setOnClickListener(this);
-        progress.setOnLongClickListener(this);
+//        progress = itemView.findViewById(R.id.collect_item_gallery_progress);
+//        progress.setOnClickListener(this);
+//        progress.setOnLongClickListener(this);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class CollectHolder extends RecyclerView.ViewHolder
         return lock;
     }
 
-    public ProgressBar getProgress(){
-        return progress;
-    }
+//    public ProgressBar getProgress(){
+//        return progress;
+//    }
 }

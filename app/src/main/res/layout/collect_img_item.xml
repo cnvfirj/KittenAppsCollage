@@ -19,12 +19,12 @@
         android:id="@+id/collect_item_gallery_image"
         android:foreground="?android:attr/selectableItemBackground"/>
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:id="@+id/collect_item_gallery_progress"
-        android:visibility="invisible"/>
+<!--    <ProgressBar-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:clickable="true"-->
+<!--        android:id="@+id/collect_item_gallery_progress"-->
+<!--        android:visibility="invisible"/>-->
 
     <ImageView
         style="@style/common_buttons"

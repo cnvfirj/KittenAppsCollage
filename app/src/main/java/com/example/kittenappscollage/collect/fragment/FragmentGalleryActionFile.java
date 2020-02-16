@@ -135,6 +135,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
         final int sel = getSelectFiles().size();
         final int all = getListImagesInFolders().get(key).size();
         if(sel==all){
+            getImgAdapt().setModeSelected(false);
             setIndexAdapter(ROOT_ADAPTER);
             getGridLayoutManager().setSpanCount(2);
             getRecycler().setAdapter(getFoldAdapt());
