@@ -64,25 +64,11 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
 
     @SuppressLint("CheckResult")
     private void threadDelFold(String fold){
-     Observable.create(new ObservableOnSubscribe<HashMap<String,ArrayList<String>>>() {
-
-         @Override
-         public void subscribe(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) throws Exception {
-             deleteImagesAndFold(fold,emitter);
-         }
-     }).compose(new ThreadTransformers.InputOutput<>())
-             .doOnComplete(new Action() {
-                 @Override
-                 public void run() throws Exception {
-                     getBlockItems().remove(getSelectItemRootAdapter());
-                     Massages.SHOW_MASSAGE(getContext(),"Папка удалена");
-                 }
-             }).subscribe(new Consumer<HashMap<String, ArrayList<String>>>() {
-         @Override
-         public void accept(HashMap<String, ArrayList<String>> stringArrayListHashMap) throws Exception {
-             setListImagesInFolders(stringArrayListHashMap);
-         }
-     });
+     Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> deleteImagesAndFold(fold,emitter)).compose(new ThreadTransformers.InputOutput<>())
+             .doOnComplete(() -> {
+                 getBlockItems().remove(getSelectItemRootAdapter());
+                 Massages.SHOW_MASSAGE(getContext(),"Папка удалена");
+             }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
     }
 
 
@@ -94,8 +80,7 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
         for (String ur:images){
             DocumentFile img = DocumentFile.fromSingleUri(getContext(),Uri.parse(ur));
             if(img.isDirectory())break;
-            if(img.getType().equals("image/png")||img.getType().equals("image/jpeg")||img.getType().equals("image/jpg")) {
-
+            if(img.getType().equals(TYPE_PNG)||img.getType().equals(TYPE_JPG)||img.getType().equals(TYPE_JPEG)) {
                 if(delFile(Uri.parse(ur))) {
                    getListImagesInFolders().get(key).remove(ur);
                    emitter.onNext(getListImagesInFolders());
