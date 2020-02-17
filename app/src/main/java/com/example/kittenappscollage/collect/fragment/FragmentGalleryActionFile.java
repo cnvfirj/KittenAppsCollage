@@ -64,7 +64,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
     @Override
     public void longClick(int adapter, ImageView img, ImageView check, int pos) {
-        if(blockItems.contains(pos)){
+        if(blockItems.size()>1||blockItems.contains(pos)){
             Massages.SHOW_MASSAGE(getContext(),"Дождись выполнения операции");
         }else super.longClick(adapter, img, check, pos);
 
@@ -96,6 +96,10 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
             getListFolds().remove(key);
             getListMutable().remove(key);
         }
+    }
+
+    protected Set<Integer> getBlockItems(){
+        return blockItems;
     }
 
     @SuppressLint("CheckResult")
@@ -219,8 +223,10 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
             cursor.moveToFirst();
             final int col_data = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             File data = new File(cursor.getString(col_data));
-            data.getParentFile().delete();
-            ActionsContentPerms.create(getContext()).deleteItemDB(id_fold);
+            if(data.getParentFile().listFiles().length==0) {
+                data.getParentFile().delete();
+                ActionsContentPerms.create(getContext()).deleteItemDB(id_fold);
+            }
         }
         getContext().getContentResolver().delete(uri,null,null);
     }

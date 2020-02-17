@@ -167,7 +167,6 @@ public class FragmentScanAllImages extends Fragment {
         final String id_fold = ""+cursor.getLong(col_id_fold);
         final String name_fold = cursor.getString(col_name_fold);
         final long date_mod = cursor.getLong(col_date_mod);
-
         ActionsContentPerms.create(getContext().getApplicationContext()).queryItemDB(
                 id_fold,
                 split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD],

@@ -1,25 +1,33 @@
 package com.example.kittenappscollage.collect.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.ContentUris;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 import android.widget.ImageView;
 
 import androidx.annotation.RequiresApi;
 import androidx.documentfile.provider.DocumentFile;
 
 import com.example.kittenappscollage.helpers.Massages;
+import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.Observer;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
@@ -37,37 +45,13 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
     @Override
     protected void renameFoldStorage(String name,String key) {
         super.renameFoldStorage(name,key);
-        Uri treeUri = Uri.parse(getListPerms().get(getKey()));
-        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-        getContext().getContentResolver().takePersistableUriPermission(treeUri, takeFlags);
 
-        DocumentFile folder = DocumentFile.fromTreeUri(getContext(),treeUri);
 
     }
 
     @Override
     protected void applyDeleteSelectedStorage() {
         super.applyDeleteSelectedStorage();
-
-        ArrayList<String> imgs = getListImagesInFolders().get(getKey());
-        int all = imgs.size();
-
-        if(getSelectFiles().size()<all){
-            delSelectSteps(getKey(),(ArrayList<String>)getSelectFiles().clone());
-
-        }else if(getSelectFiles().size()==all){
-            deletedFoldStorage(getKey());
-
-            setIndexAdapter(ROOT_ADAPTER);
-            getGridLayoutManager().setSpanCount(2);
-            getRecycler().setAdapter(getFoldAdapt());
-        }
-        getSelectFiles().clear();
-
-
-
-
-
 
 
     }
@@ -76,107 +60,86 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
     protected void deletedFoldStorage(String fold) {
         super.deletedFoldStorage(fold);
         threadDelFold(fold);
-        clearLists(fold);
-        setListImagesInFolders(getListImagesInFolders());
     }
 
     @SuppressLint("CheckResult")
     private void threadDelFold(String fold){
-        Uri treeUri = Uri.parse(getListPerms().get(fold));
-        DocumentFile folder = DocumentFile.fromTreeUri(getContext(),treeUri);
-        Observable.create(new ObservableOnSubscribe<Boolean>() {
-            @Override
-            public void subscribe(ObservableEmitter<Boolean> emitter) throws Exception {
-                emitter.onNext(delFold(folder));
-                emitter.onComplete();
-            }
-        }).compose(new ThreadTransformers.InputOutput<>())
-                .onErrorResumeNext(new Observable<Boolean>() {
-                    @Override
-                    protected void subscribeActual(Observer<? super Boolean> observer) {
-                        Massages.SHOW_MASSAGE(getContext(), "Не удалось удалить папку");
-                    }
-                })
-                .subscribe(new Consumer<Boolean>() {
-            @Override
-            public void accept(Boolean aBoolean) throws Exception {
-                if(aBoolean) {
-                    if (folder.delete()) {
-                        Massages.SHOW_MASSAGE(getContext(), "Эта папка была удалена");
-                    } else Massages.SHOW_MASSAGE(getContext(), "Не удалось удалить папку");
-                }else {
-                    Massages.SHOW_MASSAGE(getContext(), "Поддерживаемые изображения из этой папки удалены");
-                }
-            }
-        });
+     Observable.create(new ObservableOnSubscribe<HashMap<String,ArrayList<String>>>() {
+
+         @Override
+         public void subscribe(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) throws Exception {
+             deleteImagesAndFold(fold,emitter);
+         }
+     }).compose(new ThreadTransformers.InputOutput<>())
+             .doOnComplete(new Action() {
+                 @Override
+                 public void run() throws Exception {
+                     getBlockItems().remove(getSelectItemRootAdapter());
+                     Massages.SHOW_MASSAGE(getContext(),"Папка удалена");
+                 }
+             }).subscribe(new Consumer<HashMap<String, ArrayList<String>>>() {
+         @Override
+         public void accept(HashMap<String, ArrayList<String>> stringArrayListHashMap) throws Exception {
+             setListImagesInFolders(stringArrayListHashMap);
+         }
+     });
     }
 
 
-    @SuppressLint("CheckResult")
-    private void delSelectSteps(String key, ArrayList<String>names){
+    private void deleteImagesAndFold(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+        ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
         Uri treeUri = Uri.parse(getListPerms().get(key));
-        DocumentFile folder = DocumentFile.fromTreeUri(getContext(),treeUri);
-        DocumentFile[] content = folder.listFiles();
-        final int[] index = {names.size()};
-        Observable.create(new ObservableOnSubscribe<String>() {
+        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+        getContext().getContentResolver().takePersistableUriPermission(treeUri, takeFlags);
+        for (String ur:images){
+            DocumentFile img = DocumentFile.fromSingleUri(getContext(),Uri.parse(ur));
+            if(img.isDirectory())break;
+            if(img.getType().equals("image/png")||img.getType().equals("image/jpeg")||img.getType().equals("image/jpg")) {
 
-            @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                for (String n:names){
-                    File f = new File(n);
-                    for (DocumentFile df:content){
-                        if(df.isFile()) {
-                            if (df.getName().equals(f.getName())) {
-                                    if(df.delete())emitter.onNext(n);
-                                    break;
-                            }
-                        }
-                    }
-                }
-                emitter.onComplete();
+                if(delFile(Uri.parse(ur))) {
+                   getListImagesInFolders().get(key).remove(ur);
+                   emitter.onNext(getListImagesInFolders());
+               }
             }
-        }).compose(new ThreadTransformers.InputOutput<>())
-                .doOnNext(new Consumer<String>() {
-                    @Override
-                    public void accept(String aBoolean) throws Exception {
-                        getListImagesInFolders().get(getKey()).remove(aBoolean);
-                        setListImagesInFolders(getListImagesInFolders());
-                        getImgAdapt().setIndexKey(0);
-                    }
-                })
-                .onErrorResumeNext(new Observable<String>() {
-                    @Override
-                    protected void subscribeActual(Observer<? super String> observer) {
-                        Massages.SHOW_MASSAGE(getContext(), "Не удалось удалить выбранное");
-                    }
-                })
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String aBoolean) throws Exception {
-                        index[0]--;
-                        if(index[0]==0)Massages.SHOW_MASSAGE(getContext(), "Выбранные изображения удалены ");
-                    }
-                });
-    }
-
-    private boolean delFold(DocumentFile folder){
-        DocumentFile[]content = folder.listFiles();
-        boolean allDelete = true;
-        for (DocumentFile df:content){
-            if(df.isDirectory()){
-                allDelete = false;
-                continue;
-            }
-            final String type = df.getType();
-            if(type.equals(TYPE_PNG)||type.equals(TYPE_JPEG)||type.equals(TYPE_JPG)){
-                try {
-                    df.delete();
-                }catch (Exception e){
-
-                }
-            }else allDelete = false;
-
         }
-        return allDelete;
+        if(getListImagesInFolders().get(key).size()==0){
+            clearLists(key);
+            DocumentFile fold = DocumentFile.fromTreeUri(getContext(),treeUri);
+            if(fold.listFiles().length==0){
+                if(fold.delete()){
+                    ActionsContentPerms.create(getContext()).deleteItemDB(key);
+//                    getContext().getContentResolver().releasePersistableUriPermission(treeUri, takeFlags);
+                }
+            }
+        }
+        emitter.onNext(getListImagesInFolders());
+        emitter.onComplete();
     }
+
+    private boolean delFile(Uri fold){
+        boolean b = false;
+        try {
+            b = DocumentsContract.deleteDocument(getContext().getContentResolver(),fold);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return b;
+    }
+
+    private String[]projection(){
+        return new String[]{MediaStore.Images.Media._ID,
+                            MediaStore.Images.Media.BUCKET_ID,
+                            MediaStore.Images.Media.DISPLAY_NAME};
+
+    }
+
+    private String selection(){
+        return MediaStore.Images.Media.DISPLAY_NAME + " = ? ";
+    }
+
+    private String[]selArgs(String key){
+        return new String[]{key};
+    }
+
+
 }
