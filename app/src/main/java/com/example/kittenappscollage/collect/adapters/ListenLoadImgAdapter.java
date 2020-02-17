@@ -30,8 +30,6 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
 
     private Context context;
 
-    private String fold;
-
     private int indexKey;
 
     private ListenAdapter listen;
@@ -63,6 +61,10 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
         notifyDataSetChanged();
     }
 
+    public ArrayList<String>getOperationList(){
+        return getAll().get(getFolds()[indexKey]);
+    }
+
     protected void resetCheckeds(){
 
     }
@@ -84,19 +86,19 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     }
 
     protected void createHolder(View holder, int pos){
-        if(listen!=null)listen.createHolder(0, holder, getPositionInEnd(pos));
+        if(listen!=null)listen.createHolder(indexKey, holder, getPositionInEnd(pos));
     }
 
     protected void createContentHolder(View[]content, int pos){
-        if(listen!=null)listen.createContentHolder(0, content, getPositionInEnd(pos));
+        if(listen!=null)listen.createContentHolder(indexKey, content, getPositionInEnd(pos));
     }
 
     protected void click(ImageView img, ImageView check, int pos){
-        if(listen!=null)listen.click(0, img,check, getPositionInEnd(pos));
+        if(listen!=null)listen.click(indexKey, img,check, getPositionInEnd(pos));
     }
 
     protected void longClick(ImageView img, ImageView check, int pos) {
-        if(listen!=null)listen.longClick(0, img, check, getPositionInEnd(pos));
+        if(listen!=null)listen.longClick(indexKey, img, check, getPositionInEnd(pos));
     }
 
     /*получаем вариант из конца списка*/

@@ -132,6 +132,21 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     protected void copyFolderInStorage(String key){
         /*копирование папки с карты сд на у-во или обратно
         * рассмотреть возможность это делать со съемным носителем*/
+        if(getNamesStorage().size()>0){
+            /*copy continued*/
+            if(App.checkVersion())copyFoldAPI21(key);
+            else copyFoldAPI29(key);
+        }else Massages.SHOW_MASSAGE(getContext(),"Подключи SD card или накопитель и перезапусти приложение");
+    }
+
+    /*android <= 9*/
+    private void copyFoldAPI21(String fold){
+
+    }
+
+    /*android > 9*/
+    private void copyFoldAPI29(String fold){
+
     }
 
     protected void copyFolderInDevice(String key){

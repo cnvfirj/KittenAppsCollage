@@ -5,24 +5,16 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.view.View;
-import android.widget.Toast;
 
 import com.example.kittenappscollage.collect.fragment.FragmentGallery;
-import com.example.kittenappscollage.collect.fragment.FragmentGalleryAction;
-import com.example.kittenappscollage.collect.fragment.FragmentGalleryActionFile;
-import com.example.kittenappscollage.collect.fragment.FragmentGalleryActionStorage;
-import com.example.kittenappscollage.collect.fragment.FragmentGalleryActionStorageCopy;
+import com.example.kittenappscollage.collect.fragment.FragmentGalleryReviewImages;
 import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
@@ -38,17 +30,14 @@ import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-import java.io.File;
-
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery, SavedKollagesFragmentDraw.ActionSave {
 
     private ApplyDrawToolsFragmentDraw mFragDraw;
 
-    private FragmentGalleryActionStorageCopy mFragGal;
+    private FragmentGalleryReviewImages mFragGal;
 
     private TabLayout mTabLayout;
 
@@ -117,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private ViewPageAdapter addFragments(){
         mFragDraw = new ApplyDrawToolsFragmentDraw();
-        mFragGal = new FragmentGalleryActionStorageCopy();
+        mFragGal = new FragmentGalleryReviewImages();
 
 
         mFragGal.setBlock(false);

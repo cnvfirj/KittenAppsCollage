@@ -46,6 +46,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
     private Set<Integer> blockItems;
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -137,6 +137,8 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
                 setIndexAdapter(pos);
                 key = getFoldAdapt().getKeys()[pos];
             }
+        }else {
+            if(!imgAdapt.isModeSelected())clickItem(adapter,pos);
         }
     }
 
@@ -168,7 +170,9 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     }
 
+    protected void clickItem(int adapter, int position){
 
+    }
 
     protected void visibleMenu(){
 
