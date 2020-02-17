@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -23,6 +24,8 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -54,17 +57,22 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     }
 
     public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds,HashMap<String,Long>mutable) {
-//        final int old = this.all.size();
+
         this.all = all;
         this.namesFolds = namesFolds;
         this.mutableFolds = mutable;
         folds = mutable.keySet().toArray(new String[mutable.keySet().size()]);
-        Long[]val = mutable.values().toArray(new Long[mutable.values().size()]);
-        sort(val,folds);
+//        Long[]val = mutable.values().toArray(new Long[mutable.values().size()]);
+//        sort(val,folds);
+
+        Arrays.sort(folds, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return mutableFolds.get(o2).compareTo(mutableFolds.get(o1));
+            }
+        });
+
         notifyDataSetChanged();
-//        notifyItemRangeRemoved(0, old);
-//        final int young = this.all.size();
-//        notifyItemRangeInserted(0, young);
         return this;
     }
 

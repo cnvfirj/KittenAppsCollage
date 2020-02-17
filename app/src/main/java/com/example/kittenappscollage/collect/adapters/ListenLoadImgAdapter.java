@@ -58,25 +58,6 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
         return this;
     }
 
-//    private void sort(long[]data,String[]names){
-//        for(int i = data.length-1 ; i > 0 ; i--){
-//            for(int j = 0 ; j < i ; j++){
-//
-//                if( data[j] < data[j+1] ){
-//                    long tmp = data[j];
-//                    String name = names[j];
-//
-//                    data[j] = data[j+1];
-//                    names[j] = names[j+1];
-//
-//                    data[j+1] = tmp;
-//                    names[j+1] = name;
-//                }
-//            }
-//        }
-//        folds = names;
-//    }
-
     public void setIndexKey(int index){
         indexKey = index;
         notifyDataSetChanged();

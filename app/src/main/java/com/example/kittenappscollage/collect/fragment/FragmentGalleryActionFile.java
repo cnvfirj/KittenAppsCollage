@@ -99,8 +99,6 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
     @SuppressLint("CheckResult")
     private void threadRename(String name, String key){
-        /*чистим пул утилизации если этого не сделать перриодически
-        * вылетает приложение*/
 //        getRecycler().getRecycledViewPool().clear();
         Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter ->
                 renameFold(name,key, emitter)).compose(new ThreadTransformers.InputOutput<>())
@@ -115,8 +113,6 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
     @SuppressLint("CheckResult")
     private void threadDelete(String key){
-        /*чистим пул утилизации если этого не сделать перриодически
-         * вылетает приложение*/
 //        getRecycler().getRecycledViewPool().clear();
         Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> deleteFold(key,emitter)).compose(new ThreadTransformers.InputOutput<>())
                 .doOnComplete(() -> {
@@ -130,8 +126,6 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
     @SuppressLint("CheckResult")
     private void threadDelSelected(String key){
-        /*чистим пул утилизации если этого не сделать перриодически
-         * вылетает приложение*/
         final int sel = getSelectFiles().size();
         final int all = getListImagesInFolders().get(key).size();
         if(sel==all){
