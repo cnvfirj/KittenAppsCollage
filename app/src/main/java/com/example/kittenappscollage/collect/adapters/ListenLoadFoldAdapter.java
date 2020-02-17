@@ -65,6 +65,7 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
 //        Long[]val = mutable.values().toArray(new Long[mutable.values().size()]);
 //        sort(val,folds);
 
+        /*сортируем ключи по их значению в мапе*/
         Arrays.sort(folds, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
@@ -148,6 +149,8 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
             if (index > 0) {
                 Glide.with(getContext())
                         .load(uri)
+                        .placeholder(R.drawable.ic_update)
+                        .error(R.drawable.ic_error)
                         .into(holder.getImage());
             }
 

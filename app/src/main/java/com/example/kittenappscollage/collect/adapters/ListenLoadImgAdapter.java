@@ -115,10 +115,11 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     public void onBindViewHolder(@NonNull ImgHolder holder, int position) {
 //        String s = getAll().get(getFolds()[indexKey]).get(getPositionInEnd(position));
 //        LYTE("add img "+s);
-        Uri uri = Uri.parse(getAll().get(getFolds()[indexKey]).get(getPositionInEnd(position)));
+        final Uri uri = Uri.parse(getAll().get(getFolds()[indexKey]).get(getPositionInEnd(position)));
         Glide.with(getContext())
                 .load(uri)
-//                .load(getAll().get(getFolds()[indexKey]).get(getPositionInEnd(position)))
+                .placeholder(R.drawable.ic_image)
+                .error(R.drawable.ic_error)
                 .into(holder.getImage());
     }
 
