@@ -45,14 +45,14 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     }
 
     public ListenLoadImgAdapter setAll(HashMap<String, ArrayList<String>> all,String[] folds){
-        LYTE("ListenLoadImgAdapter set All");
+
         this.all = all;
        if(folds==null) {
            this.folds = new String[all.size()];
            all.keySet().toArray(this.folds);
        }else this.folds = folds;
 
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
         return this;
     }
 

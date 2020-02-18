@@ -3,6 +3,7 @@ package com.example.kittenappscollage.collect.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
@@ -41,11 +43,15 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
 
     private HashMap<String,Long>mutableFolds;
 
+    private Item[] items;
+
     private String[] folds;
 
     private Context context;
 
     private ListenAdapter listen;
+
+    private HashMap<String,String>perms;
 
     public ListenLoadFoldAdapter(Context context) {
         this.context = context;
@@ -56,16 +62,34 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         return this;
     }
 
-    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds,HashMap<String,Long>mutable) {
+    public void setPerms(HashMap<String,String>perms){
+        this.perms = perms;
+    }
 
+    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds,HashMap<String,Long>mutable) {
+        items = new Item[all.size()];
         this.all = all;
         this.namesFolds = namesFolds;
         this.mutableFolds = mutable;
         folds = mutable.keySet().toArray(new String[mutable.keySet().size()]);
-//        Long[]val = mutable.values().toArray(new Long[mutable.values().size()]);
-//        sort(val,folds);
+        for(int i=0;i<folds.length;i++){
+                items[i] = new Item();
+                items[i].key = folds[i];
+                items[i].sizeItemsFold = all.get(folds[i]).size();
+                items[i].uriIconFold = all.get(folds[i]).get(items[i].sizeItemsFold - 1);
+                items[i].mutableLastImg = mutableFolds.get(folds[i]);
+                items[i].nameFold = namesFolds.get(folds[i]);
+                items[i].permission = perms.get(folds[i]);
+        }
 
         /*сортируем ключи по их значению в мапе*/
+        Arrays.sort(items, new Comparator<Item>() {
+            @Override
+            public int compare(Item o1, Item o2) {
+                return mutableFolds.get(o2.key).compareTo(mutableFolds.get(o1.key));
+            }
+        });
+
         Arrays.sort(folds, new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
@@ -80,26 +104,6 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     public String[]sortKeys(){
         return folds;
     }
-
-    private void sort(Long[]data,String[]names){
-        for(int i = data.length-1 ; i > 0 ; i--){
-            for(int j = 0 ; j < i ; j++){
-
-            if( data[j] < data[j+1] ){
-                long tmp = data[j];
-                String name = names[j];
-
-                data[j] = data[j+1];
-                names[j] = names[j+1];
-
-                data[j+1] = tmp;
-                names[j+1] = name;
-            }
-        }
-    }
-        folds = names;
-    }
-
 
     protected void createHolder(View holder, int pos){
         if(listen!=null)listen.createHolder(ROOT_ADAPTER, holder, pos);
@@ -129,6 +133,10 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         return namesFolds;
     }
 
+    protected HashMap<String, String> getPerms(){
+        return perms;
+    }
+
     protected String[] getFolds(){
         return folds;
     }
@@ -145,8 +153,9 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
         if(getAll().get(sortKeys()[position])!=null) {
             final int index = getAll().get(sortKeys()[position]).size();
-            final Uri uri = Uri.parse(getAll().get(sortKeys()[position]).get(index - 1));
-            if (index > 0) {
+//            final Uri uri = Uri.parse(getAll().get(sortKeys()[position]).get(index - 1));
+            final Uri uri = Uri.parse(items[position].uriIconFold);
+            if (items[position].sizeItemsFold > 0) {
                 Glide.with(getContext())
                         .load(uri)
                         .placeholder(R.drawable.ic_update)
@@ -173,9 +182,14 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         return folds;
     }
 
+    public Item[]getItems(){
+        return items;
+    }
+
     private boolean check(int pos){
         return sortKeys()[pos]!=null&&getAll().get(sortKeys()[pos])!=null;
     }
+
 
     protected class FoldHolder extends CollectHolder{
 
@@ -212,6 +226,23 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         public TextView getCol(){
             return col;
         }
+
+    }
+
+    protected class Item{
+
+        protected String key;
+
+        protected String uriIconFold;
+
+        protected String nameFold;
+
+        protected String permission;
+
+        protected int sizeItemsFold;
+
+        protected long mutableLastImg;
+
 
     }
 

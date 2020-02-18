@@ -28,6 +28,7 @@ import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import io.reactivex.Observable;
@@ -241,8 +242,7 @@ public class FragmentScanAllImages extends Fragment {
     protected Uri question(){
         Uri uri = null;
         if(App.checkVersion())uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-        else uri = MediaStore.Images.Media.getContentUri(
-                MediaStore.VOLUME_EXTERNAL);
+        else uri = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL);
         return uri;
     }
 
@@ -332,10 +332,10 @@ public class FragmentScanAllImages extends Fragment {
     }
 
     protected void initListImagesInFolders(){
-        listImagesToFolder = new HashMap<>();
-        listFolds = new HashMap<>();
-        listPerms = new HashMap<>();
-        listMutable = new HashMap<>();
+        listImagesToFolder = new HashMap<String, ArrayList<String>>();
+        listFolds = new HashMap<String,String>();
+        listPerms = new HashMap<String,String>();
+        listMutable = new HashMap<String,Long>();
 
     }
 

@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.documentfile.provider.DocumentFile;
 
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
@@ -106,7 +107,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
     private void threadRename(String name, String key){
 //        getRecycler().getRecycledViewPool().clear();
         Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter ->
-                renameFold(name,key, emitter)).compose(new ThreadTransformers.InputOutput<>())
+                renameForCopyFold(name,key, emitter)).compose(new ThreadTransformers.InputOutput<>())
                 .doOnComplete(() -> {
                     blockItems.remove(getSelectItemRootAdapter());
                     Massages.SHOW_MASSAGE(getContext(),"Папка переименована");
@@ -119,7 +120,8 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
     @SuppressLint("CheckResult")
     private void threadDelete(String key){
 //        getRecycler().getRecycledViewPool().clear();
-        Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> deleteFold(key,emitter)).compose(new ThreadTransformers.InputOutput<>())
+        Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter ->
+                deleteFold(key,emitter)).compose(new ThreadTransformers.InputOutput<>())
                 .doOnComplete(() -> {
                     blockItems.remove(getSelectItemRootAdapter());
                     Massages.SHOW_MASSAGE(getContext(),"Папка удалена");
@@ -181,6 +183,23 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
     }
 
     private void renameFold(String name, String key, ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+        blockItems.add(getSelectItemRootAdapter());
+        File oldFold = renamedFold(key);
+        File newFold = new File(oldFold.getParentFile().getAbsolutePath()+"/"+name);
+        if(oldFold.renameTo(newFold)){
+            getListFolds().put(key,name);
+            for (String uri:getListImagesInFolders().get(key)){
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media._ID, System.currentTimeMillis());
+                getContext().getContentResolver().insert(question(), values);
+
+            }
+            emitter.onNext(getListImagesInFolders());
+        }
+        emitter.onComplete();
+
+    }
+    private void renameForCopyFold(String name, String key, ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         blockItems.add(getSelectItemRootAdapter());
         File fold = createNewFold(name,key);
         ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
@@ -280,15 +299,23 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
     }
 
     /*пишем из инпут в оутпут*/
-    private  void copyStream(InputStream input, OutputStream output)
-            throws IOException
-    {
+    private  void copyStream(InputStream input, OutputStream output) throws IOException {
         byte[] buffer = new byte[1024]; // Adjust if you want
         int bytesRead;
-        while ((bytesRead = input.read(buffer)) != -1)
-        {
+        while ((bytesRead = input.read(buffer)) != -1) {
             output.write(buffer, 0, bytesRead);
         }
+    }
+
+    /*папка которую переименовуем*/
+    private File renamedFold(String key){
+        final Uri uImg = Uri.parse(getListImagesInFolders().get(key).get(0));
+        Cursor cursor = getContext().getContentResolver().query(uImg,getPathImg(),null,null,null);
+        final int col_data_img = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//        final int col_name_img = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME);
+        cursor.moveToFirst();
+        File pathImg = new File(cursor.getString(col_data_img));
+        return pathImg.getParentFile();
     }
 
     private File createNewFold(String name, String key){
@@ -309,6 +336,11 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
         return newFileFold;
     }
 
+    private String[] getPathImg(){
+        return new String[]{
+                MediaStore.Images.Media.DATA
+        };
+    }
 
     private String[] getPathAndNameImg(){
         return new String[]{
