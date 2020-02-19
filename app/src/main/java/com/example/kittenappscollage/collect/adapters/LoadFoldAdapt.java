@@ -58,7 +58,7 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
         checkSelect = new boolean[size];
     }
     private void resetCheckeds(){
-        checkSelect = new boolean[getAll().size()];
+        checkSelect = new boolean[getItems().length];
     }
 
     @Override

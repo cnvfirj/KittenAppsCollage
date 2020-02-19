@@ -105,7 +105,6 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
     @SuppressLint("CheckResult")
     private void threadRename(String name, String key){
-//        getRecycler().getRecycledViewPool().clear();
         Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter ->
                 renameForCopyFold(name,key, emitter)).compose(new ThreadTransformers.InputOutput<>())
                 .doOnComplete(() -> {
@@ -119,7 +118,6 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
     @SuppressLint("CheckResult")
     private void threadDelete(String key){
-//        getRecycler().getRecycledViewPool().clear();
         Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter ->
                 deleteFold(key,emitter)).compose(new ThreadTransformers.InputOutput<>())
                 .doOnComplete(() -> {
@@ -139,11 +137,11 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
             getImgAdapt().setModeSelected(false);
             setIndexAdapter(ROOT_ADAPTER);
             getGridLayoutManager().setSpanCount(2);
-            getRecycler().setAdapter(getFoldAdapt());
+            getImgAdapt().activate(false);
+            getRecycler().setAdapter(getFoldAdapt().activate(true));
 
             threadDelete(key);
         } else {
-//            getRecycler().getRecycledViewPool().clear();
             Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>)
                     emitter -> deleteSelected(key, emitter)).compose(new ThreadTransformers.InputOutput<>())
                     .doOnComplete(() -> {

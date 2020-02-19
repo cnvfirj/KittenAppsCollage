@@ -33,12 +33,13 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
     @Override
     public void click(int adapter, ImageView img, ImageView check, int pos) {
         super.click(adapter, img, check, pos);
+
         if(modeSel) {
             if (getIndexAdapter() == ROOT_ADAPTER) {
-                    if (!under.get(0).equals(getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]).get(0))) {
-                        setKey(getFoldAdapt().getKeys()[pos]);
+                    if (!under.get(0).equals(getListImagesInFolders().get(key(pos)).get(0))) {
+                        setKey(key(pos));
                         selectFiles.clear();
-                        under = getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]);
+                        under = getListImagesInFolders().get(key(pos));
                         addPathFolder(pos);
                         setSelectItemRootAdapter(pos);
                     } else {
@@ -46,14 +47,14 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                         getFoldAdapt().setModeSelected(false);
                     }
             } else {
-                    if (selectFiles.contains(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos))) {
-                        selectFiles.remove(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
+                    if (selectFiles.contains(getListImagesInFolders().get(key(getIndexAdapter())).get(pos))) {
+                        selectFiles.remove(getListImagesInFolders().get(key(getIndexAdapter())).get(pos));
                         if (selectFiles.size() == 0) {
                             invisibleMenu();
                             getImgAdapt().setModeSelected(false);
                         }
                     } else {
-                        selectFiles.add(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
+                        selectFiles.add(getListImagesInFolders().get(key(getIndexAdapter())).get(pos));
                     }
             }
         }
@@ -67,11 +68,11 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                 modeSel = true;
                 selectFiles.clear();
                 if(getIndexAdapter()== ROOT_ADAPTER){
-                  under = getListImagesInFolders().get(getFoldAdapt().getKeys()[pos]);
+                  under = getListImagesInFolders().get(key(pos));
                   addPathFolder(pos);
                   setSelectItemRootAdapter(pos);
                 }else {
-                  selectFiles.add(getListImagesInFolders().get(getFoldAdapt().getKeys()[getIndexAdapter()]).get(pos));
+                  selectFiles.add(getListImagesInFolders().get(key(getIndexAdapter())).get(pos));
                 }
                 super.longClick(adapter, img, check, pos);
             }
@@ -94,7 +95,8 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
                 }else {
                     setIndexAdapter(ROOT_ADAPTER);
                     getGridLayoutManager().setSpanCount(2);
-                    getRecycler().setAdapter(getFoldAdapt());
+                    getImgAdapt().activate(false);
+                    getRecycler().setAdapter(getFoldAdapt().activate(true));
                     return true;
                 }
             }
@@ -104,10 +106,14 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
 
     private void addPathFolder(int pos){
         if(under.size()>0){
-            setKey(getFoldAdapt().getKeys()[pos]);
+            setKey(key(pos));
             selectFiles.clear();
-            selectFiles.add(getFoldAdapt().getKeys()[pos]);
+            selectFiles.add(key(pos));
         }
+    }
+
+    protected String key(int pos){
+        return getFoldAdapt().getItems()[pos].getKey();
     }
 
     @Override

@@ -103,7 +103,8 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
             if(getIndexAdapter()!= ROOT_ADAPTER){
                 setIndexAdapter(ROOT_ADAPTER);
                 getGridLayoutManager().setSpanCount(2);
-                getRecycler().setAdapter(getFoldAdapt());
+                getImgAdapt().activate(false);
+                getRecycler().setAdapter(getFoldAdapt().activate(true));
              }
         }else {
             invisibleMenu();

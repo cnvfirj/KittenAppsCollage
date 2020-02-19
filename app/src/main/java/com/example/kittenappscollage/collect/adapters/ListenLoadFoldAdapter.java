@@ -37,15 +37,9 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
 
     public static final int ROOT_ADAPTER = -5;
 
-    private HashMap<String, ArrayList<String>> all;
-
-    private HashMap<String,String>namesFolds;
-
-    private HashMap<String,Long>mutableFolds;
+    private boolean active;
 
     private Item[] items;
-
-    private String[] folds;
 
     private Context context;
 
@@ -62,22 +56,24 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         return this;
     }
 
+    public ListenLoadFoldAdapter activate(boolean a){
+        active = a;
+        return this;
+    }
+
     public void setPerms(HashMap<String,String>perms){
         this.perms = perms;
     }
 
     public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds,HashMap<String,Long>mutable) {
-        items = new Item[all.size()];
-        this.all = all;
-        this.namesFolds = namesFolds;
-        this.mutableFolds = mutable;
-        folds = mutable.keySet().toArray(new String[mutable.keySet().size()]);
+        Item[] items = new Item[all.size()];
+        String[] folds = mutable.keySet().toArray(new String[mutable.keySet().size()]);
         for(int i=0;i<folds.length;i++){
                 items[i] = new Item();
                 items[i].key = folds[i];
                 items[i].sizeItemsFold = all.get(folds[i]).size();
                 items[i].uriIconFold = all.get(folds[i]).get(items[i].sizeItemsFold - 1);
-                items[i].mutableLastImg = mutableFolds.get(folds[i]);
+                items[i].mutableLastImg = mutable.get(folds[i]);
                 items[i].nameFold = namesFolds.get(folds[i]);
                 items[i].permission = perms.get(folds[i]);
         }
@@ -86,23 +82,20 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         Arrays.sort(items, new Comparator<Item>() {
             @Override
             public int compare(Item o1, Item o2) {
-                return mutableFolds.get(o2.key).compareTo(mutableFolds.get(o1.key));
+                final Long m1 = o1.mutableLastImg;
+                final Long m2 = o2.mutableLastImg;
+
+                return m2.compareTo(m1);
             }
         });
 
-        Arrays.sort(folds, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return mutableFolds.get(o2).compareTo(mutableFolds.get(o1));
-            }
-        });
 
-        notifyDataSetChanged();
+        if(active){
+            DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallbackFold(this.items,items));
+            diffResult.dispatchUpdatesTo(this);
+        }
+        this.items = items;
         return this;
-    }
-
-    public String[]sortKeys(){
-        return folds;
     }
 
     protected void createHolder(View holder, int pos){
@@ -125,20 +118,12 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         return context;
     }
 
-    protected HashMap<String, ArrayList<String>> getAll(){
-        return all;
-    }
-
-    protected HashMap<String, String>getNamesFolds(){
-        return namesFolds;
-    }
-
     protected HashMap<String, String> getPerms(){
         return perms;
     }
 
-    protected String[] getFolds(){
-        return folds;
+    protected boolean isActive(){
+        return active;
     }
 
     @NonNull
@@ -151,45 +136,36 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
-        if(getAll().get(sortKeys()[position])!=null) {
-            final int index = getAll().get(sortKeys()[position]).size();
-//            final Uri uri = Uri.parse(getAll().get(sortKeys()[position]).get(index - 1));
-            final Uri uri = Uri.parse(items[position].uriIconFold);
-            if (items[position].sizeItemsFold > 0) {
-                Glide.with(getContext())
-                        .load(uri)
-                        .placeholder(R.drawable.ic_update)
-                        .error(R.drawable.ic_error)
-                        .into(holder.getImage());
-            }
+        if(position<getItems().length) {
+            Item item = getItems()[position];
 
-            holder.getName().setText(getNamesFolds().get(getFolds()[position]));
-            holder.getCol().setText(Integer.toString(getAll().get(getFolds()[position]).size()));
+                final Uri uri = Uri.parse(items[position].uriIconFold);
+                if (items[position].sizeItemsFold > 0) {
+                    Glide.with(getContext())
+                            .load(uri)
+                            .placeholder(R.drawable.ic_update)
+                            .error(R.drawable.ic_error)
+                            .into(holder.getImage());
+                    final int index = item.sizeItemsFold;
+                    holder.getName().setText(item.nameFold);
+                    holder.getCol().setText(Integer.toString(index));
+            }
         }
         
     }
 
     @Override
     public int getItemCount() {
-        if(getAll()==null){
+        if(getItems()==null){
             return 0;
         } else {
-            return getAll().size();
+            return getItems().length;
         }
-    }
-
-    public String[]getKeys(){
-        return folds;
     }
 
     public Item[]getItems(){
         return items;
     }
-
-    private boolean check(int pos){
-        return sortKeys()[pos]!=null&&getAll().get(sortKeys()[pos])!=null;
-    }
-
 
     protected class FoldHolder extends CollectHolder{
 
@@ -229,7 +205,7 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
 
     }
 
-    protected class Item{
+    public class Item{
 
         protected String key;
 
@@ -243,7 +219,29 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
 
         protected long mutableLastImg;
 
+        public String getKey() {
+            return key;
+        }
 
+        public String getUriIconFold() {
+            return uriIconFold;
+        }
+
+        public String getNameFold() {
+            return nameFold;
+        }
+
+        public String getPermission() {
+            return permission;
+        }
+
+        public int getSizeItemsFold() {
+            return sizeItemsFold;
+        }
+
+        public long getMutableLastImg() {
+            return mutableLastImg;
+        }
     }
 
 }

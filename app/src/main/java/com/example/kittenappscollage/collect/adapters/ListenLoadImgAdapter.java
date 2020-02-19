@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -18,6 +19,8 @@ import com.example.kittenappscollage.R;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
@@ -26,9 +29,13 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
 
     private HashMap<String, ArrayList<String>> all;
 
-    private String[] folds;
+    private ListenLoadFoldAdapter.Item[]items;
+
+    private String[]images;
 
     private Context context;
+
+    private boolean active;
 
     private int indexKey;
 
@@ -44,26 +51,40 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
         return this;
     }
 
-    public ListenLoadImgAdapter setAll(HashMap<String, ArrayList<String>> all,String[] folds){
+    public ListenLoadImgAdapter activate(boolean a){
+        active = a;
+        return this;
+    }
 
+    public ListenLoadImgAdapter setAll(HashMap<String, ArrayList<String>> all, ListenLoadFoldAdapter.Item[]items){
         this.all = all;
-       if(folds==null) {
-           this.folds = new String[all.size()];
-           all.keySet().toArray(this.folds);
-       }else this.folds = folds;
+        this.items = items;
+        String[] imgs = null;
+        if(indexKey>=0) {
+            imgs = new String[all.get(getItems()[indexKey].key).size()];
+            all.get(getItems()[indexKey].key).toArray(imgs);
+        }
+        if(active){
+                DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallbackImg(this.images,imgs));
+                diffResult.dispatchUpdatesTo(this);
+        }
 
-//        notifyDataSetChanged();
+        this.images = imgs;
         return this;
     }
 
     public void setIndexKey(int index){
-        indexKey = index;
-        notifyDataSetChanged();
+        if(index>=0) {
+            indexKey = index;
+            images = new String[all.get(getItems()[indexKey].key).size()];
+            all.get(getItems()[indexKey].key).toArray(images);
+        }
     }
 
     public ArrayList<String>getOperationList(){
-        return getAll().get(getFolds()[indexKey]);
+        return all.get(getItems()[indexKey].key);
     }
+
 
     protected void resetCheckeds(){
 
@@ -73,12 +94,13 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
         return context;
     }
 
-    protected HashMap<String, ArrayList<String>> getAll(){
-        return all;
+
+    protected String[]getImages(){
+        return images;
     }
 
-    protected String[] getFolds(){
-        return folds;
+    protected ListenLoadFoldAdapter.Item[]getItems(){
+        return items;
     }
 
     protected int getIndexAdapter(){
@@ -106,6 +128,10 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
         return getItemCount()-(position+1);
     }
 
+    protected boolean isActive(){
+        return active;
+    }
+
     @NonNull
     @Override
     public ImgHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -115,9 +141,8 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
 
     @Override
     public void onBindViewHolder(@NonNull ImgHolder holder, int position) {
-//        String s = getAll().get(getFolds()[indexKey]).get(getPositionInEnd(position));
-//        LYTE("add img "+s);
-        final Uri uri = Uri.parse(getAll().get(getFolds()[indexKey]).get(getPositionInEnd(position)));
+        final Uri uri = Uri.parse(images[getPositionInEnd(position)]);
+
         Glide.with(getContext())
                 .load(uri)
                 .placeholder(R.drawable.ic_image)
@@ -127,7 +152,8 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
 
     @Override
     public int getItemCount() {
-        return getAll().get(getFolds()[indexKey]).size();
+//        return all.get(getItems()[indexKey].key).size();
+        return images.length;
     }
 
     protected class ImgHolder extends CollectHolder{

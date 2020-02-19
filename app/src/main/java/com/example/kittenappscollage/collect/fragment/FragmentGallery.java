@@ -22,6 +22,7 @@ import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.collect.ExLayoutManager;
 import com.example.kittenappscollage.collect.adapters.ListenAdapter;
 //import com.example.kittenappscollage.collect.adapters.LoadFoldAdapt;
+import com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter;
 import com.example.kittenappscollage.collect.adapters.LoadImgAdapt;
 import com.example.kittenappscollage.collect.adapters.LockFoldAdapter;
 import com.example.kittenappscollage.helpers.AllPermissions;
@@ -115,7 +116,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         recycler = v.findViewById(R.id.gallery_list);
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(gridLayoutManager);
-        recycler.setAdapter(foldAdapt);
+        recycler.setAdapter(foldAdapt.activate(true));
     }
 
     @Override
@@ -124,7 +125,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         invisibleMenu();
         foldAdapt.setPerms(getListPerms());
         foldAdapt.setAll(getListImagesInFolders(), getListFolds(),getListMutable()).setListen(this);
-        imgAdapt.setAll(getListImagesInFolders(),foldAdapt.sortKeys()).setListen(this);
+        imgAdapt.setAll(getListImagesInFolders(),foldAdapt.getItems()).setListen(this);
     }
 
     @Override
@@ -133,9 +134,10 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
             if(!foldAdapt.isModeSelected()) {
                 imgAdapt.setIndexKey(pos);
                 gridLayoutManager.setSpanCount(3);
-                recycler.setAdapter(imgAdapt);
+                foldAdapt.activate(false);
+                recycler.setAdapter(imgAdapt.activate(true));
                 setIndexAdapter(pos);
-                key = getFoldAdapt().getKeys()[pos];
+                key = getFoldAdapt().getItems()[pos].getKey();
             }
         }else {
             if(!imgAdapt.isModeSelected())clickItem(adapter,pos);
@@ -152,7 +154,6 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     @Override
     protected void correctAdapterPostSave() {
         super.correctAdapterPostSave();
-        LYTE("FragmentScanAllImages correct adapter");
         if(getIndexAdapter()!=ROOT_ADAPTER) {
             indexClickAdapter++;
             imgAdapt.setIndexKey(indexClickAdapter);
