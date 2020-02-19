@@ -52,7 +52,7 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
     @Override
     protected void applyDeleteSelectedStorage() {
         super.applyDeleteSelectedStorage();
-
+         threadDelImages(getKey());
 
     }
 
@@ -64,13 +64,52 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
 
     @SuppressLint("CheckResult")
     private void threadDelFold(String fold){
-     Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> deleteImagesAndFold(fold,emitter)).compose(new ThreadTransformers.InputOutput<>())
+     Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter ->
+             deleteImagesAndFold(fold,emitter))
+             .compose(new ThreadTransformers.InputOutput<>())
              .doOnComplete(() -> {
                  getBlockItems().remove(getSelectItemRootAdapter());
                  Massages.SHOW_MASSAGE(getContext(),"Папка удалена");
              }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
     }
 
+    @SuppressLint("CheckResult")
+    private void threadDelImages(String key){
+        final int select = getSelectFiles().size();
+        final int all = getListImagesInFolders().get(key).size();
+        if(select==all){
+            getImgAdapt().setModeSelected(false);
+            setIndexAdapter(ROOT_ADAPTER);
+            getGridLayoutManager().setSpanCount(2);
+            getImgAdapt().activate(false);
+            getRecycler().setAdapter(getFoldAdapt().activate(true));
+
+            threadDelFold(key);
+        }else {
+            Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter ->
+                    deleteImages(key, emitter))
+                    .compose(new ThreadTransformers.InputOutput<>())
+                    .doOnComplete(() -> {
+                        getBlockItems().remove(getSelectItemRootAdapter());
+                        Massages.SHOW_MASSAGE(getContext(), "Выбранные изображения удалены");
+                    }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
+        }
+    }
+
+    private void deleteImages(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+        Uri treeUri = Uri.parse(getListPerms().get(key));
+        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+        getContext().getContentResolver().takePersistableUriPermission(treeUri, takeFlags);
+        for (String ur:getSelectFiles()){
+            if(delFile(Uri.parse(ur))){
+                getListImagesInFolders().get(key).remove(ur);
+                emitter.onNext(getListImagesInFolders());
+            }
+        }
+//        getContext().getContentResolver().releasePersistableUriPermission(treeUri, takeFlags);
+        emitter.onNext(getListImagesInFolders());
+        emitter.onComplete();
+    }
 
     private void deleteImagesAndFold(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
@@ -84,6 +123,7 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
                 if(delFile(Uri.parse(ur))) {
                    getListImagesInFolders().get(key).remove(ur);
                    emitter.onNext(getListImagesInFolders());
+
                }
             }
         }

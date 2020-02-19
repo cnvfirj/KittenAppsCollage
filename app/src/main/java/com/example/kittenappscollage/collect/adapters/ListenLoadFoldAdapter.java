@@ -68,6 +68,7 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds,HashMap<String,Long>mutable) {
         Item[] items = new Item[all.size()];
         String[] folds = mutable.keySet().toArray(new String[mutable.keySet().size()]);
+
         for(int i=0;i<folds.length;i++){
                 items[i] = new Item();
                 items[i].key = folds[i];

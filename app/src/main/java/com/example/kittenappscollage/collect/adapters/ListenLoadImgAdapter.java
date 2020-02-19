@@ -60,13 +60,11 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
         this.all = all;
         this.items = items;
         String[] imgs = null;
-        if(indexKey>=0) {
+        if(active){
             imgs = new String[all.get(getItems()[indexKey].key).size()];
             all.get(getItems()[indexKey].key).toArray(imgs);
-        }
-        if(active){
-                DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallbackImg(this.images,imgs));
-                diffResult.dispatchUpdatesTo(this);
+            DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallbackImg(this.images,imgs));
+            diffResult.dispatchUpdatesTo(this);
         }
 
         this.images = imgs;
