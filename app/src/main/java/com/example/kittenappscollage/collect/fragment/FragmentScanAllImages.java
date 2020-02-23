@@ -110,7 +110,7 @@ public class FragmentScanAllImages extends Fragment {
         final String keyAndPerm = df.getUri().toString();
         final String name = df.getName();
         int iterator = 0;
-        getListImagesInFolders().remove(keyAndPerm);
+//        getListImagesInFolders().remove(keyAndPerm);
         for (DocumentFile f:df.listFiles()){
             if(f.isFile()) {
                 final String type = f.getType();
