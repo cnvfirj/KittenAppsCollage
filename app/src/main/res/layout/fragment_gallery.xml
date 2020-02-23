@@ -13,5 +13,11 @@
 
     <include layout="@layout/include_menu_selected_collect"/>
 
+    <ImageView
+        style="@style/slide_style_all_tools"
+        android:id="@+id/gallery_add_folds"
+        android:src="@drawable/ic_add"
+        android:background="@drawable/background_under_button_reset"
+        android:layout_gravity="bottom|end"/>
 
 </FrameLayout>

@@ -3,6 +3,7 @@ package com.example.kittenappscollage;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.documentfile.provider.DocumentFile;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.ContentValues;
@@ -31,7 +32,10 @@ import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
+import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_FOLD;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
+import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD;
+import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_URI_DF_IMG;
 
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery, SavedKollagesFragmentDraw.ActionSave {
 
@@ -82,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                 ContentValues values = new ContentValues();
                 values.put(MediaStore.Images.Media.DATE_TAKEN, System.currentTimeMillis());
                 values.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
+                values.put(MediaStore.Images.Media.DISPLAY_NAME, DocumentFile.fromSingleUri(this,Uri.parse(split[INDEX_URI_DF_IMG])).getName());
+                values.put(MediaStore.Images.Media.BUCKET_DISPLAY_NAME, DocumentFile.fromSingleUri(this,Uri.parse(split[INDEX_URI_DF_FOLD])).getName());
+//                values.put(MediaStore.Images.Media.RELATIVE_PATH,split[INDEX_PATH_FOLD]);
                 values.put(MediaStore.MediaColumns.DATA, split[INDEX_PATH_IMG]);
                 Uri uri = null;
                 if(Build.VERSION.SDK_INT<Build.VERSION_CODES.Q)uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);

@@ -41,8 +41,7 @@
             android:src="@drawable/ic_delete"
             android:background="@drawable/background_main_button_reset"/>
 
-
-
     </LinearLayout>
+
 
 </FrameLayout>

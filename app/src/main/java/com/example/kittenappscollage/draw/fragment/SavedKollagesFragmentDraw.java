@@ -71,7 +71,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     private ActionSave report;
 
     public void reSave(){
-        saved();
+        saveAPI29();
     }
 
     @Override
@@ -101,7 +101,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         super.saveTel(v);
         if(RepDraw.get().isImg()) {
             if (AllPermissions.create().activity(getActivity()).reqSingle(AllPermissions.STORAGE).isStorage()) {
-                saved();
+                saveAPI29();
             } else {
                 AllPermissions.create().activity(getActivity()).callDialog(AllPermissions.STORAGE, REQUEST_SAVED);
             }
@@ -219,18 +219,6 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         DocumentFile fold = DocumentFile.fromTreeUri(getContext(), uri);
         boolean exists = fold.exists();
         if(exists) {
-            /*отсюда ввести в базу данных ActionsDataBasePerms разрешение
-            * для этого надо юри, адрес папки как ключ*/
-
-//            String key = getRealPath(fold.getUri().getLastPathSegment());
-//            /*создаем итем в базу данных*/
-//            ActionsContentPerms.create(getContext()).queryItemDB(
-//                    key,
-//                    uri.toString(),
-//                    fold.getUri().toString(),
-//                    ActionsContentPerms.SYS_DF,
-//                    ActionsContentPerms.NON_LOC_STOR,
-//                    View.VISIBLE);
 
             getEditor().putString(KEY_PERM_SAVE, uri.toString());
             getEditor().apply();

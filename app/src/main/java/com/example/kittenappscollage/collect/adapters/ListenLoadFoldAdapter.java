@@ -67,10 +67,10 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
 
     public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds,HashMap<String,Long>mutable) {
         Item[] items = new Item[all.size()];
-        String[] folds = mutable.keySet().toArray(new String[mutable.keySet().size()]);
-
-        for(int i=0;i<folds.length;i++){
-                items[i] = new Item();
+        String[] folds = all.keySet().toArray(new String[all.keySet().size()]);
+        for(int i=0;i<items.length;i++){
+            items[i] = new Item();
+                if(all.get(folds[i])==null||all.get(folds[i]).size()==0)continue;
                 items[i].key = folds[i];
                 items[i].sizeItemsFold = all.get(folds[i]).size();
                 items[i].uriIconFold = all.get(folds[i]).get(items[i].sizeItemsFold - 1);
@@ -139,18 +139,19 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
         if(position<getItems().length) {
             Item item = getItems()[position];
-
-                final Uri uri = Uri.parse(items[position].uriIconFold);
-                if (items[position].sizeItemsFold > 0) {
-                    Glide.with(getContext())
-                            .load(uri)
-                            .placeholder(R.drawable.ic_update)
-                            .error(R.drawable.ic_error)
-                            .into(holder.getImage());
-                    final int index = item.sizeItemsFold;
-                    holder.getName().setText(item.nameFold);
-                    holder.getCol().setText(Integer.toString(index));
-            }
+                if(items[position].uriIconFold!=null) {
+                    final Uri uri = Uri.parse(items[position].uriIconFold);
+                    if (items[position].sizeItemsFold > 0) {
+                        Glide.with(getContext())
+                                .load(uri)
+                                .placeholder(R.drawable.ic_update)
+                                .error(R.drawable.ic_error)
+                                .into(holder.getImage());
+                        final int index = item.sizeItemsFold;
+                        holder.getName().setText(item.nameFold);
+                        holder.getCol().setText(Integer.toString(index));
+                    }
+                }
         }
         
     }

@@ -244,8 +244,8 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
                 data.getParentFile().delete();
                 ActionsContentPerms.create(getContext()).deleteItemDB(id_fold);
             }
+            if(data.delete())getContext().getContentResolver().delete(uri,null,null);
         }
-        getContext().getContentResolver().delete(uri,null,null);
     }
 
     /*добавляем изображение в галерею*/

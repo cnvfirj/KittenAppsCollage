@@ -73,9 +73,12 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
 
     public void setIndexKey(int index){
         if(index>=0) {
-            indexKey = index;
-            images = new String[all.get(getItems()[indexKey].key).size()];
-            all.get(getItems()[indexKey].key).toArray(images);
+                if (all.get(getItems()[index].key) != null) {
+                    indexKey = index;
+                    images = new String[all.get(getItems()[indexKey].key).size()];
+                    all.get(getItems()[indexKey].key).toArray(images);
+
+            }
         }
     }
 
@@ -151,7 +154,8 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     @Override
     public int getItemCount() {
 //        return all.get(getItems()[indexKey].key).size();
-        return images.length;
+        if(images==null)return 0;
+        else return images.length;
     }
 
     protected class ImgHolder extends CollectHolder{

@@ -28,6 +28,8 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
     *       режим клика - выйти в главную галлерею  */
     private ImageView selectExitMode,selected_1, selected_2, selected_3, selected_4;
 
+    private ImageView addFolders;
+
     private float slide;
 
     private ArrayList<String>dirs;
@@ -60,6 +62,9 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
             case R.id.selected_collect_4:
                 clickSel_4((ImageView)v);
                 break;
+            case R.id.gallery_add_folds:
+                clickAddFolder((ImageView)v);
+                break;
 
         }
     }
@@ -84,6 +89,8 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         selected_3.setOnClickListener(this);
         selected_4 = v.findViewById(R.id.selected_collect_4);
         selected_4.setOnClickListener(this);
+        addFolders = v.findViewById(R.id.gallery_add_folds);
+        addFolders.setOnClickListener(this);
     }
 
     @Override
@@ -125,6 +132,10 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
 
     }
 
+    protected void clickAddFolder(ImageView v){
+
+    }
+
 
     @Override
     protected void visibleMenu() {
@@ -144,6 +155,7 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         selectIconAction3(selected_3);
         slideSel_3(true);
         slideSel_4(true);
+//        slideAddFold(true);
     }
 
     @Override
@@ -162,6 +174,7 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         }
         slideSel_3(false);
         slideSel_4(false);
+//        slideAddFold(false);
     }
 
 
@@ -174,6 +187,13 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         }
     }
 
+//    protected void slideAddFold(boolean s){
+//        if(s){
+//            selected_1.animate().translationY(0).setDuration(300).start();
+//        }else {
+//            selected_1.animate().translationY(-slide).setDuration(300).start();
+//        }
+//    }
 
 
     protected void slideExit(boolean s){

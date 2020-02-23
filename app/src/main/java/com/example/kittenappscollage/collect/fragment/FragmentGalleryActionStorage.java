@@ -25,10 +25,6 @@ import java.util.HashMap;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.ObservableTransformer;
-import io.reactivex.Observer;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
@@ -97,16 +93,12 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
     }
 
     private void deleteImages(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
-        Uri treeUri = Uri.parse(getListPerms().get(key));
-        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-        getContext().getContentResolver().takePersistableUriPermission(treeUri, takeFlags);
         for (String ur:getSelectFiles()){
-            if(delFile(Uri.parse(ur))){
+            if(delDocFile(Uri.parse(ur))){
                 getListImagesInFolders().get(key).remove(ur);
                 emitter.onNext(getListImagesInFolders());
             }
         }
-//        getContext().getContentResolver().releasePersistableUriPermission(treeUri, takeFlags);
         emitter.onNext(getListImagesInFolders());
         emitter.onComplete();
     }
@@ -114,26 +106,29 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
     private void deleteImagesAndFold(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
         Uri treeUri = Uri.parse(getListPerms().get(key));
-        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-        getContext().getContentResolver().takePersistableUriPermission(treeUri, takeFlags);
         for (String ur:images){
             DocumentFile img = DocumentFile.fromSingleUri(getContext(),Uri.parse(ur));
-            if(img.isDirectory())break;
-            if(img.getType().equals(TYPE_PNG)||img.getType().equals(TYPE_JPG)||img.getType().equals(TYPE_JPEG)) {
-                if(delFile(Uri.parse(ur))) {
-                   getListImagesInFolders().get(key).remove(ur);
-                   emitter.onNext(getListImagesInFolders());
 
-               }
+            if(img.isDirectory())continue;
+            if(img.getType().equals(TYPE_PNG)||img.getType().equals(TYPE_JPG)||img.getType().equals(TYPE_JPEG)) {
+
+                    if(delDocFile(Uri.parse(ur))) {
+                        getListImagesInFolders().get(key).remove(ur);
+                        emitter.onNext(getListImagesInFolders());
+
+                }
             }
         }
+
+        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+        getContext().getContentResolver().releasePersistableUriPermission(treeUri, takeFlags);
+
         if(getListImagesInFolders().get(key).size()==0){
             clearLists(key);
             DocumentFile fold = DocumentFile.fromTreeUri(getContext(),treeUri);
             if(fold.listFiles().length==0){
-                if(fold.delete()){
+                if(delDocFile(fold.getUri())){
                     ActionsContentPerms.create(getContext()).deleteItemDB(key);
-//                    getContext().getContentResolver().releasePersistableUriPermission(treeUri, takeFlags);
                 }
             }
         }
@@ -141,30 +136,38 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
         emitter.onComplete();
     }
 
-    private boolean delFile(Uri fold){
+
+    private boolean delDocFile(Uri uri){
         boolean b = false;
         try {
-            b = DocumentsContract.deleteDocument(getContext().getContentResolver(),fold);
+            b = DocumentsContract.deleteDocument(getContext().getContentResolver(),uri);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         return b;
     }
 
-    private String[]projection(){
-        return new String[]{MediaStore.Images.Media._ID,
-                            MediaStore.Images.Media.BUCKET_ID,
-                            MediaStore.Images.Media.DISPLAY_NAME};
+//    private String getRealPath(String lastSegment) {
+//        String[]split = lastSegment.split("[:]");
+//        String[]sub = lastSegment.split(split[0]+":");
+//        String[]storage = getContext().getExternalFilesDir(null).getAbsolutePath().split("[/]");
+//        return "/"+storage[1]+"/"+split[0]+"/"+sub[1];
+//    }
 
-    }
-
-    private String selection(){
-        return MediaStore.Images.Media.DISPLAY_NAME + " = ? ";
-    }
-
-    private String[]selArgs(String key){
-        return new String[]{key};
-    }
+//    private String[]projection(){
+//        return new String[]{MediaStore.Images.Media._ID,
+//                            MediaStore.Images.Media.BUCKET_ID,
+//                            MediaStore.Images.Media.DISPLAY_NAME};
+//
+//    }
+//
+//    private String selection(){
+//        return MediaStore.Images.Media.DISPLAY_NAME + " = ? ";
+//    }
+//
+//    private String[]selArgs(String key){
+//        return new String[]{key};
+//    }
 
 
 }

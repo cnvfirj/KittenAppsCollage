@@ -130,17 +130,19 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     @Override
     public void click(int adapter, ImageView img, ImageView check, int pos) {
-        if(adapter==ROOT_ADAPTER){
-            if(!foldAdapt.isModeSelected()) {
-                imgAdapt.setIndexKey(pos);
-                gridLayoutManager.setSpanCount(3);
-                foldAdapt.activate(false);
-                recycler.setAdapter(imgAdapt.activate(true));
-                setIndexAdapter(pos);
-                key = getFoldAdapt().getItems()[pos].getKey();
+        if(pos>-1) {
+            if (adapter == ROOT_ADAPTER) {
+                if (!foldAdapt.isModeSelected()) {
+                    imgAdapt.setIndexKey(pos);
+                    gridLayoutManager.setSpanCount(3);
+                    foldAdapt.activate(false);
+                    recycler.setAdapter(imgAdapt.activate(true));
+                    setIndexAdapter(pos);
+                    key = getFoldAdapt().getItems()[pos].getKey();
+                }
+            } else {
+                if (!imgAdapt.isModeSelected()) clickItem(adapter, pos);
             }
-        }else {
-            if(!imgAdapt.isModeSelected())clickItem(adapter,pos);
         }
     }
 
@@ -182,7 +184,6 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     protected void invisibleMenu(){
 
     }
-
 
     protected String getKey(){
         return key;
