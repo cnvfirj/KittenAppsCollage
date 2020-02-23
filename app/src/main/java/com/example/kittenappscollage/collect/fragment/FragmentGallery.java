@@ -153,6 +153,8 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
             }
     }
 
+
+    /**correct post save*/
     @Override
     protected void correctAdapterPostSave() {
         super.correctAdapterPostSave();
