@@ -65,11 +65,14 @@ public class WorkDBPerms {
 
 
     public void setItem(String uri){
+        LYTE("WorkDBPerms set i - "+uri);
        db.work().insert(new Permis(uri));
     }
 
     public void delItem(String uri){
-        db.work().delete(db.work().getPerm(uri));
+        LYTE("WorkDBPerms del i - "+uri);
+        Permis p = db.work().getPerm(uri);
+        if(p!=null)db.work().delete(p);
     }
 
     public List<Permis>allItems(){

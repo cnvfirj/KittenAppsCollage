@@ -17,7 +17,6 @@ import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -121,9 +120,6 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
             }
         }
 
-//        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-//        getContext().getContentResolver().releasePersistableUriPermission(treeUri, takeFlags);
-
         if(getListImagesInFolders().get(key).size()==0){
             clearLists(key);
             WorkDBPerms.get(getContext()).delItem(key);
@@ -140,13 +136,10 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
 
 
     private boolean delDocFile(Uri uri){
-//        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
 
         boolean b = false;
         try {
-//            getContext().getContentResolver().takePersistableUriPermission(uri, takeFlags);
             b = DocumentsContract.deleteDocument(getContext().getContentResolver(),uri);
-//            getContext().getContentResolver().releasePersistableUriPermission(uri, takeFlags);
         }catch(FileNotFoundException e) {
             e.printStackTrace();
         }catch(SecurityException s){
@@ -154,28 +147,5 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
         }
         return b;
     }
-
-//    private String getRealPath(String lastSegment) {
-//        String[]split = lastSegment.split("[:]");
-//        String[]sub = lastSegment.split(split[0]+":");
-//        String[]storage = getContext().getExternalFilesDir(null).getAbsolutePath().split("[/]");
-//        return "/"+storage[1]+"/"+split[0]+"/"+sub[1];
-//    }
-
-//    private String[]projection(){
-//        return new String[]{MediaStore.Images.Media._ID,
-//                            MediaStore.Images.Media.BUCKET_ID,
-//                            MediaStore.Images.Media.DISPLAY_NAME};
-//
-//    }
-//
-//    private String selection(){
-//        return MediaStore.Images.Media.DISPLAY_NAME + " = ? ";
-//    }
-//
-//    private String[]selArgs(String key){
-//        return new String[]{key};
-//    }
-
 
 }

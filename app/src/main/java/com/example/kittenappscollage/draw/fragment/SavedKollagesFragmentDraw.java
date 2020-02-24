@@ -107,15 +107,6 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         }else Massages.SHOW_MASSAGE(getContext(), "Создай холст");
     }
 
-    private void saved(){
-        if (version())saveAPI21();
-        else saveAPI29();
-    }
-
-    private boolean version(){
-        return App.checkVersion();
-    }
-
     @SuppressLint("CheckResult")
     private void saveAPI29(){
        String data = getPreferences().getString(KEY_PERM_SAVE,ZHOPA);
@@ -213,8 +204,8 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         DocumentFile fold = DocumentFile.fromTreeUri(getContext(), uri);
         boolean exists = fold.exists();
         if(exists) {
-            WorkDBPerms.get(getContext()).setAction(WorkDBPerms.INSERT,uri.toString());
-            getEditor().putString(KEY_PERM_SAVE, uri.toString());
+            WorkDBPerms.get(getContext()).setAction(WorkDBPerms.INSERT,fold.getUri().toString());
+            getEditor().putString(KEY_PERM_SAVE, fold.getUri().toString());
             getEditor().apply();
         }
 
@@ -233,16 +224,25 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         return Observable.create((ObservableOnSubscribe<String>) emitter -> {
             emitter.onNext(saved(perm));
             emitter.onComplete();
-        }).compose(new ThreadTransformers.InputOutput<>())
-                .onErrorResumeNext(new Observable<String>() {
-                    @Override
-                    protected void subscribeActual(Observer<? super String> observer) {
-                        LYTE("Error - "+perm.toString());
-                        getEditor().putString(KEY_PERM_SAVE, ZHOPA);
-                        getEditor().apply();
-                        saveAPI29();
-                    }
-                });
+        }).compose(new ThreadTransformers.InputOutput<>());
+//                .doOnError(new Consumer<Throwable>() {
+//                    @Override
+//                    public void accept(Throwable throwable) throws Exception {
+//                        LYTE("SavedKollagesFragmentDraw Error save - "+perm.toString());
+//                        getEditor().putString(KEY_PERM_SAVE, ZHOPA);
+//                        getEditor().apply();
+//                        saveAPI29();
+//                    }
+//                });
+//                .onErrorResumeNext(new Observable<String>() {
+//                    @Override
+//                    protected void subscribeActual(Observer<? super String> observer) {
+//                        LYTE("SavedKollagesFragmentDraw Error - "+perm.toString());
+//                        getEditor().putString(KEY_PERM_SAVE, ZHOPA);
+//                        getEditor().apply();
+//                        saveAPI29();
+//                    }
+//                });
     }
 
     private void share(){

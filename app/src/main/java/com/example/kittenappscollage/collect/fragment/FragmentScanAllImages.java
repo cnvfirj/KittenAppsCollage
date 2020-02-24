@@ -91,15 +91,12 @@ public class FragmentScanAllImages extends Fragment {
 
 
     private void scanAvailablePermissions(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) {
-        final int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-//        for (UriPermission u : getContext().getContentResolver().getPersistedUriPermissions()) {
 
         for (Permis p: WorkDBPerms.get().allItems()){
             DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
             if (df.exists() && df.isDirectory()) {
-               addImgsInFold(df,emitter);
+               addImgsInFold(p,df,emitter);
             } else {
-//                getContext().getContentResolver().releasePersistableUriPermission(Uri.parse(p.uriPerm), takeFlags);
                 WorkDBPerms.get(getContext()).setAction(WorkDBPerms.DELETE,p.uriPerm);
             }
         }
@@ -107,7 +104,7 @@ public class FragmentScanAllImages extends Fragment {
         emitter.onComplete();
     }
 
-    private void addImgsInFold(DocumentFile df,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+    private void addImgsInFold(Permis p,DocumentFile df,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         final String keyAndPerm = df.getUri().toString();
         final String name = df.getName();
         int iterator = 0;
@@ -118,6 +115,7 @@ public class FragmentScanAllImages extends Fragment {
                     final long date = f.lastModified();
                     if(!getListImagesInFolders().containsKey(keyAndPerm)){
                         addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
+                        iterator++;
                     }else {
                         if(!getListImagesInFolders().get(keyAndPerm).contains(f.getUri().toString())){
                             addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
@@ -130,13 +128,8 @@ public class FragmentScanAllImages extends Fragment {
         }
 
         if(iterator==0){
-            int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-            try {
-                getContext().getContentResolver().releasePersistableUriPermission(df.getUri(), takeFlags);
-            }catch (SecurityException e){
-               LYTE("FragmentScanAllImages SecurityException e "+e.toString());
-            }
-                   }
+               WorkDBPerms.get(getContext()).delItem(p.uriPerm);
+        }
         emitter.onNext(getListImagesInFolders());
     }
 
@@ -176,14 +169,6 @@ public class FragmentScanAllImages extends Fragment {
         else uri = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL);
         return uri;
     }
-
-//    private String[]projection(){
-//        return new String[]{
-//                MediaStore.Images.Media._ID,
-//                MediaStore.Images.Media.MIME_TYPE,
-//                MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
-//                MediaStore.Images.Media.DATE_MODIFIED};
-//    }
 
     /*определяем тома в устройстве*/
     private void definitionStorage(){
@@ -247,21 +232,9 @@ public class FragmentScanAllImages extends Fragment {
         return listFolds;
     }
 
-//    protected HashMap<String,String>getListPerms(){
-//        return listPerms;
-//    }
-
-    protected void clearListImagesInFolders(){
-        listImagesToFolder.clear();
-        listFolds.clear();
-//        listPerms.clear();
-        listMutable.clear();
-    }
-
     protected void initListImagesInFolders(){
         listImagesToFolder = new HashMap<String, ArrayList<String>>();
         listFolds = new HashMap<String,String>();
-//        listPerms = new HashMap<String,String>();
         listMutable = new HashMap<String,Long>();
 
     }
