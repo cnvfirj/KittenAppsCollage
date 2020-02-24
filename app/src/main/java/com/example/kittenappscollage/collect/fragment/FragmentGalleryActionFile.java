@@ -18,7 +18,6 @@ import androidx.annotation.Nullable;
 import androidx.documentfile.provider.DocumentFile;
 
 import com.example.kittenappscollage.helpers.Massages;
-import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
@@ -41,7 +40,6 @@ import io.reactivex.ObservableOnSubscribe;
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
-import static com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms.ZHOPA;
 
 public class FragmentGalleryActionFile extends FragmentGalleryAction {
 
@@ -93,7 +91,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
     protected void clearLists(String key){
         if(getListImagesInFolders().containsKey(key)) {
             getListImagesInFolders().remove(key);
-            getListPerms().remove(key);
+//            getListPerms().remove(key);
             getListFolds().remove(key);
             getListMutable().remove(key);
         }
@@ -242,7 +240,7 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
             File data = new File(cursor.getString(col_data));
             if(data.getParentFile().listFiles().length==0) {
                 data.getParentFile().delete();
-                ActionsContentPerms.create(getContext()).deleteItemDB(id_fold);
+//                ActionsContentPerms.create(getContext()).deleteItemDB(id_fold);
             }
             if(data.delete())getContext().getContentResolver().delete(uri,null,null);
         }
@@ -258,15 +256,15 @@ public class FragmentGalleryActionFile extends FragmentGalleryAction {
         final String id_fold = ""+cursor.getLong(col_id_fold);
         final String name_fold = cursor.getString(col_name_fold);
         final long mod_img = cursor.getLong(col_mod_img);
-        ActionsContentPerms.create(getContext()).queryItemDB(
-                id_fold,
-                ActionsContentPerms.GRAND,
-                ZHOPA,
-                ActionsContentPerms.SYS_FILE,
-                0,
-                View.VISIBLE);
+//        ActionsContentPerms.create(getContext()).queryItemDB(
+//                id_fold,
+//                ActionsContentPerms.GRAND,
+//                ZHOPA,
+//                ActionsContentPerms.SYS_FILE,
+//                0,
+//                View.VISIBLE);
 
-        addImgCollect(id_fold,uri.toString(),name_fold,ActionsContentPerms.GRAND,mod_img);
+//        addImgCollect(id_fold,uri.toString(),name_fold,ActionsContentPerms.GRAND,mod_img);
 
     }
 

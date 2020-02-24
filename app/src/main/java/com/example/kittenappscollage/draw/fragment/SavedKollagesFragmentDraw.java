@@ -21,8 +21,7 @@ import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.RequestFolder;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
-import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
-import com.example.kittenappscollage.helpers.db.aller.ContentPermis;
+import com.example.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
@@ -169,11 +168,6 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
             String sImg = getRealPath(img.getUri().getLastPathSegment());
             String system = ZHOPA;
 
-            ContentPermis cp = ActionsContentPerms.create(getContext()).getItem(sDir);
-            if(cp!=null){
-                if(cp.system.equals(ActionsContentPerms.SYS_DF))system = cp.system;
-            }
-
             if(save){
                 String report =
                         sImg+                   REPORT_DELIMITER+ //адрез изображения
@@ -219,7 +213,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         DocumentFile fold = DocumentFile.fromTreeUri(getContext(), uri);
         boolean exists = fold.exists();
         if(exists) {
-
+            WorkDBPerms.get(getContext()).setAction(WorkDBPerms.INSERT,uri.toString());
             getEditor().putString(KEY_PERM_SAVE, uri.toString());
             getEditor().apply();
         }
@@ -284,29 +278,29 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     @SuppressLint("CheckResult")
     private  void saveImage(Bitmap bitmap) {
 
-        if(bitmap==null||bitmap.isRecycled())return;
-
-        final File folder = new File(RequestFolder.getFolderCollages(getContext()));
-        final String name = RepDraw.PropertiesImage.NAME_IMAGE();
-        if(RequestFolder.testFolder(folder)) {
-            final File image = new File(folder.getAbsolutePath() + "/"+ name);
-            requestSaveFile(image, bitmap)
-                    .subscribe(aBoolean -> {
-                        report = (ActionSave)getContext();
-                        if(report!=null){
-                            report.savedFile(aBoolean,
-                                    folder.getAbsolutePath(),
-                                    image.getAbsolutePath(),
-                                    name);
-                        }else SHOW_MASSAGE(getContext(), "перезапусти приложение");
-                        if (aBoolean) {
-                            SHOW_MASSAGE(getContext(), "изображение сохранено");
-                        }
-                        else SHOW_MASSAGE(getContext(), "ошибка сохранения");
-                    });
-        }else {
-            SHOW_MASSAGE(getContext(), "проверь память устройства");
-        }
+//        if(bitmap==null||bitmap.isRecycled())return;
+//
+//        final File folder = new File(RequestFolder.getFolderCollages(getContext()));
+//        final String name = RepDraw.PropertiesImage.NAME_IMAGE();
+//        if(RequestFolder.testFolder(folder)) {
+//            final File image = new File(folder.getAbsolutePath() + "/"+ name);
+//            requestSaveFile(image, bitmap)
+//                    .subscribe(aBoolean -> {
+//                        report = (ActionSave)getContext();
+//                        if(report!=null){
+//                            report.savedFile(aBoolean,
+//                                    folder.getAbsolutePath(),
+//                                    image.getAbsolutePath(),
+//                                    name);
+//                        }else SHOW_MASSAGE(getContext(), "перезапусти приложение");
+//                        if (aBoolean) {
+//                            SHOW_MASSAGE(getContext(), "изображение сохранено");
+//                        }
+//                        else SHOW_MASSAGE(getContext(), "ошибка сохранения");
+//                    });
+//        }else {
+//            SHOW_MASSAGE(getContext(), "проверь память устройства");
+//        }
 
     }
 

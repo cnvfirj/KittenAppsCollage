@@ -14,7 +14,7 @@ import androidx.annotation.RequiresApi;
 import androidx.documentfile.provider.DocumentFile;
 
 import com.example.kittenappscollage.helpers.Massages;
-import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
+import com.example.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
@@ -105,11 +105,12 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
 
     private void deleteImagesAndFold(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
-        Uri treeUri = Uri.parse(getListPerms().get(key));
+        Uri treeUri = Uri.parse(key);
         for (String ur:images){
             DocumentFile img = DocumentFile.fromSingleUri(getContext(),Uri.parse(ur));
 
             if(img.isDirectory())continue;
+
             if(img.getType().equals(TYPE_PNG)||img.getType().equals(TYPE_JPG)||img.getType().equals(TYPE_JPEG)) {
 
                     if(delDocFile(Uri.parse(ur))) {
@@ -120,15 +121,16 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
             }
         }
 
-        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-        getContext().getContentResolver().releasePersistableUriPermission(treeUri, takeFlags);
+//        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+//        getContext().getContentResolver().releasePersistableUriPermission(treeUri, takeFlags);
 
         if(getListImagesInFolders().get(key).size()==0){
             clearLists(key);
+            WorkDBPerms.get(getContext()).delItem(key);
             DocumentFile fold = DocumentFile.fromTreeUri(getContext(),treeUri);
             if(fold.listFiles().length==0){
                 if(delDocFile(fold.getUri())){
-                    ActionsContentPerms.create(getContext()).deleteItemDB(key);
+
                 }
             }
         }
@@ -138,11 +140,17 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
 
 
     private boolean delDocFile(Uri uri){
+//        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+
         boolean b = false;
         try {
+//            getContext().getContentResolver().takePersistableUriPermission(uri, takeFlags);
             b = DocumentsContract.deleteDocument(getContext().getContentResolver(),uri);
-        } catch (FileNotFoundException e) {
+//            getContext().getContentResolver().releasePersistableUriPermission(uri, takeFlags);
+        }catch(FileNotFoundException e) {
             e.printStackTrace();
+        }catch(SecurityException s){
+            LYTE("FragmentGalleryActionStorage ex del "+s.toString());
         }
         return b;
     }

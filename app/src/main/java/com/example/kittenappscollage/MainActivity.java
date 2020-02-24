@@ -26,13 +26,12 @@ import com.example.kittenappscollage.draw.saveSteps.State;
 import com.example.kittenappscollage.draw.saveSteps.Steps;
 import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.App;
-import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
+import com.example.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
-import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_FOLD;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_URI_DF_IMG;
@@ -48,8 +47,8 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActionsContentPerms.create(getApplicationContext());
         setContentView(R.layout.activity_main);
+        WorkDBPerms.get(getApplicationContext());
         App.setMain(this);
         setupViewPager((SelectSweepViewPager) findViewById(R.id.select_sweep_viewpager));
         requestOldProj();
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                 if(Build.VERSION.SDK_INT<Build.VERSION_CODES.Q)uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
                 else uri = getContentResolver().insert(MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL), values);
 
-                mFragGal.setSavingInFileCollage(uri,img, fold);
+//                mFragGal.setSavingInFileCollage(uri,img, fold);
             }
         }
     }

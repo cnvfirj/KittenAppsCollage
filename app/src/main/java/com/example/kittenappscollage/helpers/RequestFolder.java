@@ -5,7 +5,6 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.example.kittenappscollage.R;
-import com.example.kittenappscollage.helpers.db.aller.ContentPermis;
 
 import java.io.File;
 import java.io.FileOutputStream;

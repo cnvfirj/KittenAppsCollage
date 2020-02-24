@@ -45,7 +45,7 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
 
     private ListenAdapter listen;
 
-    private HashMap<String,String>perms;
+//    private HashMap<String,String>perms;
 
     public ListenLoadFoldAdapter(Context context) {
         this.context = context;
@@ -61,11 +61,13 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         return this;
     }
 
-    public void setPerms(HashMap<String,String>perms){
-        this.perms = perms;
-    }
+//    public void setPerms(HashMap<String,String>perms){
+//        this.perms = perms;
+//    }
 
-    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds,HashMap<String,Long>mutable) {
+//    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds,HashMap<String,Long>mutable) {
+    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds) {
+
         Item[] items = new Item[all.size()];
         String[] folds = all.keySet().toArray(new String[all.keySet().size()]);
         for(int i=0;i<items.length;i++){
@@ -74,21 +76,22 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
                 items[i].key = folds[i];
                 items[i].sizeItemsFold = all.get(folds[i]).size();
                 items[i].uriIconFold = all.get(folds[i]).get(items[i].sizeItemsFold - 1);
-                items[i].mutableLastImg = mutable.get(folds[i]);
+//                items[i].uriIconFold = all.get(folds[i]).get(0);
+//                items[i].mutableLastImg = mutable.get(folds[i]);
                 items[i].nameFold = namesFolds.get(folds[i]);
-                items[i].permission = perms.get(folds[i]);
+//                items[i].permission = perms.get(folds[i]);
         }
 
         /*сортируем ключи по их значению в мапе*/
-        Arrays.sort(items, new Comparator<Item>() {
-            @Override
-            public int compare(Item o1, Item o2) {
-                final Long m1 = o1.mutableLastImg;
-                final Long m2 = o2.mutableLastImg;
-
-                return m2.compareTo(m1);
-            }
-        });
+//        Arrays.sort(items, new Comparator<Item>() {
+//            @Override
+//            public int compare(Item o1, Item o2) {
+//                final Long m1 = o1.mutableLastImg;
+//                final Long m2 = o2.mutableLastImg;
+//
+//                return m2.compareTo(m1);
+//            }
+//        });
 
 
         if(active){
@@ -119,9 +122,9 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         return context;
     }
 
-    protected HashMap<String, String> getPerms(){
-        return perms;
-    }
+//    protected HashMap<String, String> getPerms(){
+//        return perms;
+//    }
 
     protected boolean isActive(){
         return active;

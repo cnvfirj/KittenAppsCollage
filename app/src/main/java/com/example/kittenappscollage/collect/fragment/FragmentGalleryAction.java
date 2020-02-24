@@ -6,8 +6,6 @@ import com.example.kittenappscollage.collect.dialogActions.DialogAction;
 import com.example.kittenappscollage.collect.dialogActions.ListenActions;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.Massages;
-import com.example.kittenappscollage.helpers.RequestFolder;
-import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 import static com.example.kittenappscollage.collect.dialogActions.DialogAction.ACTION_DELETE;
@@ -79,28 +77,22 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     @Override
     public void result(boolean done, String name) {
         if(done&&!name.isEmpty()) {
-            final String perm = getListPerms().get(getKey());
-            if(perm==null||perm.equals(ActionsContentPerms.NON_PERM)){
-                Massages.SHOW_MASSAGE(getContext(),"Нет прав для переименования этой папки");
-                invisibleMenu();
-            }else if(perm.equals(ActionsContentPerms.GRAND)){
-                renameFoldFile(name, getKey());
-            }else {
+
                renameFoldStorage(name, getKey());
-            }
+
         }
     }
 
     private void deleteFolder(){
-        final String perm = getListPerms().get(getKey());
-       if(perm==null||perm.equals(ActionsContentPerms.NON_PERM)){
-           Massages.SHOW_MASSAGE(getContext(),"Нет прав для удаления этой папки");
-           invisibleMenu();
-       }else if(perm.equals(ActionsContentPerms.GRAND)){
-           deletedFoldFile(getKey());
-       }else {
+//        final String perm = getListPerms().get(getKey());
+//       if(perm==null||perm.equals(ActionsContentPerms.NON_PERM)){
+//           Massages.SHOW_MASSAGE(getContext(),"Нет прав для удаления этой папки");
+//           invisibleMenu();
+//       }else if(perm.equals(ActionsContentPerms.GRAND)){
+//           deletedFoldFile(getKey());
+//       }else {
            deletedFoldStorage(getKey());
-       }
+//       }
 
     }
 
@@ -114,15 +106,15 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     }
 
     private void deleteSelectedImg(int adapter){
-        final String perm = getListPerms().get(getKey());
-        if(perm==null||perm.equals(ActionsContentPerms.NON_PERM)){
-            Massages.SHOW_MASSAGE(getContext(),"Нет прав для редактирования этойпапки");
-            invisibleMenu();
-        }else if(perm.equals(ActionsContentPerms.GRAND)){
-            applyDeleteSelectedFile();
-        }else {
+//        final String perm = getListPerms().get(getKey());
+//        if(perm==null||perm.equals(ActionsContentPerms.NON_PERM)){
+//            Massages.SHOW_MASSAGE(getContext(),"Нет прав для редактирования этойпапки");
+//            invisibleMenu();
+//        }else if(perm.equals(ActionsContentPerms.GRAND)){
+//            applyDeleteSelectedFile();
+//        }else {
             applyDeleteSelectedStorage();
-        }
+//        }
     }
 
     protected boolean version(){

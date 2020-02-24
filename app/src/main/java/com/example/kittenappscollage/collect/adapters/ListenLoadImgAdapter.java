@@ -109,19 +109,27 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     }
 
     protected void createHolder(View holder, int pos){
-        if(listen!=null)listen.createHolder(indexKey, holder, getPositionInEnd(pos));
+//        if(listen!=null)listen.createHolder(indexKey, holder, getPositionInEnd(pos));
+        if(listen!=null)listen.createHolder(indexKey, holder, pos);
+
     }
 
     protected void createContentHolder(View[]content, int pos){
-        if(listen!=null)listen.createContentHolder(indexKey, content, getPositionInEnd(pos));
+//        if(listen!=null)listen.createContentHolder(indexKey, content, getPositionInEnd(pos));
+        if(listen!=null)listen.createContentHolder(indexKey, content, pos);
+
     }
 
     protected void click(ImageView img, ImageView check, int pos){
-        if(listen!=null)listen.click(indexKey, img,check, getPositionInEnd(pos));
+//        if(listen!=null)listen.click(indexKey, img,check, getPositionInEnd(pos));
+       if(listen!=null)listen.click(indexKey, img,check, pos);
+
     }
 
     protected void longClick(ImageView img, ImageView check, int pos) {
-        if(listen!=null)listen.longClick(indexKey, img, check, getPositionInEnd(pos));
+//        if(listen!=null)listen.longClick(indexKey, img, check, getPositionInEnd(pos));
+        if(listen!=null)listen.longClick(indexKey, img, check, pos);
+
     }
 
     /*получаем вариант из конца списка*/
@@ -142,7 +150,8 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
 
     @Override
     public void onBindViewHolder(@NonNull ImgHolder holder, int position) {
-        final Uri uri = Uri.parse(images[getPositionInEnd(position)]);
+//        final Uri uri = Uri.parse(images[getPositionInEnd(position)]);
+        final Uri uri = Uri.parse(images[position]);
 
         Glide.with(getContext())
                 .load(uri)

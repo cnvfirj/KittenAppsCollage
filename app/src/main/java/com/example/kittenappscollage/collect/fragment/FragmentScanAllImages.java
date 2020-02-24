@@ -26,8 +26,8 @@ import com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.ListenMedia;
 import com.example.kittenappscollage.helpers.Massages;
-import com.example.kittenappscollage.helpers.db.aller.ActionsContentPerms;
-import com.example.kittenappscollage.helpers.db.aller.ContentPermis;
+import com.example.kittenappscollage.helpers.dbPerms.Permis;
+import com.example.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
@@ -42,8 +42,6 @@ import java.util.Objects;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
@@ -53,7 +51,7 @@ public class FragmentScanAllImages extends Fragment {
 
     private HashMap<String,String>listFolds;
 
-    private HashMap<String,String>listPerms;
+//    private HashMap<String,String>listPerms;
 
     private HashMap<String,Long>listMutable;
 
@@ -94,23 +92,25 @@ public class FragmentScanAllImages extends Fragment {
 
     private void scanAvailablePermissions(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) {
         final int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-        for (UriPermission u : getContext().getContentResolver().getPersistedUriPermissions()) {
-            DocumentFile df = DocumentFile.fromTreeUri(getContext(), u.getUri());
+//        for (UriPermission u : getContext().getContentResolver().getPersistedUriPermissions()) {
+
+        for (Permis p: WorkDBPerms.get().allItems()){
+            DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
             if (df.exists() && df.isDirectory()) {
-               addImgsInFold(u,df,emitter);
+               addImgsInFold(df,emitter);
             } else {
-                getContext().getContentResolver().releasePersistableUriPermission(u.getUri(), takeFlags);
+//                getContext().getContentResolver().releasePersistableUriPermission(Uri.parse(p.uriPerm), takeFlags);
+                WorkDBPerms.get(getContext()).setAction(WorkDBPerms.DELETE,p.uriPerm);
             }
         }
         emitter.onNext(getListImagesInFolders());
         emitter.onComplete();
     }
 
-    private void addImgsInFold(UriPermission u, DocumentFile df,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+    private void addImgsInFold(DocumentFile df,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         final String keyAndPerm = df.getUri().toString();
         final String name = df.getName();
         int iterator = 0;
-//        getListImagesInFolders().remove(keyAndPerm);
         for (DocumentFile f:df.listFiles()){
             if(f.isFile()) {
                 final String type = f.getType();
@@ -132,7 +132,7 @@ public class FragmentScanAllImages extends Fragment {
         if(iterator==0){
             int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
             try {
-                getContext().getContentResolver().releasePersistableUriPermission(u.getUri(), takeFlags);
+                getContext().getContentResolver().releasePersistableUriPermission(df.getUri(), takeFlags);
             }catch (SecurityException e){
                LYTE("FragmentScanAllImages SecurityException e "+e.toString());
             }
@@ -150,7 +150,7 @@ public class FragmentScanAllImages extends Fragment {
             imgs.add(img);
             getListImagesInFolders().put(key, imgs);
             getListFolds().put(key,fold);
-            getListPerms().put(key,permis);
+//            getListPerms().put(key,permis);
         }
     }
 
@@ -158,13 +158,7 @@ public class FragmentScanAllImages extends Fragment {
     public void setSavingInStorageCollage(Uri uri, String report, String delimiter){
         String[]split = report.split(delimiter);
         DocumentFile fold = DocumentFile.fromTreeUri(getContext(),Uri.parse(split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD]));
-        ActionsContentPerms.create(getContext().getApplicationContext()).queryItemDB(
-                fold.getUri().toString(),
-                fold.getUri().toString(),
-                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
-                ActionsContentPerms.SYS_DF,
-                1,
-                View.VISIBLE);
+
         addImgCollect(
                 fold.getUri().toString(),
                 split[SavedKollagesFragmentDraw.INDEX_URI_DF_IMG],
@@ -174,35 +168,7 @@ public class FragmentScanAllImages extends Fragment {
         setListImagesInFolders(getListImagesInFolders());
     }
 
-    /*android 9 file system*/
-    public void setSavingInFileCollage(Uri uri,String pathImg,String pathFold){
 
-        Cursor cursor = getContext().getContentResolver().query(uri,projection(),null,null,null);
-
-        final int col_id_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
-        final int col_name_fold = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
-        final int col_date_mod = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED);
-        cursor.moveToFirst();
-        final String id_fold = "" + cursor.getLong(col_id_fold);
-        final String nameFold = cursor.getString(col_name_fold);
-        final long date_mod = cursor.getLong(col_date_mod);
-
-        ActionsContentPerms.create(getContext()).queryItemDB(
-                id_fold,
-                ActionsContentPerms.GRAND,
-                ActionsContentPerms.ZHOPA,
-                ActionsContentPerms.SYS_FILE,
-                0,
-                View.VISIBLE);
-
-        addImgCollect(
-                id_fold,
-                uri.toString(),
-                nameFold,
-                ActionsContentPerms.GRAND,
-                date_mod);
-        setListImagesInFolders(getListImagesInFolders());
-    }
 
     protected Uri question(){
         Uri uri = null;
@@ -211,13 +177,13 @@ public class FragmentScanAllImages extends Fragment {
         return uri;
     }
 
-    private String[]projection(){
-        return new String[]{
-                MediaStore.Images.Media._ID,
-                MediaStore.Images.Media.MIME_TYPE,
-                MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
-                MediaStore.Images.Media.DATE_MODIFIED};
-    }
+//    private String[]projection(){
+//        return new String[]{
+//                MediaStore.Images.Media._ID,
+//                MediaStore.Images.Media.MIME_TYPE,
+//                MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
+//                MediaStore.Images.Media.DATE_MODIFIED};
+//    }
 
     /*определяем тома в устройстве*/
     private void definitionStorage(){
@@ -246,12 +212,11 @@ public class FragmentScanAllImages extends Fragment {
             getListImagesInFolders().get(key).add(img);
             getListMutable().put(key,date);
         } else {
-            correctAdapterPostSave();
             ArrayList<String> imgs = new ArrayList<>();
             imgs.add(img);
             getListImagesInFolders().put(key, imgs);
             getListFolds().put(key,fold);
-            getListPerms().put(key,permis);
+//            getListPerms().put(key,permis);
         }
     }
 
@@ -282,21 +247,21 @@ public class FragmentScanAllImages extends Fragment {
         return listFolds;
     }
 
-    protected HashMap<String,String>getListPerms(){
-        return listPerms;
-    }
+//    protected HashMap<String,String>getListPerms(){
+//        return listPerms;
+//    }
 
     protected void clearListImagesInFolders(){
         listImagesToFolder.clear();
         listFolds.clear();
-        listPerms.clear();
+//        listPerms.clear();
         listMutable.clear();
     }
 
     protected void initListImagesInFolders(){
         listImagesToFolder = new HashMap<String, ArrayList<String>>();
         listFolds = new HashMap<String,String>();
-        listPerms = new HashMap<String,String>();
+//        listPerms = new HashMap<String,String>();
         listMutable = new HashMap<String,Long>();
 
     }

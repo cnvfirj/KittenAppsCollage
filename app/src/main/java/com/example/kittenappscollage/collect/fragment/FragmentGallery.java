@@ -123,8 +123,10 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     protected void setListImagesInFolders(HashMap<String, ArrayList<String>> list) {
         super.setListImagesInFolders(list);
         invisibleMenu();
-        foldAdapt.setPerms(getListPerms());
-        foldAdapt.setAll(getListImagesInFolders(), getListFolds(),getListMutable()).setListen(this);
+//        foldAdapt.setPerms(getListPerms());
+//        foldAdapt.setAll(getListImagesInFolders(), getListFolds(),getListMutable()).setListen(this);
+        foldAdapt.setAll(getListImagesInFolders(), getListFolds()).setListen(this);
+
         imgAdapt.setAll(getListImagesInFolders(),foldAdapt.getItems()).setListen(this);
     }
 
@@ -158,10 +160,10 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     @Override
     protected void correctAdapterPostSave() {
         super.correctAdapterPostSave();
-        if(getIndexAdapter()!=ROOT_ADAPTER) {
-            indexClickAdapter++;
-            imgAdapt.setIndexKey(indexClickAdapter);
-        }
+//        if(getIndexAdapter()!=ROOT_ADAPTER) {
+//            indexClickAdapter++;
+//            imgAdapt.setIndexKey(indexClickAdapter);
+//        }
 
     }
 
