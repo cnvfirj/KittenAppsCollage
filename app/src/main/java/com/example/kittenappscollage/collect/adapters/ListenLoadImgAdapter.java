@@ -56,15 +56,28 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
         return this;
     }
 
-    public ListenLoadImgAdapter setAll(HashMap<String, ArrayList<String>> all, ListenLoadFoldAdapter.Item[]items){
+    public ListenLoadImgAdapter setAll(HashMap<String, ArrayList<String>> all, ListenLoadFoldAdapter.Item[]items,String key){
         this.all = all;
         this.items = items;
         String[] imgs = null;
         if(active){
-            imgs = new String[all.get(getItems()[indexKey].key).size()];
-            all.get(getItems()[indexKey].key).toArray(imgs);
-            DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallbackImg(this.images,imgs));
-            diffResult.dispatchUpdatesTo(this);
+            if(key==null){
+                if(all.get(getItems()[indexKey].key)==null){
+                    listen.exit(indexKey);
+                }else {
+                    imgs = new String[all.get(getItems()[indexKey].key).size()];
+                    all.get(getItems()[indexKey].key).toArray(imgs);
+                }
+            } else {
+                if(all.get(key)==null){
+                    listen.exit(indexKey);
+                }else {
+                    imgs = new String[all.get(key).size()];
+                    all.get(key).toArray(imgs);
+                }
+            }
+           DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallbackImg(this.images,imgs));
+           diffResult.dispatchUpdatesTo(this);
         }
 
         this.images = imgs;

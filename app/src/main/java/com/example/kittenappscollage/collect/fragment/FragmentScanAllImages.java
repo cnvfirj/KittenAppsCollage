@@ -51,8 +51,6 @@ public class FragmentScanAllImages extends Fragment {
 
     private HashMap<String,String>listFolds;
 
-//    private HashMap<String,String>listPerms;
-
     private HashMap<String,Long>listMutable;
 
     private ArrayList<String> storage;
@@ -91,9 +89,9 @@ public class FragmentScanAllImages extends Fragment {
 
 
     private void scanAvailablePermissions(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) {
-
         for (Permis p: WorkDBPerms.get().allItems()){
             DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
+
             if (df.exists() && df.isDirectory()) {
                addImgsInFold(p,df,emitter);
             } else {
@@ -108,26 +106,35 @@ public class FragmentScanAllImages extends Fragment {
         final String keyAndPerm = df.getUri().toString();
         final String name = df.getName();
         int iterator = 0;
+        int add = 0;
+        ArrayList<String>imgs = new ArrayList<>();
         for (DocumentFile f:df.listFiles()){
             if(f.isFile()) {
                 final String type = f.getType();
                 if (type.equals("image/png") || type.equals("image/jpeg") || type.equals("image/jpg")) {
                     final long date = f.lastModified();
+                    iterator++;
                     if(!getListImagesInFolders().containsKey(keyAndPerm)){
                         addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
-                        iterator++;
+                        imgs.add(f.getUri().toString());
+                        add++;
                     }else {
                         if(!getListImagesInFolders().get(keyAndPerm).contains(f.getUri().toString())){
                             addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
-                            if (iterator % 10 == 0) emitter.onNext(getListImagesInFolders());
-                            iterator++;
+                            imgs.add(f.getUri().toString());
+                            add++;
+                            if (add % 10 == 0) emitter.onNext(getListImagesInFolders());
                         }
                     }
                 }
             }
         }
 
+
         if(iterator==0){
+            if(getListImagesInFolders().containsKey(keyAndPerm)){
+                getListImagesInFolders().remove(keyAndPerm);
+            }
                WorkDBPerms.get(getContext()).delItem(p.uriPerm);
         }
         emitter.onNext(getListImagesInFolders());
@@ -143,7 +150,6 @@ public class FragmentScanAllImages extends Fragment {
             imgs.add(img);
             getListImagesInFolders().put(key, imgs);
             getListFolds().put(key,fold);
-//            getListPerms().put(key,permis);
         }
     }
 
@@ -201,15 +207,7 @@ public class FragmentScanAllImages extends Fragment {
             imgs.add(img);
             getListImagesInFolders().put(key, imgs);
             getListFolds().put(key,fold);
-//            getListPerms().put(key,permis);
         }
-    }
-
-
-    protected void correctAdapterPostSave(){
-        /*если в момент сохранения окрыт подкаталог галереи,
-        * то при создании директории индекс открыто не изменяется
-        * и отображается предыдущая по порядку*/
     }
 
     protected void setListImagesInFolders(HashMap<String,ArrayList<String>> list){

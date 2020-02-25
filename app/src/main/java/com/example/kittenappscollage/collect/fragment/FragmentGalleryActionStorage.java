@@ -141,9 +141,12 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
         try {
             b = DocumentsContract.deleteDocument(getContext().getContentResolver(),uri);
         }catch(FileNotFoundException e) {
-            e.printStackTrace();
+            LYTE("FragmentGalleryActionStorage FileNotFoundException del "+e.toString());
         }catch(SecurityException s){
-            LYTE("FragmentGalleryActionStorage ex del "+s.toString());
+            LYTE("FragmentGalleryActionStorage SecurityException del "+s.toString());
+        }catch (IllegalArgumentException i){
+            LYTE("FragmentGalleryActionStorage IllegalArgumentException del "+i.toString());
+            b = true;
         }
         return b;
     }

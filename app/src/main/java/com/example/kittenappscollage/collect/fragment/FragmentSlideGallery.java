@@ -97,11 +97,24 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
     protected void setIndexAdapter(int i) {
         super.setIndexAdapter(i);
         if(i==ROOT_ADAPTER){
+            resetPostSaveKey();
             slideExit(false);
         }else {
             selectExitMode.setSelected(false);
             selectExitMode.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_select_back,null));
             slideExit(true);
+        }
+    }
+
+    @Override
+    public void exit(int adapter) {
+        super.exit(adapter);
+        if(adapter==ROOT_ADAPTER) {
+            invisibleMenu();
+            setIndexAdapter(ROOT_ADAPTER);
+            getGridLayoutManager().setSpanCount(2);
+            getImgAdapt().activate(false);
+            getRecycler().setAdapter(getFoldAdapt().activate(true));
         }
     }
 

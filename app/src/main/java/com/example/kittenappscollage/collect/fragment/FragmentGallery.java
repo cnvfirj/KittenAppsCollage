@@ -2,6 +2,7 @@ package com.example.kittenappscollage.collect.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -53,6 +54,8 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     private int indexLongClickAdapter;
 
     private String key;
+
+    private String postSaveKey;
 
     @Nullable
     @Override
@@ -123,11 +126,8 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     protected void setListImagesInFolders(HashMap<String, ArrayList<String>> list) {
         super.setListImagesInFolders(list);
         invisibleMenu();
-//        foldAdapt.setPerms(getListPerms());
-//        foldAdapt.setAll(getListImagesInFolders(), getListFolds(),getListMutable()).setListen(this);
         foldAdapt.setAll(getListImagesInFolders(), getListFolds()).setListen(this);
-
-        imgAdapt.setAll(getListImagesInFolders(),foldAdapt.getItems()).setListen(this);
+        imgAdapt.setAll(getListImagesInFolders(),foldAdapt.getItems(),postSaveKey).setListen(this);
     }
 
     @Override
@@ -156,15 +156,10 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     }
 
 
-    /**correct post save*/
     @Override
-    protected void correctAdapterPostSave() {
-        super.correctAdapterPostSave();
-//        if(getIndexAdapter()!=ROOT_ADAPTER) {
-//            indexClickAdapter++;
-//            imgAdapt.setIndexKey(indexClickAdapter);
-//        }
-
+    public void setSavingInStorageCollage(Uri uri, String report, String delimiter) {
+        postSaveKey = key;
+        super.setSavingInStorageCollage(uri, report, delimiter);
     }
 
     @Override
@@ -174,6 +169,11 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     @Override
     public void createContentHolder(int adapter, View[] content, int pos) {
+
+    }
+
+    @Override
+    public void exit(int adapter) {
 
     }
 
@@ -187,6 +187,12 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     protected void invisibleMenu(){
 
+    }
+    protected void resetPostSaveKey(){
+        postSaveKey = null;
+    }
+    protected String getPostSaveKey(){
+        return postSaveKey;
     }
 
     protected String getKey(){

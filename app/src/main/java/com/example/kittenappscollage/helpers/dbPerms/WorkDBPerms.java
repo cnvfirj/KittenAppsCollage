@@ -63,9 +63,14 @@ public class WorkDBPerms {
                 .subscribe(permis -> listener.list(permis));
     }
 
+    public Permis getItem(String uri){
+        return db.work().getPerm(uri);
+    }
+
 
     public void setItem(String uri){
         LYTE("WorkDBPerms set i - "+uri);
+        if(getItem(uri)==null)
        db.work().insert(new Permis(uri));
     }
 
