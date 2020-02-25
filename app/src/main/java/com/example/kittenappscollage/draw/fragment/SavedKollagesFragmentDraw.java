@@ -142,11 +142,6 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
 
     }
 
-
-    private void saveAPI21(){
-        if(RepDraw.get().isImg())saveImage(RepDraw.get().getImg());
-    }
-
     private String saved(Uri uri){
         try {
             final String nameImg = RepDraw.PropertiesImage.NAME_IMAGE();

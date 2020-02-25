@@ -10,9 +10,7 @@ import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 import java.util.List;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Consumer;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 

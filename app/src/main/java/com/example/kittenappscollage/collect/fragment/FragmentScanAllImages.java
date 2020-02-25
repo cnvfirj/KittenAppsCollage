@@ -43,6 +43,7 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 
+import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentScanAllImages extends Fragment {
@@ -56,6 +57,25 @@ public class FragmentScanAllImages extends Fragment {
     private ArrayList<String> storage;
 
     private boolean blockScan;
+
+
+    private ListenMedia observer;
+    private Handler handler;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        handler = new Handler();
+        observer = new ListenMedia(handler).setFragment(this).setContext(getContext());
+        getContext().getContentResolver().registerContentObserver(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,true,observer);
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getContext().getContentResolver().unregisterContentObserver(observer);
+    }
 
     @Nullable
     @Override
@@ -78,6 +98,7 @@ public class FragmentScanAllImages extends Fragment {
     private void scanFoldAll(){
         definitionStorage();
         if(getListImagesInFolders()==null) initListImagesInFolders();
+        else clearListImagesInFolder();
                       Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> {
                           scanAvailablePermissions(emitter);
                       }).compose(new ThreadTransformers.InputOutput<>())
@@ -93,13 +114,32 @@ public class FragmentScanAllImages extends Fragment {
             DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
 
             if (df.exists() && df.isDirectory()) {
+                addImg(p,df,emitter);
                addImgsInFold(p,df,emitter);
+
             } else {
                 WorkDBPerms.get(getContext()).setAction(WorkDBPerms.DELETE,p.uriPerm);
             }
         }
         emitter.onNext(getListImagesInFolders());
         emitter.onComplete();
+    }
+
+    private void addImg(Permis p,DocumentFile df,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+        final String keyAndPerm = df.getUri().toString();
+        final String name = df.getName();
+
+//        Cursor f = getContext().getContentResolver().query(df.getUri(),new String[]{MediaStore.Images.Media._COUNT},null,null, null);
+//        f.moveToFirst();
+//        String id = ""+f.getLong(f.getColumnIndexOrThrow(MediaStore.Images.Media._COUNT));
+//        LYTE("id "+name+" - "+id);
+        Cursor c = getContext().getContentResolver().query(question(),new String[]{MediaStore.Images.Media.BUCKET_ID,MediaStore.Images.Media.BUCKET_DISPLAY_NAME},MediaStore.Images.Media.BUCKET_DISPLAY_NAME+" = ? ",new String[]{name}, MediaStore.Images.Media.BUCKET_ID);
+        LYTE("fold "+name+" = "+c.getCount());
+        while (c.moveToNext()){
+            String bid = ""+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
+            String n = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME));
+            LYTE("name - "+name+"||bid - "+bid);
+        }
     }
 
     private void addImgsInFold(Permis p,DocumentFile df,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
@@ -129,8 +169,6 @@ public class FragmentScanAllImages extends Fragment {
                 }
             }
         }
-
-
         if(iterator==0){
             if(getListImagesInFolders().containsKey(keyAndPerm)){
                 getListImagesInFolders().remove(keyAndPerm);
@@ -230,10 +268,15 @@ public class FragmentScanAllImages extends Fragment {
         return listFolds;
     }
 
+    protected void clearListImagesInFolder(){
+        listImagesToFolder.clear();
+        listFolds.clear();
+        listMutable.clear();
+    }
     protected void initListImagesInFolders(){
-        listImagesToFolder = new HashMap<String, ArrayList<String>>();
-        listFolds = new HashMap<String,String>();
-        listMutable = new HashMap<String,Long>();
+        listImagesToFolder = new HashMap<>();
+        listFolds = new HashMap<>();
+        listMutable = new HashMap<>();
 
     }
 
