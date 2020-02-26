@@ -28,7 +28,9 @@ public class DiffCallbackImg extends DiffUtil.Callback  {
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 //        return oldImgs[getPosOld(oldItemPosition)].equals(newImgs[getPosNew(newItemPosition)]);
-        return oldImgs[oldItemPosition].equals(newImgs[newItemPosition]);
+        if(oldImgs[oldItemPosition]==null&&newImgs[newItemPosition]==null)return true;
+        else if(oldImgs[oldItemPosition]==null||newImgs[newItemPosition]==null)return false;
+        else return oldImgs[oldItemPosition].equals(newImgs[newItemPosition]);
 
     }
 

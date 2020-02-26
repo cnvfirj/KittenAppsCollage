@@ -112,10 +112,21 @@ public class FragmentScanAllImages extends Fragment {
     private void scanAvailablePermissions(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) {
         for (Permis p: WorkDBPerms.get().allItems()){
             DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
-
             if (df.exists() && df.isDirectory()) {
-                addImg(p,df,emitter);
-               addImgsInFold(p,df,emitter);
+                DocumentFile[]files = df.listFiles();
+
+                addPattern(df,files,emitter);
+
+                Arrays.sort(files, new Comparator<DocumentFile>() {
+                    @Override
+                    public int compare(DocumentFile o1, DocumentFile o2) {
+                        final Long l1 = o1.lastModified();
+                        final Long l2 = o2.lastModified();
+                        return l1.compareTo(l2);
+                    }
+                });
+
+                addImgsInFold(p,df,files,emitter);
 
             } else {
                 WorkDBPerms.get(getContext()).setAction(WorkDBPerms.DELETE,p.uriPerm);
@@ -125,47 +136,38 @@ public class FragmentScanAllImages extends Fragment {
         emitter.onComplete();
     }
 
-    private void addImg(Permis p,DocumentFile df,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+    private void addPattern(DocumentFile df,DocumentFile[] files,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         final String keyAndPerm = df.getUri().toString();
-        final String name = df.getName();
+        ArrayList<String>imgs = new ArrayList<>(Arrays.asList(new String[files.length]));
+        getListImagesInFolders().put(keyAndPerm,imgs);
+        getListFolds().put(keyAndPerm,df.getName());
+        getListMutable().put(keyAndPerm, 0L);
+        emitter.onNext(getListImagesInFolders());
 
-//        Cursor f = getContext().getContentResolver().query(df.getUri(),new String[]{MediaStore.Images.Media._COUNT},null,null, null);
-//        f.moveToFirst();
-//        String id = ""+f.getLong(f.getColumnIndexOrThrow(MediaStore.Images.Media._COUNT));
-//        LYTE("id "+name+" - "+id);
-        Cursor c = getContext().getContentResolver().query(question(),new String[]{MediaStore.Images.Media.BUCKET_ID,MediaStore.Images.Media.BUCKET_DISPLAY_NAME},MediaStore.Images.Media.BUCKET_DISPLAY_NAME+" = ? ",new String[]{name}, MediaStore.Images.Media.BUCKET_ID);
-        LYTE("fold "+name+" = "+c.getCount());
-        while (c.moveToNext()){
-            String bid = ""+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
-            String n = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME));
-            LYTE("name - "+name+"||bid - "+bid);
-        }
     }
 
-    private void addImgsInFold(Permis p,DocumentFile df,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+    private void addImgsInFold(Permis p,DocumentFile df,DocumentFile[]files,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         final String keyAndPerm = df.getUri().toString();
-        final String name = df.getName();
         int iterator = 0;
-        int add = 0;
-        ArrayList<String>imgs = new ArrayList<>();
-        for (DocumentFile f:df.listFiles()){
+        for (DocumentFile f:files){
             if(f.isFile()) {
                 final String type = f.getType();
                 if (type.equals("image/png") || type.equals("image/jpeg") || type.equals("image/jpg")) {
                     final long date = f.lastModified();
+                    addDateMod(keyAndPerm,date);
+                    getListImagesInFolders().get(keyAndPerm).set(iterator,f.getUri().toString());
+                    if (iterator % 10 == 0) emitter.onNext(getListImagesInFolders());
                     iterator++;
-                    if(!getListImagesInFolders().containsKey(keyAndPerm)){
-                        addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
-                        imgs.add(f.getUri().toString());
-                        add++;
-                    }else {
-                        if(!getListImagesInFolders().get(keyAndPerm).contains(f.getUri().toString())){
-                            addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
-                            imgs.add(f.getUri().toString());
-                            add++;
-                            if (add % 10 == 0) emitter.onNext(getListImagesInFolders());
-                        }
-                    }
+//                    if(!getListImagesInFolders().containsKey(keyAndPerm)){
+//                        addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
+//                        add++;
+//                    }else {
+//                        if(!getListImagesInFolders().get(keyAndPerm).contains(f.getUri().toString())){
+//                            addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
+//                            add++;
+//                            if (add % 10 == 0) emitter.onNext(getListImagesInFolders());
+//                        }
+//                    }
                 }
             }
         }
@@ -192,16 +194,20 @@ public class FragmentScanAllImages extends Fragment {
     }
 
     /*android 9 storage system*/
-    public void setSavingInStorageCollage(Uri uri, String report, String delimiter){
+    public void setSavingInStorageCollage(Uri uri, String report, String delimiter,long date){
         String[]split = report.split(delimiter);
-        DocumentFile fold = DocumentFile.fromTreeUri(getContext(),Uri.parse(split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD]));
+        /*здесь выясняем айди папки и потом закидываем его в бд*/
+        Cursor c = getContext().getContentResolver().query(uri,new String[]{MediaStore.Images.Media.BUCKET_ID},null,null,null);
+        c.moveToFirst();
+        report +=delimiter+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
+        WorkDBPerms.get(getContext()).addParams(split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],report,delimiter);
 
         addImgCollect(
-                fold.getUri().toString(),
+                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
                 split[SavedKollagesFragmentDraw.INDEX_URI_DF_IMG],
-                fold.getName(),
-                fold.getUri().toString(),
-                fold.lastModified());
+                split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD],
+                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+                date);
         setListImagesInFolders(getListImagesInFolders());
     }
 

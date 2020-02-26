@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -55,7 +56,9 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
 
     public static final int INDEX_NAME_IMG = 5;
 
-    public static final int INDEX_TYPE_SYSTEM = 6;
+    public static final int INDEX_NAME_FOLD = 6;
+
+    public static final int INDEX_TYPE_SYSTEM = 7;
 
     public static final int REQUEST_SAVED = 91;
 
@@ -151,9 +154,12 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
             boolean save = RepDraw.get().getImg().compress(Bitmap.CompressFormat.PNG, 100, out);
             out.close();
 
-            String sDir = getRealPath(dir.getUri().getLastPathSegment());
-            String sImg = getRealPath(img.getUri().getLastPathSegment());
-            String system = ZHOPA;
+
+
+            final String sDir = getRealPath(dir.getUri().getLastPathSegment());
+            final String sImg = getRealPath(img.getUri().getLastPathSegment());
+            final String system = ZHOPA;
+            final String sNameDir = dir.getName();
 
             if(save){
                 String report =
@@ -163,8 +169,10 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                         img.getUri().toString()+REPORT_DELIMITER+ //юри дф изображения
                         dir.getUri().toString()+REPORT_DELIMITER+ //юри дф папки
                         nameImg+                REPORT_DELIMITER+ //имя изображения
-                        system;                                   //файловая система в папке, если она до этого
+                        sNameDir+                 REPORT_DELIMITER+//файловая система в папке, если она до этого
                                                                   //не дф, то надо пересканировать всю папку
+                        system;
+
                 return report;
             }
             else return ZHOPA;
@@ -200,6 +208,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         DocumentFile fold = DocumentFile.fromTreeUri(getContext(), uri);
         boolean exists = fold.exists();
         if(exists) {
+
             WorkDBPerms.get(getContext()).setAction(WorkDBPerms.INSERT,fold.getUri().toString());
             getEditor().putString(KEY_PERM_SAVE, fold.getUri().toString());
             getEditor().apply();
@@ -221,24 +230,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
             emitter.onNext(saved(perm));
             emitter.onComplete();
         }).compose(new ThreadTransformers.InputOutput<>());
-//                .doOnError(new Consumer<Throwable>() {
-//                    @Override
-//                    public void accept(Throwable throwable) throws Exception {
-//                        LYTE("SavedKollagesFragmentDraw Error save - "+perm.toString());
-//                        getEditor().putString(KEY_PERM_SAVE, ZHOPA);
-//                        getEditor().apply();
-//                        saveAPI29();
-//                    }
-//                });
-//                .onErrorResumeNext(new Observable<String>() {
-//                    @Override
-//                    protected void subscribeActual(Observer<? super String> observer) {
-//                        LYTE("SavedKollagesFragmentDraw Error - "+perm.toString());
-//                        getEditor().putString(KEY_PERM_SAVE, ZHOPA);
-//                        getEditor().apply();
-//                        saveAPI29();
-//                    }
-//                });
+
     }
 
     private void share(){
@@ -269,48 +261,6 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
             } catch (ActivityNotFoundException anfe) { }
         }
     }
-
-    /*сохраняем в рисунок*/
-    @SuppressLint("CheckResult")
-    private  void saveImage(Bitmap bitmap) {
-
-//        if(bitmap==null||bitmap.isRecycled())return;
-//
-//        final File folder = new File(RequestFolder.getFolderCollages(getContext()));
-//        final String name = RepDraw.PropertiesImage.NAME_IMAGE();
-//        if(RequestFolder.testFolder(folder)) {
-//            final File image = new File(folder.getAbsolutePath() + "/"+ name);
-//            requestSaveFile(image, bitmap)
-//                    .subscribe(aBoolean -> {
-//                        report = (ActionSave)getContext();
-//                        if(report!=null){
-//                            report.savedFile(aBoolean,
-//                                    folder.getAbsolutePath(),
-//                                    image.getAbsolutePath(),
-//                                    name);
-//                        }else SHOW_MASSAGE(getContext(), "перезапусти приложение");
-//                        if (aBoolean) {
-//                            SHOW_MASSAGE(getContext(), "изображение сохранено");
-//                        }
-//                        else SHOW_MASSAGE(getContext(), "ошибка сохранения");
-//                    });
-//        }else {
-//            SHOW_MASSAGE(getContext(), "проверь память устройства");
-//        }
-
-    }
-
-
-    private Observable<Boolean> requestSaveFile(File file, Bitmap bitmap){
-        return Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
-            emitter.onNext(save(file, bitmap));
-            emitter.onComplete();
-
-
-        }).compose(new ThreadTransformers.InputOutput<>());
-    }
-
-
 
     private boolean save(File file, Bitmap bitmap){
 

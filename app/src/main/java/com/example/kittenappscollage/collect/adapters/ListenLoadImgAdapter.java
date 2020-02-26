@@ -164,13 +164,18 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     @Override
     public void onBindViewHolder(@NonNull ImgHolder holder, int position) {
 //        final Uri uri = Uri.parse(images[getPositionInEnd(position)]);
-        final Uri uri = Uri.parse(images[position]);
 
-        Glide.with(getContext())
-                .load(uri)
-                .placeholder(R.drawable.ic_image)
-                .error(R.drawable.ic_error)
-                .into(holder.getImage());
+        final String img = images[position];
+        if(img!=null) {
+            final Uri uri = Uri.parse(img);
+            Glide.with(getContext())
+                    .load(uri)
+                    .placeholder(R.drawable.ic_image)
+                    .error(R.drawable.ic_error)
+                    .into(holder.getImage());
+        }else {
+            holder.getImage().setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_image,null));
+        }
     }
 
     @Override

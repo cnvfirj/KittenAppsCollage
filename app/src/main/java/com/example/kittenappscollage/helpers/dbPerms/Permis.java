@@ -11,11 +11,23 @@ public class Permis {
     @NonNull
     public String uriPerm;
 
+    public String report;
+
+    public String delimiter;
+
     public Permis(@NonNull String uriPerm) {
         this.uriPerm = uriPerm;
     }
 
     public String getPerm(){
         return uriPerm;
+    }
+
+    public String getReport() {
+        return report;
+    }
+
+    public String getDelimiter() {
+        return delimiter;
     }
 }

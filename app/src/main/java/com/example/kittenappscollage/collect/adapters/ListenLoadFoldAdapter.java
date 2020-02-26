@@ -143,13 +143,18 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         if(position<getItems().length) {
             Item item = getItems()[position];
                 if(items[position].uriIconFold!=null) {
-                    final Uri uri = Uri.parse(items[position].uriIconFold);
+                    final String i = items[position].uriIconFold;
+                    if(i!=null){
+                    final Uri uri = Uri.parse(i);
                     if (items[position].sizeItemsFold > 0) {
                         Glide.with(getContext())
                                 .load(uri)
                                 .placeholder(R.drawable.ic_update)
                                 .error(R.drawable.ic_error)
                                 .into(holder.getImage());
+                    }else {
+                        holder.getImage().setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_update,null));
+                    }
                         final int index = item.sizeItemsFold;
                         holder.getName().setText(item.nameFold);
                         holder.getCol().setText(Integer.toString(index));

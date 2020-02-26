@@ -157,9 +157,9 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
 
     @Override
-    public void setSavingInStorageCollage(Uri uri, String report, String delimiter) {
+    public void setSavingInStorageCollage(Uri uri, String report, String delimiter,long date) {
         postSaveKey = key;
-        super.setSavingInStorageCollage(uri, report, delimiter);
+        super.setSavingInStorageCollage(uri, report, delimiter,date);
     }
 
     @Override

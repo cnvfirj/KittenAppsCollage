@@ -61,9 +61,27 @@ public class WorkDBPerms {
                 .subscribe(permis -> listener.list(permis));
     }
 
+    public void addParams(String uri, String report, String delimiter){
+        Observable.create(emitter -> {
+            setParams(uri,report,delimiter);
+        }).compose(new ThreadTransformers.InputOutput<>())
+                .subscribe();
+    }
+
+    public void setParams(String uri, String report, String delimiter){
+        setItem(uri);
+        Permis p = getItem(uri);
+        if(p!=null){
+            p.delimiter = delimiter;
+            p.report = report;
+            db.work().update(p);
+        }
+    }
+
     public Permis getItem(String uri){
         return db.work().getPerm(uri);
     }
+
 
 
     public void setItem(String uri){
