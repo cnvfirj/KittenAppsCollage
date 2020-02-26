@@ -77,21 +77,20 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
                 items[i].sizeItemsFold = all.get(folds[i]).size();
                 items[i].uriIconFold = all.get(folds[i]).get(items[i].sizeItemsFold - 1);
 //                items[i].uriIconFold = all.get(folds[i]).get(0);
-//                items[i].mutableLastImg = mutable.get(folds[i]);
+//                items[i].mutableLastImg = mutable.get(folds[i]);//изменение в папке
                 items[i].nameFold = namesFolds.get(folds[i]);
-//                items[i].permission = perms.get(folds[i]);
         }
 
-        /*сортируем ключи по их значению в мапе*/
-//        Arrays.sort(items, new Comparator<Item>() {
-//            @Override
-//            public int compare(Item o1, Item o2) {
-//                final Long m1 = o1.mutableLastImg;
-//                final Long m2 = o2.mutableLastImg;
-//
-//                return m2.compareTo(m1);
-//            }
-//        });
+//        /*сортируем ключи по их значению в мапе*/
+        Arrays.sort(items, new Comparator<Item>() {
+            @Override
+            public int compare(Item o1, Item o2) {
+                final Long m1 = o1.mutableLastImg;
+                final Long m2 = o2.mutableLastImg;
+
+                return m1.compareTo(m2);
+            }
+        });
 
 
         if(active){
@@ -141,7 +140,11 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     @Override
     public void onBindViewHolder(@NonNull FoldHolder holder, int position) {
         if(position<getItems().length) {
-            Item item = getItems()[position];
+            final Item item = getItems()[position];
+            final int index = item.sizeItemsFold;
+            holder.getName().setText(item.nameFold);
+            holder.getCol().setText(Integer.toString(index));
+
                 if(items[position].uriIconFold!=null) {
                     final String i = items[position].uriIconFold;
                     if(i!=null){
@@ -155,9 +158,6 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
                     }else {
                         holder.getImage().setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_update,null));
                     }
-                        final int index = item.sizeItemsFold;
-                        holder.getName().setText(item.nameFold);
-                        holder.getCol().setText(Integer.toString(index));
                     }
                 }
         }

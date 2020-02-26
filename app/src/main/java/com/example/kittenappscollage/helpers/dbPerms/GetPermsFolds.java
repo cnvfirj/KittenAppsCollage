@@ -7,4 +7,5 @@ import androidx.room.RoomDatabase;
 public abstract class GetPermsFolds  extends RoomDatabase {
 
     public abstract MethodsDBPerm work();
+
 }

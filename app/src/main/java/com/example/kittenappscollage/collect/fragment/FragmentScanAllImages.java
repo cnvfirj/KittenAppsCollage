@@ -33,17 +33,12 @@ import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-
-import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentScanAllImages extends Fragment {
@@ -110,64 +105,41 @@ public class FragmentScanAllImages extends Fragment {
 
 
     private void scanAvailablePermissions(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) {
-        for (Permis p: WorkDBPerms.get().allItems()){
-            DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
-            if (df.exists() && df.isDirectory()) {
-                DocumentFile[]files = df.listFiles();
+            for (Permis p : WorkDBPerms.get().allItems()) {
+                DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
+                if (df.exists() && df.isDirectory()) {
+                    DocumentFile[] files = df.listFiles();
+                    addImgsInFold(p, df, files, emitter);
 
-                addPattern(df,files,emitter);
-
-                Arrays.sort(files, new Comparator<DocumentFile>() {
-                    @Override
-                    public int compare(DocumentFile o1, DocumentFile o2) {
-                        final Long l1 = o1.lastModified();
-                        final Long l2 = o2.lastModified();
-                        return l1.compareTo(l2);
-                    }
-                });
-
-                addImgsInFold(p,df,files,emitter);
-
-            } else {
-                WorkDBPerms.get(getContext()).setAction(WorkDBPerms.DELETE,p.uriPerm);
+                } else {
+                    WorkDBPerms.get(getContext()).setAction(WorkDBPerms.DELETE, p.uriPerm);
+                }
             }
-        }
-        emitter.onNext(getListImagesInFolders());
-        emitter.onComplete();
-    }
-
-    private void addPattern(DocumentFile df,DocumentFile[] files,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
-        final String keyAndPerm = df.getUri().toString();
-        ArrayList<String>imgs = new ArrayList<>(Arrays.asList(new String[files.length]));
-        getListImagesInFolders().put(keyAndPerm,imgs);
-        getListFolds().put(keyAndPerm,df.getName());
-        getListMutable().put(keyAndPerm, 0L);
-        emitter.onNext(getListImagesInFolders());
-
+            emitter.onNext(getListImagesInFolders());
+            emitter.onComplete();
     }
 
     private void addImgsInFold(Permis p,DocumentFile df,DocumentFile[]files,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         final String keyAndPerm = df.getUri().toString();
+        final String name = df.getName();
         int iterator = 0;
+        int add = 0;
         for (DocumentFile f:files){
             if(f.isFile()) {
                 final String type = f.getType();
                 if (type.equals("image/png") || type.equals("image/jpeg") || type.equals("image/jpg")) {
                     final long date = f.lastModified();
-                    addDateMod(keyAndPerm,date);
-                    getListImagesInFolders().get(keyAndPerm).set(iterator,f.getUri().toString());
-                    if (iterator % 10 == 0) emitter.onNext(getListImagesInFolders());
                     iterator++;
-//                    if(!getListImagesInFolders().containsKey(keyAndPerm)){
-//                        addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
-//                        add++;
-//                    }else {
-//                        if(!getListImagesInFolders().get(keyAndPerm).contains(f.getUri().toString())){
-//                            addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
-//                            add++;
-//                            if (add % 10 == 0) emitter.onNext(getListImagesInFolders());
-//                        }
-//                    }
+                    if(!getListImagesInFolders().containsKey(keyAndPerm)){
+                        addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
+                        add++;
+                    }else {
+                        if(!getListImagesInFolders().get(keyAndPerm).contains(f.getUri().toString())){
+                            addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
+                            add++;
+                            if (add % 10 == 0) emitter.onNext(getListImagesInFolders());
+                        }
+                    }
                 }
             }
         }
@@ -184,7 +156,7 @@ public class FragmentScanAllImages extends Fragment {
         addDateMod(key,date);
         if(getListImagesInFolders().containsKey(key)){
             getListImagesInFolders().get(key).add(img);
-            getListMutable().put(key,date);
+//            getListMutable().put(key,date);
         } else {
             ArrayList<String> imgs = new ArrayList<>();
             imgs.add(img);

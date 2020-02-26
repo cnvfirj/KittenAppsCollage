@@ -62,12 +62,12 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
         String[] imgs = null;
         if(active){
             if(key==null){
-                if(all.get(getItems()[indexKey].key)==null){
-                    listen.exit(indexKey);
-                }else {
-                    imgs = new String[all.get(getItems()[indexKey].key).size()];
-                    all.get(getItems()[indexKey].key).toArray(imgs);
-                }
+//                if(all.get(getItems()[indexKey].key)==null){
+//                    listen.exit(indexKey);
+//                }else {
+//                    imgs = new String[all.get(getItems()[indexKey].key).size()];
+//                    all.get(getItems()[indexKey].key).toArray(imgs);
+//                }
             } else {
                 if(all.get(key)==null){
                     listen.exit(indexKey);

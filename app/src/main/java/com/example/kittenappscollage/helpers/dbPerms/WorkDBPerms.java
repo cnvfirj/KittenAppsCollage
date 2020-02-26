@@ -24,7 +24,9 @@ public class WorkDBPerms {
     private GetPermsFolds db;
 
     public WorkDBPerms(Context context) {
-        db = Room.databaseBuilder(context,GetPermsFolds.class,"permsfold.db").build();
+        db = Room.databaseBuilder(context,GetPermsFolds.class,"permsfold.db")
+                .fallbackToDestructiveMigration()
+                .build();
     }
 
     public static WorkDBPerms get(Context context){
