@@ -28,9 +28,10 @@ public class DiffCallbackImg extends DiffUtil.Callback  {
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
 //        return oldImgs[getPosOld(oldItemPosition)].equals(newImgs[getPosNew(newItemPosition)]);
-        if(oldImgs[oldItemPosition]==null&&newImgs[newItemPosition]==null)return true;
-        else if(oldImgs[oldItemPosition]==null||newImgs[newItemPosition]==null)return false;
-        else return oldImgs[oldItemPosition].equals(newImgs[newItemPosition]);
+//        if(oldImgs[oldItemPosition]==null&&newImgs[newItemPosition]==null)return true;
+//        else if(oldImgs[oldItemPosition]==null||newImgs[newItemPosition]==null)return false;
+//        else
+            return oldImgs[oldItemPosition].equals(newImgs[newItemPosition]);
 
     }
 
@@ -38,14 +39,5 @@ public class DiffCallbackImg extends DiffUtil.Callback  {
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
         return true;
     }
-
-//    protected int getPosOld(int position){
-//        return getOldListSize()-(position+1);
-//    }
-//
-//    protected int getPosNew(int position){
-//        return getNewListSize()-(position+1);
-//    }
-
 
 }

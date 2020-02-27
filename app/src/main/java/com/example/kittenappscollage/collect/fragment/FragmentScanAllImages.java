@@ -107,16 +107,16 @@ public class FragmentScanAllImages extends Fragment {
 
     private void scanAvailablePermissions(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) {
             for (Permis p : WorkDBPerms.get().allItems()) {
-                addImgsInCursor(p,emitter);
-                emitter.onNext(getListImagesInFolders());
-//                DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
-//                if (df.exists() && df.isDirectory()) {
-//                    DocumentFile[] files = df.listFiles();
-//                    addImgsInFold(p, df, files, emitter);
-//
-//                } else {
-//                    WorkDBPerms.get(getContext()).setAction(WorkDBPerms.DELETE, p.uriPerm);
-//                }
+//                addImgsInCursor(p,emitter);
+//                emitter.onNext(getListImagesInFolders());
+                DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
+                if (df.exists() && df.isDirectory()) {
+                    DocumentFile[] files = df.listFiles();
+                    addImgsInFold(p, df, files, emitter);
+
+                } else {
+                    WorkDBPerms.get(getContext()).setAction(WorkDBPerms.DELETE, p.uriPerm);
+                }
             }
             emitter.onNext(getListImagesInFolders());
             emitter.onComplete();
@@ -133,6 +133,10 @@ public class FragmentScanAllImages extends Fragment {
                 MediaStore.Images.Media.BUCKET_ID + " = ? ",
                 new String[]{id},
                 MediaStore.Images.Media.DATE_MODIFIED);
+        if(cursor.getCount()==0){
+            WorkDBPerms.get(getContext()).delItem(keyAndPerm);
+            return;
+        }
         final int col_id = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
         final int col_mime = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE);
         final int col_date = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED);
@@ -150,6 +154,14 @@ public class FragmentScanAllImages extends Fragment {
     }
 
     private void addImgsInFold(Permis p,DocumentFile df,DocumentFile[]files,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+        Arrays.sort(files, new Comparator<DocumentFile>() {
+            @Override
+            public int compare(DocumentFile o1, DocumentFile o2) {
+                final Long l1 = o1.lastModified();
+                final Long l2 = o2.lastModified();
+                return l1.compareTo(l2);
+            }
+        });
         final String keyAndPerm = df.getUri().toString();
         final String name = df.getName();
         int iterator = 0;
@@ -203,18 +215,18 @@ public class FragmentScanAllImages extends Fragment {
         report +=delimiter+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
         WorkDBPerms.get(getContext()).addParams(split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],report,delimiter);
 
-        addInScan(split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
-                uri.toString(),
-                split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD],
-                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
-                date);
-
-//        addImgCollect(
-//                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
-//                split[SavedKollagesFragmentDraw.INDEX_URI_DF_IMG],
+//        addInScan(split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+//                uri.toString(),
 //                split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD],
 //                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
 //                date);
+
+        addImgCollect(
+                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+                split[SavedKollagesFragmentDraw.INDEX_URI_DF_IMG],
+                split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD],
+                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+                date);
         setListImagesInFolders(getListImagesInFolders());
     }
 

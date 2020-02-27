@@ -61,23 +61,10 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
         this.items = items;
         String[] imgs = null;
         if(active){
-            if(key==null){
-//                if(all.get(getItems()[indexKey].key)==null){
-//                    listen.exit(indexKey);
-//                }else {
-//                    imgs = new String[all.get(getItems()[indexKey].key).size()];
-//                    all.get(getItems()[indexKey].key).toArray(imgs);
-//                }
-            } else {
-                if(all.get(key)==null){
-                    listen.exit(indexKey);
-                }else {
-                    imgs = new String[all.get(key).size()];
-                    all.get(key).toArray(imgs);
-                }
-            }
-           DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallbackImg(this.images,imgs));
-           diffResult.dispatchUpdatesTo(this);
+            imgs = new String[all.get(getItems()[indexKey].key).size()];
+            all.get(getItems()[indexKey].key).toArray(imgs);
+            DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallbackImg(this.images,imgs));
+            diffResult.dispatchUpdatesTo(this);
         }
 
         this.images = imgs;
@@ -163,19 +150,13 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
 
     @Override
     public void onBindViewHolder(@NonNull ImgHolder holder, int position) {
-//        final Uri uri = Uri.parse(images[getPositionInEnd(position)]);
+        final Uri uri = Uri.parse(images[position]);
 
-        final String img = images[position];
-        if(img!=null) {
-            final Uri uri = Uri.parse(img);
-            Glide.with(getContext())
-                    .load(uri)
-                    .placeholder(R.drawable.ic_image)
-                    .error(R.drawable.ic_error)
-                    .into(holder.getImage());
-        }else {
-            holder.getImage().setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_image,null));
-        }
+        Glide.with(getContext())
+                .load(uri)
+                .placeholder(R.drawable.ic_image)
+                .error(R.drawable.ic_error)
+                .into(holder.getImage());
     }
 
     @Override

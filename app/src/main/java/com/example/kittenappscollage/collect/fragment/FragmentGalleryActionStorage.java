@@ -107,7 +107,6 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
         Uri treeUri = Uri.parse(key);
         for (String ur:images){
             DocumentFile img = DocumentFile.fromSingleUri(getContext(),Uri.parse(ur));
-
             if(img.isDirectory())continue;
 
             if(img.getType().equals(TYPE_PNG)||img.getType().equals(TYPE_JPG)||img.getType().equals(TYPE_JPEG)) {

@@ -28,15 +28,17 @@ public class DiffCallbackFold extends DiffUtil.Callback {
 
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        if(oldList[oldItemPosition]==null&&newList[newItemPosition]==null)return true;
-        else if(oldList[oldItemPosition]==null||newList[newItemPosition]==null)return false;
-        else return oldList[oldItemPosition].sizeItemsFold==newList[newItemPosition].sizeItemsFold;
+//        if(oldList[oldItemPosition]==null&&newList[newItemPosition]==null)return true;
+//        else if(oldList[oldItemPosition]==null||newList[newItemPosition]==null)return false;
+//        else
+            return oldList[oldItemPosition].sizeItemsFold==newList[newItemPosition].sizeItemsFold;
     }
 
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-        if(oldList[oldItemPosition]==null&&newList[newItemPosition]==null)return true;
-        else if(oldList[oldItemPosition]==null||newList[newItemPosition]==null)return false;
-        else return oldList[oldItemPosition].equals(newList[newItemPosition]);
+//        if(oldList[oldItemPosition]==null&&newList[newItemPosition]==null)return true;
+//        else if(oldList[oldItemPosition]==null||newList[newItemPosition]==null)return false;
+//        else
+            return oldList[oldItemPosition].equals(newList[newItemPosition]);
     }
 }
