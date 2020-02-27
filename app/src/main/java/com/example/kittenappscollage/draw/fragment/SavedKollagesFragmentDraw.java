@@ -160,6 +160,12 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
             final String sImg = getRealPath(img.getUri().getLastPathSegment());
             final String system = ZHOPA;
             final String sNameDir = dir.getName();
+            Cursor c = getContext().getContentResolver().query(question(),new String[]{MediaStore.Images.Media.BUCKET_ID, MediaStore.Images.Media.BUCKET_DISPLAY_NAME},MediaStore.Images.Media.DISPLAY_NAME+" = ?",new String[]{nameImg},null);
+            c.moveToFirst();
+            String id = ""+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
+            String name = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME));
+            LYTE("SavedKollagesFragmentDraw id save "+id);
+            LYTE("SavedKollagesFragmentDraw name save "+name);
 
             if(save){
                 String report =
@@ -179,6 +185,13 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         } catch (IOException e) {
             return ZHOPA;
         }
+    }
+
+    protected Uri question(){
+        Uri uri = null;
+        if(App.checkVersion())uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+        else uri = MediaStore.Images.Media.getContentUri(MediaStore.VOLUME_EXTERNAL);
+        return uri;
     }
 
     private void requestFold(){
@@ -208,7 +221,6 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         DocumentFile fold = DocumentFile.fromTreeUri(getContext(), uri);
         boolean exists = fold.exists();
         if(exists) {
-
             WorkDBPerms.get(getContext()).setAction(WorkDBPerms.INSERT,fold.getUri().toString());
             getEditor().putString(KEY_PERM_SAVE, fold.getUri().toString());
             getEditor().apply();

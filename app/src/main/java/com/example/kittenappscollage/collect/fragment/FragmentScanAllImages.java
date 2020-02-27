@@ -129,11 +129,11 @@ public class FragmentScanAllImages extends Fragment {
         final String id = split[split.length - 1];
         Cursor cursor = getContext().getContentResolver().query(
                 question(),
-                new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_MODIFIED, MediaStore.Images.Media.MIME_TYPE},
+                new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_MODIFIED, MediaStore.Images.Media.MIME_TYPE,MediaStore.Images.Media.BUCKET_ID},
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME + " = ?",
                 new String[]{name},
                 MediaStore.Images.Media.DATE_MODIFIED);
-        LYTE("cursor "+cursor.getCount());
+
 
 //        Cursor cursor = getContext().getContentResolver().query(
 //                question(),
@@ -215,13 +215,18 @@ public class FragmentScanAllImages extends Fragment {
         }
     }
 
+    public void setSavingInMedia(Uri uri){
+        Cursor c = getContext().getContentResolver().query(uri,new String[]{MediaStore.Images.Media.BUCKET_ID},null,null,null);
+        c.moveToFirst();
+    }
+
     /*android 9 storage system*/
     public void setSavingInStorageCollage(Uri uri, String report, String delimiter,long date){
         String[]split = report.split(delimiter);
         /*здесь выясняем айди папки и потом закидываем его в бд*/
         Cursor c = getContext().getContentResolver().query(uri,new String[]{MediaStore.Images.Media.BUCKET_ID},null,null,null);
         c.moveToFirst();
-        LYTE("saved "+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID)));
+        LYTE("FragmentScanAllImages saved "+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID)));
         report +=delimiter+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
         WorkDBPerms.get(getContext()).addParams(split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],report,delimiter);
 

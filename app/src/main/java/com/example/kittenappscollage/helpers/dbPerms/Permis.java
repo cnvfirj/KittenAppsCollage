@@ -15,6 +15,8 @@ public class Permis {
 
     public String delimiter;
 
+    public long id;
+
     public Permis(@NonNull String uriPerm) {
         this.uriPerm = uriPerm;
     }
@@ -31,5 +33,8 @@ public class Permis {
         return delimiter;
     }
 
+    public long getId() {
+        return id;
+    }
 
 }
