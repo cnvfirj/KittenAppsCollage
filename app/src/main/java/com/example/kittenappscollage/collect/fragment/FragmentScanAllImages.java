@@ -120,11 +120,30 @@ public class FragmentScanAllImages extends Fragment {
             emitter.onComplete();
     }
 
-    private void addImgsInCursor(Permis p,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
-        final String[]split = p.report.split(p.delimiter);
+    private void addImgsInCursor(Permis p,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) {
+        final String[] split = p.report.split(p.delimiter);
         final String keyAndPerm = split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD];
         final String name = split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD];
-        final String id = split[split.length-1];
+        final String id = split[split.length - 1];
+        Cursor cursor = getContext().getContentResolver().query(
+                question(),
+                new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_MODIFIED, MediaStore.Images.Media.MIME_TYPE},
+                MediaStore.Images.Media.BUCKET_ID + " = ? ",
+                new String[]{id},
+                MediaStore.Images.Media.DATE_MODIFIED);
+        final int col_id = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+        final int col_mime = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE);
+        final int col_date = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED);
+
+        while (cursor.moveToNext()){
+            final String type = cursor.getString(col_mime);
+            if (type.equals("image/png") || type.equals("image/jpeg") || type.equals("image/jpg")) {
+                final String img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cursor.getLong(col_id)).toString();
+                final long date = cursor.getLong(col_date);
+                addInScan(keyAndPerm,img,name,keyAndPerm,date);
+            }
+        }
+
 
     }
 
@@ -165,7 +184,6 @@ public class FragmentScanAllImages extends Fragment {
         addDateMod(key,date);
         if(getListImagesInFolders().containsKey(key)){
             getListImagesInFolders().get(key).add(img);
-//            getListMutable().put(key,date);
         } else {
             ArrayList<String> imgs = new ArrayList<>();
             imgs.add(img);
