@@ -107,14 +107,16 @@ public class FragmentScanAllImages extends Fragment {
 
     private void scanAvailablePermissions(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) {
             for (Permis p : WorkDBPerms.get().allItems()) {
-                DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
-                if (df.exists() && df.isDirectory()) {
-                    DocumentFile[] files = df.listFiles();
-                    addImgsInFold(p, df, files, emitter);
-
-                } else {
-                    WorkDBPerms.get(getContext()).setAction(WorkDBPerms.DELETE, p.uriPerm);
-                }
+                addImgsInCursor(p,emitter);
+                emitter.onNext(getListImagesInFolders());
+//                DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
+//                if (df.exists() && df.isDirectory()) {
+//                    DocumentFile[] files = df.listFiles();
+//                    addImgsInFold(p, df, files, emitter);
+//
+//                } else {
+//                    WorkDBPerms.get(getContext()).setAction(WorkDBPerms.DELETE, p.uriPerm);
+//                }
             }
             emitter.onNext(getListImagesInFolders());
             emitter.onComplete();
@@ -201,12 +203,18 @@ public class FragmentScanAllImages extends Fragment {
         report +=delimiter+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
         WorkDBPerms.get(getContext()).addParams(split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],report,delimiter);
 
-        addImgCollect(
-                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
-                split[SavedKollagesFragmentDraw.INDEX_URI_DF_IMG],
+        addInScan(split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+                uri.toString(),
                 split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD],
                 split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
                 date);
+
+//        addImgCollect(
+//                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+//                split[SavedKollagesFragmentDraw.INDEX_URI_DF_IMG],
+//                split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD],
+//                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+//                date);
         setListImagesInFolders(getListImagesInFolders());
     }
 

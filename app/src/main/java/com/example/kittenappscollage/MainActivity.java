@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                 Uri uri = null;
                 if(Build.VERSION.SDK_INT<Build.VERSION_CODES.Q)uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
                 else uri = getContentResolver().insert(MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL), values);
-
                 mFragGal.setSavingInStorageCollage(uri, report, delimiter,date);
             }
         }

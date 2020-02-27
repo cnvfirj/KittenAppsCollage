@@ -1,6 +1,7 @@
 package com.example.kittenappscollage.collect.adapters;
 
 import android.annotation.SuppressLint;
+import android.content.ContentUris;
 import android.content.Context;
 import android.net.Uri;
 import android.provider.MediaStore;
