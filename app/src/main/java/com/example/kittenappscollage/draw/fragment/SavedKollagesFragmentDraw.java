@@ -162,9 +162,9 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
             final String sNameDir = dir.getName();
             Cursor c = getContext().getContentResolver().query(question(),new String[]{MediaStore.Images.Media.BUCKET_ID, MediaStore.Images.Media.BUCKET_DISPLAY_NAME},MediaStore.Images.Media.DISPLAY_NAME+" = ?",new String[]{nameImg},null);
             c.moveToFirst();
-            String id = ""+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
+//            String id = ""+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
             String name = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME));
-            LYTE("SavedKollagesFragmentDraw id save "+id);
+//            LYTE("SavedKollagesFragmentDraw id save "+id);
             LYTE("SavedKollagesFragmentDraw name save "+name);
 
             if(save){
