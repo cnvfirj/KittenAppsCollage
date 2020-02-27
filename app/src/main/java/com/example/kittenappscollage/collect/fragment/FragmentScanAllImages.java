@@ -126,12 +126,14 @@ public class FragmentScanAllImages extends Fragment {
 
         final String keyAndPerm = p.uriPerm;
         final String name = p.name;
+        final String id = ""+p.id;
+        LYTE("FragmentScanAllImages permis "+p.name+" id "+p.id);
 
         Cursor cursor = getContext().getContentResolver().query(
                 question(),
                 new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_MODIFIED, MediaStore.Images.Media.MIME_TYPE,MediaStore.Images.Media.BUCKET_ID},
-                MediaStore.Images.Media.BUCKET_DISPLAY_NAME + " = ?",
-                new String[]{name},
+                MediaStore.Images.Media.BUCKET_ID + " = ?",
+                new String[]{id},
                 MediaStore.Images.Media.DATE_MODIFIED);
 
 
@@ -144,7 +146,7 @@ public class FragmentScanAllImages extends Fragment {
 
 
         if(cursor.getCount()==0){
-            WorkDBPerms.get(getContext()).delItem(keyAndPerm);
+//            WorkDBPerms.get(getContext()).delItem(keyAndPerm);
             return;
         }
         final int col_id = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
