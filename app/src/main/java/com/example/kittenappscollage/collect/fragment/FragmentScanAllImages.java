@@ -98,7 +98,7 @@ public class FragmentScanAllImages extends Fragment {
                           scanAvailablePermissions(emitter);
                       }).compose(new ThreadTransformers.InputOutput<>())
                         .doOnComplete(() ->
-                                Massages.SHOW_MASSAGE(getContext(), "Все доступные папки просканированы. Ты можешь увеличить список доступных папок в галерее"))
+                                Massages.SHOW_MASSAGE(getContext(), "Ты можешь увеличить список доступных папок в галерее"))
                               .subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
             }
 
@@ -107,16 +107,16 @@ public class FragmentScanAllImages extends Fragment {
 
     private void scanAvailablePermissions(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) {
             for (Permis p : WorkDBPerms.get().allItems()) {
-//                addImgsInCursor(p,emitter);
-//                emitter.onNext(getListImagesInFolders());
-                DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
-                if (df.exists() && df.isDirectory()) {
-                    DocumentFile[] files = df.listFiles();
-                    addImgsInFold(p, df, files, emitter);
-
-                } else {
-                    WorkDBPerms.get(getContext()).setAction(WorkDBPerms.DELETE, p.uriPerm);
-                }
+                addImgsInCursor(p,emitter);
+                emitter.onNext(getListImagesInFolders());
+//                DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
+//                if (df.exists() && df.isDirectory()) {
+//                    DocumentFile[] files = df.listFiles();
+//                    addImgsInFold(p, df, files, emitter);
+//
+//                } else {
+//                    WorkDBPerms.get(getContext()).setAction(WorkDBPerms.DELETE, p.uriPerm);
+//                }
             }
             emitter.onNext(getListImagesInFolders());
             emitter.onComplete();
@@ -130,9 +130,19 @@ public class FragmentScanAllImages extends Fragment {
         Cursor cursor = getContext().getContentResolver().query(
                 question(),
                 new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_MODIFIED, MediaStore.Images.Media.MIME_TYPE},
-                MediaStore.Images.Media.BUCKET_ID + " = ? ",
-                new String[]{id},
+                MediaStore.Images.Media.BUCKET_DISPLAY_NAME + " = ?",
+                new String[]{name},
                 MediaStore.Images.Media.DATE_MODIFIED);
+        LYTE("cursor "+cursor.getCount());
+
+//        Cursor cursor = getContext().getContentResolver().query(
+//                question(),
+//                new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_MODIFIED, MediaStore.Images.Media.MIME_TYPE},
+//                null,
+//               null,
+//                MediaStore.Images.Media.DATE_MODIFIED);
+
+
         if(cursor.getCount()==0){
             WorkDBPerms.get(getContext()).delItem(keyAndPerm);
             return;
@@ -165,7 +175,6 @@ public class FragmentScanAllImages extends Fragment {
         final String keyAndPerm = df.getUri().toString();
         final String name = df.getName();
         int iterator = 0;
-        int add = 0;
         for (DocumentFile f:files){
             if(f.isFile()) {
                 final String type = f.getType();
@@ -174,12 +183,12 @@ public class FragmentScanAllImages extends Fragment {
                     iterator++;
                     if(!getListImagesInFolders().containsKey(keyAndPerm)){
                         addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
-                        add++;
+
                     }else {
                         if(!getListImagesInFolders().get(keyAndPerm).contains(f.getUri().toString())){
                             addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
-                            add++;
-                            if (add % 10 == 0) emitter.onNext(getListImagesInFolders());
+
+                            if (iterator% 10 == 0) emitter.onNext(getListImagesInFolders());
                         }
                     }
                 }
@@ -212,6 +221,7 @@ public class FragmentScanAllImages extends Fragment {
         /*здесь выясняем айди папки и потом закидываем его в бд*/
         Cursor c = getContext().getContentResolver().query(uri,new String[]{MediaStore.Images.Media.BUCKET_ID},null,null,null);
         c.moveToFirst();
+        LYTE("saved "+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID)));
         report +=delimiter+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
         WorkDBPerms.get(getContext()).addParams(split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],report,delimiter);
 
