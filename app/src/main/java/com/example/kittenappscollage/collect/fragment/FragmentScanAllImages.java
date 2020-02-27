@@ -104,6 +104,7 @@ public class FragmentScanAllImages extends Fragment {
 
 
 
+
     private void scanAvailablePermissions(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) {
             for (Permis p : WorkDBPerms.get().allItems()) {
                 DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
@@ -117,6 +118,14 @@ public class FragmentScanAllImages extends Fragment {
             }
             emitter.onNext(getListImagesInFolders());
             emitter.onComplete();
+    }
+
+    private void addImgsInCursor(Permis p,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+        final String[]split = p.report.split(p.delimiter);
+        final String keyAndPerm = split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD];
+        final String name = split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD];
+        final String id = split[split.length-1];
+
     }
 
     private void addImgsInFold(Permis p,DocumentFile df,DocumentFile[]files,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
