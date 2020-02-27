@@ -51,11 +51,11 @@ public class ListenMedia extends ContentObserver {
     public void onChange(boolean selfChange, Uri uri) {
         super.onChange(selfChange, uri);
 //        LYTE("ListenMedia report  - "+uri.toString() );
-//        Cursor cursor = context.getContentResolver().query(uri,new String[]{MediaStore.Images.Media.BUCKET_ID,MediaStore.Images.Media.BUCKET_DISPLAY_NAME},null,null,null);
+//        Cursor cursor = context.getContentResolver().query(uri,new String[]{MediaStore.Images.Media.BUCKET_ID,MediaStore.Images.Media.DATA},null,null,null);
 //        cursor.moveToFirst();
-//        String name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME));
+//        String name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA));
 //        long id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
-//        LYTE("ListenMedia report "+name+" - "+id);
+//        LYTE("ListenMedia report "+name);
         fragment.setSavingInMedia(uri);
 
     }

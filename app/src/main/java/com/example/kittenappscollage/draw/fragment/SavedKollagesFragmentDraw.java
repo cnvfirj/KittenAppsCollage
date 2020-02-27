@@ -160,12 +160,6 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
             final String sImg = getRealPath(img.getUri().getLastPathSegment());
             final String system = ZHOPA;
             final String sNameDir = dir.getName();
-            Cursor c = getContext().getContentResolver().query(question(),new String[]{MediaStore.Images.Media.BUCKET_ID, MediaStore.Images.Media.BUCKET_DISPLAY_NAME},MediaStore.Images.Media.DISPLAY_NAME+" = ?",new String[]{nameImg},null);
-            c.moveToFirst();
-//            String id = ""+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
-            String name = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME));
-//            LYTE("SavedKollagesFragmentDraw id save "+id);
-            LYTE("SavedKollagesFragmentDraw name save "+name);
 
             if(save){
                 String report =
@@ -178,7 +172,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                         sNameDir+                 REPORT_DELIMITER+//файловая система в папке, если она до этого
                                                                   //не дф, то надо пересканировать всю папку
                         system;
-
+                WorkDBPerms.get(getContext()).addParams(dir.getUri().toString(),report,REPORT_DELIMITER);
                 return report;
             }
             else return ZHOPA;
@@ -221,7 +215,8 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         DocumentFile fold = DocumentFile.fromTreeUri(getContext(), uri);
         boolean exists = fold.exists();
         if(exists) {
-            WorkDBPerms.get(getContext()).setAction(WorkDBPerms.INSERT,fold.getUri().toString());
+            WorkDBPerms.get(getContext()).setAction(WorkDBPerms.INSERT,fold.getUri().toString(), fold.getName());
+
             getEditor().putString(KEY_PERM_SAVE, fold.getUri().toString());
             getEditor().apply();
         }
@@ -233,7 +228,11 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         String[]split = lastSegment.split("[:]");
         String[]sub = lastSegment.split(split[0]+":");
         String[]storage = getContext().getExternalFilesDir(null).getAbsolutePath().split("[/]");
-        return "/"+storage[1]+"/"+split[0]+"/"+sub[1];
+        String p = "/"+storage[1]+"/"+split[0]+"/"+sub[1];
+        if(p.startsWith("/storage/primary/")){
+            String[]correct = p.split("/storage/primary/");
+            return "/storage/emulated/0/"+correct[1];
+        } else return p;
     }
 
     /**/

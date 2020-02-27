@@ -15,26 +15,13 @@ public class Permis {
 
     public String delimiter;
 
+    public String name;
+
     public long id;
 
     public Permis(@NonNull String uriPerm) {
         this.uriPerm = uriPerm;
     }
 
-    public String getPerm(){
-        return uriPerm;
-    }
-
-    public String getReport() {
-        return report;
-    }
-
-    public String getDelimiter() {
-        return delimiter;
-    }
-
-    public long getId() {
-        return id;
-    }
 
 }

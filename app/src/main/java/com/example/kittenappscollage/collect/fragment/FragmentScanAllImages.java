@@ -123,10 +123,10 @@ public class FragmentScanAllImages extends Fragment {
     }
 
     private void addImgsInCursor(Permis p,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) {
-        final String[] split = p.report.split(p.delimiter);
-        final String keyAndPerm = split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD];
-        final String name = split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD];
-        final String id = split[split.length - 1];
+
+        final String keyAndPerm = p.uriPerm;
+        final String name = p.name;
+
         Cursor cursor = getContext().getContentResolver().query(
                 question(),
                 new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_MODIFIED, MediaStore.Images.Media.MIME_TYPE,MediaStore.Images.Media.BUCKET_ID},
@@ -216,25 +216,19 @@ public class FragmentScanAllImages extends Fragment {
     }
 
     public void setSavingInMedia(Uri uri){
-        Cursor c = getContext().getContentResolver().query(uri,new String[]{MediaStore.Images.Media.BUCKET_ID},null,null,null);
-        c.moveToFirst();
+//        Cursor c = getContext().getContentResolver().query(uri,new String[]{MediaStore.Images.Media.BUCKET_ID},null,null,null);
+//        c.moveToFirst();
     }
 
     /*android 9 storage system*/
     public void setSavingInStorageCollage(Uri uri, String report, String delimiter,long date){
         String[]split = report.split(delimiter);
         /*здесь выясняем айди папки и потом закидываем его в бд*/
-        Cursor c = getContext().getContentResolver().query(uri,new String[]{MediaStore.Images.Media.BUCKET_ID},null,null,null);
+        String nameImg = split[SavedKollagesFragmentDraw.INDEX_NAME_IMG];
+        String key = split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD];
+        Cursor c = getContext().getContentResolver().query(question(),new String[]{MediaStore.Images.Media.BUCKET_ID},MediaStore.Images.Media.DISPLAY_NAME+" = ?",new String[]{nameImg},null);
         c.moveToFirst();
-        LYTE("FragmentScanAllImages saved "+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID)));
-        report +=delimiter+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
-        WorkDBPerms.get(getContext()).addParams(split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],report,delimiter);
-
-//        addInScan(split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
-//                uri.toString(),
-//                split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD],
-//                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
-//                date);
+        WorkDBPerms.get(getContext()).addId(key,c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID)));
 
         addImgCollect(
                 split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],

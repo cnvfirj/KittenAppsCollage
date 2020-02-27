@@ -52,6 +52,38 @@ public class WorkDBPerms {
                 .subscribe();
 
     }
+    public void setAction(int operation, String uri, String name){
+        Observable.create(emitter -> {
+            if(operation==INSERT){
+                setItem(uri);
+                setName(uri,name);
+            }
+            else if (operation==DELETE)delItem(uri);
+            emitter.onComplete();
+        }).compose(new ThreadTransformers.InputOutput<>())
+                .doOnError(throwable -> LYTE("WorkDBPerms error operation - "+operation))
+                .subscribe();
+
+    }
+
+
+    public void addName(String uri, String name){
+        Observable.create(emitter -> {
+            setName(uri,name);
+            emitter.onComplete();
+        }).compose(new ThreadTransformers.InputOutput<>())
+                .subscribe();
+    }
+
+    public void addId(String uri, long id){
+        Observable.create(emitter -> {
+            setId(uri,id);
+            emitter.onComplete();
+        }).compose(new ThreadTransformers.InputOutput<>())
+                .subscribe();
+    }
+
+
 
     @SuppressLint("CheckResult")
     public void queryList(QueryWorkDBPerms listener){
@@ -70,14 +102,24 @@ public class WorkDBPerms {
                 .subscribe();
     }
 
+    public void setId(String uri, long id){
+        setItem(uri);
+        Permis p = getItem(uri);
+        p.id = id;
+        db.work().update(p);
+    }
+    public void setName(String uri, String name){
+        setItem(uri);
+        Permis p = getItem(uri);
+        p.name = name;
+        db.work().update(p);
+    }
     public void setParams(String uri, String report, String delimiter){
         setItem(uri);
         Permis p = getItem(uri);
-        if(p!=null){
             p.delimiter = delimiter;
             p.report = report;
             db.work().update(p);
-        }
     }
 
     public Permis getItem(String uri){

@@ -17,6 +17,9 @@ public interface MethodsDBPerm {
     @Query("SELECT * FROM grandPerm WHERE uriPerm = :uriPerm")
     Permis getPerm(String uriPerm);
 
+    @Query("SELECT * FROM grandPerm WHERE id = :id")
+    Permis getPermInId(long id);
+
     @Insert
     void insert(Permis perm);
 
