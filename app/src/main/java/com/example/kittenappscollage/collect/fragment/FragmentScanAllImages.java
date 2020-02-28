@@ -97,8 +97,9 @@ public class FragmentScanAllImages extends Fragment {
                       Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> {
                           scanAvailablePermissions(emitter);
                       }).compose(new ThreadTransformers.InputOutput<>())
-                        .doOnComplete(() ->
-                                Massages.SHOW_MASSAGE(getContext(), "Ты можешь увеличить список доступных папок в галерее"))
+//                        .doOnComplete(() ->
+//                                Massages.SHOW_MASSAGE(getContext(), "Ты можешь увеличить список доступных папок в галерее"))
+
                               .subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
             }
 
@@ -211,8 +212,7 @@ public class FragmentScanAllImages extends Fragment {
     }
 
     public void setSavingInMedia(Uri uri){
-//        Cursor c = getContext().getContentResolver().query(uri,new String[]{MediaStore.Images.Media.BUCKET_ID},null,null,null);
-//        c.moveToFirst();
+
     }
 
     /*android 9 storage system*/

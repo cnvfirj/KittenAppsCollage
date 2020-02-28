@@ -30,11 +30,11 @@ import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
 
-    private final String TYPE_PNG = "image/png";
-
-    private final String TYPE_JPEG = "image/jpeg";
-
-    private final String TYPE_JPG = "image/jpg";
+//    private final String TYPE_PNG = "image/png";
+//
+//    private final String TYPE_JPEG = "image/jpeg";
+//
+//    private final String TYPE_JPG = "image/jpg";
 
 
 //    @Override
@@ -88,17 +88,6 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
 //                        getBlockItems().remove(getSelectItemRootAdapter());
                         Massages.SHOW_MASSAGE(getContext(), "Выбранные изображения удалены");
                     }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
-        }
-    }
-
-    private void renameFold(String name,String key){
-        DocumentFile folder = DocumentFile.fromTreeUri(getContext(), Uri.parse(key));
-        try {
-            LYTE("rename - "+key);
-            Uri u = DocumentsContract.renameDocument(getContext().getContentResolver(),Uri.parse(key),name);
-            LYTE("renamed - "+u.toString());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
@@ -192,6 +181,14 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
             b = true;
         }
         return b;
+    }
+
+    protected void clearLists(String key){
+        if(getListImagesInFolders().containsKey(key)) {
+            getListImagesInFolders().remove(key);
+            getListFolds().remove(key);
+            getListMutable().remove(key);
+        }
     }
 
 }
