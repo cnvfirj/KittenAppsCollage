@@ -37,12 +37,12 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
     private final String TYPE_JPG = "image/jpg";
 
 
-    @Override
-    protected void renameFoldStorage(String name,String key) {
-        super.renameFoldStorage(name,key);
-        renameFold(name,key);
-
-    }
+//    @Override
+//    protected void renameFoldStorage(String name,String key) {
+//        super.renameFoldStorage(name,key);
+//        renameFold(name,key);
+//
+//    }
 
     @Override
     protected void applyDeleteSelectedStorage() {

@@ -35,7 +35,7 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
 
     public static final int ACTION_SHARE = 2;
 
-    public static final int ACTION_RENAME = 4;
+//    public static final int ACTION_RENAME = 4;
 
     public static final int ACTION_INVIS = 5;
 
@@ -125,9 +125,9 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
             case R.id.dialog_action_gallery_done:
                 listen = (ListenActions)getTargetFragment();
                 listen.result(true, indexAction,indexAdapter);
-                if(indexAction==ACTION_RENAME){
-                    listen.result(true,text.getText().toString());
-                }
+//                if(indexAction==ACTION_RENAME){
+//                    listen.result(true,text.getText().toString());
+//                }
                 imm.hideSoftInputFromWindow(text.getWindowToken(), 0);
                 dismiss();
                 break;
@@ -157,9 +157,9 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
             case ACTION_INVIS:
                 invis();
                 break;
-            case ACTION_RENAME:
-                rename();
-                break;
+//            case ACTION_RENAME:
+//                rename();
+//                break;
 
         }
         paramView(text);
@@ -176,11 +176,11 @@ public class DialogAction extends DialogFragment implements View.OnClickListener
        text.setText("В этом приложении эту папку больше не увидеть");
     }
 
-    private void rename(){
-        implementPropEdit(true);
-        text.setText("Имя папки");
-
-    }
+//    private void rename(){
+//        implementPropEdit(true);
+//        text.setText("Имя папки");
+//
+//    }
 
     private void delete(){
         implementPropEdit(false);

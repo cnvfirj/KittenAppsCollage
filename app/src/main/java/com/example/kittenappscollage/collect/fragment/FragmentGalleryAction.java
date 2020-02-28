@@ -27,14 +27,14 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
                 .show(getFragmentManager().beginTransaction(),TAG_DIALOG);
     }
 
-    @Override
-    protected void clickSel_2(ImageView v) {
-        super.clickSel_2(v);
-        /*переименовать*/
-        /*візов диалога*/
-        DialogAction.inst(DialogAction.ACTION_RENAME, getIndexAdapter(),this)
-                .show(getFragmentManager().beginTransaction(),TAG_DIALOG);
-    }
+//    @Override
+//    protected void clickSel_2(ImageView v) {
+//        super.clickSel_2(v);
+//        /*переименовать*/
+//        /*візов диалога*/
+//        DialogAction.inst(DialogAction.ACTION_RENAME, getIndexAdapter(),this)
+//                .show(getFragmentManager().beginTransaction(),TAG_DIALOG);
+//    }
 
     @Override
     protected void clickSel_3(ImageView v) {
@@ -76,11 +76,10 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
     /*это применимо только в корневом адаптере*/
     @Override
     public void result(boolean done, String name) {
-        if(done&&!name.isEmpty()) {
-
-               renameFoldStorage(name, getKey());
-
-        }
+//        if(done&&!name.isEmpty()) {
+//               renameFoldStorage(name, getKey());
+//
+//        }
     }
 
     private void deleteFolder(){
@@ -160,9 +159,9 @@ public class FragmentGalleryAction extends FragmentSelectedGallery implements Li
 
     }
 
-    protected void renameFoldStorage(String name, String key){
-
-    }
+//    protected void renameFoldStorage(String name, String key){
+//
+//    }
 
     /*android >= 9 file system*/
     protected void applyDeleteSelectedFile(){

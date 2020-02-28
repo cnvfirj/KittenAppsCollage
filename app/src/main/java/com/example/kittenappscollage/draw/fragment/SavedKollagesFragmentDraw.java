@@ -219,7 +219,6 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         boolean exists = fold.exists();
         if(exists) {
             WorkDBPerms.get(getContext()).setAction(WorkDBPerms.INSERT,fold.getUri().toString(), fold.getName());
-
             getEditor().putString(KEY_PERM_SAVE, fold.getUri().toString());
             getEditor().apply();
         }
