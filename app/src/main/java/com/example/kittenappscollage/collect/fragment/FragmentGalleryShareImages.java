@@ -88,31 +88,52 @@ public class FragmentGalleryShareImages extends FragmentGalleryAction {
             Massages.LYTE("FragmentGalleryActionFile что то с активити "+anfe.getMessage());
         }
     }
-
-
     @Override
     protected void shareSelImages(){
         super.shareSelImages();
         ArrayList<Uri>selected = new ArrayList<>();
         for (String s:getSelectFiles()){
-            File file = new File(s);
+            selected.add(Uri.parse(s));
+        }
+        try {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-
-                selected.add(FileProvider.getUriForFile(getContext(), "com.example.kittenappscollage.fileprovider", file));
-            }else {
-                selected.add(Uri.fromFile(file));
+                intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                intent.putExtra(Intent.EXTRA_STREAM, selected.get(0));
+                intent.setType("image/png");
             }
+            startActivity(Intent.createChooser(intent, null));
+        } catch (ActivityNotFoundException anfe) {
+            Massages.LYTE("FragmentGalleryActionFile что то с активити "+anfe.getMessage());
         }
-
-        if(selected.size()>0){
-            if(selected.size()==1){
-                shareSingleImg(selected.get(0), getSelectFiles().get(0));
-            }else {
-                shareSelectedImgs(selected);
-            }
-        }
-        getSelectFiles().clear();
 
     }
+
+//    @Override
+//    protected void shareSelImages(){
+//        super.shareSelImages();
+//        ArrayList<Uri>selected = new ArrayList<>();
+//        for (String s:getSelectFiles()){
+//            File file = new File(s);
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//
+//                selected.add(FileProvider.getUriForFile(getContext(), "com.example.kittenappscollage.fileprovider", file));
+//            }else {
+//                selected.add(Uri.fromFile(file));
+//            }
+//        }
+//
+//        if(selected.size()>0){
+//            if(selected.size()==1){
+//                shareSingleImg(selected.get(0), getSelectFiles().get(0));
+//            }else {
+//                shareSelectedImgs(selected);
+//            }
+//        }
+//        getSelectFiles().clear();
+//
+//    }
 
 }
