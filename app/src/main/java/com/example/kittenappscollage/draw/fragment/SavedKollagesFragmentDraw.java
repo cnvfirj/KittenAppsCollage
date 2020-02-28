@@ -70,6 +70,8 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
 
     private final String ZHOPA = "(_!_)";
 
+    private final String NOT_DIR = "not dir";
+
     private ActionSave report;
 
     public void reSave(){
@@ -121,11 +123,13 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
            .subscribe(new Consumer<String>() {
                @Override
                public void accept(String str) throws Exception {
-                   if(!str.equals(ZHOPA)){
+                   if(str.equals(NOT_DIR)){
+                       requestFold();
+                   }else if(str.equals(ZHOPA)){
+                       Massages.SHOW_MASSAGE(getContext(), "Изображение не сохранено. Проверь память устройства");
+                   } else {
                        Massages.SHOW_MASSAGE(getContext(), "Изображение сохранено");
                        reportSave(str);
-                   } else {
-                       Massages.SHOW_MASSAGE(getContext(), "Изображение не сохранено. Проверь память устройства");
                    }
                }
            });
@@ -149,12 +153,11 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         try {
             final String nameImg = RepDraw.PropertiesImage.NAME_IMAGE();
             DocumentFile dir = DocumentFile.fromTreeUri(getContext(),uri);
+            if(!dir.exists())return NOT_DIR;
             DocumentFile img = dir.createFile(MIME_PNG, nameImg);
             OutputStream out = getContext().getContentResolver().openOutputStream(img.getUri());
             boolean save = RepDraw.get().getImg().compress(Bitmap.CompressFormat.PNG, 100, out);
             out.close();
-
-
 
             final String sDir = getRealPath(dir.getUri().getLastPathSegment());
             final String sImg = getRealPath(img.getUri().getLastPathSegment());

@@ -40,7 +40,7 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
     @Override
     protected void renameFoldStorage(String name,String key) {
         super.renameFoldStorage(name,key);
-
+        renameFold(name,key);
 
     }
 
@@ -88,6 +88,17 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
 //                        getBlockItems().remove(getSelectItemRootAdapter());
                         Massages.SHOW_MASSAGE(getContext(), "Выбранные изображения удалены");
                     }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
+        }
+    }
+
+    private void renameFold(String name,String key){
+        DocumentFile folder = DocumentFile.fromTreeUri(getContext(), Uri.parse(key));
+        try {
+            LYTE("rename - "+key);
+            Uri u = DocumentsContract.renameDocument(getContext().getContentResolver(),Uri.parse(key),name);
+            LYTE("renamed - "+u.toString());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 

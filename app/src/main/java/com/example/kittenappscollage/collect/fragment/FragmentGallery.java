@@ -55,7 +55,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     private String key;
 
-    private String postSaveKey;
+    private String retentKey;
 
     @Nullable
     @Override
@@ -127,7 +127,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         super.setListImagesInFolders(list);
         invisibleMenu();
         foldAdapt.setAll(list, getListFolds()).setListen(this);
-        imgAdapt.setAll(list,foldAdapt.getItems(),postSaveKey).setListen(this);
+        imgAdapt.setAll(list,foldAdapt.getItems(),key).setListen(this);
     }
 
     @Override
@@ -158,7 +158,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     @Override
     public void setSavingInStorageCollage(Uri uri, String report, String delimiter,long date) {
-        postSaveKey = key;
+        retentKey = key;
         super.setSavingInStorageCollage(uri, report, delimiter,date);
     }
 
@@ -188,11 +188,11 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     protected void invisibleMenu(){
 
     }
-    protected void resetPostSaveKey(){
-        postSaveKey = null;
+    protected void resetRetentKey(){
+        retentKey = null;
     }
-    protected String getPostSaveKey(){
-        return postSaveKey;
+    protected String getRetentKey(){
+        return retentKey;
     }
 
     protected String getKey(){

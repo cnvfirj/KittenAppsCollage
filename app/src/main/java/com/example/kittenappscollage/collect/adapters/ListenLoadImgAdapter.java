@@ -39,6 +39,8 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
 
     private int indexKey;
 
+    private String retentKey;
+
     private ListenAdapter listen;
 
     public ListenLoadImgAdapter(Context context) {
@@ -61,8 +63,23 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
         this.items = items;
         String[] imgs = null;
         if(active){
-            imgs = new String[all.get(getItems()[indexKey].key).size()];
-            all.get(getItems()[indexKey].key).toArray(imgs);
+            if(key==null){
+                if(all.get(retentKey)==null){
+                    listen.exit(indexKey);
+                }else {
+                    imgs = new String[all.get(getItems()[indexKey].key).size()];
+                    all.get(getItems()[indexKey].key).toArray(imgs);
+                }
+            } else {
+                if (all.get(key) == null) {
+                    listen.exit(indexKey);
+                } else {
+                    imgs = new String[all.get(key).size()];
+                    all.get(key).toArray(imgs);
+                }
+            }
+//            imgs = new String[all.get(getItems()[indexKey].key).size()];
+//            all.get(getItems()[indexKey].key).toArray(imgs);
             DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallbackImg(this.images,imgs));
             diffResult.dispatchUpdatesTo(this);
         }
@@ -75,6 +92,7 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
         if(index>=0) {
                 if (all.get(getItems()[index].key) != null) {
                     indexKey = index;
+                    retentKey = getItems()[index].key;
                     images = new String[all.get(getItems()[indexKey].key).size()];
                     all.get(getItems()[indexKey].key).toArray(images);
 
