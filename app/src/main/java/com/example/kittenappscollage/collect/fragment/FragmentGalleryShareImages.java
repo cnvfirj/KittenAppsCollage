@@ -68,10 +68,7 @@ public class FragmentGalleryShareImages extends FragmentGalleryAction {
 
     }
 
-    private void shareSingleImg(Uri uri, String path){
-        MimeTypeMap mime = MimeTypeMap.getSingleton();
-        String ext =path.substring(path.lastIndexOf(".") + 1);
-        String type = mime.getMimeTypeFromExtension(ext);
+    private void shareSingleImg(Uri uri){
         try {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_SEND);
@@ -79,9 +76,9 @@ public class FragmentGalleryShareImages extends FragmentGalleryAction {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 intent.putExtra(Intent.EXTRA_STREAM, uri);
-                intent.setType(type);
+                intent.setType("image/*");
             } else {
-                intent.setDataAndType(uri, type);
+                intent.setDataAndType(uri, "image/*");
             }
             startActivity(Intent.createChooser(intent, null));
         } catch (ActivityNotFoundException anfe) {
@@ -90,29 +87,23 @@ public class FragmentGalleryShareImages extends FragmentGalleryAction {
     }
 
 
+
     @Override
     protected void shareSelImages(){
         super.shareSelImages();
         ArrayList<Uri>selected = new ArrayList<>();
         for (String s:getSelectFiles()){
-            File file = new File(s);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-
-                selected.add(FileProvider.getUriForFile(getContext(), "com.example.kittenappscollage.fileprovider", file));
-            }else {
-                selected.add(Uri.fromFile(file));
-            }
+            selected.add(Uri.parse(s));
         }
 
         if(selected.size()>0){
             if(selected.size()==1){
-                shareSingleImg(selected.get(0), getSelectFiles().get(0));
+                shareSingleImg(selected.get(0));
             }else {
                 shareSelectedImgs(selected);
             }
         }
         getSelectFiles().clear();
-
     }
 
 }
