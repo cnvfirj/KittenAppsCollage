@@ -78,8 +78,6 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
                     all.get(key).toArray(imgs);
                 }
             }
-//            imgs = new String[all.get(getItems()[indexKey].key).size()];
-//            all.get(getItems()[indexKey].key).toArray(imgs);
             DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffCallbackImg(this.images,imgs));
             diffResult.dispatchUpdatesTo(this);
         }
