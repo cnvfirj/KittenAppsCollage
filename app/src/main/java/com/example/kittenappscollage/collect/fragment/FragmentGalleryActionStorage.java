@@ -63,7 +63,7 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
              deleteImagesAndFold(fold,emitter))
              .compose(new ThreadTransformers.InputOutput<>())
              .doOnComplete(() -> {
-                 getBlockItems().remove(getSelectItemRootAdapter());
+//                 getBlockItems().remove(getSelectItemRootAdapter());
                  Massages.SHOW_MASSAGE(getContext(),"Папка удалена");
              }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
     }
@@ -85,53 +85,86 @@ public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
                     deleteImages(key, emitter))
                     .compose(new ThreadTransformers.InputOutput<>())
                     .doOnComplete(() -> {
-                        getBlockItems().remove(getSelectItemRootAdapter());
+//                        getBlockItems().remove(getSelectItemRootAdapter());
                         Massages.SHOW_MASSAGE(getContext(), "Выбранные изображения удалены");
                     }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
         }
     }
 
     private void deleteImages(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
-        for (String ur:getSelectFiles()){
-            if(delDocFile(Uri.parse(ur))){
-                getListImagesInFolders().get(key).remove(ur);
+        for (String img:getSelectFiles()){
+            if(delFile(Uri.parse(img))>0) {
+                getListImagesInFolders().get(key).remove(img);
                 emitter.onNext(getListImagesInFolders());
             }
         }
-        emitter.onNext(getListImagesInFolders());
         emitter.onComplete();
     }
+//    private void deleteImages(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+//            for (String ur:getSelectFiles()){
+//                if(delDocFile(Uri.parse(ur))){
+//                    getListImagesInFolders().get(key).remove(ur);
+//                    emitter.onNext(getListImagesInFolders());
+//                }
+//            }
+//        emitter.onNext(getListImagesInFolders());
+//        emitter.onComplete();
+//    }
 
     private void deleteImagesAndFold(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
-        Uri treeUri = Uri.parse(key);
-        for (String ur:images){
-            DocumentFile img = DocumentFile.fromSingleUri(getContext(),Uri.parse(ur));
-            if(img.isDirectory())continue;
-
-            if(img.getType().equals(TYPE_PNG)||img.getType().equals(TYPE_JPG)||img.getType().equals(TYPE_JPEG)) {
-
-                    if(delDocFile(Uri.parse(ur))) {
-                        getListImagesInFolders().get(key).remove(ur);
-                        emitter.onNext(getListImagesInFolders());
-
-                }
+        for (String img:images){
+            if(delFile(Uri.parse(img))>0) {
+                getListImagesInFolders().get(key).remove(img);
+                emitter.onNext(getListImagesInFolders());
             }
         }
-
         if(getListImagesInFolders().get(key).size()==0){
             clearLists(key);
             WorkDBPerms.get(getContext()).delItem(key);
-            DocumentFile fold = DocumentFile.fromTreeUri(getContext(),treeUri);
+            DocumentFile fold = DocumentFile.fromTreeUri(getContext(),Uri.parse(key));
             if(fold.listFiles().length==0){
-                if(delDocFile(fold.getUri())){
-
-                }
+                delDocFile(fold.getUri());
             }
         }
         emitter.onNext(getListImagesInFolders());
         emitter.onComplete();
     }
+
+    private int delFile(Uri uri){
+        return getContext().getContentResolver().delete(uri,null,null);
+    }
+
+//    private void deleteImagesAndFold(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+//        ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
+//        Uri treeUri = Uri.parse(key);
+//        for (String ur:images){
+//            DocumentFile img = DocumentFile.fromSingleUri(getContext(),Uri.parse(ur));
+//            if(img.isDirectory())continue;
+//
+//            if(img.getType().equals(TYPE_PNG)||img.getType().equals(TYPE_JPG)||img.getType().equals(TYPE_JPEG)) {
+//
+//                    if(delDocFile(Uri.parse(ur))) {
+//                        getListImagesInFolders().get(key).remove(ur);
+//                        emitter.onNext(getListImagesInFolders());
+//
+//                }
+//            }
+//        }
+//
+//        if(getListImagesInFolders().get(key).size()==0){
+//            clearLists(key);
+//            WorkDBPerms.get(getContext()).delItem(key);
+//            DocumentFile fold = DocumentFile.fromTreeUri(getContext(),treeUri);
+//            if(fold.listFiles().length==0){
+//                if(delDocFile(fold.getUri())){
+//
+//                }
+//            }
+//        }
+//        emitter.onNext(getListImagesInFolders());
+//        emitter.onComplete();
+//    }
 
 
     private boolean delDocFile(Uri uri){

@@ -66,7 +66,6 @@ public class WorkDBPerms {
 
     }
 
-
     public void addName(String uri, String name){
         Observable.create(emitter -> {
             setName(uri,name);
