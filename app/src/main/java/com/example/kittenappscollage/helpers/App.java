@@ -15,7 +15,7 @@ public class App {
     }
 
     public static boolean checkVersion(){
-        return Build.VERSION.SDK_INT <= Build.VERSION_CODES.Q;
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.Q;
     }
 
 
