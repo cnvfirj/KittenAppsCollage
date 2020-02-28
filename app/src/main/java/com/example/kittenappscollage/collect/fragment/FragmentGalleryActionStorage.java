@@ -1,16 +1,9 @@
 package com.example.kittenappscollage.collect.fragment;
 
 import android.annotation.SuppressLint;
-import android.content.ContentUris;
-import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.provider.DocumentsContract;
-import android.provider.MediaStore;
-import android.widget.ImageView;
 
-import androidx.annotation.RequiresApi;
 import androidx.documentfile.provider.DocumentFile;
 
 import com.example.kittenappscollage.helpers.Massages;
@@ -28,7 +21,7 @@ import io.reactivex.ObservableOnSubscribe;
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
-public class FragmentGalleryActionStorage extends FragmentGalleryActionFile {
+public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
 
 //    private final String TYPE_PNG = "image/png";
 //

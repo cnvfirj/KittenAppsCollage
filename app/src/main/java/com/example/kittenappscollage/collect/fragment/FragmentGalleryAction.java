@@ -10,8 +10,6 @@ import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
 public class FragmentGalleryAction extends FragmentSelectedGallery{
 
-    private final String TAG_DIALOG = "FragmentGalleryAction dialog act";
-
     @Override
     protected void clickSel_1(ImageView v) {
         super.clickSel_1(v);
@@ -25,7 +23,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery{
         if(getIndexAdapter()== ROOT_ADAPTER){
             copyFolder();
         }else {
-            shareSelectedImg(getIndexAdapter());
+            shareSelImages();
         }
     }
 
@@ -42,10 +40,6 @@ public class FragmentGalleryAction extends FragmentSelectedGallery{
 
     private void copyFolder(){
         LYTE("FragmentGalleryAction copy folder - "+getKey());
-
-    }
-
-    private void shareSelectedImg(int adapter){
 
     }
 
@@ -71,6 +65,10 @@ public class FragmentGalleryAction extends FragmentSelectedGallery{
     /*android > 9 file system*/
     protected void deletedFoldStorage(String fold){
         /*удалить папку как Storage Assets Framework*/
+
+    }
+
+    protected void shareSelImages(){
 
     }
 
