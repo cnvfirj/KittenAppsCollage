@@ -3,6 +3,7 @@ package com.example.kittenappscollage.collect.reviewImage;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.util.AttributeSet;
@@ -35,6 +36,7 @@ public class ViewReview extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if(test())canvas.drawBitmap(bitmap,mat.matrix(matrix),null);
+        else canvas.drawColor(Color.RED);
     }
 
     @Override

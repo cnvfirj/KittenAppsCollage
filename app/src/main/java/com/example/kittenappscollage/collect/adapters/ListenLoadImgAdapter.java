@@ -99,7 +99,7 @@ public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdap
     }
 
     public ArrayList<String>getOperationList(){
-        return all.get(getItems()[indexKey].key);
+        return all.get(retentKey);
     }
 
 
