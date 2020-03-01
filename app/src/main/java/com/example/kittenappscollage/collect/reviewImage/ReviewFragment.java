@@ -16,6 +16,8 @@ import com.example.kittenappscollage.R;
 
 import java.io.IOException;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 public class ReviewFragment extends Fragment {
 
     private static final String IMG = "img";
@@ -23,6 +25,8 @@ public class ReviewFragment extends Fragment {
     private ViewReview viewReview;
 
     private Bitmap bitmap;
+
+    private Uri  img;
 
     public static ReviewFragment inst(String img){
         ReviewFragment f = new ReviewFragment();
@@ -37,12 +41,7 @@ public class ReviewFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Bundle b = getArguments();
         if(b!=null){
-            Uri uri = Uri.parse(b.getString(IMG));
-            try {
-                bitmap = MediaStore.Images.Media.getBitmap (getContext().getContentResolver (), uri);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            img = Uri.parse(b.getString(IMG));
         }
         return inflater.inflate(R.layout.fragment_review,null);
     }
@@ -51,7 +50,7 @@ public class ReviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewReview = view.findViewById(R.id.fragment_review_view);
-        viewReview.setBitmap(bitmap);
+        viewReview.setUriBitmap(img);
     }
 
     @Override
@@ -62,6 +61,6 @@ public class ReviewFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if(bitmap!=null&&!bitmap.isRecycled())bitmap.recycle();
+        viewReview.resetImg();
     }
 }

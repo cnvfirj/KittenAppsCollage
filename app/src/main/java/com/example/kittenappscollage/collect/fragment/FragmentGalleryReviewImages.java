@@ -15,7 +15,6 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
     @Override
     protected void clickItem(int adapter, int position) {
         super.clickItem(adapter, position);
-
         DialogReview.inst(getImgAdapt().getOperationList(),position,this)
                 .show(getFragmentManager().beginTransaction(),TAG_DIALOG);
     }
