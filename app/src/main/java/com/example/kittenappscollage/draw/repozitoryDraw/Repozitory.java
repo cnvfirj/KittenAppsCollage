@@ -2,7 +2,6 @@ package com.example.kittenappscollage.draw.repozitoryDraw;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.PointF;
 
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
@@ -14,10 +13,6 @@ import com.example.mutmatrix.DeformMat;
 public class Repozitory {
 
     public final static int MUTABLE_SIZE = 1;
-
-    public final static int MUTABLE_CONTENT = 2;
-
-    public final static int MUTABLE_MATRIX = 3;
 
     public final static int LYR_IMG = 11;
 
@@ -55,14 +50,12 @@ public class Repozitory {
         rReadiness = 0;
     }
 
-    public Repozitory listenerAdd(RepDraw.Adding add){
+    public void listenerAdd(Adding add){
         rAdd = add;
-        return this;
     }
 
-    public Repozitory listenerApp(RepDraw.Appling app){
+    public void listenerApp(Appling app){
         rApp = app;
-        return this;
     }
 
     public Repozitory setName(String name){
@@ -70,11 +63,10 @@ public class Repozitory {
         return this;
     }
 
-    public Repozitory viewDraw(PointF view){
+    public void viewDraw(PointF view){
         rView = view;
         rLyrMat.view(view);
         rImgMat.view(view);
-        return this;
     }
 
     public void createOverlay(){
@@ -92,6 +84,8 @@ public class Repozitory {
 
     public void setImg(Bitmap b, CompRep rep, boolean single){
         zeroingBitmap(rImg);
+        zeroingBitmap(rLyr);
+        rLyrMat.reset();
         rImgMat.reset();
         if(testBitmap(b)) {
             rImg = b.copy(Bitmap.Config.ARGB_8888, true);
@@ -118,14 +112,6 @@ public class Repozitory {
             if(single)BackNextStep.get().save(BackNextStep.TARGET_LYR,BackNextStep.MUT_SCALAR);
         }
         zeroingBitmap(b);
-    }
-
-    public void setAll(Bitmap img, CompRep repImg, Bitmap lyr, CompRep repLyr){
-        setImg(img,repImg,false);
-        setLyr(lyr,repLyr,false);
-        if(rAdd!=null)rAdd.readinessAll(true);
-        BackNextStep.get().save(BackNextStep.TARGET_ALL,BackNextStep.MUT_SCALAR);
-
     }
 
     public void addLyr(Bitmap b){
@@ -167,18 +153,8 @@ public class Repozitory {
         rLyrMat.reset();
     }
 
-
-
     protected boolean testBitmap(Bitmap b){
         return b!=null&&!b.isRecycled();
-    }
-
-    public Canvas getImgCanv(){
-        return rImgC;
-    }
-
-    public Canvas getrLyrCanv(){
-        return rLyrC;
     }
 
     public Canvas getOverCanv(){
@@ -210,10 +186,6 @@ public class Repozitory {
     }
     public PointF getView() {
         return rView;
-    }
-
-    public String getrNameProj(){
-        return rNameProj;
     }
 
     public interface Adding{

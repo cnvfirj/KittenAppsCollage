@@ -52,7 +52,6 @@ public class ViewReview extends View {
         if(test()){
             canvas.drawBitmap(bitmap,mat.matrix(matrix),null);
         }
-//        else canvas.drawColor(Color.RED);
     }
 
     public void setUriBitmap(Uri img){
@@ -87,6 +86,7 @@ public class ViewReview extends View {
             float stepH = (getHeight()-scaleH)/2;
             float stepW = (getWidth()-scaleW)/2;
             mat.event(MotionEvent.obtain(1l,1l,MotionEvent.ACTION_MOVE,stepW,stepH,0));
+            mat.command(DeformMat.Command.NON);
 
     }
 

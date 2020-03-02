@@ -1,7 +1,6 @@
 package com.example.kittenappscollage.collect.reviewImage;
 
 import android.graphics.Bitmap;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewTreeObserver;

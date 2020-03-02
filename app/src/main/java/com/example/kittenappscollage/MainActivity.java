@@ -96,9 +96,11 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         viewPager.setCurrentItem(0);
     }
 
+
+
     @Override
-    public void resultScan(HashMap<String, ArrayList<String>> list) {
-        mFragDraw.setListCollect(list);
+    public void resultScan(HashMap<String, ArrayList<String>> imgs, HashMap<String, Long> mut, HashMap<String, String> folds) {
+        mFragDraw.setListCollect(imgs,mut,folds);
     }
 
     private Uri getUri(){

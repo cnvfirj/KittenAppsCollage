@@ -33,7 +33,6 @@ public class FragmentSelectedGallery extends FragmentSlideGallery {
     @Override
     public void click(int adapter, ImageView img, ImageView check, int pos) {
         super.click(adapter, img, check, pos);
-
         if(modeSel) {
             if (getIndexAdapter() == ROOT_ADAPTER) {
                     if (!under.get(0).equals(getListImagesInFolders().get(key(pos)).get(0))) {

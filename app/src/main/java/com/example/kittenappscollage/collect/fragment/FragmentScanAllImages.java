@@ -150,46 +150,6 @@ public class FragmentScanAllImages extends Fragment {
 
     }
 
-    private void addImgsInFold(Permis p,DocumentFile df,DocumentFile[]files,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
-        Arrays.sort(files, new Comparator<DocumentFile>() {
-            @Override
-            public int compare(DocumentFile o1, DocumentFile o2) {
-                final Long l1 = o1.lastModified();
-                final Long l2 = o2.lastModified();
-                return l1.compareTo(l2);
-            }
-        });
-        final String keyAndPerm = df.getUri().toString();
-        final String name = df.getName();
-        int iterator = 0;
-        for (DocumentFile f:files){
-            if(f.isFile()) {
-                final String type = f.getType();
-                if (type.equals("image/png") || type.equals("image/jpeg") || type.equals("image/jpg")) {
-                    final long date = f.lastModified();
-                    iterator++;
-                    if(!getListImagesInFolders().containsKey(keyAndPerm)){
-                        addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
-
-                    }else {
-                        if(!getListImagesInFolders().get(keyAndPerm).contains(f.getUri().toString())){
-                            addInScan(keyAndPerm, f.getUri().toString(), name, keyAndPerm, date);
-
-                            if (iterator% 10 == 0) emitter.onNext(getListImagesInFolders());
-                        }
-                    }
-                }
-            }
-        }
-        if(iterator==0){
-            if(getListImagesInFolders().containsKey(keyAndPerm)){
-                getListImagesInFolders().remove(keyAndPerm);
-            }
-               WorkDBPerms.get(getContext()).delItem(p.uriPerm);
-        }
-        emitter.onNext(getListImagesInFolders());
-    }
-
     private void addInScan(String key, String img, String fold, String permis,long date){
         addDateMod(key,date);
         if(getListImagesInFolders().containsKey(key)){
@@ -275,7 +235,7 @@ public class FragmentScanAllImages extends Fragment {
 
     protected void setListImagesInFolders(HashMap<String,ArrayList<String>> list){
          listImagesToFolder = list;
-         mainSwitching.resultScan(listImagesToFolder);
+         mainSwitching.resultScan(listImagesToFolder,getListMutable(), getListFolds());
     }
 
     public HashMap<String, Long> getListMutable() {

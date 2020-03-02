@@ -43,12 +43,6 @@ public class RequestImagesInStorage {
         this.listener = listener;
     }
 
-    public void loadImages(String path){
-        if(RequestFolder.testFolder(new File(path))){
-            loadList(path);
-        }
-    }
-
     @SuppressLint("CheckResult")
     private void loadList(String path){
         Observable.create((ObservableOnSubscribe<ArrayList<String>>) emitter -> {

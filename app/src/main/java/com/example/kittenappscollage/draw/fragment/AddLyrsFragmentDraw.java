@@ -26,14 +26,9 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
 
     public static final int REQUEST_READ_COLLECT = 93;
 
-
     public final static String DIALOG = "dialog";
 
     private FrameDialogAdd aDialog;
-
-    private HashMap<String,ArrayList<String>>aImages;
-
-
 
     @Nullable
     @Override
@@ -137,8 +132,8 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
         if(RepDraw.get().isLyr())readinessLyr(is);
     }
 
-    public void setListCollect(HashMap<String, ArrayList<String>> list){
-        aImages = list;
+    public void setListCollect(HashMap<String, ArrayList<String>> imgs, HashMap<String, Long> mut, HashMap<String, String> folds){
+
     }
 
     protected void waitingReadinessView(final View view){
