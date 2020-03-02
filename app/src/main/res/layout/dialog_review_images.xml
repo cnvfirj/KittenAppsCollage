@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.example.kittenappscollage.view.CustomFon
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <com.example.kittenappscollage.collect.reviewImage.ViewReview
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/dialog_review_view"/>
+<!--    <com.google.android.material.tabs.TabLayout-->
+<!--        android:id="@+id/dialog_review_tabs"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:tabMode="fixed"-->
+<!--        app:tabGravity="fill"/>-->
 
+    <com.example.kittenappscollage.mainTabs.SelectSweepViewPager
+        android:id="@+id/dialog_review_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.example.kittenappscollage.mainTabs.SelectSweepViewPager>
+
+<!--    <ProgressBar-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/dialog_review_progress"-->
+<!--        android:layout_gravity="center"/>-->
 
 </FrameLayout>

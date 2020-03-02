@@ -97,7 +97,7 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
     protected void setIndexAdapter(int i) {
         super.setIndexAdapter(i);
         if(i==ROOT_ADAPTER){
-            resetRetentKey();
+            setKey(null);
             slideExit(false);
         }else {
             selectExitMode.setSelected(false);

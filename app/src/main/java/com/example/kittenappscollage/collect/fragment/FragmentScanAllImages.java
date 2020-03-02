@@ -2,13 +2,8 @@ package com.example.kittenappscollage.collect.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.ContentUris;
-import android.content.Intent;
-import android.content.UriPermission;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;

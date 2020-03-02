@@ -1,9 +1,13 @@
 package com.example.kittenappscollage.mainTabs;
 
 
+import android.annotation.SuppressLint;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +17,14 @@ public class ViewPageAdapter extends FragmentPagerAdapter {
     /*списки для хранения фрагментов и имен вкладок*/
     private final List<Fragment> mFragmentList = new ArrayList<>();
 
+    @SuppressLint("WrongConstant")
     public ViewPageAdapter(FragmentManager manager) {
-        super(manager);
+        super(manager, FragmentStatePagerAdapter.POSITION_UNCHANGED);
     }
+
+//    public ViewPageAdapter(@NonNull FragmentManager fm, int behavior) {
+//        super(fm, behavior);
+//    }
 
     @Override
     public Fragment getItem(int position) {

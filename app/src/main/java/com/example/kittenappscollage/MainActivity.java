@@ -33,9 +33,6 @@ import com.google.android.material.tabs.TabLayout;
 
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
-import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD;
-import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_URI_DF_IMG;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery, SavedKollagesFragmentDraw.ActionSave {
 
@@ -62,20 +59,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     @Override
     public void savedFile(boolean saved, String fold, String img, String name) {
-        if(saved){
-            if(App.checkVersion()) {
-                final long date = System.currentTimeMillis();
-                ContentValues values = new ContentValues();
-                values.put(MediaStore.Images.Media.DATE_TAKEN, date);
-                values.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
-                values.put(MediaStore.MediaColumns.DATA, img);
-                Uri uri = null;
-                if(Build.VERSION.SDK_INT<Build.VERSION_CODES.Q)uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-                else uri = getContentResolver().insert(MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL), values);
 
-//                mFragGal.setSavingInFileCollage(uri,img, fold, date);
-            }
-        }
     }
 
     @Override
@@ -83,29 +67,20 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         final long date = System.currentTimeMillis();
         if(saved){
             String[]split = report.split(delimiter);
-            /*создаем итем в базу данных*/
-//            String realPath = split[INDEX_PATH_IMG];
-//            LYTE("real path "+realPath);
-//            if(realPath.startsWith("/storage/emulated/")) {
-//
-//            }else {
                 if (App.checkVersion()) {
                     ContentValues values = new ContentValues();
-
                     values.put(MediaStore.Images.Media.DATE_TAKEN, date);
                     values.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
-                    values.put(MediaStore.Images.Media.DISPLAY_NAME, DocumentFile.fromSingleUri(this, Uri.parse(split[INDEX_URI_DF_IMG])).getName());
-                    values.put(MediaStore.Images.Media.BUCKET_DISPLAY_NAME, DocumentFile.fromSingleUri(this, Uri.parse(split[INDEX_URI_DF_FOLD])).getName());
                     values.put(MediaStore.MediaColumns.DATA, split[INDEX_PATH_IMG]);
-                    Uri uri = null;
-                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)
-                        uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
-                    else
-                        uri = getContentResolver().insert(MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL), values);
+                    Uri uri = getContentResolver().insert(getUri(),values);
                     mFragGal.setSavingInStorageCollage(uri, report, delimiter, date);
                 }
-//            }
         }
+    }
+
+    private Uri getUri(){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)return MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+        else return MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL);
     }
 
     @Override

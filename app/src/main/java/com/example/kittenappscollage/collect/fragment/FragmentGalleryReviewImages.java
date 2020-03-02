@@ -15,10 +15,7 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
     @Override
     protected void clickItem(int adapter, int position) {
         super.clickItem(adapter, position);
-        LYTE("FragmentGalleryReviewImages click item - "+position+", adapter "+getListFolds().get((key(adapter))));
-
         DialogReview.inst(getImgAdapt().getOperationList(),position,this)
                 .show(getFragmentManager().beginTransaction(),TAG_DIALOG);
-
     }
 }

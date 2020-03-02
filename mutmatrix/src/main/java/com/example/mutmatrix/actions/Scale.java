@@ -50,8 +50,6 @@ public class Scale extends Base{
         return this;
     }
 
-
-
     @Override
     public Base view(PointF v) {
         view = v;

@@ -79,7 +79,6 @@ public class DeformMat {
 
     public DeformMat command(Command command){
         this.command = command;
-
         return this;
     }
 
@@ -96,7 +95,6 @@ public class DeformMat {
             deform.resetMutable();
             rotate.resetMutable();
         }
-
         return this;
     }
 

@@ -55,7 +55,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     private String key;
 
-    private String retentKey;
+//    private String retentKey;
 
     @Nullable
     @Override
@@ -158,7 +158,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     @Override
     public void setSavingInStorageCollage(Uri uri, String report, String delimiter,long date) {
-        retentKey = key;
+//        retentKey = key;
         super.setSavingInStorageCollage(uri, report, delimiter,date);
     }
 
@@ -188,12 +188,12 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     protected void invisibleMenu(){
 
     }
-    protected void resetRetentKey(){
-        retentKey = null;
-    }
-    protected String getRetentKey(){
-        return retentKey;
-    }
+//    protected void resetRetentKey(){
+//        retentKey = null;
+//    }
+//    protected String getRetentKey(){
+//        return retentKey;
+//    }
 
     protected String getKey(){
         return key;
