@@ -53,9 +53,6 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
             case R.id.selected_collect_1:
                 clickSel_1((ImageView)v);
                 break;
-//            case R.id.selected_collect_2:
-//                clickSel_2((ImageView)v);
-//                break;
             case R.id.selected_collect_3:
                 clickSel_3((ImageView)v);
                 break;
@@ -83,8 +80,6 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         selectExitMode.setOnClickListener(this);
         selected_1 = v.findViewById(R.id.selected_collect_1);
         selected_1.setOnClickListener(this);
-//        selected_2 = v.findViewById(R.id.selected_collect_2);
-//        selected_2.setOnClickListener(this);
         selected_3 = v.findViewById(R.id.selected_collect_3);
         selected_3.setOnClickListener(this);
         selected_4 = v.findViewById(R.id.selected_collect_4);
@@ -99,10 +94,12 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         if(i==ROOT_ADAPTER){
             setKey(null);
             slideExit(false);
+            slideAddFold(true);
         }else {
             selectExitMode.setSelected(false);
             selectExitMode.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_select_back,null));
             slideExit(true);
+            slideAddFold(false);
         }
     }
 
@@ -115,6 +112,7 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
             getGridLayoutManager().setSpanCount(2);
             getImgAdapt().activate(false);
             getRecycler().setAdapter(getFoldAdapt().activate(true));
+
         }
     }
 
@@ -134,9 +132,6 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
     protected void clickSel_1(ImageView v){
 
     }
-//    protected void clickSel_2(ImageView v){
-//
-//    }
 
     protected void clickSel_3(ImageView v){
 
@@ -157,7 +152,6 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
           selectExitMode.setSelected(true);
           slideExit(true);
           slideSel_1(true);
-//          slideSel_2(true);
           getRecycler().setEnabled(false);
       }else{
           selectExitMode.setSelected(false);
@@ -168,7 +162,6 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         selectIconAction3(selected_3);
         slideSel_3(true);
         slideSel_4(true);
-//        slideAddFold(true);
     }
 
     @Override
@@ -200,13 +193,13 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         }
     }
 
-//    protected void slideAddFold(boolean s){
-//        if(s){
-//            selected_1.animate().translationY(0).setDuration(300).start();
-//        }else {
-//            selected_1.animate().translationY(-slide).setDuration(300).start();
-//        }
-//    }
+    protected void slideAddFold(boolean s){
+        if(s){
+            addFolders.animate().translationY(0).setDuration(300).start();
+        }else {
+            addFolders.animate().translationY(slide).setDuration(300).start();
+        }
+    }
 
 
     protected void slideExit(boolean s){
@@ -224,14 +217,6 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
             selected_1.animate().translationY(-slide).setDuration(300).start();
         }
     }
-
-//    protected void slideSel_2(boolean s){
-//        if(s){
-//            selected_2.animate().translationY(0).setDuration(300).start();
-//        }else {
-//            selected_2.animate().translationY(-slide).setDuration(300).start();
-//        }
-//    }
 
     protected void slideSel_3(boolean s){
         if(s){

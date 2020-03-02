@@ -97,6 +97,7 @@ public class Repozitory {
             rImg = b.copy(Bitmap.Config.ARGB_8888, true);
             rImgC = new Canvas(rImg);
             if (rep != null) rImgMat.setRepository(rep);
+            else rImgMat.getRepository().setTranslate(new PointF(100,100));
             rImgMat.bitmap(new PointF(b.getWidth(),b.getHeight()));
             if (single&&rAdd!=null) rAdd.readinessImg(true);
             if(single) BackNextStep.get().save(BackNextStep.TARGET_IMG,BackNextStep.MUT_SCALAR);
@@ -111,6 +112,7 @@ public class Repozitory {
             rLyr = b.copy(Bitmap.Config.ARGB_8888, true);
             rLyrC = new Canvas(rLyr);
             if (rep != null) rLyrMat.setRepository(rep);
+            else rLyrMat.getRepository().setTranslate(new PointF(100,100));
             rLyrMat.bitmap(new PointF(b.getWidth(),b.getHeight()));
             if (single&&rAdd != null) rAdd.readinessLyr(true);
             if(single)BackNextStep.get().save(BackNextStep.TARGET_LYR,BackNextStep.MUT_SCALAR);

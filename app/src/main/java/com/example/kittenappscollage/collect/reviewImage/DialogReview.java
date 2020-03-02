@@ -1,6 +1,7 @@
 package com.example.kittenappscollage.collect.reviewImage;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.addLyrs.AddLyr;
+import com.example.kittenappscollage.draw.addLyrs.SelectorFrameFragments;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.google.android.material.tabs.TabLayout;
@@ -30,29 +33,17 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.functions.Consumer;
 
+import static com.example.kittenappscollage.collect.reviewImage.DialogReviewFrame.KEY_ARR;
+import static com.example.kittenappscollage.collect.reviewImage.DialogReviewFrame.KEY_POS;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
-public class DialogReview extends DialogFragment {
-
-    public static final int DIALOG_ACTION = -112;
-
-    public static final String KEY_ARR = "key arr";
-
-    public static final String KEY_POS = "key pos";
+public class DialogReview extends Fragment implements View.OnClickListener {
 
     private SelectSweepViewPager viewPager;
 
-//    private ProgressBar pb;
+    private ImageView back, edit, share;
 
-    public static DialogReview inst(ArrayList<String>imgs, int position, Fragment target){
-        DialogReview d = new DialogReview();
-        Bundle b = new Bundle();
-        b.putStringArrayList(KEY_ARR,imgs);
-        b.putInt(KEY_POS,position);
-        d.setArguments(b);
-        d.setTargetFragment(target,DIALOG_ACTION);
-        return d;
-    }
+    private SelectorOperationReview selector;
 
     @Nullable
     @Override
@@ -66,22 +57,12 @@ public class DialogReview extends DialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Bundle b = getArguments();
-//        pb = view.findViewById(R.id.dialog_review_progress);
         if(b!=null) {
             viewPager = view.findViewById(R.id.dialog_review_view_pager);
             initAdapter(getChildFragmentManager(),b.getStringArrayList(KEY_ARR),b.getInt(KEY_POS));
         }
+        initButtons(view);
 
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Window window = getDialog().getWindow();
-        Rect rect = new Rect();
-        getActivity().getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-        window.setLayout((int) (rect.right*0.9), (int)(rect.bottom*0.7));
-        window.setGravity(Gravity.CENTER);
     }
 
     @SuppressLint("CheckResult")
@@ -94,7 +75,54 @@ public class DialogReview extends DialogFragment {
                     viewPager.setAdapter(reviewAdapter);
                     viewPager.setCurrentItem(pos);
                     viewPager.setSweep(true);
-//                    pb.setVisibility(View.INVISIBLE);
+
                 });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.dialog_review_exit:
+                pressBack();
+                break;
+            case R.id.dialog_review_edit:
+                pressEdit();
+                break;
+            case R.id.dialog_review_share:
+                pressShare();
+                break;
+
+        }
+    }
+
+    public int currentPosition(){
+        return viewPager.getCurrentItem();
+    }
+
+    private void pressBack(){
+        selector = (SelectorOperationReview) getParentFragment();
+        selector.exit();
+    }
+
+    private void pressEdit(){
+        ReviewFragment f = (ReviewFragment)viewPager.getAdapter().instantiateItem(viewPager,viewPager.getCurrentItem());
+        selector = (SelectorOperationReview) getParentFragment();
+       selector.edit(f.getImage().copy(Bitmap.Config.ARGB_8888,true));
+
+    }
+
+    private void pressShare(){
+        ReviewFragment f = (ReviewFragment)viewPager.getAdapter().instantiateItem(viewPager,viewPager.getCurrentItem());
+        selector = (SelectorOperationReview) getParentFragment();
+       selector.share(f.getImg());
+    }
+
+    private void initButtons(View view){
+        back = view.findViewById(R.id.dialog_review_exit);
+        back.setOnClickListener(this);
+        edit = view.findViewById(R.id.dialog_review_edit);
+        edit.setOnClickListener(this);
+        share = view.findViewById(R.id.dialog_review_share);
+        share.setOnClickListener(this);
     }
 }

@@ -36,26 +36,24 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
 
     private ImageView aBack, aDone, aClose, aMirror;
 
-    private ProgressBar aProgress;
+    protected ProgressBar aProgress;
 
     private DynamicSeekBar aScale, aAlpha;
 
     private int aPercentScale, aPercentAlpha;
 
-    private Bitmap aLyr;
+    protected Bitmap aLyr;
 
     private Object aWay;
 
     private int aSource;
 
-    private PresentLyr aPresent;
+    protected PresentLyr aPresent;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        aPercentAlpha = 255;
-        aPercentScale = 100;
         Bundle b = getArguments();
         if(b!=null){
             aWay = b.getSerializable(KEY_EXTRACTOR_WAY);
@@ -69,6 +67,15 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
         super.onViewCreated(view, savedInstanceState);
         initViews(view);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        aPercentAlpha = 255;
+        aPercentScale = 100;
+        aScale.setProgress(aPercentScale);
+        aAlpha.setProgress(aPercentAlpha);
     }
 
     public void setBitmap(Bitmap bitmap){
@@ -95,7 +102,7 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
         aProgress.setVisibility(View.INVISIBLE);
         aPresent = v.findViewById(R.id.dialog_add_present_lyr);
 
-            createBitmap(aWay,aSource);
+        createBitmap(aWay,aSource);
     }
 
 
@@ -201,7 +208,7 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
                 } );
     }
 
-    private void ongoingProgress(boolean ongoing){
+    protected void ongoingProgress(boolean ongoing){
 
        aBack.setEnabled(!ongoing);
        aDone.setEnabled(!ongoing);

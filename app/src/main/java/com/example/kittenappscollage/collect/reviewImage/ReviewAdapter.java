@@ -1,6 +1,9 @@
 package com.example.kittenappscollage.collect.reviewImage;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.os.Parcelable;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -31,4 +34,19 @@ public class ReviewAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         return imgs.size();
     }
+
+    @Override
+    public void restoreState(Parcelable state, ClassLoader loader) {
+        try {
+            super.restoreState(state, loader);
+        } catch (Exception e) {
+            Log.e("TAG", "Error Restore State of Fragment : " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public Parcelable saveState() {
+        return null;
+    }
+
 }

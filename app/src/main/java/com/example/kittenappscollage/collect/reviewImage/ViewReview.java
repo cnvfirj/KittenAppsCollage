@@ -36,8 +36,6 @@ public class ViewReview extends View {
 
     private Matrix matrix;
 
-    private boolean block;
-
     public ViewReview(Context context) {
         super(context);
         initVar();
@@ -54,16 +52,7 @@ public class ViewReview extends View {
         if(test()){
             canvas.drawBitmap(bitmap,mat.matrix(matrix),null);
         }
-        else canvas.drawColor(Color.RED);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if(!block){
-            mat.event(event);
-            invalidate();
-            return true;
-        }else return super.onTouchEvent(event);
+//        else canvas.drawColor(Color.RED);
     }
 
     public void setUriBitmap(Uri img){
@@ -83,7 +72,6 @@ public class ViewReview extends View {
                     if(test()) {
                         mat.reset().bitmap(new PointF(bitmap.getWidth(), bitmap.getHeight())).view(new PointF(getWidth(), getHeight()));
                         locBitmap(DeformMat.Command.SCALE_ADAPT);
-                        block = false;
                         invalidate();
                     }
                 });
@@ -119,10 +107,13 @@ public class ViewReview extends View {
     private void initVar(){
         mat = new DeformMat(getContext());
         matrix = new Matrix();
-        block = true;
     }
 
     public void resetImg(){
         if(bitmap!=null&&!bitmap.isRecycled())bitmap.recycle();
+    }
+
+    public Bitmap getBitmap(){
+        return bitmap;
     }
 }

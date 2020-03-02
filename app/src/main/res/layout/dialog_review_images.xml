@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <com.example.kittenappscollage.view.CustomFon
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
-
-<!--    <com.google.android.material.tabs.TabLayout-->
-<!--        android:id="@+id/dialog_review_tabs"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:tabMode="fixed"-->
-<!--        app:tabGravity="fill"/>-->
 
     <com.example.kittenappscollage.mainTabs.SelectSweepViewPager
         android:id="@+id/dialog_review_view_pager"
@@ -21,10 +13,28 @@
         android:layout_height="match_parent">
     </com.example.kittenappscollage.mainTabs.SelectSweepViewPager>
 
-<!--    <ProgressBar-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/dialog_review_progress"-->
-<!--        android:layout_gravity="center"/>-->
+    <ImageView
+        style="@style/buttons_dialog_add"
+        android:id="@+id/dialog_review_exit"
+        android:src="@drawable/ic_close"
+        android:background="@drawable/background_buttons_add_lyr"
+        android:layout_margin="@dimen/margin_save"
+        android:layout_gravity="bottom|end"/>
+
+    <ImageView
+        style="@style/buttons_dialog_add"
+        android:id="@+id/dialog_review_edit"
+        android:src="@drawable/icon_edit"
+        android:background="@drawable/background_buttons_add_lyr"
+        android:layout_margin="@dimen/margin_save"
+        android:layout_gravity="bottom|start"/>
+
+    <ImageView
+        style="@style/buttons_dialog_add"
+        android:id="@+id/dialog_review_share"
+        android:src="@drawable/ic_share"
+        android:background="@drawable/background_buttons_add_lyr"
+        android:layout_margin="@dimen/margin_save"
+        android:layout_gravity="bottom|center_horizontal"/>
 
 </FrameLayout>

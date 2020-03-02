@@ -6,7 +6,6 @@ import com.example.kittenappscollage.helpers.App;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
-import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
 public class FragmentGalleryAction extends FragmentSelectedGallery{
 

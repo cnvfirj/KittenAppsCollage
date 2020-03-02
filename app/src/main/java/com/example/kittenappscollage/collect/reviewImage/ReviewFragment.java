@@ -63,4 +63,12 @@ public class ReviewFragment extends Fragment {
         super.onDestroy();
         viewReview.resetImg();
     }
+
+    public Bitmap getImage(){
+        return viewReview.getBitmap();
+    }
+
+    public Uri getImg(){
+        return img;
+    }
 }
