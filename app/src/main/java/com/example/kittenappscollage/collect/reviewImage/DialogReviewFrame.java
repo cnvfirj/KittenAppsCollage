@@ -21,6 +21,7 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.kittenappscollage.MainSwitching;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.addLyrs.SelectorFrameFragments;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
@@ -127,7 +128,8 @@ public class DialogReviewFrame extends DialogFragment implements SelectorOperati
     @Override
     public void doneLyr(Bitmap b) {
         RepDraw.get().setImg(b,null,true);
-
+        MainSwitching ms = (MainSwitching)getContext();
+        ms.stepToEdit();
         dismiss();
     }
 

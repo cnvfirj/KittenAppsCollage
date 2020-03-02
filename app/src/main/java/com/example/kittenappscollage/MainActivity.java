@@ -34,7 +34,7 @@ import com.google.android.material.tabs.TabLayout;
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
 
-public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery, SavedKollagesFragmentDraw.ActionSave {
+public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery, SavedKollagesFragmentDraw.ActionSave, MainSwitching {
 
     private ApplyDrawToolsFragmentDraw mFragDraw;
 
@@ -42,13 +42,16 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private TabLayout mTabLayout;
 
+    private SelectSweepViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         WorkDBPerms.get(getApplicationContext());
         App.setMain(this);
-        setupViewPager((SelectSweepViewPager) findViewById(R.id.select_sweep_viewpager));
+        viewPager = findViewById(R.id.select_sweep_viewpager);
+        setupViewPager(viewPager);
         requestOldProj();
     }
 
@@ -78,16 +81,21 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         }
     }
 
-    private Uri getUri(){
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)return MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-        else return MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL);
-    }
-
     @Override
     public void onBackPressed() {
         if(!mFragGal.onBackPressed(mTabLayout.getSelectedTabPosition())){
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public void stepToEdit() {
+        viewPager.setCurrentItem(0);
+    }
+
+    private Uri getUri(){
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)return MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+        else return MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL);
     }
 
     private void setupViewPager(SelectSweepViewPager v){
