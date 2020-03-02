@@ -24,8 +24,6 @@ public class ReviewFragment extends Fragment {
 
     private ViewReview viewReview;
 
-    private Bitmap bitmap;
-
     private Uri  img;
 
     public static ReviewFragment inst(String img){

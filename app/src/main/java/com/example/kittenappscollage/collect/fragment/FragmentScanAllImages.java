@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.fragment.app.Fragment;
 
+import com.example.kittenappscollage.MainSwitching;
 import com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.ListenMedia;
@@ -48,23 +49,26 @@ public class FragmentScanAllImages extends Fragment {
 
     private boolean blockScan;
 
+    private MainSwitching mainSwitching;
 
-    private ListenMedia observer;
-    private Handler handler;
+
+//    private ListenMedia observer;
+//    private Handler handler;
 
     @Override
     public void onResume() {
         super.onResume();
-        handler = new Handler();
-        observer = new ListenMedia(handler).setFragment(this).setContext(getContext());
-        getContext().getContentResolver().registerContentObserver(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,true,observer);
+        mainSwitching = (MainSwitching)getContext();
+//        handler = new Handler();
+//        observer = new ListenMedia(handler).setFragment(this).setContext(getContext());
+//        getContext().getContentResolver().registerContentObserver(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,true,observer);
 
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        getContext().getContentResolver().unregisterContentObserver(observer);
+//        getContext().getContentResolver().unregisterContentObserver(observer);
     }
 
     @Nullable
@@ -105,14 +109,6 @@ public class FragmentScanAllImages extends Fragment {
             for (Permis p : WorkDBPerms.get().allItems()) {
                 addImgsInCursor(p,emitter);
                 emitter.onNext(getListImagesInFolders());
-//                DocumentFile df = DocumentFile.fromTreeUri(getContext(), Uri.parse(p.uriPerm));
-//                if (df.exists() && df.isDirectory()) {
-//                    DocumentFile[] files = df.listFiles();
-//                    addImgsInFold(p, df, files, emitter);
-//
-//                } else {
-//                    WorkDBPerms.get(getContext()).setAction(WorkDBPerms.DELETE, p.uriPerm);
-//                }
             }
             emitter.onNext(getListImagesInFolders());
             emitter.onComplete();
@@ -279,6 +275,7 @@ public class FragmentScanAllImages extends Fragment {
 
     protected void setListImagesInFolders(HashMap<String,ArrayList<String>> list){
          listImagesToFolder = list;
+         mainSwitching.resultScan(listImagesToFolder);
     }
 
     public HashMap<String, Long> getListMutable() {

@@ -75,6 +75,7 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
             dirs.add(f.getAbsolutePath().split("Android")[0]);
         }
     }
+
     private void init(View v){
         selectExitMode = v.findViewById(R.id.selected_collect_exit_mode);/*выход или отмена*/
         selectExitMode.setOnClickListener(this);
@@ -170,7 +171,6 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
             getFoldAdapt().setModeSelected(false);
             slideExit(false);
             slideSel_1(false);
-//            slideSel_2(false);
             getRecycler().setEnabled(true);
         }else {
             /*implement animation exit*/
@@ -183,6 +183,10 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
 //        slideAddFold(false);
     }
 
+
+    protected ImageView getAddFolders(){
+        return addFolders;
+    }
 
     protected void selectIconAction3(ImageView view){
         if(getIndexAdapter()==ROOT_ADAPTER){
@@ -235,15 +239,6 @@ protected void slideSel_4(boolean s){
         }
     }
 
-    protected ImageView getSelected_3(){
-        return selected_3;
-    }
-
-    protected ArrayList<String>getNamesDirs(){
-        return dirs;
-    }
-
-
     private boolean modeSel(){
         if(getIndexAdapter()!=ROOT_ADAPTER){
             return getImgAdapt().isModeSelected();
@@ -252,21 +247,20 @@ protected void slideSel_4(boolean s){
         }
     }
 
-    protected void hideMenuInAction(){
-        selected_1.animate().translationY(-slide).setDuration(300).start();
-//        selected_2.animate().translationY(-slide).setDuration(300).start();
-        selected_3.animate().translationY(-slide).setDuration(300).start();
-        selected_4.animate().translationY(-slide).setDuration(300).start();
-        if(getIndexAdapter()!=ROOT_ADAPTER) {
-            selectExitMode.animate().translationY(-slide).setDuration(300).start();
-        }else {
-            selectExitMode.setSelected(false);
-        }
-    }
+//    protected void hideMenuInAction(){
+//        selected_1.animate().translationY(-slide).setDuration(300).start();
+//        selected_3.animate().translationY(-slide).setDuration(300).start();
+//        selected_4.animate().translationY(-slide).setDuration(300).start();
+//        if(getIndexAdapter()!=ROOT_ADAPTER) {
+//            selectExitMode.animate().translationY(-slide).setDuration(300).start();
+//        }else {
+//            selectExitMode.setSelected(false);
+//        }
+//    }
+
     protected void hideMenu(){
         selectExitMode.animate().translationY(-slide).setDuration(0).start();
         selected_1.animate().translationY(-slide).setDuration(0).start();
-//        selected_2.animate().translationY(-slide).setDuration(0).start();
         selected_3.animate().translationY(-slide).setDuration(0).start();
         selected_4.animate().translationY(-slide).setDuration(0).start();
 

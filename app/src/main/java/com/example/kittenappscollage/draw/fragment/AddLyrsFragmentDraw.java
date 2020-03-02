@@ -16,6 +16,9 @@ import com.example.kittenappscollage.draw.addLyrs.FrameDialogAdd;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.helpers.AllPermissions;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 /*обрабатываем добавление слоя или начало коллажа*/
@@ -27,6 +30,8 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
     public final static String DIALOG = "dialog";
 
     private FrameDialogAdd aDialog;
+
+    private HashMap<String,ArrayList<String>>aImages;
 
 
 
@@ -130,6 +135,10 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
         if(!isSlideTools())slideTools();
         if(RepDraw.get().isImg())readinessImg(is);
         if(RepDraw.get().isLyr())readinessLyr(is);
+    }
+
+    public void setListCollect(HashMap<String, ArrayList<String>> list){
+        aImages = list;
     }
 
     protected void waitingReadinessView(final View view){

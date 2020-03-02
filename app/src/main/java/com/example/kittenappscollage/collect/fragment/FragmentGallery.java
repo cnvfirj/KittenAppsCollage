@@ -55,8 +55,6 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     private String key;
 
-//    private String retentKey;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,8 +62,7 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         indexClickAdapter = ROOT_ADAPTER;
         foldAdapt = new LockFoldAdapter(getContext());
         imgAdapt = new LoadImgAdapt(getContext());
-        foldAdapt.setParams(getContext().getResources().getDisplayMetrics().widthPixels);
-        imgAdapt.setParams(getContext().getResources().getDisplayMetrics().widthPixels);
+        setParamsAdapter(getContext().getResources().getDisplayMetrics().widthPixels);
         return inflater.inflate(R.layout.fragment_gallery,null);
     }
 
@@ -177,6 +174,12 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
 
     }
 
+    protected void setParamsAdapter(int params){
+        foldAdapt.setParams(params);
+        imgAdapt.setParams(params);
+    }
+
+
     protected void clickItem(int adapter, int position){
 
     }
@@ -188,12 +191,6 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     protected void invisibleMenu(){
 
     }
-//    protected void resetRetentKey(){
-//        retentKey = null;
-//    }
-//    protected String getRetentKey(){
-//        return retentKey;
-//    }
 
     protected String getKey(){
         return key;
@@ -231,7 +228,4 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         return indexClickAdapter;
     }
 
-    public int getSelectItemRootAdapter() {
-        return indexLongClickAdapter;
-    }
 }

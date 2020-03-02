@@ -31,6 +31,9 @@ import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
 
@@ -91,6 +94,11 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     @Override
     public void stepToEdit() {
         viewPager.setCurrentItem(0);
+    }
+
+    @Override
+    public void resultScan(HashMap<String, ArrayList<String>> list) {
+        mFragDraw.setListCollect(list);
     }
 
     private Uri getUri(){

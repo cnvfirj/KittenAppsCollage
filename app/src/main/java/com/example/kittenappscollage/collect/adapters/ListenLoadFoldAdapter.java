@@ -62,11 +62,6 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
         return this;
     }
 
-//    public void setPerms(HashMap<String,String>perms){
-//        this.perms = perms;
-//    }
-
-//    public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds,HashMap<String,Long>mutable) {
     public ListenLoadFoldAdapter setAll(HashMap<String, ArrayList<String>> all, HashMap<String,String>namesFolds) {
 
         Item[] items = new Item[all.size()];
@@ -77,8 +72,6 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
                 items[i].key = folds[i];
                 items[i].sizeItemsFold = all.get(folds[i]).size();
                 items[i].uriIconFold = all.get(folds[i]).get(items[i].sizeItemsFold - 1);
-//                items[i].uriIconFold = all.get(folds[i]).get(0);
-//                items[i].mutableLastImg = mutable.get(folds[i]);//изменение в папке
                 items[i].nameFold = namesFolds.get(folds[i]);
         }
 
@@ -121,10 +114,6 @@ public class ListenLoadFoldAdapter extends RecyclerView.Adapter<ListenLoadFoldAd
     protected Context getContext(){
         return context;
     }
-
-//    protected HashMap<String, String> getPerms(){
-//        return perms;
-//    }
 
     protected boolean isActive(){
         return active;
