@@ -26,10 +26,12 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
     @Override
     protected void clickAddFolder(ImageView v) {
         super.clickAddFolder(v);
-        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-//        intent.addCategory(Intent.CATEGORY_OPENABLE);
+//        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
 
-//        intent.setType("image/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+        intent.setType("image/*");
 
         startActivityForResult(intent, 12);
     }

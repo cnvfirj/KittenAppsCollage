@@ -42,7 +42,6 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
              deleteImagesAndFold(fold,emitter))
              .compose(new ThreadTransformers.InputOutput<>())
              .doOnComplete(() -> {
-//                 getBlockItems().remove(getSelectItemRootAdapter());
                  Massages.SHOW_MASSAGE(getContext(),"Папка удалена");
              }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
     }
@@ -64,7 +63,6 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
                     deleteImages(key, emitter))
                     .compose(new ThreadTransformers.InputOutput<>())
                     .doOnComplete(() -> {
-//                        getBlockItems().remove(getSelectItemRootAdapter());
                         Massages.SHOW_MASSAGE(getContext(), "Выбранные изображения удалены");
                     }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
         }
