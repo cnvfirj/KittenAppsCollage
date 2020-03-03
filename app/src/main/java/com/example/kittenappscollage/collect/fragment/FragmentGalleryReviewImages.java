@@ -58,6 +58,5 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
         cursor.moveToFirst();
         LYTE("name - "+cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)));
         LYTE("id - "+cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID)));
-
     }
 }
