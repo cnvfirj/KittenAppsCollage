@@ -91,6 +91,9 @@ public class ViewReview extends View {
     }
 
     private Bitmap bitmap(Uri uri) throws IOException {
+        /*Bitmap thumbnail =
+        getApplicationContext().getContentResolver().loadThumbnail(
+        content-uri, new Size(640, 480), null);*/
         return MediaStore.Images.Media.getBitmap (getContext().getContentResolver (), uri);
     }
 

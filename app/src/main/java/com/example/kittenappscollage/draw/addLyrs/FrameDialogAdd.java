@@ -19,6 +19,9 @@ import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.addLyrs.loadImage.DecodeCamera;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragments{
 
@@ -35,8 +38,7 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
 
     private Fragment dSelectedFragment;
 
-    private int width;
-
+    private int sel;
 
     public static FrameDialogAdd instance(int ind){
         FrameDialogAdd dialog = new FrameDialogAdd();
@@ -52,10 +54,9 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
 
         Bundle bundle = getArguments();
         if(bundle!=null){
-            int index = bundle.getInt(KEY_SOURCE_ADD,ADD_NEW);
-            dSelectedFragment = select(index);
+            sel = bundle.getInt(KEY_SOURCE_ADD,ADD_NEW);
+            dSelectedFragment = select(sel);
         }
-
         dFragmentAdd = new AddLyr();
         dManager = getChildFragmentManager();
         return inflater.inflate(R.layout.dialog_add_frame,null);
@@ -65,8 +66,6 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         dManager.beginTransaction().add(R.id.dialog_add_frame,dSelectedFragment).commit();
-
-
     }
 
     @Override
@@ -76,7 +75,6 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
         Window window = getDialog().getWindow();
         Rect rect = new Rect();
         getActivity().getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
-        width = (int) (rect.right*0.9);
         window.setLayout((int) (rect.right*0.9), (int)(rect.bottom*0.7));
         window.setGravity(Gravity.CENTER);
 
@@ -118,13 +116,15 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
             bundle.putInt(AddLyr.KEY_SOURCE, R.dimen.PATH_FILE);
         }
         dFragmentAdd.setArguments(bundle);
-        dManager.beginTransaction().replace(R.id.dialog_add_frame,dFragmentAdd).commit();
+        dManager.beginTransaction().add(R.id.dialog_add_frame,dFragmentAdd).commit();
 
     }
 
     @Override
     public void backInSelectedLyr() {
-        dManager.beginTransaction().replace(R.id.dialog_add_frame,dSelectedFragment).commit();
+//        dManager.beginTransaction().replace(R.id.dialog_add_frame,dSelectedFragment).commit();
+        dManager.beginTransaction().remove(dFragmentAdd).commit();
+
     }
 
     @Override
@@ -149,6 +149,6 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
     public void onDestroyView() {
         dFragmentAdd.clear();
         super.onDestroyView();
-
     }
+
 }

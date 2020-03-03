@@ -23,20 +23,6 @@ import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
 
-//    private final String TYPE_PNG = "image/png";
-//
-//    private final String TYPE_JPEG = "image/jpeg";
-//
-//    private final String TYPE_JPG = "image/jpg";
-
-
-//    @Override
-//    protected void renameFoldStorage(String name,String key) {
-//        super.renameFoldStorage(name,key);
-//        renameFold(name,key);
-//
-//    }
-
     @Override
     protected void applyDeleteSelectedStorage() {
         super.applyDeleteSelectedStorage();
@@ -93,16 +79,6 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
         }
         emitter.onComplete();
     }
-//    private void deleteImages(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
-//            for (String ur:getSelectFiles()){
-//                if(delDocFile(Uri.parse(ur))){
-//                    getListImagesInFolders().get(key).remove(ur);
-//                    emitter.onNext(getListImagesInFolders());
-//                }
-//            }
-//        emitter.onNext(getListImagesInFolders());
-//        emitter.onComplete();
-//    }
 
     private void deleteImagesAndFold(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
@@ -127,38 +103,6 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
     private int delFile(Uri uri){
         return getContext().getContentResolver().delete(uri,null,null);
     }
-
-//    private void deleteImagesAndFold(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
-//        ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
-//        Uri treeUri = Uri.parse(key);
-//        for (String ur:images){
-//            DocumentFile img = DocumentFile.fromSingleUri(getContext(),Uri.parse(ur));
-//            if(img.isDirectory())continue;
-//
-//            if(img.getType().equals(TYPE_PNG)||img.getType().equals(TYPE_JPG)||img.getType().equals(TYPE_JPEG)) {
-//
-//                    if(delDocFile(Uri.parse(ur))) {
-//                        getListImagesInFolders().get(key).remove(ur);
-//                        emitter.onNext(getListImagesInFolders());
-//
-//                }
-//            }
-//        }
-//
-//        if(getListImagesInFolders().get(key).size()==0){
-//            clearLists(key);
-//            WorkDBPerms.get(getContext()).delItem(key);
-//            DocumentFile fold = DocumentFile.fromTreeUri(getContext(),treeUri);
-//            if(fold.listFiles().length==0){
-//                if(delDocFile(fold.getUri())){
-//
-//                }
-//            }
-//        }
-//        emitter.onNext(getListImagesInFolders());
-//        emitter.onComplete();
-//    }
-
 
     private boolean delDocFile(Uri uri){
 

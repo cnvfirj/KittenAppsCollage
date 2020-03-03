@@ -36,4 +36,8 @@ public class LoadForFile extends LoadImage implements StrategyLoadImage {
                     lListener.loadImage(b);
                 });
     }
+
+    /*Bitmap thumbnail =
+        getApplicationContext().getContentResolver().loadThumbnail(
+        content-uri, new Size(640, 480), null);*/
 }

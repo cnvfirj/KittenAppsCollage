@@ -132,9 +132,11 @@ public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Ad
         if(RepDraw.get().isLyr())readinessLyr(is);
     }
 
-    public void setListCollect(HashMap<String, ArrayList<String>> imgs, HashMap<String, Long> mut, HashMap<String, String> folds){
-
-    }
+//    public void setListCollect(HashMap<String, ArrayList<String>> imgs, HashMap<String, Long> mut, HashMap<String, String> folds){
+//          listImagesToFolder = imgs;
+//          listMutable = mut;
+//          listFolds = folds;
+//    }
 
     protected void waitingReadinessView(final View view){
         ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();

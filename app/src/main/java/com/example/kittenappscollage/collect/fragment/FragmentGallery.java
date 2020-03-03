@@ -72,13 +72,12 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
         init(view);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
+
     @Override
     public void onResume() {
         super.onResume();
-        stateReadStorage(AllPermissions.create()
-                .activity(getActivity())
-                .reqSingle(AllPermissions.STORAGE).isStorage());
+        readinessScan();
     }
 
 
@@ -171,6 +170,15 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     @Override
     public void exit(int adapter) {
 
+    }
+
+
+    protected void readinessScan(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            stateReadStorage(AllPermissions.create()
+                    .activity(getActivity())
+                    .reqSingle(AllPermissions.STORAGE).isStorage());
+        }else scanDevice();
     }
 
     protected void setParamsAdapter(int params){

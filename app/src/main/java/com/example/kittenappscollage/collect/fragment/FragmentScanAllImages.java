@@ -233,6 +233,14 @@ public class FragmentScanAllImages extends Fragment {
         }
     }
 
+    protected void setListFolds(HashMap<String,String>list){
+        listFolds = list;
+    }
+
+    protected void setListMutable(HashMap<String,Long>list){
+        listMutable = list;
+    }
+
     protected void setListImagesInFolders(HashMap<String,ArrayList<String>> list){
          listImagesToFolder = list;
          mainSwitching.resultScan(listImagesToFolder,getListMutable(), getListFolds());
@@ -242,9 +250,9 @@ public class FragmentScanAllImages extends Fragment {
         return listMutable;
     }
 
-    protected ArrayList<String>getNamesStorage(){
-        return storage;
-    }
+//    protected ArrayList<String>getNamesStorage(){
+//        return storage;
+//    }
 
     protected HashMap<String,ArrayList<String>> getListImagesInFolders(){
         return listImagesToFolder;
