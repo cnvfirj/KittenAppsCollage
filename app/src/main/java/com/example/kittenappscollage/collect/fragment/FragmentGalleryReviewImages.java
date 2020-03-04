@@ -62,13 +62,23 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
             scanFold(uri,emitter);
             emitter.onComplete();
         }).compose(new ThreadTransformers.InputOutput<>())
-                .subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
+                .subscribe(stringArrayListHashMap -> {
+                    setListImagesInFolders(stringArrayListHashMap);
+
+                });
     }
 
     private void scanFold(Uri uri,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
         getContext().getContentResolver().takePersistableUriPermission(uri, takeFlags);
         DocumentFile folder = DocumentFile.fromTreeUri(getContext(),uri);
+        steps(folder,emitter);
+        for (DocumentFile f:folder.listFiles()){
+            if(f.isDirectory())steps(f,emitter);
+        }
+    }
+
+    private void steps(DocumentFile folder,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         DocumentFile[]files = folder.listFiles();
         if(files.length>0){
             Cursor c = getContext().getContentResolver().query(files[0].getUri(),new String[]{MediaStore.Images.Media.BUCKET_ID},null,null,null);
@@ -97,18 +107,32 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
                     final String img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cursor.getLong(col_id)).toString();
                     final long date = cursor.getLong(col_date);
                     addInScan(keyAndPerm,img,name,keyAndPerm,date);
-                    if(iterator%10==0)emitter.onNext(getListImagesInFolders());
                     iterator++;
                 }
             }
             if(iterator==0)notImages();
+            else {
+                emitter.onNext(getListImagesInFolders());
+                addFold(name);
+            }
         }
         else notImages();
     }
+
+
     @SuppressLint("CheckResult")
     private void notImages(){
         Observable.create(emitter -> emitter.onComplete()).compose(new ThreadTransformers.InputOutput<>())
                 .subscribe(o -> Massages.SHOW_MASSAGE(getContext(),"В выбранной папке поддерживаемых изображений не обнаружено"));
 
     }
+
+    @SuppressLint("CheckResult")
+    private void addFold(String name){
+        Observable.create(emitter -> emitter.onComplete()).compose(new ThreadTransformers.InputOutput<>())
+                .subscribe(o -> Massages.SHOW_MASSAGE(getContext(),"В галерею добавлена папка - "+name));
+
+    }
+
+
 }
