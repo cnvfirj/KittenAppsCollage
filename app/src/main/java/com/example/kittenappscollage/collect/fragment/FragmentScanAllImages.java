@@ -122,7 +122,7 @@ public class FragmentScanAllImages extends Fragment {
 
         Cursor cursor = getContext().getContentResolver().query(
                 question(),
-                new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_MODIFIED, MediaStore.Images.Media.MIME_TYPE,MediaStore.Images.Media.BUCKET_ID},
+                new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_MODIFIED, MediaStore.Images.Media.MIME_TYPE},
                 MediaStore.Images.Media.BUCKET_ID + " = ?",
                 new String[]{id},
                 MediaStore.Images.Media.DATE_MODIFIED);
@@ -150,7 +150,7 @@ public class FragmentScanAllImages extends Fragment {
 
     }
 
-    private void addInScan(String key, String img, String fold, String permis,long date){
+    protected void addInScan(String key, String img, String fold, String permis,long date){
         addDateMod(key,date);
         if(getListImagesInFolders().containsKey(key)){
             getListImagesInFolders().get(key).add(img);

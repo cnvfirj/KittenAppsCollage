@@ -1,6 +1,8 @@
 package com.example.kittenappscollage.collect.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ContentUris;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -14,8 +16,15 @@ import com.example.kittenappscollage.collect.reviewImage.DialogReview;
 import com.example.kittenappscollage.collect.reviewImage.DialogReviewFrame;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.Massages;
+import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.functions.Consumer;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
@@ -41,22 +50,65 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(requestCode==49){
             if(resultCode== Activity.RESULT_OK){
-                scanFold(data.getData());
+                startScan(data.getData());
             }
         }else super.onActivityResult(requestCode, resultCode, data);
 
     }
 
-    private void scanFold(Uri uri){
+    @SuppressLint("CheckResult")
+    private void startScan(Uri uri){
+        Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> {
+            scanFold(uri,emitter);
+            emitter.onComplete();
+        }).compose(new ThreadTransformers.InputOutput<>())
+                .subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
+    }
+
+    private void scanFold(Uri uri,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
         getContext().getContentResolver().takePersistableUriPermission(uri, takeFlags);
-        DocumentFile f = DocumentFile.fromTreeUri(getContext(),uri);
-        Cursor cursor = getActivity().getContentResolver()
-                .query(f.getUri(),
-                        new String[]{MediaStore.Images.Media.DISPLAY_NAME,MediaStore.Images.Media._ID},
-                        null, null, null);
-        cursor.moveToFirst();
-        LYTE("name - "+cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME)));
-        LYTE("id - "+cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID)));
+        DocumentFile folder = DocumentFile.fromTreeUri(getContext(),uri);
+        DocumentFile[]files = folder.listFiles();
+        if(files.length>0){
+            Cursor c = getContext().getContentResolver().query(files[0].getUri(),new String[]{MediaStore.Images.Media.BUCKET_ID},null,null,null);
+            c.moveToFirst();
+            final String id = ""+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
+            searchInId(id,folder.getUri().toString(),folder.getName(),emitter);
+        }
+        else notImages();
+    }
+
+    private void searchInId(String id, String keyAndPerm,String name,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+        Cursor cursor = getContext().getContentResolver().query(
+                question(),
+                new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_MODIFIED, MediaStore.Images.Media.MIME_TYPE},
+                MediaStore.Images.Media.BUCKET_ID + " = ?",
+                new String[]{id},
+                MediaStore.Images.Media.DATE_MODIFIED);
+        if(cursor.getCount()>0){
+            int iterator = 0;
+            final int col_id = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+            final int col_mime = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE);
+            final int col_date = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED);
+            while (cursor.moveToNext()){
+                final String type = cursor.getString(col_mime);
+                if (type.equals("image/png") || type.equals("image/jpeg") || type.equals("image/jpg")) {
+                    final String img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cursor.getLong(col_id)).toString();
+                    final long date = cursor.getLong(col_date);
+                    addInScan(keyAndPerm,img,name,keyAndPerm,date);
+                    if(iterator%10==0)emitter.onNext(getListImagesInFolders());
+                    iterator++;
+                }
+            }
+            if(iterator==0)notImages();
+        }
+        else notImages();
+    }
+    @SuppressLint("CheckResult")
+    private void notImages(){
+        Observable.create(emitter -> emitter.onComplete()).compose(new ThreadTransformers.InputOutput<>())
+                .subscribe(o -> Massages.SHOW_MASSAGE(getContext(),"В выбранной папке поддерживаемых изображений не обнаружено"));
+
     }
 }
