@@ -98,14 +98,6 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         viewPager.setCurrentItem(0);
     }
 
-
-
-    @Override
-    public void resultScan(HashMap<String, ArrayList<String>> imgs, HashMap<String, Long> mut, HashMap<String, String> folds) {
-//        mFragDraw.setListCollect(imgs,mut,folds);
-
-    }
-
     private Uri getUri(){
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)return MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
         else return MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL);

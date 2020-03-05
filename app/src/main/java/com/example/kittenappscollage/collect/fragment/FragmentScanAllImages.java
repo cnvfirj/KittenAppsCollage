@@ -243,16 +243,11 @@ public class FragmentScanAllImages extends Fragment {
 
     protected void setListImagesInFolders(HashMap<String,ArrayList<String>> list){
          listImagesToFolder = list;
-         mainSwitching.resultScan(listImagesToFolder,getListMutable(), getListFolds());
     }
 
     public HashMap<String, Long> getListMutable() {
         return listMutable;
     }
-
-//    protected ArrayList<String>getNamesStorage(){
-//        return storage;
-//    }
 
     protected HashMap<String,ArrayList<String>> getListImagesInFolders(){
         return listImagesToFolder;
