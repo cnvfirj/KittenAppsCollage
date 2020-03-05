@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 
 import com.example.kittenappscollage.collect.fragment.FragmentGallery;
+import com.example.kittenappscollage.collect.fragment.FragmentGalleryAddFolder;
 import com.example.kittenappscollage.collect.fragment.FragmentGalleryReviewImages;
 import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private ApplyDrawToolsFragmentDraw mFragDraw;
 
-    private FragmentGalleryReviewImages mFragGal;
+    private FragmentGalleryAddFolder mFragGal;
 
     private TabLayout mTabLayout;
 
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private ViewPageAdapter addFragments(){
         mFragDraw = new ApplyDrawToolsFragmentDraw();
-        mFragGal = new FragmentGalleryReviewImages();
+        mFragGal = new FragmentGalleryAddFolder();
 
 
         mFragGal.setBlock(false);
