@@ -17,7 +17,7 @@
         style="@style/slide_style_all_tools"
         android:id="@+id/gallery_add_folds"
         android:src="@drawable/ic_add"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/background_buttons_selected_state"
         android:layout_gravity="bottom|end"/>
 
 </FrameLayout>

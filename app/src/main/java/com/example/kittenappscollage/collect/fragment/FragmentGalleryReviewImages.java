@@ -94,6 +94,12 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
         if(files.length>0) {
             for (DocumentFile f : files) {
                 if (f.isDirectory()) steps(f, emitter);
+//                else if(f.getType().equals("image/png") ||
+//                        f.getType().equals("image/jpeg") ||
+//                        f.getType().equals("image/jpg")){
+//                    final String name = f.getName();
+//                    final String parent = folder.getName();
+
                 else {
                     Cursor c = getContext().getContentResolver().query(
                             question(),

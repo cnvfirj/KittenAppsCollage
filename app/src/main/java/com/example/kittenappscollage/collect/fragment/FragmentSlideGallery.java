@@ -87,6 +87,7 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         selected_4.setOnClickListener(this);
         addFolders = v.findViewById(R.id.gallery_add_folds);
         addFolders.setOnClickListener(this);
+        addFolders.setActivated(true);
     }
 
     @Override
