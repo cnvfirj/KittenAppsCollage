@@ -16,6 +16,7 @@ import com.example.kittenappscollage.collect.reviewImage.DialogReview;
 import com.example.kittenappscollage.collect.reviewImage.DialogReviewFrame;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.Massages;
+import com.example.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.util.ArrayList;
@@ -24,13 +25,17 @@ import java.util.HashMap;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
 public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
 
     private final String TAG_DIALOG = "FragmentGalleryReviewImages dialog act";
+
+    private String addingFold;
 
     @Override
     protected void clickItem(int adapter, int position) {
@@ -58,13 +63,19 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
 
     @SuppressLint("CheckResult")
     private void startScan(Uri uri){
+        final int[] iterator = new int[]{0};
+        addingFold = "name";
         Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> {
             scanFold(uri,emitter);
             emitter.onComplete();
         }).compose(new ThreadTransformers.InputOutput<>())
+                .doOnComplete(() -> {
+                    if(iterator[0]==0)Massages.SHOW_MASSAGE(getContext(),"В выбранной паке новых изображений не найдено");
+                })
                 .subscribe(stringArrayListHashMap -> {
+                    iterator[0]++;
                     setListImagesInFolders(stringArrayListHashMap);
-
+                    Massages.SHOW_MASSAGE(getContext(),"В галерею добавлена папка "+addingFold);
                 });
     }
 
@@ -80,21 +91,42 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
 
     private void steps(DocumentFile folder,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         DocumentFile[]files = folder.listFiles();
-        if(files.length>0){
-            Cursor c = getContext().getContentResolver().query(files[0].getUri(),new String[]{MediaStore.Images.Media.BUCKET_ID},null,null,null);
-            c.moveToFirst();
-            final String id = ""+c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID));
-            searchInId(id,folder.getUri().toString(),folder.getName(),emitter);
+        if(files.length>0) {
+            for (DocumentFile f : files) {
+                if (f.isDirectory()) steps(f, emitter);
+//                else if (f.getType().equals("image/png") || f.getType().equals("image/jpeg") || f.getType().equals("image/jpg")) {
+                else {
+                    Cursor c = getContext().getContentResolver().query(
+                            question(),
+                            new String[]{MediaStore.Images.Media.BUCKET_ID},
+                            MediaStore.Images.Media.BUCKET_DISPLAY_NAME + " = ?",
+                            new String[]{folder.getName()},
+                            MediaStore.Images.Media.BUCKET_ID);
+
+                    final int col_b_id = c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID);
+                    while (c.moveToNext()) {
+                        final long b_id = c.getLong(col_b_id);
+                        if (WorkDBPerms.get(getContext()).queryToId(b_id)) {
+                            continue;
+                        } else {
+                            searchInId(b_id, folder.getUri().toString(), folder.getName(), emitter);
+                        }
+                    }
+                    /*выходим из перебора файлов*/
+                    break;
+                }
+            }
         }
-        else notImages();
     }
 
-    private void searchInId(String id, String keyAndPerm,String name,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+    private void searchInId(long id, String keyAndPerm,String name,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+
+        WorkDBPerms.get(getContext()).createItem(keyAndPerm,name,id);
         Cursor cursor = getContext().getContentResolver().query(
                 question(),
-                new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_MODIFIED, MediaStore.Images.Media.MIME_TYPE},
+                new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_MODIFIED, MediaStore.Images.Media.MIME_TYPE,MediaStore.Images.Media.BUCKET_ID},
                 MediaStore.Images.Media.BUCKET_ID + " = ?",
-                new String[]{id},
+                new String[]{Long.toString(id)},
                 MediaStore.Images.Media.DATE_MODIFIED);
         if(cursor.getCount()>0){
             int iterator = 0;
@@ -110,29 +142,14 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
                     iterator++;
                 }
             }
-            if(iterator==0)notImages();
-            else {
+            if(iterator>0) {
                 emitter.onNext(getListImagesInFolders());
-                addFold(name);
+                addingFold = name;
             }
         }
-        else notImages();
     }
 
 
-    @SuppressLint("CheckResult")
-    private void notImages(){
-        Observable.create(emitter -> emitter.onComplete()).compose(new ThreadTransformers.InputOutput<>())
-                .subscribe(o -> Massages.SHOW_MASSAGE(getContext(),"В выбранной папке поддерживаемых изображений не обнаружено"));
-
-    }
-
-    @SuppressLint("CheckResult")
-    private void addFold(String name){
-        Observable.create(emitter -> emitter.onComplete()).compose(new ThreadTransformers.InputOutput<>())
-                .subscribe(o -> Massages.SHOW_MASSAGE(getContext(),"В галерею добавлена папка - "+name));
-
-    }
 
 
 }

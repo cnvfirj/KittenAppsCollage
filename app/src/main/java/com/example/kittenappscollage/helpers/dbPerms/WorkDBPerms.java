@@ -101,6 +101,14 @@ public class WorkDBPerms {
                 .subscribe();
     }
 
+    public void createItem(String uri, String name, long id){
+        setItem(uri);
+        Permis p = getItem(uri);
+        p.name = name;
+        p.id = id;
+        db.work().update(p);
+    }
+
     public void setId(String uri, long id){
         setItem(uri);
         Permis p = getItem(uri);
@@ -113,6 +121,7 @@ public class WorkDBPerms {
         p.name = name;
         db.work().update(p);
     }
+
     public void setParams(String uri, String report, String delimiter){
         setItem(uri);
         Permis p = getItem(uri);
@@ -121,8 +130,17 @@ public class WorkDBPerms {
             db.work().update(p);
     }
 
+
     public Permis getItem(String uri){
         return db.work().getPerm(uri);
+    }
+
+    public Permis getItem(long id){
+        return db.work().getPermInId(id);
+    }
+
+    public boolean queryToId(long id){
+        return db.work().getPermInId(id)!=null;
     }
 
 
