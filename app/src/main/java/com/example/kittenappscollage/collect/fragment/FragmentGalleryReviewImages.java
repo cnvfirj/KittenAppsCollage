@@ -94,7 +94,6 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
         if(files.length>0) {
             for (DocumentFile f : files) {
                 if (f.isDirectory()) steps(f, emitter);
-//                else if (f.getType().equals("image/png") || f.getType().equals("image/jpeg") || f.getType().equals("image/jpg")) {
                 else {
                     Cursor c = getContext().getContentResolver().query(
                             question(),
@@ -120,7 +119,6 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
     }
 
     private void searchInId(long id, String keyAndPerm,String name,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
-
         WorkDBPerms.get(getContext()).createItem(keyAndPerm,name,id);
         Cursor cursor = getContext().getContentResolver().query(
                 question(),
