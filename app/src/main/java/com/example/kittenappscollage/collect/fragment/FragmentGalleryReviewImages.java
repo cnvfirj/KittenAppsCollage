@@ -63,6 +63,7 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
 
     @SuppressLint("CheckResult")
     private void startScan(Uri uri){
+        getAddFolders().setEnabled(false);
         final int[] iterator = new int[]{0};
         addingFold = "name";
         Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter -> {
@@ -70,6 +71,7 @@ public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
             emitter.onComplete();
         }).compose(new ThreadTransformers.InputOutput<>())
                 .doOnComplete(() -> {
+                    getAddFolders().setEnabled(true);
                     if(iterator[0]==0)Massages.SHOW_MASSAGE(getContext(),"В выбранной паке новых изображений не найдено");
                 })
                 .subscribe(stringArrayListHashMap -> {
