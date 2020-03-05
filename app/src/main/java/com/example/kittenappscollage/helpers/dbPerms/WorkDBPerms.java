@@ -143,6 +143,12 @@ public class WorkDBPerms {
         return db.work().getPermInId(id)!=null;
     }
 
+    public boolean queryToKey(String key){
+        return db.work().getPerm(key)!=null;
+    }
+
+
+
 
 
     public void setItem(String uri){

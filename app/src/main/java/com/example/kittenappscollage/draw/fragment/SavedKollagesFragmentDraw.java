@@ -119,7 +119,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
        if(data.equals(ZHOPA)){
            requestFold();
        }else {
-           requestSaveFile(Uri.parse(data))
+           requestSaveFile(data)
            .subscribe(new Consumer<String>() {
                @Override
                public void accept(String str) throws Exception {
@@ -150,6 +150,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     }
 
     private String saved(Uri uri){
+
         try {
             final String nameImg = RepDraw.PropertiesImage.NAME_IMAGE();
             DocumentFile dir = DocumentFile.fromTreeUri(getContext(),uri);
@@ -238,9 +239,13 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     }
 
     /**/
-    private Observable<String> requestSaveFile(Uri perm){
+    private Observable<String> requestSaveFile(String perm){
         return Observable.create((ObservableOnSubscribe<String>) emitter -> {
-            emitter.onNext(saved(perm));
+            if(WorkDBPerms.get(getContext()).queryToKey(perm)) {
+                emitter.onNext(saved(Uri.parse(perm)));
+            }else {
+                emitter.onNext(NOT_DIR);
+            }
             emitter.onComplete();
         }).compose(new ThreadTransformers.InputOutput<>());
 
