@@ -280,19 +280,19 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         }
     }
 
-    private boolean save(File file, Bitmap bitmap){
-
-        OutputStream os = null;
-        try {
-            os = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
-            os.flush();
-            os.close();
-        } catch (IOException e) {
-
-        }
-        return file.exists();
-    }
+//    private boolean save(File file, Bitmap bitmap){
+//
+//        OutputStream os = null;
+//        try {
+//            os = new FileOutputStream(file);
+//            bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
+//            os.flush();
+//            os.close();
+//        } catch (IOException e) {
+//
+//        }
+//        return file.exists();
+//    }
 
     public interface ActionSave{
         public void request(boolean block);

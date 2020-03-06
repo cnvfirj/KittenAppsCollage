@@ -37,11 +37,6 @@ public class FragmentGalleryAction extends FragmentSelectedGallery{
            deletedFoldStorage(getKey());
     }
 
-    private void copyFolder(){
-        LYTE("FragmentGalleryAction copy folder - "+getKey());
-
-    }
-
     private void deleteSelectedImg(int adapter){
             applyDeleteSelectedStorage();
     }
@@ -50,12 +45,15 @@ public class FragmentGalleryAction extends FragmentSelectedGallery{
         return App.checkVersion();
     }
 
+
     protected void invisFolder(){
         /*делает невидимой папку в этом приложении
         * файловая система не имеет значение.
         * Так как данные вносятся в базу данных*/
     }
+    protected void copyFolder(){
 
+    }
     protected void applyDeleteSelectedStorage(){
        /*удалить выбранные изображения как файлы*/
 

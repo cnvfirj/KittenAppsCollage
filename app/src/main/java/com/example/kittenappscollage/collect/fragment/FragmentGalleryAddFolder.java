@@ -68,6 +68,7 @@ public class FragmentGalleryAddFolder extends FragmentGalleryReviewImages {
         int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
         getContext().getContentResolver().takePersistableUriPermission(uri, takeFlags);
         DocumentFile folder = DocumentFile.fromTreeUri(getContext(),uri);
+
         steps(folder,emitter);
         for (DocumentFile f:folder.listFiles()){
             if(f.isDirectory())steps(f,emitter);
