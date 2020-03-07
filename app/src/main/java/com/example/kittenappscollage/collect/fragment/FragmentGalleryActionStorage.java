@@ -132,6 +132,7 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
         OutputStream out = getContext().getContentResolver().openOutputStream(img.getUri());
         byte[] buffer = new byte[8 * 1024];
         int bytesRead;
+
             try {
                 while ((bytesRead = is.read(buffer)) != -1) {
                     out.write(buffer, 0, bytesRead);
