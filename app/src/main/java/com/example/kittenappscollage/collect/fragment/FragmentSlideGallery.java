@@ -161,7 +161,7 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
           selectExitMode.setSelected(true);
           selected_3.setEnabled(true);
       }
-        selectIconAction3(selected_3);
+//        selectIconAction3(selected_3);
         slideSel_3(true);
         slideSel_4(true);
     }
@@ -189,14 +189,14 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         return addFolders;
     }
 
-    protected void selectIconAction3(ImageView view){
-        if(getIndexAdapter()==ROOT_ADAPTER){
-            view.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_selected_copy,null));
-
-        }else {
-            view.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_share,null));
-        }
-    }
+//    protected void selectIconAction3(ImageView view){
+//        if(getIndexAdapter()==ROOT_ADAPTER){
+//            view.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_selected_copy,null));
+//
+//        }else {
+//            view.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_share,null));
+//        }
+//    }
 
     protected void slideAddFold(boolean s){
         if(s){

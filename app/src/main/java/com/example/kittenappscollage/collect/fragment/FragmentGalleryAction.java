@@ -20,7 +20,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery{
     protected void clickSel_3(ImageView v) {
         super.clickSel_3(v);
         if(getIndexAdapter()== ROOT_ADAPTER){
-            copyFolder();
+            shareFolder();
         }else {
             shareSelImages();
         }
@@ -51,7 +51,7 @@ public class FragmentGalleryAction extends FragmentSelectedGallery{
         * файловая система не имеет значение.
         * Так как данные вносятся в базу данных*/
     }
-    protected void copyFolder(){
+    protected void shareFolder(){
 
     }
     protected void applyDeleteSelectedStorage(){

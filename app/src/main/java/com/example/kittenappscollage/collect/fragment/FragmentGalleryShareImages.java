@@ -69,4 +69,21 @@ public class FragmentGalleryShareImages extends FragmentGalleryAction {
 
     }
 
+    @Override
+    protected void shareFolder() {
+        super.shareFolder();
+        ArrayList<Uri>selected = new ArrayList<>();
+        for (String s:getListImagesInFolders().get(getKey())){
+            selected.add(Uri.parse(s));
+        }
+
+        if(selected.size()>0){
+            if(selected.size()==1){
+                shareSingleImg(selected.get(0));
+            }else {
+                shareSelectedImgs(selected);
+            }
+        }
+        getSelectFiles().clear();
+    }
 }

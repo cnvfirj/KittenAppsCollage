@@ -47,11 +47,6 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
         threadDelFold(fold);
     }
 
-    @Override
-    protected void copyFolder() {
-        super.copyFolder();
-        requestFoldToCopy();
-    }
 
     @SuppressLint("CheckResult")
     private void threadDelFold(String fold){
