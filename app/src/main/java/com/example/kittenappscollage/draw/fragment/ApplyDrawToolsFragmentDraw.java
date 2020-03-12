@@ -1,8 +1,13 @@
 package com.example.kittenappscollage.draw.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.ContentUris;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -15,10 +20,19 @@ import com.example.kittenappscollage.draw.DialogSelectParams;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.operations.Operation;
 import com.example.kittenappscollage.draw.textProp.DialogSelectShrift;
+import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
+
+import java.util.ArrayList;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.functions.Consumer;
 
 import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_ALPHA;
 import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_COLOR;
 import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_WIDTH;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 /*применяем инструменты обработки изображения*/
 public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
@@ -37,6 +51,8 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
 
     private final String KEY_TEXT = "key text ApplyDrawToolsFragmentDraw";
 
+    private ArrayList<String>fonts;
+
     public static final int S_STORAGE = 77;
 
     public static final int S_ASSETS = 88;
@@ -51,6 +67,8 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
             }
         });
     }
+
+
 
     @Override
     protected void toolPaint(ImageView v) {
@@ -172,6 +190,7 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     @Override
     public void onResume() {
         super.onResume();
+        scanFonts();
         Operation.Event e = Operation.Event.values()[getPreferences().getInt(KEY_EVENT, Operation.Event.MATRIX_T.ordinal())];
         dViewDraw.setEvent(e);
 
@@ -203,6 +222,37 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         else {
             RepDraw.get().setShrift(Typeface.create(Typeface.DEFAULT,Typeface.NORMAL));
         }
+    }
+
+    @SuppressLint("CheckResult")
+    private void scanFonts(){
+        Observable.create((ObservableOnSubscribe<ArrayList<String>>) emitter ->
+                scaner(emitter)).compose(new ThreadTransformers.InputOutput<>())
+                .subscribe(strings -> {
+                    fonts = strings;
+                    for (String font:fonts){
+                        LYTE("font "+font);
+                    }
+                });
+    }
+
+    private void scaner(ObservableEmitter<ArrayList<String>> emitter){
+        String[]pr = {MediaStore.Files.FileColumns._ID,MediaStore.Files.FileColumns.TITLE,MediaStore.Files.FileColumns.DATA};
+        String sel = MediaStore.Files.FileColumns.BUCKET_DISPLAY_NAME + " = ?";
+        String[]args = new String[]{"Download"};
+        Uri quest = MediaStore.Files.getContentUri("external");
+        Cursor c = getContext().getContentResolver().query(quest,pr,sel,args,null);
+        ArrayList<String> files = new ArrayList();
+        while (c.moveToNext()){
+            long id = c.getLong(c.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID));
+//            final String file = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id).toString();
+            String file = c.getString(c.getColumnIndexOrThrow(MediaStore.Files.FileColumns.TITLE));
+            String type = c.getString(c.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA));
+
+            files.add(file+"|||||"+type);
+        }
+        emitter.onNext(files);
+        emitter.onComplete();
     }
 
     public interface Pipette{
