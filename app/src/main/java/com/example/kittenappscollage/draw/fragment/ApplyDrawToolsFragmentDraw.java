@@ -190,7 +190,6 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
     @Override
     public void onResume() {
         super.onResume();
-        scanFonts();
         Operation.Event e = Operation.Event.values()[getPreferences().getInt(KEY_EVENT, Operation.Event.MATRIX_T.ordinal())];
         dViewDraw.setEvent(e);
 
@@ -224,36 +223,38 @@ public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
         }
     }
 
-    @SuppressLint("CheckResult")
-    private void scanFonts(){
-        Observable.create((ObservableOnSubscribe<ArrayList<String>>) emitter ->
-                scaner(emitter)).compose(new ThreadTransformers.InputOutput<>())
-                .subscribe(strings -> {
-                    fonts = strings;
-                    for (String font:fonts){
-                        LYTE("font "+font);
-                    }
-                });
-    }
+//    @SuppressLint("CheckResult")
+//    private void scanFonts(){
+//        Observable.create((ObservableOnSubscribe<ArrayList<String>>) emitter ->
+//                scaner(emitter)).compose(new ThreadTransformers.InputOutput<>())
+//                .subscribe(strings -> {
+//                    fonts = strings;
+//                    for (String font:fonts){
+//                        LYTE("font "+font);
+//                    }
+//                });
+//    }
 
-    private void scaner(ObservableEmitter<ArrayList<String>> emitter){
-        String[]pr = {MediaStore.Files.FileColumns._ID,MediaStore.Files.FileColumns.TITLE,MediaStore.Files.FileColumns.DATA};
-        String sel = MediaStore.Files.FileColumns.BUCKET_DISPLAY_NAME + " = ?";
-        String[]args = new String[]{"Download"};
-        Uri quest = MediaStore.Files.getContentUri("external");
-        Cursor c = getContext().getContentResolver().query(quest,pr,sel,args,null);
-        ArrayList<String> files = new ArrayList();
-        while (c.moveToNext()){
-            long id = c.getLong(c.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID));
-//            final String file = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id).toString();
-            String file = c.getString(c.getColumnIndexOrThrow(MediaStore.Files.FileColumns.TITLE));
-            String type = c.getString(c.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA));
-
-            files.add(file+"|||||"+type);
-        }
-        emitter.onNext(files);
-        emitter.onComplete();
-    }
+//    private void scaner(ObservableEmitter<ArrayList<String>> emitter){
+//        String[]pr = {MediaStore.Files.FileColumns._ID,MediaStore.Files.FileColumns.TITLE,MediaStore.Files.FileColumns.DATA};
+//        String sel = MediaStore.Files.FileColumns.BUCKET_DISPLAY_NAME + " = ?";
+//        String select = MediaStore.Files.FileColumns.MIME_TYPE+"=?";
+//        String[]args = new String[]{"application/x-font-ttf"};
+////        String[]args = new String[]{"Download"};
+//        Uri quest = MediaStore.Files.getContentUri("external");
+//        Cursor c = getContext().getContentResolver().query(quest,pr,sel,args,null);
+//        ArrayList<String> files = new ArrayList();
+//        while (c.moveToNext()){
+//            long id = c.getLong(c.getColumnIndexOrThrow(MediaStore.Files.FileColumns._ID));
+////            final String file = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id).toString();
+//            String file = c.getString(c.getColumnIndexOrThrow(MediaStore.Files.FileColumns.TITLE));
+//            String type = c.getString(c.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA));
+//
+//            files.add(file+"|||||"+type);
+//        }
+//        emitter.onNext(files);
+//        emitter.onComplete();
+//    }
 
     public interface Pipette{
         void listen(boolean l);
