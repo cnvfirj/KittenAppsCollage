@@ -1,5 +1,6 @@
 package com.example.kittenappscollage.draw.textProp;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -26,12 +27,20 @@ import com.example.dynamikseekbar.DynamicSeekBar;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
+import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
+import java.util.Comparator;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.functions.Consumer;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
@@ -46,7 +55,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
 
     private InputMethodManager imm;
 
-    private TextView instruct;
+//    private TextView instruct;
 
 
     public static DialogSelectShrift get(){
@@ -64,9 +73,9 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        instruct = view.findViewById(R.id.dialog_edit_text_instruct);
-        instruct.setText("Скачай на устройство шрифт и найди его здесь");
-        slideTextInstruct(true,0);
+//        instruct = view.findViewById(R.id.dialog_edit_text_instruct);
+//        instruct.setText("Скачай на устройство шрифт и найди его здесь");
+//        slideTextInstruct(true,0);
         enableBarAngle(RepDraw.get().isTextItalic());
         getBarAngle().setProgress(computeProgressBar());
         getPresent().selFill(RepDraw.get().isTextFill());
@@ -129,20 +138,9 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(requestCode==656){
             if(resultCode== Activity.RESULT_OK){
-                final Uri uri = data.getData();
-                DocumentFile font = DocumentFile.fromSingleUri(getContext(),uri);
-                final String name = font.getName();
-                if(name.endsWith(".ttf")||name.endsWith(".otf")){
-                    try {
-                        writeInRootFoldFont(font,uri);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                }else {
-                    Toast.makeText(getContext(),"Файл должен быть скачан на устройство и иметь расширение ttf или otf",Toast.LENGTH_LONG).show();
-                }
+                threadAddFont(data);
             }else {
-                Toast.makeText(getContext(),"Файл должен быть скачан на устройство и иметь расширение ttf или otf",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(),"Найди файл с расширением ttf или otf(в конце названия есть .ttf или .otf)",Toast.LENGTH_LONG).show();
             }
         }
         else super.onActivityResult(requestCode, resultCode, data);
@@ -189,48 +187,110 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
         imm.hideSoftInputFromWindow(getEnterText().getWindowToken(), 0);
     }
 
-    private void writeInRootFoldFont(DocumentFile df, Uri u) throws FileNotFoundException {
+    @SuppressLint("CheckResult")
+    private void threadAddFont(Intent data){
+        DocumentFile font = DocumentFile.fromSingleUri(getContext(),data.getData());
+        final String name = font.getName();
+        if(name.endsWith(".ttf")||name.endsWith(".otf")) {
+            Observable.create((ObservableOnSubscribe<Boolean>) emitter ->
+                    handlingAddFont(font, emitter))
+                    .compose(new ThreadTransformers.OnlySingle<>())
+                    .subscribe(aBoolean -> {
+                        if (aBoolean) {
+                           threadScanFonts();
+                        } else {
+                            Toast.makeText(getContext(), "Новый шрифт не добавлен. Возможно файл с этим именем уже добавлен", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }else {
+            Toast.makeText(getContext(),"Файл должен быть с расширением ttf или otf(в конце названия есть .ttf или .otf)",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @SuppressLint("CheckResult")
+    private void threadScanFonts(){
+        Observable.create((ObservableOnSubscribe<Boolean>) emitter -> scanFonts())
+                .compose(new ThreadTransformers.OnlySingle<>())
+                .subscribe(aBoolean -> {
+                    if(aBoolean){
+                        Toast.makeText(getContext(),"Шрифт добавлен. Найди его в списке",Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(getContext(),"Новый шрифт не добавлен. Возможно это имя занято",Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private boolean scanFonts(){
+        String fold = ContextCompat.getExternalFilesDirs(getContext(), null)[0].getAbsolutePath()+"/fonts";
+        File[] files = new File(fold).listFiles();
+        Arrays.sort(files, new Comparator<File>() {
+            @Override
+            public int compare(File o1, File o2) {
+                Long m1 = o1.lastModified();
+                Long m2 = o2.lastModified();
+                return m1.compareTo(m2);
+            }
+        });
+        for (File f:files){
+            LYTE("file font "+f.getName());
+        }
+        return false;
+    }
+
+    private void handlingAddFont(DocumentFile font,ObservableEmitter<Boolean> emitter){
+            try {
+                emitter.onNext(writeInRootFoldFont(font));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+               emitter.onComplete();
+    }
+
+    private boolean writeInRootFoldFont(DocumentFile df) throws FileNotFoundException {
         String root = ContextCompat.getExternalFilesDirs(getContext(), null)[0].getAbsolutePath();
         DocumentFile fontsFold = DocumentFile.fromFile(new File(root+"/fonts"));
         if(!fontsFold.exists()){
-            LYTE("create fold");
             DocumentFile rootFold = DocumentFile.fromFile(new File(root));
             rootFold.createDirectory("fonts");
         }
+
         if(fontsFold.exists()&&fontsFold.isDirectory()) {
-            InputStream is = getContext().getContentResolver().openInputStream(u);
-            DocumentFile writeFont = fontsFold.createFile(df.getType(), df.getName());
-            OutputStream out = getContext().getContentResolver().openOutputStream(writeFont.getUri());
-            byte[] buffer = new byte[8 * 1024];
-            int bytesRead;
-            try {
-                while ((bytesRead = is.read(buffer)) != -1) {
-                    out.write(buffer, 0, bytesRead);
+            boolean isClone = false;
+            for (DocumentFile f:fontsFold.listFiles()){
+                if(f.getName().equals(df.getName()))isClone = true;
+            }
+            if(!isClone) {
+                InputStream is = getContext().getContentResolver().openInputStream(df.getUri());
+                DocumentFile writeFont = fontsFold.createFile(df.getType(), df.getName());
+                OutputStream out = getContext().getContentResolver().openOutputStream(writeFont.getUri());
+                byte[] buffer = new byte[8 * 1024];
+                int bytesRead;
+                try {
+                    while ((bytesRead = is.read(buffer)) != -1) {
+                        out.write(buffer, 0, bytesRead);
+                    }
+                    is.close();
+                    out.close();
+                } catch (IOException e) {
+
                 }
-                is.close();
-                out.close();
-            } catch (IOException e) {
-
+                return writeFont.exists();
             }
-
-            for (DocumentFile f : fontsFold.listFiles()) {
-                LYTE("writing " + f.getName() + "|" + f.getType());
-            }
-            if(writeFont.exists())SHOW_MASSAGE(getContext(),"Выбранный шрифт добавлен");
         }
+        return false;
 
     }
 
-    private void slideTextInstruct(boolean invisible, int tyme){
-        getVisibleInstruct().setActivated(invisible);
-        if(invisible){
-            instruct.animate().alpha(0).scaleY(0).setDuration(tyme).start();
-            getVisibleInstruct().animate().alpha(1).setDuration(tyme).start();
-        }else {
-            instruct.animate().alpha(1).scaleY(1).setDuration(tyme).start();
-            getVisibleInstruct().animate().alpha(0.5f).setDuration(tyme).start();
-        }
-    }
+//    private void slideTextInstruct(boolean invisible, int tyme){
+//        getVisibleInstruct().setActivated(invisible);
+//        if(invisible){
+//            instruct.animate().alpha(0).scaleY(0).setDuration(tyme).start();
+//            getVisibleInstruct().animate().alpha(1).setDuration(tyme).start();
+//        }else {
+//            instruct.animate().alpha(1).scaleY(1).setDuration(tyme).start();
+//            getVisibleInstruct().animate().alpha(0.5f).setDuration(tyme).start();
+//        }
+//    }
 
     private void enableBarAngle(boolean enable){
         getBarAngle().setEnabled(enable);

@@ -230,7 +230,6 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         }
         adapterShrift = new WorkAdapterShrift(getContext(),fonts);
         listShrift.setAdapter(adapterShrift);
-
     }
 
     private void initButtons(View view){

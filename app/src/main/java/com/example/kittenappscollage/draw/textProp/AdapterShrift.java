@@ -28,6 +28,7 @@ public class AdapterShrift  extends RecyclerView.Adapter<AdapterShrift.ShriftHol
     private Context context;
 
     private int sizeBase;
+
     public AdapterShrift(Context context,@NonNull String[]base){
         fonts = new ArrayList<>();
 
@@ -37,6 +38,7 @@ public class AdapterShrift  extends RecyclerView.Adapter<AdapterShrift.ShriftHol
         }
         this.context = context;
     }
+
     public AdapterShrift(Context context,@NonNull ArrayList<String>base) {
         this.fonts = base;
         this.context = context;

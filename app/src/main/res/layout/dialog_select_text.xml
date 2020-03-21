@@ -19,20 +19,20 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:id="@+id/item_present_draw_list_shrift" />
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/margin_save"
-            android:layout_marginEnd="@dimen/margin_save_2"
-            android:layout_marginStart="@dimen/margin_save_2"
-            android:layout_marginBottom="@dimen/margin_save_2"
-            android:id="@+id/dialog_edit_text_instruct"
-            android:textAlignment="center"
-            android:textSize="15sp"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/colorWhite"
-            android:text="@string/instruct_down_fonts"
-            android:layout_gravity="center_horizontal|bottom"/>
+<!--        <TextView-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/margin_save"-->
+<!--            android:layout_marginEnd="@dimen/margin_save_2"-->
+<!--            android:layout_marginStart="@dimen/margin_save_2"-->
+<!--            android:layout_marginBottom="@dimen/margin_save_2"-->
+<!--            android:id="@+id/dialog_edit_text_instruct"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textSize="15sp"-->
+<!--            android:background="@color/colorPrimary"-->
+<!--            android:textColor="@color/colorWhite"-->
+<!--            android:text="@string/instruct_down_fonts"-->
+<!--            android:layout_gravity="center_horizontal|bottom"/>-->
 
         <ImageView
             style="@style/common_buttons"
