@@ -200,7 +200,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
                         if (aBoolean) {
                            threadScanFontsPostAdd();
                         } else {
-                            Toast.makeText(getContext(), "Новый шрифт не добавлен. Возможно файл с этим именем уже добавлен", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Новый шрифт не добавлен. Возможно это имя занято", Toast.LENGTH_SHORT).show();
                         }
                     });
         }else {
@@ -218,9 +218,8 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
                 .subscribe(aBoolean -> {
                     if(aBoolean){
                         Toast.makeText(getContext(),"Шрифт добавлен. Найди его в списке",Toast.LENGTH_SHORT).show();
-                    }else {
-                        Toast.makeText(getContext(),"Новый шрифт не добавлен. Возможно это имя занято",Toast.LENGTH_SHORT).show();
                     }
+
                 });
     }
 
