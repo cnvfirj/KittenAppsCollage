@@ -82,6 +82,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
         getPresent().setItalic(RepDraw.get().isTextItalic(),RepDraw.get().getItalicText());
         getActItal().setSelected(RepDraw.get().isTextItalic());
         getActFill().setSelected(RepDraw.get().isTextFill());
+        threadScanFontsCreatedDialog();
     }
 
     @Override
@@ -197,7 +198,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
                     .compose(new ThreadTransformers.OnlySingle<>())
                     .subscribe(aBoolean -> {
                         if (aBoolean) {
-                           threadScanFonts();
+                           threadScanFontsPostAdd();
                         } else {
                             Toast.makeText(getContext(), "Новый шрифт не добавлен. Возможно файл с этим именем уже добавлен", Toast.LENGTH_SHORT).show();
                         }
@@ -208,8 +209,11 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
     }
 
     @SuppressLint("CheckResult")
-    private void threadScanFonts(){
-        Observable.create((ObservableOnSubscribe<Boolean>) emitter -> scanFonts())
+    private void threadScanFontsPostAdd(){
+        Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
+            emitter.onNext(scanFonts());
+            emitter.onComplete();
+        })
                 .compose(new ThreadTransformers.OnlySingle<>())
                 .subscribe(aBoolean -> {
                     if(aBoolean){
@@ -220,19 +224,39 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
                 });
     }
 
+    @SuppressLint("CheckResult")
+    private void threadScanFontsCreatedDialog(){
+        Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
+            emitter.onNext(scanFonts());
+            emitter.onComplete();
+        })
+                .compose(new ThreadTransformers.OnlySingle<>())
+                .subscribe(aBoolean -> {
+                    if(aBoolean){
+                        Toast.makeText(getContext(),"Дополнительные шрифты добавлены",Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(getContext(),"Дополнительных шрифтов нет. Скачай на устройство шрифты с расширением ttf или otf и добавь их",Toast.LENGTH_LONG).show();
+                    }
+                });
+    }
+
     private boolean scanFonts(){
         String fold = ContextCompat.getExternalFilesDirs(getContext(), null)[0].getAbsolutePath()+"/fonts";
         File[] files = new File(fold).listFiles();
-        Arrays.sort(files, new Comparator<File>() {
-            @Override
-            public int compare(File o1, File o2) {
-                Long m1 = o1.lastModified();
-                Long m2 = o2.lastModified();
-                return m1.compareTo(m2);
+        if(files.length>0) {
+            Arrays.sort(files, new Comparator<File>() {
+                @Override
+                public int compare(File o1, File o2) {
+                    Long m1 = o1.lastModified();
+                    Long m2 = o2.lastModified();
+                    return m1.compareTo(m2);
+                }
+            });
+            for (File f : files) {
+                LYTE("file font " + f.getName());
             }
-        });
-        for (File f:files){
-            LYTE("file font "+f.getName());
+
+            return true;
         }
         return false;
     }
