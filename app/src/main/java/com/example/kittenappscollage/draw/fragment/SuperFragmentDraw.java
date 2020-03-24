@@ -87,7 +87,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
 
     private ImageView dSaveTel, dSaveNet, dSaveIs;
 
-    private ImageView dAddCreated, dAddLink, dAddCam, dAddColl;
+    private ImageView dAddCreated, dAddCam, dAddColl;
 
     protected ImageView dUndo, dRedo, dInfo, dAllLyrs, dUnion, dDeleteLyr, dChangeLyrs, dDeleteAll;
 
@@ -185,9 +185,9 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
             case R.id.add_created:
                 addCreated((ImageView)view);
                 break;
-            case R.id.add_link:
-                addLink((ImageView)view);
-                break;
+//            case R.id.add_link:
+//                addLink((ImageView)view);
+//                break;
             case R.id.add_camera:
                 addCam((ImageView)view);
                 break;
@@ -292,7 +292,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         dSaveIs = view.findViewById(R.id.save_is);
         dSlideAdd = view.findViewById(R.id.slide_add_lyr);
         dAddCreated = view.findViewById(R.id.add_created);
-        dAddLink = view.findViewById(R.id.add_link);
+//        dAddLink = view.findViewById(R.id.add_link);
         dAddCam = view.findViewById(R.id.add_camera);
         dAddColl = view.findViewById(R.id.add_collect);
 
@@ -351,16 +351,16 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
     protected void slideAdd(){
         if(!dVisibleAdd){
             dAddCreated.animate().translationX(-getSlideAdd1()).setDuration(getTimeSlide()).start();
-            dAddLink.animate().translationX(-getSlideAdd2()).setDuration(getTimeSlide()).start();
+//            dAddLink.animate().translationX(-getSlideAdd2()).setDuration(getTimeSlide()).start();
             dAddCam.animate().translationY(-getSlideAdd1()).setDuration(getTimeSlide()).start();
-            dAddColl.animate().translationY(-getSlideAdd2()).setDuration(getTimeSlide()).start();
+            dAddColl.animate().translationY(-getSlideAdd1()).translationX(-getSlideAdd1()).setDuration(getTimeSlide()).start();
             dVisibleAdd = true;
 
         }else {
             dAddCreated.animate().translationX(0).setDuration(getTimeSlide()).start();
-            dAddLink.animate().translationX(0).setDuration(getTimeSlide()).start();
+//            dAddLink.animate().translationX(0).setDuration(getTimeSlide()).start();
             dAddCam.animate().translationY(0).setDuration(getTimeSlide()).start();
-            dAddColl.animate().translationY(0).setDuration(getTimeSlide()).start();
+            dAddColl.animate().translationY(0).translationX(0).setDuration(getTimeSlide()).start();
             dVisibleAdd = false;
         }
 
@@ -460,7 +460,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         dSaveIs.setOnClickListener(this);
         dSlideAdd.setOnClickListener(this);
         dAddCreated.setOnClickListener(this);
-        dAddLink.setOnClickListener(this);
+//        dAddLink.setOnClickListener(this);
         dAddCam.setOnClickListener(this);
         dAddColl.setOnClickListener(this);
 //         addLongClick();

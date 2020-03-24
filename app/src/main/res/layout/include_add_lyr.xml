@@ -13,11 +13,11 @@
         android:background="@color/colorAccent"
         android:src="@drawable/icon_create_new"/>
 
-    <ImageView
-        style="@style/slide_style_add_img"
-        android:id="@+id/add_link"
-        android:background="@color/colorAccent"
-        android:src="@drawable/icon_link"/>
+<!--    <ImageView-->
+<!--        style="@style/slide_style_add_img"-->
+<!--        android:id="@+id/add_link"-->
+<!--        android:background="@color/colorAccent"-->
+<!--        android:src="@drawable/icon_link"/>-->
 
     <ImageView
         style="@style/slide_style_add_img"
