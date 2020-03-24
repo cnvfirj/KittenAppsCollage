@@ -235,7 +235,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
                 .subscribe(list -> {
                     if(list.size()>0){
                         ((AdapterShrift)getListShrift().getAdapter()).setFonts(list);
-                        Toast.makeText(getContext(),"Дополнительные шрифты добавлены",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),"Дополнительные шрифты найдены",Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(getContext(),"Дополнительных шрифтов нет. Скачай на устройство шрифты с расширением ttf или otf и добавь их",Toast.LENGTH_LONG).show();
                     }
@@ -256,7 +256,6 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
             });
             ArrayList<String>fonts = new ArrayList<>();
             for (File f : files) {
-                LYTE("file font " + f.getName());
                 fonts.add(f.getAbsolutePath());
             }
             ArrayList<String>adapt = ((AdapterShrift)getListShrift().getAdapter()).getFonts();
