@@ -34,6 +34,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -210,13 +211,14 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
 
     @SuppressLint("CheckResult")
     private void threadScanFontsPostAdd(){
-        Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
+        Observable.create((ObservableOnSubscribe<ArrayList<String>>) emitter -> {
             emitter.onNext(scanFonts());
             emitter.onComplete();
         })
                 .compose(new ThreadTransformers.OnlySingle<>())
-                .subscribe(aBoolean -> {
-                    if(aBoolean){
+                .subscribe(list -> {
+                    if(list.size()>0){
+                        ((AdapterShrift)getListShrift().getAdapter()).setFonts(list);
                         Toast.makeText(getContext(),"Шрифт добавлен. Найди его в списке",Toast.LENGTH_SHORT).show();
                     }
 
@@ -225,13 +227,14 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
 
     @SuppressLint("CheckResult")
     private void threadScanFontsCreatedDialog(){
-        Observable.create((ObservableOnSubscribe<Boolean>) emitter -> {
+        Observable.create((ObservableOnSubscribe<ArrayList<String>>) emitter -> {
             emitter.onNext(scanFonts());
             emitter.onComplete();
         })
                 .compose(new ThreadTransformers.OnlySingle<>())
-                .subscribe(aBoolean -> {
-                    if(aBoolean){
+                .subscribe(list -> {
+                    if(list.size()>0){
+                        ((AdapterShrift)getListShrift().getAdapter()).setFonts(list);
                         Toast.makeText(getContext(),"Дополнительные шрифты добавлены",Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(getContext(),"Дополнительных шрифтов нет. Скачай на устройство шрифты с расширением ttf или otf и добавь их",Toast.LENGTH_LONG).show();
@@ -239,7 +242,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
                 });
     }
 
-    private boolean scanFonts(){
+    private ArrayList<String> scanFonts(){
         String fold = ContextCompat.getExternalFilesDirs(getContext(), null)[0].getAbsolutePath()+"/fonts";
         File[] files = new File(fold).listFiles();
         if(files.length>0) {
@@ -251,13 +254,22 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
                     return m1.compareTo(m2);
                 }
             });
+            ArrayList<String>fonts = new ArrayList<>();
             for (File f : files) {
                 LYTE("file font " + f.getName());
+                fonts.add(f.getAbsolutePath());
             }
-
-            return true;
+            ArrayList<String>adapt = ((AdapterShrift)getListShrift().getAdapter()).getFonts();
+            boolean contain = false;
+            for(int i=fonts.size()-1;i>=0;i++){
+                if(!adapt.contains(fonts.get(i))){
+                    contain = true;
+                    break;
+                }
+            }
+            if(contain)return fonts;
         }
-        return false;
+        return new ArrayList<String>();
     }
 
     private void handlingAddFont(DocumentFile font,ObservableEmitter<Boolean> emitter){

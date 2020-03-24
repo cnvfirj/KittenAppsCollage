@@ -56,7 +56,7 @@ public class AdapterShrift  extends RecyclerView.Adapter<AdapterShrift.ShriftHol
 
     }
 
-    protected ArrayList<String>getFonts(){
+    public ArrayList<String>getFonts(){
         return fonts;
     }
 
@@ -84,6 +84,10 @@ public class AdapterShrift  extends RecyclerView.Adapter<AdapterShrift.ShriftHol
     @Override
     public int getItemCount() {
         return fonts.size();
+    }
+
+    public int getSizeBase() {
+        return sizeBase;
     }
 
     public class ShriftHolder extends RecyclerView.ViewHolder
