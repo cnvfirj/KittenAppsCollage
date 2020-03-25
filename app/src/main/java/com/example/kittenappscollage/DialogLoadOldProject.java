@@ -41,12 +41,12 @@ public class DialogLoadOldProject extends DialogFragment {
         query = (ResultQuery)getContext();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder
-                .setTitle("У вас остался не завершенный проект")
-                .setMessage("Открыть его? В противном случае он будет уничтожен.")
-                .setPositiveButton("да", (dialogInterface, i) -> {
+                .setTitle(R.string.REQUEST_LOAD_OLD_PROJECT)
+                .setMessage(R.string.OPEN_OLD_PROJECT)
+                .setPositiveButton(R.string.YES, (dialogInterface, i) -> {
                     query.result(true);
                 })
-                .setNegativeButton("нет", (dialogInterface, i) -> {
+                .setNegativeButton(R.string.NO, (dialogInterface, i) -> {
                     query.result(false);
                 })
                 .setCancelable(false);

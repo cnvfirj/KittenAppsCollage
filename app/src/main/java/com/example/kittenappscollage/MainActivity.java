@@ -3,7 +3,6 @@ package com.example.kittenappscollage;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.documentfile.provider.DocumentFile;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.ContentValues;
@@ -16,7 +15,6 @@ import android.provider.MediaStore;
 
 import com.example.kittenappscollage.collect.fragment.FragmentGallery;
 import com.example.kittenappscollage.collect.fragment.FragmentGalleryAddFolder;
-import com.example.kittenappscollage.collect.fragment.FragmentGalleryReviewImages;
 import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
@@ -32,12 +30,8 @@ import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery, SavedKollagesFragmentDraw.ActionSave, MainSwitching {
 

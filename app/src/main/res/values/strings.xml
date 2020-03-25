@@ -63,4 +63,6 @@
     <string name="ADD_FONTS_FIND">Дополнительные шрифты найдены</string>
     <string name="ADD_FONTS_NOT_FIND">Дополнительных шрифтов нет. Скачай на устройство шрифты с расширением ttf или otf и добавь их</string>
     <string name="SELECT_POINT_PIPETTE">Выбери точку на заполненной и не прозрачной области рисунка</string>
+    <string name="REQUEST_LOAD_OLD_PROJECT">У тебя остался не завершенный проект</string>
+    <string name="OPEN_OLD_PROJECT">Открыть его? В противном случае он будет уничтожен.</string>
 </resources>
