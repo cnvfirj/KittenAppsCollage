@@ -3,15 +3,11 @@ package com.example.kittenappscollage.view;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.SizeF;
 import android.view.View;
-
-import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
 public class PresentLyr extends View {
 

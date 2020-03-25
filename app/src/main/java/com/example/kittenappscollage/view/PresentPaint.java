@@ -13,10 +13,6 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-
 public class PresentPaint extends View {
 
     public static final int TEXT = 1;
