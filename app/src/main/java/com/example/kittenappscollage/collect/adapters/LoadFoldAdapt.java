@@ -97,7 +97,7 @@ public class LoadFoldAdapt extends ListenLoadFoldAdapter {
         if(mode!=modeSelected) {
             modeSelected = mode;
             resetCheckeds();
-            LYTE("ListenLoadFoldAdapter mode selected - "+mode);
+//            LYTE("ListenLoadFoldAdapter mode selected - "+mode);
             notifyDataSetChanged();
         }
     }

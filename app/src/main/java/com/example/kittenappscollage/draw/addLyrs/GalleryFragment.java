@@ -1,8 +1,5 @@
 package com.example.kittenappscollage.draw.addLyrs;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

@@ -4,21 +4,15 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Size;
 import android.util.SizeF;
-import android.view.View;
 
 import androidx.annotation.Nullable;
 
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.view.CustomFon;
-import com.madrapps.pikolo.HSLColorPicker;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
 
 public class PreviewBlankBitmp extends CustomFon {

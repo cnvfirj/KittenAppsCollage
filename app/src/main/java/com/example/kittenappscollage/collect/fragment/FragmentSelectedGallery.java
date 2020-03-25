@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import java.util.ArrayList;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentSelectedGallery extends FragmentSlideGallery {
 

@@ -16,8 +16,6 @@ import androidx.annotation.Nullable;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.helpers.Massages;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-
 public class AddLyrInNet extends SelectedFragment {
 
     private final String HTTP = "http://";

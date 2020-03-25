@@ -3,7 +3,6 @@ package com.example.kittenappscollage.collect.reviewImage;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.kittenappscollage.R;
 
-import java.io.IOException;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ReviewFragment extends Fragment {
 

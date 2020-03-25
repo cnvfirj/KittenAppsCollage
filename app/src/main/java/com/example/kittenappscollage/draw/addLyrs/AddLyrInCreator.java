@@ -9,9 +9,7 @@ import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,8 +22,6 @@ import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 
 import java.util.Objects;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.OnSeekBarChangeListener{

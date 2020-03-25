@@ -19,10 +19,6 @@ import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.addLyrs.loadImage.DecodeCamera;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-
 public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragments{
 
     public static final int ADD_CAM = 1;

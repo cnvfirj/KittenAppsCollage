@@ -1,13 +1,9 @@
 package com.example.kittenappscollage.collect.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.storage.StorageManager;
-import android.os.storage.StorageVolume;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.collect.ExLayoutManager;
 import com.example.kittenappscollage.collect.adapters.ListenAdapter;
-//import com.example.kittenappscollage.collect.adapters.LoadFoldAdapt;
-import com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter;
 import com.example.kittenappscollage.collect.adapters.LoadImgAdapt;
 import com.example.kittenappscollage.collect.adapters.LockFoldAdapter;
 import com.example.kittenappscollage.helpers.AllPermissions;
@@ -33,7 +27,6 @@ import java.util.HashMap;
 
 import static android.app.Activity.RESULT_OK;
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentGallery extends FragmentScanAllImages implements ListenAdapter{
 

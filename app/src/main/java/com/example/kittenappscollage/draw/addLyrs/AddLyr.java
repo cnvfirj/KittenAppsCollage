@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.SeekBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +20,6 @@ import com.example.kittenappscollage.draw.addLyrs.loadImage.LoadProjectListener;
 import com.example.kittenappscollage.draw.addLyrs.loadImage.SelectorLoadProject;
 import com.example.kittenappscollage.view.PresentLyr;
 
-import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 public class AddLyr extends Fragment implements View.OnClickListener, DynamicSeekBar.OnSeekBarChangeListener {

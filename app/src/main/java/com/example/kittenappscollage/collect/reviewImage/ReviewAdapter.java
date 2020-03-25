@@ -1,7 +1,6 @@
 package com.example.kittenappscollage.collect.reviewImage;
 
 import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
 import android.os.Parcelable;
 import android.util.Log;
 
@@ -12,7 +11,6 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ReviewAdapter extends FragmentStatePagerAdapter {
 

@@ -68,14 +68,14 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         protected int dIndexScale;
 
     protected final int TOOL_TRANS = 6;
-    public final static int OP_TRANS_1 = 61;
+//    public final static int OP_TRANS_1 = 61;
     protected final int TOOL_CUT = 7;
-    public final static int OP_CUT_1 = 71;
-    public final static int OP_CUT_2 = 72;
+//    public final static int OP_CUT_1 = 71;
+//    public final static int OP_CUT_2 = 72;
 
     protected final int TOOL_TEXT = 8;
-    public final static int OP_TEXT_1 = 81;
-    public final static int OP_TEXT_2 = 82;
+//    public final static int OP_TEXT_1 = 81;
+//    public final static int OP_TEXT_2 = 82;
 
     protected ViewDraw dViewDraw;
 

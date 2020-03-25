@@ -112,7 +112,7 @@ public class ViewDraw extends View {
                         vListenPipette.listen(false);
                     }
                 } else
-                    SHOW_MASSAGE(getContext(), "Выбери точку на заполненной и не прозрачной области рисунка");
+                    SHOW_MASSAGE(getContext(), getContext().getResources().getString(R.string.SELECT_POINT_PIPETTE));
             }
         }
         return true;

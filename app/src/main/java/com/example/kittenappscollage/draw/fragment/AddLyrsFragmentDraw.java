@@ -16,9 +16,6 @@ import com.example.kittenappscollage.draw.addLyrs.FrameDialogAdd;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.helpers.AllPermissions;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 /*обрабатываем добавление слоя или начало коллажа*/

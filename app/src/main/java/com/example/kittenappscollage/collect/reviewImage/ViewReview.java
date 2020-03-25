@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.net.Uri;
@@ -17,16 +16,12 @@ import androidx.annotation.Nullable;
 
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 import com.example.mutmatrix.DeformMat;
-import com.example.mutmatrix.actions.Deform;
 
 import java.io.IOException;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Consumer;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ViewReview extends View {
 

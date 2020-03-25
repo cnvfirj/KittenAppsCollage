@@ -5,7 +5,6 @@ import android.graphics.PointF;
 import android.view.MotionEvent;
 
 import com.example.kittenappscollage.draw.operations.bitmap.MutableBit;
-import com.example.kittenappscollage.draw.operations.bitmap.MutableElast;
 import com.example.kittenappscollage.draw.operations.bitmap.MutableElastLine;
 import com.example.mutmatrix.DeformMat;
 

@@ -98,12 +98,6 @@ public class DecodeCamera {
             this.img = img;
         }
 
-//        public Facing getFacing() {
-//            if(camera.equals(Facing.BACK.name()))return Facing.BACK;
-//            else if(camera.equals(Facing.FRONT.name()))return Facing.FRONT;
-//            return null;
-//        }
-
         public String getFacing(){
             return camera;
         }

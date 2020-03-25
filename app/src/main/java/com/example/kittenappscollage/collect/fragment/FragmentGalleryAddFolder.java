@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import androidx.annotation.Nullable;
 import androidx.documentfile.provider.DocumentFile;
 
+import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
@@ -55,12 +56,12 @@ public class FragmentGalleryAddFolder extends FragmentGalleryReviewImages {
         }).compose(new ThreadTransformers.InputOutput<>())
                 .doOnComplete(() -> {
                     getAddFolders().setEnabled(true);
-                    if(iterator[0]==0) Massages.SHOW_MASSAGE(getContext(),"В выбранной паке новых изображений не найдено");
+                    if(iterator[0]==0) Massages.SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.IS_SELECTED_FOLDER_IMAGES_NOT));
                 })
                 .subscribe(stringArrayListHashMap -> {
                     iterator[0]++;
                     setListImagesInFolders(stringArrayListHashMap);
-                    Massages.SHOW_MASSAGE(getContext(),"В галерею добавлена папка "+addingFold);
+                    Massages.SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.IN_GALLERY_ADD_FOLDER)+addingFold);
                 });
     }
 

@@ -142,7 +142,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
             if(resultCode== Activity.RESULT_OK){
                 threadAddFont(data);
             }else {
-                Toast.makeText(getContext(),"Найди файл с расширением ttf или otf(в конце названия есть .ttf или .otf)",Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), getContext().getResources().getString(R.string.FIND_FILE_FONT),Toast.LENGTH_LONG).show();
             }
         }
         else super.onActivityResult(requestCode, resultCode, data);
@@ -161,7 +161,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
                     .setItalicText(getPresent().getAngleItalic());
             dismiss();
         }else {
-            SHOW_MASSAGE(getContext(),"Некорректный текст");
+            SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.INCORRECT_TEXT));
         }
 
     }
@@ -201,11 +201,11 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
                         if (aBoolean) {
                            threadScanFontsPostAdd();
                         } else {
-                            Toast.makeText(getContext(), "Новый шрифт не добавлен. Возможно это имя занято", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getContext().getResources().getString(R.string.NOT_ADD_FONT_IF_NAME_CLONE), Toast.LENGTH_SHORT).show();
                         }
                     });
         }else {
-            Toast.makeText(getContext(),"Файл должен быть с расширением ttf или otf(в конце названия есть .ttf или .otf)",Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), getContext().getResources().getString(R.string.FILE_FONT),Toast.LENGTH_LONG).show();
         }
     }
 
@@ -219,7 +219,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
                 .subscribe(list -> {
                     if(list.size()>0){
                         ((AdapterShrift)getListShrift().getAdapter()).setFonts(list);
-                        Toast.makeText(getContext(),"Шрифт добавлен. Найди его в списке",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getContext().getResources().getString(R.string.FONT_ADD_FIND_IN_LIST),Toast.LENGTH_SHORT).show();
                     }
 
                 });
@@ -235,9 +235,9 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
                 .subscribe(list -> {
                     if(list.size()>0){
                         ((AdapterShrift)getListShrift().getAdapter()).setFonts(list);
-                        Toast.makeText(getContext(),"Дополнительные шрифты найдены",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getContext().getResources().getString(R.string.ADD_FONTS_FIND),Toast.LENGTH_SHORT).show();
                     }else {
-                        Toast.makeText(getContext(),"Дополнительных шрифтов нет. Скачай на устройство шрифты с расширением ttf или otf и добавь их",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext(), getContext().getResources().getString(R.string.ADD_FONTS_NOT_FIND),Toast.LENGTH_LONG).show();
                     }
                 });
     }

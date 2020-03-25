@@ -4,19 +4,17 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.documentfile.provider.DocumentFile;
 
+import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.Massages;
@@ -32,11 +30,8 @@ import java.io.OutputStream;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
 import io.reactivex.functions.Consumer;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
 
@@ -89,7 +84,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                 } else {
                     AllPermissions.create().activity(getActivity()).callDialog(AllPermissions.STORAGE, REQUEST_SAVED);
                 }
-            } else Massages.SHOW_MASSAGE(getContext(), "Создай холст");
+            } else Massages.SHOW_MASSAGE(getContext(), getContext().getResources().getString(R.string.CREATE_IMG));
 //        }else Massages.SHOW_MASSAGE(getContext(),"Подключи SD card или накопитель и перезапусти приложение");
     }
 
@@ -98,7 +93,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
         super.saveNet(v);
         /*расшарить изображение*/
         if(RepDraw.get().isImg()) share();
-        else Massages.SHOW_MASSAGE(getContext(), "Создай холст");
+        else Massages.SHOW_MASSAGE(getContext(), getContext().getResources().getString(R.string.CREATE_IMG));
     }
 
     @Override
@@ -110,7 +105,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
             } else {
                 AllPermissions.create().activity(getActivity()).callDialog(AllPermissions.STORAGE, REQUEST_SAVED);
             }
-        }else Massages.SHOW_MASSAGE(getContext(), "Создай холст");
+        }else Massages.SHOW_MASSAGE(getContext(), getContext().getResources().getString(R.string.CREATE_IMG));
     }
 
     @SuppressLint("CheckResult")
@@ -126,9 +121,9 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                    if(str.equals(NOT_DIR)){
                        requestFold();
                    }else if(str.equals(ZHOPA)){
-                       Massages.SHOW_MASSAGE(getContext(), "Изображение не сохранено. Проверь память устройства");
+                       Massages.SHOW_MASSAGE(getContext(), getContext().getResources().getString(R.string.IMAGE_NOT_SAVED_CHECK_STORAGE));
                    } else {
-                       Massages.SHOW_MASSAGE(getContext(), "Изображение сохранено");
+                       Massages.SHOW_MASSAGE(getContext(), getContext().getResources().getString(R.string.IMAGE_SAVED));
                        reportSave(str);
                    }
                }
@@ -206,7 +201,7 @@ public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
 
         }else if(requestCode==REQUEST_FOLDER){
             if(createFolder(data.getData()))saveAPI29();
-            else Massages.SHOW_MASSAGE(getContext(), "Изображение не сохранено. Проверь папку сохранения");
+            else Massages.SHOW_MASSAGE(getContext(), getContext().getResources().getString(R.string.IMAGE_NOT_SAVED_CHECK_FOLDER));
         }
         }super.onActivityResult(requestCode, resultCode, data);
     }

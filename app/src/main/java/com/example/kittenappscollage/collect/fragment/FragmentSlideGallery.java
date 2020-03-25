@@ -14,7 +14,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentSlideGallery extends FragmentGallery implements View.OnClickListener {
 

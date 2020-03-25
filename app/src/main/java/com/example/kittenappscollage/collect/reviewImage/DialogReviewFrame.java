@@ -12,8 +12,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,7 +27,6 @@ import com.example.kittenappscollage.helpers.Massages;
 
 import java.util.ArrayList;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class DialogReviewFrame extends DialogFragment implements SelectorOperationReview ,SelectorFrameFragments{
 

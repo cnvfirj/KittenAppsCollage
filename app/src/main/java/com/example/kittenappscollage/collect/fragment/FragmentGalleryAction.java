@@ -5,7 +5,6 @@ import android.widget.ImageView;
 import com.example.kittenappscollage.helpers.App;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentGalleryAction extends FragmentSelectedGallery{
 
