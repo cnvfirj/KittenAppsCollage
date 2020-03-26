@@ -49,6 +49,8 @@ import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 public class DialogSelectShrift extends DialogSelecledTextFragment {
 
+    private final int REQUEST_ADD_FONT = 656;
+
 
     private int sourceFont;
 
@@ -128,17 +130,15 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
     @Override
     protected void searchFonts(ImageView view) {
         super.searchFonts(view);
-//        view.setActivated(!view.isActivated());
-//        slideTextInstruct(!view.isActivated(),500);
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("application/octet-stream");
-        startActivityForResult(intent, 656);
+        startActivityForResult(intent, REQUEST_ADD_FONT);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode==656){
+        if(requestCode==REQUEST_ADD_FONT){
             if(resultCode== Activity.RESULT_OK){
                 threadAddFont(data);
             }else {
@@ -243,30 +243,37 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
     }
 
     private ArrayList<String> scanFonts(){
-        String fold = ContextCompat.getExternalFilesDirs(getContext(), null)[0].getAbsolutePath()+"/fonts";
-        File[] files = new File(fold).listFiles();
-        if(files.length>0) {
-            Arrays.sort(files, new Comparator<File>() {
-                @Override
-                public int compare(File o1, File o2) {
-                    Long m1 = o1.lastModified();
-                    Long m2 = o2.lastModified();
-                    return m1.compareTo(m2);
+//        String fold = ContextCompat.getExternalFilesDirs(getContext(), null)[0].getAbsolutePath()+"/fonts";
+        File fold = new File(ContextCompat.getExternalFilesDirs(getContext(), null)[0].getAbsolutePath()+"/fonts");
+        boolean success = true;
+        if(!fold.exists()){
+            success = fold.mkdirs();
+        }
+        if(success) {
+            File[] files = fold.listFiles();
+            if (files.length > 0) {
+                Arrays.sort(files, new Comparator<File>() {
+                    @Override
+                    public int compare(File o1, File o2) {
+                        Long m1 = o1.lastModified();
+                        Long m2 = o2.lastModified();
+                        return m1.compareTo(m2);
+                    }
+                });
+                ArrayList<String> fonts = new ArrayList<>();
+                for (File f : files) {
+                    fonts.add(f.getAbsolutePath());
                 }
-            });
-            ArrayList<String>fonts = new ArrayList<>();
-            for (File f : files) {
-                fonts.add(f.getAbsolutePath());
-            }
-            ArrayList<String>adapt = ((AdapterShrift)getListShrift().getAdapter()).getFonts();
-            boolean contain = false;
-            for(int i=fonts.size()-1;i>=0;i++){
-                if(!adapt.contains(fonts.get(i))){
-                    contain = true;
-                    break;
+                ArrayList<String> adapt = ((AdapterShrift) getListShrift().getAdapter()).getFonts();
+                boolean contain = false;
+                for (int i = fonts.size() - 1; i >= 0; i++) {
+                    if (!adapt.contains(fonts.get(i))) {
+                        contain = true;
+                        break;
+                    }
                 }
+                if (contain) return fonts;
             }
-            if(contain)return fonts;
         }
         return new ArrayList<String>();
     }
