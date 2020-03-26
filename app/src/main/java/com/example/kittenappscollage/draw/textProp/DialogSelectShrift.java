@@ -51,15 +51,11 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
 
     private final int REQUEST_ADD_FONT = 656;
 
-
     private int sourceFont;
 
     private String pathFont;
 
     private InputMethodManager imm;
-
-//    private TextView instruct;
-
 
     public static DialogSelectShrift get(){
         DialogSelectShrift d = new DialogSelectShrift();
@@ -76,9 +72,6 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        instruct = view.findViewById(R.id.dialog_edit_text_instruct);
-//        instruct.setText("Скачай на устройство шрифт и найди его здесь");
-//        slideTextInstruct(true,0);
         enableBarAngle(RepDraw.get().isTextItalic());
         getBarAngle().setProgress(computeProgressBar());
         getPresent().selFill(RepDraw.get().isTextFill());
