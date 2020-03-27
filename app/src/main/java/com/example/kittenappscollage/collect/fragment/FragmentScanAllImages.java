@@ -115,32 +115,37 @@ public class FragmentScanAllImages extends Fragment {
         final String keyAndPerm = p.uriPerm;
         final String name = p.name;
         final String id = ""+p.id;
+             Cursor cursor = null;
+        try {
+            cursor = getContext().getContentResolver().query(
+                    question(),
+                    new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_MODIFIED, MediaStore.Images.Media.MIME_TYPE},
+                    MediaStore.Images.Media.BUCKET_ID + " = ?",
+                    new String[]{id},
+                    MediaStore.Images.Media.DATE_MODIFIED);
 
-        Cursor cursor = getContext().getContentResolver().query(
-                question(),
-                new String[]{MediaStore.Images.Media._ID, MediaStore.Images.Media.DATE_MODIFIED, MediaStore.Images.Media.MIME_TYPE},
-                MediaStore.Images.Media.BUCKET_ID + " = ?",
-                new String[]{id},
-                MediaStore.Images.Media.DATE_MODIFIED);
-
-        int iterator = 0;
-        if(cursor.getCount()==0){
-            WorkDBPerms.get(getContext()).delItem(keyAndPerm);
-            return;
-        }
-        final int col_id = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
-        final int col_mime = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE);
-        final int col_date = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED);
-
-        while (cursor.moveToNext()){
-            final String type = cursor.getString(col_mime);
-            if (type.equals("image/png") || type.equals("image/jpeg") || type.equals("image/jpg")) {
-                final String img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cursor.getLong(col_id)).toString();
-                final long date = cursor.getLong(col_date);
-                addInScan(keyAndPerm,img,name,keyAndPerm,date);
-                if(iterator%10==0)emitter.onNext(getListImagesInFolders());
+            int iterator = 0;
+            if (cursor.getCount() == 0) {
+                WorkDBPerms.get(getContext()).delItem(keyAndPerm);
+                return;
             }
-            iterator++;
+            final int col_id = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+            final int col_mime = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.MIME_TYPE);
+            final int col_date = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED);
+
+            while (cursor.moveToNext()) {
+                final String type = cursor.getString(col_mime);
+                if (type.equals("image/png") || type.equals("image/jpeg") || type.equals("image/jpg")) {
+                    final String img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, cursor.getLong(col_id)).toString();
+                    final long date = cursor.getLong(col_date);
+                    addInScan(keyAndPerm, img, name, keyAndPerm, date);
+                    if (iterator % 10 == 0) emitter.onNext(getListImagesInFolders());
+                }
+                iterator++;
+            }
+            /*а надо ли?*/
+        }finally {
+            if(cursor!=null)cursor.close();
         }
 
 
@@ -168,23 +173,28 @@ public class FragmentScanAllImages extends Fragment {
         /*здесь выясняем айди папки и потом закидываем его в бд*/
         String nameImg = split[SavedKollagesFragmentDraw.INDEX_NAME_IMG];
         String key = split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD];
-        Cursor c = getContext().getContentResolver().query(
-                question(),
-                new String[]{MediaStore.Images.Media.BUCKET_ID,MediaStore.Images.Media._ID},
-                MediaStore.Images.Media.DISPLAY_NAME+" = ?",
-                new String[]{nameImg},
-                null);
+        Cursor c = null;
+        try {
+            c = getContext().getContentResolver().query(
+                    question(),
+                    new String[]{MediaStore.Images.Media.BUCKET_ID, MediaStore.Images.Media._ID},
+                    MediaStore.Images.Media.DISPLAY_NAME + " = ?",
+                    new String[]{nameImg},
+                    null);
 
-        c.moveToFirst();
-        WorkDBPerms.get(getContext()).addId(key,c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID)));
-        final String img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media._ID))).toString();
-        addImgCollect(
-                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
-                img,
-                split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD],
-                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
-                date);
-        setListImagesInFolders(getListImagesInFolders());
+            c.moveToFirst();
+            WorkDBPerms.get(getContext()).addId(key, c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID)));
+            final String img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media._ID))).toString();
+            addImgCollect(
+                    split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+                    img,
+                    split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD],
+                    split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+                    date);
+            setListImagesInFolders(getListImagesInFolders());
+        }finally {
+            if(c!=null)c.close();
+        }
     }
 
 

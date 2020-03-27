@@ -1,8 +1,10 @@
 package com.example.kittenappscollage.collect.fragment;
 
 import android.annotation.SuppressLint;
+import android.database.Cursor;
 import android.net.Uri;
 import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 
 import androidx.documentfile.provider.DocumentFile;
 
@@ -166,6 +168,17 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
     }
 
     private int delFile(Uri uri){
+        LYTE("vol "+uri.toString());
+        Cursor c = getContext().getContentResolver().query(uri,new String[]{MediaStore.Images.Media.DISPLAY_NAME},null,null,null);
+        c.moveToFirst();
+        String vol = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
+        LYTE("vol "+vol);
+//        try {
+//            DocumentsContract.deleteDocument(getContext().getContentResolver(),uri);
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+        c.close();
         return getContext().getContentResolver().delete(uri,null,null);
     }
 
