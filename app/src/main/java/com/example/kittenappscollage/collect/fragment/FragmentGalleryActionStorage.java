@@ -1,6 +1,7 @@
 package com.example.kittenappscollage.collect.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.ContentUris;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.DocumentsContract;
@@ -17,7 +18,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.CollationKey;
+import java.text.Collator;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import io.reactivex.Observable;
@@ -74,6 +79,7 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
                     .compose(new ThreadTransformers.InputOutput<>())
                     .doOnComplete(() -> {
                         Massages.SHOW_MASSAGE(getContext(), getContext().getResources().getString(R.string.SELECTED_IMAGES_DELETED));
+                        /*запустит сервис физического удаления*/
                     }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
         }
     }
@@ -138,12 +144,52 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
     }
 
     private void deleteImages(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
-        for (String img:getSelectFiles()){
-            if(delFile(Uri.parse(img))>0) {
-                getListImagesInFolders().get(key).remove(img);
-                emitter.onNext(getListImagesInFolders());
-            }
-        }
+          DocumentFile[]folder = DocumentFile.fromTreeUri(getContext(),Uri.parse(key)).listFiles();
+          String[] args = new String[getSelectFiles().size()];
+          for (int i=0;i<args.length;i++){
+              args[i] = Uri.parse(getSelectFiles().get(i)).getLastPathSegment();
+              LYTE("last seg "+args[i]);
+          }
+          String select = "";
+          for (int i=0;i<args.length;i++){
+              if(i>0)select = select+" AND ";
+              select = select+ MediaStore.Images.Media._ID+" = ?";
+          }
+        Arrays.sort(folder, (o1, o2) -> {
+            final Long l1 = o1.lastModified();
+            final Long l2 = o2.lastModified();
+            return l1.compareTo(l2);
+        });
+          int index = 0;
+          Cursor c = null;
+          try {
+              c = getContext().getContentResolver().query(question(),
+                      new String[]{MediaStore.Images.Media.DISPLAY_NAME,MediaStore.Images.Media._ID},
+                      select,
+                      args,
+                      MediaStore.Images.Media.DATE_MODIFIED);
+              LYTE("count "+c.getCount());
+              final int col_name = c.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME);
+              final int col_id = c.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
+              while (c.moveToNext()){
+//                  index = delImg(index,c.getString(col_name),folder);
+                  LYTE("del "+c.getLong(col_id)+"|"+c.getString(col_name));
+//                  if(index>-1){
+//                      final String img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, c.getLong(col_id)).toString();
+//                      getListImagesInFolders().get(key).remove(img);
+//                      emitter.onNext(getListImagesInFolders());
+//                  }
+              }
+          }finally {
+              if(c!=null)c.close();
+          }
+
+//        for (String img:getSelectFiles()){
+//            if(delFile(Uri.parse(img))>0) {
+//                getListImagesInFolders().get(key).remove(img);
+//                emitter.onNext(getListImagesInFolders());
+//            }
+//        }
         emitter.onComplete();
     }
 
@@ -167,18 +213,19 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
         emitter.onComplete();
     }
 
+    private int delImg(int index, String name, DocumentFile[] list){
+        int d = -1;
+            for (int i=index;i<list.length;i++){
+                if(name.equals(list[i].getName())){
+                    if(delDocFile(list[i].getUri())){
+                        d = i+1;
+                    } else d = -1;
+                }
+            }
+        return d;
+    }
+
     private int delFile(Uri uri){
-        LYTE("vol "+uri.toString());
-        Cursor c = getContext().getContentResolver().query(uri,new String[]{MediaStore.Images.Media.DISPLAY_NAME},null,null,null);
-        c.moveToFirst();
-        String vol = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
-        LYTE("vol "+vol);
-//        try {
-//            DocumentsContract.deleteDocument(getContext().getContentResolver(),uri);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-        c.close();
         return getContext().getContentResolver().delete(uri,null,null);
     }
 
