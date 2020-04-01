@@ -29,7 +29,7 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
     @Override
     protected void applyDeleteSelectedStorage() {
         super.applyDeleteSelectedStorage();
-         threadDelImages(getKey());
+        threadDelImages(getKey());
 
     }
 
@@ -74,7 +74,6 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
                     .doOnComplete(() -> {
                         /*отправить список names и юри f на доудаление в службу*/
                         Massages.SHOW_MASSAGE(getContext(), getContext().getResources().getString(R.string.SELECTED_IMAGES_DELETED));
-
                     }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
         }
     }
@@ -138,16 +137,15 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
 //
 //    }
 
-    private void deleteImages(String key,ArrayList<String>names,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) {
-        for (String img : getSelectFiles()) {
+    private void deleteImages(String key,ArrayList<String>names,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+        for (String img:getSelectFiles()){
             final String name = delFile(Uri.parse(img));
-            if (!name.equals("(!)")) {
+            if(!name.equals("(!)")){
                 names.add(name);
                 getListImagesInFolders().get(key).remove(img);
                 emitter.onNext(getListImagesInFolders());
             }
         }
-        emitter.onNext(getListImagesInFolders());
         emitter.onComplete();
     }
 
@@ -178,6 +176,7 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
         Cursor c = getContext().getContentResolver().query(uri,new String[]{MediaStore.Images.Media.DISPLAY_NAME},null,null,null);
         c.moveToFirst();
         String vol = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
+        LYTE("vol "+vol);
 //        try {
 //            DocumentsContract.deleteDocument(getContext().getContentResolver(),uri);
 //        } catch (FileNotFoundException e) {
@@ -186,10 +185,10 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
         c.close();
         if(getContext().getContentResolver().delete(uri,null,null)>0)return vol;
         else return "(!)";
+//        return getContext().getContentResolver().delete(uri,null,null);
     }
 
     private boolean delDocFile(Uri uri){
-
         boolean b = false;
         try {
             b = DocumentsContract.deleteDocument(getContext().getContentResolver(),uri);
@@ -202,6 +201,14 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
             b = true;
         }
         return b;
+    }
+
+    private boolean delDocFile(DocumentFile df){
+        boolean d = false;
+        if(df.exists()&&df.isFile()){
+            d = df.delete();
+        }
+        return d;
     }
 
     protected void clearLists(String key){
@@ -224,3 +231,4 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
     }
 
 }
+

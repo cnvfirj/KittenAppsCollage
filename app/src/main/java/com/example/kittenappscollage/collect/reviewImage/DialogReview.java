@@ -20,13 +20,10 @@ import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import java.util.ArrayList;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Consumer;
 
 import static com.example.kittenappscollage.collect.reviewImage.DialogReviewFrame.KEY_ARR;
 import static com.example.kittenappscollage.collect.reviewImage.DialogReviewFrame.KEY_POS;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class DialogReview extends Fragment implements View.OnClickListener {
 

@@ -1,7 +1,6 @@
 package com.example.kittenappscollage.collect.adapters;
 
 import android.content.Context;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 

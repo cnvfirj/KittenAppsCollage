@@ -11,10 +11,6 @@ import java.net.URL;
 
 import io.reactivex.Observable;
 
-/**
- * Created by Admin on 20.01.2018.
- */
-
 public class CreateBitmap {
 
     public static Bitmap createNew(Point size){

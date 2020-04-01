@@ -1,9 +1,7 @@
 package com.example.kittenappscollage.collect.adapters;
 
-import android.content.ContentUris;
 import android.content.Context;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.kittenappscollage.R;
 
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ListenLoadImgAdapter extends RecyclerView.Adapter<ListenLoadImgAdapter.ImgHolder> implements Serializable{
 

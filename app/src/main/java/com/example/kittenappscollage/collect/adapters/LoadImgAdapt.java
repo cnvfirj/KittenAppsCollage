@@ -7,11 +7,6 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-
 public class LoadImgAdapt extends ListenLoadImgAdapter {
 
     private FrameLayout.LayoutParams params;

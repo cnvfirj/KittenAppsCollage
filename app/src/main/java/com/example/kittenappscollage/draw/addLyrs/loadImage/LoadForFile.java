@@ -3,12 +3,10 @@ package com.example.kittenappscollage.draw.addLyrs.loadImage;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.PointF;
 import android.net.Uri;
 import android.provider.MediaStore;
 
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
-import com.example.mutmatrix.DeformMat;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
