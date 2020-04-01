@@ -14,9 +14,6 @@ import com.example.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,8 +25,6 @@ import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapt
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
-
-    private final int REQUEST_FOLDER = 903;
 
     @Override
     protected void applyDeleteSelectedStorage() {
@@ -47,13 +42,15 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
 
     @SuppressLint("CheckResult")
     private void threadDelFold(String fold){
-     Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter ->
-             deleteImagesAndFold(fold,emitter))
-             .compose(new ThreadTransformers.InputOutput<>())
-             .doOnComplete(() -> {
-
-                 Massages.SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.FOLDER_DELETE));
-             }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
+        ArrayList<String>names = new ArrayList<>();
+        final Uri f = Uri.parse(getKey());
+        Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter ->
+                deleteImagesAndFold(fold,names,emitter))
+                .compose(new ThreadTransformers.InputOutput<>())
+                .doOnComplete(() -> {
+                    /*отправить список names и юри f на доудаление в службу*/
+                    Massages.SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.FOLDER_DELETE));
+                }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
     }
 
     @SuppressLint("CheckResult")
@@ -69,11 +66,15 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
 
             threadDelFold(key);
         }else {
+            ArrayList<String>names = new ArrayList<>();
+            final Uri f = Uri.parse(getKey());
             Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter ->
-                    deleteImages(key, emitter))
+                    deleteImages(key, names,emitter))
                     .compose(new ThreadTransformers.InputOutput<>())
                     .doOnComplete(() -> {
+                        /*отправить список names и юри f на доудаление в службу*/
                         Massages.SHOW_MASSAGE(getContext(), getContext().getResources().getString(R.string.SELECTED_IMAGES_DELETED));
+
                     }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
         }
     }
@@ -118,39 +119,44 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
 //
 //    }
 
-    private void saveImg(Uri uri, DocumentFile fold) throws FileNotFoundException {
-        InputStream is = getContext().getContentResolver().openInputStream(uri);
-        DocumentFile old = DocumentFile.fromSingleUri(getContext(),uri);
-        DocumentFile img = fold.createFile(old.getType(), old.getName());
-        OutputStream out = getContext().getContentResolver().openOutputStream(img.getUri());
-        byte[] buffer = new byte[8 * 1024];
-        int bytesRead;
-            try {
-                while ((bytesRead = is.read(buffer)) != -1) {
-                    out.write(buffer, 0, bytesRead);
-                }
-                is.close();
-                out.close();
-            }catch (IOException e){
+//    private void saveImg(Uri uri, DocumentFile fold) throws FileNotFoundException {
+//        InputStream is = getContext().getContentResolver().openInputStream(uri);
+//        DocumentFile old = DocumentFile.fromSingleUri(getContext(),uri);
+//        DocumentFile img = fold.createFile(old.getType(), old.getName());
+//        OutputStream out = getContext().getContentResolver().openOutputStream(img.getUri());
+//        byte[] buffer = new byte[8 * 1024];
+//        int bytesRead;
+//            try {
+//                while ((bytesRead = is.read(buffer)) != -1) {
+//                    out.write(buffer, 0, bytesRead);
+//                }
+//                is.close();
+//                out.close();
+//            }catch (IOException e){
+//
+//            }
+//
+//    }
 
-            }
-
-    }
-
-    private void deleteImages(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
-        for (String img:getSelectFiles()){
-            if(delFile(Uri.parse(img))>0) {
+    private void deleteImages(String key,ArrayList<String>names,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) {
+        for (String img : getSelectFiles()) {
+            final String name = delFile(Uri.parse(img));
+            if (!name.equals("(!)")) {
+                names.add(name);
                 getListImagesInFolders().get(key).remove(img);
                 emitter.onNext(getListImagesInFolders());
             }
         }
+        emitter.onNext(getListImagesInFolders());
         emitter.onComplete();
     }
 
-    private void deleteImagesAndFold(String key,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+    private void deleteImagesAndFold(String key,ArrayList<String>names,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
         for (String img:images){
-            if(delFile(Uri.parse(img))>0) {
+            final String name = delFile(Uri.parse(img));
+            if(!name.equals("(!)")){
+                names.add(name);
                 getListImagesInFolders().get(key).remove(img);
                 emitter.onNext(getListImagesInFolders());
             }
@@ -167,19 +173,19 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
         emitter.onComplete();
     }
 
-    private int delFile(Uri uri){
-        LYTE("vol "+uri.toString());
+    private String delFile(Uri uri){
+        /*ищем имя файла*/
         Cursor c = getContext().getContentResolver().query(uri,new String[]{MediaStore.Images.Media.DISPLAY_NAME},null,null,null);
         c.moveToFirst();
         String vol = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
-        LYTE("vol "+vol);
 //        try {
 //            DocumentsContract.deleteDocument(getContext().getContentResolver(),uri);
 //        } catch (FileNotFoundException e) {
 //            e.printStackTrace();
 //        }
         c.close();
-        return getContext().getContentResolver().delete(uri,null,null);
+        if(getContext().getContentResolver().delete(uri,null,null)>0)return vol;
+        else return "(!)";
     }
 
     private boolean delDocFile(Uri uri){
