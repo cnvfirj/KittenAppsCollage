@@ -4,11 +4,6 @@ import android.content.Context;
 
 import java.io.File;
 
-
-/**
- * Created by Admin on 11.02.2018.
- */
-
 public class DeleteImageToFile {
 
 

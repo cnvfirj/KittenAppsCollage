@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.util.Pair;
 
 import androidx.documentfile.provider.DocumentFile;
 
@@ -16,6 +17,7 @@ import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -42,13 +44,13 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
 
     @SuppressLint("CheckResult")
     private void threadDelFold(String fold){
-        ArrayList<String>names = new ArrayList<>();
         final Uri f = Uri.parse(getKey());
+        HashMap<Long,String>sort = new HashMap<>();
         Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter ->
-                deleteImagesAndFold(fold,names,emitter))
+                deleteImagesAndFold(fold,sort,emitter))
                 .compose(new ThreadTransformers.InputOutput<>())
                 .doOnComplete(() -> {
-                    /*отправить список names и юри f на доудаление в службу*/
+                    /*отправить map sort и uri f на доудаление в службу*/
                     Massages.SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.FOLDER_DELETE));
                 }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
     }
@@ -66,13 +68,13 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
 
             threadDelFold(key);
         }else {
-            ArrayList<String>names = new ArrayList<>();
+            HashMap<Long,String>sort = new HashMap<>();
             final Uri f = Uri.parse(getKey());
             Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter ->
-                    deleteImages(key, names,emitter))
+                    deleteImages(key, sort,emitter))
                     .compose(new ThreadTransformers.InputOutput<>())
                     .doOnComplete(() -> {
-                        /*отправить список names и юри f на доудаление в службу*/
+                        /*отправить map sort и uri f на доудаление в службу*/
                         Massages.SHOW_MASSAGE(getContext(), getContext().getResources().getString(R.string.SELECTED_IMAGES_DELETED));
                     }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
         }
@@ -137,11 +139,9 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
 //
 //    }
 
-    private void deleteImages(String key,ArrayList<String>names,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+    private void deleteImages(String key,HashMap<Long,String> sort,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         for (String img:getSelectFiles()){
-            final String name = delFile(Uri.parse(img));
-            if(!name.equals("(!)")){
-                names.add(name);
+            if(delFile(Uri.parse(img),sort)){
                 getListImagesInFolders().get(key).remove(img);
                 emitter.onNext(getListImagesInFolders());
             }
@@ -149,12 +149,10 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
         emitter.onComplete();
     }
 
-    private void deleteImagesAndFold(String key,ArrayList<String>names,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+    private void deleteImagesAndFold(String key,HashMap<Long,String> sort,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
         for (String img:images){
-            final String name = delFile(Uri.parse(img));
-            if(!name.equals("(!)")){
-                names.add(name);
+            if(delFile(Uri.parse(img),sort)){
                 getListImagesInFolders().get(key).remove(img);
                 emitter.onNext(getListImagesInFolders());
             }
@@ -171,21 +169,20 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
         emitter.onComplete();
     }
 
-    private String delFile(Uri uri){
+    private boolean delFile(Uri uri, HashMap<Long,String>sort){
         /*ищем имя файла*/
-        Cursor c = getContext().getContentResolver().query(uri,new String[]{MediaStore.Images.Media.DISPLAY_NAME},null,null,null);
-        c.moveToFirst();
-        String vol = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
-        LYTE("vol "+vol);
-//        try {
-//            DocumentsContract.deleteDocument(getContext().getContentResolver(),uri);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-        c.close();
-        if(getContext().getContentResolver().delete(uri,null,null)>0)return vol;
-        else return "(!)";
-//        return getContext().getContentResolver().delete(uri,null,null);
+        Cursor c = null;
+        try {
+            c = getContext().getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DISPLAY_NAME, MediaStore.Images.Media.DATE_MODIFIED}, null, null, null);
+            c.moveToFirst();
+           final String vol = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
+           final Long mod = c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED));
+           sort.put(mod,vol);
+        }finally {
+            if(c!=null)c.close();
+        }
+        return getContext().getContentResolver().delete(uri,null,null)>0;
+
     }
 
     private boolean delDocFile(Uri uri){
