@@ -1,12 +1,29 @@
 package com.example.kittenappscollage.draw.saveSteps;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.app.TaskStackBuilder;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.IBinder;
+import android.provider.SyncStateContract;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import com.example.kittenappscollage.MainActivity;
+import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.File;
@@ -18,6 +35,9 @@ import java.util.Objects;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.functions.Action;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ClearCatch extends Service {
 
@@ -34,7 +54,7 @@ public class ClearCatch extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         String fold = intent.getStringExtra(KEY_FOLD);
         clearSelect(fold);
-        return super.onStartCommand(intent, flags, startId);
+        return START_STICKY;
     }
 
     @SuppressLint("CheckResult")
@@ -46,17 +66,57 @@ public class ClearCatch extends Service {
         try {
             InputStream fis = new FileInputStream(data[0]);
             ObjectInputStream ois = new ObjectInputStream(fis);
-
            state = (State) ois.readObject();
-
             ois.close();
         } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
 
         if(state!=null){
-            requestDlelteSelectInFold(state).subscribe(aBoolean -> stopSelf());
+            startForegroundService();
+            requestDlelteSelectInFold(state)
+                    .doOnComplete(() -> {
+                        stopForeground(true);
+                        stopSelf();
+                    })
+                    .subscribe(aBoolean -> stopSelf());
         }
+    }
+
+
+    private void startForegroundService() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createNotificationChannel("my_service", "My Background Service");
+        }
+            startForeground(1, buildNotification("my_service"));
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void createNotificationChannel(String channelId, String channelName){
+
+        NotificationChannel chan = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_HIGH);
+        chan.setLightColor(Color.BLUE);
+        chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        assert manager != null;
+        manager.createNotificationChannel(chan);
+    }
+
+    private Notification buildNotification(String channelId) {
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(this, channelId)
+                        .setSmallIcon(R.drawable.icon_clear_link)
+                        .setContentTitle("Киттен колаж трудится")
+                        .setContentText("Временные файлы удаляются").setShowWhen(true)
+                        .setOngoing(true)
+                        .setProgress(100, 0, true)
+                        .setPriority(NotificationCompat.PRIORITY_MAX);
+
+//        NotificationManager notificationManager =
+//                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+//        notificationManager.notify(1, notification);
+        return builder.build();
+
     }
 
     private Observable<Boolean> requestDlelteSelectInFold(State state){
@@ -71,6 +131,7 @@ public class ClearCatch extends Service {
         for (File file:files){
             if(!file.getAbsolutePath().equals(state.getPathImg())&&
             !file.getAbsolutePath().equals(state.getPathLyr())){
+//                LYTE("delete file "+file.getName());
                 file.delete();
             }
         }

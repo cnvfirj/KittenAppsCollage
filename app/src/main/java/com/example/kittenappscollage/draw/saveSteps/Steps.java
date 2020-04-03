@@ -66,8 +66,6 @@ public class Steps {
         clearStacks();
         ClearCatch.clearAll(COMMON_FOLD+FOLD_STEPS);
         ClearCatch.clearAll(COMMON_FOLD+FOLD_DATA);
-
-
     }
 
     public String getFoldData(){
