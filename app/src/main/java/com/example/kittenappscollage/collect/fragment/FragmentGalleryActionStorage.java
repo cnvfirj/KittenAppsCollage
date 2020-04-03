@@ -51,6 +51,7 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
                 .compose(new ThreadTransformers.InputOutput<>())
                 .doOnComplete(() -> {
                     /*отправить map sort и uri f на доудаление в службу*/
+                    extension(f,sort);
                     Massages.SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.FOLDER_DELETE));
                 }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
     }
@@ -75,6 +76,7 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
                     .compose(new ThreadTransformers.InputOutput<>())
                     .doOnComplete(() -> {
                         /*отправить map sort и uri f на доудаление в службу*/
+                        extension(f,sort);
                         Massages.SHOW_MASSAGE(getContext(), getContext().getResources().getString(R.string.SELECTED_IMAGES_DELETED));
                     }).subscribe(stringArrayListHashMap -> setListImagesInFolders(stringArrayListHashMap));
         }
@@ -149,6 +151,7 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
         emitter.onComplete();
     }
 
+
     private void deleteImagesAndFold(String key,HashMap<Long,String> sort,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
         for (String img:images){
@@ -167,6 +170,10 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
         }
         emitter.onNext(getListImagesInFolders());
         emitter.onComplete();
+    }
+
+    private void extension(Uri uri,HashMap<Long,String>map){
+
     }
 
     private boolean delFile(Uri uri, HashMap<Long,String>sort){
