@@ -1,6 +1,7 @@
 package com.example.kittenappscollage.collect.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.DocumentsContract;
@@ -10,14 +11,18 @@ import android.util.Pair;
 import androidx.documentfile.provider.DocumentFile;
 
 import com.example.kittenappscollage.R;
+import com.example.kittenappscollage.collect.DeletedImagesInList;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -173,7 +178,18 @@ public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
     }
 
     private void extension(Uri uri,HashMap<Long,String>map){
+       Long[] mut = new Long[map.size()];
+       String[] names = new String[map.size()];
+       map.keySet().toArray(mut);
+       Arrays.sort(mut);
+       for (int i=0;i<mut.length;i++){
+           names[i] = map.get(mut[i]);
+       }
 
+        Intent i = new Intent(getContext(), DeletedImagesInList.class);
+        i.setData(uri);
+        i.putExtra(DeletedImagesInList.KEY_NAMES,names);
+        getContext().startService(i);
     }
 
     private boolean delFile(Uri uri, HashMap<Long,String>sort){

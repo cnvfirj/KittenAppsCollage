@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         BackNextStep.get().clearStacks();
         Intent intent = new Intent(this, ClearCatch.class);
         intent.putExtra(ClearCatch.KEY_FOLD, BackNextStep.get().getFoldData());
-        App.getMain().startService(intent);
+        startService(intent);
     }
 
     private void requestOldProj(){
