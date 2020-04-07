@@ -25,15 +25,10 @@ import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.io.FileNotFoundException;
 import java.util.Arrays;
-import java.util.Comparator;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class DeletedImagesInList extends Service {
 
@@ -60,9 +55,9 @@ public class DeletedImagesInList extends Service {
 
     private void startForegroundService() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createNotificationChannel("my_service", "Delete files in device");
+            createNotificationChannel("my_service_delete", "Delete files in device");
         }
-        startForeground(2, buildNotification("my_service"));
+        startForeground(2, buildNotification("my_service_delete"));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -95,11 +90,11 @@ public class DeletedImagesInList extends Service {
             clearDeletedList(data,names,emitter);
             emitter.onComplete();
         }).compose(new ThreadTransformers.InputOutput<>())
-                .doOnComplete(() -> {
+          .doOnComplete(() -> {
                     stopForeground(true);
                     stopSelf();
                 })
-        .subscribe(pair -> {
+          .subscribe(pair -> {
                 if(!pair.second)
                 Massages.SHOW_MASSAGE(getApplicationContext(),
                         getApplicationContext().getResources().getString(R.string.ERROR_DELETE_FILE)+pair.first);
