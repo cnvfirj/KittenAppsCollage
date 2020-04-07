@@ -119,17 +119,17 @@ public class HelpFill {
 
     private void searchCheckColor(int startColor){
         hCheckColor = new int[4];
-        if(hTypeFill) {
+//        if(hTypeFill) {
             hCheckColor[0] = Color.red(startColor);
             hCheckColor[1] = Color.green(startColor);
             hCheckColor[2] = Color.blue(startColor);
             hCheckColor[3] = Color.alpha(startColor);
-        }else {
-            hCheckColor[0] = Color.red(RepDraw.get().getColor());
-            hCheckColor[1] = Color.green(RepDraw.get().getColor());
-            hCheckColor[2] = Color.blue(RepDraw.get().getColor());
-            hCheckColor[3] = Color.alpha(RepDraw.get().getColor());
-        }
+//        }else {
+//            hCheckColor[0] = Color.red(RepDraw.get().getColor());
+//            hCheckColor[1] = Color.green(RepDraw.get().getColor());
+//            hCheckColor[2] = Color.blue(RepDraw.get().getColor());
+//            hCheckColor[3] = Color.alpha(RepDraw.get().getColor());
+//        }
     }
 
     private void linearFill(int x, int y){
