@@ -65,4 +65,5 @@
     <string name="SELECT_POINT_PIPETTE">Выбери точку на заполненной и не прозрачной области рисунка</string>
     <string name="REQUEST_LOAD_OLD_PROJECT">У тебя остался не завершенный проект</string>
     <string name="OPEN_OLD_PROJECT">Открыть его? В противном случае он будет уничтожен.</string>
+    <string name="ERROR_DELETE_FILE">Сбой в удалении из устройства файлa - </string>
 </resources>

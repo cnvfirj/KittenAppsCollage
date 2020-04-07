@@ -75,7 +75,7 @@ public class ClearCatch extends Service {
 
     private void startForegroundService() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            createNotificationChannel("my_service", "My Background Service");
+            createNotificationChannel("my_service", "clear temp files");
         }
             startForeground(1, buildNotification("my_service"));
     }
