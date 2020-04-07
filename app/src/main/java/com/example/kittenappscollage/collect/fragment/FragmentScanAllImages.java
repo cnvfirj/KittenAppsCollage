@@ -45,26 +45,16 @@ public class FragmentScanAllImages extends Fragment {
 
     private boolean blockScan;
 
-    private MainSwitching mainSwitching;
-
-
-//    private ListenMedia observer;
-//    private Handler handler;
 
     @Override
     public void onResume() {
         super.onResume();
-        mainSwitching = (MainSwitching)getContext();
-//        handler = new Handler();
-//        observer = new ListenMedia(handler).setFragment(this).setContext(getContext());
-//        getContext().getContentResolver().registerContentObserver(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,true,observer);
 
     }
 
     @Override
     public void onPause() {
         super.onPause();
-//        getContext().getContentResolver().unregisterContentObserver(observer);
     }
 
     @Nullable

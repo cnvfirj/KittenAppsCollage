@@ -152,13 +152,13 @@ public class WorkDBPerms {
 
 
     public void setItem(String uri){
-        LYTE("WorkDBPerms set i - "+uri);
+//        LYTE("WorkDBPerms set i - "+uri);
         if(getItem(uri)==null)
        db.work().insert(new Permis(uri));
     }
 
     public void delItem(String uri){
-        LYTE("WorkDBPerms del i - "+uri);
+//        LYTE("WorkDBPerms del i - "+uri);
         Permis p = db.work().getPerm(uri);
         if(p!=null)db.work().delete(p);
     }
