@@ -3,6 +3,7 @@ package com.example.kittenappscollage.draw.operations.bitmap;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.PointF;
+import android.provider.FontsContract;
 
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 
@@ -15,6 +16,8 @@ public class HelpFill {
 
 
     protected int[] hPixels;
+
+    protected int[] hCheckColor;
 
     protected int hWidth,hHeight;
 
@@ -69,6 +72,7 @@ public class HelpFill {
         hX = (int) p.x;
         hY = (int) p.y;
         hStartColor = hBitmap.getPixel(hX,hY);
+        searchCheckColor(hStartColor);
         return this;
     }
 
@@ -113,6 +117,21 @@ public class HelpFill {
 
     }
 
+    private void searchCheckColor(int startColor){
+        hCheckColor = new int[4];
+        if(hTypeFill) {
+            hCheckColor[0] = Color.red(startColor);
+            hCheckColor[1] = Color.green(startColor);
+            hCheckColor[2] = Color.blue(startColor);
+            hCheckColor[3] = Color.alpha(startColor);
+        }else {
+            hCheckColor[0] = Color.red(RepDraw.get().getColor());
+            hCheckColor[1] = Color.green(RepDraw.get().getColor());
+            hCheckColor[2] = Color.blue(RepDraw.get().getColor());
+            hCheckColor[3] = Color.alpha(RepDraw.get().getColor());
+        }
+    }
+
     private void linearFill(int x, int y){
         int left = x; // the location to check/fill on the left
         int index = (hWidth * y) + x;
@@ -150,12 +169,44 @@ public class HelpFill {
     }
 
     private boolean checkColor(int index){
+        if(hTypeFill) return checkPixel(index);
+        else return hPixels[index]!= RepDraw.get().getColor();
+       /*простая заливка*/
+//        int color = hPixels[index];
+//        if(hTypeFill) return color==hStartColor;
+//        else return color!= RepDraw.get().getColor();
+
+    }
+
+    protected boolean checkPixel(int index) {
         int color = hPixels[index];
+        int red = Color.red(color);
+        int green = Color.green(color);
+        int blue = Color.blue(color);
+        int alpha = Color.alpha(color);
 
-        if(hTypeFill) return color==hStartColor;
-//        else return color!=hFillColor;
-        else return color!= RepDraw.get().getColor();
-
+//        if(hTypeFill) {
+            return (
+                    red >= (hCheckColor[0] - 15)
+                            && red <= (hCheckColor[0] + 15)
+                            && green >= (hCheckColor[1] - 15)
+                            && green <= (hCheckColor[1] + 15)
+                            && blue >= (hCheckColor[2] - 15)
+                            && blue <= (hCheckColor[2] + 15)
+                            && alpha >= (hCheckColor[3] - 15)
+                            && alpha <= (hCheckColor[3] + 15));
+//        }
+//        else {
+//            return (
+//                    red <= (hCheckColor[0] - 5)
+//                            && red >= (hCheckColor[0] + 10)
+//                            && green <= (hCheckColor[1] - 10)
+//                            && green >= (hCheckColor[1] + 10)
+//                            && blue <= (hCheckColor[2] - 10)
+//                            && blue >= (hCheckColor[2] + 10)
+//                            && alpha <= (hCheckColor[3] - 10)
+//                            && alpha >= (hCheckColor[3] + 10));
+//        }
     }
 
 
