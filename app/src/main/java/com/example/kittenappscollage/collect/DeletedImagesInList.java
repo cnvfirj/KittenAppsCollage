@@ -80,6 +80,8 @@ public class DeletedImagesInList extends Service {
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.icon_delete_all)
+                        .setContentTitle("Удаление")
+                        .setContentText("Файлы удаляются с физического носителя")
                         .setShowWhen(true)
                         .setOngoing(true)
                         .setProgress(100, 0, true)
@@ -125,11 +127,17 @@ public class DeletedImagesInList extends Service {
 
     private int bruteForceOption(int index, DocumentFile[]files, String name,ObservableEmitter<Pair<String,Boolean>> emitter){
         for (int i=index;i<files.length;i++){
-            final String n = files[i].getName();
-            if(n.equals(name)){
-                index = i;
-                emitter.onNext(new Pair<>(name,deleteFile(files[i])));
-                break;
+            DocumentFile f = files[i];
+            if(f.isFile()) {
+                String type = f.getType();
+                if (type.equals("image/png") || type.equals("image/jpeg") || type.equals("image/jpg")) {
+                    final String n = f.getName();
+                    if (n != null && n.equals(name)) {
+                        index = i;
+                        emitter.onNext(new Pair<>(name, deleteFile(files[i])));
+                        break;
+                    }
+                }
             }
         }
         return index;
