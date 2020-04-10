@@ -169,10 +169,8 @@ public class HelpFill {
     }
 
     private boolean checkColor(int index){
-//        if(hTypeFill)
             return checkPixel(index);
-//        else return hPixels[index]!= RepDraw.get().getColor();
-       /*простая заливка*/
+       /*простая заливка без учета сглаживания*/
 //        int color = hPixels[index];
 //        if(hTypeFill) return color==hStartColor;
 //        else return color!= RepDraw.get().getColor();
@@ -199,10 +197,14 @@ public class HelpFill {
         }
         else {
             return (
-                    (red <= (hCheckColor[0] - 15) || red >= (hCheckColor[0] + 15))
-                            ||(green <= (hCheckColor[1] - 15) || green >= (hCheckColor[1] + 15))
-                            ||(blue <= (hCheckColor[2] - 15) || blue >= (hCheckColor[2] + 15))
-                            ||(alpha <= (hCheckColor[3] - 15) || alpha >= (hCheckColor[3] + 15)));
+                    red <= (hCheckColor[0] - 15)
+                            ||red >= (hCheckColor[0] + 15)
+                            ||green <= (hCheckColor[1] - 15)
+                            ||green >= (hCheckColor[1] + 15)
+                            ||blue <= (hCheckColor[2] - 15)
+                            ||blue >= (hCheckColor[2] + 15)
+                            ||alpha <= (hCheckColor[3] - 15)
+                            ||alpha >= (hCheckColor[3] + 15));
         }
     }
 
