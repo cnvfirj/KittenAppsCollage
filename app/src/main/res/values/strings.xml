@@ -2,24 +2,24 @@
     <string name="app_name">Kitten Apps Collage</string>
 
 
-<!--    <string name="GET">получи</string>-->
-<!--    <string name="ASSES_TO_DATA_READER">доступ для чтения данных</string>-->
-<!--    <string name="ASSES_TO_DATA_RECORDER">доступ для записи данных</string>-->
-<!--    <string name="ASSES_NET_AND_AKK">доступ к сети и аккаунту</string>-->
-<!--    <string name="ASSES_AKK">доступ к аккаунту</string>-->
-<!--    <string name="ASSES_NET">доступ к сети</string>-->
-<!--    <string name="IMAGES_NOT_FOUND">изображения не найдены</string>-->
-<!--    <string name="NOT_PERMISSIONS_MULTIMEDIA">нет разрешения на чтение и запись</string>-->
-<!--    <string name="TO_FIX">исправить?</string>-->
+    <!--    <string name="GET">получи</string>-->
+    <!--    <string name="ASSES_TO_DATA_READER">доступ для чтения данных</string>-->
+    <!--    <string name="ASSES_TO_DATA_RECORDER">доступ для записи данных</string>-->
+    <!--    <string name="ASSES_NET_AND_AKK">доступ к сети и аккаунту</string>-->
+    <!--    <string name="ASSES_AKK">доступ к аккаунту</string>-->
+    <!--    <string name="ASSES_NET">доступ к сети</string>-->
+    <!--    <string name="IMAGES_NOT_FOUND">изображения не найдены</string>-->
+    <!--    <string name="NOT_PERMISSIONS_MULTIMEDIA">нет разрешения на чтение и запись</string>-->
+    <!--    <string name="TO_FIX">исправить?</string>-->
 
-<!--    <string name="LOAD_IN_DERECT_MESSAGE_TOAST_">адрес должен начинаться на </string>-->
-<!--    <string name="LOAD_IN_DIRECT_LENGTH_SIMBOLS">адрес содержит больше символов</string>-->
-<!--    <string name="LOAD_IN_DIRECT_INPUT_FROM">заполните форму ввода</string>-->
-<!--    <string name="OR"> или </string>-->
-<!--    <string name="ERROR_SAVED">ошибка сохранения</string>-->
+    <!--    <string name="LOAD_IN_DERECT_MESSAGE_TOAST_">адрес должен начинаться на </string>-->
+    <!--    <string name="LOAD_IN_DIRECT_LENGTH_SIMBOLS">адрес содержит больше символов</string>-->
+    <!--    <string name="LOAD_IN_DIRECT_INPUT_FROM">заполните форму ввода</string>-->
+    <!--    <string name="OR"> или </string>-->
+    <!--    <string name="ERROR_SAVED">ошибка сохранения</string>-->
     <!--    <string name="INPUT_TEXT_SELECT_TEXT">Введи нужный текст</string>-->
-<!--    <string name="FILL_FIGURE">закрасить</string>-->
-<!--    <string name="ITALIC">курсив</string>-->
+    <!--    <string name="FILL_FIGURE">закрасить</string>-->
+    <!--    <string name="ITALIC">курсив</string>-->
 
 
     <string name="KEY_ADAPTER_POSITION">key adapter position</string>

@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/background_splash</item>
+    </style>
+
 
     <style name="DialogAddLyr" parent="Base.Theme.AppCompat.Dialog.FixedSize">
         <item name="windowFixedWidthMajor">@dimen/width_window_major_add_bitmap</item>
@@ -34,8 +38,6 @@
         <item name="android:layout_height">@dimen/param_tools</item>
         <item name="android:layout_marginTop">@dimen/margin_tool</item>
         <item name="android:layout_weight">1</item>
-
-
     </style>
 
 
