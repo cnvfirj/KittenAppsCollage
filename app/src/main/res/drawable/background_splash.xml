@@ -3,6 +3,9 @@
 
     <item
         android:drawable="@android:color/darker_gray"/>
+    <item
+        android:drawable="@mipmap/ic_launcher"
+        android:gravity="center"/>
 <!--    <item>-->
 <!--        <bitmap-->
 <!--            android:gravity="center"-->

@@ -69,15 +69,24 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     public void savedStorage(boolean saved, String report, String delimiter) {
         final long date = System.currentTimeMillis();
         if(saved){
+            Uri uri = null;
             String[]split = report.split(delimiter);
                 if (App.checkVersion()) {
                     ContentValues values = new ContentValues();
                     values.put(MediaStore.Images.Media.DATE_TAKEN, date);
                     values.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
                     values.put(MediaStore.MediaColumns.DATA, split[INDEX_PATH_IMG]);
-                    Uri uri = getContentResolver().insert(getUri(),values);
-                    mFragGal.setSavingInStorageCollage(uri, report, delimiter, date);
+                    uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
+
+                }else {
+                    ContentValues values = new ContentValues();
+                    values.put(MediaStore.Images.Media.DATE_TAKEN, date);
+                    values.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
+                    values.put(MediaStore.Images.Media.DISPLAY_NAME,split[SavedKollagesFragmentDraw.INDEX_NAME_IMG]);
+//                    values.put(MediaStore.Images.Media.RELATIVE_PATH,split[SavedKollagesFragmentDraw.INDEX_PATH_FOLD]);
+                    uri = getContentResolver().insert(MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL),values);
                 }
+            mFragGal.setSavingInStorageCollage(uri, report, delimiter, date);
         }
     }
 
@@ -93,10 +102,10 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         viewPager.setCurrentItem(0);
     }
 
-    private Uri getUri(){
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)return MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-        else return MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL);
-    }
+//    private Uri getUri(){
+//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)return MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+//        else return MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL);
+//    }
 
     private void setupViewPager(SelectSweepViewPager v){
         v.setAdapter(addFragments());
