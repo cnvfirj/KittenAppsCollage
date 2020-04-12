@@ -11,7 +11,7 @@
             <path
                 android:name="t_path"
                 android:pathData="M 2.894 7.33 L 2.989 4.579 L 14.085 4.674 L 13.99 7.33 L 10.102 7.33 L 10.111 19.382 L 7.065 19.381 L 7.067 7.33 Z"
-                android:fillColor="#FFFFFF"
+                android:fillColor="@color/colorWhite"
                 android:strokeWidth="1"/>
             <group
                 android:name="group"
@@ -20,11 +20,11 @@
                 <path
                     android:name="min"
                     android:pathData="M 12.919 11.461 L 12.92 9.689 L 20.047 9.713 L 20.057 11.45 L 17.349 11.508 L 17.374 19.561 L 15.646 19.534 L 15.602 11.532 Z"
-                    android:fillColor="#FFFFFF"/>
+                    android:fillColor="@color/colorWhite"/>
                 <path
                     android:name="min_transform"
                     android:pathData="M 16.529 10.454 L 16.529 18.572 L -2.765 18.572 L -2.765 10.454 Z"
-                    android:strokeColor="#FFFFFF"
+                    android:strokeColor="@color/colorWhite"
                     android:strokeWidth="1.6"
                     android:trimPathStart="1"
                     android:trimPathOffset="1"/>

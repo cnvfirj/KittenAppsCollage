@@ -11,7 +11,7 @@
             <path
                 android:name="text"
                 android:pathData="M 4.013 2.958 L 3.984 6.993 L 9.982 7.022 L 9.982 21.016 L 11.034 21.042 L 11.001 5.959 L 5.028 5.984 L 5.065 3.998 L 18.959 4.052 L 18.984 5.973 L 13.015 5.986 L 13.019 19.985 L 11.002 20.014 L 11.016 21.026 L 13.993 21.016 L 13.966 7.022 L 19.99 6.964 L 19.993 3.016 Z"
-                android:fillColor="#FFFFFF"/>
+                android:fillColor="@color/colorWhite"/>
             <clip-path
                 android:name="clip_text"
                 android:pathData="M 10.588 6.431 L 4.556 6.456 L 4.534 3.585 L 19.49 3.521 L 19.515 6.563 L 13.428 6.458 L 13.491 19.985 L 10.53 20.014 Z"/>
@@ -22,7 +22,7 @@
                 <path
                     android:name="fon"
                     android:pathData="M 0.941 22.941 L 0.941 0.824 L 22.941 0.824 L 22.941 22.941 Z"
-                    android:fillColor="#FFFFFF"/>
+                    android:fillColor="@color/colorWhite"/>
             </group>
         </vector>
     </aapt:attr>

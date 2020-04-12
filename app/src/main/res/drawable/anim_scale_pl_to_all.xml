@@ -21,7 +21,7 @@
                     <path
                         android:name="circ"
                         android:pathData="M 2.471 12.059 C 2.471 6.764 6.711 2.471 11.942 2.471 C 17.172 2.471 21.412 6.764 21.412 12.059 C 21.412 17.354 17.172 21.647 11.942 21.647 C 6.711 21.647 2.471 17.354 2.471 12.059 Z"
-                        android:strokeColor="#FFFFFF"
+                        android:strokeColor="@color/colorWhite"
                         android:strokeWidth="3"/>
                 </group>
                 <group
@@ -31,8 +31,8 @@
                     <path
                         android:name="path"
                         android:pathData="M 5.765 13.588 L 5.765 10.53 L 10.531 10.494 L 10.586 6.004 L 13.548 6.021 L 13.529 10.471 L 18.235 10.53 L 18.235 13.588 L 13.529 13.588 L 13.508 18.045 L 10.466 18.066 L 10.529 13.588 Z"
-                        android:fillColor="#FFFFFF"
-                        android:strokeColor="#FFFFFF"
+                        android:fillColor="@color/colorWhite"
+                        android:strokeColor="@color/colorWhite"
                         android:strokeWidth="0.1"/>
                 </group>
             </group>

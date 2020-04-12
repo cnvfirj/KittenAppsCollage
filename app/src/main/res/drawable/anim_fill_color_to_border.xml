@@ -14,7 +14,7 @@
             <path
                 android:name="bord"
                 android:pathData="M 6.17 14.605 C 6.17 11.924 8.07 9.491 12.296 3.662 C 17.054 9.645 18.576 11.005 18.576 14.605 C 18.576 18.206 15.799 21.126 12.373 21.126 C 8.947 21.126 6.17 18.206 6.17 14.605 Z"
-                android:strokeColor="#FFFFFF"
+                android:strokeColor="@color/colorWhite"
                 android:strokeWidth="1.8"/>
             <group
                 android:name="group"
@@ -24,7 +24,7 @@
                 <path
                     android:name="fill"
                     android:pathData="M 0.941 21.882 L 0.941 2.706 L 23.176 2.706 L 23.176 21.882 Z"
-                    android:fillColor="#FFFFFF"/>
+                    android:fillColor="@color/colorWhite"/>
             </group>
         </vector>
     </aapt:attr>

@@ -11,7 +11,7 @@
       android:scaleY="0.9">
     <path
         android:pathData="M4.247,21.746L7.061,11.883L4.245,1.934L19.606,11.995Z"
-        android:fillColor="#FFFFFF"/>
+        android:fillColor="@color/colorWhite"/>
   </group>
 
 </vector>

@@ -26,7 +26,7 @@
             android:layout_marginStart="5dp"
             android:text="name"
             android:textSize="15dp"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorWhite"
             android:singleLine="true"
             android:id="@+id/collect_item_name_dir"/>
         <LinearLayout
@@ -39,7 +39,7 @@
                 android:layout_marginStart="5dp"
                 android:text="col"
                 android:textSize="10dp"
-                android:textColor="@android:color/white"
+                android:textColor="@color/colorWhite"
                 android:id="@+id/collect_item_col_img_in_dir"
                 android:layout_gravity="bottom|center"/>
 

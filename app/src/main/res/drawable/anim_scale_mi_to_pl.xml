@@ -17,7 +17,7 @@
                 <path
                     android:name="circ"
                     android:pathData="M 2.471 12.059 C 2.471 6.764 6.711 2.471 11.942 2.471 C 17.172 2.471 21.412 6.764 21.412 12.059 C 21.412 17.354 17.172 21.647 11.942 21.647 C 6.711 21.647 2.471 17.354 2.471 12.059 Z"
-                    android:strokeColor="#FFFFFF"
+                    android:strokeColor="@color/colorWhite"
                     android:strokeWidth="3"/>
                 <path
                     android:name="path"

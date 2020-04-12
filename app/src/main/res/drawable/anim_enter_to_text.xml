@@ -17,18 +17,18 @@
                 <path
                     android:name="min"
                     android:pathData="M 12.801 11.284 L 12.92 9.63 L 17.373 9.625 L 17.376 11.215 L 17.378 11.275 L 17.344 19.3 L 15.813 19.388 L 15.747 11.268 Z"
-                    android:fillColor="#FFFFFF"/>
+                    android:fillColor="@color/colorWhite"/>
                 <path
                     android:name="min_transform"
                     android:pathData="M 16.529 10.454 L 16.529 18.572 L -2.765 18.572 L -2.765 10.454 Z"
-                    android:strokeColor="#FFFFFF"
+                    android:strokeColor="@color/colorWhite"
                     android:strokeWidth="1.6"
                     android:trimPathOffset="1"/>
             </group>
             <path
                 android:name="t_path"
                 android:pathData="M 12.175 6.132 L 12.187 3.882 L 21.176 3.869 L 21.104 6.073 L 18.043 6.073 L 18.169 20.826 L 15.863 20.825 L 15.687 6.132 Z"
-                android:fillColor="#FFFFFF"
+                android:fillColor="@color/colorWhite"
                 android:strokeWidth="1"/>
         </vector>
     </aapt:attr>

@@ -18,7 +18,7 @@
                 <path
                     android:name="save"
                     android:pathData="M 17 3 L 5 3 C 3.89 3 3 3.9 3 5 L 3 19 C 3 20.1 3.89 21 5 21 L 19 21 C 20.1 21 21 20.1 21 19 L 21 7 L 17 3 Z M 12 19 C 10.34 19 9 17.66 9 16 C 9 14.34 10.34 13 12 13 C 13.66 13 15 14.34 15 16 C 15 17.66 13.66 19 12 19 Z M 15 9 L 5 9 L 5 5 L 15 5 L 15 9 Z"
-                    android:fillColor="#FFFFFF"/>
+                    android:fillColor="@color/colorWhite"/>
             </group>
             <group
                 android:name="group_arrow"
@@ -27,7 +27,7 @@
                 <path
                     android:name="arrow"
                     android:pathData="M 16.95 5.636 L 16.95 5.636 L 8.344 14.242 L 8.344 6.336 L 6.343 6.343 L 6.343 17.657 L 17.657 17.657 L 17.657 15.663 L 9.758 15.656 L 18.364 7.05 L 16.95 5.636 M 7.846 16.154 L 7.846 16.154 L 7.846 16.154 L 7.846 16.154 L 7.846 16.154 L 7.846 16.154 L 7.846 16.154 L 7.846 16.154 L 7.846 16.154 L 7.846 16.154"
-                    android:fillColor="#FFFFFF"/>
+                    android:fillColor="@color/colorWhite"/>
             </group>
         </vector>
     </aapt:attr>
