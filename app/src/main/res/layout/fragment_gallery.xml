@@ -16,7 +16,7 @@
     <ImageView
         style="@style/slide_style_all_tools"
         android:id="@+id/gallery_add_folds"
-        android:src="@drawable/ic_add"
+        android:src="@drawable/ic_add_folder"
         android:background="@color/colorPrimary"
         android:layout_gravity="bottom|end"/>
 
