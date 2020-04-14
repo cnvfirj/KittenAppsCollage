@@ -29,7 +29,7 @@ public class ViewDraw extends View {
 
     private boolean vNonBlock;
 
-    private boolean vPipette;
+    private boolean vPipette, vSelectColor;
 
     private Matrix vMatrL, vMatrI, vMatrO;
 
@@ -60,6 +60,7 @@ public class ViewDraw extends View {
         vMatrO = new Matrix();
         vPreview = new OperationCanvas().preview(true);
         vPipette = false;
+        vSelectColor = false;
     }
 
     @Override
@@ -106,13 +107,16 @@ public class ViewDraw extends View {
                 }
             }
         }else {
+
             if(event.getAction()==MotionEvent.ACTION_DOWN) {
                 if (vAppOp.getColorBitmap(event) != 0) {
-                    if (vListenPipette != null) {
-                        vListenPipette.listen(false);
-                    }
+                    vSelectColor = true;
                 } else
                     SHOW_MASSAGE(getContext(), getContext().getResources().getString(R.string.SELECT_POINT_PIPETTE));
+            }else if(event.getAction()==MotionEvent.ACTION_UP){
+                if (vSelectColor&&vListenPipette != null) {
+                    vListenPipette.listen(false);
+                }
             }
         }
         return true;
@@ -172,6 +176,7 @@ public class ViewDraw extends View {
     }
 
     public void applyPipette(boolean p){
+        vSelectColor = false;
         vPipette = p;
     }
 
