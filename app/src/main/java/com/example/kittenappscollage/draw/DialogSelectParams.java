@@ -21,9 +21,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.dynamikseekbar.DynamicSeekBar;
+import com.example.kittenappscollage.CustomDialog;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.view.PresentPaint;
+import com.example.targetviewnote.TargetView;
 import com.madrapps.pikolo.HSLColorPicker;
 import com.madrapps.pikolo.listeners.OnColorSelectionListener;
 
@@ -48,6 +50,9 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(getContext().getResources().getColor(R.color.colorPrimaryTransparent)));
+//        CustomDialog d = new CustomDialog();
+//        d.show(getChildFragmentManager(),d.getClass().getName());
+        TargetView.build(this).colorBackground(Color.RED).show();
         return inflater.inflate(R.layout.dialog_select_params,null);
     }
 
