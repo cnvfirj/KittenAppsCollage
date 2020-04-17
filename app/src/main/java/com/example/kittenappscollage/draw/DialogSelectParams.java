@@ -52,7 +52,7 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(getContext().getResources().getColor(R.color.colorPrimaryTransparent)));
 //        CustomDialog d = new CustomDialog();
 //        d.show(getChildFragmentManager(),d.getClass().getName());
-        TargetView.build(this).colorBackground(Color.RED).show();
+
         return inflater.inflate(R.layout.dialog_select_params,null);
     }
 
@@ -94,6 +94,8 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
         barEraseAlpha.setOnSeekBarChangeListener(this);
         done.setOnClickListener(this);
         close.setOnClickListener(this);
+
+        TargetView.build(this).colorBackground(Color.RED).target(R.id.present_paint).show();
 //        paramView(view);
     }
 
