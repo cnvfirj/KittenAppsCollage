@@ -1,12 +1,9 @@
 package com.example.targetviewnote;
 
 import android.graphics.Color;
-import android.graphics.Point;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,12 +14,17 @@ import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 
-import static android.content.Context.WINDOW_SERVICE;
+import com.example.targetviewnote.veil.DrawVeil;
+
 
 public class VeilField extends DialogFragment {
+
+    private int idTarget;
+
+    private DrawVeil veil;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,11 +42,20 @@ public class VeilField extends DialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         Bundle bundle = getArguments();
         int color = Color.BLUE;
         if(bundle!=null){
             color = bundle.getInt(TargetView.KEY_COLOR_BACK,Color.BLUE);
+            int source = bundle.getInt(TargetView.KEY_SOURCE_TARGET);
+            int id = bundle.getInt(TargetView.KEY_TARGET_VIEW);
+            View target = null;
+            if(source==TargetView.SOURCE_ACTIVITY)target = getActivity().findViewById(id);
+            else if(source==TargetView.SOURCE_FRAGMENT)target = getTargetFragment().getView().findViewById(id);
+//            paramView(target);
         }
+
+
     }
 
     @Override
@@ -67,6 +78,19 @@ public class VeilField extends DialogFragment {
 
 
     }
+
+//    protected void paramView(final View view){
+//        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+//        if (viewTreeObserver.isAlive()) {
+//            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//                @Override
+//                public void onGlobalLayout() {
+//                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//                    Log.d("TAGTAG ", ""+view.getWidth());
+//                }
+//            });
+//        }
+//    }
 
 
 }

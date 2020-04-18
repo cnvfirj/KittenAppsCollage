@@ -15,11 +15,31 @@ public class TargetView {
 
     public static final String KEY_TARGET_VIEW = "key target view";
 
+    public static final String KEY_SOURCE_TARGET = "key source tsrget";
+
+    public static final int FORM_RECT = 0;
+
+    public static final int FORM_OVAL = 1;
+
+    public static final int FORM_CIRC = 2;
+
+    public static final int TOUCH_TARGET = 10;
+
+    public static final int TOUCH_VEIL = 11;
+
+    public static final int TOUCH_UOT = 12;
+
+    public static final int SOURCE_ACTIVITY = 21;
+
+    public static final int SOURCE_FRAGMENT = 22;
+
     private AppCompatActivity activity;
 
     private Fragment fragment;
 
     private Bundle bundle;
+
+    private VeilField veilField;
 
 
     public static TargetView build(AppCompatActivity activity){
@@ -33,20 +53,27 @@ public class TargetView {
     private TargetView(AppCompatActivity activity) {
         this.activity = activity;
         bundle = new Bundle();
+        bundle.putInt(KEY_SOURCE_TARGET,SOURCE_ACTIVITY);
+        veilField = new VeilField();
     }
 
     private TargetView(Fragment fragment) {
         this.fragment = fragment;
         bundle = new Bundle();
+        bundle.putInt(KEY_TARGET_VIEW,SOURCE_FRAGMENT);
+        veilField = new VeilField();
+        veilField.setTargetFragment(fragment,0);
     }
 
     public TargetView target(int id){
-        paramView(fragment.getView().findViewById(id));
+//        if(fragment!=null)paramView(fragment.getView().findViewById(id));
+//        else if(activity!=null)paramView(activity.findViewById(id));
+        bundle.putInt(KEY_TARGET_VIEW,id);
         return this;
     }
 
     public TargetView target(View view){
-        paramView(view);
+        bundle.putInt(KEY_TARGET_VIEW, view.getId());
         return this;
     }
 
@@ -56,24 +83,15 @@ public class TargetView {
     }
 
     public void show(){
-        VeilField d = new VeilField();
-        d.setArguments(bundle);
+        veilField.setArguments(bundle);
         FragmentManager fm = null;
-        if(fragment!=null) fm  = fragment.getChildFragmentManager();
+        if(fragment!=null) fm  = fragment.getFragmentManager();
         else if(activity!=null)fm = activity.getSupportFragmentManager();
-        d.show(fm,d.getClass().getName());
+        veilField.show(fm,veilField.getClass().getName());
     }
 
-    protected void paramView(final View view){
-        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
-        if (viewTreeObserver.isAlive()) {
-            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    Log.d("TAGTAG ", ""+view.getWidth());
-                }
-            });
-        }
+
+    public interface OnClickTargetViewNoleListener{
+        void onClick(int i);
     }
 }
