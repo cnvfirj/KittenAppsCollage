@@ -21,6 +21,7 @@ import com.example.dynamikseekbar.DynamicSeekBar;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.view.PresentPaint;
+import com.example.targetviewnote.TargetView;
 
 import net.cachapa.expandablelayout.ExpandableLayout;
 
@@ -78,6 +79,13 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         initButtons(view);
 
         paramView(view);
+
+        TargetView
+                .build(this)
+                .colorBackground(getContext().getResources().getColor(R.color.colorAccentTransparent))
+                .target(R.id.action_1)
+//                .targetForm(TargetView.FORM_OVAL)
+                .show();
     }
 
     @Override

@@ -19,6 +19,7 @@ import com.example.kittenappscollage.draw.MutableBitmap;
 import com.example.kittenappscollage.draw.addLyrs.loadImage.LoadProjectListener;
 import com.example.kittenappscollage.draw.addLyrs.loadImage.SelectorLoadProject;
 import com.example.kittenappscollage.view.PresentLyr;
+import com.example.targetviewnote.TargetView;
 
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
@@ -101,6 +102,13 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
         aPresent = v.findViewById(R.id.dialog_add_present_lyr);
 
         createBitmap(aWay,aSource);
+
+        TargetView
+                .build(this)
+                .colorBackground(getContext().getResources().getColor(R.color.colorAccentTransparent))
+                .target(aAlpha)
+//                .targetForm(TargetView.FORM_OVAL)
+                .show();
     }
 
 

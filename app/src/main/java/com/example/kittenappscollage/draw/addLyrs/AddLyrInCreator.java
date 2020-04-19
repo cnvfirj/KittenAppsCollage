@@ -17,6 +17,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.example.dynamikseekbar.DynamicSeekBar;
 import com.example.kittenappscollage.R;
+import com.example.targetviewnote.TargetView;
 import com.madrapps.pikolo.HSLColorPicker;
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 
@@ -97,6 +98,8 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
         paramView(aSelectColor);
         paramView(aColorPickCall);
         addListen();
+
+
     }
 
     @Override
@@ -218,6 +221,12 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
         params.topMargin = side;
         aSeekHeight.setLayoutParams(params);
 
+        TargetView
+                .build(this)
+                .colorBackground(getContext().getResources().getColor(R.color.colorAccentTransparent))
+                .target(aSeekWidth)
+//                .targetForm(TargetView.FORM_OVAL)
+                .show();
 
     }
 

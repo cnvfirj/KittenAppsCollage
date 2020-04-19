@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.ViewDraw;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
+import com.example.targetviewnote.TargetView;
 
 /*описываем основную анимацию движения кнопок и панели
 * инструментов. Присваиваем им иконки*/
@@ -135,6 +136,8 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
                 dRedo.setEnabled(enable);
             }
         });
+
+
     }
 
     @Override
@@ -157,6 +160,14 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         selectorIconsScale(dScale);
         dScale.setSelected(true);
         selectorButtons(index);
+
+
+
+//        TargetView
+//                .build(this)
+//                .colorBackground(getContext().getResources().getColor(R.color.colorAccentTransparent))
+//                .target(R.id.slide_all_tools)
+//                .show();
     }
 
     @Override

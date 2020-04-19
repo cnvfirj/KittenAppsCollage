@@ -28,6 +28,7 @@ import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
 import com.example.kittenappscollage.mainTabs.ViewPageAdapter;
+import com.example.targetviewnote.TargetView;
 import com.google.android.material.tabs.TabLayout;
 
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
@@ -153,6 +154,13 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
             }
         });
+
+//        TargetView
+//                .build(this)
+//                .colorBackground(getResources().getColor(R.color.colorAccentTransparent))
+//                .target(R.id.tabs)
+//                .show();
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

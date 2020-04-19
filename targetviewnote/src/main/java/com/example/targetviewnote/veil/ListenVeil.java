@@ -27,7 +27,7 @@ public class ListenVeil extends BodyVeil {
         if(event.getAction()==MotionEvent.ACTION_DOWN){
             PointF touch = new PointF(event.getX(),event.getY());
             if(getTarget()!=null&&isInRect(touch,getTarget()))touchTarget();
-            else veilActions(touch);
+            else touchVeil();
 
         }
         return super.onTouchEvent(event);
@@ -44,12 +44,6 @@ public class ListenVeil extends BodyVeil {
             }
         }
         return false;
-    }
-
-    private void veilActions(PointF p){
-        if(getVeil()==null)touchVeil();
-        else if(isInRect(p,getVeil()))touchVeil();
-        else touchOut();
     }
 
     private void touchTarget(){

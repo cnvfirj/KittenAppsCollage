@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PointF;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -19,12 +20,8 @@ public class BodyVeil extends View {
     private int colorBackground;
     /*цель которую видно сквозь завесу*/
     private RectF target;
-    /*завеса на весь эеран. Может быть и не на весь*/
+
     private RectF veil;
-    /*форма цели*/
-    private int formTarget;
-    /*форма завесы*/
-    private int formVeil;
 
     public BodyVeil(Context context) {
         super(context);
@@ -34,6 +31,14 @@ public class BodyVeil extends View {
     public BodyVeil(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initVars();
+    }
+
+    public RectF getVeil() {
+        return veil;
+    }
+
+    public void setVeil(RectF veil) {
+        this.veil = veil;
     }
 
     public int getColorBackground() {
@@ -48,40 +53,11 @@ public class BodyVeil extends View {
         return target;
     }
 
-    public void setTarget(RectF target) {
-        this.target = target;
-//        invalidate();
-    }
-
-    public RectF getVeil() {
-        return veil;
-    }
-
-    public void setVeil(RectF veil) {
-        this.veil = veil;
-//        invalidate();
-    }
-
-    public int getFormTarget() {
-        return formTarget;
-    }
-
-    public void setFormTarget(int formTarget) {
-        this.formTarget = formTarget;
-
-    }
-
-    public int getFormVeil() {
-        return formVeil;
-    }
-
-    public void setFormVeil(int formVeil) {
-        this.formVeil = formVeil;
+    public void setTarget(int[]t) {
+        if(t!=null) target = new RectF(t[0],t[1],t[2],t[3]);
     }
 
     protected void initVars(){
-        formVeil = TargetView.FORM_RECT;
-        formTarget = TargetView.FORM_RECT;
         colorBackground = Color.GRAY;
     }
 }

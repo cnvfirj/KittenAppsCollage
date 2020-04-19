@@ -50,9 +50,6 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(getContext().getResources().getColor(R.color.colorPrimaryTransparent)));
-//        CustomDialog d = new CustomDialog();
-//        d.show(getChildFragmentManager(),d.getClass().getName());
-
         return inflater.inflate(R.layout.dialog_select_params,null);
     }
 
@@ -95,7 +92,12 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
         done.setOnClickListener(this);
         close.setOnClickListener(this);
 
-        TargetView.build(this).colorBackground(Color.RED).target(R.id.present_paint).show();
+        TargetView
+                .build(this)
+                .colorBackground(getContext().getResources().getColor(R.color.colorAccentTransparent))
+                .target(barPaintAlpha)
+//                .targetForm(TargetView.FORM_OVAL)
+                .show();
 //        paramView(view);
     }
 
