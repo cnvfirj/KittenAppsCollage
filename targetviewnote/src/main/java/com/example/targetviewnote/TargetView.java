@@ -27,6 +27,8 @@ public class TargetView {
 
     public static final String KEY_TARGET_FRAME = "key target frame";
 
+    public static final String KEY_COLOR_BACKGROUND_CONTENT = "color background content";
+
     public static final int FORM_RECT = 0;
 
     public static final int FORM_OVAL = 1;
@@ -82,7 +84,7 @@ public class TargetView {
     private TargetView(Fragment fragment) {
         this.fragment = fragment;
         bundle = new Bundle();
-        bundle.putInt(KEY_TARGET_VIEW,SOURCE_FRAGMENT);
+        bundle.putInt(KEY_SOURCE_TARGET,SOURCE_FRAGMENT);
         veilField = new VeilField();
         readiness = false;
         show = false;
@@ -110,10 +112,17 @@ public class TargetView {
         return this;
     }
 
+    public TargetView colorBackgroundContent(int color){
+        bundle.putInt(KEY_COLOR_BACKGROUND_CONTENT,color);
+        return this;
+    }
+
     public TargetView targetForm(int form){
         bundle.putInt(KEY_TARGET_FORM,form);
         return this;
     }
+
+
 
 
 
@@ -122,7 +131,10 @@ public class TargetView {
         if(readiness) {
             veilField.setArguments(bundle);
             FragmentManager fm = null;
-            if (fragment != null) fm = fragment.getFragmentManager();
+            if (fragment != null) {
+                fm = fragment.getFragmentManager();
+                veilField.setTargetFragment(fragment,0);
+            }
             else if (activity != null) fm = activity.getSupportFragmentManager();
             veilField.show(fm, veilField.getClass().getName());
         }
@@ -167,6 +179,6 @@ public class TargetView {
     }
 
     public interface OnClickTargetViewNoleListener{
-        void onClick(int i);
+        void onClickTarget(int i);
     }
 }

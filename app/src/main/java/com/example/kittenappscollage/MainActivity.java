@@ -33,8 +33,11 @@ import com.google.android.material.tabs.TabLayout;
 
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
-public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery, SavedKollagesFragmentDraw.ActionSave, MainSwitching {
+public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery,
+        SavedKollagesFragmentDraw.ActionSave,
+        MainSwitching{
 
     private ApplyDrawToolsFragmentDraw mFragDraw;
 
@@ -162,6 +165,11 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 //                .show();
 
     }
+
+//    @Override
+//    public void onClick(int i) {
+//        LYTE("click main "+i);
+//    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override

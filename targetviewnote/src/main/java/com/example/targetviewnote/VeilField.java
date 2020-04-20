@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,9 +28,12 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.DefineCont
 
     private TargetView.OnClickTargetViewNoleListener clickListener;
 
+    private int colorContent;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        colorContent = Color.BLUE;
         return inflater.inflate(R.layout.field_veil,null);
     }
 
@@ -44,6 +48,8 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.DefineCont
             veil.setColorBackground(bundle.getInt(TargetView.KEY_COLOR_BACK,Color.BLUE));
             veil.setTarget(bundle.getIntArray(TargetView.KEY_TARGET_VIEW));
             veil.setFrame(bundle.getInt(TargetView.KEY_TARGET_FRAME,0));
+            setColorContent(bundle.getInt(TargetView.KEY_COLOR_BACKGROUND_CONTENT,Color.BLUE));
+            setClickListener(bundle.getInt(TargetView.KEY_SOURCE_TARGET));
         }
            veil.setListener(clickListener);
            veil.setListenDefineContent(this);
@@ -71,5 +77,25 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.DefineCont
     @Override
     public void rect(RectF r) {
         /*готовность области контента*/
+        FrameLayout l = getView().findViewById(R.id.content);
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) l.getLayoutParams();
+        params.leftMargin = (int)r.left;
+        params.topMargin = (int)r.top;
+        params.width = (int)r.width();
+        params.height = (int)r.height();
+        l.setLayoutParams(params);
+        l.setBackgroundColor(colorContent);
+    }
+
+    private void setClickListener(int source){
+        if(source==TargetView.SOURCE_ACTIVITY){
+            clickListener = (TargetView.OnClickTargetViewNoleListener)getContext();
+        }else if(source==TargetView.SOURCE_FRAGMENT){
+            clickListener = (TargetView.OnClickTargetViewNoleListener)getTargetFragment();
+        }
+    }
+
+    private void setColorContent(int color){
+        colorContent = color;
     }
 }

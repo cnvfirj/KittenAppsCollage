@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import androidx.annotation.Nullable;
@@ -53,19 +54,21 @@ public class ListenVeil extends BodyVeil {
 
     private void touchTarget(){
         if(listener!=null){
-            listener.onClick(TargetView.TOUCH_TARGET);
+            listener.onClickTarget(TargetView.TOUCH_TARGET);
         }
     }
 
     private void touchVeil(){
         if(listener!=null){
-            listener.onClick(TargetView.TOUCH_VEIL);
+            listener.onClickTarget(TargetView.TOUCH_VEIL);
+        }else {
+            Log.e("ListenVeil","null click listener");
         }
     }
 
     private void touchOut(){
         if(listener!=null){
-            listener.onClick(TargetView.TOUCH_UOT);
+            listener.onClickTarget(TargetView.TOUCH_UOT);
         }
     }
 }

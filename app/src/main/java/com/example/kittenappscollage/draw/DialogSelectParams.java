@@ -34,9 +34,11 @@ import java.util.Objects;
 import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_ALPHA;
 import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_COLOR;
 import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_WIDTH;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class DialogSelectParams extends DialogFragment implements DynamicSeekBar.OnSeekBarChangeListener,
-        View.OnClickListener {
+        View.OnClickListener,
+         TargetView.OnClickTargetViewNoleListener{
 
     private HSLColorPicker selectColor;
 
@@ -99,6 +101,11 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
 //                .targetForm(TargetView.FORM_OVAL)
                 .show();
 //        paramView(view);
+    }
+
+    @Override
+    public void onClickTarget(int i) {
+        LYTE("fragment "+i);
     }
 
     @Override
