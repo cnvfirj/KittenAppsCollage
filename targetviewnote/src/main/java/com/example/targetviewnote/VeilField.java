@@ -22,13 +22,15 @@ import com.example.targetviewnote.veil.DrawMidiVeil;
 import com.example.targetviewnote.veil.DrawVeil;
 
 
-public class VeilField extends DialogFragment implements DrawMidiVeil.DefineContent {
+public class VeilField extends DialogFragment implements DrawMidiVeil.InternalListener {
 
     private DrawMidiVeil veil;
 
     private TargetView.OnClickTargetViewNoleListener clickListener;
 
     private int colorContent;
+
+    private int actionExit;
 
     @Nullable
     @Override
@@ -43,16 +45,16 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.DefineCont
 
         veil = view.findViewById(R.id.veil);
         Bundle bundle = getArguments();
-//
         if(bundle!=null){
             veil.setColorBackground(bundle.getInt(TargetView.KEY_COLOR_BACK,Color.BLUE));
             veil.setTarget(bundle.getIntArray(TargetView.KEY_TARGET_VIEW));
             veil.setFrame(bundle.getInt(TargetView.KEY_TARGET_FRAME,0));
             setColorContent(bundle.getInt(TargetView.KEY_COLOR_BACKGROUND_CONTENT,Color.BLUE));
             setClickListener(bundle.getInt(TargetView.KEY_SOURCE_TARGET));
+            setActionExit(bundle.getInt(TargetView.KEY_ACTION_EXIT,TargetView.TOUCH_UOT));
         }
-           veil.setListener(clickListener);
-           veil.setListenDefineContent(this);
+           veil.setListener(this);
+
     }
 
     @Override
@@ -87,6 +89,12 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.DefineCont
         l.setBackgroundColor(colorContent);
     }
 
+    @Override
+    public void click(int i) {
+        if(clickListener!=null)clickListener.onClickTarget(i);
+        if(actionExit==i&&isVisible())dismiss();
+    }
+
     private void setClickListener(int source){
         try {
             if (source == TargetView.SOURCE_ACTIVITY) {
@@ -101,5 +109,9 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.DefineCont
 
     private void setColorContent(int color){
         colorContent = color;
+    }
+
+    private void setActionExit(int i){
+        actionExit = i;
     }
 }

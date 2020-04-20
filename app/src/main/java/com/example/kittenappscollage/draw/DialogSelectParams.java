@@ -40,6 +40,8 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
         View.OnClickListener,
          TargetView.OnClickTargetViewNoleListener{
 
+    private TargetView targetView;
+
     private HSLColorPicker selectColor;
 
     private PresentPaint presentPaint, presentErase, presentText;
@@ -94,18 +96,16 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
         done.setOnClickListener(this);
         close.setOnClickListener(this);
 
-        TargetView
+        targetView = TargetView
                 .build(this)
                 .colorBackground(getContext().getResources().getColor(R.color.colorAccentTransparent))
-                .target(barPaintAlpha)
-//                .targetForm(TargetView.FORM_OVAL)
-                .show();
-//        paramView(view);
+                .target(barPaintAlpha);
+        targetView.show();
     }
 
     @Override
     public void onClickTarget(int i) {
-        LYTE("fragment "+i);
+
     }
 
     @Override

@@ -30,6 +30,8 @@ public class TargetView {
 
     public static final String KEY_COLOR_BACKGROUND_CONTENT = "color background content";
 
+    public static final String KEY_ACTION_EXIT = "action exit";
+
     public static final int FORM_RECT = 0;
 
     public static final int FORM_OVAL = 1;
@@ -41,6 +43,8 @@ public class TargetView {
     public static final int TOUCH_VEIL = 11;
 
     public static final int TOUCH_UOT = 12;
+
+    public static final int NON_TOUCH = 13;
 
     public static final int SOURCE_ACTIVITY = 21;
 
@@ -109,6 +113,10 @@ public class TargetView {
         return this;
     }
 
+    public TargetView touchExit(int touch){
+        bundle.putInt(KEY_ACTION_EXIT,touch);
+        return this;
+    }
     public TargetView colorBackground(int color){
         bundle.putInt(KEY_COLOR_BACK,color);
         return this;
@@ -118,15 +126,6 @@ public class TargetView {
         bundle.putInt(KEY_COLOR_BACKGROUND_CONTENT,color);
         return this;
     }
-
-    public TargetView targetForm(int form){
-        bundle.putInt(KEY_TARGET_FORM,form);
-        return this;
-    }
-
-
-
-
 
     public void show(){
         show = true;
@@ -148,7 +147,7 @@ public class TargetView {
     }
 
     public void close(){
-        veilField.dismiss();
+        if(veilField.isVisible())veilField.dismiss();
     }
 
         private void paramView(final View view){

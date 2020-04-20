@@ -13,7 +13,7 @@ import com.example.targetviewnote.TargetView;
 
 public class ListenVeil extends BodyVeil {
 
-    private TargetView.OnClickTargetViewNoleListener listener;
+    private DrawMidiVeil.InternalListener listener;
 
     public ListenVeil(Context context) {
         super(context);
@@ -35,11 +35,11 @@ public class ListenVeil extends BodyVeil {
         return super.onTouchEvent(event);
     }
 
-    public void setListener(TargetView.OnClickTargetViewNoleListener listener) {
+    public void setListener(DrawMidiVeil.InternalListener listener) {
         this.listener = listener;
     }
 
-    public TargetView.OnClickTargetViewNoleListener getListener() {
+    public DrawMidiVeil.InternalListener getListener() {
         return listener;
     }
 
@@ -54,7 +54,7 @@ public class ListenVeil extends BodyVeil {
 
     private void touchTarget(){
         if(listener!=null){
-            listener.onClickTarget(TargetView.TOUCH_TARGET);
+            listener.click(TargetView.TOUCH_TARGET);
         }else {
             Log.e("ListenVeil","null click listener");
         }
@@ -62,13 +62,13 @@ public class ListenVeil extends BodyVeil {
 
     private void touchVeil(){
         if(listener!=null){
-            listener.onClickTarget(TargetView.TOUCH_VEIL);
+            listener.click(TargetView.TOUCH_VEIL);
         }
     }
 
     private void touchOut(){
         if(listener!=null){
-            listener.onClickTarget(TargetView.TOUCH_UOT);
+            listener.click(TargetView.TOUCH_UOT);
         }
     }
 }

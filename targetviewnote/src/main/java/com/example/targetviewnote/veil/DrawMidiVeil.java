@@ -9,11 +9,13 @@ import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
 
+import java.io.InputStream;
+
 public class DrawMidiVeil extends DrawVeil {
 
     private RectF content;
 
-    private DefineContent defineContent;
+//    private InternalListener defineContent;
 
     public DrawMidiVeil(Context context) {
         super(context);
@@ -23,9 +25,9 @@ public class DrawMidiVeil extends DrawVeil {
         super(context, attrs);
     }
 
-    public void setListenDefineContent(DefineContent d){
-        defineContent = d;
-    }
+//    public void setListenInternalListener(InternalListener d){
+//        defineContent = d;
+//    }
 
     @Override
     protected RectF midiVeil() {
@@ -121,15 +123,12 @@ public class DrawMidiVeil extends DrawVeil {
 
     protected void setLocContent(RectF r){
         content = r;
-        if(defineContent!=null&&r!=null)defineContent.rect(content);
+        if(getListener()!=null&&r!=null)getListener().rect(content);
     }
 
-    protected DefineContent getDefineContent(){
-        return defineContent;
-    }
-
-    public interface DefineContent{
+    public interface InternalListener{
         void rect(RectF r);
+        void click(int i);
     }
 
 }
