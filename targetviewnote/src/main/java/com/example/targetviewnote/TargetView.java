@@ -3,6 +3,7 @@ package com.example.targetviewnote;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,8 +26,6 @@ public class TargetView {
     public static final String KEY_TARGET_FORM = "key target form";
 
     public static final String KEY_TARGET_FRAME = "key target frame";
-
-
 
     public static final int FORM_RECT = 0;
 
@@ -116,6 +115,8 @@ public class TargetView {
         return this;
     }
 
+
+
     public void show(){
         show = true;
         if(readiness) {
@@ -125,6 +126,10 @@ public class TargetView {
             else if (activity != null) fm = activity.getSupportFragmentManager();
             veilField.show(fm, veilField.getClass().getName());
         }
+    }
+
+    public void close(){
+        veilField.dismiss();
     }
 
         private void paramView(final View view){

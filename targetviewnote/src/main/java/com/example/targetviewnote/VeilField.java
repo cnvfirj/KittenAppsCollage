@@ -1,6 +1,7 @@
 package com.example.targetviewnote;
 
 import android.graphics.Color;
+import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,9 +21,11 @@ import com.example.targetviewnote.veil.DrawMidiVeil;
 import com.example.targetviewnote.veil.DrawVeil;
 
 
-public class VeilField extends DialogFragment {
+public class VeilField extends DialogFragment implements DrawMidiVeil.DefineContent {
 
     private DrawMidiVeil veil;
+
+    private TargetView.OnClickTargetViewNoleListener clickListener;
 
     @Nullable
     @Override
@@ -42,8 +45,8 @@ public class VeilField extends DialogFragment {
             veil.setTarget(bundle.getIntArray(TargetView.KEY_TARGET_VIEW));
             veil.setFrame(bundle.getInt(TargetView.KEY_TARGET_FRAME,0));
         }
-
-
+           veil.setListener(clickListener);
+           veil.setListenDefineContent(this);
     }
 
     @Override
@@ -63,11 +66,10 @@ public class VeilField extends DialogFragment {
         window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         window.setGravity(Gravity.CENTER);
         window.setAttributes(windowParams);
-
-
     }
 
-
-
-
+    @Override
+    public void rect(RectF r) {
+        /*готовность области контента*/
+    }
 }

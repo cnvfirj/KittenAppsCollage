@@ -27,7 +27,8 @@ public class ListenVeil extends BodyVeil {
         if(event.getAction()==MotionEvent.ACTION_DOWN){
             PointF touch = new PointF(event.getX(),event.getY());
             if(getTarget()!=null&&isInRect(touch,getTarget()))touchTarget();
-            else touchVeil();
+            else if(getTarget()!=null&&isInRect(touch, getVeil()))touchVeil();
+            else touchOut();
 
         }
         return super.onTouchEvent(event);
@@ -35,6 +36,10 @@ public class ListenVeil extends BodyVeil {
 
     public void setListener(TargetView.OnClickTargetViewNoleListener listener) {
         this.listener = listener;
+    }
+
+    public TargetView.OnClickTargetViewNoleListener getListener() {
+        return listener;
     }
 
     private boolean isInRect(PointF p, RectF r){
