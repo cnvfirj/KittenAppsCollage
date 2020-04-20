@@ -88,10 +88,14 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.DefineCont
     }
 
     private void setClickListener(int source){
-        if(source==TargetView.SOURCE_ACTIVITY){
-            clickListener = (TargetView.OnClickTargetViewNoleListener)getContext();
-        }else if(source==TargetView.SOURCE_FRAGMENT){
-            clickListener = (TargetView.OnClickTargetViewNoleListener)getTargetFragment();
+        try {
+            if (source == TargetView.SOURCE_ACTIVITY) {
+                clickListener = (TargetView.OnClickTargetViewNoleListener) getContext();
+            } else if (source == TargetView.SOURCE_FRAGMENT) {
+                clickListener = (TargetView.OnClickTargetViewNoleListener) getTargetFragment();
+            }
+        }catch (ClassCastException e){
+            Log.e("TargetView", "implement the interface: OnClickTargetViewNoleListener in the called activity or fragment ");
         }
     }
 

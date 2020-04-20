@@ -55,14 +55,14 @@ public class ListenVeil extends BodyVeil {
     private void touchTarget(){
         if(listener!=null){
             listener.onClickTarget(TargetView.TOUCH_TARGET);
+        }else {
+            Log.e("ListenVeil","null click listener");
         }
     }
 
     private void touchVeil(){
         if(listener!=null){
             listener.onClickTarget(TargetView.TOUCH_VEIL);
-        }else {
-            Log.e("ListenVeil","null click listener");
         }
     }
 

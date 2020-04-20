@@ -1,5 +1,6 @@
 package com.example.targetviewnote;
 
+import android.app.Activity;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
@@ -54,6 +55,7 @@ public class TargetView {
     private AppCompatActivity activity;
 
     private Fragment fragment;
+
 
     private Bundle bundle;
 
@@ -128,6 +130,7 @@ public class TargetView {
 
     public void show(){
         show = true;
+
         if(readiness) {
             veilField.setArguments(bundle);
             FragmentManager fm = null;
@@ -135,7 +138,11 @@ public class TargetView {
                 fm = fragment.getFragmentManager();
                 veilField.setTargetFragment(fragment,0);
             }
-            else if (activity != null) fm = activity.getSupportFragmentManager();
+            else if (activity != null) {
+                fm = activity.getSupportFragmentManager();
+
+            }
+            veilField.setCancelable(false);
             veilField.show(fm, veilField.getClass().getName());
         }
     }
