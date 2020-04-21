@@ -99,6 +99,10 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
         targetView = TargetView
                 .build(this)
                 .colorBackground(getContext().getResources().getColor(R.color.colorAccentTransparent))
+                .colorBackgroundContent(getContext().getResources().getColor(R.color.colorPrimaryAlpha))
+                .sizeTitle(50)
+                .iconTitle(R.drawable.icon_collect)
+                .textTitle("Main title")
                 .target(barPaintAlpha);
         targetView.show();
     }

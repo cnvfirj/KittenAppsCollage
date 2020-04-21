@@ -45,7 +45,7 @@ public class BodyVeil extends View {
         return colorBackground;
     }
 
-    public void setColorBackground(int colorBackground) {
+    public void setColorVeil(int colorBackground) {
         this.colorBackground = colorBackground;
     }
 

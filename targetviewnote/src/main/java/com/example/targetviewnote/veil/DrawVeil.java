@@ -39,8 +39,8 @@ public class DrawVeil extends ListenVeil {
     }
 
     @Override
-    public void setColorBackground(int colorBackground) {
-        super.setColorBackground(colorBackground);
+    public void setColorVeil(int colorBackground) {
+        super.setColorVeil(colorBackground);
         paintVeil.setColor(colorBackground);
     }
 

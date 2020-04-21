@@ -3,6 +3,7 @@ package com.example.targetviewnote;
 import android.graphics.Color;
 import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -12,7 +13,11 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,14 +33,24 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
 
     private TargetView.OnClickTargetViewNoleListener clickListener;
 
-    private int colorContent;
+//    private int colorContent;
 
     private int actionExit;
+
+    private FrameLayout content;
+
+    private TextView title;
+
+    private ImageView iconTitle;
+
+    private EditText note;
+
+    private ImageView softKey;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        colorContent = Color.BLUE;
+//        colorContent = Color.BLUE;
         return inflater.inflate(R.layout.field_veil,null);
     }
 
@@ -44,18 +59,25 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
         super.onViewCreated(view, savedInstanceState);
 
         veil = view.findViewById(R.id.veil);
+        initViews(view);
         Bundle bundle = getArguments();
         if(bundle!=null){
-            veil.setColorBackground(bundle.getInt(TargetView.KEY_COLOR_BACK,Color.BLUE));
+            veil.setColorVeil(bundle.getInt(TargetView.KEY_COLOR_BACK,Color.BLUE));
             veil.setTarget(bundle.getIntArray(TargetView.KEY_TARGET_VIEW));
             veil.setFrame(bundle.getInt(TargetView.KEY_TARGET_FRAME,0));
-            setColorContent(bundle.getInt(TargetView.KEY_COLOR_BACKGROUND_CONTENT,Color.BLUE));
+            setColorBackgroundContent(bundle.getInt(TargetView.KEY_COLOR_BACKGROUND_CONTENT,Color.BLUE));
             setClickListener(bundle.getInt(TargetView.KEY_SOURCE_TARGET));
             setActionExit(bundle.getInt(TargetView.KEY_ACTION_EXIT,TargetView.TOUCH_UOT));
+            setTextTitle(bundle.getString(TargetView.KEY_TEXT_TITLE,""));
+            setSizeTitle(bundle.getFloat(TargetView.KEY_SIZE_TITLE,100));
+            setIconTitle(bundle.getInt(TargetView.KEY_ICON_TITLE,0));
+            setColorTitle(bundle.getInt(TargetView.KEY_COLOR_TEXT_TITLE,Color.WHITE));
         }
            veil.setListener(this);
 
     }
+
+
 
     @Override
     public void onStart() {
@@ -79,14 +101,14 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
     @Override
     public void rect(RectF r) {
         /*готовность области контента*/
-        FrameLayout l = getView().findViewById(R.id.content);
-        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) l.getLayoutParams();
+//        FrameLayout l = getView().findViewById(R.id.content);
+        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) content.getLayoutParams();
         params.leftMargin = (int)r.left;
         params.topMargin = (int)r.top;
         params.width = (int)r.width();
         params.height = (int)r.height();
-        l.setLayoutParams(params);
-        l.setBackgroundColor(colorContent);
+        content.setLayoutParams(params);
+//        l.setBackgroundColor(colorContent);
     }
 
     @Override
@@ -95,6 +117,13 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
         if(actionExit==i&&isVisible())dismiss();
     }
 
+    private void initViews(View view){
+        title = view.findViewById(R.id.text_title);
+        iconTitle = view.findViewById(R.id.icon_title);
+        note = view.findViewById(R.id.text_note);
+        softKey = view.findViewById(R.id.icon_soft_key);
+        content = view.findViewById(R.id.content);
+    }
     private void setClickListener(int source){
         try {
             if (source == TargetView.SOURCE_ACTIVITY) {
@@ -107,8 +136,35 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
         }
     }
 
-    private void setColorContent(int color){
-        colorContent = color;
+    private void setTextTitle(String text){
+        if(!text.equals("")){
+            title.setText(text);
+        }
+    }
+
+    private void setIconTitle(int id){
+        if(id!=0){
+            Drawable d = getContext().getResources().getDrawable(id,null);
+            iconTitle.setImageDrawable(d);
+        }
+    }
+
+    private void setColorTitle(int color){
+        title.setTextColor(color);
+    }
+
+    private void setSizeTitle(float size){
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)iconTitle.getLayoutParams();
+        params.height = (int) size;
+        params.width = (int) size;
+        iconTitle.setLayoutParams(params);
+        size/=getContext().getApplicationContext().getResources().getDisplayMetrics().density;
+        title.setTextSize(size);
+
+    }
+
+    private void setColorBackgroundContent(int color){
+        content.setBackgroundColor(color);
     }
 
     private void setActionExit(int i){

@@ -32,6 +32,14 @@ public class TargetView {
 
     public static final String KEY_ACTION_EXIT = "action exit";
 
+    public static final String KEY_TEXT_TITLE = "text title";
+
+    public static final String KEY_ICON_TITLE = "icon title";
+
+    public static final String KEY_SIZE_TITLE = "size title";
+
+    public static final String KEY_COLOR_TEXT_TITLE = "color text title";
+
     public static final int FORM_RECT = 0;
 
     public static final int FORM_OVAL = 1;
@@ -108,6 +116,25 @@ public class TargetView {
         return this;
     }
 
+    public TargetView sizeTitle(float size){
+        bundle.putFloat(KEY_SIZE_TITLE,size);
+        return this;
+    }
+
+    public TargetView iconTitle(int idDrawable){
+        bundle.putInt(KEY_ICON_TITLE,idDrawable);
+        return this;
+    }
+
+    public TargetView textTitle(String text){
+        bundle.putString(KEY_TEXT_TITLE,text);
+        return this;
+    }
+    public TargetView colorTitle(int color){
+        bundle.putInt(KEY_COLOR_TEXT_TITLE,color);
+     return this;
+    }
+
     public TargetView targetFrame(int frame){
         bundle.putInt(KEY_TARGET_FRAME,frame);
         return this;
@@ -144,6 +171,11 @@ public class TargetView {
             veilField.setCancelable(false);
             veilField.show(fm, veilField.getClass().getName());
         }
+    }
+
+    public void reset(){
+        bundle = new Bundle();
+        close();
     }
 
     public void close(){
