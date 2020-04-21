@@ -15,8 +15,6 @@ public class DrawMidiVeil extends DrawVeil {
 
     private RectF content;
 
-//    private InternalListener defineContent;
-
     public DrawMidiVeil(Context context) {
         super(context);
     }
@@ -24,10 +22,6 @@ public class DrawMidiVeil extends DrawVeil {
     public DrawMidiVeil(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
-
-//    public void setListenInternalListener(InternalListener d){
-//        defineContent = d;
-//    }
 
     @Override
     protected RectF midiVeil() {

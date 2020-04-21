@@ -40,6 +40,14 @@ public class TargetView {
 
     public static final String KEY_COLOR_TEXT_TITLE = "color text title";
 
+    public static final String KEY_TEXT_NOTE = "text note";
+
+    public static final String KEY_SIZE_NOTE = "size note";
+
+    public static final String KEY_COLOR_TEXT_NOTE = "color text note";
+
+    public static final String KEY_ICON_SOFT_KEY = "icon soft key";
+
     public static final int FORM_RECT = 0;
 
     public static final int FORM_OVAL = 1;
@@ -116,6 +124,26 @@ public class TargetView {
         return this;
     }
 
+    public TargetView sizeNote(float size){
+        bundle.putFloat(KEY_SIZE_NOTE,size);
+        return this;
+    }
+
+    public TargetView iconSoftKey(int idDrawable){
+        bundle.putInt(KEY_ICON_SOFT_KEY,idDrawable);
+        return this;
+    }
+
+    public TargetView textNote(String text){
+        bundle.putString(KEY_TEXT_NOTE,text);
+        return this;
+    }
+
+    public TargetView colorNote(int color){
+        bundle.putInt(KEY_COLOR_TEXT_NOTE,color);
+        return this;
+    }
+
     public TargetView sizeTitle(float size){
         bundle.putFloat(KEY_SIZE_TITLE,size);
         return this;
@@ -182,14 +210,13 @@ public class TargetView {
         if(veilField.isVisible())veilField.dismiss();
     }
 
-        private void paramView(final View view){
+    private void paramView(final View view){
         ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {
             viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
                 public void onGlobalLayout() {
                     view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    ViewGroup.LayoutParams params = view.getLayoutParams();
                     int[] l = new int[2];
                     view.getLocationOnScreen(l);
                     int h = l[1]+hShift();

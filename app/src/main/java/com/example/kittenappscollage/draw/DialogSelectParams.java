@@ -102,7 +102,9 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
                 .colorBackgroundContent(getContext().getResources().getColor(R.color.colorPrimaryAlpha))
                 .sizeTitle(50)
                 .iconTitle(R.drawable.icon_collect)
+                .iconSoftKey(R.drawable.icon_camera)
                 .textTitle("Main title")
+                .textNote("разные заметки могут отличаться друг от друга, они очень важны и незаменимы")
                 .target(barPaintAlpha);
         targetView.show();
     }

@@ -24,7 +24,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.targetviewnote.veil.DrawMidiVeil;
-import com.example.targetviewnote.veil.DrawVeil;
 
 
 public class VeilField extends DialogFragment implements DrawMidiVeil.InternalListener {
@@ -35,17 +34,19 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
 
 //    private int colorContent;
 
+    private int sizeTitle, sizeNote;
+
+    private Drawable dTitle, dSoftKey;
+
     private int actionExit;
 
     private FrameLayout content;
 
     private TextView title;
 
-    private ImageView iconTitle;
+    private ImageView iconTitle, iconSoftKey;
 
-    private EditText note;
-
-    private ImageView softKey;
+    private NoteText note;
 
     @Nullable
     @Override
@@ -69,9 +70,14 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
             setClickListener(bundle.getInt(TargetView.KEY_SOURCE_TARGET));
             setActionExit(bundle.getInt(TargetView.KEY_ACTION_EXIT,TargetView.TOUCH_UOT));
             setTextTitle(bundle.getString(TargetView.KEY_TEXT_TITLE,""));
-            setSizeTitle(bundle.getFloat(TargetView.KEY_SIZE_TITLE,100));
+            setSizeTitle(bundle.getFloat(TargetView.KEY_SIZE_TITLE,50));
             setIconTitle(bundle.getInt(TargetView.KEY_ICON_TITLE,0));
             setColorTitle(bundle.getInt(TargetView.KEY_COLOR_TEXT_TITLE,Color.WHITE));
+            setTextNote(bundle.getString(TargetView.KEY_TEXT_NOTE,""));
+            setSizeNote(bundle.getFloat(TargetView.KEY_SIZE_NOTE,25));
+            setColorNote(bundle.getInt(TargetView.KEY_COLOR_TEXT_NOTE,Color.WHITE));
+            setIconSoftKey(bundle.getInt(TargetView.KEY_ICON_SOFT_KEY,0));
+
         }
            veil.setListener(this);
 
@@ -100,15 +106,12 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
 
     @Override
     public void rect(RectF r) {
-        /*готовность области контента*/
-//        FrameLayout l = getView().findViewById(R.id.content);
         FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) content.getLayoutParams();
         params.leftMargin = (int)r.left;
         params.topMargin = (int)r.top;
         params.width = (int)r.width();
         params.height = (int)r.height();
         content.setLayoutParams(params);
-//        l.setBackgroundColor(colorContent);
     }
 
     @Override
@@ -121,7 +124,7 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
         title = view.findViewById(R.id.text_title);
         iconTitle = view.findViewById(R.id.icon_title);
         note = view.findViewById(R.id.text_note);
-        softKey = view.findViewById(R.id.icon_soft_key);
+        iconSoftKey = view.findViewById(R.id.icon_soft_key);
         content = view.findViewById(R.id.content);
     }
     private void setClickListener(int source){
@@ -136,6 +139,29 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
         }
     }
 
+    private void setIconSoftKey(int id){
+        if(id!=0){
+            dSoftKey = getContext().getResources().getDrawable(id,null);
+            appSizeNote();
+        }
+    }
+
+    private void setTextNote(String text){
+        if(!text.equals("")){
+            note.setText(text);
+        }
+    }
+
+    private void setColorNote(int color){
+        note.setTextColor(color);
+    }
+
+    private void setSizeNote(float size){
+        sizeNote = (int)size;
+        size/=getContext().getApplicationContext().getResources().getDisplayMetrics().density;
+        note.setTextSize(size);
+    }
+
     private void setTextTitle(String text){
         if(!text.equals("")){
             title.setText(text);
@@ -144,8 +170,8 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
 
     private void setIconTitle(int id){
         if(id!=0){
-            Drawable d = getContext().getResources().getDrawable(id,null);
-            iconTitle.setImageDrawable(d);
+            dTitle = getContext().getResources().getDrawable(id,null);
+            appSizeTitle();
         }
     }
 
@@ -154,10 +180,8 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
     }
 
     private void setSizeTitle(float size){
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)iconTitle.getLayoutParams();
-        params.height = (int) size;
-        params.width = (int) size;
-        iconTitle.setLayoutParams(params);
+        sizeTitle = (int)size;
+        appSizeTitle();
         size/=getContext().getApplicationContext().getResources().getDisplayMetrics().density;
         title.setTextSize(size);
 
@@ -169,5 +193,39 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
 
     private void setActionExit(int i){
         actionExit = i;
+    }
+
+    private void appSizeTitle(){
+        if(dTitle!=null){
+            LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)iconTitle.getLayoutParams();
+            params.height = sizeTitle;
+            params.width = sizeTitle;
+            iconTitle.setLayoutParams(params);
+            iconTitle.setImageDrawable(dTitle);
+        }
+    }
+
+    private void appSizeNote(){
+        if(dSoftKey!=null){
+            paramView(note);
+        }
+    }
+
+    private void paramView(final View view){
+        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+        if (viewTreeObserver.isAlive()) {
+            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) iconSoftKey.getLayoutParams();
+                    params.height = sizeNote;
+                    params.width = sizeNote;
+                    params.topMargin = view.getBottom();
+                    iconSoftKey.setLayoutParams(params);
+                    iconSoftKey.setImageDrawable(dSoftKey);
+                }
+            });
+        }
     }
 }
