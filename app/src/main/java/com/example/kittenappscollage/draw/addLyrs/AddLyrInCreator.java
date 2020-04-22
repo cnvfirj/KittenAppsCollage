@@ -223,7 +223,7 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
 
         TargetView
                 .build(this)
-                .colorBackground(getContext().getResources().getColor(R.color.colorAccentTransparent))
+                .colorBackgroundFrame(getContext().getResources().getColor(R.color.colorAccentTransparent))
                 .target(aSeekWidth)
 //                .targetForm(TargetView.FORM_OVAL)
                 .show();

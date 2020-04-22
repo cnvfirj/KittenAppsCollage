@@ -48,6 +48,8 @@ public class TargetView {
 
     public static final String KEY_ICON_SOFT_KEY = "icon soft key";
 
+    public static final String KEY_SIZE_CONTENT_WINDOW = "size content window";
+
     public static final int FORM_RECT = 0;
 
     public static final int FORM_OVAL = 1;
@@ -172,7 +174,12 @@ public class TargetView {
         bundle.putInt(KEY_ACTION_EXIT,touch);
         return this;
     }
-    public TargetView colorBackground(int color){
+
+    public TargetView sizeContentWindow(int s){
+        bundle.putInt(KEY_SIZE_CONTENT_WINDOW,s);
+        return this;
+    }
+    public TargetView colorBackgroundFrame(int color){
         bundle.putInt(KEY_COLOR_BACK,color);
         return this;
     }

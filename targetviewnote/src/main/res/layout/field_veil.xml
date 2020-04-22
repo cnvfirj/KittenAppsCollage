@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.targetviewnote.veil.DrawMidiVeil
+    <com.example.targetviewnote.veil.DrawMiniVeil
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/veil"/>
@@ -39,7 +39,7 @@
                 android:id="@+id/text_title"
                 android:layout_gravity="center_vertical"/>
             </LinearLayout>
-            <com.example.targetviewnote.NoteText
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/text_note"

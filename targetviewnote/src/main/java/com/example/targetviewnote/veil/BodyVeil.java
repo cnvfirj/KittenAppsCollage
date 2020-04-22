@@ -3,6 +3,8 @@ package com.example.targetviewnote.veil;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -15,7 +17,6 @@ import androidx.annotation.Nullable;
 import com.example.targetviewnote.TargetView;
 
 public class BodyVeil extends View {
-
     /*цвет завесы*/
     private int colorBackground;
     /*цель которую видно сквозь завесу*/

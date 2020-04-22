@@ -3,9 +3,12 @@ package com.example.targetviewnote.veil;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 
 import androidx.annotation.Nullable;
 
@@ -26,10 +29,10 @@ public class DrawMidiVeil extends DrawVeil {
     @Override
     protected RectF midiVeil() {
         if(getTarget().width()*4<getTarget().height()){
-            if(getTarget().width()<getWidth()/4){
-                if(getTarget().right<getWidth()/3||getTarget().left>getWidth()-getWidth()/3)
+//            if(getTarget().width()<getWidth()/4){
+                if(getTarget().right+getIndent()<getWidth()/3||getTarget().left-getIndent()>getWidth()/3)
                     return midiVeilInVerticalTarget();
-            }
+//            }
         }
         return midiVeilInHorisontalTarget();
     }
@@ -38,6 +41,9 @@ public class DrawMidiVeil extends DrawVeil {
     protected void clipContent(Canvas canvas) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             canvas.clipOutRect(content);
+//            canvas.clipPath(transform(content));
+        }else {
+            canvas.clipPath(transform(content));
         }
     }
 
@@ -66,7 +72,7 @@ public class DrawMidiVeil extends DrawVeil {
             r.set(left, top, right, bottom);
         }
         correct(r);
-       createVerticalTargetContent(target,r);
+        createVerticalTargetContent(target,r);
         return r;
     }
 
@@ -86,7 +92,7 @@ public class DrawMidiVeil extends DrawVeil {
         return r;
     }
 
-    private void correct(RectF r){
+    protected void correct(RectF r){
         if (r.top < 0) r.set(r.left, 0, r.right, r.bottom);
         if (r.bottom > getHeight()) r.set(r.left, r.top, r.right, getHeight());
     }

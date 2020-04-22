@@ -44,6 +44,13 @@ public class DrawVeil extends ListenVeil {
         paintVeil.setColor(colorBackground);
     }
 
+    public int getContentVeil() {
+        return contentVeil;
+    }
+
+    public void setContentVeil(int contentVeil) {
+        this.contentVeil = contentVeil;
+    }
 
     public void setFrame(int frame) {
         this.frame = frame;
@@ -52,10 +59,28 @@ public class DrawVeil extends ListenVeil {
     private void drawTarget(Canvas canvas){
         if(getTarget()!=null){
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-//                canvas.clipOutPath(p);
                 canvas.clipOutRect(addFrameTarget());
+//                canvas.clipPath(transform(addFrameTarget()));
+            }else {
+                canvas.clipPath(transform(addFrameTarget()));
             }
         }
+    }
+
+    protected Path transform(RectF r){
+        Path p = new Path();
+        p.moveTo(0,0);
+        p.lineTo(getWidth(),0);
+        p.lineTo(getWidth(),getHeight());
+        p.lineTo(0,getHeight());
+        p.lineTo(0,r.bottom);
+        p.lineTo(r.right,r.bottom);
+        p.lineTo(r.right,r.top);
+        p.lineTo(r.left,r.top);
+        p.lineTo(r.left,r.bottom);
+        p.lineTo(0,r.bottom);
+        p.close();
+        return p;
     }
 
     private void drawVeil(Canvas canvas){
@@ -66,6 +91,7 @@ public class DrawVeil extends ListenVeil {
 
     private void defineVeil(){
         if(contentVeil==TargetView.MIDI_VEIL)setVeil(midiVeil());
+        else if(contentVeil==TargetView.MINI_VEIL)setVeil(miniVeil());
     }
 
     protected void clipContent(Canvas canvas){
@@ -77,6 +103,10 @@ public class DrawVeil extends ListenVeil {
     }
 
     protected RectF midiVeil(){
+        return null;
+    }
+
+    protected RectF miniVeil(){
         return null;
     }
 

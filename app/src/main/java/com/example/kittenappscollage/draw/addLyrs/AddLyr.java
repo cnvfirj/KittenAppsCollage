@@ -105,8 +105,8 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
 
         TargetView
                 .build(this)
-                .colorBackground(getContext().getResources().getColor(R.color.colorAccentTransparent))
-                .target(aAlpha)
+                .colorBackgroundFrame(getContext().getResources().getColor(R.color.colorAccentTransparent))
+                .target(aScale)
 //                .targetForm(TargetView.FORM_OVAL)
                 .show();
     }

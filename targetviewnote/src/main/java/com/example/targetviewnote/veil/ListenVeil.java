@@ -30,7 +30,6 @@ public class ListenVeil extends BodyVeil {
             if(getTarget()!=null&&isInRect(touch,getTarget()))touchTarget();
             else if(getTarget()!=null&&isInRect(touch, getVeil()))touchVeil();
             else touchOut();
-
         }
         return super.onTouchEvent(event);
     }
@@ -43,7 +42,7 @@ public class ListenVeil extends BodyVeil {
         return listener;
     }
 
-    private boolean isInRect(PointF p, RectF r){
+    protected boolean isInRect(PointF p, RectF r){
         if(p.x>=r.left&&p.x<=r.right){
             if(p.y>=r.top&&p.y<=r.bottom){
                 return true;
@@ -52,7 +51,7 @@ public class ListenVeil extends BodyVeil {
         return false;
     }
 
-    private void touchTarget(){
+    protected void touchTarget(){
         if(listener!=null){
             listener.click(TargetView.TOUCH_TARGET);
         }else {
@@ -60,13 +59,13 @@ public class ListenVeil extends BodyVeil {
         }
     }
 
-    private void touchVeil(){
+    protected void touchVeil(){
         if(listener!=null){
             listener.click(TargetView.TOUCH_VEIL);
         }
     }
 
-    private void touchOut(){
+    protected void touchOut(){
         if(listener!=null){
             listener.click(TargetView.TOUCH_UOT);
         }

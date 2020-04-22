@@ -5,6 +5,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -46,7 +47,7 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
 
     private ImageView iconTitle, iconSoftKey;
 
-    private NoteText note;
+    private EditText note;
 
     @Nullable
     @Override
@@ -63,9 +64,6 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
         initViews(view);
         Bundle bundle = getArguments();
         if(bundle!=null){
-            veil.setColorVeil(bundle.getInt(TargetView.KEY_COLOR_BACK,Color.BLUE));
-            veil.setTarget(bundle.getIntArray(TargetView.KEY_TARGET_VIEW));
-            veil.setFrame(bundle.getInt(TargetView.KEY_TARGET_FRAME,0));
             setColorBackgroundContent(bundle.getInt(TargetView.KEY_COLOR_BACKGROUND_CONTENT,Color.BLUE));
             setClickListener(bundle.getInt(TargetView.KEY_SOURCE_TARGET));
             setActionExit(bundle.getInt(TargetView.KEY_ACTION_EXIT,TargetView.TOUCH_UOT));
@@ -77,7 +75,10 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
             setSizeNote(bundle.getFloat(TargetView.KEY_SIZE_NOTE,25));
             setColorNote(bundle.getInt(TargetView.KEY_COLOR_TEXT_NOTE,Color.WHITE));
             setIconSoftKey(bundle.getInt(TargetView.KEY_ICON_SOFT_KEY,0));
-
+            veil.setColorVeil(bundle.getInt(TargetView.KEY_COLOR_BACK,Color.BLUE));
+            veil.setTarget(bundle.getIntArray(TargetView.KEY_TARGET_VIEW));
+            veil.setFrame(bundle.getInt(TargetView.KEY_TARGET_FRAME,0));
+            veil.setContentVeil(bundle.getInt(TargetView.KEY_SIZE_CONTENT_WINDOW,TargetView.MINI_VEIL));
         }
            veil.setListener(this);
 
@@ -112,6 +113,7 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
         params.width = (int)r.width();
         params.height = (int)r.height();
         content.setLayoutParams(params);
+        appSizeNote();
     }
 
     @Override
@@ -142,7 +144,7 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
     private void setIconSoftKey(int id){
         if(id!=0){
             dSoftKey = getContext().getResources().getDrawable(id,null);
-            appSizeNote();
+//            appSizeNote();
         }
     }
 
@@ -211,7 +213,7 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
         }
     }
 
-    private void paramView(final View view){
+    private void paramView(final EditText view){
         ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {
             viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -219,9 +221,24 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
                 public void onGlobalLayout() {
                     view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
                     FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) iconSoftKey.getLayoutParams();
-                    params.height = sizeNote;
-                    params.width = sizeNote;
-                    params.topMargin = view.getBottom();
+                    if(view.getText().length()>0) {
+                        Layout layout = view.getLayout();
+                        int offset = view.getText().length() - 1;
+                        int lineOfText = layout.getLineForOffset(offset);
+                        int xCoordinate = (int) layout.getSecondaryHorizontal(offset);
+                        int yCoordinate = layout.getLineTop(lineOfText);
+                        params.height = sizeNote;
+                        params.width = sizeNote;
+                        params.topMargin = (view.getTop() + yCoordinate) ;
+                        params.leftMargin = (int) (xCoordinate + view.getTextSize());
+                        if (content.getWidth() < params.leftMargin + sizeNote) {
+                            params.leftMargin = 0;
+                            params.topMargin = (int) ((view.getTop() + yCoordinate) +params.height*1.1f);
+                        }
+                    }else {
+                        params.topMargin = 0;
+                        params.leftMargin = 0;
+                    }
                     iconSoftKey.setLayoutParams(params);
                     iconSoftKey.setImageDrawable(dSoftKey);
                 }

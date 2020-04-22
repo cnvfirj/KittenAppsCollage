@@ -98,13 +98,14 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
 
         targetView = TargetView
                 .build(this)
-                .colorBackground(getContext().getResources().getColor(R.color.colorAccentTransparent))
-                .colorBackgroundContent(getContext().getResources().getColor(R.color.colorPrimaryAlpha))
+                .colorBackgroundFrame(getContext().getResources().getColor(R.color.colorAccentTransparent))
+                .colorBackgroundContent(getContext().getResources().getColor(R.color.colorAccentTransparent))
                 .sizeTitle(50)
                 .iconTitle(R.drawable.icon_collect)
                 .iconSoftKey(R.drawable.icon_camera)
                 .textTitle("Main title")
-                .textNote("разные заметки могут отличаться друг от друга, они очень важны и незаменимы")
+                .textNote("Разные заметки могут отличаться друг от друга, они очень важные и__")
+                .sizeNote(40)
                 .target(barPaintAlpha);
         targetView.show();
     }
@@ -191,19 +192,19 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
         barEraseAlpha.setProgress(RepDraw.get().getAlpha());
     }
 
-    protected void paramView(final View view){
-        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
-        if (viewTreeObserver.isAlive()) {
-            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-
-
-                }
-            });
-        }
-    }
+//    protected void paramView(final View view){
+//        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+//        if (viewTreeObserver.isAlive()) {
+//            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//                @Override
+//                public void onGlobalLayout() {
+//                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+//
+//
+//                }
+//            });
+//        }
+//    }
 
 
 
