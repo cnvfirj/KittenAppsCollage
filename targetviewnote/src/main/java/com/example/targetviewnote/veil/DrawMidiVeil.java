@@ -2,17 +2,11 @@ package com.example.targetviewnote.veil;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.view.MotionEvent;
 
 import androidx.annotation.Nullable;
-
-import java.io.InputStream;
 
 public class DrawMidiVeil extends DrawVeil {
 

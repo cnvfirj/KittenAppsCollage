@@ -1,10 +1,8 @@
 package com.example.targetviewnote.veil;
 
 import android.content.Context;
-import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
