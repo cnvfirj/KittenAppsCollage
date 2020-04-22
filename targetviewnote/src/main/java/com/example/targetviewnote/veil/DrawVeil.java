@@ -23,6 +23,8 @@ public class DrawVeil extends ListenVeil {
 
     private int indent;
 
+    private int colorDimming;
+
     public DrawVeil(Context context) {
         super(context);
     }
@@ -36,12 +38,21 @@ public class DrawVeil extends ListenVeil {
         super.onDraw(canvas);
         drawTarget(canvas);
         drawVeil(canvas);
+        drawDimming(canvas);
     }
 
     @Override
     public void setColorVeil(int colorBackground) {
         super.setColorVeil(colorBackground);
         paintVeil.setColor(colorBackground);
+    }
+
+    public int getColorDimming() {
+        return colorDimming;
+    }
+
+    public void setColorDimming(int colorDimming) {
+        this.colorDimming = colorDimming;
     }
 
     public int getContentVeil() {
@@ -67,6 +78,23 @@ public class DrawVeil extends ListenVeil {
         }
     }
 
+    private void drawVeil(Canvas canvas){
+        defineVeil();
+        clipContent(canvas);
+        canvas.drawRect(getVeil(),paintVeil);
+    }
+
+    private void drawDimming(Canvas canvas){
+        if(colorDimming!=0){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                canvas.clipOutRect(getVeil());
+            }else {
+                canvas.clipPath(transform(getVeil()));
+            }
+            canvas.drawColor(colorDimming);
+        }
+    }
+
     protected Path transform(RectF r){
         Path p = new Path();
         p.moveTo(0,0);
@@ -81,12 +109,6 @@ public class DrawVeil extends ListenVeil {
         p.lineTo(0,r.bottom);
         p.close();
         return p;
-    }
-
-    private void drawVeil(Canvas canvas){
-        defineVeil();
-        clipContent(canvas);
-        canvas.drawRect(getVeil(),paintVeil);
     }
 
     private void defineVeil(){

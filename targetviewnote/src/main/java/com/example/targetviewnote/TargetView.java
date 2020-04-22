@@ -50,6 +50,8 @@ public class TargetView {
 
     public static final String KEY_SIZE_CONTENT_WINDOW = "size content window";
 
+    public static final String KEY_DIMMING_BACKGROUND = "dimming background";
+
     public static final int FORM_RECT = 0;
 
     public static final int FORM_OVAL = 1;
@@ -123,6 +125,11 @@ public class TargetView {
 
     public TargetView target(View view){
         paramView(view);
+        return this;
+    }
+
+    public TargetView dimmingBackground(int color){
+        bundle.putInt(KEY_DIMMING_BACKGROUND,color);
         return this;
     }
 

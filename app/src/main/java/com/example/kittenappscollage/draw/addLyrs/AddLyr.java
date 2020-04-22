@@ -2,6 +2,7 @@ package com.example.kittenappscollage.draw.addLyrs;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,6 +108,7 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
                 .build(this)
                 .colorBackgroundFrame(getContext().getResources().getColor(R.color.colorAccentTransparent))
                 .target(aScale)
+                .dimmingBackground(getContext().getResources().getColor(R.color.colorPrimaryAlpha))
 //                .targetForm(TargetView.FORM_OVAL)
                 .show();
     }

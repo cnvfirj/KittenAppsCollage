@@ -79,6 +79,7 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
             veil.setTarget(bundle.getIntArray(TargetView.KEY_TARGET_VIEW));
             veil.setFrame(bundle.getInt(TargetView.KEY_TARGET_FRAME,0));
             veil.setContentVeil(bundle.getInt(TargetView.KEY_SIZE_CONTENT_WINDOW,TargetView.MINI_VEIL));
+            veil.setColorDimming(bundle.getInt(TargetView.KEY_DIMMING_BACKGROUND,0));
         }
            veil.setListener(this);
 
