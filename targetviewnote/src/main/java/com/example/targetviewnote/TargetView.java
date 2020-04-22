@@ -24,7 +24,7 @@ public class TargetView {
 
     public static final String KEY_SOURCE_TARGET = "key source target";
 
-    public static final String KEY_TARGET_FORM = "key target form";
+//    public static final String KEY_TARGET_FORM = "key target form";
 
     public static final String KEY_TARGET_FRAME = "key target frame";
 
@@ -52,11 +52,11 @@ public class TargetView {
 
     public static final String KEY_DIMMING_BACKGROUND = "dimming background";
 
-    public static final int FORM_RECT = 0;
-
-    public static final int FORM_OVAL = 1;
-
-    public static final int FORM_CIRC = 2;
+//    public static final int FORM_RECT = 0;
+//
+//    public static final int FORM_OVAL = 1;
+//
+//    public static final int FORM_CIRC = 2;
 
     public static final int TOUCH_TARGET = 10;
 
@@ -64,13 +64,13 @@ public class TargetView {
 
     public static final int TOUCH_UOT = 12;
 
-    public static final int NON_TOUCH = 13;
+//    public static final int NON_TOUCH = 13;
 
     public static final int SOURCE_ACTIVITY = 21;
 
     public static final int SOURCE_FRAGMENT = 22;
 
-    public static final int MAXI_VEIL = 30;
+//    public static final int MAXI_VEIL = 30;
 
     public static final int MIDI_VEIL = 31;
 
