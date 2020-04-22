@@ -81,7 +81,7 @@ public class ViewDraw extends View {
 
           if (vInfo) {
               if (RepDraw.get().isImg())
-                  vHelper.drawInfo(canvas, RepDraw.get().getIMat(), "img", Color.RED);
+                  vHelper.drawInfo(canvas, RepDraw.get().getIMat(), "main", Color.RED);
               if (RepDraw.get().isLyr())
                   vHelper.drawInfo(canvas, RepDraw.get().getLMat(), "over", Color.BLUE);
           }
