@@ -27,7 +27,7 @@ import androidx.fragment.app.DialogFragment;
 import com.example.targetviewnote.veil.DrawMidiVeil;
 
 
-public class VeilField extends DialogFragment implements DrawMidiVeil.InternalListener {
+public class VeilField extends DialogFragment implements DrawMidiVeil.InternalListener{
 
     private DrawMidiVeil veil;
 
@@ -59,9 +59,18 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         veil = view.findViewById(R.id.veil);
         initViews(view);
+
+    }
+
+
+
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
         Bundle bundle = getArguments();
         if(bundle!=null){
             setColorBackgroundContent(bundle.getInt(TargetView.KEY_COLOR_BACKGROUND_CONTENT,Color.BLUE));
@@ -81,15 +90,8 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
             veil.setContentVeil(bundle.getInt(TargetView.KEY_SIZE_CONTENT_WINDOW,TargetView.MINI_VEIL));
             veil.setColorDimming(bundle.getInt(TargetView.KEY_DIMMING_BACKGROUND,0));
         }
-           veil.setListener(this);
 
-    }
-
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
+        veil.setListener(this);
     }
 
     @Override
@@ -129,8 +131,16 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
         note = view.findViewById(R.id.text_note);
         iconSoftKey = view.findViewById(R.id.icon_soft_key);
         content = view.findViewById(R.id.content);
+        iconSoftKey.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    if(clickListener!=null)clickListener.onClickTarget(TargetView.TOUCH_SOFT_KEY);
+
+            }
+        });
     }
     private void setClickListener(int source){
+
         try {
             if (source == TargetView.SOURCE_ACTIVITY) {
                 clickListener = (TargetView.OnClickTargetViewNoleListener) getContext();
@@ -145,14 +155,14 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
     private void setIconSoftKey(int id){
         if(id!=0){
             dSoftKey = getContext().getResources().getDrawable(id,null);
-//            appSizeNote();
+        }else {
+            dSoftKey = null;
+            iconSoftKey.setImageDrawable(null);
         }
     }
 
     private void setTextNote(String text){
-        if(!text.equals("")){
             note.setText(text);
-        }
     }
 
     private void setColorNote(int color){
@@ -166,15 +176,18 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
     }
 
     private void setTextTitle(String text){
-        if(!text.equals("")){
+//        if(!text.equals("")){
             title.setText(text);
-        }
+//        }
     }
 
     private void setIconTitle(int id){
         if(id!=0){
             dTitle = getContext().getResources().getDrawable(id,null);
             appSizeTitle();
+        }else {
+            dTitle = null;
+            iconTitle.setImageDrawable(null);
         }
     }
 

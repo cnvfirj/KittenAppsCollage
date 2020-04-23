@@ -104,13 +104,6 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
 
         createBitmap(aWay,aSource);
 
-        TargetView
-                .build(this)
-                .colorBackgroundFrame(getContext().getResources().getColor(R.color.colorAccentTransparent))
-                .target(aMirror)
-                .dimmingBackground(getContext().getResources().getColor(R.color.colorPrimaryAlpha))
-//                .targetForm(TargetView.FORM_OVAL)
-                .show();
     }
 
 

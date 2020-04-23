@@ -14,6 +14,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class FragmentSlideGallery extends FragmentGallery implements View.OnClickListener {
 
@@ -27,7 +28,7 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
     *       режим клика - выйти в главную галлерею  */
     private ImageView selectExitMode,selected_1, selected_3, selected_4;
 
-    private ImageView addFolders;
+    private ImageView addFolders, menu;
 
     private float slide;
 
@@ -61,7 +62,9 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
             case R.id.gallery_add_folds:
                 clickAddFolder((ImageView)v);
                 break;
-
+            case R.id.gallery_main_menu:
+                clickMenu((ImageView)v);
+                break;
         }
     }
 
@@ -87,6 +90,8 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
         addFolders = v.findViewById(R.id.gallery_add_folds);
         addFolders.setOnClickListener(this);
         addFolders.setActivated(true);
+        menu = v.findViewById(R.id.gallery_main_menu);
+        menu.setOnClickListener(this);
     }
 
     @Override
@@ -145,6 +150,10 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
 
     }
 
+    protected void clickMenu(ImageView v){
+
+    }
+
 
     @Override
     protected void visibleMenu() {
@@ -187,15 +196,6 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
     protected ImageView getAddFolders(){
         return addFolders;
     }
-
-//    protected void selectIconAction3(ImageView view){
-//        if(getIndexAdapter()==ROOT_ADAPTER){
-//            view.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_selected_copy,null));
-//
-//        }else {
-//            view.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_share,null));
-//        }
-//    }
 
     protected void slideAddFold(boolean s){
         if(s){
@@ -246,17 +246,6 @@ protected void slideSel_4(boolean s){
             return getFoldAdapt().isModeSelected();
         }
     }
-
-//    protected void hideMenuInAction(){
-//        selected_1.animate().translationY(-slide).setDuration(300).start();
-//        selected_3.animate().translationY(-slide).setDuration(300).start();
-//        selected_4.animate().translationY(-slide).setDuration(300).start();
-//        if(getIndexAdapter()!=ROOT_ADAPTER) {
-//            selectExitMode.animate().translationY(-slide).setDuration(300).start();
-//        }else {
-//            selectExitMode.setSelected(false);
-//        }
-//    }
 
     protected void hideMenu(){
         selectExitMode.animate().translationY(-slide).setDuration(0).start();

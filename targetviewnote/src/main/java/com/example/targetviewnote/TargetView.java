@@ -2,6 +2,7 @@ package com.example.targetviewnote;
 
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
@@ -52,13 +53,17 @@ public class TargetView {
 //
 //    public static final int FORM_CIRC = 2;
 
+    public static final int NON_IKON = 0;
+
     public static final int TOUCH_TARGET = 10;
 
     public static final int TOUCH_VEIL = 11;
 
     public static final int TOUCH_UOT = 12;
 
-//    public static final int NON_TOUCH = 13;
+    public static final int TOUCH_SOFT_KEY = 13;
+
+    public static final int NON_TOUCH = 14;
 
     public static final int SOURCE_ACTIVITY = 21;
 
@@ -192,21 +197,20 @@ public class TargetView {
 
     public void show(){
         show = true;
-
         if(readiness) {
             veilField.setArguments(bundle);
             FragmentManager fm = null;
             if (fragment != null) {
                 fm = fragment.getFragmentManager();
-                veilField.setTargetFragment(fragment,0);
-            }
-            else if (activity != null) {
+                veilField.setTargetFragment(fragment, 0);
+            } else if (activity != null) {
                 fm = activity.getSupportFragmentManager();
 
             }
             veilField.setCancelable(false);
             veilField.show(fm, veilField.getClass().getName());
         }
+
     }
 
     public void reset(){

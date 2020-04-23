@@ -80,12 +80,6 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
 
         paramView(view);
 
-        TargetView
-                .build(this)
-                .colorBackgroundFrame(getContext().getResources().getColor(R.color.colorAccentTransparent))
-                .target(R.id.action_1)
-//                .targetForm(TargetView.FORM_OVAL)
-                .show();
     }
 
     @Override

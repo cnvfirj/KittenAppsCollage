@@ -36,9 +36,11 @@ public class DrawVeil extends ListenVeil {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        drawTarget(canvas);
-        drawVeil(canvas);
-        drawDimming(canvas);
+        if(getTarget()!=null) {
+            drawTarget(canvas);
+            drawVeil(canvas);
+            drawDimming(canvas);
+        }
     }
 
     @Override

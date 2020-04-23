@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.kittenappscollage.MainActivity;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.ViewDraw;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
@@ -24,11 +26,17 @@ import com.example.targetviewnote.TargetView;
 /*описываем основную анимацию движения кнопок и панели
 * инструментов. Присваиваем им иконки*/
 
-public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
+public class SuperFragmentDraw extends Fragment implements View.OnClickListener,TargetView.OnClickTargetViewNoleListener{
 
     private SharedPreferences dPreferences;
 
     private SharedPreferences.Editor dEditor;
+
+    private final String KEY_STEP_TUTORIAL = "SuperFragmentDraw step tutorial";
+
+    public static final String KEY_START_TUTORIAL = "SuperFragmentDraw start tutorial";
+
+
 
     private final String KEY_INDEX_TOOL = "key index tool";
     private final String KEY_UNDER_DRAW = "key under draw";
@@ -95,8 +103,9 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
 
     private float dSlideStep;
 
+    private int stepTutorial;
 
-
+    private boolean startTutorial;
 
     public SuperFragmentDraw() {
         dVisibleTools = false;
@@ -137,7 +146,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
             }
         });
 
-
     }
 
     @Override
@@ -161,13 +169,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
         dScale.setSelected(true);
         selectorButtons(index);
 
-
-
-//        TargetView
-//                .build(this)
-//                .colorBackground(getContext().getResources().getColor(R.color.colorAccentTransparent))
-//                .target(R.id.slide_all_tools)
-//                .show();
+        exkurs(getPreferences().getInt(KEY_STEP_TUTORIAL,-1));
     }
 
     @Override
@@ -208,6 +210,24 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
                     toolsDrive(view);
                     break;
         }
+    }
+
+    @Override
+    public void onClickTarget(int i) {
+
+    }
+
+    public void startTutorial(){
+        if(!getActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(MainActivity.KEY_PRIMARY_START,false)){
+            if(getActivity().getPreferences(Context.MODE_PRIVATE).getInt(MainActivity.KEY_EXCURS_STEP,0)>=3)
+                getEditor().putInt(KEY_STEP_TUTORIAL,0);
+                exkurs(0);
+        }
+    }
+
+
+    private void exkurs(int step){
+        Log.d("FRDRAW",""+step);
     }
 
     private void toolsDrive(View view){
@@ -265,7 +285,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
                 break;
             case R.id.tool_color:
                 toolColor((ImageView)view);
-
+               break;
 
         }
     }
@@ -305,7 +325,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener{
 //        dAddLink = view.findViewById(R.id.add_link);
         dAddCam = view.findViewById(R.id.add_camera);
         dAddColl = view.findViewById(R.id.add_collect);
-
         addListener();
     }
 

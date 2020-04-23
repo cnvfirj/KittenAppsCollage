@@ -221,13 +221,6 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
         params.topMargin = side;
         aSeekHeight.setLayoutParams(params);
 
-        TargetView
-                .build(this)
-                .colorBackgroundFrame(getContext().getResources().getColor(R.color.colorAccentTransparent))
-                .target(aSeekWidth)
-//                .targetForm(TargetView.FORM_OVAL)
-                .show();
-
     }
 
     private void applyTransform(boolean hide, long time){

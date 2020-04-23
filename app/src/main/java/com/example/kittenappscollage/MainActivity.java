@@ -12,12 +12,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import com.example.kittenappscollage.collect.fragment.FragmentGallery;
 import com.example.kittenappscollage.collect.fragment.FragmentGalleryAddFolder;
 import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
+import com.example.kittenappscollage.draw.fragment.SuperFragmentDraw;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
 import com.example.kittenappscollage.draw.saveSteps.ClearCatch;
@@ -37,7 +39,16 @@ import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery,
         SavedKollagesFragmentDraw.ActionSave,
-        MainSwitching{
+        MainSwitching,
+        TargetView.OnClickTargetViewNoleListener{
+
+    public static final String KEY_EXCURS_STEP = "MainActivity excurs step___";
+
+    public static final String KEY_PRIMARY_START = "MainActivity primary start___";
+
+    private int excursStep;
+
+    private boolean primaryStart;
 
     private ApplyDrawToolsFragmentDraw mFragDraw;
 
@@ -46,6 +57,8 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     private TabLayout mTabLayout;
 
     private SelectSweepViewPager viewPager;
+
+    private TargetView targetView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +69,42 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         App.setMain(this);
         viewPager = findViewById(R.id.select_sweep_viewpager);
         setupViewPager(viewPager);
-        requestOldProj();
+        primaryStart = getPreferences(MODE_PRIVATE).getBoolean(KEY_PRIMARY_START,false);
+        if(primaryStart) {
+            requestOldProj();
+            excursStep = 999;
+        }else {
+            excursStep = getPreferences(MODE_PRIVATE).getInt(KEY_EXCURS_STEP,0);
+            if(excursStep<3) {
+                targetView = TargetView.build(this);
+                excurs(excursStep);
+            }
+        }
+    }
+
+    @Override
+    public void onClickTarget(int i) {
+            if(excursStep==0){
+            targetView.close();
+            excursStep = 1;
+            getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,excursStep).apply();
+            excurs(excursStep);
+        }else if(excursStep==1){
+            if(i==TargetView.TOUCH_SOFT_KEY) {
+                targetView.close();
+                excursStep = 2;
+                getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,excursStep).apply();
+                excurs(excursStep);
+            }
+        }else if(excursStep==2){
+            if(i==TargetView.TOUCH_SOFT_KEY) {
+                targetView.close();
+                excursStep = 3;
+                getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,excursStep).apply();
+                mFragDraw.startTutorial();
+            }
+        }
+
     }
 
     @Override
@@ -106,10 +154,38 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         viewPager.setCurrentItem(0);
     }
 
-//    private Uri getUri(){
-//        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q)return MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-//        else return MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL);
-//    }
+    private void excurs(int step){
+        if(step==0){
+            targetView.target(R.id.tabs)
+                    .touchExit(TargetView.NON_TOUCH)
+                    .dimmingBackground(getResources().getColor(R.color.colorDimenPrimaryTransparent))
+                    .colorBackgroundFrame(getResources().getColor(R.color.colorDimenPrimaryTransparent))
+                    .colorBackgroundContent(getResources().getColor(R.color.colorDimenPrimaryTransparent))
+                    .textTitle("Отказ")
+                    .sizeTitle(60)
+                    .iconTitle(R.drawable.ic_warning)
+                    .textNote("Разработчик этого приложения не несет ответственности за использование сторонних изображений. Соглашаясь с этим условием, пользователь обязуется придерживаться закона и соблюдать авторские права.")
+                    .sizeNote(30)
+                     .show();
+        }else if(step==1){
+            targetView
+                    .colorBackgroundFrame(getResources().getColor(R.color.colorDimenAccentDarkTransparent))
+                    .colorBackgroundContent(getResources().getColor(R.color.colorDimenAccentDarkTransparent))
+                    .iconTitle(TargetView.NON_IKON)
+                    .iconSoftKey(R.drawable.ic_icon_next)
+                    .textTitle("Обучение")
+                    .textNote("Перед началом работы, просмотрим функции приложения. Для перехода к следующему пункту, жми вперед в конце предложения")
+                    .sizeNote(30)
+                    .sizeTitle(60)
+                    .show();
+        }else if(step==2){
+            targetView.textTitle("Навигация в приложении")
+                    .textNote("С помощью панели вкладок возможен переход в основную галерею. Обратно переход такой же.")
+                    .show();
+        }
+//        else if(step>=3)reportToFragment();
+    }
+
 
     private void setupViewPager(SelectSweepViewPager v){
         v.setAdapter(addFragments());
@@ -119,10 +195,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     private ViewPageAdapter addFragments(){
         mFragDraw = new ApplyDrawToolsFragmentDraw();
         mFragGal = new FragmentGalleryAddFolder();
-
-
         mFragGal.setBlock(false);
-
 
         ViewPageAdapter a = new ViewPageAdapter(getSupportFragmentManager());
         a.addFragment(mFragDraw);
@@ -158,18 +231,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
             }
         });
 
-//        TargetView
-//                .build(this)
-//                .colorBackground(getResources().getColor(R.color.colorAccentTransparent))
-//                .target(R.id.tabs)
-//                .show();
-
     }
-
-//    @Override
-//    public void onClick(int i) {
-//        LYTE("click main "+i);
-//    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override

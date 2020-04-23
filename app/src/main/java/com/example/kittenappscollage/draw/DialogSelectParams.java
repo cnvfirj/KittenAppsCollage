@@ -21,7 +21,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.dynamikseekbar.DynamicSeekBar;
-import com.example.kittenappscollage.CustomDialog;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.view.PresentPaint;
@@ -96,18 +95,6 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
         done.setOnClickListener(this);
         close.setOnClickListener(this);
 
-        targetView = TargetView
-                .build(this)
-                .colorBackgroundFrame(getContext().getResources().getColor(R.color.colorAccentTransparent))
-                .colorBackgroundContent(getContext().getResources().getColor(R.color.colorAccentTransparent))
-                .sizeTitle(50)
-                .iconTitle(R.drawable.icon_collect)
-                .iconSoftKey(R.drawable.icon_camera)
-                .textTitle("Main title")
-                .textNote("Разные заметки могут отличаться друг от друга, они очень важные и__")
-                .sizeNote(40)
-                .target(barPaintAlpha);
-        targetView.show();
     }
 
     @Override
@@ -191,22 +178,5 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
         barPaintAlpha.setProgress(Color.alpha(RepDraw.get().getColor()));
         barEraseAlpha.setProgress(RepDraw.get().getAlpha());
     }
-
-//    protected void paramView(final View view){
-//        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
-//        if (viewTreeObserver.isAlive()) {
-//            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//                @Override
-//                public void onGlobalLayout() {
-//                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-//
-//
-//                }
-//            });
-//        }
-//    }
-
-
-
 
 }
