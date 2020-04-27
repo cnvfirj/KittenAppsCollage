@@ -85,13 +85,13 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     @Override
     public void onClickTarget(int i) {
             if(excursStep==0){
-            targetView.close();
+//            targetView.close();
             excursStep = 1;
             getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,excursStep).apply();
             excurs(excursStep);
         }else if(excursStep==1){
             if(i==TargetView.TOUCH_SOFT_KEY) {
-                targetView.close();
+//                targetView.close();
                 excursStep = 2;
                 getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,excursStep).apply();
                 excurs(excursStep);
@@ -175,13 +175,11 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                     .iconSoftKey(R.drawable.ic_icon_next)
                     .textTitle("Обучение")
                     .textNote("Перед началом работы, просмотрим функции приложения. Для перехода к следующему пункту, жми вперед в конце предложения")
-                    .sizeNote(30)
-                    .sizeTitle(60)
-                    .show();
+                    .step();
         }else if(step==2){
             targetView.textTitle("Навигация в приложении")
                     .textNote("С помощью панели вкладок возможен переход в основную галерею. Обратно переход такой же.")
-                    .show();
+                    .step();
         }
 //        else if(step>=3)reportToFragment();
     }

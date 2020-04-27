@@ -21,6 +21,7 @@ import com.example.kittenappscollage.MainActivity;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.ViewDraw;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
+import com.example.kittenappscollage.draw.tutorial.ExcursInTutorial;
 import com.example.targetviewnote.TargetView;
 
 /*описываем основную анимацию движения кнопок и панели
@@ -31,6 +32,10 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener,
     private SharedPreferences dPreferences;
 
     private SharedPreferences.Editor dEditor;
+
+    private TargetView targetView;
+
+    private ExcursInTutorial excursInTutorial;
 
     private final String KEY_STEP_TUTORIAL = "SuperFragmentDraw step tutorial";
 
@@ -214,13 +219,13 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener,
 
     @Override
     public void onClickTarget(int i) {
-
+        if(i==TargetView.TOUCH_SOFT_KEY)excursInTutorial.next();
     }
 
     public void startTutorial(){
         if(!getActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(MainActivity.KEY_PRIMARY_START,false)){
             if(getActivity().getPreferences(Context.MODE_PRIVATE).getInt(MainActivity.KEY_EXCURS_STEP,0)>=3)
-                getEditor().putInt(KEY_STEP_TUTORIAL,0);
+                getEditor().putInt(KEY_STEP_TUTORIAL,0).apply();
                 exkurs(0);
         }
     }
@@ -228,6 +233,17 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener,
 
     private void exkurs(int step){
         Log.d("FRDRAW",""+step);
+        if(step>-1&&step<999){
+            if(getContext()!=null){
+
+               excursInTutorial =  new ExcursInTutorial(TargetView.build(this).touchExit(TargetView.NON_TOUCH))
+                        .targets(new Integer[]{R.id.slide_add_lyr,R.id.slide_all_tools,R.id.slide_save_img})
+                        .titles(getContext().getResources().getStringArray(R.array.draw_main_buttons_title))
+                        .notes(getContext().getResources().getStringArray(R.array.draw_main_buttons_note))
+                       .setStep(step);
+                excursInTutorial.start();
+            }
+        }
     }
 
     private void toolsDrive(View view){

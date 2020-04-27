@@ -65,39 +65,22 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
     }
 
 
-
-
+    @Override
+    public void setArguments(@Nullable Bundle args) {
+        super.setArguments(args);
+        Log.d("SET ARG", "arg");
+        setParams(getArguments());
+    }
 
     @Override
     public void onStart() {
         super.onStart();
-        Bundle bundle = getArguments();
-        if(bundle!=null){
-            setColorBackgroundContent(bundle.getInt(TargetView.KEY_COLOR_BACKGROUND_CONTENT,Color.BLUE));
-            setClickListener(bundle.getInt(TargetView.KEY_SOURCE_TARGET));
-            setActionExit(bundle.getInt(TargetView.KEY_ACTION_EXIT,TargetView.TOUCH_UOT));
-            setTextTitle(bundle.getString(TargetView.KEY_TEXT_TITLE,""));
-            setSizeTitle(bundle.getFloat(TargetView.KEY_SIZE_TITLE,50));
-            setIconTitle(bundle.getInt(TargetView.KEY_ICON_TITLE,0));
-            setColorTitle(bundle.getInt(TargetView.KEY_COLOR_TEXT_TITLE,Color.WHITE));
-            setTextNote(bundle.getString(TargetView.KEY_TEXT_NOTE,""));
-            setSizeNote(bundle.getFloat(TargetView.KEY_SIZE_NOTE,25));
-            setColorNote(bundle.getInt(TargetView.KEY_COLOR_TEXT_NOTE,Color.WHITE));
-            setIconSoftKey(bundle.getInt(TargetView.KEY_ICON_SOFT_KEY,0));
-            veil.setColorVeil(bundle.getInt(TargetView.KEY_COLOR_BACK,Color.BLUE));
-            veil.setTarget(bundle.getIntArray(TargetView.KEY_TARGET_VIEW));
-            veil.setFrame(bundle.getInt(TargetView.KEY_TARGET_FRAME,0));
-            veil.setContentVeil(bundle.getInt(TargetView.KEY_SIZE_CONTENT_WINDOW,TargetView.MINI_VEIL));
-            veil.setColorDimming(bundle.getInt(TargetView.KEY_DIMMING_BACKGROUND,0));
-        }
-
-        veil.setListener(this);
+        setParams(getArguments());
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
         Window window = getDialog().getWindow();
         window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         WindowManager.LayoutParams windowParams = window.getAttributes();
@@ -139,13 +122,37 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
             }
         });
     }
+
+    private void setParams(Bundle bundle){
+
+        if(bundle!=null&&(veil!=null)){
+            setColorBackgroundContent(bundle.getInt(TargetView.KEY_COLOR_BACKGROUND_CONTENT,Color.BLUE));
+            setClickListener(bundle.getInt(TargetView.KEY_SOURCE_TARGET));
+            setActionExit(bundle.getInt(TargetView.KEY_ACTION_EXIT,TargetView.TOUCH_UOT));
+            setTextTitle(bundle.getString(TargetView.KEY_TEXT_TITLE,""));
+            setSizeTitle(bundle.getFloat(TargetView.KEY_SIZE_TITLE,50));
+            setIconTitle(bundle.getInt(TargetView.KEY_ICON_TITLE,0));
+            setColorTitle(bundle.getInt(TargetView.KEY_COLOR_TEXT_TITLE,Color.WHITE));
+            setTextNote(bundle.getString(TargetView.KEY_TEXT_NOTE,""));
+            setSizeNote(bundle.getFloat(TargetView.KEY_SIZE_NOTE,25));
+            setColorNote(bundle.getInt(TargetView.KEY_COLOR_TEXT_NOTE,Color.WHITE));
+            setIconSoftKey(bundle.getInt(TargetView.KEY_ICON_SOFT_KEY,0));
+            veil.setColorVeil(bundle.getInt(TargetView.KEY_COLOR_BACK,Color.BLUE));
+            veil.setTarget(bundle.getIntArray(TargetView.KEY_TARGET_VIEW));
+            veil.setFrame(bundle.getInt(TargetView.KEY_TARGET_FRAME,0));
+            veil.setContentVeil(bundle.getInt(TargetView.KEY_SIZE_CONTENT_WINDOW,TargetView.MINI_VEIL));
+            veil.setColorDimming(bundle.getInt(TargetView.KEY_DIMMING_BACKGROUND,0));
+            veil.setListener(this);
+            veil.invalidate();
+        }
+     }
     private void setClickListener(int source){
 
         try {
             if (source == TargetView.SOURCE_ACTIVITY) {
-                clickListener = (TargetView.OnClickTargetViewNoleListener) getContext();
+                if(getContext()!=null)clickListener = (TargetView.OnClickTargetViewNoleListener) getContext();
             } else if (source == TargetView.SOURCE_FRAGMENT) {
-                clickListener = (TargetView.OnClickTargetViewNoleListener) getTargetFragment();
+                if(getTargetFragment()!=null)clickListener = (TargetView.OnClickTargetViewNoleListener) getTargetFragment();
             }
         }catch (ClassCastException e){
             Log.e("TargetView", "implement the interface: OnClickTargetViewNoleListener in the called activity or fragment ");
@@ -154,57 +161,57 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
 
     private void setIconSoftKey(int id){
         if(id!=0){
-            dSoftKey = getContext().getResources().getDrawable(id,null);
+            if(getContext()!=null)dSoftKey = getContext().getResources().getDrawable(id,null);
         }else {
             dSoftKey = null;
-            iconSoftKey.setImageDrawable(null);
+            if(iconSoftKey!=null)iconSoftKey.setImageDrawable(null);
         }
     }
 
     private void setTextNote(String text){
-            note.setText(text);
+            if(note!=null)note.setText(text);
     }
 
     private void setColorNote(int color){
-        note.setTextColor(color);
+        if(note!=null)note.setTextColor(color);
     }
 
     private void setSizeNote(float size){
         sizeNote = (int)size;
         size/=getContext().getApplicationContext().getResources().getDisplayMetrics().density;
-        note.setTextSize(size);
+        if(note!=null)note.setTextSize(size);
     }
 
     private void setTextTitle(String text){
 //        if(!text.equals("")){
-            title.setText(text);
+            if(title!=null)title.setText(text);
 //        }
     }
 
     private void setIconTitle(int id){
         if(id!=0){
-            dTitle = getContext().getResources().getDrawable(id,null);
+            if(getContext()!=null)dTitle = getContext().getResources().getDrawable(id,null);
             appSizeTitle();
         }else {
             dTitle = null;
-            iconTitle.setImageDrawable(null);
+            if(iconTitle!=null)iconTitle.setImageDrawable(null);
         }
     }
 
     private void setColorTitle(int color){
-        title.setTextColor(color);
+        if(title!=null)title.setTextColor(color);
     }
 
     private void setSizeTitle(float size){
         sizeTitle = (int)size;
         appSizeTitle();
         size/=getContext().getApplicationContext().getResources().getDisplayMetrics().density;
-        title.setTextSize(size);
+        if(title!=null)title.setTextSize(size);
 
     }
 
     private void setColorBackgroundContent(int color){
-        content.setBackgroundColor(color);
+        if(content!=null)content.setBackgroundColor(color);
     }
 
     private void setActionExit(int i){
@@ -212,7 +219,7 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
     }
 
     private void appSizeTitle(){
-        if(dTitle!=null){
+        if(dTitle!=null&&iconTitle!=null){
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams)iconTitle.getLayoutParams();
             params.height = sizeTitle;
             params.width = sizeTitle;
