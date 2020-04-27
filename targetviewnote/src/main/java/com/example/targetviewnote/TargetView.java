@@ -89,7 +89,7 @@ public class TargetView {
 
     private boolean show;
 
-    private View target;
+    private boolean step;
 
 
     public static TargetView build(AppCompatActivity activity){
@@ -201,8 +201,10 @@ public class TargetView {
 
     public void show(){
         show = true;
+        step = false;
         if(readiness) {
             veilField.setArguments(bundle);
+            if(!veilField.isAdded()) {
                 FragmentManager fm = null;
                 if (fragment != null) {
                     fm = fragment.getFragmentManager();
@@ -211,20 +213,18 @@ public class TargetView {
                     fm = activity.getSupportFragmentManager();
 
                 }
+
                 veilField.setCancelable(false);
                 veilField.show(fm, veilField.getClass().getName());
+            }
         }
 
     }
 
     public void step(){
-            if (veilField.isVisible()) {
-                int[] l = new int[2];
-                target.getLocationOnScreen(l);
-                int h = l[1]+hShift();
-                int w = l[0];
-                final int[]t = new int[]{w,h,w+target.getWidth(),h+target.getHeight()};
-                bundle.putIntArray(KEY_TARGET_VIEW,t);
+        step = true;
+        show = false;
+            if (readiness) {
                 veilField.setArguments(bundle);
             }
     }
@@ -239,24 +239,33 @@ public class TargetView {
     }
 
     private void paramView(final View view){
-        target = view;
-        ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
-        if (viewTreeObserver.isAlive()) {
-            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                @Override
-                public void onGlobalLayout() {
-                    view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    int[] l = new int[2];
-                    view.getLocationOnScreen(l);
-                    int h = l[1]+hShift();
-                    int w = l[0];
-                    final int[]t = new int[]{w,h,w+view.getWidth(),h+view.getHeight()};
-                    bundle.putIntArray(KEY_TARGET_VIEW,t);
-                    readiness = true;
-                    if(show)show();
-                }
-            });
+        if(veilField.isVisible()||(view.getWidth()>0&&view.getHeight()>0)){
+            addParamsTarget(view);
+            if(step)step();
+            else if(show)show();
+        }else {
+            ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
+            if (viewTreeObserver.isAlive()) {
+                viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        view.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        addParamsTarget(view);
+                        if (show) show();
+                    }
+                });
+            }
         }
+    }
+
+    private void addParamsTarget(View view){
+        int[] l = new int[2];
+        view.getLocationOnScreen(l);
+        int h = l[1] + hShift();
+        int w = l[0];
+        final int[] t = new int[]{w, h, w + view.getWidth(), h + view.getHeight()};
+        bundle.putIntArray(KEY_TARGET_VIEW, t);
+        readiness = true;
     }
 
     /*сдвиг на статус бар*/

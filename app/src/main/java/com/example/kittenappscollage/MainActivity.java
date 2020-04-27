@@ -12,14 +12,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 
 import com.example.kittenappscollage.collect.fragment.FragmentGallery;
 import com.example.kittenappscollage.collect.fragment.FragmentGalleryAddFolder;
 import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
-import com.example.kittenappscollage.draw.fragment.SuperFragmentDraw;
+import com.example.kittenappscollage.draw.fragment.TutorialFragmentDraw;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
 import com.example.kittenappscollage.draw.saveSteps.ClearCatch;
@@ -35,7 +34,6 @@ import com.google.android.material.tabs.TabLayout;
 
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery,
         SavedKollagesFragmentDraw.ActionSave,
@@ -50,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private boolean primaryStart;
 
-    private ApplyDrawToolsFragmentDraw mFragDraw;
+    private TutorialFragmentDraw mFragDraw;
 
     private FragmentGalleryAddFolder mFragGal;
 
@@ -191,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     }
 
     private ViewPageAdapter addFragments(){
-        mFragDraw = new ApplyDrawToolsFragmentDraw();
+        mFragDraw = new TutorialFragmentDraw();
         mFragGal = new FragmentGalleryAddFolder();
         mFragGal.setBlock(false);
 

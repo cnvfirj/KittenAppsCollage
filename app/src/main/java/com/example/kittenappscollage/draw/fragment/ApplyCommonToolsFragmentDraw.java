@@ -14,7 +14,7 @@ import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
 
 
 /*применяем действия стандартной панети инструментов*/
-public class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw implements RepDraw.Appling {
+public abstract class ApplyCommonToolsFragmentDraw extends SavedKollagesFragmentDraw implements RepDraw.Appling {
 
     private final String KEY_INFO = "info";
 

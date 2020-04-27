@@ -68,7 +68,6 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
     @Override
     public void setArguments(@Nullable Bundle args) {
         super.setArguments(args);
-        Log.d("SET ARG", "arg");
         setParams(getArguments());
     }
 

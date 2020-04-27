@@ -1,12 +1,12 @@
 package com.example.kittenappscollage.draw.fragment;
 
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,30 +17,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.kittenappscollage.MainActivity;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.ViewDraw;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
 import com.example.kittenappscollage.draw.tutorial.ExcursInTutorial;
-import com.example.targetviewnote.TargetView;
 
 /*описываем основную анимацию движения кнопок и панели
 * инструментов. Присваиваем им иконки*/
 
-public class SuperFragmentDraw extends Fragment implements View.OnClickListener,TargetView.OnClickTargetViewNoleListener{
+public abstract class SuperFragmentDraw extends Fragment implements View.OnClickListener, Animator.AnimatorListener {
 
     private SharedPreferences dPreferences;
 
     private SharedPreferences.Editor dEditor;
-
-    private TargetView targetView;
-
-    private ExcursInTutorial excursInTutorial;
-
-    private final String KEY_STEP_TUTORIAL = "SuperFragmentDraw step tutorial";
-
-    public static final String KEY_START_TUTORIAL = "SuperFragmentDraw start tutorial";
-
 
 
     private final String KEY_INDEX_TOOL = "key index tool";
@@ -108,10 +97,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener,
 
     private float dSlideStep;
 
-    private int stepTutorial;
-
-    private boolean startTutorial;
-
     public SuperFragmentDraw() {
         dVisibleTools = false;
         dVisibleSave = false;
@@ -124,6 +109,8 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener,
         dIndexDefRot = OP_DEF_ROT_1;
         dIndexScale = OP_SCALE_1;
     }
+
+
 
     @SuppressLint("CommitPrefEdits")
     @Nullable
@@ -173,9 +160,9 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener,
         selectorIconsScale(dScale);
         dScale.setSelected(true);
         selectorButtons(index);
-
-        exkurs(getPreferences().getInt(KEY_STEP_TUTORIAL,-1));
     }
+
+
 
     @Override
     public void onClick(View view) {
@@ -202,9 +189,6 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener,
             case R.id.add_created:
                 addCreated((ImageView)view);
                 break;
-//            case R.id.add_link:
-//                addLink((ImageView)view);
-//                break;
             case R.id.add_camera:
                 addCam((ImageView)view);
                 break;
@@ -217,34 +201,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener,
         }
     }
 
-    @Override
-    public void onClickTarget(int i) {
-        if(i==TargetView.TOUCH_SOFT_KEY)excursInTutorial.next();
-    }
 
-    public void startTutorial(){
-        if(!getActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(MainActivity.KEY_PRIMARY_START,false)){
-            if(getActivity().getPreferences(Context.MODE_PRIVATE).getInt(MainActivity.KEY_EXCURS_STEP,0)>=3)
-                getEditor().putInt(KEY_STEP_TUTORIAL,0).apply();
-                exkurs(0);
-        }
-    }
-
-
-    private void exkurs(int step){
-        Log.d("FRDRAW",""+step);
-        if(step>-1&&step<999){
-            if(getContext()!=null){
-
-               excursInTutorial =  new ExcursInTutorial(TargetView.build(this).touchExit(TargetView.NON_TOUCH))
-                        .targets(new Integer[]{R.id.slide_add_lyr,R.id.slide_all_tools,R.id.slide_save_img})
-                        .titles(getContext().getResources().getStringArray(R.array.draw_main_buttons_title))
-                        .notes(getContext().getResources().getStringArray(R.array.draw_main_buttons_note))
-                       .setStep(step);
-                excursInTutorial.start();
-            }
-        }
-    }
 
     private void toolsDrive(View view){
         switch (view.getId()){
@@ -364,7 +321,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener,
         dSlideAdd.setEnabled(enable);
     }
 
-    /*анимация выдвижения панели инструментов для рисования*/
+      /*анимация выдвижения панели инструментов для рисования*/
     protected void slideTools(){
 
         if(!dVisibleTools) {
@@ -381,7 +338,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener,
     protected void slideSave(ImageView view){
         if(!dVisibleSave){
             dVisibleSave = true;
-            dSaveNet.animate().translationX(-getSlideSave()).setDuration(getTimeSlide()).start();
+            dSaveNet.animate().translationX(-getSlideSave()).setDuration(getTimeSlide()).setListener(this).start();
             dSaveTel.animate().translationY(getSlideSave()).setDuration(getTimeSlide()).start();
             dSaveIs.animate().translationX(-getSlideSave()).translationY(getSlideSave()).setDuration(getTimeSlide()).start();
         }else {
@@ -395,21 +352,31 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener,
 
     protected void slideAdd(){
         if(!dVisibleAdd){
-            dAddCreated.animate().translationX(-getSlideAdd1()).setDuration(getTimeSlide()).start();
-//            dAddLink.animate().translationX(-getSlideAdd2()).setDuration(getTimeSlide()).start();
+            dAddCreated.animate().translationX(-getSlideAdd1()).setDuration(getTimeSlide()).setListener(this).start();
             dAddCam.animate().translationY(-getSlideAdd1()).setDuration(getTimeSlide()).start();
             dAddColl.animate().translationY(-getSlideAdd1()).translationX(-getSlideAdd1()).setDuration(getTimeSlide()).start();
             dVisibleAdd = true;
 
         }else {
             dAddCreated.animate().translationX(0).setDuration(getTimeSlide()).start();
-//            dAddLink.animate().translationX(0).setDuration(getTimeSlide()).start();
             dAddCam.animate().translationY(0).setDuration(getTimeSlide()).start();
             dAddColl.animate().translationY(0).translationX(0).setDuration(getTimeSlide()).start();
             dVisibleAdd = false;
         }
 
         dSlideAdd.setSelected(dVisibleAdd);
+    }
+
+    protected boolean isdVisibleTools() {
+        return dVisibleTools;
+    }
+
+    protected boolean isdVisibleSave() {
+        return dVisibleSave;
+    }
+
+    protected boolean isdVisibleAdd() {
+        return dVisibleAdd;
     }
 
     private void shiftTools(final View view){
@@ -454,7 +421,7 @@ public class SuperFragmentDraw extends Fragment implements View.OnClickListener,
         dCut.animate().translationY(step*6).setDuration(time).start();
         dTrans.animate().translationY(step*7).setDuration(time).start();
         dScale.animate().translationY(step*8).setDuration(time).start();
-        dProperties.animate().translationY(step*9).setDuration(time).start();
+        dProperties.animate().translationY(step*9).setDuration(time).setListener(this).start();
         dGetColor.animate().translationY(step).translationX(step).setDuration(time).start();
         if(step==0)toolColor(null);
     }

@@ -1,6 +1,7 @@
 package com.example.kittenappscollage.draw.tutorial;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.kittenappscollage.R;
 import com.example.targetviewnote.TargetView;
@@ -64,6 +65,9 @@ public class ExcursInTutorial {
         return this;
     }
 
+    public int getStep(){
+        return step;
+    }
     public void next(){
         step++;
         if(step<targets.length) {

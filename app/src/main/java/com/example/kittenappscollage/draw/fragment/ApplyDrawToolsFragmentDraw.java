@@ -23,7 +23,7 @@ import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SA
 import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SAVE_WIDTH;
 
 /*применяем инструменты обработки изображения*/
-public class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
+public abstract class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmentDraw {
 
     private final String KEY_EVENT = "key event ApplyDrawToolsFragmentDraw";
 

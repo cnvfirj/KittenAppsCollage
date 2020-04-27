@@ -19,7 +19,7 @@ import com.example.kittenappscollage.helpers.AllPermissions;
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 /*обрабатываем добавление слоя или начало коллажа*/
-public class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Adding{
+public abstract class AddLyrsFragmentDraw extends SuperFragmentDraw implements RepDraw.Adding{
 
     public static final int REQUEST_READ_COLLECT = 93;
 

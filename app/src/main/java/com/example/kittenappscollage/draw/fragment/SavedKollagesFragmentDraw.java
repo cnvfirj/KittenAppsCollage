@@ -33,7 +33,7 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.functions.Consumer;
 
 
-public class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
+public abstract class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
 
     private final String MIME_PNG = "image/png";
 
