@@ -70,7 +70,7 @@ public class TargetView {
 
     public static final int SOURCE_FRAGMENT = 22;
 
-//    public static final int MAXI_VEIL = 30;
+    public static final int MAXI_VEIL = 30;
 
     public static final int MIDI_VEIL = 31;
 
@@ -131,69 +131,84 @@ public class TargetView {
         return this;
     }
 
+    /*затемнение фона*/
     public TargetView dimmingBackground(int color){
         bundle.putInt(KEY_DIMMING_BACKGROUND,color);
         return this;
     }
 
+    /*шрифт заметки*/
     public TargetView sizeNote(float size){
         bundle.putFloat(KEY_SIZE_NOTE,size);
         return this;
     }
 
+    /*иконка в конце заметки*/
     public TargetView iconSoftKey(int idDrawable){
         bundle.putInt(KEY_ICON_SOFT_KEY,idDrawable);
         return this;
     }
 
+    /*текст заметки*/
     public TargetView textNote(String text){
         bundle.putString(KEY_TEXT_NOTE,text);
         return this;
     }
 
+    /*цвет текста заметки*/
     public TargetView colorNote(int color){
         bundle.putInt(KEY_COLOR_TEXT_NOTE,color);
         return this;
     }
 
+    /*шрифт заголовка*/
     public TargetView sizeTitle(float size){
         bundle.putFloat(KEY_SIZE_TITLE,size);
         return this;
     }
 
+    /*иконка заголовка*/
     public TargetView iconTitle(int idDrawable){
         bundle.putInt(KEY_ICON_TITLE,idDrawable);
         return this;
     }
 
+    /*текст заголовка*/
     public TargetView textTitle(String text){
         bundle.putString(KEY_TEXT_TITLE,text);
         return this;
     }
+    /*цвет текста заголовка*/
     public TargetView colorTitle(int color){
         bundle.putInt(KEY_COLOR_TEXT_TITLE,color);
      return this;
     }
 
+    /*отступ от цели(рамка)*/
     public TargetView targetFrame(int frame){
         bundle.putInt(KEY_TARGET_FRAME,frame);
         return this;
     }
 
+    /*способ выхода из диалога*/
     public TargetView touchExit(int touch){
         bundle.putInt(KEY_ACTION_EXIT,touch);
         return this;
     }
 
+    /*величина окна*/
     public TargetView sizeContentWindow(int s){
         bundle.putInt(KEY_SIZE_CONTENT_WINDOW,s);
         return this;
     }
+
+    /*цвет рамки окна*/
     public TargetView colorBackgroundFrame(int color){
         bundle.putInt(KEY_COLOR_BACK,color);
         return this;
     }
 
+    /*цвет фона контента*/
     public TargetView colorBackgroundContent(int color){
         bundle.putInt(KEY_COLOR_BACKGROUND_CONTENT,color);
         return this;

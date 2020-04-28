@@ -19,10 +19,8 @@ public class DrawMiniVeil extends DrawMidiVeil {
     @Override
     protected RectF miniVeil() {
         if(getTarget().width()*2<getTarget().height()){
-//            if(getTarget().width()<getWidth()/3){
-                if(getTarget().right+getIndent()<getWidth()/2||getTarget().left-getIndent()>getWidth()/2)
-                    return miniVeilInVerticalTarget();
-//            }
+            if(getTarget().right+getIndent()<getWidth()/3||getTarget().left-getIndent()>getWidth()/3)
+                return miniVeilInVerticalTarget();
         }
         return miniVeilInHorisontalTarget();
     }
@@ -33,19 +31,19 @@ public class DrawMiniVeil extends DrawMidiVeil {
         if (target.top > (getHeight() - target.bottom)) {
             /*распологаем вверху*/
             float left = target.left-getIndent();
-            if(target.left>getWidth()/2)left = target.left-getIndent()-getWidth()/2;
-            float top = (target.top - getIndent()) - getWidth()/2;
+            if(target.left>getWidth()/2)left = target.left-getIndent()-getWidth()/3;
+            float top = (target.top - getIndent()) - getWidth()/3;
             if(target.height()>getWidth()/2)top = target.top-getIndent();
-            float right = target.right+getIndent()+getWidth()/2;
+            float right = target.right+getIndent()+getWidth()/3;
             if(target.left>getWidth()/2)right = target.right+getIndent();
             float bottom = target.bottom+getIndent();
             r.set(left, top, right, bottom);
         } else {
             /*распологаем внизу*/
             float left = target.left-getIndent();
-            if(target.left>getWidth()/2)left = target.left-getIndent()-getWidth()/2;
+            if(target.left>getWidth()/2)left = target.left-getIndent()-getWidth()/3;
             float top = target.top-getIndent();
-            float right = target.right+getIndent()+getWidth()/2;
+            float right = target.right+getIndent()+getWidth()/3;
             if(target.left>getWidth()/2)right = target.right+getIndent();
             float bottom = (target.top-getIndent())+getWidth();
             if(target.height()>getWidth()/2)bottom = target.bottom+getIndent();
@@ -60,11 +58,11 @@ public class DrawMiniVeil extends DrawMidiVeil {
         RectF r = new RectF();
         RectF target = addFrameTarget();
         if (target.top > (getHeight() - target.bottom)) {
-            r.set(0, (target.bottom + getIndent()) - getWidth()/2, getWidth(), target.bottom + getIndent());
+            r.set(0, (target.bottom + getIndent()) - getWidth()/3, getWidth(), target.bottom + getIndent());
             /*распологаем вверху*/
         } else {
             /*распологаем внизу*/
-            r.set(0, target.top - getIndent(), getWidth(), target.bottom + getWidth()/2);
+            r.set(0, target.top - getIndent(), getWidth(), target.bottom + getWidth()/3);
         }
         correct(r);
         createHorizontalTargetContent(target,r);

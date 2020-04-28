@@ -24,12 +24,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.example.targetviewnote.veil.DrawMidiVeil;
+import com.example.targetviewnote.veil.DrawMaxiVeil;
+import com.example.targetviewnote.veil.DrawMiniVeil;
 
 
-public class VeilField extends DialogFragment implements DrawMidiVeil.InternalListener{
+public class VeilField extends DialogFragment implements DrawMaxiVeil.InternalListener{
 
-    private DrawMidiVeil veil;
+    private DrawMiniVeil veil;
 
     private TargetView.OnClickTargetViewNoleListener clickListener;
 
@@ -139,7 +140,7 @@ public class VeilField extends DialogFragment implements DrawMidiVeil.InternalLi
             veil.setColorVeil(bundle.getInt(TargetView.KEY_COLOR_BACK,Color.BLUE));
             veil.setTarget(bundle.getIntArray(TargetView.KEY_TARGET_VIEW));
             veil.setFrame(bundle.getInt(TargetView.KEY_TARGET_FRAME,0));
-            veil.setContentVeil(bundle.getInt(TargetView.KEY_SIZE_CONTENT_WINDOW,TargetView.MINI_VEIL));
+            veil.setContentVeil(bundle.getInt(TargetView.KEY_SIZE_CONTENT_WINDOW,TargetView.MIDI_VEIL));
             veil.setColorDimming(bundle.getInt(TargetView.KEY_DIMMING_BACKGROUND,0));
             veil.setListener(this);
             veil.invalidate();

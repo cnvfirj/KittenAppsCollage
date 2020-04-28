@@ -13,7 +13,7 @@ import com.example.targetviewnote.TargetView;
 
 public class ListenVeil extends BodyVeil {
 
-    private DrawMidiVeil.InternalListener listener;
+    private DrawMaxiVeil.InternalListener listener;
 
     public ListenVeil(Context context) {
         super(context);
@@ -34,11 +34,11 @@ public class ListenVeil extends BodyVeil {
         return super.onTouchEvent(event);
     }
 
-    public void setListener(DrawMidiVeil.InternalListener listener) {
+    public void setListener(DrawMaxiVeil.InternalListener listener) {
         this.listener = listener;
     }
 
-    public DrawMidiVeil.InternalListener getListener() {
+    public DrawMaxiVeil.InternalListener getListener() {
         return listener;
     }
 

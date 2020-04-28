@@ -33,7 +33,6 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     @Override
     public void onAnimationStart(Animator animation) {
-        LYTE("start");
     }
 
     @Override

@@ -114,7 +114,8 @@ public class DrawVeil extends ListenVeil {
     }
 
     private void defineVeil(){
-        if(contentVeil==TargetView.MIDI_VEIL)setVeil(midiVeil());
+        if(contentVeil==TargetView.MAXI_VEIL)setVeil(maxiVeil());
+        else if(contentVeil==TargetView.MIDI_VEIL)setVeil(midiVeil());
         else if(contentVeil==TargetView.MINI_VEIL)setVeil(miniVeil());
     }
 
@@ -131,6 +132,10 @@ public class DrawVeil extends ListenVeil {
     }
 
     protected RectF miniVeil(){
+        return null;
+    }
+
+    protected RectF maxiVeil(){
         return null;
     }
 
