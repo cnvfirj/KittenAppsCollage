@@ -25,9 +25,16 @@ public class ExcursInTutorial {
 
     private TargetView targetView;
 
+    private boolean ongoing;
+
 
     public ExcursInTutorial(TargetView target){
         targetView = target;
+    }
+
+    public ExcursInTutorial ongoing(boolean o){
+        ongoing = o;
+        return this;
     }
 
     public ExcursInTutorial targets(Integer[]targets){
@@ -68,7 +75,16 @@ public class ExcursInTutorial {
     public int getStep(){
         return step;
     }
-    public void next(){
+
+    public int countTutorial(){
+        return targets.length;
+    }
+
+    public boolean getOngoing(){
+        return ongoing;
+    }
+
+    public boolean next(){
         step++;
         if(step<targets.length) {
             targetView.target(targets[step])
@@ -77,10 +93,15 @@ public class ExcursInTutorial {
                     .iconTitle(R.drawable.icon_camera)
                     .iconSoftKey(R.drawable.ic_icon_next)
                     .step();
-        }else targetView.close();
+        }else {
+            targetView.close();
+            ongoing = false;
+        }
+        return ongoing;
     }
 
     public void start(){
+        ongoing = true;
        targetView.target(targets[step])
                .textTitle(titles[step])
                .textNote(notes[step])

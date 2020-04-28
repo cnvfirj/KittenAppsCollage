@@ -15,6 +15,7 @@ import android.provider.MediaStore;
 
 import com.example.kittenappscollage.collect.fragment.FragmentGallery;
 import com.example.kittenappscollage.collect.fragment.FragmentGalleryAddFolder;
+import com.example.kittenappscollage.collect.fragment.TutorialFragmentGallery;
 import com.example.kittenappscollage.draw.fragment.AddLyrsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
@@ -40,9 +41,9 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         MainSwitching,
         TargetView.OnClickTargetViewNoleListener{
 
-    public static final String KEY_EXCURS_STEP = "MainActivity excurs step___";
+    public static final String KEY_EXCURS_STEP = "MainActivity excurs step____";
 
-    public static final String KEY_PRIMARY_START = "MainActivity primary start___";
+    public static final String KEY_PRIMARY_START = "MainActivity primary start____";
 
     private int excursStep;
 
@@ -50,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private TutorialFragmentDraw mFragDraw;
 
-    private FragmentGalleryAddFolder mFragGal;
+    private TutorialFragmentGallery mFragGal;
 
     private TabLayout mTabLayout;
 
@@ -83,13 +84,11 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     @Override
     public void onClickTarget(int i) {
             if(excursStep==0){
-//            targetView.close();
             excursStep = 1;
             getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,excursStep).apply();
             excurs(excursStep);
         }else if(excursStep==1){
             if(i==TargetView.TOUCH_SOFT_KEY) {
-//                targetView.close();
                 excursStep = 2;
                 getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,excursStep).apply();
                 excurs(excursStep);
@@ -157,8 +156,6 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
             targetView.target(R.id.tabs)
                     .touchExit(TargetView.NON_TOUCH)
                     .dimmingBackground(getResources().getColor(R.color.colorDimenPrimaryTransparent))
-                    .colorBackgroundFrame(getResources().getColor(R.color.colorDimenPrimaryTransparent))
-                    .colorBackgroundContent(getResources().getColor(R.color.colorDimenPrimaryTransparent))
                     .textTitle("Отказ")
                     .sizeTitle(60)
                     .iconTitle(R.drawable.ic_warning)
@@ -167,8 +164,6 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                      .show();
         }else if(step==1){
             targetView
-                    .colorBackgroundFrame(getResources().getColor(R.color.colorDimenAccentDarkTransparent))
-                    .colorBackgroundContent(getResources().getColor(R.color.colorDimenAccentDarkTransparent))
                     .iconTitle(TargetView.NON_IKON)
                     .iconSoftKey(R.drawable.ic_icon_next)
                     .textTitle("Обучение")
@@ -179,7 +174,6 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                     .textNote("С помощью панели вкладок возможен переход в основную галерею. Обратно переход такой же.")
                     .step();
         }
-//        else if(step>=3)reportToFragment();
     }
 
 
@@ -190,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private ViewPageAdapter addFragments(){
         mFragDraw = new TutorialFragmentDraw();
-        mFragGal = new FragmentGalleryAddFolder();
+        mFragGal = new TutorialFragmentGallery();
         mFragGal.setBlock(false);
 
         ViewPageAdapter a = new ViewPageAdapter(getSupportFragmentManager());

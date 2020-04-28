@@ -15,7 +15,14 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial";
 
-    private final String KEY_CHAPTER_TUTORIAL = "TutorialFragmentDraw step tutorial";
+    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr";
+
+    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img";
+
+    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img";
+
+    private String chapter;
+
 
     @Override
     public void onResume() {
@@ -26,8 +33,15 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
     @Override
     public void onClickTarget(int i) {
         if(i==TargetView.TOUCH_SOFT_KEY){
-            excursInTutorial.next();
-            getEditor().putInt(KEY_STEP_TUTORIAL,excursInTutorial.getStep()).apply();
+
+            if(excursInTutorial.next()) {
+                getEditor().putInt(chapter, excursInTutorial.getStep()).apply();
+            }else {
+                LYTE(chapter+ " cansel");
+                getEditor().putInt(chapter, 999).apply();
+                chapter = null;
+            }
+
         }
     }
 
@@ -37,7 +51,7 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     @Override
     public void onAnimationEnd(Animator animation) {
-         LYTE("end");
+           if(chapter!=null)excursInTutorial.start();
     }
 
     @Override
@@ -58,8 +72,10 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
     }
 
     private void startExkurs(int step){
+
         if(step>=0&&step<3){
             if(getContext()!=null){
+                chapter = KEY_STEP_TUTORIAL;
                 TargetView t = TargetView.build(this)
                         .touchExit(TargetView.NON_TOUCH)
                         .dimmingBackground(getContext().getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));
@@ -67,21 +83,25 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
                         .targets(new Integer[]{R.id.slide_add_lyr,R.id.slide_all_tools,R.id.slide_save_img})
                         .titles(getContext().getResources().getStringArray(R.array.draw_main_buttons_title))
                         .notes(getContext().getResources().getStringArray(R.array.draw_main_buttons_note))
-                        .setStep(step);
+                        .setStep(step)
+                        .ongoing(true);
+
                 excursInTutorial.start();
             }
         }
     }
 
-    private void chapterAddLyrs(){
-
-    }
-
-
 
     @Override
     protected void slideSave(ImageView view) {
-        super.slideSave(view);
+        int step = getPreferences().getInt(KEY_TUTORIAL_SAVE_IMG,0);
+        if(step<999){
+            initExcurs();
+            if(!excursInTutorial.getOngoing()){
+                tutorialSave(step);
+                super.slideSave(view);
+            }LYTE("block save");
+        }else super.slideSave(view);
     }
 
     @Override
@@ -91,7 +111,62 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     @Override
     protected void slideAdd() {
-        super.slideAdd();
+        int step = getPreferences().getInt(KEY_TUTORIAL_ADD_LYR,0);
+        if(step<999){
+            initExcurs();
+            if(!excursInTutorial.getOngoing()){
+                tutorialAdd(step);
+                super.slideAdd();
+            }else LYTE("block add");
+        }else super.slideAdd();
+    }
+
+    private void tutorialAdd(int step){
+        chapter = KEY_TUTORIAL_ADD_LYR;
+        excursInTutorial.targets(getTargetsAdd())
+                        .titles(getContext().getResources().getStringArray(R.array.draw_add_title))
+                        .notes(getContext().getResources().getStringArray(R.array.draw_add_note))
+                        .setStep(step)
+                        .ongoing(true);
+
 
     }
+
+    private void tutorialTools(int step,int index){
+
+    }
+
+    private void tutorialSave(int step){
+        chapter = KEY_TUTORIAL_SAVE_IMG;
+        excursInTutorial.targets(getTargetSave())
+                        .titles(getContext().getResources().getStringArray(R.array.draw_add_title))
+                        .notes(getContext().getResources().getStringArray(R.array.draw_add_note))
+                        .setStep(step)
+                        .ongoing(true);
+    }
+
+    private Integer[] getTargetsAdd(){
+        return new Integer[]{R.id.add_camera,R.id.add_collect,R.id.add_created};
+    }
+
+    private Integer[]getTargetSave(){
+        return new Integer[]{R.id.save_net,R.id.save_is,R.id.save_tel};
+    }
+
+    private Integer[]getTargetTools(){
+        return null;
+    }
+
+    private void initExcurs(){
+        if(excursInTutorial==null){
+            if(getContext()!=null) {
+                TargetView t = TargetView.build(this)
+                        .touchExit(TargetView.NON_TOUCH)
+                        .dimmingBackground(getContext().getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));
+                excursInTutorial = new ExcursInTutorial(t);
+            }
+        }
+    }
+
+
 }
