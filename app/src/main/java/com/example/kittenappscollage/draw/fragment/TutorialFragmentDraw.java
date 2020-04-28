@@ -15,9 +15,9 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial";
 
-    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr";
+    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr___!012";
 
-    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img";
+    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img___!012";
 
     private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img";
 
@@ -51,7 +51,9 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     @Override
     public void onAnimationEnd(Animator animation) {
-           if(chapter!=null)excursInTutorial.start();
+           if(chapter!=null){
+               excursInTutorial.start();
+           }
     }
 
     @Override
@@ -83,8 +85,7 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
                         .targets(new Integer[]{R.id.slide_add_lyr,R.id.slide_all_tools,R.id.slide_save_img})
                         .titles(getContext().getResources().getStringArray(R.array.draw_main_buttons_title))
                         .notes(getContext().getResources().getStringArray(R.array.draw_main_buttons_note))
-                        .setStep(step)
-                        .ongoing(true);
+                        .setStep(step);
 
                 excursInTutorial.start();
             }
@@ -98,9 +99,11 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
         if(step<999){
             initExcurs();
             if(!excursInTutorial.getOngoing()){
-                tutorialSave(step);
-                super.slideSave(view);
-            }LYTE("block save");
+                if(tutorialSave(step)) {
+                    chapter = KEY_TUTORIAL_SAVE_IMG;
+                    super.slideSave(view);
+                }else LYTE("tutorial block save");
+            } else LYTE("block save");
         }else super.slideSave(view);
     }
 
@@ -115,34 +118,38 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
         if(step<999){
             initExcurs();
             if(!excursInTutorial.getOngoing()){
-                tutorialAdd(step);
-                super.slideAdd();
+                if(tutorialAdd(step)) {
+                    chapter = KEY_TUTORIAL_ADD_LYR;
+                    super.slideAdd();
+                }else LYTE("tutorial block add");
             }else LYTE("block add");
         }else super.slideAdd();
     }
 
-    private void tutorialAdd(int step){
-        chapter = KEY_TUTORIAL_ADD_LYR;
-        excursInTutorial.targets(getTargetsAdd())
-                        .titles(getContext().getResources().getStringArray(R.array.draw_add_title))
-                        .notes(getContext().getResources().getStringArray(R.array.draw_add_note))
-                        .setStep(step)
-                        .ongoing(true);
-
-
+    private boolean tutorialAdd(int step){
+        if(chapter==null||!chapter.equals(KEY_TUTORIAL_ADD_LYR)) {
+            excursInTutorial.targets(getTargetsAdd())
+                    .titles(getContext().getResources().getStringArray(R.array.draw_add_title))
+                    .notes(getContext().getResources().getStringArray(R.array.draw_add_note))
+                    .setStep(step)
+                    .ongoing(true);
+            return true;
+        }else return false;
     }
 
     private void tutorialTools(int step,int index){
 
     }
 
-    private void tutorialSave(int step){
-        chapter = KEY_TUTORIAL_SAVE_IMG;
-        excursInTutorial.targets(getTargetSave())
-                        .titles(getContext().getResources().getStringArray(R.array.draw_add_title))
-                        .notes(getContext().getResources().getStringArray(R.array.draw_add_note))
-                        .setStep(step)
-                        .ongoing(true);
+    private boolean tutorialSave(int step){
+        if(chapter==null||!chapter.equals(KEY_TUTORIAL_SAVE_IMG)) {
+            excursInTutorial.targets(getTargetSave())
+                    .titles(getContext().getResources().getStringArray(R.array.draw_add_title))
+                    .notes(getContext().getResources().getStringArray(R.array.draw_add_note))
+                    .setStep(step)
+                    .ongoing(true);
+            return true;
+        }else return false;
     }
 
     private Integer[] getTargetsAdd(){

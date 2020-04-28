@@ -178,7 +178,7 @@ public class VeilField extends DialogFragment implements DrawMaxiVeil.InternalLi
 
     private void setSizeNote(float size){
         sizeNote = (int)size;
-        size/=getContext().getApplicationContext().getResources().getDisplayMetrics().density;
+        if(getContext()!=null)size/=getContext().getApplicationContext().getResources().getDisplayMetrics().density;
         if(note!=null)note.setTextSize(size);
     }
 
@@ -205,7 +205,7 @@ public class VeilField extends DialogFragment implements DrawMaxiVeil.InternalLi
     private void setSizeTitle(float size){
         sizeTitle = (int)size;
         appSizeTitle();
-        size/=getContext().getApplicationContext().getResources().getDisplayMetrics().density;
+        if(getContext()!=null)size/=getContext().getApplicationContext().getResources().getDisplayMetrics().density;
         if(title!=null)title.setTextSize(size);
 
     }
