@@ -39,6 +39,7 @@ public class ExcursInTutorial {
 
     public ExcursInTutorial targets(Integer[]targets){
         this.targets = targets;
+        reset();
         return this;
     }
 
@@ -88,10 +89,11 @@ public class ExcursInTutorial {
         step++;
         if(step<targets.length) {
             targetView.target(targets[step])
-                    .textTitle(titles[step])
-                    .textNote(notes[step])
-                    .iconTitle(R.drawable.icon_camera)
-                    .iconSoftKey(R.drawable.ic_icon_next)
+                    .textTitle(getTitle())
+                    .textNote(getNote())
+                    .sizeContentWindow(getSizeWindow())
+                    .iconTitle(icTitle())
+                    .iconSoftKey(icSoftKey())
                     .step();
         }else {
             targetView.close();
@@ -103,10 +105,46 @@ public class ExcursInTutorial {
     public void start(){
         ongoing = true;
        targetView.target(targets[step])
-               .textTitle(titles[step])
-               .textNote(notes[step])
-               .iconTitle(R.drawable.icon_camera)
-               .iconSoftKey(R.drawable.ic_icon_next)
+               .textTitle(getTitle())
+               .textNote(getNote())
+               .sizeContentWindow(getSizeWindow())
+               .iconTitle(icTitle())
+               .iconSoftKey(icSoftKey())
                .show();
+    }
+
+    private int getSizeWindow(){
+        if(sizeWindow!=null)return sizeWindow[step];
+        else return TargetView.MAXI_VEIL;
+    }
+
+    private String getTitle(){
+        if(titles!=null)return titles[step];
+        else return null;
+    }
+
+    private String getNote(){
+        if(titles!=null)return notes[step];
+        else return null;
+    }
+
+    private int icTitle(){
+        if(iconsTitle!=null)return iconsTitle[step];
+        else return 0;
+    }
+
+    private int icSoftKey(){
+        if(iconsSoftKey!=null)return iconsSoftKey[step];
+        else return 0;
+    }
+
+    private void reset(){
+        sizeWindow = null;
+        titles = null;
+         step = 0;
+         titles = null;
+         notes = null;
+         iconsTitle = null;
+         iconsSoftKey = null;
     }
 }

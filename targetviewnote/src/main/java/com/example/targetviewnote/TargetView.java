@@ -91,7 +91,6 @@ public class TargetView {
 
     private boolean step;
 
-
     public static TargetView build(AppCompatActivity activity){
         return new TargetView(activity);
     }

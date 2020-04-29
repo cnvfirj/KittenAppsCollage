@@ -13,11 +13,11 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private ExcursInTutorial excursInTutorial;
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial___1232qq124";
 
-    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr___!012";
+    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr___!01220q2q124";
 
-    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img___!012";
+    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img___!01220q2q124";
 
     private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img";
 
@@ -32,12 +32,12 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     @Override
     public void onClickTarget(int i) {
-        if(i==TargetView.TOUCH_SOFT_KEY){
+        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
 
             if(excursInTutorial.next()) {
                 getEditor().putInt(chapter, excursInTutorial.getStep()).apply();
             }else {
-                LYTE(chapter+ " cansel");
+//                LYTE(chapter+ " cansel");
                 getEditor().putInt(chapter, 999).apply();
                 chapter = null;
             }
@@ -83,7 +83,10 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
                         .dimmingBackground(getContext().getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));
                 excursInTutorial =  new ExcursInTutorial(t)
                         .targets(new Integer[]{R.id.slide_add_lyr,R.id.slide_all_tools,R.id.slide_save_img})
+                        .iconsTitle(new int[]{R.drawable.ic_matrix_reset_image,R.drawable.icon_edit,R.drawable.ic_save})
+                        .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
                         .titles(getContext().getResources().getStringArray(R.array.draw_main_buttons_title))
+                        .iconsSoftKey(new int[]{R.drawable.ic_icon_next,R.drawable.ic_icon_next,R.drawable.ic_icon_next})
                         .notes(getContext().getResources().getStringArray(R.array.draw_main_buttons_note))
                         .setStep(step);
 
@@ -128,40 +131,44 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private boolean tutorialAdd(int step){
         if(chapter==null||!chapter.equals(KEY_TUTORIAL_ADD_LYR)) {
-            excursInTutorial.targets(getTargetsAdd())
+            excursInTutorial.targets(new Integer[]{R.id.add_camera,R.id.add_collect,R.id.add_created})
                     .titles(getContext().getResources().getStringArray(R.array.draw_add_title))
                     .notes(getContext().getResources().getStringArray(R.array.draw_add_note))
+                    .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
+                    .iconsTitle(new int[]{R.drawable.icon_camera,R.drawable.icon_collect,R.drawable.icon_create_new})
+                    .iconsSoftKey(new int[]{R.drawable.ic_icon_next,R.drawable.ic_icon_next,R.drawable.ic_icon_next})
                     .setStep(step)
                     .ongoing(true);
             return true;
         }else return false;
     }
 
-    private void tutorialTools(int step,int index){
-
+    private void tutorialTools(int step){
+        if(chapter==null||!chapter.equals(KEY_TUTORIAL_REDACT_IMG)) {
+            excursInTutorial.targets(getTargetToolsAll());
+        }
     }
 
     private boolean tutorialSave(int step){
         if(chapter==null||!chapter.equals(KEY_TUTORIAL_SAVE_IMG)) {
-            excursInTutorial.targets(getTargetSave())
-                    .titles(getContext().getResources().getStringArray(R.array.draw_add_title))
-                    .notes(getContext().getResources().getStringArray(R.array.draw_add_note))
+            excursInTutorial.targets(new Integer[]{R.id.save_net,R.id.save_is,R.id.save_tel})
+                    .titles(getContext().getResources().getStringArray(R.array.draw_save_title))
+                    .notes(getContext().getResources().getStringArray(R.array.draw_save_note))
+                    .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
+                    .iconsTitle(new int[]{R.drawable.ic_share,R.drawable.ic_save_as,R.drawable.ic_save})
+                    .iconsSoftKey(new int[]{R.drawable.ic_icon_next,R.drawable.ic_icon_next,R.drawable.ic_icon_next})
                     .setStep(step)
                     .ongoing(true);
             return true;
         }else return false;
     }
 
-    private Integer[] getTargetsAdd(){
-        return new Integer[]{R.id.add_camera,R.id.add_collect,R.id.add_created};
-    }
-
-    private Integer[]getTargetSave(){
-        return new Integer[]{R.id.save_net,R.id.save_is,R.id.save_tel};
-    }
-
-    private Integer[]getTargetTools(){
-        return null;
+    /*цели для двух рис*/
+    private Integer[]getTargetToolsAll(){
+        return new Integer[]{R.id.tool_properties,R.id.tool_scale,R.id.tool_translate,R.id.tool_cut,R.id.tool_deform_rotate,
+        R.id.tool_text,R.id.tool_fill,R.id.tool_erase,R.id.tool_draw,R.id.tool_color,
+        R.id.tool_undo,R.id.tool_redo,R.id.tool_info,R.id.tool_del_all,
+                R.id.tool_all_lyrs,R.id.tool_change,R.id.tool_union,R.id.tool_del_lyr};
     }
 
     private void initExcurs(){

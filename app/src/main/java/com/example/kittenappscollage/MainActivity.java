@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         MainSwitching,
         TargetView.OnClickTargetViewNoleListener{
 
-    public static final String KEY_EXCURS_STEP = "MainActivity excurs step____";
+    public static final String KEY_EXCURS_STEP = "MainActivity excurs step____12";
 
-    public static final String KEY_PRIMARY_START = "MainActivity primary start____";
+    public static final String KEY_PRIMARY_START = "MainActivity primary start____12";
 
     private int excursStep;
 
@@ -89,15 +89,9 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
             excurs(excursStep);
         }else if(excursStep==1){
             if(i==TargetView.TOUCH_SOFT_KEY) {
-                excursStep = 2;
-                getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,excursStep).apply();
-                excurs(excursStep);
-            }
-        }else if(excursStep==2){
-            if(i==TargetView.TOUCH_SOFT_KEY) {
                 targetView.close();
-                excursStep = 3;
-                getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,excursStep).apply();
+                excursStep = 2;
+                getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,999).apply();
                 mFragDraw.startTutorial();
             }
         }
@@ -167,13 +161,14 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                     .iconTitle(TargetView.NON_IKON)
                     .iconSoftKey(R.drawable.ic_icon_next)
                     .textTitle("Обучение")
-                    .textNote("Перед началом работы, просмотрим функции приложения. Для перехода к следующему пункту, жми вперед в конце предложения")
-                    .step();
-        }else if(step==2){
-            targetView.textTitle("Навигация в приложении")
-                    .textNote("С помощью панели вкладок возможен переход в основную галерею. Обратно переход такой же.")
+                    .textNote("В процессе будут появляться подсказки. Для перехода к следующему пункту, жми вперед в конце предложения или на выделенный элемент")
                     .step();
         }
+//        else if(step==2){
+//            targetView.textTitle("Навигация в приложении")
+//                    .textNote("С помощью панели вкладок возможен переход в основную галерею. Обратно переход такой же.")
+//                    .step();
+//        }
     }
 
 
