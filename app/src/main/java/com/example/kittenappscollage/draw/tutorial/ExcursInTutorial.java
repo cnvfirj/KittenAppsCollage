@@ -102,6 +102,12 @@ public class ExcursInTutorial {
         return ongoing;
     }
 
+    public void stop(){
+        ongoing = false;
+        reset();
+        targetView.close();
+    }
+
     public void start(){
         ongoing = true;
        targetView.target(targets[step])

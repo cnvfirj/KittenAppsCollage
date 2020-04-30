@@ -227,7 +227,6 @@ public class TargetView {
                     fm = activity.getSupportFragmentManager();
 
                 }
-
                 veilField.setCancelable(false);
                 veilField.show(fm, veilField.getClass().getName());
             }
@@ -239,7 +238,8 @@ public class TargetView {
         step = true;
         show = false;
             if (readiness) {
-                veilField.setArguments(bundle);
+                    veilField.setArguments(bundle);
+
             }
     }
 

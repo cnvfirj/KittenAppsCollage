@@ -367,18 +367,6 @@ public abstract class SuperFragmentDraw extends Fragment implements View.OnClick
         dSlideAdd.setSelected(dVisibleAdd);
     }
 
-    protected boolean isdVisibleTools() {
-        return dVisibleTools;
-    }
-
-    protected boolean isdVisibleSave() {
-        return dVisibleSave;
-    }
-
-    protected boolean isdVisibleAdd() {
-        return dVisibleAdd;
-    }
-
     private void shiftTools(final View view){
         /*здесь дожидаемся создания вью для расчета расстояний между кнопками*/
         ViewTreeObserver viewTreeObserver = view.getViewTreeObserver();
@@ -526,7 +514,7 @@ public abstract class SuperFragmentDraw extends Fragment implements View.OnClick
         return dSelectInfo;
     }
 
-    protected void setdSelectInfo(boolean select) {
+    protected void setSelectInfo(boolean select) {
         this.dSelectInfo = select;
         infoActive();
     }

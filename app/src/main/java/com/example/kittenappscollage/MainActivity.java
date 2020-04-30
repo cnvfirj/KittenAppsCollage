@@ -35,15 +35,16 @@ import com.google.android.material.tabs.TabLayout;
 
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery,
         SavedKollagesFragmentDraw.ActionSave,
         MainSwitching,
         TargetView.OnClickTargetViewNoleListener{
 
-    public static final String KEY_EXCURS_STEP = "MainActivity excurs step____12";
+    public static final String KEY_EXCURS_STEP = "MainActivity excurs step____1224";
 
-    public static final String KEY_PRIMARY_START = "MainActivity primary start____12";
+    public static final String KEY_PRIMARY_START = "MainActivity primary start____1224";
 
     private int excursStep;
 
@@ -93,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                 excursStep = 2;
                 getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,999).apply();
                 mFragDraw.startTutorial();
+                mFragGal.startTutorial();
             }
         }
 
@@ -164,11 +166,6 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                     .textNote("В процессе будут появляться подсказки. Для перехода к следующему пункту, жми вперед в конце предложения или на выделенный элемент")
                     .step();
         }
-//        else if(step==2){
-//            targetView.textTitle("Навигация в приложении")
-//                    .textNote("С помощью панели вкладок возможен переход в основную галерею. Обратно переход такой же.")
-//                    .step();
-//        }
     }
 
 
@@ -199,13 +196,19 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         v.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                 if(position==1&&positionOffsetPixels==0){
+                     mFragGal.activateExcurs();
+                 }
             }
 
             @Override
             public void onPageSelected(int position) {
-                if(position==0) v.setSweep(false);
+                if(position==0) {
+                    mFragGal.setArguments(false);
+                    v.setSweep(false);
+                }
                 if(position==1) {
+                    mFragGal.setArguments(true);
                     v.setSweep(true);
                 }
             }
