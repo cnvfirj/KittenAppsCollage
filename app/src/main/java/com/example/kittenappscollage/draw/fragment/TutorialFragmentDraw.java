@@ -14,13 +14,13 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private ExcursInTutorial excursInTutorial;
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial___1232qq12424";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial___1232qq124241";
 
-    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr___!01220q2q12472524";
+    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr___!01220q2q1247252412";
 
-    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img___!01220q2q12472524";
+    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img___!01220q2q1247252412";
 
-    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_2524";
+    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_252413";
 
     private String chapter;
 
@@ -159,7 +159,8 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private boolean tutorialAdd(int step){
         if(chapter==null||!chapter.equals(KEY_TUTORIAL_ADD_LYR)) {
-            excursInTutorial.targets(new Integer[]{R.id.add_camera,R.id.add_collect,R.id.add_created})
+            excursInTutorial
+                    .targets(new Integer[]{R.id.add_camera,R.id.add_collect,R.id.add_created})
                     .titles(getContext().getResources().getStringArray(R.array.draw_add_title))
                     .notes(getContext().getResources().getStringArray(R.array.draw_add_note))
                     .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
@@ -173,18 +174,21 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private boolean tutorialTools(int step){
         if(chapter==null||!chapter.equals(KEY_TUTORIAL_REDACT_IMG)) {
-            excursInTutorial.targets(getTargetToolsAll())
-                             .titles(getContext().getResources().getStringArray(R.array.draw_tools_title))
-                             .notes(getContext().getResources().getStringArray(R.array.draw_tools_note))
-                             .setStep(step)
-                              .ongoing(true);
+            excursInTutorial
+                    .targets(getTargetToolsAll())
+                    .titles(getContext().getResources().getStringArray(R.array.draw_tools_title))
+                    .notes(getContext().getResources().getStringArray(R.array.draw_tools_note))
+                    .sizeWin(getWinToolsAll())
+                    .setStep(step)
+                    .ongoing(true);
             return true;
         }else return false;
     }
 
     private boolean tutorialSave(int step){
         if(chapter==null||!chapter.equals(KEY_TUTORIAL_SAVE_IMG)) {
-            excursInTutorial.targets(new Integer[]{R.id.save_net,R.id.save_is,R.id.save_tel})
+            excursInTutorial
+                    .targets(new Integer[]{R.id.save_net,R.id.save_is,R.id.save_tel})
                     .titles(getContext().getResources().getStringArray(R.array.draw_save_title))
                     .notes(getContext().getResources().getStringArray(R.array.draw_save_note))
                     .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
@@ -202,6 +206,12 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
         R.id.tool_text,R.id.tool_fill,R.id.tool_erase,R.id.tool_draw,R.id.tool_color,
         R.id.tool_undo,R.id.tool_redo,R.id.tool_info,R.id.tool_del_all,
                 R.id.tool_all_lyrs,R.id.tool_change,R.id.tool_union,R.id.tool_del_lyr};
+    }
+
+    private int[]getWinToolsAll(){
+        return new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,
+                TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,
+                TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL};
     }
 
     private void initExcurs(){

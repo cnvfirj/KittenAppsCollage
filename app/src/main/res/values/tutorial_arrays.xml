@@ -85,6 +85,18 @@
 
 
 
+    <string-array name="collect_title">
+        <item>Добавь папку</item>
+        <item>Меню</item>
+    </string-array>
+
+    <string-array name="collect_note">
+        <item>Добавляй в галлерею папку. Будет вызван проводник, в его меню есть возможность делать видимыми разные хранилища.</item>
+        <item>Меню настроек приложения.</item>
+    </string-array>
+
+
+
 
 
 
