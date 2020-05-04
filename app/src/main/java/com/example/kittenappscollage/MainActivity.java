@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         MainSwitching,
         TargetView.OnClickTargetViewNoleListener{
 
-    public static final String KEY_EXCURS_STEP = "MainActivity excurs step____12241";
+    public static final String KEY_EXCURS_STEP = "MainActivity excurs step____1224122";
 
-    public static final String KEY_PRIMARY_START = "MainActivity primary start____12241";
+    public static final String KEY_PRIMARY_START = "MainActivity primary start____1224122";
 
     private int excursStep;
 
@@ -84,14 +84,14 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     @Override
     public void onClickTarget(int i) {
-            if(excursStep==0){
-            excursStep = 1;
+            if(excursStep>=0&&excursStep<3){
+            excursStep++;
             getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,excursStep).apply();
             excurs(excursStep);
-        }else if(excursStep==1){
+        }else if(excursStep==3){
             if(i==TargetView.TOUCH_SOFT_KEY) {
                 targetView.close();
-                excursStep = 2;
+                excursStep = 3;
                 getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,999).apply();
                 mFragDraw.startTutorial();
                 mFragGal.startTutorial();
@@ -163,7 +163,19 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                     .iconTitle(TargetView.NON_IKON)
                     .iconSoftKey(R.drawable.ic_icon_next)
                     .textTitle("Обучение")
-                    .textNote("В процессе будут появляться подсказки. Для перехода к следующему пункту, жми вперед в конце предложения или на выделенный элемент")
+                    .textNote("В процессе, будут появляться подсказки. Для прохождения жми далее или выделенный элемент.")
+                    .step();
+        }else if(step==2){
+            targetView
+                    .iconTitle(R.drawable.icon_edit)
+                    .textTitle("Студия")
+                    .textNote("В этом окне ты работаешь с изображением. Основные инструменты скрыты тремя кнопками.")
+                    .step();
+        }else if(step==3){
+            targetView
+                    .iconTitle(R.drawable.icon_edit)
+                    .textTitle("Галерея")
+                    .textNote("В ней ты открываешь папки, просматриваешь изображения и так далее. Длительное нажатие на элемент галереидает доступ к дополнительным действиям.")
                     .step();
         }
     }

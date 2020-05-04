@@ -21,7 +21,7 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
 
     public final static String KEY_ACTIVATE_COLLECT = "activate fragment";
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial_12";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial_122";
 
     private ExcursInTutorial excursInTutorial;
 
@@ -57,7 +57,8 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
     }
 
     public void startTutorial() {
-        editor.putInt(KEY_STEP_TUTORIAL, 0).apply();
+        chapter = KEY_STEP_TUTORIAL;
+        editor.putInt(chapter, 0).apply();
     }
 
     public void activateExcurs() {
@@ -85,10 +86,8 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
     }
 
     private void startExkurs(int step) {
-        LYTE("ex ex "+step);
         if (step >= 0 && step < 2) {
             if (getContext() != null) {
-                chapter = KEY_STEP_TUTORIAL;
                 initExcurs();
                 excursInTutorial
                         .targets(new Integer[]{R.id.gallery_add_folds,R.id.gallery_main_menu})

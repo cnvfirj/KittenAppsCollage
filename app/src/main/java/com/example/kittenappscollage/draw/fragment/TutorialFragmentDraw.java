@@ -14,13 +14,13 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private ExcursInTutorial excursInTutorial;
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial___1232qq124241";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial___1232qq1242412";
 
-    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr___!01220q2q1247252412";
+    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr___!01220q2q12472524122";
 
-    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img___!01220q2q1247252412";
+    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img___!01220q2q12472524122";
 
-    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_252413";
+    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_2524132";
 
     private String chapter;
 
@@ -71,27 +71,7 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
         startExkurs(0);
     }
 
-    private void clickInTools(){
 
-//        if(!RepDraw.get().isImg()){
-//            getEditor().putInt(chapter, 1).apply();
-//            excursInTutorial.stop();
-//        }else if(RepDraw.get().isImg()&&!RepDraw.get().isLyr()){
-//            int step = excursInTutorial.getStep()+1;
-//            if((excursInTutorial.countTutorial()-step)<4){
-//                if(excursInTutorial.next()) {
-//                    getEditor().putInt(chapter, excursInTutorial.getStep()).apply();
-//                }
-//            }else excursInTutorial.stop();
-//        }else {
-//            if(excursInTutorial.next()) {
-//                getEditor().putInt(chapter, excursInTutorial.getStep()).apply();
-//            }else {
-//                getEditor().putInt(chapter, 999).apply();
-//                chapter = null;
-//            }
-//        }
-    }
 
     private void startExkurs(int step){
         if(step>=0&&step<3){
