@@ -4,7 +4,7 @@ package com.example.kittenappscollage.collect.fragment;
 import com.example.kittenappscollage.collect.reviewImage.DialogReviewFrame;
 import com.example.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 
-public class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
+public abstract class FragmentGalleryReviewImages extends FragmentGalleryActionStorage {
 
     private final String TAG_DIALOG = "FragmentGalleryReviewImages dialog act";
 

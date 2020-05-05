@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 
-public class FragmentSelectedGallery extends FragmentSlideGallery {
+public abstract class FragmentSelectedGallery extends FragmentSlideGallery {
 
     private ArrayList<String> selectFiles;
 

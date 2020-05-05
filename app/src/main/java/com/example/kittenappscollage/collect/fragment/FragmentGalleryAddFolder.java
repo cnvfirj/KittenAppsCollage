@@ -25,7 +25,7 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 
-public class FragmentGalleryAddFolder extends FragmentGalleryReviewImages {
+public abstract class FragmentGalleryAddFolder extends FragmentGalleryReviewImages {
 
     private String addingFold;
 

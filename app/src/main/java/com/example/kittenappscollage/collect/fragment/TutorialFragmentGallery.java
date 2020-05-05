@@ -1,5 +1,6 @@
 package com.example.kittenappscollage.collect.fragment;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,13 +16,20 @@ import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.tutorial.ExcursInTutorial;
 import com.example.targetviewnote.TargetView;
 
+import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements TargetView.OnClickTargetViewNoleListener {
 
     public final static String KEY_ACTIVATE_COLLECT = "activate fragment";
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial_122";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial_122q";
+
+    private final String KEY_STEP_BACK_COLL = "TutorialFragmentGallery step tback coll";
+
+    private final String KEY_STEP_MENU_ROOT = "TutorialFragmentGallery step menu root";
+
+    private final String KEY_STEP_MENU_ADAPT = "TutorialFragmentGallery step menu adapt";
 
     private ExcursInTutorial excursInTutorial;
 
@@ -75,6 +83,56 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
     }
 
     @Override
+    public void onAnimationStart(Animator animation) {
+
+    }
+
+    @Override
+    public void onAnimationEnd(Animator animation) {
+      /*listen en animation */
+        if(chapter!=null){
+            excursInTutorial.start();
+        }
+
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animation) {
+
+    }
+
+    @Override
+    public void onAnimationRepeat(Animator animation) {
+
+    }
+
+    @Override
+    protected void setIndexAdapter(int i) {
+        super.setIndexAdapter(i);
+        if(i!=ROOT_ADAPTER){
+            int step = preferences.getInt(KEY_STEP_BACK_COLL,0);
+            if(step<999){
+                initExcurs();
+                if(!excursInTutorial.getOngoing()){
+                    if(tutorialEx(step)){
+                        chapter = KEY_STEP_BACK_COLL;
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    protected void visibleMenu() {
+        super.visibleMenu();
+        if(getIndexAdapter()==ROOT_ADAPTER){
+
+        }else {
+
+        }
+    }
+
+    @Override
     public void setArguments(@Nullable Bundle args) {
         super.setArguments(args);
         activeFragment = args.getBoolean(KEY_ACTIVATE_COLLECT, false);
@@ -83,6 +141,19 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
     public void setArguments(boolean b) {
         args.putBoolean(KEY_ACTIVATE_COLLECT, b);
         setArguments(args);
+    }
+
+    private boolean tutorialEx(int step){
+        if(chapter==null||!chapter.equals(KEY_STEP_BACK_COLL)) {
+            excursInTutorial
+                    .targets(new Integer[]{R.id.selected_collect_exit_mode})
+                    .titles(new String[]{"Изображения"})
+                    .notes(new String[]{"Просматривай изображения, длительное нажатие на одно из них, вызывает дополнительные функции. Этой кнопкой вернись назад."})
+                    .sizeWin(new int[]{TargetView.MINI_VEIL})
+                    .setStep(step)
+                    .ongoing(true);
+            return true;
+        }else return false;
     }
 
     private void startExkurs(int step) {

@@ -1,5 +1,6 @@
 package com.example.kittenappscollage.collect.fragment;
 
+import android.animation.Animator;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
-public class FragmentSlideGallery extends FragmentGallery implements View.OnClickListener {
+public abstract class FragmentSlideGallery extends FragmentGallery implements View.OnClickListener, Animator.AnimatorListener {
 
     /*обработка кнопок*/
     /* - для главной галереи:
@@ -208,7 +209,7 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
 
     protected void slideExit(boolean s){
         if(s){
-            selectExitMode.animate().translationY(0).setDuration(300).start();
+            selectExitMode.animate().translationY(0).setDuration(300).setListener(this).start();
         }else {
             selectExitMode.animate().translationY(-slide).setDuration(300).start();
         }
@@ -233,7 +234,7 @@ public class FragmentSlideGallery extends FragmentGallery implements View.OnClic
 
 protected void slideSel_4(boolean s){
         if(s){
-            selected_4.animate().translationY(0).setDuration(300).start();
+            selected_4.animate().translationY(0).setDuration(300).setListener(this).start();
         }else {
             selected_4.animate().translationY(-slide).setDuration(300).start();
         }

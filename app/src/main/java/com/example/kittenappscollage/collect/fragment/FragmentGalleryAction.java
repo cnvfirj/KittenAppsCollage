@@ -6,7 +6,7 @@ import com.example.kittenappscollage.helpers.App;
 
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 
-public class FragmentGalleryAction extends FragmentSelectedGallery{
+public abstract class FragmentGalleryAction extends FragmentSelectedGallery{
 
     @Override
     protected void clickSel_1(ImageView v) {

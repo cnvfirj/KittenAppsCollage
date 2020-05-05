@@ -27,7 +27,7 @@ import io.reactivex.ObservableOnSubscribe;
 import static com.example.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
-public class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
+public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareImages {
 
     @Override
     protected void applyDeleteSelectedStorage() {

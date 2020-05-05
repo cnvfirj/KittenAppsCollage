@@ -35,16 +35,15 @@ import com.google.android.material.tabs.TabLayout;
 
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery,
         SavedKollagesFragmentDraw.ActionSave,
         MainSwitching,
         TargetView.OnClickTargetViewNoleListener{
 
-    public static final String KEY_EXCURS_STEP = "MainActivity excurs step____1224122";
+    public static final String KEY_EXCURS_STEP = "MainActivity excurs step____1224122q";
 
-    public static final String KEY_PRIMARY_START = "MainActivity primary start____1224122";
+    public static final String KEY_PRIMARY_START = "MainActivity primary start____1224122q";
 
     private int excursStep;
 
@@ -175,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
             targetView
                     .iconTitle(R.drawable.icon_edit)
                     .textTitle("Галерея")
-                    .textNote("В ней ты открываешь папки, просматриваешь изображения и так далее. Длительное нажатие на элемент галереидает доступ к дополнительным действиям.")
+                    .textNote("В ней ты открываешь папки, просматриваешь изображения и так далее. Длительное нажатие на элемент галереи дает доступ к дополнительным действиям.")
                     .step();
         }
     }

@@ -14,13 +14,13 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private ExcursInTutorial excursInTutorial;
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial___1232qq1242412";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial___1232qq1242412q";
 
-    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr___!01220q2q12472524122";
+    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr___!01220q2q12472524122q";
 
-    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img___!01220q2q12472524122";
+    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img___!01220q2q12472524122q";
 
-    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_2524132";
+    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_2524132q";
 
     private String chapter;
 

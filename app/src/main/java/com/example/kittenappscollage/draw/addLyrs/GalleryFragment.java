@@ -1,5 +1,6 @@
 package com.example.kittenappscollage.draw.addLyrs;
 
+import android.animation.Animator;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,4 +87,23 @@ public class GalleryFragment extends FragmentGalleryReviewImages {
         }
     }
 
+    @Override
+    public void onAnimationStart(Animator animation) {
+
+    }
+
+    @Override
+    public void onAnimationEnd(Animator animation) {
+
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animation) {
+
+    }
+
+    @Override
+    public void onAnimationRepeat(Animator animation) {
+
+    }
 }

@@ -8,7 +8,7 @@ import android.os.Build;
 import com.example.kittenappscollage.helpers.Massages;
 import java.util.ArrayList;
 
-public class FragmentGalleryShareImages extends FragmentGalleryAction {
+public abstract class FragmentGalleryShareImages extends FragmentGalleryAction {
 
     private void shareSelectedImgs(ArrayList<Uri>uris){
         try {
