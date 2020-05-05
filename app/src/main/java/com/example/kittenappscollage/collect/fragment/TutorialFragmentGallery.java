@@ -54,8 +54,10 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
 
     @Override
     public void onClickTarget(int i) {
+        LYTE("target "+i);
         if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
             if(excursInTutorial.next()) {
+                LYTE("sssssstep");
                 editor.putInt(chapter, excursInTutorial.getStep()).apply();
             }else {
                 editor.putInt(chapter, 999).apply();
@@ -89,7 +91,7 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
 
     @Override
     public void onAnimationEnd(Animator animation) {
-      /*listen en animation */
+      /*listen end animation */
         if(chapter!=null){
             excursInTutorial.start();
         }
@@ -126,7 +128,18 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
     protected void visibleMenu() {
         super.visibleMenu();
         if(getIndexAdapter()==ROOT_ADAPTER){
-
+            int step = preferences.getInt(KEY_STEP_MENU_ROOT,0);
+            if(step<999){
+                initExcurs();
+                LYTE("init ");
+                if(!excursInTutorial.getOngoing()){
+                    LYTE("ongoing");
+                    if(tutorialMenuRoot(step)){
+                        LYTE("step");
+                        chapter = KEY_STEP_MENU_ROOT;
+                    }
+                }
+            }
         }else {
 
         }
@@ -141,6 +154,19 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
     public void setArguments(boolean b) {
         args.putBoolean(KEY_ACTIVATE_COLLECT, b);
         setArguments(args);
+    }
+
+    private boolean tutorialMenuRoot(int step){
+        if(chapter==null||!chapter.equals(KEY_STEP_MENU_ROOT)) {
+            excursInTutorial
+                    .targets(new Integer[]{R.id.selected_collect_exit_mode,R.id.selected_collect_1,R.id.selected_collect_3,R.id.selected_collect_4})
+                    .titles(getContext().getResources().getStringArray(R.array.collect_root_menu_title))
+                    .notes(getContext().getResources().getStringArray(R.array.collect_root_menu_note))
+                    .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
+                    .setStep(step)
+                    .ongoing(true);
+            return true;
+        }else return false;
     }
 
     private boolean tutorialEx(int step){

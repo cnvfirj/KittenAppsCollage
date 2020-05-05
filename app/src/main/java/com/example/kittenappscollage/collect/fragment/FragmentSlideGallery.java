@@ -234,7 +234,7 @@ public abstract class FragmentSlideGallery extends FragmentGallery implements Vi
 
 protected void slideSel_4(boolean s){
         if(s){
-            selected_4.animate().translationY(0).setDuration(300).setListener(this).start();
+            selected_4.animate().translationY(0).setDuration(300).start();
         }else {
             selected_4.animate().translationY(-slide).setDuration(300).start();
         }

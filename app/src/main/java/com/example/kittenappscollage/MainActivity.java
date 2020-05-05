@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         MainSwitching,
         TargetView.OnClickTargetViewNoleListener{
 
-    public static final String KEY_EXCURS_STEP = "MainActivity excurs step____1224122q";
+    public static final String KEY_EXCURS_STEP = "MainActivity excurs step____1224122q2";
 
-    public static final String KEY_PRIMARY_START = "MainActivity primary start____1224122q";
+    public static final String KEY_PRIMARY_START = "MainActivity primary start____1224122q2";
 
     private int excursStep;
 
