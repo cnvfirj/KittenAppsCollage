@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import com.example.kittenappscollage.collect.fragment.FragmentGallery;
 import com.example.kittenappscollage.collect.fragment.FragmentGalleryAddFolder;
@@ -41,9 +42,9 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         MainSwitching,
         TargetView.OnClickTargetViewNoleListener{
 
-    public static final String KEY_EXCURS_STEP = "MainActivity excurs step____1224122q2";
+    public static final String KEY_EXCURS_STEP = "MainActivity excurs step____1224122q2й24311";
 
-    public static final String KEY_PRIMARY_START = "MainActivity primary start____1224122q2";
+    public static final String KEY_PRIMARY_START = "MainActivity primary start____1224122q2й24311";
 
     private int excursStep;
 
@@ -83,21 +84,29 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     @Override
     public void onClickTarget(int i) {
-            if(excursStep>=0&&excursStep<3){
+        if(excursStep==0){
             excursStep++;
             getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,excursStep).apply();
+            if(i==TargetView.TOUCH_VEIL||i==TargetView.TOUCH_UOT||i==TargetView.TOUCH_TARGET)
             excurs(excursStep);
-        }else if(excursStep==3){
+        }else if(excursStep>0&&excursStep<3) {
             if(i==TargetView.TOUCH_SOFT_KEY) {
+                excursStep++;
+                getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,excursStep).apply();
+                excurs(excursStep);
+            }
+        }else {
+            if(i==TargetView.TOUCH_SOFT_KEY) {
+                getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP, 999).apply();
                 targetView.close();
-                excursStep = 3;
-                getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,999).apply();
                 mFragDraw.startTutorial();
                 mFragGal.startTutorial();
             }
         }
 
     }
+
+
 
     @Override
     public void request(boolean block) {
