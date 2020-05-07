@@ -23,11 +23,11 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
 
     public final static String KEY_ACTIVATE_COLLECT = "activate fragment";
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial_122qй";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial";
 
-    private final String KEY_STEP_BACK_COLL = "TutorialFragmentGallery step tback coll_";
+    private final String KEY_STEP_BACK_COLL = "TutorialFragmentGallery step tback coll";
 
-    private final String KEY_STEP_MENU_ROOT = "TutorialFragmentGallery step menu root_";
+    private final String KEY_STEP_MENU_ROOT = "TutorialFragmentGallery step menu root";
 
     private final String KEY_STEP_MENU_ADAPT = "TutorialFragmentGallery step menu adapt";
 
@@ -53,11 +53,18 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if (getArguments() != null) {
+            activeFragment = getArguments().getBoolean(KEY_ACTIVATE_COLLECT, false);
+            if (activeFragment) startExkurs(preferences.getInt(KEY_STEP_TUTORIAL, -1));
+        }
+    }
+
+    @Override
     public void onClickTarget(int i) {
-        LYTE("target "+i);
         if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
             if(excursInTutorial.next()) {
-                LYTE("sssssstep");
                 editor.putInt(chapter, excursInTutorial.getStep()).apply();
             }else {
                 editor.putInt(chapter, 999).apply();
@@ -67,21 +74,15 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
     }
 
     public void startTutorial() {
-        chapter = KEY_STEP_TUTORIAL;
-        editor.putInt(chapter, 0).apply();
+        editor.putInt(KEY_STEP_TUTORIAL, 0).apply();
+    }
+
+    public boolean isTutorial(){
+        return excursInTutorial.isWinVis();
     }
 
     public void activateExcurs() {
         startExkurs(preferences.getInt(KEY_STEP_TUTORIAL, -1));
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (getArguments() != null) {
-            activeFragment = getArguments().getBoolean(KEY_ACTIVATE_COLLECT, false);
-            if (activeFragment) startExkurs(preferences.getInt(KEY_STEP_TUTORIAL, -1));
-        }
     }
 
     @Override
@@ -131,11 +132,8 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
             int step = preferences.getInt(KEY_STEP_MENU_ROOT,0);
             if(step<999){
                 initExcurs();
-                LYTE("init ");
                 if(!excursInTutorial.getOngoing()){
-                    LYTE("ongoing");
                     if(tutorialMenuRoot(step)){
-                        LYTE("step");
                         chapter = KEY_STEP_MENU_ROOT;
                     }
                 }
@@ -183,8 +181,10 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
     }
 
     private void startExkurs(int step) {
+        LYTE("step "+step);
         if (step >= 0 && step < 2) {
             if (getContext() != null) {
+                chapter = KEY_STEP_TUTORIAL;
                 initExcurs();
                 excursInTutorial
                         .targets(new Integer[]{R.id.gallery_add_folds,R.id.gallery_main_menu})

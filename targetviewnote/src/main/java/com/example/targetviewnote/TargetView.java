@@ -48,12 +48,6 @@ public class TargetView {
 
     public static final String KEY_DIMMING_BACKGROUND = "dimming background";
 
-//    public static final int FORM_RECT = 0;
-//
-//    public static final int FORM_OVAL = 1;
-//
-//    public static final int FORM_CIRC = 2;
-
     public static final int NON_IKON = 0;
 
     public static final int TOUCH_TARGET = 10;
@@ -213,6 +207,10 @@ public class TargetView {
         return this;
     }
 
+    public boolean isWinVis(){
+        return veilField.isVisible();
+    }
+
     public void show(){
         show = true;
         step = false;
@@ -225,7 +223,6 @@ public class TargetView {
                     veilField.setTargetFragment(fragment, 0);
                 } else if (activity != null) {
                     fm = activity.getSupportFragmentManager();
-
                 }
                 veilField.setCancelable(false);
                 veilField.show(fm, veilField.getClass().getName());

@@ -1,5 +1,6 @@
 package com.example.targetviewnote;
 
+import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.RectF;
 import android.graphics.drawable.ColorDrawable;
@@ -34,8 +35,6 @@ public class VeilField extends DialogFragment implements DrawMaxiVeil.InternalLi
 
     private TargetView.OnClickTargetViewNoleListener clickListener;
 
-//    private int colorContent;
-
     private int sizeTitle, sizeNote;
 
     private Drawable dTitle, dSoftKey;
@@ -50,12 +49,26 @@ public class VeilField extends DialogFragment implements DrawMaxiVeil.InternalLi
 
     private EditText note;
 
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        return new Dialog(requireContext(), getTheme()){
+            @Override
+            public void onBackPressed() {
+                super.onBackPressed();
+                getActivity().onBackPressed();
+            }
+        };
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        colorContent = Color.BLUE;
+
         return inflater.inflate(R.layout.field_veil,null);
     }
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

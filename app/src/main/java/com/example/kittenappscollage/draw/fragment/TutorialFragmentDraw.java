@@ -14,13 +14,13 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private ExcursInTutorial excursInTutorial;
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial___1232qq1242412qй";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial";
 
-    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr___!01220q2q12472524122qй";
+    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr";
 
-    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img___!01220q2q12472524122qй";
+    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img";
 
-    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_2524132qй";
+    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img";
 
     private String chapter;
 
@@ -71,6 +71,10 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
         startExkurs(0);
     }
 
+
+    public boolean isTutorial(){
+        return excursInTutorial.isWinVis();
+    }
 
 
     private void startExkurs(int step){

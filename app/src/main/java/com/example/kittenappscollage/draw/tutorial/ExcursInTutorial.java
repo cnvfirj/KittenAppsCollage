@@ -85,6 +85,10 @@ public class ExcursInTutorial {
         return ongoing;
     }
 
+    public boolean isWinVis(){
+        return targetView.isWinVis();
+    }
+
     public boolean next(){
         step++;
         if(step<targets.length) {

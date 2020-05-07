@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -42,7 +43,11 @@ public class ClearCatch extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         String fold = intent.getStringExtra(KEY_FOLD);
-        clearSelect(fold);
+        try {
+            clearSelect(fold);
+        }catch (RuntimeException e){
+            Log.e("ERROR SERVICE","error clear temp files");
+        }
         return START_STICKY;
     }
 

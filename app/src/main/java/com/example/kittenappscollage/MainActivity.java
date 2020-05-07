@@ -26,6 +26,7 @@ import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
 import com.example.kittenappscollage.draw.saveSteps.ClearCatch;
 import com.example.kittenappscollage.draw.saveSteps.State;
 import com.example.kittenappscollage.draw.saveSteps.Steps;
+import com.example.kittenappscollage.draw.tutorial.ExcursInTutorial;
 import com.example.kittenappscollage.helpers.AllPermissions;
 import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.dbPerms.WorkDBPerms;
@@ -36,19 +37,14 @@ import com.google.android.material.tabs.TabLayout;
 
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery,
         SavedKollagesFragmentDraw.ActionSave,
         MainSwitching,
         TargetView.OnClickTargetViewNoleListener{
 
-    public static final String KEY_EXCURS_STEP = "MainActivity excurs step____1224122q2й24311";
-
-    public static final String KEY_PRIMARY_START = "MainActivity primary start____1224122q2й24311";
-
-    private int excursStep;
-
-    private boolean primaryStart;
+    public static final String KEY_EXCURS_STEP = "MainActivity excurs step_1212174";
 
     private TutorialFragmentDraw mFragDraw;
 
@@ -58,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     private SelectSweepViewPager viewPager;
 
-    private TargetView targetView;
+    private ExcursInTutorial excurs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,41 +65,33 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         App.setMain(this);
         viewPager = findViewById(R.id.select_sweep_viewpager);
         setupViewPager(viewPager);
-        primaryStart = getPreferences(MODE_PRIVATE).getBoolean(KEY_PRIMARY_START,false);
-        if(primaryStart) {
-            requestOldProj();
-            excursStep = 999;
+
+        int excursStep = getPreferences(MODE_PRIVATE).getInt(KEY_EXCURS_STEP,0);
+        if(excursStep<999) {
+            excurs(excursStep);
         }else {
-            excursStep = getPreferences(MODE_PRIVATE).getInt(KEY_EXCURS_STEP,0);
-            if(excursStep<3) {
-                targetView = TargetView.build(this);
-                excurs(excursStep);
-            }
+            requestOldProj();
         }
     }
 
     @Override
     public void onClickTarget(int i) {
-        if(excursStep==0){
-            excursStep++;
-            getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,excursStep).apply();
-            if(i==TargetView.TOUCH_VEIL||i==TargetView.TOUCH_UOT||i==TargetView.TOUCH_TARGET)
-            excurs(excursStep);
-        }else if(excursStep>0&&excursStep<3) {
-            if(i==TargetView.TOUCH_SOFT_KEY) {
-                excursStep++;
-                getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP,excursStep).apply();
-                excurs(excursStep);
+        if (excurs.getStep() == 0) {
+            if (excurs.next()) {
+                getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP, excurs.getStep()).apply();
             }
-        }else {
-            if(i==TargetView.TOUCH_SOFT_KEY) {
-                getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP, 999).apply();
-                targetView.close();
-                mFragDraw.startTutorial();
-                mFragGal.startTutorial();
+        } else {
+            if (i == TargetView.TOUCH_SOFT_KEY ) {
+                if (excurs.next()) {
+                    getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP, excurs.getStep()).apply();
+                }else {
+                    getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP, 999).apply();
+                    mFragDraw.startTutorial();
+                    mFragGal.startTutorial();
+                }
             }
-        }
 
+        }
     }
 
 
@@ -136,7 +124,6 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                     values.put(MediaStore.Images.Media.DATE_TAKEN, date);
                     values.put(MediaStore.Images.Media.MIME_TYPE, "image/png");
                     values.put(MediaStore.Images.Media.DISPLAY_NAME,split[SavedKollagesFragmentDraw.INDEX_NAME_IMG]);
-//                    values.put(MediaStore.Images.Media.RELATIVE_PATH,split[SavedKollagesFragmentDraw.INDEX_PATH_FOLD]);
                     uri = getContentResolver().insert(MediaStore.Images.Media.getContentUri(VOLUME_EXTERNAL),values);
                 }
             mFragGal.setSavingInStorageCollage(uri, report, delimiter, date);
@@ -148,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         if(!mFragGal.onBackPressed(mTabLayout.getSelectedTabPosition())){
             super.onBackPressed();
         }
+
     }
 
     @Override
@@ -156,38 +144,29 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     }
 
     private void excurs(int step){
-        if(step==0){
-            targetView.target(R.id.tabs)
-                    .touchExit(TargetView.NON_TOUCH)
-                    .dimmingBackground(getResources().getColor(R.color.colorDimenPrimaryTransparent))
-                    .textTitle("Отказ")
-                    .sizeTitle(60)
-                    .iconTitle(R.drawable.ic_warning)
-                    .textNote("Разработчик этого приложения не несет ответственности за использование сторонних изображений. Соглашаясь с этим условием, пользователь обязуется придерживаться закона и соблюдать авторские права.")
-                    .sizeNote(30)
-                     .show();
-        }else if(step==1){
-            targetView
-                    .iconTitle(TargetView.NON_IKON)
-                    .iconSoftKey(R.drawable.ic_icon_next)
-                    .textTitle("Обучение")
-                    .textNote("В процессе, будут появляться подсказки. Для прохождения жми далее или выделенный элемент.")
-                    .step();
-        }else if(step==2){
-            targetView
-                    .iconTitle(R.drawable.icon_edit)
-                    .textTitle("Студия")
-                    .textNote("В этом окне ты работаешь с изображением. Основные инструменты скрыты тремя кнопками.")
-                    .step();
-        }else if(step==3){
-            targetView
-                    .iconTitle(R.drawable.icon_edit)
-                    .textTitle("Галерея")
-                    .textNote("В ней ты открываешь папки, просматриваешь изображения и так далее. Длительное нажатие на элемент галереи дает доступ к дополнительным действиям.")
-                    .step();
-        }
+        LYTE("excurs "+step);
+            initExcurs();
+            excurs.targets(new Integer[]{R.id.tabs,R.id.tabs,R.id.tabs,R.id.tabs})
+                    .titles(getResources().getStringArray(R.array.main_buttons_title))
+                    .notes(getResources().getStringArray(R.array.main_buttons_note))
+                    .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
+                    .iconsTitle(new int[]{0,0,R.drawable.icon_edit,R.drawable.icon_collect})
+                    .iconsSoftKey(new int[]{0,R.drawable.ic_icon_next,R.drawable.ic_icon_next,R.drawable.ic_icon_next})
+                    .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
+                    .setStep(step)
+                    .ongoing(true)
+                    .start();
+
     }
 
+    private void initExcurs(){
+            if(excurs==null){
+                    TargetView t = TargetView.build(this)
+                            .touchExit(TargetView.NON_TOUCH)
+                            .dimmingBackground(getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));
+                    excurs = new ExcursInTutorial(t);
+                }
+    }
 
     private void setupViewPager(SelectSweepViewPager v){
         v.setAdapter(addFragments());
