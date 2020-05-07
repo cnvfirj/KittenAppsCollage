@@ -123,6 +123,7 @@ public class DeletedImagesInList extends Service {
         for (String name:names){
             index = bruteForceOption(index,files,name,emitter);
         }
+        if(fold.listFiles().length==0)deleteFile(fold);
     }
 
     private int bruteForceOption(int index, DocumentFile[]files, String name,ObservableEmitter<Pair<String,Boolean>> emitter){

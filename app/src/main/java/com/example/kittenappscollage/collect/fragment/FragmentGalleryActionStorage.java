@@ -1,6 +1,7 @@
 package com.example.kittenappscollage.collect.fragment;
 
 import android.annotation.SuppressLint;
+import android.app.RecoverableSecurityException;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -144,17 +145,23 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
 //    }
 
     private void deleteImages(String key,HashMap<Long,String> sort,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
-//        if(!App.checkVersion()){
-//            Uri treeUri = Uri.parse(key);
-//            int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-//            getContext().getContentResolver().takePersistableUriPermission(treeUri, takeFlags);
-//        }
+
         for (String img:getSelectFiles()){
-            if(delFile(Uri.parse(img),sort)){
-                getListImagesInFolders().get(key).remove(img);
-                emitter.onNext(getListImagesInFolders());
-            }
+
+                if(App.checkVersion()) {
+                    if (delFile(Uri.parse(img), sort)) {
+                        getListImagesInFolders().get(key).remove(img);
+                        emitter.onNext(getListImagesInFolders());
+                    }
+                }else {
+                    if (delFileX(Uri.parse(img), sort)) {
+                        getListImagesInFolders().get(key).remove(img);
+//                        emitter.onNext(getListImagesInFolders());
+                    }
+                }
+
         }
+        if(!App.checkVersion()) emitter.onNext(getListImagesInFolders());
         emitter.onComplete();
     }
 
@@ -162,18 +169,25 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
     private void deleteImagesAndFold(String key,HashMap<Long,String> sort,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
         for (String img:images){
-            if(delFile(Uri.parse(img),sort)){
-                getListImagesInFolders().get(key).remove(img);
-                emitter.onNext(getListImagesInFolders());
+            if(App.checkVersion()) {
+                if (delFile(Uri.parse(img), sort)) {
+                    getListImagesInFolders().get(key).remove(img);
+                    emitter.onNext(getListImagesInFolders());
+                }
+            }else {
+                if (delFileX(Uri.parse(img), sort)) {
+                    getListImagesInFolders().get(key).remove(img);
+//                    emitter.onNext(getListImagesInFolders());
+                }
             }
         }
         if(getListImagesInFolders().get(key).size()==0){
             clearLists(key);
             WorkDBPerms.get(getContext()).delItem(key);
             DocumentFile fold = DocumentFile.fromTreeUri(getContext(),Uri.parse(key));
-            if(fold.listFiles().length==0){
-                delDocFile(fold.getUri());
-            }
+//            if(fold.listFiles().length==0){
+//                delDocFile(fold.getUri());
+//            }
         }
         emitter.onNext(getListImagesInFolders());
         emitter.onComplete();
@@ -194,6 +208,8 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
         getContext().startService(i);
     }
 
+
+
     private boolean delFile(Uri uri, HashMap<Long,String>sort){
         /*ищем имя файла*/
         Cursor c = null;
@@ -209,10 +225,25 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
         return getContext().getContentResolver().delete(uri,null,null)>0;
     }
 
+    private boolean delFileX(Uri uri, HashMap<Long,String>sort){
+        Cursor c = null;
+        try {
+            c = getContext().getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DISPLAY_NAME, MediaStore.Images.Media.DATE_MODIFIED}, null, null, null);
+            c.moveToFirst();
+            final String vol = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
+            final Long mod = c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED));
+            sort.put(mod,vol);
+        }finally {
+            if(c!=null)c.close();
+        }
+        return true;
+    }
     private boolean delDocFile(Uri uri){
+        LYTE("del "+uri.toString());
         boolean b = false;
         try {
             b = DocumentsContract.deleteDocument(getContext().getContentResolver(),uri);
+            LYTE("deleted ");
         }catch(FileNotFoundException e) {
             LYTE("FragmentGalleryActionStorage FileNotFoundException del "+e.toString());
         }catch(SecurityException s){
@@ -221,6 +252,7 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
             LYTE("FragmentGalleryActionStorage IllegalArgumentException del "+i.toString());
             b = true;
         }
+        LYTE("deleted "+b);
         return b;
     }
 
