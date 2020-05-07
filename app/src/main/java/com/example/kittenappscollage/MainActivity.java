@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         MainSwitching,
         TargetView.OnClickTargetViewNoleListener{
 
-    public static final String KEY_EXCURS_STEP = "MainActivity excurs step_1212174";
+    public static final String KEY_EXCURS_STEP = "MainActivity excurs step_121217422";
 
     private TutorialFragmentDraw mFragDraw;
 
@@ -144,7 +144,6 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
     }
 
     private void excurs(int step){
-        LYTE("excurs "+step);
             initExcurs();
             excurs.targets(new Integer[]{R.id.tabs,R.id.tabs,R.id.tabs,R.id.tabs})
                     .titles(getResources().getStringArray(R.array.main_buttons_title))

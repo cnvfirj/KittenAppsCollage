@@ -170,7 +170,6 @@ public abstract class FragmentSlideGallery extends FragmentGallery implements Vi
           selectExitMode.setSelected(true);
           selected_3.setEnabled(true);
       }
-//        selectIconAction3(selected_3);
         slideSel_3(true);
         slideSel_4(true);
     }
@@ -236,7 +235,7 @@ protected void slideSel_4(boolean s){
         if(s){
             selected_4.animate().translationY(0).setDuration(300).start();
         }else {
-            selected_4.animate().translationY(-slide).setDuration(300).start();
+            selected_4.animate().translationY(-slide).setDuration(300).setListener(this).start();
         }
     }
 

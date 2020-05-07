@@ -23,13 +23,13 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
 
     public final static String KEY_ACTIVATE_COLLECT = "activate fragment";
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial_";
 
-    private final String KEY_STEP_BACK_COLL = "TutorialFragmentGallery step tback coll";
+    private final String KEY_STEP_BACK_COLL = "TutorialFragmentGallery step tback coll_11";
 
-    private final String KEY_STEP_MENU_ROOT = "TutorialFragmentGallery step menu root";
+    private final String KEY_STEP_MENU_ROOT = "TutorialFragmentGallery step menu root_111";
 
-    private final String KEY_STEP_MENU_ADAPT = "TutorialFragmentGallery step menu adapt";
+    private final String KEY_STEP_MENU_ADAPT = "TutorialFragmentGallery step menu adapt_1211";
 
     private ExcursInTutorial excursInTutorial;
 
@@ -94,9 +94,8 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
     public void onAnimationEnd(Animator animation) {
       /*listen end animation */
         if(chapter!=null){
-            excursInTutorial.start();
+            if(!excursInTutorial.getOngoing())excursInTutorial.start();
         }
-
     }
 
     @Override
@@ -139,8 +138,18 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
                 }
             }
         }else {
-
+            int step = preferences.getInt(KEY_STEP_MENU_ADAPT,0);
+            if(step<999){
+                initExcurs();
+                if(!excursInTutorial.getOngoing()){
+                    if(tutorialMenuAdapt(step)){
+                        chapter = KEY_STEP_MENU_ADAPT;
+                    }
+                }
+            }
         }
+
+
     }
 
     @Override
@@ -161,8 +170,19 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
                     .titles(getContext().getResources().getStringArray(R.array.collect_root_menu_title))
                     .notes(getContext().getResources().getStringArray(R.array.collect_root_menu_note))
                     .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
-                    .setStep(step)
-                    .ongoing(true);
+                    .setStep(step);
+            return true;
+        }else return false;
+    }
+
+    private boolean tutorialMenuAdapt(int step){
+        if(chapter==null||!chapter.equals(KEY_STEP_MENU_ADAPT)) {
+            excursInTutorial
+                    .targets(new Integer[]{R.id.selected_collect_exit_mode, R.id.selected_collect_3,R.id.selected_collect_4})
+                    .titles(getContext().getResources().getStringArray(R.array.collect_adapt_menu_title))
+                    .notes(getContext().getResources().getStringArray(R.array.collect_adapt_menu_note))
+                    .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
+                    .setStep(step);
             return true;
         }else return false;
     }
@@ -174,14 +194,12 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
                     .titles(new String[]{"Изображения"})
                     .notes(new String[]{"Просматривай изображения, длительное нажатие на одно из них, вызывает дополнительные функции. Этой кнопкой вернись назад."})
                     .sizeWin(new int[]{TargetView.MINI_VEIL})
-                    .setStep(step)
-                    .ongoing(true);
+                    .setStep(step);
             return true;
         }else return false;
     }
 
     private void startExkurs(int step) {
-        LYTE("step "+step);
         if (step >= 0 && step < 2) {
             if (getContext() != null) {
                 chapter = KEY_STEP_TUTORIAL;
@@ -203,13 +221,13 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
     }
 
     private void initExcurs(){
-        if(excursInTutorial==null){
+//        if(excursInTutorial==null){
             if(getContext()!=null) {
                 TargetView t = TargetView.build(this)
                         .touchExit(TargetView.NON_TOUCH)
                         .dimmingBackground(getContext().getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));
                 excursInTutorial = new ExcursInTutorial(t);
             }
-        }
+//        }
     }
 }

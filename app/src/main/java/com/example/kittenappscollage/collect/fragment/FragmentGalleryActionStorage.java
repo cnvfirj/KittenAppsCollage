@@ -11,6 +11,7 @@ import androidx.documentfile.provider.DocumentFile;
 
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.collect.DeletedImagesInList;
+import com.example.kittenappscollage.helpers.App;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
@@ -143,6 +144,11 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
 //    }
 
     private void deleteImages(String key,HashMap<Long,String> sort,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+        if(!App.checkVersion()){
+            Uri treeUri = Uri.parse(key);
+            int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+            getContext().getContentResolver().takePersistableUriPermission(treeUri, takeFlags);
+        }
         for (String img:getSelectFiles()){
             if(delFile(Uri.parse(img),sort)){
                 getListImagesInFolders().get(key).remove(img);
@@ -201,7 +207,6 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
             if(c!=null)c.close();
         }
         return getContext().getContentResolver().delete(uri,null,null)>0;
-
     }
 
     private boolean delDocFile(Uri uri){

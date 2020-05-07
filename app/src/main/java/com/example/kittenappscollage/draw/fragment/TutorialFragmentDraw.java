@@ -14,13 +14,13 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private ExcursInTutorial excursInTutorial;
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial_";
 
-    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr";
+    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr_1";
 
-    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img";
+    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img_1";
 
-    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img";
+    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_1";
 
     private String chapter;
 
@@ -199,13 +199,13 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
     }
 
     private void initExcurs(){
-        if(excursInTutorial==null){
+//        if(excursInTutorial==null){
             if(getContext()!=null) {
                 TargetView t = TargetView.build(this)
                         .touchExit(TargetView.NON_TOUCH)
                         .dimmingBackground(getContext().getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));
                 excursInTutorial = new ExcursInTutorial(t);
-            }
+//            }
         }
     }
 
