@@ -1,6 +1,8 @@
 package com.example.kittenappscollage.collect.reviewImage;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,8 +16,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.kittenappscollage.R;
+import com.example.kittenappscollage.draw.tutorial.ExcursInTutorial;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 import com.example.kittenappscollage.mainTabs.SelectSweepViewPager;
+import com.example.targetviewnote.TargetView;
 
 import java.util.ArrayList;
 
@@ -25,13 +29,19 @@ import io.reactivex.ObservableOnSubscribe;
 import static com.example.kittenappscollage.collect.reviewImage.DialogReviewFrame.KEY_ARR;
 import static com.example.kittenappscollage.collect.reviewImage.DialogReviewFrame.KEY_POS;
 
-public class DialogReview extends Fragment implements View.OnClickListener {
+public class DialogReview extends Fragment implements View.OnClickListener, TargetView.OnClickTargetViewNoleListener{
 
     private SelectSweepViewPager viewPager;
 
     private ImageView back, edit, share;
 
     private SelectorOperationReview selector;
+
+    private ExcursInTutorial excurs;
+
+    private SharedPreferences preferences;
+
+    private final String KEY_STEP_TUTORIAL = "DialogReview key step tutorial";
 
     @Nullable
     @Override
@@ -51,6 +61,13 @@ public class DialogReview extends Fragment implements View.OnClickListener {
         }
         initButtons(view);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        excurs(preferences.getInt(KEY_STEP_TUTORIAL,0));
     }
 
     @SuppressLint("CheckResult")
@@ -83,8 +100,45 @@ public class DialogReview extends Fragment implements View.OnClickListener {
         }
     }
 
+    @Override
+    public void onClickTarget(int i) {
+        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
+            if(excurs.next()) {
+                getEditor().putInt(KEY_STEP_TUTORIAL, excurs.getStep()).apply();
+            }else {
+                getEditor().putInt(KEY_STEP_TUTORIAL, 999).apply();
+            }
+        }
+    }
+
     public int currentPosition(){
         return viewPager.getCurrentItem();
+    }
+
+    private SharedPreferences.Editor getEditor(){
+        return preferences.edit();
+    }
+
+    private void excurs(int step){
+        if(step<999){
+            initExcurs();
+            excurs
+                    .targets(new Integer[]{R.id.dialog_review_share,R.id.dialog_review_edit,R.id.dialog_review_exit})
+                    .titles(getContext().getResources().getStringArray(R.array.review_title))
+                    .notes(getContext().getResources().getStringArray(R.array.review_note))
+                    .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MIDI_VEIL,TargetView.MINI_VEIL})
+                    .setStep(step);
+            excurs.start();
+        }
+    }
+
+    private void initExcurs(){
+        if(getContext()!=null) {
+            TargetView t = TargetView.build(this)
+                    .touchExit(TargetView.NON_TOUCH)
+                    .dimmingBackground(getContext().getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));
+            excurs = new ExcursInTutorial(t);
+        }
     }
 
     private void pressBack(){

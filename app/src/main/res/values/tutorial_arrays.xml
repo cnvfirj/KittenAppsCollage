@@ -137,6 +137,56 @@
     </string-array>
 
 
+    <string-array name="addlyr_title">
+        <item>Размер</item>
+        <item>Прозрачность</item>
+        <item>Зеркало</item>
+        <item>Открыть</item>
+        <item>Назад</item>
+        <item>Закрыть</item>
+
+    </string-array>
+
+    <string-array name="addlyr_note">
+        <item>Большой размер изображения влияет на работу приложения. Здесь ты можешь его уменьшить</item>
+        <item>Степень прозрачности.</item>
+        <item>Зеркальное отражение.</item>
+        <item>Отправь изображение в студию.</item>
+        <item>Вернись к источнику изображения.</item>
+        <item>Закрой окно.</item>
+    </string-array>
+
+    <string-array name="review_title">
+        <item>Просмотр изображения</item>
+        <item>Редактировать</item>
+        <item>Выход</item>
+
+    </string-array>
+
+    <string-array name="review_note">
+        <item>Режим просмотра изображения с возможностью перелистывания. Этой кнопкой ты можешь им поделиться.</item>
+        <item>Отправить в окно редактирования псле чего открыть в студии. Важно! Открытие изображения отсюда начинает новый проект.</item>
+        <item>Закрыть режим просмотра.</item>
+
+
+    </string-array><string-array name="creator_title">
+        <item>Ширина</item>
+        <item>Высота</item>
+        <item>Цвет фона</item>
+        <item>Открыть</item>
+        <item>Выход</item>
+
+    </string-array>
+
+    <string-array name="creator_note">
+        <item>Режим создания чистого листа. Этим задаешь ширину.</item>
+        <item>Выбираешь высоту.</item>
+        <item>Вызов окна выбора цвета. Клик по центру выход.</item>
+        <item>Открыть лист в редакторе для отправки в студию.</item>
+        <item>Закрыть режим создания чистого листа.</item>
+
+    </string-array>
+
 
 
 

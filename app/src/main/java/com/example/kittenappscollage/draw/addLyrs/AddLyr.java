@@ -1,6 +1,8 @@
 package com.example.kittenappscollage.draw.addLyrs;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,16 +21,19 @@ import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.MutableBitmap;
 import com.example.kittenappscollage.draw.addLyrs.loadImage.LoadProjectListener;
 import com.example.kittenappscollage.draw.addLyrs.loadImage.SelectorLoadProject;
+import com.example.kittenappscollage.draw.tutorial.ExcursInTutorial;
 import com.example.kittenappscollage.view.PresentLyr;
 import com.example.targetviewnote.TargetView;
 
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
-public class AddLyr extends Fragment implements View.OnClickListener, DynamicSeekBar.OnSeekBarChangeListener {
+public class AddLyr extends Fragment implements View.OnClickListener, DynamicSeekBar.OnSeekBarChangeListener,TargetView.OnClickTargetViewNoleListener {
 
     public static final String KEY_EXTRACTOR_WAY = "extractor";
 
     public static final String KEY_SOURCE = "source";
+
+    private final String KEY_STEP_TUTORIAL = "AddLyr key step tutorial_";
 
     private final String NULL_WAY = "null";
 
@@ -49,6 +54,10 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
     private int aSource;
 
     protected PresentLyr aPresent;
+
+    private ExcursInTutorial excurs;
+
+    private SharedPreferences preferences;
 
 
     @Nullable
@@ -76,6 +85,55 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
         aPercentScale = 100;
         aScale.setProgress(aPercentScale);
         aAlpha.setProgress(aPercentAlpha);
+        preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        excurs(preferences.getInt(KEY_STEP_TUTORIAL,0));
+    }
+
+    @Override
+    public void onClickTarget(int i) {
+        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
+            if(excurs.next()) {
+                getEditor().putInt(KEY_STEP_TUTORIAL, excurs.getStep()).apply();
+            }else {
+                getEditor().putInt(KEY_STEP_TUTORIAL, 999).apply();
+            }
+        }
+    }
+
+    private void excurs(int step){
+        if(step<999){
+            initExcurs();
+            excurs
+                    .targets(targetsEx())
+                    .titles(getContext().getResources().getStringArray(R.array.addlyr_title))
+                    .notes(getContext().getResources().getStringArray(R.array.addlyr_note))
+                    .sizeWin(sizesWin())
+                    .setStep(step);
+            excurs.start();
+        }
+    }
+
+    private Integer[]targetsEx(){
+        return new Integer[]{R.id.dialog_seek_scale,R.id.dialog_seek_alpha,R.id.dialog_mirror,
+                             R.id.dialog_apply,R.id.dialog_back,R.id.dialog_close};
+    }
+
+    private int[]sizesWin(){
+        return new int[]{TargetView.MIDI_VEIL,TargetView.MIDI_VEIL,
+                TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL};
+    }
+
+    private void initExcurs(){
+        if(getContext()!=null) {
+            TargetView t = TargetView.build(this)
+                    .touchExit(TargetView.NON_TOUCH)
+                    .dimmingBackground(getContext().getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));
+            excurs = new ExcursInTutorial(t);
+        }
+    }
+
+    private SharedPreferences.Editor getEditor(){
+        return preferences.edit();
     }
 
     public void setBitmap(Bitmap bitmap){

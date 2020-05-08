@@ -47,7 +47,7 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
 
     @SuppressLint("CheckResult")
     private void threadDelFold(String fold){
-        final Uri f = Uri.parse(getKey());
+        final Uri f = Uri.parse(fold);
         HashMap<Long,String>sort = new HashMap<>();
         Observable.create((ObservableOnSubscribe<HashMap<String, ArrayList<String>>>) emitter ->
                 deleteImagesAndFold(fold,sort,emitter))
@@ -148,17 +148,18 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
 
         for (String img:getSelectFiles()){
 
-                if(App.checkVersion()) {
+//                if(App.checkVersion()) {
                     if (delFile(Uri.parse(img), sort)) {
                         getListImagesInFolders().get(key).remove(img);
                         emitter.onNext(getListImagesInFolders());
                     }
-                }else {
-                    if (delFileX(Uri.parse(img), sort)) {
-                        getListImagesInFolders().get(key).remove(img);
-//                        emitter.onNext(getListImagesInFolders());
-                    }
-                }
+//                }
+//        else {
+//                    if (delFileX(Uri.parse(img), sort)) {
+//                        getListImagesInFolders().get(key).remove(img);
+////                        emitter.onNext(getListImagesInFolders());
+//                    }
+//                }
 
         }
         if(!App.checkVersion()) emitter.onNext(getListImagesInFolders());
@@ -169,22 +170,23 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
     private void deleteImagesAndFold(String key,HashMap<Long,String> sort,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         ArrayList<String>images = (ArrayList<String>)getListImagesInFolders().get(key).clone();
         for (String img:images){
-            if(App.checkVersion()) {
+//            if(App.checkVersion()) {
                 if (delFile(Uri.parse(img), sort)) {
                     getListImagesInFolders().get(key).remove(img);
                     emitter.onNext(getListImagesInFolders());
                 }
-            }else {
-                if (delFileX(Uri.parse(img), sort)) {
-                    getListImagesInFolders().get(key).remove(img);
-//                    emitter.onNext(getListImagesInFolders());
-                }
-            }
+//            }
+//            else {
+//                if (delFileX(Uri.parse(img), sort)) {
+//                    getListImagesInFolders().get(key).remove(img);
+////                    emitter.onNext(getListImagesInFolders());
+//                }
+//            }
         }
         if(getListImagesInFolders().get(key).size()==0){
             clearLists(key);
             WorkDBPerms.get(getContext()).delItem(key);
-            DocumentFile fold = DocumentFile.fromTreeUri(getContext(),Uri.parse(key));
+//            DocumentFile fold = DocumentFile.fromTreeUri(getContext(),Uri.parse(key));
 //            if(fold.listFiles().length==0){
 //                delDocFile(fold.getUri());
 //            }
@@ -208,8 +210,6 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
         getContext().startService(i);
     }
 
-
-
     private boolean delFile(Uri uri, HashMap<Long,String>sort){
         /*ищем имя файла*/
         Cursor c = null;
@@ -222,7 +222,8 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
         }finally {
             if(c!=null)c.close();
         }
-        return getContext().getContentResolver().delete(uri,null,null)>0;
+        if(App.checkVersion()) return getContext().getContentResolver().delete(uri,null,null)>0;
+        else return true;
     }
 
     private boolean delFileX(Uri uri, HashMap<Long,String>sort){

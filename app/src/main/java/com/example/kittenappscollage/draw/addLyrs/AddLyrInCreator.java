@@ -31,7 +31,9 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
     private final String KEY_WIDTH_BLANK = "width blank AddLyrInCreator";
     private final String KEY_HEIGHT_BLANK = "height blank AddLyrInCreator";
 
-    private SharedPreferences aPreferences;
+    private final String KEY_STEP_TUTORIAL = "AddLyrInCreator step tutorial";
+
+//    private SharedPreferences aPreferences;
 
     private PreviewBlankBitmp aPreview;
 
@@ -54,14 +56,15 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
 
     @Override
     public void onResume() {
+        setChapter(KEY_STEP_TUTORIAL);
         super.onResume();
-        aPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
-            aColor = aPreferences.getInt(KEY_COLOR_FON, Color.WHITE);
+//        aPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
+            aColor = getPreferences().getInt(KEY_COLOR_FON, Color.WHITE);
             aPreview.fon(aColor);
             aSelectColor.setColor(aColor);
             aColorPickCall.setImageTintList(ColorStateList.valueOf(aColor));
-            int width = aPreferences.getInt(KEY_WIDTH_BLANK, 0);
-            int height = aPreferences.getInt(KEY_HEIGHT_BLANK, 0);
+            int width = getPreferences().getInt(KEY_WIDTH_BLANK, 0);
+            int height = getPreferences().getInt(KEY_HEIGHT_BLANK, 0);
             aPreview.size(new Size(width, height));
             paramView(aPreview);
     }
@@ -69,8 +72,8 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
     @Override
     public void onPause() {
         super.onPause();
-        aPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
-            SharedPreferences.Editor e = aPreferences.edit();
+//        aPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
+            SharedPreferences.Editor e = getEditor();
             e.putInt(KEY_COLOR_FON, aPreview.getColorFon());
             e.putInt(KEY_WIDTH_BLANK, aPreview.getSize().getWidth());
             e.putInt(KEY_HEIGHT_BLANK, aPreview.getSize().getHeight());
@@ -163,6 +166,36 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
     @Override
     public void onStopTrackingTouch(DynamicSeekBar seekBar) {
 
+    }
+
+    @Override
+    protected Integer[] targetsEx() {
+        return new Integer[]{R.id.creator_width,R.id.creator_height,R.id.color_pick_call,R.id.creator_lyr_done,R.id.creator_lyr_back};
+    }
+
+    @Override
+    protected int[] sizesWin() {
+        return new int[]{TargetView.MIDI_VEIL,TargetView.MIDI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL};
+    }
+
+    @Override
+    protected String[] getTitles() {
+        return getContext().getResources().getStringArray(R.array.creator_title);
+    }
+
+    @Override
+    protected String[] getNotes() {
+        return getContext().getResources().getStringArray(R.array.creator_note);
+    }
+
+    @Override
+    protected int[] icTitles() {
+        return null;
+    }
+
+    @Override
+    protected int[] icSoftKey() {
+        return null;
     }
 
     private void addListen(){
