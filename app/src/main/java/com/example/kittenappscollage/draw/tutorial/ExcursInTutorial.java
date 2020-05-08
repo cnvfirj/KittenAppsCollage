@@ -1,10 +1,8 @@
 package com.example.kittenappscollage.draw.tutorial;
 
-import android.content.Context;
-import android.util.Log;
-
-import com.example.kittenappscollage.R;
 import com.example.targetviewnote.TargetView;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class ExcursInTutorial {
 
@@ -152,7 +150,6 @@ public class ExcursInTutorial {
         sizeWindow = null;
         titles = null;
          step = 0;
-         titles = null;
          notes = null;
          iconsTitle = null;
          iconsSoftKey = null;

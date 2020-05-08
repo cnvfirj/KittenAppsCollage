@@ -23,6 +23,7 @@ import com.madrapps.pikolo.listeners.SimpleColorSelectionListener;
 
 import java.util.Objects;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 import static com.example.kittenappscollage.helpers.Massages.SHOW_MASSAGE;
 
 public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.OnSeekBarChangeListener{
@@ -31,9 +32,7 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
     private final String KEY_WIDTH_BLANK = "width blank AddLyrInCreator";
     private final String KEY_HEIGHT_BLANK = "height blank AddLyrInCreator";
 
-    private final String KEY_STEP_TUTORIAL = "AddLyrInCreator step tutorial";
-
-//    private SharedPreferences aPreferences;
+    private final String KEY_STEP_TUTORIAL = "AddLyrInCreator step tutorial_11223547";
 
     private PreviewBlankBitmp aPreview;
 
@@ -116,6 +115,7 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
             aSeekWidth.setProgress(aPreview.getSize().getWidth());
             aSeekHeight.setProgress(aPreview.getSize().getHeight());
         }
+
     }
 
     @Override
@@ -169,32 +169,32 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
     }
 
     @Override
-    protected Integer[] targetsEx() {
-        return new Integer[]{R.id.creator_width,R.id.creator_height,R.id.color_pick_call,R.id.creator_lyr_done,R.id.creator_lyr_back};
+    public Integer[] targetsEx() {
+        return new Integer[]{R.id.creator_lyr_done,R.id.creator_width,R.id.creator_height,R.id.color_pick_call,R.id.creator_lyr_back};
     }
 
     @Override
-    protected int[] sizesWin() {
-        return new int[]{TargetView.MIDI_VEIL,TargetView.MIDI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL};
+    public int[] sizesWin() {
+        return new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MIDI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL};
     }
 
     @Override
-    protected String[] getTitles() {
+    public String[] getTitles() {
         return getContext().getResources().getStringArray(R.array.creator_title);
     }
 
     @Override
-    protected String[] getNotes() {
+    public String[] getNotes() {
         return getContext().getResources().getStringArray(R.array.creator_note);
     }
 
     @Override
-    protected int[] icTitles() {
+    public int[] icTitles() {
         return null;
     }
 
     @Override
-    protected int[] icSoftKey() {
+    public int[] icSoftKey() {
         return null;
     }
 
@@ -242,7 +242,6 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
 
 
     private void applyTransformTools(){
-
         int margin = aColorPickCall.getTop();
         int side = aColorPickCall.getWidth();
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) aSeekWidth.getLayoutParams();
@@ -254,6 +253,7 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
         params.topMargin = side;
         aSeekHeight.setLayoutParams(params);
 
+        excurs(getPreferences().getInt(KEY_STEP_TUTORIAL,0));
     }
 
     private void applyTransform(boolean hide, long time){

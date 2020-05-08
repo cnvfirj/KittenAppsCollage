@@ -11,7 +11,7 @@ import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.tutorial.ExcursInTutorial;
 import com.example.targetviewnote.TargetView;
 
-public abstract class SelectedFragment extends Fragment implements View.OnClickListener, TargetView.OnClickTargetViewNoleListener {
+public abstract class SelectedFragment extends Fragment implements View.OnClickListener, TargetView.OnClickTargetViewNoleListener,Tutorials {
 
     protected SelectorFrameFragments selector;
 
@@ -40,7 +40,7 @@ public abstract class SelectedFragment extends Fragment implements View.OnClickL
     public void onResume() {
         super.onResume();
         preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-        excurs(preferences.getInt(chapter,0));
+//        excurs(preferences.getInt(chapter,0));
     }
 
     @Override
@@ -91,18 +91,9 @@ public abstract class SelectedFragment extends Fragment implements View.OnClickL
     protected void setChapter(String c){
         chapter = c;
     }
-
-    protected abstract Integer[]targetsEx();
-
-    protected abstract int[]sizesWin();
-
-    protected abstract String[]getTitles();
-
-    protected abstract String[]getNotes();
-
-    protected abstract int[]icTitles();
-
-    protected abstract int[]icSoftKey();
+    protected String getChapter(){
+        return chapter;
+    }
 
     protected abstract void readinessView(View v);
 

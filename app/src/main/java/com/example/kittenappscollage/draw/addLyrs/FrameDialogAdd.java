@@ -79,7 +79,7 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
     private Fragment select(int index){
         if(index==ADD_CAM)return new AddLyrInCam();
         else if(index==ADD_COLL)return new GalleryFragment();
-        else if(index==ADD_NET)return new AddLyrInNet();
+//        else if(index==ADD_NET)return new AddLyrInNet();
         else if(index==ADD_NEW)return new AddLyrInCreator();
         return null;
     }

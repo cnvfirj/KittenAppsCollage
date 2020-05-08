@@ -78,6 +78,36 @@ public class AddLyrInCam extends SelectedFragment{
        }
     }
 
+    @Override
+    public Integer[] targetsEx() {
+        return new Integer[0];
+    }
+
+    @Override
+    public int[] sizesWin() {
+        return new int[0];
+    }
+
+    @Override
+    public String[] getTitles() {
+        return new String[0];
+    }
+
+    @Override
+    public String[] getNotes() {
+        return new String[0];
+    }
+
+    @Override
+    public int[] icTitles() {
+        return new int[0];
+    }
+
+    @Override
+    public int[] icSoftKey() {
+        return new int[0];
+    }
+
     private void pressClick(){
         aCamera.captureSnapshot();
     }
