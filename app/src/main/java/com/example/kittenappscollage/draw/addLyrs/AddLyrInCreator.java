@@ -115,7 +115,6 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
             aSeekWidth.setProgress(aPreview.getSize().getWidth());
             aSeekHeight.setProgress(aPreview.getSize().getHeight());
         }
-
     }
 
     @Override

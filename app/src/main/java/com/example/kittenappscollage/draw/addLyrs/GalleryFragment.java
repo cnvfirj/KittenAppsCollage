@@ -1,6 +1,8 @@
 package com.example.kittenappscollage.draw.addLyrs;
 
 import android.animation.Animator;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,14 +15,21 @@ import androidx.annotation.Nullable;
 
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.collect.fragment.FragmentGalleryReviewImages;
+import com.example.kittenappscollage.draw.tutorial.ExcursInTutorial;
+import com.example.targetviewnote.TargetView;
 
-public class GalleryFragment extends FragmentGalleryReviewImages {
+public class GalleryFragment extends FragmentGalleryReviewImages implements TargetView.OnClickTargetViewNoleListener {
+
+    private final String KEY_STEP_TUTORIAL = "GalleryFragment key step tutorial";
 
     private SelectorFrameFragments selector;
 
     private int width;
 
     private boolean blockParams;
+
+    private ExcursInTutorial excurs;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,6 +43,8 @@ public class GalleryFragment extends FragmentGalleryReviewImages {
         awaitingView(view);
         super.onViewCreated(view, savedInstanceState);
         getAddFolders().setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_close,null));
+        (view.findViewById(R.id.gallery_main_menu)).setVisibility(View.INVISIBLE);
+        if(getContext()!=null)excurs(pref().getInt(KEY_STEP_TUTORIAL,0));
     }
 
 
@@ -87,6 +98,42 @@ public class GalleryFragment extends FragmentGalleryReviewImages {
         }
     }
 
+    private void excurs(int step){
+        if(step<999){
+            initExcurs();
+            if (!excurs.getOngoing()) {
+                excurs
+                        .targets(new Integer[]{getAddFolders().getId()})
+                        .titles(getContext().getResources().getStringArray(R.array.addlyr_collect_title))
+                        .notes(getContext().getResources().getStringArray(R.array.addlyr_collect_note))
+                        .sizeWin(new int[]{TargetView.MIDI_VEIL})
+                        .iconsTitle(new int[]{R.drawable.icon_collect})
+                        .iconsSoftKey(new int[]{R.drawable.ic_icon_next})
+                        .setStep(step)
+                        .ongoing(true);
+                excurs.start();
+            }
+        }
+    }
+
+    private SharedPreferences pref(){
+        return getActivity().getPreferences(Context.MODE_PRIVATE);
+    }
+
+    private SharedPreferences.Editor edit(){
+        return pref().edit();
+    }
+
+    private void initExcurs(){
+        if(getContext()!=null) {
+            TargetView t = TargetView.build(this)
+                    .touchExit(TargetView.NON_TOUCH)
+                    .dimmingBackground(getContext().getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));
+            excurs = new ExcursInTutorial(t);
+
+        }
+    }
+
     @Override
     public void onAnimationStart(Animator animation) {
 
@@ -105,5 +152,16 @@ public class GalleryFragment extends FragmentGalleryReviewImages {
     @Override
     public void onAnimationRepeat(Animator animation) {
 
+    }
+
+    @Override
+    public void onClickTarget(int i) {
+        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
+            if(excurs.next()) {
+                edit().putInt(KEY_STEP_TUTORIAL, excurs.getStep()).apply();
+            }else {
+                edit().putInt(KEY_STEP_TUTORIAL, 999).apply();
+            }
+        }
     }
 }

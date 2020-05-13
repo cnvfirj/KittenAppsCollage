@@ -15,7 +15,7 @@ public abstract class SelectedFragment extends Fragment implements View.OnClickL
 
     protected SelectorFrameFragments selector;
 
-    private SharedPreferences preferences;
+//    private SharedPreferences preferences;
 
     protected ExcursInTutorial excurs;
 
@@ -36,12 +36,12 @@ public abstract class SelectedFragment extends Fragment implements View.OnClickL
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
-//        excurs(preferences.getInt(chapter,0));
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+////        excurs(preferences.getInt(chapter,0));
+//    }
 
     @Override
     public void onClickTarget(int i) {
@@ -81,11 +81,11 @@ public abstract class SelectedFragment extends Fragment implements View.OnClickL
 
 
     protected SharedPreferences getPreferences(){
-        return preferences;
+        return getActivity().getPreferences(Context.MODE_PRIVATE);
     }
 
     protected SharedPreferences.Editor getEditor(){
-        return preferences.edit();
+        return getPreferences().edit();
     }
 
     protected void setChapter(String c){

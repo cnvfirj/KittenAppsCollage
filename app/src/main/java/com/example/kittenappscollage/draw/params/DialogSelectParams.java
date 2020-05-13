@@ -1,4 +1,4 @@
-package com.example.kittenappscollage.draw;
+package com.example.kittenappscollage.draw.params;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -36,10 +36,7 @@ import static com.example.kittenappscollage.draw.repozitoryDraw.RepParams.KEY_SA
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class DialogSelectParams extends DialogFragment implements DynamicSeekBar.OnSeekBarChangeListener,
-        View.OnClickListener,
-         TargetView.OnClickTargetViewNoleListener{
-
-    private TargetView targetView;
+        View.OnClickListener{
 
     private HSLColorPicker selectColor;
 
@@ -94,11 +91,6 @@ public class DialogSelectParams extends DialogFragment implements DynamicSeekBar
         barEraseAlpha.setOnSeekBarChangeListener(this);
         done.setOnClickListener(this);
         close.setOnClickListener(this);
-
-    }
-
-    @Override
-    public void onClickTarget(int i) {
 
     }
 

@@ -37,7 +37,6 @@ import com.google.android.material.tabs.TabLayout;
 
 import static android.provider.MediaStore.VOLUME_EXTERNAL;
 import static com.example.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw.INDEX_PATH_IMG;
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class MainActivity extends AppCompatActivity implements DialogLoadOldProject.ResultQuery,
         SavedKollagesFragmentDraw.ActionSave,
@@ -219,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+//    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.addLyrs.loadImage.DecodeCamera;
+import com.example.targetviewnote.TargetView;
 import com.otaliastudios.cameraview.CameraListener;
 import com.otaliastudios.cameraview.CameraView;
 import com.otaliastudios.cameraview.Facing;
@@ -31,6 +32,20 @@ public class AddLyrInCam extends SelectedFragment{
     private Facing aFacing = Facing.BACK;
 
     private FrameLayout aFrame;
+
+    private final String KEY_STEP_TUTORIAL = "AddLyrInCam step tutorial_12";
+
+    @Override
+    public void onResume() {
+        setChapter(KEY_STEP_TUTORIAL);
+        super.onResume();
+        if(aCamera!=null) {
+            aCamera.start();
+            aCamera.setFacing(aFacing);
+            aCamera.setFlash(aCameraFlash);
+        }
+
+    }
 
     @Nullable
     @Override
@@ -52,6 +67,7 @@ public class AddLyrInCam extends SelectedFragment{
         aCamera.setCropOutput(true);
         aFrame.addView(aCamera);
         addListen();
+        excurs(getPreferences().getInt(KEY_STEP_TUTORIAL,0));
     }
 
     @Override
@@ -80,32 +96,32 @@ public class AddLyrInCam extends SelectedFragment{
 
     @Override
     public Integer[] targetsEx() {
-        return new Integer[0];
+        return new Integer[]{R.id.cam_click,R.id.cam_change,R.id.cam_flash,R.id.cam_exit};
     }
 
     @Override
     public int[] sizesWin() {
-        return new int[0];
+        return new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL};
     }
 
     @Override
     public String[] getTitles() {
-        return new String[0];
+        return getContext().getResources().getStringArray(R.array.addlyr_cam_title);
     }
 
     @Override
     public String[] getNotes() {
-        return new String[0];
+        return  getContext().getResources().getStringArray(R.array.addlyr_cam_note);
     }
 
     @Override
     public int[] icTitles() {
-        return new int[0];
+        return null;
     }
 
     @Override
     public int[] icSoftKey() {
-        return new int[0];
+        return null;
     }
 
     private void pressClick(){
@@ -134,16 +150,6 @@ public class AddLyrInCam extends SelectedFragment{
                aCameraFlash = Flash.OFF;
             }
             aCamera.setFlash(aCameraFlash);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(aCamera!=null) {
-            aCamera.start();
-            aCamera.setFacing(aFacing);
-            aCamera.setFlash(aCameraFlash);
-        }
     }
 
     @Override

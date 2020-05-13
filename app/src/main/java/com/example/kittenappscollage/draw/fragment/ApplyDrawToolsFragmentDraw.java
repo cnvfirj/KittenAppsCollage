@@ -9,11 +9,11 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.kittenappscollage.draw.params.TutorialDialogSelParams;
 import com.example.kittenappscollage.draw.textProp.DialogSelecledTextFragment;
-import com.example.kittenappscollage.draw.DialogSelectParams;
 import com.example.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.example.kittenappscollage.draw.operations.Operation;
-import com.example.kittenappscollage.draw.textProp.DialogSelectShrift;
+import com.example.kittenappscollage.draw.textProp.TutorialSelectShrift;
 
 import java.util.ArrayList;
 
@@ -140,7 +140,7 @@ public abstract class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmen
     @Override
     protected void toolProperties(ImageView v) {
         super.toolProperties(v);
-        DialogSelectParams d = new DialogSelectParams();
+        TutorialDialogSelParams d = new TutorialDialogSelParams();
         d.show(getChildFragmentManager(),d.getClass().getName());
     }
 
@@ -153,7 +153,7 @@ public abstract class ApplyDrawToolsFragmentDraw extends ApplyCommonToolsFragmen
     @Override
     protected void enterText() {
         super.enterText();
-        DialogSelectShrift.get().show(getChildFragmentManager(),DialogSelecledTextFragment.DIALOG_SEL_TXT);
+        TutorialSelectShrift.get().show(getChildFragmentManager(),DialogSelecledTextFragment.DIALOG_SEL_TXT);
     }
 
     @Override

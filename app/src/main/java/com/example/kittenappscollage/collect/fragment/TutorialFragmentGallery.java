@@ -62,12 +62,18 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
     }
 
     @Override
+    protected void readinessScan() {
+        if(preferences.getInt(KEY_STEP_TUTORIAL, -1)==999)super.readinessScan();
+    }
+
+    @Override
     public void onClickTarget(int i) {
         if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
             if(excursInTutorial.next()) {
                 editor.putInt(chapter, excursInTutorial.getStep()).apply();
             }else {
                 editor.putInt(chapter, 999).apply();
+                if(chapter.equals(KEY_STEP_TUTORIAL))readinessScan();
                 chapter = null;
             }
         }
