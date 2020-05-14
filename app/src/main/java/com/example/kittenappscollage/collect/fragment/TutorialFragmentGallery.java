@@ -199,8 +199,8 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
         if(chapter==null||!chapter.equals(KEY_STEP_BACK_COLL)) {
             excursInTutorial
                     .targets(new Integer[]{R.id.selected_collect_exit_mode})
-                    .titles(new String[]{"Изображения"})
-                    .notes(new String[]{"Просматривай изображения, длительное нажатие на одно из них, вызывает дополнительные функции. Этой кнопкой вернись назад."})
+                    .titles(new String[]{getString(R.string.images)})
+                    .notes(new String[]{getString(R.string.collet_images)})
 //                    .iconsTitle(new int[]{R.drawable.ic_matrix_reset_image})
                     .iconsSoftKey(new int[]{R.drawable.ic_icon_exit})
                     .sizeWin(new int[]{TargetView.MINI_VEIL})

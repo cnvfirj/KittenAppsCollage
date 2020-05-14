@@ -10,7 +10,7 @@
     <string name="FOLDER_DELETE">Папка удалена</string>
     <string name="SELECTED_IMAGES_DELETED">Выбранные изображения удалены</string>
     <string name="IS_SELECTED_FOLDER_IMAGES_NOT">В выбранной паке новых изображений не найдено</string>
-    <string name="IN_GALLERY_ADD_FOLDER">\"В галерею добавлена папка \"</string>
+    <string name="IN_GALLERY_ADD_FOLDER">В галерею добавлена папка </string>
     <string name="CREATE_IMG">Создай холст</string>
     <string name="big_big_papper">сделай меньше холст чем этот -</string>
     <string name="fill_form_enter">заполните форму ввода</string>
@@ -44,5 +44,7 @@
     <string name="REQUEST_LOAD_OLD_PROJECT">У тебя остался не завершенный проект</string>
     <string name="OPEN_OLD_PROJECT">Открыть его? В противном случае он будет уничтожен.</string>
     <string name="ERROR_DELETE_FILE">Сбой в удалении из устройства файлa - </string>
+    <string name="images">Изображения</string>
+    <string name="collet_images">Просматривай изображения, длительное нажатие на одно из них, вызывает дополнительные функции. Этой кнопкой вернись назад.</string>
 
 </resources>
