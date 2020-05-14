@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.animation.Animation;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -26,6 +27,8 @@ import com.example.targetviewnote.TargetView;
 import net.cachapa.expandablelayout.ExpandableLayout;
 
 import java.io.IOException;
+
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class DialogSelecledTextFragment extends DialogFragment implements View.OnClickListener, DynamicSeekBar.OnSeekBarChangeListener {
 
@@ -64,7 +67,7 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         super.onViewCreated(view, savedInstanceState);
 
         presentPaint = view.findViewById(R.id.item_present_draw);
-        presentPaint.setText("Shrift");
+        presentPaint.setText("Your Font");
         if(RepDraw.get().getShrift()!=null)presentPaint.setShrift(RepDraw.get().getShrift());
         presentPaint.setType(PresentPaint.TEXT);
         presentPaint.setOnClickListener(this);
@@ -72,6 +75,15 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
         editText.setText(RepDraw.get().getText());
 
         expandable = view.findViewById(R.id.item_present_draw_expadable);
+        expandable.setOnExpansionUpdateListener(new ExpandableLayout.OnExpansionUpdateListener() {
+            @Override
+            public void onExpansionUpdate(float expansionFraction, int state) {
+                if(expansionFraction>=1)slideListShrift(expandable.isExpanded());
+//                LYTE("expansionFraction "+expansionFraction);
+//                LYTE("state "+state);
+
+            }
+        });
         initListShrift(view);
         angleText = view.findViewById(R.id.dialog_edit_text_angle);
         angleText.setOnSeekBarChangeListener(this);
@@ -137,6 +149,10 @@ public class DialogSelecledTextFragment extends DialogFragment implements View.O
     }
 
     protected void searchFonts(ImageView view){
+
+    }
+
+    protected void slideListShrift(boolean open){
 
     }
 

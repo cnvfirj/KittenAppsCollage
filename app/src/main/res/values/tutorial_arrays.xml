@@ -238,9 +238,41 @@
         <item>Отменить и выйти.</item>
     </string-array>
 
+    <string-array name="edit_text_title">
+        <item>Ввод текста</item>
+        <item>Очистка</item>
 
+        <item>Шрифт</item>
+        <item>Контур</item>
+        <item>Угол</item>
+        <item>Наклон</item>
 
+        <item>Принять</item>
+        <item>Выход</item>
+    </string-array>
 
+    <string-array name="edit_text_note">
+        <item>Поле для ввода текста.</item>
+        <item>Удалить старый текст.</item>
+
+        <item>Использемый шрифт.</item>
+        <item>Выбери сплошной шрифт, или его контур.</item>
+        <item>Открой возможность корректировать угол шрифта.</item>
+        <item>Задай нужный наклон шрифта.</item>
+
+        <item>Сохранить изменения и выйти.</item>
+        <item>Выход без изменений.</item>
+    </string-array>
+
+    <string-array name="edit_text_fonts_title">
+        <item>Список шрифтов</item>
+        <item>Добавить шрифт</item>
+    </string-array>
+
+    <string-array name="edit_text_fonts_note">
+        <item>Список доступных шрифтов.</item>
+        <item>Добавь скаченный на устройство шрифт. Шрифт это файл с расширением "ttf" или "otf".</item>
+    </string-array>
 
 
 
