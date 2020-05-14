@@ -97,6 +97,13 @@ public abstract class SelectedFragment extends Fragment implements View.OnClickL
 
     protected abstract void readinessView(View v);
 
-
+    protected int[]getIconSoftKeyAll(int size){
+        int[]ic = new int[size];
+        for (int i=0;i<ic.length;i++){
+            ic[i]=R.drawable.ic_icon_next;
+            if(i==ic.length-1)ic[i]=R.drawable.ic_icon_exit;
+        }
+        return ic;
+    }
 
 }

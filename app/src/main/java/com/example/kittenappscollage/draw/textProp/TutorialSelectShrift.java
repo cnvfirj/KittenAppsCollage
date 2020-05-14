@@ -8,13 +8,11 @@ import com.example.kittenappscollage.draw.addLyrs.Tutorials;
 import com.example.kittenappscollage.draw.tutorial.ExcursInTutorial;
 import com.example.targetviewnote.TargetView;
 
-import static com.example.kittenappscollage.helpers.Massages.LYTE;
-
 public class TutorialSelectShrift extends DialogSelectShrift implements Tutorials, TargetView.OnClickTargetViewNoleListener {
 
-    private final String KEY_STEP_TUTORIAL = "TutorialSelectShrift step tutorial__";
+    private final String KEY_STEP_TUTORIAL = "TutorialSelectShrift step tutorial__22";
 
-    private final String KEY_STEP_ADD_FONT = "TutorialSelectShrift step add font__";
+    private final String KEY_STEP_ADD_FONT = "TutorialSelectShrift step add font__22";
 
     private String chapter;
 
@@ -78,12 +76,19 @@ public class TutorialSelectShrift extends DialogSelectShrift implements Tutorial
 
     @Override
     public int[] icTitles() {
-        return null;
+        if(chapter.equals(KEY_STEP_TUTORIAL)) {
+            return new int[]{R.drawable.ic_text_enter,0,R.drawable.ic_text,
+                    R.drawable.ic_text_stroke, R.drawable.ic_text_italic,
+                    R.drawable.ic_text_italic,0,0
+            };
+        }else {
+            return new int[]{R.drawable.ic_icon_list,0};
+        }
     }
 
     @Override
     public int[] icSoftKey() {
-        return null;
+        return getIconSoftKeyAll(targetsEx().length);
     }
 
     @Override
@@ -127,7 +132,14 @@ public class TutorialSelectShrift extends DialogSelectShrift implements Tutorial
             excurs = new ExcursInTutorial(t);
         }
     }
-
+    private int[]getIconSoftKeyAll(int size){
+        int[]ic = new int[size];
+        for (int i=0;i<ic.length;i++){
+            ic[i]=R.drawable.ic_icon_next;
+            if(i==ic.length-1)ic[i]=R.drawable.ic_icon_exit;
+        }
+        return ic;
+    }
     protected SharedPreferences getPreferences(){
         return getActivity().getPreferences(Context.MODE_PRIVATE);
     }

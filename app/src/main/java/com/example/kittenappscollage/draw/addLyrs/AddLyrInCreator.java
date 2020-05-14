@@ -57,7 +57,6 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
     public void onResume() {
         setChapter(KEY_STEP_TUTORIAL);
         super.onResume();
-//        aPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
             aColor = getPreferences().getInt(KEY_COLOR_FON, Color.WHITE);
             aPreview.fon(aColor);
             aSelectColor.setColor(aColor);
@@ -71,7 +70,6 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
     @Override
     public void onPause() {
         super.onPause();
-//        aPreferences = Objects.requireNonNull(getActivity()).getPreferences(Context.MODE_PRIVATE);
             SharedPreferences.Editor e = getEditor();
             e.putInt(KEY_COLOR_FON, aPreview.getColorFon());
             e.putInt(KEY_WIDTH_BLANK, aPreview.getSize().getWidth());
@@ -194,7 +192,7 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
 
     @Override
     public int[] icSoftKey() {
-        return null;
+        return getIconSoftKeyAll(targetsEx().length);
     }
 
     private void addListen(){
@@ -277,6 +275,8 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
         return memory;
 
     }
+
+
 
 
 }

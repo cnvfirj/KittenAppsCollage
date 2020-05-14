@@ -116,7 +116,7 @@ public class AddLyrInCam extends SelectedFragment{
 
     @Override
     public int[] icTitles() {
-        return null;
+        return getIconSoftKeyAll(targetsEx().length);
     }
 
     @Override

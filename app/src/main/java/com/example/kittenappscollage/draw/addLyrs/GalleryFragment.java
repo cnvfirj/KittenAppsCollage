@@ -108,7 +108,7 @@ public class GalleryFragment extends FragmentGalleryReviewImages implements Targ
                         .notes(getContext().getResources().getStringArray(R.array.addlyr_collect_note))
                         .sizeWin(new int[]{TargetView.MIDI_VEIL})
                         .iconsTitle(new int[]{R.drawable.icon_collect})
-                        .iconsSoftKey(new int[]{R.drawable.ic_icon_next})
+                        .iconsSoftKey(new int[]{R.drawable.ic_icon_exit})
                         .setStep(step)
                         .ongoing(true);
                 excurs.start();

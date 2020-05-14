@@ -23,13 +23,13 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
 
     public final static String KEY_ACTIVATE_COLLECT = "activate fragment";
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial_2";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial_24";
 
-    private final String KEY_STEP_BACK_COLL = "TutorialFragmentGallery step tback coll_112";
+    private final String KEY_STEP_BACK_COLL = "TutorialFragmentGallery step tback coll_1124";
 
-    private final String KEY_STEP_MENU_ROOT = "TutorialFragmentGallery step menu root_1112";
+    private final String KEY_STEP_MENU_ROOT = "TutorialFragmentGallery step menu root_11124";
 
-    private final String KEY_STEP_MENU_ADAPT = "TutorialFragmentGallery step menu adapt_12112";
+    private final String KEY_STEP_MENU_ADAPT = "TutorialFragmentGallery step menu adapt_121124";
 
     private ExcursInTutorial excursInTutorial;
 
@@ -175,6 +175,7 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
                     .targets(new Integer[]{R.id.selected_collect_exit_mode,R.id.selected_collect_1,R.id.selected_collect_3,R.id.selected_collect_4})
                     .titles(getContext().getResources().getStringArray(R.array.collect_root_menu_title))
                     .notes(getContext().getResources().getStringArray(R.array.collect_root_menu_note))
+                    .iconsSoftKey(getIconSoftKeyAll(4))
                     .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
                     .setStep(step);
             return true;
@@ -187,6 +188,7 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
                     .targets(new Integer[]{R.id.selected_collect_exit_mode, R.id.selected_collect_3,R.id.selected_collect_4})
                     .titles(getContext().getResources().getStringArray(R.array.collect_adapt_menu_title))
                     .notes(getContext().getResources().getStringArray(R.array.collect_adapt_menu_note))
+                    .iconsSoftKey(getIconSoftKeyAll(3))
                     .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
                     .setStep(step);
             return true;
@@ -199,6 +201,8 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
                     .targets(new Integer[]{R.id.selected_collect_exit_mode})
                     .titles(new String[]{"Изображения"})
                     .notes(new String[]{"Просматривай изображения, длительное нажатие на одно из них, вызывает дополнительные функции. Этой кнопкой вернись назад."})
+//                    .iconsTitle(new int[]{R.drawable.ic_matrix_reset_image})
+                    .iconsSoftKey(new int[]{R.drawable.ic_icon_exit})
                     .sizeWin(new int[]{TargetView.MINI_VEIL})
                     .setStep(step);
             return true;
@@ -215,7 +219,7 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
                         .iconsTitle(new int[]{R.drawable.ic_add,R.drawable.ic_menu})
                         .sizeWin(new int[]{TargetView.MIDI_VEIL,TargetView.MINI_VEIL})
                         .titles(getContext().getResources().getStringArray(R.array.collect_title))
-                        .iconsSoftKey(new int[]{R.drawable.ic_icon_next,R.drawable.ic_icon_next})
+                        .iconsSoftKey(getIconSoftKeyAll(2))
                         .notes(getContext().getResources().getStringArray(R.array.collect_note))
                         .setStep(step);
                 excursInTutorial.start();
@@ -233,7 +237,16 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
                         .touchExit(TargetView.NON_TOUCH)
                         .dimmingBackground(getContext().getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));
                 excursInTutorial = new ExcursInTutorial(t);
-            }
-//        }
+//            }
+        }
+    }
+
+    private int[]getIconSoftKeyAll(int size){
+        int[]ic = new int[size];
+        for (int i=0;i<ic.length;i++){
+            ic[i]=R.drawable.ic_icon_next;
+            if(i==ic.length-1)ic[i]=R.drawable.ic_icon_exit;
+        }
+        return ic;
     }
 }

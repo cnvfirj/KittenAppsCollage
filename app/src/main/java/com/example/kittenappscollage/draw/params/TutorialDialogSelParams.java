@@ -10,7 +10,7 @@ import com.example.targetviewnote.TargetView;
 
 public class TutorialDialogSelParams extends DialogSelectParams implements Tutorials, TargetView.OnClickTargetViewNoleListener {
 
-    private final String KEY_STEP_TUTORIAL = "TutorialDialogSelParams step tutorial_";
+    private final String KEY_STEP_TUTORIAL = "TutorialDialogSelParams step tutorial_1";
 
     protected ExcursInTutorial excurs;
 
@@ -58,12 +58,16 @@ public class TutorialDialogSelParams extends DialogSelectParams implements Tutor
 
     @Override
     public int[] icTitles() {
-        return null;
+        return new int[]{
+                R.drawable.ic_brush_step_1,R.drawable.ic_erase_step_1,R.drawable.ic_text,0,
+                R.drawable.ic_brush_step_1,R.drawable.ic_brush_step_1,R.drawable.ic_erase_step_1,
+                0,0
+        };
     }
 
     @Override
     public int[] icSoftKey() {
-        return null;
+        return getIconSoftKeyAll(targetsEx().length);
     }
 
     private void excurs(int step){
@@ -91,6 +95,15 @@ public class TutorialDialogSelParams extends DialogSelectParams implements Tutor
                     .dimmingBackground(getContext().getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));
             excurs = new ExcursInTutorial(t);
         }
+    }
+
+    private int[]getIconSoftKeyAll(int size){
+        int[]ic = new int[size];
+        for (int i=0;i<ic.length;i++){
+            ic[i]=R.drawable.ic_icon_next;
+            if(i==ic.length-1)ic[i]=R.drawable.ic_icon_exit;
+        }
+        return ic;
     }
 
     protected SharedPreferences getPreferences(){

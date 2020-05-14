@@ -14,13 +14,13 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private ExcursInTutorial excursInTutorial;
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial_2";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial_222";
 
-    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr_12";
+    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr_1222";
 
-    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img_12";
+    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img_1222";
 
-    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_123";
+    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_12322";
 
     private String chapter;
 
@@ -165,6 +165,7 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
                     .titles(getContext().getResources().getStringArray(R.array.draw_tools_title))
                     .notes(getContext().getResources().getStringArray(R.array.draw_tools_note))
                     .iconsSoftKey(getIconSoftKeyAll(getTargetToolsAll().length))
+                    .iconsTitle(getIconsTitleToolsAll())
                     .sizeWin(getWinToolsAll())
                     .setStep(step)
                     .ongoing(true);
@@ -201,6 +202,13 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
                 if(i==ic.length-1)ic[i]=R.drawable.ic_icon_exit;
             }
             return ic;
+    }
+
+    private int[]getIconsTitleToolsAll(){
+        return new int[]{R.drawable.icon_settings,R.drawable.ic_scale_all, R.drawable.ic_all_arrows,R.drawable.ic_cut,R.drawable.ic_matrix_reset_image,
+        R.drawable.ic_text,R.drawable.ic_fill_to_color,R.drawable.ic_erase_step_1,R.drawable.ic_brush_step_1,R.drawable.ic_get_color,
+        R.drawable.icon_tool_undo,R.drawable.icon_tool_redo,R.drawable.ic_info_on,R.drawable.ic_delete,
+        R.drawable.ic_all_lyrs_on,R.drawable.icon_change_lyrs,R.drawable.icon_union_lyrs,R.drawable.icon_delete_lyr};
     }
 
     private int[]getWinToolsAll(){
