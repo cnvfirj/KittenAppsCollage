@@ -20,7 +20,7 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img_12";
 
-    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_12";
+    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_123";
 
     private String chapter;
 
@@ -151,7 +151,7 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
                     .notes(getContext().getResources().getStringArray(R.array.draw_add_note))
                     .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
                     .iconsTitle(new int[]{R.drawable.icon_camera,R.drawable.icon_collect,R.drawable.icon_create_new})
-                    .iconsSoftKey(new int[]{R.drawable.ic_icon_next,R.drawable.ic_icon_next,R.drawable.ic_icon_next})
+                    .iconsSoftKey(new int[]{R.drawable.ic_icon_next,R.drawable.ic_icon_next,R.drawable.ic_icon_exit})
                     .setStep(step)
                     .ongoing(true);
             return true;
@@ -164,6 +164,7 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
                     .targets(getTargetToolsAll())
                     .titles(getContext().getResources().getStringArray(R.array.draw_tools_title))
                     .notes(getContext().getResources().getStringArray(R.array.draw_tools_note))
+                    .iconsSoftKey(getIconSoftKeyAll(getTargetToolsAll().length))
                     .sizeWin(getWinToolsAll())
                     .setStep(step)
                     .ongoing(true);
@@ -179,14 +180,13 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
                     .notes(getContext().getResources().getStringArray(R.array.draw_save_note))
                     .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
                     .iconsTitle(new int[]{R.drawable.ic_share,R.drawable.ic_save_as,R.drawable.ic_save})
-                    .iconsSoftKey(new int[]{R.drawable.ic_icon_next,R.drawable.ic_icon_next,R.drawable.ic_icon_next})
+                    .iconsSoftKey(new int[]{R.drawable.ic_icon_next,R.drawable.ic_icon_next,R.drawable.ic_icon_exit})
                     .setStep(step)
                     .ongoing(true);
             return true;
         }else return false;
     }
 
-    /*цели для двух рис*/
     private Integer[]getTargetToolsAll(){
         return new Integer[]{R.id.tool_properties,R.id.tool_scale,R.id.tool_translate,R.id.tool_cut,R.id.tool_deform_rotate,
         R.id.tool_text,R.id.tool_fill,R.id.tool_erase,R.id.tool_draw,R.id.tool_color,
@@ -194,8 +194,17 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
                 R.id.tool_all_lyrs,R.id.tool_change,R.id.tool_union,R.id.tool_del_lyr};
     }
 
+    private int[]getIconSoftKeyAll(int size){
+            int[]ic = new int[size];
+            for (int i=0;i<ic.length;i++){
+                ic[i]=R.drawable.ic_icon_next;
+                if(i==ic.length-1)ic[i]=R.drawable.ic_icon_exit;
+            }
+            return ic;
+    }
+
     private int[]getWinToolsAll(){
-        return new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,
+        return new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MIDI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,
                 TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,
                 TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL};
     }
