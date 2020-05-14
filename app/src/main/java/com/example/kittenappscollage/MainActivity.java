@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         MainSwitching,
         TargetView.OnClickTargetViewNoleListener{
 
-    public static final String KEY_EXCURS_STEP = "MainActivity excurs step_1212174222";
+    public static final String KEY_EXCURS_STEP = "MainActivity excurs step";
 
     private TutorialFragmentDraw mFragDraw;
 
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                 getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP, excurs.getStep()).apply();
             }
         } else {
-            if (i == TargetView.TOUCH_SOFT_KEY ) {
+//            if (i == TargetView.TOUCH_SOFT_KEY ) {
                 if (excurs.next()) {
                     getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP, excurs.getStep()).apply();
                 }else {
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                     mFragDraw.startTutorial();
                     mFragGal.startTutorial();
                 }
-            }
+//            }
 
         }
     }

@@ -172,7 +172,7 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
 
     @Override
     public int[] sizesWin() {
-        return new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MIDI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL};
+        return new int[]{TargetView.MIDI_VEIL,TargetView.MINI_VEIL,TargetView.MIDI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL};
     }
 
     @Override

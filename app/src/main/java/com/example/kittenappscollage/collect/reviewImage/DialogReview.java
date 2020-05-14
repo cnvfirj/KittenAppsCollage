@@ -102,13 +102,13 @@ public class DialogReview extends Fragment implements View.OnClickListener, Targ
 
     @Override
     public void onClickTarget(int i) {
-        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
+//        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
             if(excurs.next()) {
                 getEditor().putInt(KEY_STEP_TUTORIAL, excurs.getStep()).apply();
             }else {
                 getEditor().putInt(KEY_STEP_TUTORIAL, 999).apply();
             }
-        }
+//        }
     }
 
     public int currentPosition(){
@@ -126,7 +126,7 @@ public class DialogReview extends Fragment implements View.OnClickListener, Targ
                     .targets(new Integer[]{R.id.dialog_review_share,R.id.dialog_review_edit,R.id.dialog_review_exit})
                     .titles(getContext().getResources().getStringArray(R.array.review_title))
                     .notes(getContext().getResources().getStringArray(R.array.review_note))
-                    .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MIDI_VEIL,TargetView.MINI_VEIL})
+                    .sizeWin(new int[]{TargetView.MIDI_VEIL,TargetView.MIDI_VEIL,TargetView.MINI_VEIL})
                     .setStep(step);
             excurs.start();
         }

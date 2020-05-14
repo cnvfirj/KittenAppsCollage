@@ -14,13 +14,13 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private ExcursInTutorial excursInTutorial;
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial_222";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial";
 
-    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr_1222";
+    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr";
 
-    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img_1222";
+    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img";
 
-    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_12322";
+    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img";
 
     private String chapter;
 
@@ -33,14 +33,14 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     @Override
     public void onClickTarget(int i) {
-        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
+//        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET||i==TargetView.TOUCH_VEIL){
             if(excursInTutorial.next()) {
                 getEditor().putInt(chapter, excursInTutorial.getStep()).apply();
             }else {
                 getEditor().putInt(chapter, 999).apply();
                 chapter = null;
             }
-        }
+//        }
     }
 
     @Override
@@ -87,7 +87,7 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
                     excursInTutorial
                             .targets(new Integer[]{R.id.slide_add_lyr,R.id.slide_all_tools,R.id.slide_save_img})
                             .iconsTitle(new int[]{R.drawable.ic_matrix_reset_image,R.drawable.icon_edit,R.drawable.ic_save})
-                            .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
+                            .sizeWin(new int[]{TargetView.MIDI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
                             .titles(getContext().getResources().getStringArray(R.array.draw_main_buttons_title))
                             .iconsSoftKey(new int[]{R.drawable.ic_icon_next,R.drawable.ic_icon_next,R.drawable.ic_icon_next})
                             .notes(getContext().getResources().getStringArray(R.array.draw_main_buttons_note))
@@ -149,7 +149,7 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
                     .targets(new Integer[]{R.id.add_camera,R.id.add_collect,R.id.add_created})
                     .titles(getContext().getResources().getStringArray(R.array.draw_add_title))
                     .notes(getContext().getResources().getStringArray(R.array.draw_add_note))
-                    .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
+                    .sizeWin(new int[]{TargetView.MIDI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
                     .iconsTitle(new int[]{R.drawable.icon_camera,R.drawable.icon_collect,R.drawable.icon_create_new})
                     .iconsSoftKey(new int[]{R.drawable.ic_icon_next,R.drawable.ic_icon_next,R.drawable.ic_icon_exit})
                     .setStep(step)
@@ -212,7 +212,7 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
     }
 
     private int[]getWinToolsAll(){
-        return new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MIDI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,
+        return new int[]{TargetView.MIDI_VEIL,TargetView.MIDI_VEIL,TargetView.MIDI_VEIL,TargetView.MIDI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,
                 TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,
                 TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL};
     }
