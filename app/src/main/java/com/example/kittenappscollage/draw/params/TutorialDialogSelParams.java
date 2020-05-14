@@ -22,12 +22,12 @@ public class TutorialDialogSelParams extends DialogSelectParams implements Tutor
 
     @Override
     public void onClickTarget(int i) {
-        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
+//        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
             if(excurs.next()) {
                 getEditor().putInt(KEY_STEP_TUTORIAL, excurs.getStep()).apply();
             }else {
                 getEditor().putInt(KEY_STEP_TUTORIAL, 999).apply();
-            }
+//            }
         }
     }
 

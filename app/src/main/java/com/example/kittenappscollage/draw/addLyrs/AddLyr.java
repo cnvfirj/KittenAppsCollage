@@ -91,13 +91,13 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
 
     @Override
     public void onClickTarget(int i) {
-        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
+//        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
             if(excurs.next()) {
                 getEditor().putInt(KEY_STEP_TUTORIAL, excurs.getStep()).apply();
             }else {
                 getEditor().putInt(KEY_STEP_TUTORIAL, 999).apply();
             }
-        }
+//        }
     }
 
     private void excurs(int step){

@@ -156,12 +156,12 @@ public class GalleryFragment extends FragmentGalleryReviewImages implements Targ
 
     @Override
     public void onClickTarget(int i) {
-        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
+//        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
             if(excurs.next()) {
                 edit().putInt(KEY_STEP_TUTORIAL, excurs.getStep()).apply();
             }else {
                 edit().putInt(KEY_STEP_TUTORIAL, 999).apply();
             }
-        }
+//        }
     }
 }

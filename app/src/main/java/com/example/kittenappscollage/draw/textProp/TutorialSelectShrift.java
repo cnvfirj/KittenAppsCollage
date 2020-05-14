@@ -93,14 +93,14 @@ public class TutorialSelectShrift extends DialogSelectShrift implements Tutorial
 
     @Override
     public void onClickTarget(int i) {
-        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
+//        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
             if(excurs.next()) {
                 getEditor().putInt(chapter, excurs.getStep()).apply();
             }else {
                 getEditor().putInt(chapter, 999).apply();
                 chapter = null;
             }
-        }
+//        }
     }
 
 
