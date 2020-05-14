@@ -179,7 +179,7 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
                     .targets(new Integer[]{R.id.save_net,R.id.save_is,R.id.save_tel})
                     .titles(getContext().getResources().getStringArray(R.array.draw_save_title))
                     .notes(getContext().getResources().getStringArray(R.array.draw_save_note))
-                    .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
+                    .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MIDI_VEIL,TargetView.MINI_VEIL})
                     .iconsTitle(new int[]{R.drawable.ic_share,R.drawable.ic_save_as,R.drawable.ic_save})
                     .iconsSoftKey(new int[]{R.drawable.ic_icon_next,R.drawable.ic_icon_next,R.drawable.ic_icon_exit})
                     .setStep(step)
