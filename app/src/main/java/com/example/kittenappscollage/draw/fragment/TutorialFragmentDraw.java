@@ -14,13 +14,13 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private ExcursInTutorial excursInTutorial;
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial_";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial_2";
 
-    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr_1";
+    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr_12";
 
-    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img_1";
+    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img_12";
 
-    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_1";
+    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_12";
 
     private String chapter;
 
@@ -78,21 +78,23 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
 
     private void startExkurs(int step){
-        if(step>=0&&step<3){
+        if(step>=0&&step<999){
             if(getContext()!=null){
                 chapter = KEY_STEP_TUTORIAL;
-                TargetView t = TargetView.build(this)
-                        .touchExit(TargetView.NON_TOUCH)
-                        .dimmingBackground(getContext().getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));
-                excursInTutorial =  new ExcursInTutorial(t)
-                        .targets(new Integer[]{R.id.slide_add_lyr,R.id.slide_all_tools,R.id.slide_save_img})
-                        .iconsTitle(new int[]{R.drawable.ic_matrix_reset_image,R.drawable.icon_edit,R.drawable.ic_save})
-                        .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
-                        .titles(getContext().getResources().getStringArray(R.array.draw_main_buttons_title))
-                        .iconsSoftKey(new int[]{R.drawable.ic_icon_next,R.drawable.ic_icon_next,R.drawable.ic_icon_next})
-                        .notes(getContext().getResources().getStringArray(R.array.draw_main_buttons_note))
-                        .setStep(step);
-                excursInTutorial.start();
+                initExcurs();
+                if(!excursInTutorial.getOngoing()){
+                    chapter = KEY_STEP_TUTORIAL;
+                    excursInTutorial
+                            .targets(new Integer[]{R.id.slide_add_lyr,R.id.slide_all_tools,R.id.slide_save_img})
+                            .iconsTitle(new int[]{R.drawable.ic_matrix_reset_image,R.drawable.icon_edit,R.drawable.ic_save})
+                            .sizeWin(new int[]{TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL})
+                            .titles(getContext().getResources().getStringArray(R.array.draw_main_buttons_title))
+                            .iconsSoftKey(new int[]{R.drawable.ic_icon_next,R.drawable.ic_icon_next,R.drawable.ic_icon_next})
+                            .notes(getContext().getResources().getStringArray(R.array.draw_main_buttons_note))
+                            .ongoing(true)
+                            .setStep(step);
+                    excursInTutorial.start();
+                }
             }
         }
     }
@@ -199,13 +201,13 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
     }
 
     private void initExcurs(){
-//        if(excursInTutorial==null){
+        if(excursInTutorial==null){
             if(getContext()!=null) {
                 TargetView t = TargetView.build(this)
                         .touchExit(TargetView.NON_TOUCH)
                         .dimmingBackground(getContext().getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));
                 excursInTutorial = new ExcursInTutorial(t);
-//            }
+            }
         }
     }
 

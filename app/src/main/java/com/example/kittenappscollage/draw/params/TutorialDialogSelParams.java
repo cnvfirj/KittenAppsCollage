@@ -69,20 +69,23 @@ public class TutorialDialogSelParams extends DialogSelectParams implements Tutor
     private void excurs(int step){
         if(step<999){
             initExcurs();
-            excurs
-                    .targets(targetsEx())
-                    .titles(getTitles())
-                    .notes(getNotes())
-                    .sizeWin(sizesWin())
-                    .iconsTitle(icTitles())
-                    .iconsSoftKey(icSoftKey())
-                    .setStep(step);
-            excurs.start();
+            if(!excurs.getOngoing()) {
+                excurs
+                        .targets(targetsEx())
+                        .titles(getTitles())
+                        .notes(getNotes())
+                        .sizeWin(sizesWin())
+                        .iconsTitle(icTitles())
+                        .iconsSoftKey(icSoftKey())
+                        .ongoing(true)
+                        .setStep(step);
+                excurs.start();
+            }
         }
     }
 
     private void initExcurs(){
-        if(getContext()!=null) {
+        if(getContext()!=null&&excurs==null) {
             TargetView t = TargetView.build(this)
                     .touchExit(TargetView.NON_TOUCH)
                     .dimmingBackground(getContext().getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));

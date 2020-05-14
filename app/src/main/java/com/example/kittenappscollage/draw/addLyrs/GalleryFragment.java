@@ -20,7 +20,7 @@ import com.example.targetviewnote.TargetView;
 
 public class GalleryFragment extends FragmentGalleryReviewImages implements TargetView.OnClickTargetViewNoleListener {
 
-    private final String KEY_STEP_TUTORIAL = "GalleryFragment key step tutorial";
+    private final String KEY_STEP_TUTORIAL = "GalleryFragment key step tutorial_2";
 
     private SelectorFrameFragments selector;
 

@@ -12,9 +12,9 @@ import static com.example.kittenappscollage.helpers.Massages.LYTE;
 
 public class TutorialSelectShrift extends DialogSelectShrift implements Tutorials, TargetView.OnClickTargetViewNoleListener {
 
-    private final String KEY_STEP_TUTORIAL = "TutorialSelectShrift step tutorial ";
+    private final String KEY_STEP_TUTORIAL = "TutorialSelectShrift step tutorial__";
 
-    private final String KEY_STEP_ADD_FONT = "TutorialSelectShrift step add font ";
+    private final String KEY_STEP_ADD_FONT = "TutorialSelectShrift step add font__";
 
     private String chapter;
 
@@ -102,22 +102,25 @@ public class TutorialSelectShrift extends DialogSelectShrift implements Tutorial
 
     private void startExcurs(int step, String chapter){
         if(step<999){
-            this.chapter = chapter;
-            initExcurs();
-            excurs
-                    .targets(targetsEx())
-                    .titles(getTitles())
-                    .notes(getNotes())
-                    .sizeWin(sizesWin())
-                    .iconsTitle(icTitles())
-                    .iconsSoftKey(icSoftKey())
-                    .setStep(step);
-            excurs.start();
+                initExcurs();
+            if(!excurs.getOngoing()) {
+                this.chapter = chapter;
+                excurs
+                        .targets(targetsEx())
+                        .titles(getTitles())
+                        .notes(getNotes())
+                        .sizeWin(sizesWin())
+                        .iconsTitle(icTitles())
+                        .iconsSoftKey(icSoftKey())
+                        .ongoing(true)
+                        .setStep(step);
+                excurs.start();
+            }
         }
     }
 
     private void initExcurs(){
-        if(getContext()!=null) {
+        if(getContext()!=null&&excurs==null) {
             TargetView t = TargetView.build(this)
                     .touchExit(TargetView.NON_TOUCH)
                     .dimmingBackground(getContext().getResources().getColor(R.color.colorDimenPrimaryDarkTransparent));

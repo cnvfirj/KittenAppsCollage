@@ -33,7 +33,7 @@ public class AddLyrInCam extends SelectedFragment{
 
     private FrameLayout aFrame;
 
-    private final String KEY_STEP_TUTORIAL = "AddLyrInCam step tutorial_12";
+    private final String KEY_STEP_TUTORIAL = "AddLyrInCam step tutorial_122";
 
     @Override
     public void onResume() {

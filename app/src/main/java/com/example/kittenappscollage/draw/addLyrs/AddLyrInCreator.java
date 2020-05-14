@@ -32,7 +32,7 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
     private final String KEY_WIDTH_BLANK = "width blank AddLyrInCreator";
     private final String KEY_HEIGHT_BLANK = "height blank AddLyrInCreator";
 
-    private final String KEY_STEP_TUTORIAL = "AddLyrInCreator step tutorial_11223547";
+    private final String KEY_STEP_TUTORIAL = "AddLyrInCreator step tutorial_112235472";
 
     private PreviewBlankBitmp aPreview;
 
