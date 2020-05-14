@@ -23,13 +23,13 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
 
     public final static String KEY_ACTIVATE_COLLECT = "activate fragment";
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial_24";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial";
 
-    private final String KEY_STEP_BACK_COLL = "TutorialFragmentGallery step tback coll_1124";
+    private final String KEY_STEP_BACK_COLL = "TutorialFragmentGallery step tback coll";
 
-    private final String KEY_STEP_MENU_ROOT = "TutorialFragmentGallery step menu root_11124";
+    private final String KEY_STEP_MENU_ROOT = "TutorialFragmentGallery step menu root";
 
-    private final String KEY_STEP_MENU_ADAPT = "TutorialFragmentGallery step menu adapt_121124";
+    private final String KEY_STEP_MENU_ADAPT = "TutorialFragmentGallery step menu adapt";
 
     private ExcursInTutorial excursInTutorial;
 
@@ -68,7 +68,7 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
 
     @Override
     public void onClickTarget(int i) {
-        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
+//        if(i==TargetView.TOUCH_SOFT_KEY||i==TargetView.TOUCH_TARGET){
             if(excursInTutorial.next()) {
                 editor.putInt(chapter, excursInTutorial.getStep()).apply();
             }else {
@@ -76,7 +76,7 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
                 if(chapter.equals(KEY_STEP_TUTORIAL))readinessScan();
                 chapter = null;
             }
-        }
+//        }
     }
 
     public void startTutorial() {
