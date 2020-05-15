@@ -219,15 +219,15 @@ public class TargetView {
             if(!veilField.isAdded()) {
 
                 FragmentManager fm = null;
-                Log.d("WWWW TargetView","create fm");
+//                Log.d("WWWW TargetView","create fm");
                 if (fragment != null) {
                     fm = fragment.getFragmentManager();
-                    Log.d("WWWW TargetView","set target");
+//                    Log.d("WWWW TargetView","set target");
                     veilField.setTargetFragment(fragment, 0);
                 } else if (activity != null) {
                     fm = activity.getSupportFragmentManager();
                 }
-                Log.d("WWWW TargetView","show");
+//                Log.d("WWWW TargetView","show");
                 veilField.setCancelable(false);
                 veilField.show(fm, veilField.getClass().getName());
             }

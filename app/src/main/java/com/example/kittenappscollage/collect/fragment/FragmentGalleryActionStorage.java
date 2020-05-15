@@ -151,7 +151,7 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
 //                if(App.checkVersion()) {
                     if (delFile(Uri.parse(img), sort)) {
                         getListImagesInFolders().get(key).remove(img);
-                        emitter.onNext(getListImagesInFolders());
+//                        emitter.onNext(getListImagesInFolders());
                     }
 //                }
 //        else {
@@ -162,7 +162,8 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
 //                }
 
         }
-        if(!App.checkVersion()) emitter.onNext(getListImagesInFolders());
+//        if(!App.checkVersion())
+            emitter.onNext(getListImagesInFolders());
         emitter.onComplete();
     }
 
@@ -173,7 +174,7 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
 //            if(App.checkVersion()) {
                 if (delFile(Uri.parse(img), sort)) {
                     getListImagesInFolders().get(key).remove(img);
-                    emitter.onNext(getListImagesInFolders());
+//                    emitter.onNext(getListImagesInFolders());
                 }
 //            }
 //            else {
@@ -222,48 +223,50 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
         }finally {
             if(c!=null)c.close();
         }
-        if(App.checkVersion()) return getContext().getContentResolver().delete(uri,null,null)>0;
-        else return true;
+//        if(App.checkVersion()) return getContext().getContentResolver().delete(uri,null,null)>0;
+//        else
+            return true;
     }
 
-    private boolean delFileX(Uri uri, HashMap<Long,String>sort){
-        Cursor c = null;
-        try {
-            c = getContext().getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DISPLAY_NAME, MediaStore.Images.Media.DATE_MODIFIED}, null, null, null);
-            c.moveToFirst();
-            final String vol = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
-            final Long mod = c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED));
-            sort.put(mod,vol);
-        }finally {
-            if(c!=null)c.close();
-        }
-        return true;
-    }
-    private boolean delDocFile(Uri uri){
-        LYTE("del "+uri.toString());
-        boolean b = false;
-        try {
-            b = DocumentsContract.deleteDocument(getContext().getContentResolver(),uri);
-            LYTE("deleted ");
-        }catch(FileNotFoundException e) {
-            LYTE("FragmentGalleryActionStorage FileNotFoundException del "+e.toString());
-        }catch(SecurityException s){
-            LYTE("FragmentGalleryActionStorage SecurityException del "+s.toString());
-        }catch (IllegalArgumentException i){
-            LYTE("FragmentGalleryActionStorage IllegalArgumentException del "+i.toString());
-            b = true;
-        }
-        LYTE("deleted "+b);
-        return b;
-    }
-
-    private boolean delDocFile(DocumentFile df){
-        boolean d = false;
-        if(df.exists()&&df.isFile()){
-            d = df.delete();
-        }
-        return d;
-    }
+//    private boolean delFileX(Uri uri, HashMap<Long,String>sort){
+//        Cursor c = null;
+//        try {
+//            c = getContext().getContentResolver().query(uri, new String[]{MediaStore.Images.Media.DISPLAY_NAME, MediaStore.Images.Media.DATE_MODIFIED}, null, null, null);
+//            c.moveToFirst();
+//            final String vol = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
+//            final Long mod = c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED));
+//            sort.put(mod,vol);
+//        }finally {
+//            if(c!=null)c.close();
+//        }
+//        return true;
+//    }
+//
+//    private boolean delDocFile(Uri uri){
+//        LYTE("del "+uri.toString());
+//        boolean b = false;
+//        try {
+//            b = DocumentsContract.deleteDocument(getContext().getContentResolver(),uri);
+//            LYTE("deleted ");
+//        }catch(FileNotFoundException e) {
+//            LYTE("FragmentGalleryActionStorage FileNotFoundException del "+e.toString());
+//        }catch(SecurityException s){
+//            LYTE("FragmentGalleryActionStorage SecurityException del "+s.toString());
+//        }catch (IllegalArgumentException i){
+//            LYTE("FragmentGalleryActionStorage IllegalArgumentException del "+i.toString());
+//            b = true;
+//        }
+//        LYTE("deleted "+b);
+//        return b;
+//    }
+//
+//    private boolean delDocFile(DocumentFile df){
+//        boolean d = false;
+//        if(df.exists()&&df.isFile()){
+//            d = df.delete();
+//        }
+//        return d;
+//    }
 
     protected void clearLists(String key){
         if(getListImagesInFolders().containsKey(key)) {
@@ -273,16 +276,16 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
         }
     }
 
-    private String getRealPath(String lastSegment) {
-        String[]split = lastSegment.split("[:]");
-        String[]sub = lastSegment.split(split[0]+":");
-        String[]storage = getContext().getExternalFilesDir(null).getAbsolutePath().split("[/]");
-        String p = "/"+storage[1]+"/"+split[0]+"/"+sub[1];
-        if(p.startsWith("/storage/primary/")){
-            String[]correct = p.split("/storage/primary/");
-            return "/storage/emulated/0/"+correct[1];
-        } else return p;
-    }
+//    private String getRealPath(String lastSegment) {
+//        String[]split = lastSegment.split("[:]");
+//        String[]sub = lastSegment.split(split[0]+":");
+//        String[]storage = getContext().getExternalFilesDir(null).getAbsolutePath().split("[/]");
+//        String p = "/"+storage[1]+"/"+split[0]+"/"+sub[1];
+//        if(p.startsWith("/storage/primary/")){
+//            String[]correct = p.split("/storage/primary/");
+//            return "/storage/emulated/0/"+correct[1];
+//        } else return p;
+//    }
 
 }
 
