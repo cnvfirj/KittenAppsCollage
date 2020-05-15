@@ -22,6 +22,8 @@ import java.io.IOException;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 
+import static com.example.kittenappscollage.helpers.Massages.LYTE;
+
 
 public class ViewReview extends View {
 
@@ -46,6 +48,8 @@ public class ViewReview extends View {
         super.onDraw(canvas);
         if(test()){
             canvas.drawBitmap(bitmap,mat.matrix(matrix),null);
+        }else {
+            LYTE("error load image VewReview");
         }
     }
 
