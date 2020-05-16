@@ -3,11 +3,13 @@ package com.example.kittenappscollage.collect.reviewImage;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.renderscript.ScriptGroup;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,7 +19,9 @@ import androidx.annotation.Nullable;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 import com.example.mutmatrix.DeformMat;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
@@ -90,10 +94,47 @@ public class ViewReview extends View {
     }
 
     private Bitmap bitmap(Uri uri) throws IOException {
-        /*Bitmap thumbnail =
-        getApplicationContext().getContentResolver().loadThumbnail(
-        content-uri, new Size(640, 480), null);*/
-        return MediaStore.Images.Media.getBitmap (getContext().getContentResolver (), uri);
+        Bitmap bitmap = null;
+        try {
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            InputStream is = getContext().getContentResolver().openInputStream(uri);
+            BitmapFactory.decodeStream(is, null, options);
+            if (is != null) {
+                is.close();
+            }
+            is = getContext().getContentResolver().openInputStream(uri);
+
+            options.inSampleSize =
+                    calculateInSampleSize(options,2000,2000);
+
+            options.inJustDecodeBounds = false;
+
+            bitmap = BitmapFactory.decodeStream(is, null, options);
+            if (is != null) {
+                is.close();
+            }
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+//        return MediaStore.Images.Media.getBitmap (getContext().getContentResolver (), uri);
+        return bitmap;
+    }
+
+    private int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        float inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+            final float halfHeight = height / 1.5f;
+            final float halfWidth = width / 1.5f;
+            while ((halfHeight / inSampleSize) >= reqHeight || (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 1.5f;
+            }
+        }
+        return Math.round(inSampleSize);
     }
 
     private boolean test(){

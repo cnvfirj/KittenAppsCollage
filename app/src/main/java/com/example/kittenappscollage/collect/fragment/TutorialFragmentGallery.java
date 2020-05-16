@@ -23,13 +23,13 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
 
     public final static String KEY_ACTIVATE_COLLECT = "activate fragment";
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial_1";
 
-    private final String KEY_STEP_BACK_COLL = "TutorialFragmentGallery step tback coll";
+    private final String KEY_STEP_BACK_COLL = "TutorialFragmentGallery step tback coll_1";
 
-    private final String KEY_STEP_MENU_ROOT = "TutorialFragmentGallery step menu root";
+    private final String KEY_STEP_MENU_ROOT = "TutorialFragmentGallery step menu root_1";
 
-    private final String KEY_STEP_MENU_ADAPT = "TutorialFragmentGallery step menu adapt";
+    private final String KEY_STEP_MENU_ADAPT = "TutorialFragmentGallery step menu adapt_1";
 
     private ExcursInTutorial excursInTutorial;
 

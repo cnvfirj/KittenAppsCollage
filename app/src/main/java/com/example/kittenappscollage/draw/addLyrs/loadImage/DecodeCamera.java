@@ -1,9 +1,11 @@
 package com.example.kittenappscollage.draw.addLyrs.loadImage;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.net.Uri;
 
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,9 @@ import androidx.annotation.Nullable;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 import com.otaliastudios.cameraview.Facing;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 
 import io.reactivex.Observable;
@@ -23,11 +28,9 @@ public class DecodeCamera {
     private int dRotate = 0;
     private Facing dFacing = Facing.BACK;
 
-
     public static DecodeCamera build(){
         return new DecodeCamera();
     }
-
 
     @SuppressLint("CheckResult")
     public void decodeBitmap(final byte[] img, final LoadProjectListener callback) {
@@ -41,7 +44,6 @@ public class DecodeCamera {
         if(facing.equals(Facing.FRONT.name()))dFacing = Facing.FRONT;
         if(facing.equals(Facing.BACK.name()))dFacing = Facing.BACK;
 
-//        dFacing = properties.getFacing();
         dRotate = 360-properties.getRotate();
         decode(properties.getImg()).subscribe(bitmap -> callback.loadImage(bitmap));
     }
@@ -60,7 +62,7 @@ public class DecodeCamera {
 
     private Observable<Bitmap> decode(byte[]img){
         return Observable.create((ObservableOnSubscribe<Bitmap>) emitter -> {
-            emitter.onNext(decodeBitmap(img));
+            emitter.onNext(bitmap(img));
             emitter.onComplete();
         }).compose(new ThreadTransformers.Processor<>());
     }
@@ -71,19 +73,44 @@ public class DecodeCamera {
         if(dFacing.equals(Facing.BACK)&&dRotate==0) return bitmap;
 
         Matrix matrix = new Matrix();
-
-
         if(dFacing.equals(Facing.FRONT)) {
             matrix.postScale(-1, 1) ;
         }
         if (dRotate != 0 ||dRotate!=360) {
             matrix.postRotate(dRotate);
         }
-
         bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
         return bitmap;
     }
 
+    private Bitmap bitmap(byte[] source) throws IOException {
+        Bitmap bitmap = null;
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeByteArray(source,0, source.length,options);
+
+            options.inSampleSize =
+                    calculateInSampleSize(options,2000,2000);
+            options.inJustDecodeBounds = false;
+
+        return BitmapFactory.decodeByteArray(source,0, source.length,options);
+    }
+
+    private int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        float inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+            final float halfHeight = height / 1.5f;
+            final float halfWidth = width / 1.5f;
+            while ((halfHeight / inSampleSize) >= reqHeight || (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 1.5f;
+            }
+        }
+        return Math.round(inSampleSize);
+    }
 
     public static class CameraProperties implements Serializable {
 //        private Facing facing = Facing.BACK;

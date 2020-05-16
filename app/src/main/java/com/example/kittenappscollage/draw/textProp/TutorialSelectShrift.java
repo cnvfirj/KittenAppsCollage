@@ -10,9 +10,9 @@ import com.example.targetviewnote.TargetView;
 
 public class TutorialSelectShrift extends DialogSelectShrift implements Tutorials, TargetView.OnClickTargetViewNoleListener {
 
-    private final String KEY_STEP_TUTORIAL = "TutorialSelectShrift step tutorial__22";
+    private final String KEY_STEP_TUTORIAL = "TutorialSelectShrift step tutorial_1";
 
-    private final String KEY_STEP_ADD_FONT = "TutorialSelectShrift step add font__22";
+    private final String KEY_STEP_ADD_FONT = "TutorialSelectShrift step add font_1";
 
     private String chapter;
 

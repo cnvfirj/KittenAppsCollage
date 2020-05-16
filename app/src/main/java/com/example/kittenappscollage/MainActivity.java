@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
         MainSwitching,
         TargetView.OnClickTargetViewNoleListener{
 
-    public static final String KEY_EXCURS_STEP = "MainActivity excurs step";
+    public static final String KEY_EXCURS_STEP = "MainActivity excurs step_1";
 
     private TutorialFragmentDraw mFragDraw;
 

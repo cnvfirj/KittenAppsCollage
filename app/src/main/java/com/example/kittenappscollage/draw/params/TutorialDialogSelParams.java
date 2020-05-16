@@ -10,7 +10,7 @@ import com.example.targetviewnote.TargetView;
 
 public class TutorialDialogSelParams extends DialogSelectParams implements Tutorials, TargetView.OnClickTargetViewNoleListener {
 
-    private final String KEY_STEP_TUTORIAL = "TutorialDialogSelParams step tutorial_1";
+    private final String KEY_STEP_TUTORIAL = "TutorialDialogSelParams step tutorial_11";
 
     protected ExcursInTutorial excurs;
 
