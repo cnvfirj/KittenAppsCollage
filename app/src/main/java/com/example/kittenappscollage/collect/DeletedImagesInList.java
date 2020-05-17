@@ -87,7 +87,6 @@ public class DeletedImagesInList extends Service {
                         .setPriority(NotificationCompat.PRIORITY_MIN);
 
         return builder.build();
-
     }
 
     @SuppressLint("CheckResult")
