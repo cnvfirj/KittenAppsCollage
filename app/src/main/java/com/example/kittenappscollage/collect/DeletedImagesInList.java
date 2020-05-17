@@ -81,10 +81,10 @@ public class DeletedImagesInList extends Service {
                         .setSmallIcon(R.drawable.icon_delete_all)
                         .setContentTitle(getString(R.string.DELETED))
                         .setContentText(getString(R.string.FILES_DELETED_IN_MAIN_STORAGE))
-                        .setShowWhen(true)
+//                        .setShowWhen(true)
                         .setOngoing(true)
                         .setProgress(100, 0, true)
-                        .setPriority(NotificationCompat.PRIORITY_MAX);
+                        .setPriority(NotificationCompat.PRIORITY_MIN);
 
         return builder.build();
 
