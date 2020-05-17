@@ -46,5 +46,7 @@
     <string name="ERROR_DELETE_FILE">Сбой в удалении из устройства файлa - </string>
     <string name="images">Изображения</string>
     <string name="collet_images">Просматривай изображения, длительное нажатие на одно из них, вызывает дополнительные функции. Этой кнопкой вернись назад.</string>
+    <string name="DELETED">Удаление</string>
+    <string name="FILES_DELETED_IN_MAIN_STORAGE">Файлы удаляются с физического носителя</string>
 
 </resources>

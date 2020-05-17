@@ -220,9 +220,11 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
            final String vol = c.getString(c.getColumnIndexOrThrow(MediaStore.Images.Media.DISPLAY_NAME));
            final Long mod = c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.DATE_MODIFIED));
            sort.put(mod,vol);
+            getContext().getContentResolver().delete(uri,null,null);
         }finally {
             if(c!=null)c.close();
         }
+
 //        if(App.checkVersion()) return getContext().getContentResolver().delete(uri,null,null)>0;
 //        else
             return true;

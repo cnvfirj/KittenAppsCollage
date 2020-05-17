@@ -39,7 +39,6 @@ public class DeletedImagesInList extends Service {
 
 
     public static final String KEY_NAMES = "key names";
-//    public static final String KEY_MUT = "key mut";
 
 
     @Nullable
@@ -72,7 +71,7 @@ public class DeletedImagesInList extends Service {
         chan.setLightColor(Color.BLUE);
         chan.setLockscreenVisibility(Notification.VISIBILITY_PRIVATE);
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        assert manager != null;
+//        assert manager != null;
         manager.createNotificationChannel(chan);
     }
 
@@ -80,8 +79,8 @@ public class DeletedImagesInList extends Service {
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.icon_delete_all)
-                        .setContentTitle("Удаление")
-                        .setContentText("Файлы удаляются с физического носителя")
+                        .setContentTitle(getString(R.string.DELETED))
+                        .setContentText(getString(R.string.FILES_DELETED_IN_MAIN_STORAGE))
                         .setShowWhen(true)
                         .setOngoing(true)
                         .setProgress(100, 0, true)
@@ -110,6 +109,7 @@ public class DeletedImagesInList extends Service {
     }
 
     private void clearDeletedList(Uri uri, String[]names,ObservableEmitter<Pair<String,Boolean>> emitter){
+        permiss(uri);
         DocumentFile fold = DocumentFile.fromTreeUri(getApplicationContext(),uri);
         DocumentFile[] files = fold.listFiles();
         if(files.length>1) {
@@ -126,13 +126,12 @@ public class DeletedImagesInList extends Service {
         if(fold.listFiles().length==0)deleteFile(fold);
     }
 
-    private int bruteForceOption(int index, DocumentFile[]files, String name,ObservableEmitter<Pair<String,Boolean>> emitter){
+    private int bruteForceOption(int index, DocumentFile[]files, String name,ObservableEmitter<Pair<String,Boolean>> emitter) {
         for (int i=index;i<files.length;i++){
-            DocumentFile f = files[i];
-            if(f.isFile()) {
-                String type = f.getType();
+            if(files[i].isFile()) {
+                String type = files[i].getType();
                 if (type.equals("image/png") || type.equals("image/jpeg") || type.equals("image/jpg")) {
-                    final String n = f.getName();
+                    final String n = files[i].getName();
                     if (n != null && n.equals(name)) {
                         index = i;
                         emitter.onNext(new Pair<>(name, deleteFile(files[i])));
@@ -154,6 +153,12 @@ public class DeletedImagesInList extends Service {
             }
         }
         return false;
+    }
+
+    private void permiss(Uri uri){
+
+//        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+//        getContentResolver().takePersistableUriPermission(uri, takeFlags);
     }
 
 

@@ -11,13 +11,13 @@ import java.util.List;
 @Dao
 public interface MethodsDBPerm {
 
-    @Query("SELECT * FROM grandPerm")
+    @Query("SELECT * FROM S_A_F_Perms")
     List<Permis> list();
 
-    @Query("SELECT * FROM grandPerm WHERE uriPerm = :uriPerm")
+    @Query("SELECT * FROM S_A_F_Perms WHERE uriPerm = :uriPerm")
     Permis getPerm(String uriPerm);
 
-    @Query("SELECT * FROM grandPerm WHERE id = :id")
+    @Query("SELECT * FROM S_A_F_Perms WHERE id = :id")
     Permis getPermInId(long id);
 
     @Insert

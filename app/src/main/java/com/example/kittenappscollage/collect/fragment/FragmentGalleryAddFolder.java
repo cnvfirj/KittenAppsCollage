@@ -72,9 +72,11 @@ public abstract class FragmentGalleryAddFolder extends FragmentGalleryReviewImag
         DocumentFile folder = DocumentFile.fromTreeUri(getContext(),uri);
 
         steps(folder,emitter);
-        for (DocumentFile f:folder.listFiles()){
-            if(f.isDirectory())steps(f,emitter);
-        }
+        /*сканируем подпапки
+        * убрал из-за неразберизи с разрешениями*/
+//        for (DocumentFile f:folder.listFiles()){
+//            if(f.isDirectory())steps(f,emitter);
+//        }
     }
 
     private void steps(DocumentFile folder,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
