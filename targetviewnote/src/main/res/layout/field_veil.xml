@@ -27,12 +27,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/icon_title"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:clickable="true"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/text_title"
-                android:layout_gravity="center_vertical"/>
+                android:layout_gravity="center_vertical"
+                android:clickable="true"/>
             </LinearLayout>
             <EditText
                 android:layout_width="wrap_content"
@@ -42,7 +44,8 @@
                 android:focusable="false"
                 android:longClickable="false"
                 android:cursorVisible="false"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                android:clickable="true"/>
         </LinearLayout>
 
         <ImageView
@@ -50,7 +53,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/icon_soft_key"
             android:clickable="true"
-            android:focusable="true" />
+            android:focusable="true"/>
 
     </FrameLayout>
 

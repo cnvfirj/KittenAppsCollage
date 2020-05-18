@@ -1,0 +1,52 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name="MY_COLLAGES">Мои Коллажи</string>
+    <string name="FOLDER_DELETE">Папка удалена</string>
+    <string name="SELECTED_IMAGES_DELETED">Выбранные изображения удалены</string>
+    <string name="IS_SELECTED_FOLDER_IMAGES_NOT">В выбранной паке новых изображений не найдено</string>
+    <string name="IN_GALLERY_ADD_FOLDER">В галерею добавлена папка </string>
+    <string name="CREATE_IMG">Создай холст</string>
+    <string name="big_big_papper">сделай меньше холст чем этот -</string>
+    <string name="fill_form_enter">заполните форму ввода</string>
+    <string name="wrong_link">не правильная ссылка</string>
+    <string name="condition_apply_tools">открой или создай холст</string>
+    <string name="PHOTO">Фото</string>
+    <string name="COLLECT">Галерея</string>
+    <string name="DOWNLOADS">Загрузки</string>
+    <string name="REPEAT_REQUEST">повторить запрос?</string>
+    <string name="YES">да</string>
+    <string name="NO">нет</string>
+    <string name="ASSES_TO_DATA">доступ к данным</string>
+    <string name="ASSES_TO_CAMERA">доступ к камере</string>
+    <string name="RATIONALE_ASSES_CAMERA">доступ к камере нужен для съемки внутри приложения</string>
+    <string name="RATIONALE_ASSES_ACCAUNT">доступ к аккаунту нужен для чтения и записи из облака</string>
+    <string name="RATIONALE_ASSES_WRITE">доступ к мультимедиа нужен для чтения и сохранения изображений на устройстве</string>
+    <string name="TOAST_RESOLUTION">в настройках дай нужное разрешение</string>
+    <string name="NOT_PERMISSION">нет разрешения</string>
+    <string name="GO_TO_SETTINGS">для его получения перейди в настройки приложения</string>
+    <string name="IMAGE_NOT_SAVED_CHECK_STORAGE">Изображение не сохранено. Проверь память устройства</string>
+    <string name="IMAGE_SAVED">Изображение сохранено</string>
+    <string name="IMAGE_NOT_SAVED_CHECK_FOLDER">Изображение не сохранено. Проверь папку сохранения</string>
+    <string name="FIND_FILE_FONT">Найди файл с расширением ttf или otf(в конце названия есть .ttf или .otf)</string>
+    <string name="INCORRECT_TEXT">Некорректный текст</string>
+    <string name="NOT_ADD_FONT_IF_NAME_CLONE">Новый шрифт не добавлен. Возможно это имя занято</string>
+    <string name="FILE_FONT">Файл должен быть с расширением ttf или otf(в конце названия есть .ttf или .otf)</string>
+    <string name="FONT_ADD_FIND_IN_LIST">Шрифт добавлен. Найди его в списке</string>
+    <string name="ADD_FONTS_FIND">Дополнительные шрифты найдены</string>
+    <string name="ADD_FONTS_NOT_FIND">Дополнительных шрифтов нет. Скачай на устройство шрифты с расширением ttf или otf и добавь их</string>
+    <string name="SELECT_POINT_PIPETTE">Выбери точку на заполненной и не прозрачной области рисунка</string>
+    <string name="REQUEST_LOAD_OLD_PROJECT">У тебя остался не завершенный проект</string>
+    <string name="OPEN_OLD_PROJECT">Открыть его? В противном случае он будет уничтожен.</string>
+    <string name="ERROR_DELETE_FILE">Сбой в удалении из устройства файлa - </string>
+    <string name="images">Изображения</string>
+    <string name="collet_images">Просматривай изображения, длительное нажатие на одно из них, вызывает дополнительные функции. Этой кнопкой вернись назад.</string>
+    <string name="DELETED">Удаление</string>
+    <string name="FILES_DELETED_IN_MAIN_STORAGE">Файлы удаляются с физического носителя</string>
+
+</resources>

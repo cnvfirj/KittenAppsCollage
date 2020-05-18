@@ -74,7 +74,6 @@ public class TargetView {
 
     private Fragment fragment;
 
-
     private Bundle bundle;
 
     private VeilField veilField;

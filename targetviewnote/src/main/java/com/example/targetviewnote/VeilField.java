@@ -29,7 +29,7 @@ import com.example.targetviewnote.veil.DrawMaxiVeil;
 import com.example.targetviewnote.veil.DrawMiniVeil;
 
 
-public class VeilField extends DialogFragment implements DrawMaxiVeil.InternalListener{
+public class VeilField extends DialogFragment implements DrawMaxiVeil.InternalListener, View.OnClickListener {
 
     private DrawMiniVeil veil;
 
@@ -121,19 +121,24 @@ public class VeilField extends DialogFragment implements DrawMaxiVeil.InternalLi
         if(actionExit==i&&isVisible())dismiss();
     }
 
+    @Override
+    public void onClick(View v) {
+        if(clickListener!=null){
+            if (v.getId() == R.id.icon_soft_key) {
+                clickListener.onClickTarget(TargetView.TOUCH_SOFT_KEY);
+            }else {
+                clickListener.onClickTarget(TargetView.TOUCH_VEIL);
+            }
+        }
+    }
+
     private void initViews(View view){
         title = view.findViewById(R.id.text_title);
         iconTitle = view.findViewById(R.id.icon_title);
         note = view.findViewById(R.id.text_note);
         iconSoftKey = view.findViewById(R.id.icon_soft_key);
         content = view.findViewById(R.id.content);
-        iconSoftKey.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    if(clickListener!=null)clickListener.onClickTarget(TargetView.TOUCH_SOFT_KEY);
-
-            }
-        });
+        iconSoftKey.setOnClickListener(this);
     }
 
     private void setParams(Bundle bundle){
