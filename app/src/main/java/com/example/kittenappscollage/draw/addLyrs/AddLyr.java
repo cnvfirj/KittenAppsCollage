@@ -214,7 +214,7 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
     private void showToast(int source){
         switch (source){
             case R.dimen.PATH_NET:
-                SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.wrong_link));
+//                SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.wrong_link));
                 break;
         }
 

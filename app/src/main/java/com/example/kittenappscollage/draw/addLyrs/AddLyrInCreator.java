@@ -132,8 +132,8 @@ public class AddLyrInCreator extends SelectedFragment implements DynamicSeekBar.
                         String way = aPreview.getSize().getWidth() + "_" + aPreview.getSize().getHeight() + "_" + aPreview.getColorFon();
                         selector.backInAddLyr(view, way);
                     } else {
-                        SHOW_MASSAGE(getActivity(), getActivity().getResources().getString(R.string.big_big_papper) +
-                                aPreview.getSize().getWidth() + ":" + aPreview.getSize().getHeight());
+//                        SHOW_MASSAGE(getActivity(), getActivity().getResources().getString(R.string.big_big_papper) +
+//                                aPreview.getSize().getWidth() + ":" + aPreview.getSize().getHeight());
                     }
                 }
                 break;

@@ -268,10 +268,10 @@ public class AllPermissions {
                 return activity.getResources().getString(R.string.RATIONALE_ASSES_CAMERA)+
                         ". "+
                         activity.getResources().getString(R.string.REPEAT_REQUEST);
-            case ACCOUNT:
-                return activity.getResources().getString(R.string.RATIONALE_ASSES_ACCAUNT)+
-                        ". "+
-                        activity.getResources().getString(R.string.REPEAT_REQUEST);
+//            case ACCOUNT:
+//                return activity.getResources().getString(R.string.RATIONALE_ASSES_ACCAUNT)+
+//                        ". "+
+//                        activity.getResources().getString(R.string.REPEAT_REQUEST);
             default:
                 return "null";
         }

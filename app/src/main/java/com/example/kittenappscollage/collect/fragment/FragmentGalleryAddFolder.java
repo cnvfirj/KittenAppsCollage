@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Intent;
 //import android.database.Cursor;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -20,6 +21,7 @@ import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Locale;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -34,6 +36,14 @@ public abstract class FragmentGalleryAddFolder extends FragmentGalleryReviewImag
         super.clickAddFolder(v);
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
         startActivityForResult(intent, 49);
+    }
+
+    @Override
+    protected void clickMenu(ImageView v) {
+        super.clickMenu(v);
+        String l = getContext().getResources().getConfiguration().locale.getCountry();
+        if(l.equals("EN"))changeLocale(new Locale("RU"));
+        else changeLocale(new Locale("EN"));
     }
 
     @Override
@@ -65,6 +75,19 @@ public abstract class FragmentGalleryAddFolder extends FragmentGalleryReviewImag
                     Massages.SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.IN_GALLERY_ADD_FOLDER)+addingFold);
                 });
     }
+
+    private void changeLocale(Locale locale) {
+//        this.locale = locale.getCountry();
+        Locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.setLocale(locale);
+        getContext().getResources()
+                .updateConfiguration(configuration,
+                        getContext()
+                                .getResources()
+                                .getDisplayMetrics());
+    }
+
 
     private void scanFold(Uri uri, ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
         int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;

@@ -1,277 +1,277 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="main_buttons_title">
-        <item>Отказ</item>
-        <item>Подсказки</item>
-        <item>Студия</item>
-        <item>Галерея</item>
+        <item>Disclaimer</item>
+        <item>Hints</item>
+        <item>Studio</item>
+        <item>Gallery</item>
     </string-array>
 
     <string-array name="main_buttons_note">
-        <item>Разработчик этого приложения не несет ответственности за использование сторонних изображений. Используя это приложение, пользователь обязуется придерживаться закона и соблюдать авторские права.</item>
-        <item>В процессе, будут появляться подсказки. Для прохождения жми далее или выделенный элемент.</item>
-        <item>В этом окне ты работаешь с изображением. Основные инструменты скрыты тремя кнопками.</item>
-        <item>В ней ты открываешь папки, просматриваешь изображения и так далее. Длительное нажатие на элемент галереи дает доступ к дополнительным действиям. Для работы нужен доступ к мультимедиа.</item>
+        <item>Author of this app does not assume resposibility for usage of  the third-party images. Using this app, the user is obliged to adhere to the law and respect the copyright.</item>
+        <item>In the process, the hints will appear. Press next or selected element to continue.</item>
+        <item>In this window you are working with the image. Main tools are hidden behind three buttons.</item>
+        <item>There you open the folders, view the images etc. Pressing and holding an element of gallery opens the additional actions. Access to the multimedia is required for it to work.</item>
     </string-array>
 
     <string-array name="draw_main_buttons_title">
-        <item>Открытие рисунка</item>
-        <item>Инстременты</item>
-        <item>Сохранение рисунка</item>
+        <item>Open drawing</item>
+        <item>Tools</item>
+        <item>Saving drawing</item>
     </string-array>
 
     <string-array name="draw_main_buttons_note">
-        <item>Добавь изображение или начни новый проект. Если хочешь комбинировать изображения, работай отсюда.</item>
-        <item>Инструменты для редактирования рисунка. Некоторые активны при определенном условии.</item>
-        <item>Сохрани или расшарь изображение из студии отсюда.</item>
+        <item>Add an image or begin a new project. If you want to combine images then work from here.</item>
+        <item>Tools for drawing editing. Some of them are active only under certain conditions.</item>
+        <item>Save or share an image from the studio here.</item>
     </string-array>
 
 
 
     <string-array name="draw_add_title">
-        <item>Камера</item>
-        <item>Коллекция</item>
-        <item>Чистый лист</item>
+        <item>Camera</item>
+        <item>Collection</item>
+        <item>Blank canvas</item>
     </string-array>
 
     <string-array name="draw_add_note">
-        <item>Открой фото полученное с камеры. Для работы нужен доступ к камере.</item>
-        <item>Получи изображение из коллекции</item>
-        <item>Создай чистый лист сам</item>
+        <item>Open a photo taken from the camera. Access to the camera is required for it to work.</item>
+        <item>Get an image from the collection.</item>
+        <item>Create blank canvas yourself.</item>
     </string-array>
 
 
     <string-array name="draw_save_title">
-        <item>Поделись</item>
-        <item>Сохрани</item>
-        <item>Сохрани</item>
+        <item>Share</item>
+        <item>Save</item>
+        <item>Save</item>
     </string-array>
 
     <string-array name="draw_save_note">
-        <item>Поделись изображением из студии.</item>
-        <item>Сохрани изображение в определенное место.Будет вызван системный проводник. При отсутствии нужного хранилища, посмотри в меню проводника, возможно оно скрыто. </item>
-        <item>Сохрани изображение в предыдущее место</item>
+        <item>Share the image from the studio.</item>
+        <item>Save the image in certain location. System explorer will appear. In case of absence of the required storage check out menu of the explorer, it might be hidden.</item>
+        <item>Save the image in previous location.</item>
     </string-array>
 
 
     <string-array name="draw_tools_title">
-        <item>Настройки</item>
-        <item>Масштаб</item>
-        <item>Перемести</item>
-        <item>Вырежь</item>
-        <item>Искажай</item>
-        <item>Текст</item>
-        <item>Заливка</item>
-        <item>Ластик</item>
-        <item>Кисть</item>
-        <item>Пипетка</item>
-        <item>Назад</item>
-        <item>Вперед</item>
-        <item>Контур</item>
-        <item>Удалить проект</item>
-        <item>Скрепи</item>
-        <item>Обмен</item>
-        <item>Сшить</item>
-        <item>Удали изображение</item>
+        <item>Settings</item>
+        <item>Zoom</item>
+        <item>Move</item>
+        <item>Cut</item>
+        <item>Distort</item>
+        <item>Text</item>
+        <item>Fill</item>
+        <item>Eraser</item>
+        <item>Brush</item>
+        <item>Dropper</item>
+        <item>Go back</item>
+        <item>Go forward</item>
+        <item>Outline</item>
+        <item>Delete the project</item>
+        <item>Seal</item>
+        <item>Swap</item>
+        <item>Sew</item>
+        <item>Delete the image</item>
     </string-array>
 
     <string-array name="draw_tools_note">
-        <item>Окно настройки параметров инструментов. Активно всегда.</item>
-        <item>Масштаб, три режима переключаются нажатием этой кнопки. Активно при наличии изображении в студии.</item>
-        <item>Перемести изображение по экрану. Активно при изображении в студии.</item>
-        <item>Выдели область, и нажав сюда же вырежь. Метки по контуру и в центре дают возможность коррекции. Активно при наличии изображении в студии.</item>
-        <item>Вращение, деформация. Переключение тут же. Последний режим все сбрасывает. Активно при наличии изображении в студии.</item>
-        <item>Вывод текста на экран. Нажми еще раз сюда, появится окно настройки текста. Активно при наличии изображении в студии.</item>
+        <item>Settings window for the tools. Always active.</item>
+        <item>Zoom. You can switch one of the three modes pressing on this button. Active when an image is present in the studio.</item>
+        <item>Move the image on the screen. Active when an image is present in the studio.</item>
+        <item>Select the area and cut it pressing there. Tags along the outline and in the center let you to adjust the selection. Active when an image is present in the studio.</item>
+        <item>Rotation, distortion. Switch between them is right there. Last mode resets everything. Active when an image is present in the studio.</item>
+        <item>Insert the text. Press here again, the settings window for the text will appear. Active when an image is present in the studio.</item>
         <item>Заливка по цвету, заливка внутри очерченой области. Активно при наличии изображении в студии.</item>
-        <item>Ластик сплошной и с градиентами, преключай тут же. Активно при наличии изображении в студии.</item>
-        <item>Кисть, три режима и пятно. Активно при наличии изображении в студии.</item>
-        <item>Возьми цвет с рисунка. Предыдущий инструмент остается активен. Активно при наличии изображении в студии.</item>
-        <item>Шаг назад.</item>
-        <item>Шаг вперед.</item>
-        <item>Контур рисунка. Полезно при работе с прозрачным холстом. При работе с двумя, цвета контуров разные.. Активно при наличии изображении в студии.</item>
-        <item>Удаляется проект со всей историей. Активно при наличии изображении в студии.</item>
-        <item>Позволяет некоторым инструментам воздействовать на оба изображения. Активно при дополнительном изображении.</item>
-        <item>Меняем местами основное и верхнее изображения. Активно при дополнительном изображении.</item>
-        <item>Объедини два изображения в одно. Верхнее обрезается по контуру основного. Активно при дополнительном изображении.</item>
-        <item>Удали верхнее изображение. Активно при дополнительном изображении.</item>
+        <item>Solid eraser and with gradients. Switch them here. Active when an image is present in the studio.</item>
+        <item>Brush, three modes and stain. Active when an image is present in the studio.</item>
+        <item>Copy the colour from the drawing. Previous tool remains active. Active when an image is present in the studio.</item>
+        <item>Redo.</item>
+        <item>Undo.</item>
+        <item>Outline of the drawing. Useful when working with transparent canvas. When working with two, the colours of the outlines are different. Active when an image is present in the studio.</item>
+        <item>Deletes the project with all history. Active when an image is present in the studio.</item>
+        <item>Allows some of the tools affect both images. Active when an additional image is present.</item>
+        <item>Swapping the places of main and upper images. Active when an additional image is present.</item>
+        <item>Combine two images into one. Upper crops along the outline of the main. Active when an additional image is present.</item>
+        <item>Delete upper image. Active when an additional image is present.</item>
     </string-array>
 
 
 
     <string-array name="collect_title">
-        <item>Добавь папку</item>
-        <item>Управление</item>
+        <item>Add folder</item>
+        <item>Manage</item>
     </string-array>
 
     <string-array name="collect_note">
-        <item>Добавляй в галлерею папку. Будет вызван системный проводник, выбирай папку и если в ней есть изображения, то она будет добавлена. При отсутствии нужного хранилища, посмотри в меню проводника, возможно оно скрыто. </item>
-        <item>Управление приложением.</item>
+        <item>Add a folder in gallery. System explorer will appear. Choose a folder and if it has the images, then it will be added. In case of absence of the required storage check out menu of the explorer, it might be hidden.</item>
+        <item>App management.</item>
     </string-array>
 
 
     <string-array name="collect_root_menu_title">
-        <item>Дополнительные опции</item>
-        <item>Скрыть</item>
-        <item>Поделись</item>
-        <item>Удали</item>
+        <item>Additional settings</item>
+        <item>Hide</item>
+        <item>Share</item>
+        <item>Delete</item>
     </string-array>
 
     <string-array name="collect_root_menu_note">
-        <item>Режим расширеных опций. Применим к одной папке. Выйди из него нажав на эту кнопку.</item>
-        <item>Скрой эту папку.</item>
-        <item>Поделись содержимым этой папки.</item>
-        <item>Удали выделенную папку.</item>
+        <item>Additional settings mode. Applicable to one folder. Leave it by pressing this button.</item>
+        <item>Hide this folder.</item>
+        <item>Share the contents of this folder.</item>
+        <item>Delete the selected folder.</item>
     </string-array>
 
 
     <string-array name="collect_adapt_menu_title">
-        <item>Дополнительные опции</item>
-        <item>Поделись</item>
-        <item>Удали</item>
+        <item>Additional settings</item>
+        <item>Share</item>
+        <item>Delete</item>
     </string-array>
 
     <string-array name="collect_adapt_menu_note">
-        <item>Режим расширеных опций. Применим к нескольким изображениям. Выйди из него нажав на эту кнопку.</item>
-        <item>Поделись выделенными изображениями.</item>
-        <item>Удали выделенные изображения</item>
+        <item>Additional settings mode.  Applicable to more than one images. Leave it by pressing this button.</item>
+        <item>Share the selected images.</item>
+        <item>Delete the selected images.</item>
     </string-array>
 
 
     <string-array name="addlyr_title">
-        <item>Размер</item>
-        <item>Прозрачность</item>
-        <item>Зеркало</item>
-        <item>Открыть</item>
-        <item>Назад</item>
-        <item>Закрыть</item>
+        <item>Size</item>
+        <item>Transparency</item>
+        <item>Mirror</item>
+        <item>Open</item>
+        <item>Back</item>
+        <item>Close</item>
 
     </string-array>
 
     <string-array name="addlyr_note">
-        <item>Большой размер изображения влияет на работу приложения. Здесь ты можешь его уменьшить</item>
-        <item>Степень прозрачности.</item>
-        <item>Зеркальное отражение.</item>
-        <item>Отправь изображение в студию.</item>
-        <item>Вернись к источнику изображения.</item>
-        <item>Закрой окно.</item>
+        <item>Big size of the image can affect the stability of the app. Here you can resize it.</item>
+        <item>Degree of transparency.</item>
+        <item>Mirror image.</item>
+        <item>Send the image to the studio.</item>
+        <item>Return to the source of the image.</item>
+        <item>Close window.</item>
     </string-array>
 
     <string-array name="review_title">
-        <item>Просмотр изображения</item>
-        <item>Редактировать</item>
-        <item>Выход</item>
+        <item>View the image</item>
+        <item>Edit</item>
+        <item>Exit</item>
 
     </string-array>
 
     <string-array name="review_note">
-        <item>Режим просмотра изображения с возможностью перелистывания. Этой кнопкой ты можешь им поделиться.</item>
-        <item>Отправить в окно редактирования псле чего открыть в студии. Важно! Открытие изображения отсюда начинает новый проект.</item>
-        <item>Закрыть режим просмотра.</item>
+        <item>Image view with the option to leaf through. With this button you can share it.</item>
+        <item>Send to the edit window and then open in the studio. Important! Opening the image from here begins a new project.</item>
+        <item>Close the view mode.</item>
 
 
     </string-array><string-array name="creator_title">
-        <item>Открыть</item>
-        <item>Ширина</item>
-        <item>Высота</item>
-        <item>Цвет фона</item>
-        <item>Выход</item>
+    <item>Open</item>
+    <item>Width</item>
+    <item>Height</item>
+    <item>Background colour</item>
+    <item>Exit</item>
 
-    </string-array>
+</string-array>
     <string-array name="creator_note">
-        <item>Режим создания чистого листа. Открыть лист в редакторе для отправки в студию.</item>
-        <item>Задаешь ширину.</item>
-        <item>Задаешь высоту.</item>
-        <item>Вызов окна выбора цвета. Клик по центру выход.</item>
-        <item>Закрыть режим создания чистого листа.</item>
+        <item>Blank canvas mode. Open canvas in editor to send it to the studio.</item>
+        <item>Set width.</item>
+        <item>Set height.</item>
+        <item>Open colour selector. Press on center to exit.</item>
+        <item>Close blank canvas mode.</item>
 
     </string-array>
 
     <string-array name="addlyr_collect_title">
-        <item>Галерея</item>
-        <item>Выход</item>
+        <item>Gallery</item>
+        <item>Exit</item>
 
     </string-array>
     <string-array name="addlyr_collect_note">
-        <item>Галерея содержит папки с изображениями. Открывай их в студии. Они добавятся к существующему проекту. Если в студии уже есть дополнительное изображение, оно будет заменено.</item>
-        <item>Закрыть галерею.</item>
+        <item>Gallery contains folders with images. Open them in the studio. They will be added to the existing project. If studio already has an additional image then it will be replaced.</item>
+        <item>Close the gallery.</item>
     </string-array>
 
 
     <string-array name="addlyr_cam_title">
-        <item>Фотоснимок</item>
-        <item>Выбор камеры</item>
-        <item>Подсветка</item>
-        <item>Выход</item>
+        <item>Take a picture</item>
+        <item>Camera selection</item>
+        <item>Lightning</item>
+        <item>Exit</item>
 
 
     </string-array>
     <string-array name="addlyr_cam_note">
-        <item>Делай снимок и открывай его в редакторе. </item>
-        <item>Выбирай какой камерой снимать.</item>
-        <item>Включи подсветку. </item>
-        <item>Закрыть фотокамеру.</item>
+        <item>Take a picture and open it in the editor.</item>
+        <item>Choose which camera to use.</item>
+        <item>Turn on the lightning.</item>
+        <item>Close camera.</item>
 
     </string-array>
 
-   <string-array name="prop_title">
-        <item>Кисть</item>
-        <item>Ластик</item>
-        <item>Текст</item>
-        <item>Цвет</item>
-        <item>Прозрачность кисти</item>
-        <item>Ширина</item>
-        <item>Прозрачность ластика</item>
-        <item>Применить</item>
-        <item>Выход</item>
+    <string-array name="prop_title">
+        <item>Brush</item>
+        <item>Eraser</item>
+        <item>Text</item>
+        <item>Colour</item>
+        <item>Brush transparency</item>
+        <item>Width</item>
+        <item>Eraser transparency</item>
+        <item>Apply</item>
+        <item>Exit</item>
 
     </string-array>
 
     <string-array name="prop_note">
-        <item>Показана кисть. Ее ширина и цвет.</item>
-        <item>Ластик, ширина и степень стирания.</item>
-        <item>Величина и цвет текста.</item>
-        <item>Выбери цвет кисти и текста.</item>
-        <item>Задай прозрачность выбранного цвета.</item>
-        <item>Выбери ширину кисти, ластика и размер текста.</item>
-        <item>Отрегулируй степень стирания ластика.</item>
-        <item>Применить выбраннык параметры.</item>
-        <item>Отменить и выйти.</item>
+        <item>Shows the brush. Its size and the colour.</item>
+        <item>Eraser, width and level of erasing.</item>
+        <item>Size and colour of the text.</item>
+        <item>Set the colour of the brush and text.</item>
+        <item>Set the transparency level of the selected colour.</item>
+        <item>Set the width of the brush, eraser and size of the text.</item>
+        <item>Adjust level of erasing.</item>
+        <item>Apply the selected settings.</item>
+        <item>Cancel and exit.</item>
     </string-array>
 
     <string-array name="edit_text_title">
-        <item>Ввод текста</item>
-        <item>Очистка</item>
+        <item>Enter the text</item>
+        <item>Cleanup</item>
 
-        <item>Шрифт</item>
-        <item>Контур</item>
-        <item>Угол</item>
-        <item>Наклон</item>
+        <item>Font</item>
+        <item>Outline</item>
+        <item>Angle</item>
+        <item>Inclination</item>
 
-        <item>Принять</item>
-        <item>Выход</item>
+        <item>Apply</item>
+        <item>Exit</item>
     </string-array>
 
     <string-array name="edit_text_note">
-        <item>Поле для ввода текста.</item>
-        <item>Удалить старый текст.</item>
+        <item>Text box.</item>
+        <item>Delete previous text.</item>
 
-        <item>Использемый шрифт.</item>
-        <item>Выбери сплошной шрифт, или его контур.</item>
-        <item>Открой возможность корректировать угол шрифта.</item>
-        <item>Задай нужный наклон шрифта.</item>
+        <item>Used font.</item>
+        <item>Choose solid font or its outline.</item>
+        <item>Adjust the angle of the font.</item>
+        <item>Set the required inclination of the font.</item>
 
-        <item>Сохранить изменения и выйти.</item>
-        <item>Выход без изменений.</item>
+        <item>Save the changes and leave.</item>
+        <item>Leave without changes.</item>
     </string-array>
 
     <string-array name="edit_text_fonts_title">
-        <item>Список шрифтов</item>
-        <item>Добавить шрифт</item>
+        <item>List of the fonts</item>
+        <item>Add a font</item>
     </string-array>
 
     <string-array name="edit_text_fonts_note">
-        <item>Список доступных шрифтов.</item>
-        <item>Добавь скаченный на устройство шрифт. Шрифт это файл с расширением "ttf" или "otf".</item>
+        <item>List of the available fonts.</item>
+        <item>Add downloaded font. Font is a file with "ttf" or "otf" extension.</item>
     </string-array>
 
 
