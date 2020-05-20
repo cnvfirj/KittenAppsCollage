@@ -25,6 +25,7 @@
         android:background="@color/colorPrimary"
         android:src="@drawable/ic_menu"
         android:id="@+id/gallery_main_menu"
-        android:layout_gravity="bottom|start"/>
+        android:layout_gravity="bottom|start"
+        android:visibility="invisible"/>
 
 </FrameLayout>

@@ -215,7 +215,9 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
                 chapter = KEY_STEP_TUTORIAL;
                 initExcurs();
                 excursInTutorial
-                        .targets(new Integer[]{R.id.gallery_add_folds,R.id.gallery_main_menu})
+                        .targets(new Integer[]{R.id.gallery_add_folds
+//                                ,R.id.gallery_main_menu
+                        })
                         .iconsTitle(new int[]{R.drawable.ic_add,R.drawable.ic_menu})
                         .sizeWin(new int[]{TargetView.MIDI_VEIL,TargetView.MINI_VEIL})
                         .titles(getContext().getResources().getStringArray(R.array.collect_title))
