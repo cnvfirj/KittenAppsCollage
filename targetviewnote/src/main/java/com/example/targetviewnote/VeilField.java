@@ -139,6 +139,9 @@ public class VeilField extends DialogFragment implements DrawMaxiVeil.InternalLi
         iconSoftKey = view.findViewById(R.id.icon_soft_key);
         content = view.findViewById(R.id.content);
         iconSoftKey.setOnClickListener(this);
+        title.setOnClickListener(this);
+        note.setOnClickListener(this);
+        iconTitle.setOnClickListener(this);
     }
 
     private void setParams(Bundle bundle){

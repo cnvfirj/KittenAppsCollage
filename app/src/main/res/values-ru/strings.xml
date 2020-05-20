@@ -1,4 +1,5 @@
 <resources >
+
     <string name="app_name">Kitten Apps Collage</string>
     <string name="KEY_ADAPTER_POSITION">key adapter position</string>
     <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
@@ -42,5 +43,8 @@
     <string name="collet_images">Просматривай изображения, длительное нажатие на одно из них, вызывает дополнительные функции. Этой кнопкой вернись назад.</string>
     <string name="DELETED">Удаление</string>
     <string name="FILES_DELETED_IN_MAIN_STORAGE">Файлы удаляются с физического носителя</string>
+    <string name="language">Язык</string>
+    <string name="color_theme">Цветовая тема</string>
+    <string name="restart_window">restart the window</string>
 
 </resources>

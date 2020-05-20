@@ -43,4 +43,7 @@
     <string name="collet_images">View the images, pressing and holding on one of them opens the additional actions. Go back using this button.</string>
     <string name="DELETED">Deletion</string>
     <string name="FILES_DELETED_IN_MAIN_STORAGE">Files are deleted from physical media</string>
+    <string name="language">Language</string>
+    <string name="color_theme">Color theme</string>
+    <string name="restart_window">restart the window</string>
 </resources>

@@ -18,6 +18,7 @@ import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.helpers.Massages;
 import com.example.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 import com.example.kittenappscollage.helpers.rx.ThreadTransformers;
+import com.example.kittenappscollage.menu.DialogMainMenu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +32,8 @@ public abstract class FragmentGalleryAddFolder extends FragmentGalleryReviewImag
 
     private String addingFold;
 
+    private final String TAG_DIALOG_MENU = "FragmentGalleryAddFolder dialog main menu";
+
     @Override
     protected void clickAddFolder(ImageView v) {
         super.clickAddFolder(v);
@@ -41,9 +44,7 @@ public abstract class FragmentGalleryAddFolder extends FragmentGalleryReviewImag
     @Override
     protected void clickMenu(ImageView v) {
         super.clickMenu(v);
-        String l = getContext().getResources().getConfiguration().locale.getCountry();
-        if(l.equals("EN"))changeLocale(new Locale("RU"));
-        else changeLocale(new Locale("EN"));
+        DialogMainMenu.get().show(getFragmentManager(),TAG_DIALOG_MENU);
     }
 
     @Override
@@ -78,6 +79,11 @@ public abstract class FragmentGalleryAddFolder extends FragmentGalleryReviewImag
 
     private void changeLocale(Locale locale) {
 //        this.locale = locale.getCountry();
+        String l = getContext().getResources().getConfiguration().locale.getCountry();
+        if(l.equals("EN"))changeLocale(new Locale("RU"));
+        else changeLocale(new Locale("EN"));
+
+
         Locale.setDefault(locale);
         Configuration configuration = new Configuration();
         configuration.setLocale(locale);

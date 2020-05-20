@@ -52,9 +52,8 @@ public class ViewReview extends View {
         super.onDraw(canvas);
         if(test()){
             canvas.drawBitmap(bitmap,mat.matrix(matrix),null);
-        }else {
-            LYTE("error load image VewReview");
         }
+
     }
 
     public void setUriBitmap(Uri img){
