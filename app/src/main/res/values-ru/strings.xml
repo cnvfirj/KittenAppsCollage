@@ -8,7 +8,7 @@
 
     <string name="FOLDER_DELETE">Папка удалена</string>
     <string name="SELECTED_IMAGES_DELETED">Выбранные изображения удалены</string>
-    <string name="IS_SELECTED_FOLDER_IMAGES_NOT">В выбранной паке новых изображений не найдено</string>
+    <string name="IS_SELECTED_FOLDER_IMAGES_NOT">В выбранной папке новых изображений не найдено</string>
     <string name="IN_GALLERY_ADD_FOLDER">В галерею добавлена папка </string>
     <string name="CREATE_IMG">Создай холст</string>
     <string name="condition_apply_tools">открой или создай холст</string>
