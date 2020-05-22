@@ -40,7 +40,6 @@ public class DeletedImagesInList extends Service {
 
     public static final String KEY_NAMES = "key names";
 
-
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -94,7 +93,7 @@ public class DeletedImagesInList extends Service {
         Observable.create((ObservableOnSubscribe<Pair<String, Boolean>>) emitter -> {
             clearDeletedList(data,names,emitter);
             emitter.onComplete();
-        }).compose(new ThreadTransformers.InputOutput<>())
+        }).compose(new ThreadTransformers.OnlySingle<>())
                 .doOnComplete(() -> {
                     stopForeground(true);
                     stopSelf();

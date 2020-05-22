@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                 getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP, excurs.getStep()).apply();
             }
         } else {
-//            if (i == TargetView.TOUCH_SOFT_KEY ) {
                 if (excurs.next()) {
                     getPreferences(MODE_PRIVATE).edit().putInt(KEY_EXCURS_STEP, excurs.getStep()).apply();
                 }else {
@@ -88,8 +87,6 @@ public class MainActivity extends AppCompatActivity implements DialogLoadOldProj
                     mFragDraw.startTutorial();
                     mFragGal.startTutorial();
                 }
-//            }
-
         }
     }
 

@@ -148,21 +148,10 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
 
         for (String img:getSelectFiles()){
 
-//                if(App.checkVersion()) {
                     if (delFile(Uri.parse(img), sort)) {
                         getListImagesInFolders().get(key).remove(img);
-//                        emitter.onNext(getListImagesInFolders());
                     }
-//                }
-//        else {
-//                    if (delFileX(Uri.parse(img), sort)) {
-//                        getListImagesInFolders().get(key).remove(img);
-////                        emitter.onNext(getListImagesInFolders());
-//                    }
-//                }
-
         }
-//        if(!App.checkVersion())
             emitter.onNext(getListImagesInFolders());
         emitter.onComplete();
     }
@@ -205,6 +194,7 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
            names[i] = map.get(mut[i]);
        }
 
+
         Intent i = new Intent(getContext(), DeletedImagesInList.class);
         i.setData(uri);
         i.putExtra(DeletedImagesInList.KEY_NAMES,names);
@@ -225,8 +215,6 @@ public abstract class FragmentGalleryActionStorage extends FragmentGalleryShareI
             if(c!=null)c.close();
         }
 
-//        if(App.checkVersion()) return getContext().getContentResolver().delete(uri,null,null)>0;
-//        else
             return true;
     }
 
