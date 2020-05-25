@@ -76,8 +76,6 @@ public abstract class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     @Override
     protected void saveIs(ImageView v) {
         super.saveIs(v);
-
-//        if(ContextCompat.getExternalFilesDirs(getContext(), null).length>1) {
             if (RepDraw.get().isImg()) {
                 if (AllPermissions.create().activity(getActivity()).reqSingle(AllPermissions.STORAGE).isStorage()) {
                     requestFold();
@@ -85,7 +83,6 @@ public abstract class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                     AllPermissions.create().activity(getActivity()).callDialog(AllPermissions.STORAGE, REQUEST_SAVED);
                 }
             } else Massages.SHOW_MASSAGE(getContext(), getContext().getResources().getString(R.string.CREATE_IMG));
-//        }else Massages.SHOW_MASSAGE(getContext(),"Подключи SD card или накопитель и перезапусти приложение");
     }
 
     @Override
