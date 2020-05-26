@@ -1,0 +1,50 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name="FOLDER_DELETE">Folder has been deleted</string>
+    <string name="SELECTED_IMAGES_DELETED">Ausgewählte Bilder wurden gelöscht</string>
+    <string name="IS_SELECTED_FOLDER_IMAGES_NOT">Im ausgewählten Ordner wurden keine neuen Bilder gefunden</string>
+    <string name="IN_GALLERY_ADD_FOLDER">Der Galerie wurde ein neuer Ordner hinzugefügt.</string>
+    <string name="CREATE_IMG">Leinwand erstellen</string>
+    <string name="condition_apply_tools">Leinwand öffnen oder erstellen</string>
+    <string name="PHOTO">Foto</string>
+    <string name="COLLECT">Galerie</string>
+    <string name="YES">Ja</string>
+    <string name="NO">Nein</string>
+    <string name="ASSES_TO_DATA">Zugriff auf die Daten.</string>
+    <string name="ASSES_TO_CAMERA">Zugang zur Kamera.</string>
+    <string name="REPEAT_REQUEST">Anfrage wiederholen?</string>
+    <string name="RATIONALE_ASSES_CAMERA">Für das Aufnehmen von Bildern mit der App ist ein Zugriff auf die Kamera erforderlich.</string>
+<!--    <string name="RATIONALE_ASSES_ACCAUNT">Access to the account is required for reading and saving to the cloud.</string>-->
+    <string name="RATIONALE_ASSES_WRITE">Zum Lesen und Speichern der Bilder auf dem Gerät ist Zugriff auf die Multimedia-Inhalte erforderlich.</string>
+    <string name="TOAST_RESOLUTION">Stellen Sie in den Einstellungen die gewünschte Auflösung ein.</string>
+    <string name="NOT_PERMISSION">Zugriff abgelehnt</string>
+    <string name="GO_TO_SETTINGS">Um es zu bekommen, gehen Sie zu den App-Einstellungen.</string>
+    <string name="IMAGE_NOT_SAVED_CHECK_STORAGE">Bild wurde nicht gespeichert. Überprüfen Sie den verbleibenden Speicher des Geräts.</string>
+    <string name="IMAGE_SAVED">Bild wurde gespeichert</string>
+    <string name="IMAGE_NOT_SAVED_CHECK_FOLDER">Bild wurde nicht gespeichert. Überprüfen Sie den Ordner, in dem es gespeichert werden soll.</string>
+    <string name="FIND_FILE_FONT">Suchen Sie die Datei mit der Erweiterung "ttf" oder "otf" (am Ende des Dateinamens befindet sich .ttf oder .otf.)</string>
+    <string name="INCORRECT_TEXT">Ungültiger Text</string>
+    <string name="NOT_ADD_FONT_IF_NAME_CLONE">Neue Schriftart wurde nicht hinzugefügt. Vielleicht wird der Name bereits verwendet.</string>
+    <string name="FILE_FONT">Die Datei sollte die Erweiterung "ttf" oder "otf" haben (am Ende des Dateinamens befindet sich .ttf oder .otf).</string>
+    <string name="FONT_ADD_FIND_IN_LIST">Schriftart wurde hinzugefügt. Finden Sie es in der Liste.</string>
+    <string name="ADD_FONTS_FIND">Zusätzliche Schriftarten wurden gefunden.</string>
+
+    <string name="ADD_FONTS_NOT_FIND">Zusätzliche Schriftarten wurden nicht gefunden. Laden Sie die Schriftarten mit der Erweiterung .ttf oder .otf herunter und fügen Sie sie hinzu.</string>
+    <string name="SELECT_POINT_PIPETTE">Wählen Sie den Punkt auf dem gefüllten und nicht transparenten Bereich der Zeichnung aus.</string>
+    <string name="REQUEST_LOAD_OLD_PROJECT">Sie haben ein unvollendetes Projekt.</string>
+    <string name="OPEN_OLD_PROJECT">Öffne es? Andernfalls wird es gelöscht.</string>
+    <string name="ERROR_DELETE_FILE">Fehler beim Löschen der Datei</string>
+    <string name="images">Bilder</string>
+    <string name="collet_images">Wenn Sie die Bilder anzeigen und eines davon gedrückt halten, werden die zusätzlichen Aktionen geöffnet. Gehen Sie mit dieser Schaltfläche zurück.</string>
+    <string name="DELETED">Streichung</string>
+    <string name="FILES_DELETED_IN_MAIN_STORAGE">Dateien werden von physischen Medien gelöscht</string>
+    <string name="language">Sprache</string>
+    <string name="color_theme">Farbthema</string>
+    <string name="restart_window">Starten Sie das Fenster neu</string>
+</resources>

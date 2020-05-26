@@ -20,7 +20,6 @@ import androidx.fragment.app.Fragment;
 import com.example.kittenappscollage.R;
 import com.example.kittenappscollage.draw.ViewDraw;
 import com.example.kittenappscollage.draw.saveSteps.BackNextStep;
-import com.example.kittenappscollage.draw.tutorial.ExcursInTutorial;
 
 /*описываем основную анимацию движения кнопок и панели
 * инструментов. Присваиваем им иконки*/
