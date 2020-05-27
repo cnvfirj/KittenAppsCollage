@@ -1,0 +1,49 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> Folder został usunięty </string>
+        <string name = "SELECTED_IMAGES_DELETED"> Wybrane obrazy zostały usunięte. </string>
+        <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Nie znaleziono nowych zdjęć w wybranym folderze. </string>
+        <string name = "IN_GALLERY_ADD_FOLDER"> Nowy folder został dodany do galerii. </string>
+        <string name = "CREATE_IMG"> Utwórz płótno </string>
+        <string name = "condition_apply_tools"> Otwórz lub utwórz płótno </string>
+        <string name = "PHOTO"> Zdjęcie </string>
+        <string name = "COLLECT"> Galeria </string>
+        <string name = "YES"> Tak </string>
+        <string name = "NO"> Nie </string>
+        <string name = "ASSES_TO_DATA"> Dostęp do danych </string>
+        <string name = "ASSES_TO_CAMERA"> Dostęp do kamery </string>
+        <string name = "REPEAT_REQUEST"> Powtórzyć żądanie? </string>
+        <string name = "RATIONALE_ASSES_CAMERA"> Do robienia zdjęć za pomocą aplikacji wymagany jest dostęp do aparatu. </string>
+    <!-- <string name = "RATIONALE_ASSES_ACCAUNT"> Dostęp do konta jest wymagany do odczytu i zapisywania w chmurze. </entry> -->
+        <string name = "RATIONALE_ASSES_WRITE"> Dostęp do multimediów jest wymagany do odczytu i zapisywania obrazów na urządzeniu. </string>
+        <string name = "TOAST_RESOLUTION"> W ustawieniach ustaw wymaganą rozdzielczość. </string>
+        <string name = "NOT_PERMISSION"> Odmowa dostępu </string>
+        <string name = "GO_TO_SETTINGS"> Aby to zrobić, przejdź do ustawień aplikacji. </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Obraz nie został zapisany. Sprawdź pozostałą pamięć urządzenia. </string>
+        <string name = "IMAGE_SAVED"> Obraz został zapisany </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Obraz nie został zapisany. Sprawdź folder, w którym powinien zostać zapisany. </string>
+        <string name = "FIND_FILE_FONT"> Znajdź plik z rozszerzeniem „ttf” lub „otf” (na końcu nazwy pliku jest .ttf lub .otf.) </string>
+        <string name = "INCORRECT_TEXT"> Niepoprawny tekst </string>
+        <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Nowa czcionka nie została dodana. Być może nazwa jest już używana. </string>
+        <string name = "FILE_FONT"> Plik powinien mieć rozszerzenie „ttf” lub „otf” (na końcu nazwy pliku znajduje się .ttf lub .otf) </string>
+        <string name = "FONT_ADD_FIND_IN_LIST"> Czcionka została dodana. Znajdź go na liście. </string>
+        <string name = "ADD_FONTS_FIND"> Znaleziono dodatkowe czcionki. </string>
+        <string name = "ADD_FONTS_NOT_FIND"> Nie znaleziono dodatkowych czcionek. Pobierz czcionki z rozszerzeniem .ttf lub .otf i dodaj je. </string>
+        <string name = "SELECT_POINT_PIPETTE"> Wybierz punkt na wypełnionym i nieprzezroczystym obszarze rysunku. </string>
+        <string name = "REQUEST_LOAD_OLD_PROJECT"> Masz niedokończony projekt. </string>
+        <string name = "OPEN_OLD_PROJECT"> Otwórz? W przeciwnym razie zostanie usunięty. </string>
+        <string name = "ERROR_DELETE_FILE"> Błąd usuwania pliku </string>
+        <string name = "images"> Obrazy </string>
+        <string name = "collet_images"> Wyświetl zdjęcia, naciśnięcie i przytrzymanie jednego z nich otwiera dodatkowe akcje. Wróć za pomocą tego przycisku. </string>
+        <string name = "DELETED"> Usunięcie </string>
+        <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Pliki są usuwane z nośników fizycznych </string>
+        <string name = "language"> Language </string>
+        <string name = "color_theme"> Motyw kolorów </string>
+        <string name = "restart_window"> zrestartuj okno </string>
+</resources>
