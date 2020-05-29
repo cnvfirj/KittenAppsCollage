@@ -1,278 +1,278 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="main_buttons_title">
-        <item>Disclaimer</item>
-        <item>Hints</item>
-        <item>Studio</item>
-        <item>Gallery</item>
-    </string-array>
+    <string-array name = "main_buttons_title">
+                <item> Descargo de responsabilidad </item>
+                <item> Sugerencias </item>
+                <item> Studio </item>
+                <item> Galería </item>
+            </string-array>
 
-    <string-array name="main_buttons_note">
-        <item>Author of this app does not assume resposibility for usage of  the third-party images. Using this app, the user is obliged to adhere to the law and respect the copyright.</item>
-        <item>In the process, the hints will appear. Press next or selected element to continue.</item>
-        <item>In this window you are working with the image. Main tools are hidden behind three buttons.</item>
-        <item>There you open the folders, view the images etc. Pressing and holding an element of gallery opens the additional actions. Access to the multimedia is required for it to work.</item>
-    </string-array>
+        <string-array name = "main_buttons_note">
+            <item> El autor de esta aplicación no asume la responsabilidad por el uso de imágenes de terceros. Al usar esta aplicación, el usuario está obligado a cumplir la ley y respetar los derechos de autor. </item>
+            <item> En el proceso, aparecerán las sugerencias. Presione el elemento siguiente o seleccionado para continuar. </item>
+            <item> En esta ventana está trabajando con la imagen. Las herramientas principales están ocultas detrás de tres botones. </item>
+            <item> Allí abre las carpetas, ve las imágenes, etc. Al presionar y mantener presionado un elemento de la galería, se abren las acciones adicionales. Se requiere acceso a la multimedia para que funcione. </item>
+        </string-array>
 
-    <string-array name="draw_main_buttons_title">
-        <item>Open drawing</item>
-        <item>Tools</item>
-        <item>Saving drawing</item>
-    </string-array>
+        <string-array name = "draw_main_buttons_title">
+            <item> Dibujo abierto </item>
+            <item> Herramientas </item>
+            <item> Guardar dibujo </item>
+        </string-array>
 
-    <string-array name="draw_main_buttons_note">
-        <item>Add an image or begin a new project. If you want to combine images then work from here.</item>
-        <item>Tools for drawing editing. Some of them are active only under certain conditions.</item>
-        <item>Save or share an image from the studio here.</item>
-    </string-array>
-
-
-
-    <string-array name="draw_add_title">
-        <item>Camera</item>
-        <item>Collection</item>
-        <item>Blank canvas</item>
-    </string-array>
-
-    <string-array name="draw_add_note">
-        <item>Open a photo taken from the camera. Access to the camera is required for it to work.</item>
-        <item>Get an image from the collection.</item>
-        <item>Create blank canvas yourself.</item>
-    </string-array>
-
-
-    <string-array name="draw_save_title">
-        <item>Share</item>
-        <item>Save</item>
-        <item>Save</item>
-    </string-array>
-
-    <string-array name="draw_save_note">
-        <item>Share the image from the studio.</item>
-        <item>Save the image in certain location. System explorer will appear. In case of absence of the required storage check out menu of the explorer, it might be hidden.</item>
-        <item>Save the image in previous location.</item>
-    </string-array>
-
-
-    <string-array name="draw_tools_title">
-        <item>Settings</item>
-        <item>Zoom</item>
-        <item>Move</item>
-        <item>Cut</item>
-        <item>Distort</item>
-        <item>Text</item>
-        <item>Fill</item>
-        <item>Eraser</item>
-        <item>Brush</item>
-        <item>Dropper</item>
-        <item>Go back</item>
-        <item>Go forward</item>
-        <item>Outline</item>
-        <item>Delete the project</item>
-        <item>Seal</item>
-        <item>Swap</item>
-        <item>Sew</item>
-        <item>Delete the image</item>
-    </string-array>
-
-    <string-array name="draw_tools_note">
-        <item>Settings window for the tools. Always active.</item>
-        <item>Zoom. You can switch one of the three modes pressing on this button. Active when an image is present in the studio.</item>
-        <item>Move the image on the screen. Active when an image is present in the studio.</item>
-        <item>Select the area and cut it pressing there. Tags along the outline and in the center let you to adjust the selection. Active when an image is present in the studio.</item>
-        <item>Rotation, distortion. Switch between them is right there. Last mode resets everything. Active when an image is present in the studio.</item>
-        <item>Insert the text. Press here again, the settings window for the text will appear. Active when an image is present in the studio.</item>
-        <item>Fill by color, fill inside the outlined area. Active when there is an image in the studio</item>
-        <item>Solid eraser and with gradients. Switch them here. Active when an image is present in the studio.</item>
-        <item>Brush, three modes and stain. Active when an image is present in the studio.</item>
-        <item>Copy the colour from the drawing. Previous tool remains active. Active when an image is present in the studio.</item>
-        <item>Redo.</item>
-        <item>Undo.</item>
-        <item>Outline of the drawing. Useful when working with transparent canvas. When working with two, the colours of the outlines are different. Active when an image is present in the studio.</item>
-        <item>Deletes the project with all history. Active when an image is present in the studio.</item>
-        <item>Allows some of the tools affect both images. Active when an additional image is present.</item>
-        <item>Swapping the places of main and upper images. Active when an additional image is present.</item>
-        <item>Combine two images into one. Upper crops along the outline of the main. Active when an additional image is present.</item>
-        <item>Delete upper image. Active when an additional image is present.</item>
-    </string-array>
+        <string-array name = "draw_main_buttons_note">
+            <item> Agregue una imagen o comience un nuevo proyecto. Si desea combinar imágenes, trabaje desde aquí. </item>
+            <item> Herramientas para editar dibujos. Algunos de ellos están activos solo bajo ciertas condiciones. </item>
+            <item> Guarde o comparta una imagen del estudio aquí. </item>
+        </string-array>
 
 
 
-    <string-array name="collect_title">
-        <item>Add folder</item>
-        <item>Manage</item>
-    </string-array>
+        <string-array name = "draw_add_title">
+            <item> Cámara </item>
+            <item> Colección </item>
+            <item> Lienzo en blanco </item>
+        </string-array>
 
-    <string-array name="collect_note">
-        <item>Add a folder in gallery. System explorer will appear. Choose a folder and if it has the images, then it will be added. In case of absence of the required storage check out menu of the explorer, it might be hidden.</item>
-        <item>App management.</item>
-    </string-array>
-
-
-    <string-array name="collect_root_menu_title">
-        <item>Additional settings</item>
-        <item>Hide</item>
-        <item>Share</item>
-        <item>Delete</item>
-    </string-array>
-
-    <string-array name="collect_root_menu_note">
-        <item>Additional settings mode. Applicable to one folder. Leave it by pressing this button.</item>
-        <item>Hide this folder.</item>
-        <item>Share the contents of this folder.</item>
-        <item>Delete the selected folder.</item>
-    </string-array>
+        <string-array name = "draw_add_note">
+            <item> Abre una foto tomada de la cámara. Se requiere acceso a la cámara para que funcione. </item>
+            <item> Obtenga una imagen de la colección. </item>
+            <item> Cree usted mismo un lienzo en blanco. </item>
+        </string-array>
 
 
-    <string-array name="collect_adapt_menu_title">
-        <item>Additional settings</item>
-        <item>Share</item>
-        <item>Delete</item>
-    </string-array>
+        <string-array name = "draw_save_title">
+            <item> Compartir </item>
+            <item> Guardar </item>
+            <item> Guardar </item>
+        </string-array>
 
-    <string-array name="collect_adapt_menu_note">
-        <item>Additional settings mode.  Applicable to more than one images. Leave it by pressing this button.</item>
-        <item>Share the selected images.</item>
-        <item>Delete the selected images.</item>
-    </string-array>
-
-
-    <string-array name="addlyr_title">
-        <item>Size</item>
-        <item>Transparency</item>
-        <item>Mirror</item>
-        <item>Open</item>
-        <item>Back</item>
-        <item>Close</item>
-
-    </string-array>
-
-    <string-array name="addlyr_note">
-        <item>Big size of the image can affect the stability of the app. Here you can resize it.</item>
-        <item>Degree of transparency.</item>
-        <item>Mirror image.</item>
-        <item>Send the image to the studio.</item>
-        <item>Return to the source of the image.</item>
-        <item>Close window.</item>
-    </string-array>
-
-    <string-array name="review_title">
-        <item>View the image</item>
-        <item>Edit</item>
-        <item>Exit</item>
-
-    </string-array>
-
-    <string-array name="review_note">
-        <item>Image view with the option to leaf through. With this button you can share it.</item>
-        <item>Send to the edit window and then open in the studio. Important! Opening the image from here begins a new project.</item>
-        <item>Close the view mode.</item>
+        <string-array name = "draw_save_note">
+            <item> Comparte la imagen del estudio. </item>
+            <item> Guardar la imagen en cierta ubicación. El explorador del sistema aparecerá. En caso de ausencia del menú de almacenamiento requerido del explorador, podría estar oculto. </item>
+            <item> Guarde la imagen en la ubicación anterior. </item>
+        </string-array>
 
 
-    </string-array><string-array name="creator_title">
-    <item>Open</item>
-    <item>Width</item>
-    <item>Height</item>
-    <item>Background colour</item>
-    <item>Exit</item>
+    <string-array name = "draw_tools_title">
+                <item> Configuración </item>
+                <item> Zoom </item>
+                <item> Mover </item>
+                <item> Cortar </item>
+                <item> Distorsionar </item>
+                <item> Texto </item>
+                <item> Rellenar </item>
+                <item> Eraser </item>
+                <item> Pincel </item>
+                <item> Cuentagotas </item>
+                <item> Volver </item>
+                <item> Avanzar </item>
+                <item> Esquema </item>
+                <item> Eliminar el proyecto </item>
+                <item> Sello </item>
+                <item> Swap </item>
+                <item> Coser </item>
+                <item> Eliminar la imagen </item>
+            </string-array>
+
+        <string-array name = "draw_tools_note">
+            <item> Ventana de configuración de las herramientas. Siempre activo. </item>
+            <item> Zoom. Puede cambiar uno de los tres modos presionando este botón. Activo cuando una imagen está presente en el estudio. </item>
+            <item> Mueve la imagen en la pantalla. Activo cuando una imagen está presente en el estudio. </item>
+            <item> Seleccione el área y córtela presionando allí. Las etiquetas a lo largo del contorno y en el centro le permiten ajustar la selección. Activo cuando una imagen está presente en el estudio. </item>
+            <item> Rotación, distorsión. Cambiar entre ellos está justo ahí. El último modo restablece todo. Activo cuando una imagen está presente en el estudio. </item>
+            <item> Inserta el texto. Presione aquí nuevamente, aparecerá la ventana de configuración para el texto. Activo cuando una imagen está presente en el estudio. </item>
+            <item> Rellenar por color, rellenar dentro del área delineada. Activo cuando hay una imagen en el estudio </item>
+            <item> Borrador sólido y con gradientes. Cámbialos aquí. Activo cuando una imagen está presente en el estudio. </item>
+            <item> Pincel, tres modos y tinción. Activo cuando una imagen está presente en el estudio. </item>
+            <item> Copie el color del dibujo. La herramienta anterior permanece activa. Activo cuando una imagen está presente en el estudio. </item>
+            <item> Rehacer. </item>
+            <item> Deshacer. </item>
+            <item> Esquema del dibujo. Útil cuando se trabaja con lonas transparentes. Cuando se trabaja con dos, los colores de los contornos son diferentes. Activo cuando una imagen está presente en el estudio. </item>
+            <item> Elimina el proyecto con todo el historial. Activo cuando una imagen está presente en el estudio. </item>
+            <item> Permite que algunas de las herramientas afecten a ambas imágenes. Activo cuando hay una imagen adicional presente. </item>
+            <item> Intercambiando los lugares de las imágenes principales y superiores. Activo cuando hay una imagen adicional presente. </item>
+            <item> Combina dos imágenes en una. Cultivos superiores a lo largo del contorno de los principales. Activo cuando hay una imagen adicional presente. </item>
+            <item> Eliminar imagen superior. Activo cuando hay una imagen adicional presente. </item>
+        </string-array>
+
+
+
+        <string-array name = "collect_title">
+            <item> Añadir carpeta </item>
+            <item> Administrar </item>
+        </string-array>
+
+        <string-array name = "collect_note">
+            <item> Agregue una carpeta en la galería. El explorador del sistema aparecerá. Elija una carpeta y si tiene las imágenes, se agregará. En caso de ausencia del menú de almacenamiento requerido del explorador, podría estar oculto. </item>
+            <item> Gestión de aplicaciones. </item>
+        </string-array>
+
+
+    <string-array name = "collect_root_menu_title">
+                <item> Configuraciones adicionales </item>
+                <item> Ocultar </item>
+                <item> Compartir </item>
+                <item> Eliminar </item>
+            </string-array>
+
+        <string-array name = "collect_root_menu_note">
+            <item> Modo de configuración adicional. Aplicable a una carpeta. Déjalo presionando este botón. </item>
+            <item> Ocultar esta carpeta. </item>
+            <item> Comparta el contenido de esta carpeta. </item>
+            <item> Eliminar la carpeta seleccionada. </item>
+        </string-array>
+
+
+        <string-array name = "collect_adapt_menu_title">
+            <item> Configuraciones adicionales </item>
+            <item> Compartir </item>
+            <item> Eliminar </item>
+        </string-array>
+
+        <string-array name = "collect_adapt_menu_note">
+            <item> Modo de configuración adicional. Aplicable a más de una imagen. Déjalo presionando este botón. </item>
+            <item> Comparte las imágenes seleccionadas. </item>
+            <item> Eliminar las imágenes seleccionadas. </item>
+        </string-array>
+
+
+        <string-array name = "addlyr_title">
+            <item> Tamaño </item>
+            <item> Transparencia </item>
+            <item> Espejo </item>
+            <item> Abrir </item>
+            <item> Volver </item>
+            <item> Cerrar </item>
+
+        </string-array>
+
+        <string-array name = "addlyr_note">
+            <item> El tamaño grande de la imagen puede afectar la estabilidad de la aplicación. Aquí puede cambiar su tamaño. </item>
+            <item> Grado de transparencia. </item>
+            <item> Imagen espejo. </item>
+            <item> Envía la imagen al estudio. </item>
+            <item> Regresar a la fuente de la imagen. </item>
+            <item> Cerrar ventana. </item>
+        </string-array>
+
+    <string-array name = "review_title">
+                <item> Ver la imagen </item>
+                <item> Editar </item>
+                <item> Salir </item>
+
+            </string-array>
+
+        <string-array name = "review_note">
+            <item> Vista de imagen con la opción de hojear. Con este botón puedes compartirlo. </item>
+            <item> Enviar a la ventana de edición y luego abrir en el estudio. ¡Importante! Abrir la imagen desde aquí comienza un nuevo proyecto. </item>
+            <item> Cerrar el modo de vista. </item>
+
+
+        </string-array> <string-array name = "creator_title">
+        <item> Abrir </item>
+        <item> Ancho </item>
+        <item> Altura </item>
+        <item> Color de fondo </item>
+        <item> Salir </item>
 
 </string-array>
-    <string-array name="creator_note">
-        <item>Blank canvas mode. Open canvas in editor to send it to the studio.</item>
-        <item>Set width.</item>
-        <item>Set height.</item>
-        <item>Open colour selector. Press on center to exit.</item>
-        <item>Close blank canvas mode.</item>
+        <string-array name = "creator_note">
+            <item> Modo de lienzo en blanco. Abra el lienzo en el editor para enviarlo al estudio. </item>
+            <item> Establecer ancho. </item>
+            <item> Establecer altura. </item>
+            <item> Abrir el selector de color. Presione en el centro para salir. </item>
+            <item> Cerrar el modo de lienzo en blanco. </item>
 
-    </string-array>
+        </string-array>
 
-    <string-array name="addlyr_collect_title">
-        <item>Gallery</item>
-        <item>Exit</item>
+        <string-array name = "addlyr_collect_title">
+            <item> Galería </item>
+            <item> Salir </item>
 
-    </string-array>
-    <string-array name="addlyr_collect_note">
-        <item>Gallery contains folders with images. Open them in the studio. They will be added to the existing project. If studio already has an additional image then it will be replaced.</item>
-        <item>Close the gallery.</item>
-    </string-array>
-
-
-    <string-array name="addlyr_cam_title">
-        <item>Take a picture</item>
-        <item>Camera selection</item>
-        <item>Lightning</item>
-        <item>Exit</item>
+        </string-array>
+        <string-array name = "addlyr_collect_note">
+            <item> Gallery contiene carpetas con imágenes. Ábrelos en el estudio. Se agregarán al proyecto existente. Si el estudio ya tiene una imagen adicional, se reemplazará. </item>
+            <item> Cierra la galería. </item>
+        </string-array>
 
 
-    </string-array>
-    <string-array name="addlyr_cam_note">
-        <item>Take a picture and open it in the editor.</item>
-        <item>Choose which camera to use.</item>
-        <item>Turn on the lightning.</item>
-        <item>Close camera.</item>
+        <string-array name = "addlyr_cam_title">
+            <item> Tomar una foto </item>
+            <item> Selección de cámara </item>
+            <item> Rayo </item>
+            <item> Salir </item>
 
-    </string-array>
 
-    <string-array name="prop_title">
-        <item>Brush</item>
-        <item>Eraser</item>
-        <item>Text</item>
-        <item>Colour</item>
-        <item>Brush transparency</item>
-        <item>Width</item>
-        <item>Eraser transparency</item>
-        <item>Apply</item>
-        <item>Exit</item>
+        </string-array>
+        <string-array name = "addlyr_cam_note">
+            <item> Tome una foto y ábrala en el editor. </item>
+            <item> Elija qué cámara usar. </item>
+            <item> Enciende el rayo. </item>
+            <item> Cerrar cámara. </item>
 
-    </string-array>
+        </string-array>
 
-    <string-array name="prop_note">
-        <item>Shows the brush. Its size and the colour.</item>
-        <item>Eraser, width and level of erasing.</item>
-        <item>Size and colour of the text.</item>
-        <item>Set the colour of the brush and text.</item>
-        <item>Set the transparency level of the selected colour.</item>
-        <item>Set the width of the brush, eraser and size of the text.</item>
-        <item>Adjust level of erasing.</item>
-        <item>Apply the selected settings.</item>
-        <item>Cancel and exit.</item>
-    </string-array>
+        <string-array name = "prop_title">
+            <item> Pincel </item>
+            <item> Eraser </item>
+            <item> Texto </item>
+            <item> Color </item>
+            <item> Transparencia del pincel </item>
+            <item> Ancho </item>
+            <item> Transparencia del borrador </item>
+            <item> Aplicar </item>
+            <item> Salir </item>
 
-    <string-array name="edit_text_title">
-        <item>Enter the text</item>
-        <item>Cleanup</item>
+        </string-array>
 
-        <item>Font</item>
-        <item>Outline</item>
-        <item>Angle</item>
-        <item>Inclination</item>
+        <string-array name = "prop_note">
+            <item> Muestra el pincel. Su tamaño y el color. </item>
+            <item> Borrador, ancho y nivel de borrado. </item>
+            <item> Tamaño y color del texto. </item>
+            <item> Establece el color del pincel y el texto. </item>
+            <item> Establece el nivel de transparencia del color seleccionado. </item>
+            <item> Establece el ancho del pincel, el borrador y el tamaño del texto. </item>
+            <item> Ajustar el nivel de borrado. </item>
+            <item> Aplicar la configuración seleccionada. </item>
+            <item> Cancelar y salir. </item>
+        </string-array>
 
-        <item>Apply</item>
-        <item>Exit</item>
-    </string-array>
+        <string-array name = "edit_text_title">
+            <item> Ingrese el texto </item>
+            <item> Limpieza </item>
 
-    <string-array name="edit_text_note">
-        <item>Text box.</item>
-        <item>Delete previous text.</item>
+            <item> Fuente </item>
+            <item> Esquema </item>
+            <item> Ángulo </item>
+            <item> Inclinación </item>
 
-        <item>Used font.</item>
-        <item>Choose solid font or its outline.</item>
-        <item>Adjust the angle of the font.</item>
-        <item>Set the required inclination of the font.</item>
+            <item> Aplicar </item>
+            <item> Salir </item>
+        </string-array>
 
-        <item>Save the changes and leave.</item>
-        <item>Leave without changes.</item>
-    </string-array>
+        <string-array name = "edit_text_note">
+            <item> Cuadro de texto. </item>
+            <item> Eliminar texto anterior. </item>
 
-    <string-array name="edit_text_fonts_title">
-        <item>List of the fonts</item>
-        <item>Add a font</item>
-    </string-array>
+            <item> Fuente usada. </item>
+            <item> Elija una fuente sólida o su contorno. </item>
+            <item> Ajusta el ángulo de la fuente. </item>
+            <item> Establezca la inclinación requerida de la fuente. </item>
 
-    <string-array name="edit_text_fonts_note">
-        <item>List of the available fonts.</item>
-        <item>Add downloaded font. Font is a file with "ttf" or "otf" extension.</item>
-    </string-array>
+            <item> Guarde los cambios y váyase. </item>
+            <item> Salir sin cambios. </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_title">
+            <item> Lista de las fuentes </item>
+            <item> Añadir una fuente </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_note">
+            <item> Lista de las fuentes disponibles. </item>
+            <item> Añadir fuente descargada. Font es un archivo con extensión "ttf" u "otf". </item>
+        </string-array>
 
 
 
