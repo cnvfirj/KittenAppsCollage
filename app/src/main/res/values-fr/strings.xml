@@ -1,0 +1,49 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> Le dossier a été supprimé </string>
+        <string name = "SELECTED_IMAGES_DELETED"> Les images sélectionnées ont été supprimées. </string>
+        <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Aucune nouvelle image n\'a été trouvée dans le dossier sélectionné. </string>
+        <string name = "IN_GALLERY_ADD_FOLDER"> Un nouveau dossier a été ajouté à la galerie. </string>
+        <string name = "CREATE_IMG"> Créer un canevas </string>
+        <string name = "condition_apply_tools"> Ouvrir ou créer un canevas </string>
+        <string name = "PHOTO"> Photo </string>
+        <string name = "COLLECT"> Galerie </string>
+        <string name = "YES"> Oui </string>
+        <string name = "NO"> Non </string>
+        <string name = "ASSES_TO_DATA"> Accès aux données </string>
+        <string name = "ASSES_TO_CAMERA"> Accès à la caméra </string>
+        <string name = "REPEAT_REQUEST"> Répéter la demande? </string>
+        <string name = "RATIONALE_ASSES_CAMERA"> L\'accès à l\'appareil photo est requis pour prendre des photos à l\'aide de l\'application. </string>
+    <!-- <string name = "RATIONALE_ASSES_ACCAUNT"> L\'\accès au compte est requis pour la lecture et l'enregistrement dans le cloud. </string> -->
+        <string name = "RATIONALE_ASSES_WRITE"> L\'accès au multimédia est requis pour lire et enregistrer les images sur l\'\appareil. </string>
+        <string name = "TOAST_RESOLUTION"> Dans les paramètres, définissez la résolution requise. </string>
+        <string name = "NOT_PERMISSION"> Accès refusé </string>
+        <string name = "GO_TO_SETTINGS"> Pour l\'obtenir, accédez aux paramètres de l\'application. </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> L\'image n\'a pas été enregistrée. Vérifiez l\'espace de stockage restant de l\'appareil. </string>
+        <string name = "IMAGE_SAVED"> L\'image a été enregistrée </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> L\'image n\'a pas été enregistrée. Vérifiez le dossier où il doit être enregistré. </string>
+        <string name = "FIND_FILE_FONT"> Recherchez le fichier avec l\'extension "ttf" ou "otf" (Il y a .ttf ou .otf à la fin du nom de fichier.) </string>
+        <string name = "INCORRECT_TEXT"> Texte non valide </string>
+        <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> La nouvelle police n\'a pas été ajoutée. Peut-être que le nom est déjà utilisé. </string>
+        <string name = "FILE_FONT"> Le fichier doit être avec l\'extension "ttf" ou "otf" (Il y a .ttf ou .otf à la fin du nom de fichier.) </string>
+        <string name = "FONT_ADD_FIND_IN_LIST"> La police a été ajoutée. Trouvez-le dans la liste. </string>
+        <string name = "ADD_FONTS_FIND"> Des polices supplémentaires ont été trouvées. </string>
+        <string name = "ADD_FONTS_NOT_FIND"> Des polices supplémentaires n\'ont pas été trouvées. Téléchargez les polices avec l\'extension .ttf ou .otf et ajoutez-les. </string>
+        <string name = "SELECT_POINT_PIPETTE"> Sélectionnez le point sur la zone remplie et non transparente du dessin. </string>
+        <string name = "REQUEST_LOAD_OLD_PROJECT"> Vous avez un projet inachevé. </string>
+        <string name = "OPEN_OLD_PROJECT"> L\'ouvrir? Sinon, il sera supprimé. </string>
+        <string name = "ERROR_DELETE_FILE"> Échec de suppression du fichier </string>
+        <string name = "images"> Images </string>
+        <string name = "collet_images"> Afficher les images, en appuyant et en maintenant l\'une d\'elles ouvre les actions supplémentaires. Revenez en utilisant ce bouton. </string>
+        <string name = "DELETED"> Suppression </string>
+        <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Les fichiers sont supprimés du support physique </string>
+        <string name = "language"> Langue </string>
+        <string name = "color_theme"> Thème de couleur </string>
+        <string name = "restart_window"> redémarrez la fenêtre </string>
+</resources>

@@ -82,7 +82,7 @@
         <item>Select the area and cut it pressing there. Tags along the outline and in the center let you to adjust the selection. Active when an image is present in the studio.</item>
         <item>Rotation, distortion. Switch between them is right there. Last mode resets everything. Active when an image is present in the studio.</item>
         <item>Insert the text. Press here again, the settings window for the text will appear. Active when an image is present in the studio.</item>
-        <item>Заливка по цвету, заливка внутри очерченой области. Активно при наличии изображении в студии.</item>
+        <item>Fill by color, fill inside the outlined area. Active when there is an image in the studio</item>
         <item>Solid eraser and with gradients. Switch them here. Active when an image is present in the studio.</item>
         <item>Brush, three modes and stain. Active when an image is present in the studio.</item>
         <item>Copy the colour from the drawing. Previous tool remains active. Active when an image is present in the studio.</item>

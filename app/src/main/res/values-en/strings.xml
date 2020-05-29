@@ -28,13 +28,13 @@
     <string name="IMAGE_NOT_SAVED_CHECK_STORAGE">Image has not been saved. Check the remaining storage of the device.</string>
     <string name="IMAGE_SAVED">Image has been saved</string>
     <string name="IMAGE_NOT_SAVED_CHECK_FOLDER">Image has not been saved. Check the folder where it should be saved.</string>
-    <string name="FIND_FILE_FONT">Find the file with "ttf" or "otf" extension (There\'\s .ttf or .otf at the end of the file name.)</string>
+    <string name="FIND_FILE_FONT">Find the file with "ttf" or "otf" extension (There\'s .ttf or .otf at the end of the file name.)</string>
     <string name="INCORRECT_TEXT">Invalid text</string>
     <string name="NOT_ADD_FONT_IF_NAME_CLONE">New font has not been added. Perhaps the name is already in use.</string>
-    <string name="FILE_FONT">File should be with "ttf" or "otf" extension (There\'\s .ttf or .otf at the end of the file name)</string>
+    <string name="FILE_FONT">File should be with "ttf" or "otf" extension (There\'s .ttf or .otf at the end of the file name)</string>
     <string name="FONT_ADD_FIND_IN_LIST">Font has been added. Find it in the list.</string>
     <string name="ADD_FONTS_FIND">Additional fonts have been found.</string>
-    <string name="ADD_FONTS_NOT_FIND">Additional fonts haven\'\t been found. Download the fonts with .ttf or .otf extension and add them.</string>
+    <string name="ADD_FONTS_NOT_FIND">Additional fonts haven\'t been found. Download the fonts with .ttf or .otf extension and add them.</string>
     <string name="SELECT_POINT_PIPETTE">Select the point on filled and non-transparent area of the drawing.</string>
     <string name="REQUEST_LOAD_OLD_PROJECT">You have an unfinished project.</string>
     <string name="OPEN_OLD_PROJECT">Open it? Otherwise it will be deleted.</string>

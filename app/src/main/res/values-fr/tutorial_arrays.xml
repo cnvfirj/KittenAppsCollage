@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+                <item> Clause de non-responsabilité </item>
+                <item> Astuces </item>
+                <item> Studio </item>
+                <item> Galerie </item>
+            </string-array>
+
+        <string-array name = "main_buttons_note">
+            <item> L\'auteur de cette application n\'assume aucune responsabilité pour l\'utilisation des images tierces. En utilisant cette application, l\'utilisateur est tenu de respecter la loi et de respecter les droits d\'auteur. </item>
+            <item> Au cours du processus, les conseils s\'affichent. Appuyez sur l\'élément suivant ou sélectionné pour continuer. </item>
+            <item> Dans cette fenêtre, vous travaillez avec l\'image. Les outils principaux sont cachés derrière trois boutons. </item>
+            <item> Là, vous ouvrez les dossiers, visualisez les images, etc. Appuyez et maintenez un élément de la galerie pour ouvrir les actions supplémentaires. L\'accès au multimédia est nécessaire pour qu\'il fonctionne. </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_title">
+            <item> Ouvrir le dessin </item>
+            <item> Outils </item>
+            <item> Enregistrement du dessin </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_note">
+            <item> Ajoutez une image ou commencez un nouveau projet. Si vous souhaitez combiner des images, travaillez à partir d\'ici. </item>
+            <item> Outils pour l\'édition de dessins. Certains d\'entre eux ne sont actifs que sous certaines conditions. </item>
+            <item> Enregistrez ou partagez une image du studio ici. </item>
+        </string-array>
+
+
+
+        <string-array name = "draw_add_title">
+            <item> Appareil photo </item>
+            <item> Collection </item>
+            <item> Toile vierge </item>
+        </string-array>
+
+        <string-array name = "draw_add_note">
+            <item> Ouvrez une photo prise depuis l\'appareil photo. L\'accès à la caméra est nécessaire pour qu\'elle fonctionne. </item>
+            <item> Obtenez une image de la collection. </item>
+            <item> Créez vous-même une toile vierge. </item>
+        </string-array>
+
+    <!--  -->
+
+    <string-array name = "draw_save_title">
+                <item> Partager </item>
+                <item> Enregistrer </item>
+                <item> Enregistrer </item>
+            </string-array>
+
+        <string-array name = "draw_save_note">
+            <item> Partagez l\'image du studio. </item>
+            <item> Enregistrez l\'image à un certain endroit. L\'explorateur de système apparaîtra. En cas d\'absence du menu de vérification de stockage requis de l\'explorateur, il peut être masqué. </item>
+            <item> Enregistrez l\'image à l\'emplacement précédent. </item>
+        </string-array>
+
+
+        <string-array name = "draw_tools_title">
+            <item> Paramètres </item>
+            <item> Zoom </item>
+            <item> Déplacer </item>
+            <item> Couper </item>
+            <item> Distorsion </item>
+            <item> Texte </item>
+            <item> Remplir </item>
+            <item> Gomme </item>
+            <item> Brosse </item>
+            <item> Dropper </item>
+            <item> Revenir </item>
+            <item> Aller de l\'avant </item>
+            <item> Outline </item>
+            <item> Supprimer le projet </item>
+            <item> Sceau </item>
+            <item> Échange </item>
+            <item> Coudre </item>
+            <item> Supprimer l\'image </item>
+        </string-array>
+
+        <string-array name = "draw_tools_note">
+            <item> Fenêtre des paramètres pour les outils. Toujours actif. </item>
+            <item> Zoom. Vous pouvez changer l\'un des trois modes en appuyant sur ce bouton. Actif lorsqu\'une image est présente dans le studio. </item>
+            <item> Déplacez l\'image sur l\'écran. Actif lorsqu\'une image est présente dans le studio. </item>
+            <item> Sélectionnez la zone et coupez-la en y appuyant. Les étiquettes le long du contour et au centre vous permettent d\'ajuster la sélection. Actif lorsqu\'une image est présente dans le studio. </item>
+            <item> Rotation, distorsion. Basculer entre eux est là. Le dernier mode réinitialise tout. Actif lorsqu\'une image est présente dans le studio. </item>
+            <item> Insérez le texte. Appuyez à nouveau ici, la fenêtre des paramètres du texte apparaîtra. Actif lorsqu\'une image est présente dans le studio. </item>
+            <item> Remplissez par couleur, remplissez l\'intérieur de la zone indiquée. Actif lorsqu\'il y a une image dans le studio. </item>
+            <item> Gomme solide et avec des dégradés. Mettez-les ici. Actif lorsqu\'une image est présente dans le studio. </item>
+            <item> Pinceau, trois modes et tache. Actif lorsqu\'une image est présente dans le studio. </item>
+            <item> Copiez la couleur du dessin. L\'outil précédent reste actif. Actif lorsqu\'une image est présente dans le studio. </item>
+            <item> Refaire. </item>
+            <item> Annuler. </item>
+            <item> Aperçu du dessin. Utile lorsque vous travaillez avec une toile transparente. Lorsque vous travaillez avec deux, les couleurs des contours sont différentes. Actif lorsqu\'une image est présente dans le studio. </item>
+            <item> Supprime le projet avec tout l\'historique. Actif lorsqu\'une image est présente dans le studio. </item>
+            <item> Permet à certains outils d\'affecter les deux images. Actif lorsqu\'une image supplémentaire est présente. </item>
+            <item> Permutation des emplacements des images principales et supérieures. Actif lorsqu\'une image supplémentaire est présente. </item>
+            <item> Combinez deux images en une seule. Cultures supérieures le long du contour de la principale. Actif lorsqu\'une image supplémentaire est présente. </item>
+            <item> Supprimer l\'image supérieure. Actif lorsqu\'une image supplémentaire est présente. </item>
+        </string-array>
+
+<!-- -->
+
+    <string-array name = "collect_title">
+                <item> Ajouter un dossier </item>
+                <item> Gérer </item>
+            </string-array>
+
+        <string-array name = "collect_note">
+            <item> Ajoutez un dossier dans la galerie. L\'\explorateur de système apparaîtra. Choisissez un dossier et s\'il contient les images, il sera ajouté. En cas d\'absence du menu de vérification de stockage requis de l\'explorateur, il peut être masqué. </item>
+            <item> Gestion des applications. </item>
+        </string-array>
+
+
+        <string-array name = "collect_root_menu_title">
+            <item> Paramètres supplémentaires </item>
+            <item> Masquer </item>
+            <item> Partager </item>
+            <item> Supprimer </item>
+        </string-array>
+
+        <string-array name = "collect_root_menu_note">
+            <item> Mode de paramètres supplémentaires. Applicable à un dossier. Laissez-le en appuyant sur ce bouton. </item>
+            <item> Masquer ce dossier. </item>
+            <item> Partagez le contenu de ce dossier. </item>
+            <item> Supprimez le dossier sélectionné. </item>
+        </string-array>
+
+
+        <string-array name = "collect_adapt_menu_title">
+            <item> Paramètres supplémentaires </item>
+            <item> Partager </item>
+            <item> Supprimer </item>
+        </string-array>
+
+        <string-array name = "collect_adapt_menu_note">
+            <item> Mode de paramètres supplémentaires. Applicable à plusieurs images. Laissez-le en appuyant sur ce bouton. </item>
+            <item> Partagez les images sélectionnées. </item>
+            <item> Supprimer les images sélectionnées. </item>
+        </string-array>
+
+
+        <string-array name = "addlyr_title">
+            <item> Taille </item>
+            <item> Transparence </item>
+            <item> Miroir </item>
+            <item> Ouvrir </item>
+            <item> Retour </item>
+            <item> Fermer </item>
+
+        </string-array>
+
+        <string-array name = "addlyr_note">
+            <item> Une grande taille de l\'image peut affecter la stabilité de l\'application. Ici, vous pouvez le redimensionner. </item>
+            <item> Degré de transparence. </item>
+            <item> Image miroir. </item>
+            <item> Envoyez l\'image au studio. </item>
+            <item> Retournez à la source de l\'image. </item>
+            <item> Fermer la fenêtre. </item>
+        </string-array>
+    <!-- -->
+    <string-array name = "review_title">
+                <item> Voir l\'image </item>
+                <item> Modifier </item>
+                <item> Quitter </item>
+
+            </string-array>
+
+        <string-array name = "review_note">
+            <item> Vue d\'image avec l\'option de feuilleter. Avec ce bouton, vous pouvez le partager. </item>
+            <item> Envoyez à la fenêtre d\'édition puis ouvrez dans le studio. Important! Ouvrir l\'image d\'ici commence un nouveau projet. </item>
+            <item> Fermez le mode d\'affichage. </item>
+
+
+        </string-array> <string-array name = "creator_title">
+        <item> Ouvrir </item>
+        <item> Largeur </item>
+        <item> Hauteur </item>
+        <item> Couleur d\'arrière-plan </item>
+        <item> Quitter </item>
+
+</string-array>
+        <string-array name = "creator_note">
+            <item> Mode toile vierge. Ouvrez le canevas dans l\'éditeur pour l\'envoyer au studio. </item>
+            <item> Définissez la largeur. </item>
+            <item> Définir la hauteur. </item>
+            <item> Ouvrir le sélecteur de couleur. Appuyez au centre pour quitter. </item>
+            <item> Fermer le mode de canevas vierge. </item>
+
+        </string-array>
+
+        <string-array name = "addlyr_collect_title">
+            <item> Galerie </item>
+            <item> Quitter </item>
+
+        </string-array>
+        <string-array name = "addlyr_collect_note">
+            <item> La galerie contient des dossiers contenant des images. Ouvrez-les dans le studio. Ils seront ajoutés au projet existant. Si le studio a déjà une image supplémentaire, elle sera remplacée. </item>
+            <item> Fermez la galerie. </item>
+        </string-array>
+
+
+        <string-array name = "addlyr_cam_title">
+            <item> Prenez une photo </item>
+            <item> Sélection de la caméra </item>
+            <item> Lightning </item>
+            <item> Quitter </item>
+
+
+        </string-array>
+        <string-array name = "addlyr_cam_note">
+            <item> Prenez une photo et ouvrez-la dans l\'éditeur. </item>
+            <item> Choisissez la caméra à utiliser. </item>
+            <item> Allumez la foudre. </item>
+            <item> Fermez la caméra. </item>
+
+        </string-array>
+
+        <string-array name = "prop_title">
+            <item> Brosse </item>
+            <item> Gomme </item>
+            <item> Texte </item>
+            <item> Couleur </item>
+            <item> Transparence du pinceau </item>
+            <item> Largeur </item>
+            <item> Transparence de la gomme </item>
+            <item> Appliquer </item>
+            <item> Quitter </item>
+
+        </string-array>
+
+        <string-array name = "prop_note">
+            <item> Affiche le pinceau. Sa taille et sa couleur. </item>
+            <item> Gomme, largeur et niveau d\'effacement. </item>
+            <item> Taille et couleur du texte. </item>
+            <item> Définissez la couleur du pinceau et du texte. </item>
+            <item> Définissez le niveau de transparence de la couleur sélectionnée. </item>
+            <item> Définissez la largeur du pinceau, la gomme et la taille du texte. </item>
+            <item> Ajustez le niveau d\'effacement. </item>
+            <item> Appliquer les paramètres sélectionnés. </item>
+            <item> Annuler et quitter. </item>
+        </string-array>
+
+        <string-array name = "edit_text_title">
+            <item> Entrez le texte </item>
+            <item> Nettoyage </item>
+
+            <item> Police </item>
+            <item> Outline </item>
+            <item> Angle </item>
+            <item> Inclinaison </item>
+
+            <item> Appliquer </item>
+            <item> Quitter </item>
+        </string-array>
+
+        <string-array name = "edit_text_note">
+            <item> Zone de texte. </item>
+            <item> Supprimer le texte précédent. </item>
+
+            <item> Police utilisée. </item>
+            <item> Choisissez une police pleine ou son contour. </item>
+            <item> Ajustez l\'angle de la police. </item>
+            <item> Définissez l\'inclinaison requise de la police. </item>
+
+            <item> Enregistrez les modifications et quittez. </item>
+            <item> Quitter sans modifications. </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_title">
+            <item> Liste des polices </item>
+            <item> Ajouter une police </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_note">
+            <item> Liste des polices disponibles. </item>
+            <item> Ajouter une police téléchargée. La police est un fichier avec l\'extension "ttf" ou "otf". </item>
+        </string-array>
+
+
+
+
+
+</resources>

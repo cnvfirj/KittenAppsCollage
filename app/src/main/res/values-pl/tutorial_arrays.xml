@@ -82,7 +82,7 @@
                 <item> Wybierz obszar i wytnij go, naciskając tam. Tagi wzdłuż konturu i na środku umożliwiają dostosowanie zaznaczenia. Aktywne, gdy obraz jest obecny w studio. </item>
                 <item> Obrót, zniekształcenie. Przełączanie między nimi jest właśnie tam. Ostatni tryb resetuje wszystko. Aktywne, gdy obraz jest obecny w studio. </item>
                 <item> Wstaw tekst. Naciśnij tutaj ponownie, pojawi się okno ustawień tekstu. Aktywne, gdy obraz jest obecny w studio. </item>
-                <item> Заливка по цвету, заливка внутри очерченой области. Активно при наличии изображении в студии. </item>
+                <item> Wypełnij kolorem, wypełnij zaznaczony obszar. Aktywny, gdy w studio jest obraz. </item>
                 <item> Solidna gumka z gradientami. Przełącz je tutaj. Aktywne, gdy obraz jest obecny w studio. </item>
                 <item> Pędzel, trzy tryby i bejca. Aktywne, gdy obraz jest obecny w studio. </item>
                 <item> Skopiuj kolor z rysunku. Poprzednie narzędzie pozostaje aktywne. Aktywne, gdy obraz jest obecny w studio. </item>
