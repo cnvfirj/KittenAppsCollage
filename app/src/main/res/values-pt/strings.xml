@@ -1,0 +1,49 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> A pasta foi excluída </string>
+        <string name = "SELECTED_IMAGES_DELETED"> As imagens selecionadas foram excluídas. </string>
+        <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Nenhuma nova imagem foi encontrada na pasta selecionada. </string>
+        <string name = "IN_GALLERY_ADD_FOLDER"> Nova pasta foi adicionada à galeria. </string>
+        <string name = "CREATE_IMG"> Criar tela </string>
+        <string name = "condition_apply_tools"> Abra ou crie tela </string>
+        <string name = "PHOTO"> Foto </string>
+        <string name = "COLLECT"> Galeria </string>
+        <string name = "YES"> Sim </string>
+        <string name = "NO"> Não </string>
+        <string name = "ASSES_TO_DATA"> Acesso aos dados </string>
+        <string name = "ASSES_TO_CAMERA"> Acesso à câmera </string>
+        <string name = "REPEAT_REQUEST"> Repita a solicitação? </string>
+        <string name = "RATIONALE_ASSES_CAMERA"> É necessário acesso à câmera para tirar fotos usando o aplicativo. </string>
+
+        <string name = "RATIONALE_ASSES_WRITE"> É necessário acesso à multimídia para ler e salvar as imagens no dispositivo. </string>
+        <string name = "TOAST_RESOLUTION"> Nas configurações, defina a resolução necessária. </string>
+        <string name = "NOT_PERMISSION"> Acesso negado </string>
+        <string name = "GO_TO_SETTINGS"> Para obtê-lo, vá para as configurações do aplicativo. </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> A imagem não foi salva. Verifique o armazenamento restante do dispositivo. </string>
+        <string name = "IMAGE_SAVED"> A imagem foi salva </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> A imagem não foi salva. Verifique a pasta onde deve ser salva. </string>
+        <string name = "FIND_FILE_FONT"> Encontre o arquivo com a extensão "ttf" ou "otf" (Existem .ttf ou .otf no final do nome do arquivo.) </string>
+        <string name = "INCORRECT_TEXT"> Texto inválido </string>
+        <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Nova fonte não foi adicionada. Talvez o nome já esteja em uso. </string>
+        <string name = "FILE_FONT"> O arquivo deve estar com a extensão "ttf" ou "otf" (há .ttf ou .otf no final do nome do arquivo) </string>
+        <string name = "FONT_ADD_FIND_IN_LIST"> A fonte foi adicionada. Encontre-o na lista. </string>
+        <string name = "ADD_FONTS_FIND"> Fontes adicionais foram encontradas. </string>
+        <string name = "ADD_FONTS_NOT_FIND"> Fontes adicionais não foram encontradas. Faça o download das fontes com extensão .ttf ou .otf e adicione-as. </string>
+        <string name = "SELECT_POINT_PIPETTE"> Selecione o ponto na área preenchida e não transparente do desenho. </string>
+        <string name = "REQUEST_LOAD_OLD_PROJECT"> Você tem um projeto inacabado. </string>
+        <string name = "OPEN_OLD_PROJECT"> Abri-lo? Caso contrário, ele será excluído. </string>
+        <string name = "ERROR_DELETE_FILE"> Falha na exclusão do arquivo </string>
+        <string name = "images"> Imagens </string>
+        <string name = "collet_images"> Veja as imagens, pressionando e segurando uma delas abre as ações adicionais. Volte usando este botão. </string>
+        <string name = "DELETED"> Exclusão </string>
+        <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Os arquivos são excluídos da mídia física </string>
+        <string name = "language"> Idioma </string>
+        <string name = "color_theme"> Tema de cores </string>
+        <string name = "restart_window"> reinicie a janela </string>
+</resources>
