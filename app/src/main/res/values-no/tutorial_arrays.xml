@@ -61,13 +61,13 @@
             <item> Cut </item>
             <item> Forvrengning </item>
             <item> Text </item>
-            <item> utfyllings </item>
-            <item> viskelær </item>
+            <item> Utfyllings </item>
+            <item> Viskelær </item>
             <item> Pensel </item>
-            <item> dropper </item>
+            <item> Dropper </item>
             <item> Gå tilbake </item>
             <item> Gå frem </item>
-            <item> kontur </item>
+            <item> Kontur </item>
             <item> Slett prosjektet </item>
             <item> Seal </item>
             <item> Bytt </item>
@@ -175,7 +175,7 @@
         <item> Åpne </item>
         <item> Bredde </item>
         <item> Høyde </item>
-        <item> bakgrunnsfarge </item>
+        <item> Bakgrunnsfarge </item>
         <item> Avslutt </item>
 
 </string-array>
@@ -217,7 +217,7 @@
 
         <string-array name = "prop_title">
             <item> Pensel </item>
-            <item> viskelær </item>
+            <item> Viskelær </item>
             <item> Text </item>
             <item> Farge </item>
             <item> Børst transparens </item>
