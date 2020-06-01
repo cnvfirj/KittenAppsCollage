@@ -1,0 +1,48 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> Mappen er blitt slettet </string>
+        <string name = "SELECTED_IMAGES_DELETED"> Valgte bilder er slettet. </string>
+        <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Ingen nye bilder er funnet i den valgte mappen. </string>
+        <string name = "IN_GALLERY_ADD_FOLDER"> Ny mappe er lagt til i galleriet. </string>
+        <string name = "CREATE_IMG"> Lag lerret </string>
+        <string name = "condition_apply_tools"> Åpne eller opprett lerret </string>
+        <string name = "PHOTO"> Foto </string>
+        <string name = "COLLECT"> Galleri </string>
+        <string name = "YES"> Ja </string>
+        <string name = "NO"> Nei </string>
+        <string name = "ASSES_TO_DATA"> Tilgang til dataene </string>
+        <string name = "ASSES_TO_CAMERA"> Tilgang til kameraet </string>
+        <string name = "REPEAT_REQUEST"> Gjenta forespørselen? </string>
+        <string name = "RATIONALE_ASSES_CAMERA"> Tilgang til kameraet er nødvendig for å ta bilder ved å bruke appen. </string>
+        <string name = "RATIONALE_ASSES_WRITE"> Tilgang til multimedia er nødvendig for å lese og lagre bildene på enheten. </string>
+        <string name = "TOAST_RESOLUTION"> Angi ønsket oppløsning i innstillinger. </string>
+        <string name = "NOT_PERMISSION"> Tilgang nektet </string>
+        <string name = "GO_TO_SETTINGS"> For å få det, gå til appinnstillingene. </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Bildet er ikke lagret. Sjekk gjenværende lagring av enheten. </string>
+        <string name = "IMAGE_SAVED"> Bildet er lagret </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Bildet er ikke lagret. Sjekk mappen der den skal lagres. </string>
+        <string name = "FIND_FILE_FONT"> Finn filen med utvidelsen "ttf" eller "otf" (Det er .ttf eller .otf på slutten av filnavnet.) </string>
+        <string name = "INCORRECT_TEXT"> Ugyldig tekst </string>
+        <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Ny font er ikke lagt til. Kanskje navnet allerede er i bruk. </string>
+        <string name = "FILE_FONT"> Filen skal være med utvidelsen "ttf" eller "otf" (det er .ttf eller .otf på slutten av filnavnet) </string>
+        <string name = "FONT_ADD_FIND_IN_LIST"> Font er lagt til. Finn det i listen. </string>
+        <string name = "ADD_FONTS_FIND"> Flere fonter er funnet. </string>
+        <string name = "ADD_FONTS_NOT_FIND"> Flere skrifter har ikke blitt funnet. Last ned skriftene med filtypen .ttf eller .otf og legg dem til. </string>
+        <string name = "SELECT_POINT_PIPETTE"> Velg punktet på fylt og ikke-gjennomsiktig område på tegningen. </string>
+        <string name = "REQUEST_LOAD_OLD_PROJECT"> Du har et uferdig prosjekt. </string>
+        <string name = "OPEN_OLD_PROJECT"> Åpne den? Ellers blir den slettet. </string>
+        <string name = "ERROR_DELETE_FILE"> Feil i sletting av fil </string>
+        <string name = "images"> Bilder </string>
+        <string name = "collet_images"> Se på bildene, ved å trykke og holde på en av dem, åpnes de ekstra handlingene. Gå tilbake med denne knappen. </string>
+        <string name = "DELETED"> Sletting </string>
+        <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Filer blir slettet fra fysiske medier </string>
+        <string name = "language"> Språk </string>
+        <string name = "color_theme"> Fargetema </string>
+        <string name = "restart_window"> start vinduet på nytt </string>
+</resources>

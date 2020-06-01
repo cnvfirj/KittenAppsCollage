@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+                <item> Begrensning </item>
+                <item> Hint </item>
+                <item> Studio </item>
+                <item> galleri </item>
+            </string-array>
+
+        <string-array name = "main_buttons_note">
+            <item> Forfatteren av denne appen tar ikke ansvar for bruk av tredjepartsbilder. Ved å bruke denne appen er brukeren forpliktet til å overholde loven og respektere opphavsretten. </item>
+            <item> I prosessen vil hintene vises. Trykk på neste eller valgte element for å fortsette. </item>
+            <item> I dette vinduet jobber du med bildet. Hovedverktøy er skjult bak tre knapper. </item>
+            <item> Der åpner du mappene, viser bildene osv. Hvis du trykker og holder på et element i galleriet, åpnes de ekstra handlingene. Tilgang til multimedia kreves for at den skal fungere. </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_title">
+            <item> Åpen tegning </item>
+            <item> Verktøy </item>
+            <item> Lagrer tegning </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_note">
+            <item> Legg til et bilde eller begynn et nytt prosjekt. Hvis du vil kombinere bilder, kan du jobbe herfra. </item>
+            <item> Verktøy for redigering av tegninger. Noen av dem er bare aktive under visse betingelser. </item>
+            <item> Lagre eller del et bilde fra studioet her. </item>
+        </string-array>
+
+
+
+        <string-array name = "draw_add_title">
+            <item> Kamera </item>
+            <item> Collection </item>
+            <item> Tomt lerret </item>
+        </string-array>
+
+        <string-array name = "draw_add_note">
+            <item> Åpne et bilde tatt fra kameraet. Tilgang til kameraet er nødvendig for at det skal fungere. </item>
+            <item> Få et bilde fra samlingen. </item>
+            <item> Lag tomt lerret selv. </item>
+        </string-array>
+
+
+        <string-array name = "draw_save_title">
+            <item> Del </item>
+            <item> Lagre </item>
+            <item> Lagre </item>
+        </string-array>
+
+        <string-array name = "draw_save_note">
+            <item> Del bildet fra studioet. </item>
+            <item> Lagre bildet på et bestemt sted. System Explorer vil vises. Hvis det ikke er nødvendig lagringsplass, kan du sjekke ut menyen til utforskeren. </item>
+            <item> Lagre bildet på forrige sted. </item>
+        </string-array>
+
+
+        <string-array name = "draw_tools_title">
+            <item> Innstillinger </item>
+            <item> Zoom </item>
+            <item> Flytt </item>
+            <item> Cut </item>
+            <item> Forvrengning </item>
+            <item> Text </item>
+            <item> utfyllings </item>
+            <item> viskelær </item>
+            <item> Pensel </item>
+            <item> dropper </item>
+            <item> Gå tilbake </item>
+            <item> Gå frem </item>
+            <item> kontur </item>
+            <item> Slett prosjektet </item>
+            <item> Seal </item>
+            <item> Bytt </item>
+            <item> Sy </item>
+            <item> Slett bildet </item>
+        </string-array>
+
+        <string-array name = "draw_tools_note">
+            <item> Innstillingsvindu for verktøyene. Alltid aktiv. </item>
+            <item> Zoom. Du kan bytte en av de tre modusene ved å trykke på denne knappen. Aktiv når et bilde er til stede i studio. </item>
+            <item> Flytt bildet på skjermen. Aktiv når et bilde er til stede i studio. </item>
+            <item> Velg området og klipp det med å trykke der. Merkelapper langs omrisset og i midten lar deg justere valget. Aktiv når et bilde er til stede i studio. </item>
+            <item> Rotasjon, forvrengning. Bytte mellom dem er der. Siste modus tilbakestiller alt. Aktiv når et bilde er til stede i studio. </item>
+            <item> Sett inn teksten. Trykk her igjen, innstillingsvinduet for teksten vises. Aktiv når et bilde er til stede i studio. </item>
+            <item> Fyll etter farge, fyll inn det skisserte området. Aktiv når det er et bilde i studio </item>
+            <item> Massivt viskelær og med graderinger. Bytt dem hit. Aktiv når et bilde er til stede i studio. </item>
+            <item> Børste, tre moduser og flekker. Aktiv når et bilde er til stede i studio. </item>
+            <item> Kopier fargen fra tegningen. Forrige verktøy forblir aktivt. Aktiv når et bilde er til stede i studio. </item>
+            <item> Gjenta. </item>
+            <item> Angre. </item>
+            <item> Oversikt over tegningen. Nyttig når du arbeider med gjennomsiktig lerret. Når du jobber med to, er fargene på omrissene forskjellige. Aktiv når et bilde er til stede i studio. </item>
+            <item> Sletter prosjektet med all historie. Aktiv når et bilde er til stede i studio. </item>
+            <item> Lar noen av verktøyene påvirke begge bildene. Aktiv når et tilleggsbilde er til stede. </item>
+            <item> Bytt plassering av hoved- og øvre bilder. Aktiv når et tilleggsbilde er til stede. </item>
+            <item> Kombiner to bilder til ett. Øvre avlinger langs omrisset av hoved. Aktiv når et tilleggsbilde er til stede. </item>
+            <item> Slett det øvre bildet. Aktiv når et tilleggsbilde er til stede. </item>
+        </string-array>
+
+
+
+    <string-array name = "collect_title">
+                <item> Legg til mappe </item>
+                <item> Behandle </item>
+            </string-array>
+
+        <string-array name = "collect_note">
+            <item> Legg til en mappe i galleriet. System Explorer vil vises. Velg en mappe, og hvis den har bildene, vil den bli lagt til. Hvis det ikke er nødvendig lagringsplass, kan du sjekke ut menyen til utforskeren. </item>
+            <item> Apphåndtering. </item>
+        </string-array>
+
+
+        <string-array name = "collect_root_menu_title">
+            <item> Tilleggsinnstillinger </item>
+            <item> Skjul </item>
+            <item> Del </item>
+            <item> Slett </item>
+        </string-array>
+
+        <string-array name = "collect_root_menu_note">
+            <item> Tilleggsinnstillingsmodus. Gjelder for én mappe. La den være ved å trykke på denne knappen. </item>
+            <item> Skjul denne mappen. </item>
+            <item> Del innholdet i denne mappen. </item>
+            <item> Slett den valgte mappen. </item>
+        </string-array>
+
+
+        <string-array name = "collect_adapt_menu_title">
+            <item> Tilleggsinnstillinger </item>
+            <item> Del </item>
+            <item> Slett </item>
+        </string-array>
+
+        <string-array name = "collect_adapt_menu_note">
+            <item> Tilleggsinnstillingsmodus. Gjelder for mer enn ett bilde. La den være ved å trykke på denne knappen. </item>
+            <item> Del de valgte bildene. </item>
+            <item> Slett de valgte bildene. </item>
+        </string-array>
+
+
+        <string-array name = "addlyr_title">
+            <item> størrelse </item>
+            <item> Gjennomsiktighet </item>
+            <item> Speil </item>
+            <item> Åpne </item>
+            <item> Tilbake </item>
+            <item> Lukk </item>
+
+        </string-array>
+
+        <string-array name = "addlyr_note">
+            <item> Stor størrelse på bildet kan påvirke stabiliteten til appen. Her kan du endre størrelse på den. </item>
+            <item> Grad av åpenhet. </item>
+            <item> Speilbilde. </item>
+            <item> Send bildet til studioet. </item>
+            <item> Gå tilbake til kilden til bildet. </item>
+            <item> Lukk vinduet. </item>
+        </string-array>
+
+        <string-array name = "review_title">
+            <item> Vis bildet </item>
+            <item> Rediger </item>
+            <item> Avslutt </item>
+
+        </string-array>
+
+        <string-array name = "review_note">
+            <item> Bildevisning med mulighet for å bla gjennom. Med denne knappen kan du dele den. </item>
+            <item> Send til redigeringsvinduet og åpne deretter i studio. Viktig! Åpning av bildet herfra begynner et nytt prosjekt. </item>
+            <item> Lukk visningsmodus. </item>
+
+
+        </string-array>
+
+    <string-array name = "creator_title">
+        <item> Åpne </item>
+        <item> Bredde </item>
+        <item> Høyde </item>
+        <item> bakgrunnsfarge </item>
+        <item> Avslutt </item>
+
+</string-array>
+        <string-array name = "creator_note">
+            <item> Tom lerretmodus. Åpne lerret i redaktøren for å sende det til studio. </item>
+            <item> Angi bredde. </item>
+            <item> Angi høyde. </item>
+            <item> Åpne fargevalg. Trykk på midten for å avslutte. </item>
+            <item> Lukk tomt lerretmodus. </item>
+
+        </string-array>
+
+    <string-array name = "addlyr_collect_title">
+                <item> galleri </item>
+                <item> Avslutt </item>
+
+            </string-array>
+        <string-array name = "addlyr_collect_note">
+            <item> Galleri inneholder mapper med bilder. Åpne dem i studio. De vil bli lagt til det eksisterende prosjektet. Hvis studioet allerede har et tilleggsbilde, vil det erstattes. </item>
+            <item> Lukk galleriet. </item>
+        </string-array>
+
+
+        <string-array name = "addlyr_cam_title">
+            <item> Ta et bilde </item>
+            <item> Valg av kamera </item>
+            <item> Lyn </item>
+            <item> Avslutt </item>
+
+
+        </string-array>
+        <string-array name = "addlyr_cam_note">
+            <item> Ta et bilde og åpne det i redigeringsprogrammet. </item>
+            <item> Velg hvilket kamera du vil bruke. </item>
+            <item> Slå på lynet. </item>
+            <item> Lukk kamera. </item>
+
+        </string-array>
+
+        <string-array name = "prop_title">
+            <item> Pensel </item>
+            <item> viskelær </item>
+            <item> Text </item>
+            <item> Farge </item>
+            <item> Børst transparens </item>
+            <item> Bredde </item>
+            <item> Eraser transparens </item>
+            <item> Bruk </item>
+            <item> Avslutt </item>
+
+        </string-array>
+
+        <string-array name = "prop_note">
+            <item> Viser børsten. Størrelsen og fargen. </item>
+            <item> Viskelær, bredde og nivå på sletting. </item>
+            <item> Størrelse og farge på teksten. </item>
+            <item> Angi fargen på penselen og teksten. </item>
+            <item> Angi gjennomsiktighetsnivået for den valgte fargen. </item>
+            <item> Angi bredden på penselen, viskelæret og størrelsen på teksten. </item>
+            <item> Juster nivået for sletting. </item>
+            <item> Bruk de valgte innstillingene. </item>
+            <item> Avbryt og avslutt. </item>
+        </string-array>
+
+        <string-array name = "edit_text_title">
+            <item> Skriv inn teksten </item>
+            <item> opprydding </item>
+
+            <item> Skrift </item>
+            <item> kontur </item>
+            <item> Vinkel </item>
+            <item> Helning </item>
+
+            <item> Bruk </item>
+            <item> Avslutt </item>
+        </string-array>
+
+        <string-array name = "edit_text_note">
+            <item> Tekstboks. </item>
+            <item> Slett forrige tekst. </item>
+
+            <item> Brukt font. </item>
+            <item> Velg solid skrift eller omriss. </item>
+            <item> Juster skriftsvinkelen. </item>
+            <item> Angi ønsket tilbøyelighet til skriften. </item>
+
+            <item> Lagre endringene og la være. </item>
+            <item> La være uten endringer. </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_title">
+            <item> Liste over skriftene </item>
+            <item> Legg til en font </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_note">
+            <item> Liste over tilgjengelige skrifter. </item>
+            <item> Legg til nedlastet font. Font er en fil med utvidelsen "ttf" eller "otf". </item>
+        </string-array>
+
+
+
+
+
+</resources>
