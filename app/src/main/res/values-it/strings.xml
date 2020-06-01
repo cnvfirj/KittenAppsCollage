@@ -1,0 +1,48 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> La cartella è stata eliminata </string>
+        <string name = "SELECTED_IMAGES_DELETED"> Le immagini selezionate sono state eliminate. </string>
+        <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Non sono state trovate nuove immagini nella cartella selezionata. </string>
+        <string name = "IN_GALLERY_ADD_FOLDER"> Nuova cartella è stata aggiunta alla galleria. </string>
+        <string name = "CREATE_IMG"> Crea canvas </string>
+        <string name = "condition_apply_tools"> Apri o crea canvas </string>
+        <string name = "PHOTO"> Foto </string>
+        <string name = "COLLECT"> Galleria </string>
+        <string name = "YES"> Sì </string>
+        <string name = "NO"> No </string>
+        <string name = "ASSES_TO_DATA"> Accesso ai dati </string>
+        <string name = "ASSES_TO_CAMERA"> Accesso alla videocamera </string>
+        <string name = "REPEAT_REQUEST"> Ripetere la richiesta? </string>
+        <string name = "RATIONALE_ASSES_CAMERA"> Per scattare foto utilizzando l\'app è necessario l\'accesso alla fotocamera. </string>
+        <string name = "RATIONALE_ASSES_WRITE"> Per leggere e salvare le immagini sul dispositivo è necessario l\'accesso al contenuto multimediale. </string>
+        <string name = "TOAST_RESOLUTION"> Nelle impostazioni impostare la risoluzione richiesta. </string>
+        <string name = "NOT_PERMISSION"> Accesso negato </string>
+        <string name = "GO_TO_SETTINGS"> Per ottenerlo, vai alle impostazioni dell\'app. </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> L\'immagine non è stata salvata. Controlla la memoria rimanente del dispositivo. </string>
+        <string name = "IMAGE_SAVED"> L\'immagine è stata salvata </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> L\'immagine non è stata salvata. Controlla la cartella in cui deve essere salvata. </string>
+        <string name = "FIND_FILE_FONT"> Trova il file con estensione "ttf" o "otf" (c\'è .ttf o .otf alla fine del nome del file.) </string>
+        <string name = "INCORRECT_TEXT"> Testo non valido </string>
+        <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Nuovo carattere non è stato aggiunto. Forse il nome è già in uso. </string>
+        <string name = "FILE_FONT"> Il file dovrebbe avere l\'estensione "ttf" o "otf" (c\'è .ttf o .otf alla fine del nome del file) </string>
+        <string name = "FONT_ADD_FIND_IN_LIST"> Il carattere è stato aggiunto. Trovalo nell\'elenco. </string>
+        <string name = "ADD_FONTS_FIND"> Sono stati trovati caratteri aggiuntivi. </string>
+        <string name = "ADD_FONTS_NOT_FIND"> Non sono stati trovati caratteri aggiuntivi. Scarica i caratteri con estensione .ttf o .otf e aggiungili. </string>
+        <string name = "SELECT_POINT_PIPETTE"> Seleziona il punto sull\'area riempita e non trasparente del disegno. </string>
+        <string name = "REQUEST_LOAD_OLD_PROJECT"> Hai un progetto incompiuto. </string>
+        <string name = "OPEN_OLD_PROJECT"> Aprirlo? Altrimenti verrà eliminato. </string>
+        <string name = "ERROR_DELETE_FILE"> Errore eliminazione file </string>
+        <string name = "images"> Immagini </string>
+        <string name = "collet_images"> Visualizza le immagini, tenendo premuto su una di esse si aprono le azioni aggiuntive. Torna indietro usando questo pulsante. </string>
+        <string name = "DELETED"> Cancellazione </string>
+        <string name = "FILES_DELETED_IN_MAIN_STORAGE"> I file vengono eliminati dal supporto fisico </string>
+        <string name = "language"> Lingua </string>
+        <string name = "color_theme"> Tema colore </string>
+        <string name = "restart_window"> riavvia la finestra </string>
+</resources>

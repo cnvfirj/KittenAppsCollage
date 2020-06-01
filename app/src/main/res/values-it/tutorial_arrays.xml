@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name = "main_buttons_title">
+                <item> Responsabilità </item>
+                <item> Indirizzi </item>
+                <item> Studio </item>
+                <item> Gallery </item>
+            </string-array>
+
+        <string-array name = "main_buttons_note">
+            <item> L\'autore di questa app non si assume la responsabilità per l\'utilizzo di immagini di terze parti. Utilizzando questa app, l\'utente è tenuto a rispettare la legge e rispettare il copyright. </item>
+            <item> Nel processo, appariranno i suggerimenti. Premi l\'elemento successivo o selezionato per continuare. </item>
+            <item> In questa finestra stai lavorando con l\'immagine. Gli strumenti principali sono nascosti dietro tre pulsanti. </item>
+            <item> Lì aprite le cartelle, visualizzate le immagini ecc. Tenendo premuto un elemento della galleria si aprono le azioni aggiuntive. Per funzionare, è necessario l\'accesso ai contenuti multimediali. </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_title">
+            <item> Apri disegno </item>
+            <item> Strumenti </item>
+            <item> Salvataggio del disegno </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_note">
+            <item> Aggiungi un\'immagine o inizia un nuovo progetto. Se vuoi combinare le immagini, lavora da qui. </item>
+            <item> Strumenti per la modifica del disegno. Alcuni di essi sono attivi solo a determinate condizioni. </item>
+            <item> Salva o condividi un\'immagine dallo studio qui. </item>
+        </string-array>
+
+
+
+        <string-array name = "draw_add_title">
+            <item> Fotocamera </item>
+            <item> Collection </item>
+            <item> Tela bianca </item>
+        </string-array>
+
+        <string-array name = "draw_add_note">
+            <item> Apre una foto scattata dalla fotocamera. Per funzionare, è necessario l\'accesso alla videocamera. </item>
+            <item> Ottieni un\'immagine dalla collezione. </item>
+            <item> Crea tu stesso una tela bianca. </item>
+        </string-array>
+
+
+        <string-array name = "draw_save_title">
+            <item> Condividi </item>
+            <item> Salva </item>
+            <item> Salva </item>
+        </string-array>
+
+        <string-array name = "draw_save_note">
+            <item> Condividi l\'immagine dallo studio. </item>
+            <item> Salva l\'immagine in una determinata posizione. Apparirà System Explorer. In caso di assenza del menu di checkout di archiviazione richiesto dell\'esploratore, potrebbe essere nascosto. </item>
+            <item> Salva l\'immagine nella posizione precedente. </item>
+        </string-array>
+
+
+    <string-array name = "draw_tools_title">
+                <item> Impostazioni </item>
+                <item> Zoom </item>
+                <item> Sposta </item>
+                <item> Taglia </item>
+                <item> Distorsione </item>
+                <item> Testo </item>
+                <item> Riempimento </item>
+                <item> Eraser </item>
+                <item> Brush </item>
+                <item> Contagocce </item>
+                <item> Torna indietro </item>
+                <item> Vai avanti </item>
+                <item> Struttura </item>
+                <item> Elimina il progetto </item>
+                <item> Seal </item>
+                <item> Scambia </item>
+                <item> Cucire </item>
+                <item> Elimina l\'immagine </item>
+            </string-array>
+
+        <string-array name = "draw_tools_note">
+            <item> Finestra delle impostazioni per gli strumenti. Sempre attivo. </item>
+            <item> Zoom. È possibile cambiare una delle tre modalità premendo questo pulsante. Attivo quando un\'immagine è presente in studio. </item>
+            <item> Sposta l\'immagine sullo schermo. Attivo quando un\'immagine è presente in studio. </item>
+            <item> Seleziona l\'area e tagliala premendo lì. I tag lungo il contorno e al centro consentono di regolare la selezione. Attivo quando un\'immagine è presente in studio. </item>
+            <item> Rotazione, distorsione. Passare da uno all\'altro è proprio lì. L\'ultima modalità ripristina tutto. Attivo quando un\'immagine è presente in studio. </item>
+            <item> Inserisci il testo. Premere di nuovo qui, verrà visualizzata la finestra delle impostazioni per il testo. Attivo quando un\'immagine è presente in studio. </item>
+            <item> Riempi per colore, riempi all\'interno dell\'area delineata. Attivo quando c\'è un\'immagine in studio </item>
+            <item> Gomma solida e con sfumature. Passali qui. Attivo quando un\'immagine è presente in studio. </item>
+            <item> Pennello, tre modalità e macchia. Attivo quando un\'immagine è presente in studio. </item>
+            <item> Copia il colore dal disegno. Lo strumento precedente rimane attivo. Attivo quando un\'immagine è presente in studio. </item>
+            <item> Ripeti. </item>
+            <item> Annulla. </item>
+            <item> Contorno del disegno. Utile quando si lavora con tela trasparente. Quando si lavora con due, i colori dei contorni sono diversi. Attivo quando un\'immagine è presente in studio. </item>
+            <item> Elimina il progetto con tutta la cronologia. Attivo quando un\'immagine è presente in studio. </item>
+            <item> Consente ad alcuni degli strumenti di influenzare entrambe le immagini. Attivo quando è presente un\'immagine aggiuntiva. </item>
+            <item> Scambio di posizioni delle immagini principali e superiori. Attivo quando è presente un\'immagine aggiuntiva. </item>
+            <item> Combina due immagini in una. Colture superiori lungo il contorno del principale. Attivo quando è presente un\'immagine aggiuntiva. </item>
+            <item> Elimina l\'immagine superiore. Attivo quando è presente un\'immagine aggiuntiva. </item>
+        </string-array>
+
+
+
+        <string-array name = "collect_title">
+            <item> Aggiungi cartella </item>
+            <item> Gestisci </item>
+        </string-array>
+
+        <string-array name = "collect_note">
+            <item> Aggiungi una cartella nella galleria. Apparirà System Explorer. Scegli una cartella e se ha le immagini, verrà aggiunta. In caso di assenza del menu di checkout di archiviazione richiesto dell\'esploratore, potrebbe essere nascosto. </item>
+            <item> Gestione app. </item>
+        </string-array>
+
+
+        <string-array name = "collect_root_menu_title">
+            <item> Impostazioni aggiuntive </item>
+            <item> Nascondi </item>
+            <item> Condividi </item>
+            <item> Elimina </item>
+        </string-array>
+
+        <string-array name = "collect_root_menu_note">
+            <item> Modalità impostazioni aggiuntive. Applicabile a una cartella. Lascialo premendo questo pulsante. </item>
+            <item> Nascondi questa cartella. </item>
+            <item> Condividi i contenuti di questa cartella. </item>
+            <item> Elimina la cartella selezionata. </item>
+        </string-array>
+
+
+        <string-array name = "collect_adapt_menu_title">
+            <item> Impostazioni aggiuntive </item>
+            <item> Condividi </item>
+            <item> Elimina </item>
+        </string-array>
+
+        <string-array name = "collect_adapt_menu_note">
+            <item> Modalità impostazioni aggiuntive. Applicabile a più di una immagine. Lascialo premendo questo pulsante. </item>
+            <item> Condividi le immagini selezionate. </item>
+            <item> Elimina le immagini selezionate. </item>
+        </string-array>
+
+
+    <string-array name = "addlyr_title">
+                <item> Dimensioni </item>
+                <item> Trasparenza </item>
+                <item> Specchio </item>
+                <item> Apri </item>
+                <item> Indietro </item>
+                <item> Chiudi </item>
+
+            </string-array>
+
+        <string-array name = "addlyr_note">
+            <item> Grandi dimensioni dell\'immagine possono influire sulla stabilità dell\'app. Qui puoi ridimensionarlo. </item>
+            <item> Grado di trasparenza. </item>
+            <item> Immagine speculare. </item>
+            <item> Invia l\'immagine allo studio. </item>
+            <item> Ritorna alla fonte dell\'immagine. </item>
+            <item> Chiudi la finestra. </item>
+        </string-array>
+
+        <string-array name = "review_title">
+            <item> Visualizza l\'immagine </item>
+            <item> Modifica </item>
+            <item> Esci </item>
+
+        </string-array>
+
+        <string-array name = "review_note">
+            <item> Visualizzazione immagine con l\'opzione per sfogliare. Con questo pulsante puoi condividerlo. </item>
+            <item> Invia alla finestra di modifica e quindi apri in studio. Importante! Aprendo l\'immagine da qui inizia un nuovo progetto. </item>
+            <item> Chiudi la modalità di visualizzazione. </item>
+       </string-array>
+
+    <string-array name = "creator_title">
+        <item> Apri </item>
+        <item> Larghezza </item>
+        <item> Altezza </item>
+        <item> Colore di sfondo </item>
+        <item> Esci </item>
+
+</string-array>
+        <string-array name = "creator_note">
+            <item> Modalità tela vuota. Apri la tela nell\'editor per inviarlo allo studio. </item>
+            <item> Imposta larghezza. </item>
+            <item> Imposta l\'altezza. </item>
+            <item> Apri selettore colore. Premere al centro per uscire. </item>
+            <item> Chiudi la modalità tela vuota. </item>
+
+        </string-array>
+
+        <string-array name = "addlyr_collect_title">
+            <item> Gallery </item>
+            <item> Esci </item>
+
+        </string-array>
+        <string-array name = "addlyr_collect_note">
+            <item> La galleria contiene cartelle con immagini. Aprili in studio. Saranno aggiunti al progetto esistente. Se studio ha già un\'immagine aggiuntiva, verrà sostituita.</item>
+            <item> Chiudi la galleria. </item>
+        </string-array>
+
+
+        <string-array name = "addlyr_cam_title">
+            <item> Scatta una foto </item>
+            <item> Selezione telecamera </item>
+            <item> fulmini </item>
+            <item> Esci </item>
+
+
+        </string-array>
+
+        <string-array name = "addlyr_cam_note">
+            <item> Scatta una foto e aprila nell\'editor. </item>
+            <item> Scegli quale telecamera usare. </item>
+            <item> Accendi il fulmine. </item>
+            <item> Chiudi fotocamera. </item>
+        </string-array>
+
+        <string-array name = "prop_title">
+            <item> Brush </item>
+            <item> Eraser </item>
+            <item> testo </item>
+            <item> Colore </item>
+            <item> Trasparenza pennello </item>
+            <item> Larghezza </item>
+            <item> Trasparenza della gomma </item>
+            <item> Applica </item>
+            <item> Esci </item>
+
+        </string-array>
+
+        <string-array name = "prop_note">
+            <item> Mostra il pennello. Le sue dimensioni e il colore. </item>
+            <item> Gomma, larghezza e livello di cancellazione. </item>
+            <item> Dimensione e colore del testo. </item>
+            <item> Imposta il colore del pennello e del testo. </item>
+            <item> Imposta il livello di trasparenza del colore selezionato. </item>
+            <item> Imposta la larghezza del pennello, la gomma e le dimensioni del testo. </item>
+            <item> Regola il livello di cancellazione. </item>
+            <item> Applica le impostazioni selezionate. </item>
+            <item> Annulla ed esci. </item>
+        </string-array>
+
+        <string-array name = "edit_text_title">
+            <item> Inserisci il testo </item>
+            <item> Pulizia </item>
+
+            <item> Carattere </item>
+            <item> Struttura </item>
+            <item> Angolo </item>
+            <item> Inclinazione </item>
+
+            <item> Applica </item>
+            <item> Esci </item>
+        </string-array>
+
+        <string-array name = "edit_text_note">
+            <item> Casella di testo. </item>
+            <item> Elimina il testo precedente. </item>
+
+            <item> Carattere usato. </item>
+            <item> Scegli il carattere solido o il suo contorno. </item>
+            <item> Regola l\'angolazione del carattere. </item>
+            <item> Imposta l\'inclinazione richiesta del font. </item>
+
+            <item> Salva le modifiche e lascia. </item>
+            <item> Lascia senza modifiche. </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_title">
+            <item> Elenco dei caratteri </item>
+            <item> Aggiungi un carattere </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_note">
+            <item> Elenco dei caratteri disponibili. </item>
+            <item> Aggiungi carattere scaricato. Font è un file con estensione "ttf" o "otf". </item>
+        </string-array>
+
+
+
+
+
+</resources>
