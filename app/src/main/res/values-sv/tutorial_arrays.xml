@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+                <item> Varning </item>
+                <item> Tips </item>
+                <item> Studio </item>
+                <item> Gallery </item>
+            </string-array>
+
+        <string-array name = "main_buttons_note">
+            <item> Författaren till den här appen tar inte ansvar för användning av bilder från tredje part. Med denna app är användaren skyldig att följa lagen och respektera upphovsrätten. </item>
+            <item> I processen visas antydningarna. Tryck på nästa eller valda element för att fortsätta. </item>
+            <item> I det här fönstret arbetar du med bilden. Huvudverktygen är dolda bakom tre knappar. </item>
+            <item> Där öppnar du mapparna, visar bilderna osv. Om du håller in ett element i galleriet öppnas de ytterligare åtgärderna. Tillgång till multimedia krävs för att den ska fungera. </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_title">
+            <item> Öppna ritning </item>
+            <item> Verktyg </item>
+            <item> Sparar ritning </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_note">
+            <item> Lägg till en bild eller starta ett nytt projekt. Om du vill kombinera bilder, arbeta härifrån. </item>
+            <item> Verktyg för ritningsredigering. Vissa av dem är bara aktiva under vissa förhållanden. </item>
+            <item> Spara eller dela en bild från studion här. </item>
+        </string-array>
+
+
+
+        <string-array name = "draw_add_title">
+            <item> Kamera </item>
+            <item> Collection </item>
+            <item> Tom duk </item>
+        </string-array>
+
+        <string-array name = "draw_add_note">
+            <item> Öppna ett foto taget från kameran. Tillgång till kameran krävs för att den ska fungera. </item>
+            <item> Hämta en bild från samlingen. </item>
+            <item> Skapa tom duk själv. </item>
+        </string-array>
+
+
+        <string-array name = "draw_save_title">
+            <item> Dela </item>
+            <item> Spara </item>
+            <item> Spara </item>
+        </string-array>
+
+        <string-array name = "draw_save_note">
+            <item> Dela bilden från studion. </item>
+            <item> Spara bilden på en viss plats. Systemutforskaren visas. Om det inte finns någon nödvändig lagring, kolla in utforskarens meny, kan den vara dold. </item>
+            <item> Spara bilden på tidigare plats. </item>
+        </string-array>
+
+
+        <string-array name = "draw_tools_title">
+            <item> Inställningar </item>
+            <item> Zoom </item>
+            <item> Flytta </item>
+            <item> Klipp </item>
+            <item> Förvräng </item>
+            <item> Text </item>
+            <item> Fill </item>
+            <item> Eraser </item>
+            <item> Pensel </item>
+            <item> dropper </item>
+            <item> Gå tillbaka </item>
+            <item> Gå fram </item>
+            <item> Outline </item>
+            <item> Radera projektet </item>
+            <item> Seal </item>
+            <item> Swap </item>
+            <item> Sy </item>
+            <item> Radera bilden </item>
+        </string-array>
+
+        <string-array name = "draw_tools_note">
+            <item> Inställningsfönster för verktygen. Alltid aktiv. </item>
+            <item> Zoom. Du kan byta ett av de tre lägena genom att trycka på den här knappen. Aktiv när en bild finns i studion. </item>
+            <item> Flytta bilden på skärmen. Aktiv när en bild finns i studion. </item>
+            <item> Välj området och klipp det genom att trycka där. Taggar längs konturen och i mitten låter dig justera valet. Aktiv när en bild finns i studion. </item>
+            <item> Rotation, distorsion. Växla mellan dem är precis där. Sista läget återställer allt. Aktiv när en bild finns i studion. </item>
+            <item> Sätt in texten. Tryck här igen, inställningsfönstret för texten kommer att visas. Aktiv när en bild finns i studion. </item>
+            <item> Fyll på färg, fyll i det konturerade området. Aktiv när det finns en bild i studion </item>
+            <item> Massivt radergummi och med lutningar. Växla dem här. Aktiv när en bild finns i studion. </item>
+            <item> Pensel, tre lägen och fläckar. Aktiv när en bild finns i studion. </item>
+            <item> Kopiera färgen från ritningen. Tidigare verktyg förblir aktivt. Aktiv när en bild finns i studion. </item>
+            <item> Gör om. </item>
+            <item> Ångra. </item>
+            <item> Kontur av ritningen. Användbart när du arbetar med transparent duk. När du arbetar med två är konturerna färger olika. Aktiv när en bild finns i studion. </item>
+            <item> Tar bort projektet med all historik. Aktiv när en bild finns i studion. </item>
+            <item> Låter att några av verktygen påverkar båda bilderna. Aktiv när en ytterligare bild finns. </item>
+            <item> Byta platser för huvud- och övre bilder. Aktiv när en ytterligare bild finns. </item>
+            <item> Kombinera två bilder till en. Övre grödor längs huvudlinjen. Aktiv när en ytterligare bild finns. </item>
+            <item> Radera övre bild. Aktiv när en ytterligare bild finns. </item>
+        </string-array>
+
+
+
+    <string-array name = "collect_title">
+                <item> Lägg till mapp </item>
+                <item> Hantera </item>
+            </string-array>
+
+        <string-array name = "collect_note">
+            <item> Lägg till en mapp i galleriet. Systemutforskaren visas. Välj en mapp och om den har bilderna läggs den till. Om det inte finns någon nödvändig lagring, kolla in utforskarens meny, kan den vara dold. </item>
+            <item> Apphantering. </item>
+        </string-array>
+
+
+        <string-array name = "collect_root_menu_title">
+            <item> Ytterligare inställningar </item>
+            <item> Hide </item>
+            <item> Dela </item>
+            <item> Radera </item>
+        </string-array>
+
+        <string-array name = "collect_root_menu_note">
+            <item> Läge för ytterligare inställningar. Gäller för en mapp. Lämna det genom att trycka på den här knappen. </item>
+            <item> Dölj den här mappen. </item>
+            <item> Dela innehållet i den här mappen. </item>
+            <item> Radera den valda mappen. </item>
+        </string-array>
+
+
+        <string-array name = "collect_adapt_menu_title">
+            <item> Ytterligare inställningar </item>
+            <item> Dela </item>
+            <item> Radera </item>
+        </string-array>
+
+        <string-array name = "collect_adapt_menu_note">
+            <item> Läge för ytterligare inställningar. Gäller för mer än en bild. Lämna det genom att trycka på den här knappen. </item>
+            <item> Dela de valda bilderna. </item>
+            <item> Radera de valda bilderna. </item>
+        </string-array>
+
+
+        <string-array name = "addlyr_title">
+            <item> Storlek </item>
+            <item> Transparens </item>
+            <item> Mirror </item>
+            <item> Öppna </item>
+            <item> Tillbaka </item>
+            <item> Stäng </item>
+
+        </string-array>
+
+        <string-array name = "addlyr_note">
+            <item> Stor bildstorlek kan påverka appens stabilitet. Här kan du ändra storlek på den. </item>
+            <item> grad av transparens. </item>
+            <item> Spegelbild. </item>
+            <item> Skicka bilden till studion. </item>
+            <item> Återgå till bildens källa. </item>
+            <item> Stäng fönstret. </item>
+        </string-array>
+
+        <string-array name = "review_title">
+            <item> Visa bilden </item>
+            <item> Redigera </item>
+            <item> Avsluta </item>
+
+        </string-array>
+
+        <string-array name = "review_note">
+            <item> Bildvy med alternativet att bläddra igenom. Med den här knappen kan du dela den. </item>
+            <item> Skicka till redigeringsfönstret och öppna sedan i studion. Viktig! Öppnar bilden härifrån börjar ett nytt projekt. </item>
+            <item> Stäng visningsläget. </item>
+
+        </string-array>
+
+    <string-array name = "creator_title">
+        <item> Öppna </item>
+        <item> Bredd </item>
+        <item> Höjd </item>
+        <item> Bakgrundsfärg </item>
+        <item> Avsluta </item>
+
+</string-array>
+        <string-array name = "creator_note">
+            <item> Tomt dukläge. Öppna duk i redigeraren för att skicka den till studion. </item>
+            <item> Ställ in bredd. </item>
+            <item> Ställ in höjd. </item>
+            <item> Öppna färgväljaren. Tryck på mitten för att avsluta. </item>
+            <item> Stäng tomt dukläge. </item>
+
+        </string-array>
+
+        <string-array name = "addlyr_collect_title">
+            <item> Gallery </item>
+            <item> Avsluta </item>
+
+        </string-array>
+        <string-array name = "addlyr_collect_note">
+            <item> Galleri innehåller mappar med bilder. Öppna dem i studion. De läggs till i det befintliga projektet. Om studion redan har en ytterligare bild kommer den att ersättas. </item>
+            <item> Stäng galleriet. </item>
+        </string-array>
+
+
+        <string-array name = "addlyr_cam_title">
+            <item> Ta en bild </item>
+            <item> Kameraval </item>
+            <item> Belysning </item>
+            <item> Avsluta </item>
+
+
+        </string-array>
+        <string-array name = "addlyr_cam_note">
+            <item> Ta en bild och öppna den i redigeraren. </item>
+            <item> Välj vilken kamera som ska användas. </item>
+            <item> Slå på blixtningen. </item>
+            <item> Stäng kameran. </item>
+
+        </string-array>
+
+    <string-array name = "prop_title">
+                <item> Pensel </item>
+                <item> Eraser </item>
+                <item> Text </item>
+                <item> Färg </item>
+                <item> Borsta öppenhet </item>
+                <item> Bredd </item>
+                <item> Eraser-transparens </item>
+                <item> Apply </item>
+                <item> Avsluta </item>
+
+            </string-array>
+
+        <string-array name = "prop_note">
+            <item> Visar borsten. Dess storlek och färg. </item>
+            <item> Radergummi, radering av bredd och nivå. </item>
+            <item> Storlek och färg på texten. </item>
+            <item> Ställ in färgen på borsten och texten. </item>
+            <item> Ställ in transparensnivån för den valda färgen. </item>
+            <item> Ställ in bredden på borsten, radern och textens storlek. </item>
+            <item> Justera raderingsnivån. </item>
+            <item> Tillämpa de valda inställningarna. </item>
+            <item> Avbryt och avsluta. </item>
+        </string-array>
+
+        <string-array name = "edit_text_title">
+            <item> Ange texten </item>
+            <item> Cleanup </item>
+
+            <item> Font </item>
+            <item> Outline </item>
+            <item> Vinkel </item>
+            <item> Lutning </item>
+
+            <item> Apply </item>
+            <item> Avsluta </item>
+        </string-array>
+
+        <string-array name = "edit_text_note">
+            <item> Textruta. </item>
+            <item> Radera föregående text. </item>
+
+            <item> Använt teckensnitt. </item>
+            <item> Välj fast typsnitt eller dess kontur. </item>
+            <item> Justera teckensnittets vinkel. </item>
+            <item> Ställ in önskad lutning av teckensnittet. </item>
+
+            <item> Spara ändringarna och lämna. </item>
+            <item> Lämna utan ändringar. </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_title">
+            <item> Lista över teckensnitt </item>
+            <item> Lägg till ett teckensnitt </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_note">
+            <item> Lista över tillgängliga teckensnitt. </item>
+            <item> Lägg till nedladdat teckensnitt. Font är en fil med "ttf" eller "otf" förlängning. </item>
+        </string-array>
+
+
+
+
+
+</resources>

@@ -1,0 +1,48 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> Mapp har tagits bort </string>
+        <string name = "SELECTED_IMAGES_DELETED"> Valda bilder har tagits bort. </string>
+        <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Inga nya bilder har hittats i den valda mappen. </string>
+        <string name = "IN_GALLERY_ADD_FOLDER"> Ny mapp har lagts till i galleriet. </string>
+        <string name = "CREATE_IMG"> Skapa duk </string>
+        <string name = "condition_apply_tools"> Öppna eller skapa duk </string>
+        <string name = "PHOTO"> Foto </string>
+        <string name = "COLLECT"> Galleri </string>
+        <string name = "YES"> Ja </string>
+        <string name = "NO"> Nej </string>
+        <string name = "ASSES_TO_DATA"> Tillgång till data </string>
+        <string name = "ASSES_TO_CAMERA"> Tillgång till kameran </string>
+        <string name = "REPEAT_REQUEST"> Upprepa begäran? </string>
+        <string name = "RATIONALE_ASSES_CAMERA"> Tillgång till kameran krävs för att ta bilder med appen. </string>
+        <string name = "RATIONALE_ASSES_WRITE"> Tillgång till multimedia krävs för att läsa och spara bilderna på enheten. </string>
+        <string name = "TOAST_RESOLUTION"> Ställ in önskad upplösning i inställningar. </string>
+        <string name = "NOT_PERMISSION"> Åtkomst nekad </string>
+        <string name = "GO_TO_SETTINGS"> Gå till appinställningarna för att få det. </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Bilden har inte sparats. Kontrollera enhetens återstående lagring. </string>
+        <string name = "IMAGE_SAVED"> Bilden har sparats </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Bilden har inte sparats. Kontrollera mappen där den ska sparas. </string>
+        <string name = "FIND_FILE_FONT"> Hitta filen med tillägget "ttf" eller "otf" (Det finns .ttf eller .otf i slutet av filnamnet.) </string>
+        <string name = "INCORRECT_TEXT"> Ogiltig text </string>
+        <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Nytt teckensnitt har inte lagts till. Kanske är namnet redan i bruk. </string>
+        <string name = "FILE_FONT"> Filen ska vara med tillägget "ttf" eller "otf" (det finns .ttf eller .otf i slutet av filnamnet) </string>
+        <string name = "FONT_ADD_FIND_IN_LIST"> Teckensnitt har lagts till. Hitta det i listan. </string>
+        <string name = "ADD_FONTS_FIND"> Ytterligare teckensnitt har hittats. </string>
+        <string name = "ADD_FONTS_NOT_FIND"> Ytterligare teckensnitt har inte hittats. Ladda ner teckensnitten med tillägget .ttf eller .otf och lägg till dem. </string>
+        <string name = "SELECT_POINT_PIPETTE"> Välj punkten på det fyllda och icke-transparenta området på ritningen. </string>
+        <string name = "REQUEST_LOAD_OLD_PROJECT"> Du har ett oavslutat projekt. </string>
+        <string name = "OPEN_OLD_PROJECT"> Öppna det? Annars raderas den. </string>
+        <string name = "ERROR_DELETE_FILE"> Fel i radering av fil </string>
+        <string name = "images"> Bilder </string>
+        <string name = "collet_images"> Visa bilderna, tryck på och håll in en av dem för att öppna de ytterligare åtgärderna. Gå tillbaka med den här knappen. </string>
+        <string name = "DELETED"> Radering </string>
+        <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Filer raderas från fysiska media </string>
+        <string name = "language"> Språk </string>
+        <string name = "color_theme"> Färgtema </string>
+        <string name = "restart_window"> starta om fönstret </string>
+</resources>
