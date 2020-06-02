@@ -4,7 +4,7 @@
                 <item> Kohustustest loobumine </item>
                 <item> Vihjed </item>
                 <item> Stuudio </item>
-                <item> galerii </item>
+                <item> Galerii </item>
             </string-array>
 
         <string-array name = "main_buttons_note">
@@ -55,16 +55,16 @@
             <item> Suum </item>
             <item> Teisalda </item>
             <item> Lõika </item>
-            <item> moonutama </item>
-            <item> tekst </item>
-            <item> täitke </item>
-            <item> kustutuskumm </item>
+            <item> Moonutama </item>
+            <item> Tekst </item>
+            <item> Täitke </item>
+            <item> Kustutuskumm </item>
             <item> Võsa </item>
-            <item> tilguti </item>
+            <item> Tilguti </item>
             <item> Mine tagasi </item>
-            <item> edasi liikuda </item>
+            <item> Edasi liikuda </item>
             <item> Kontuur </item>
-            <item> kustutage projekt </item>
+            <item> Kustutage projekt </item>
             <item> Pitser </item>
             <item> Vaheta </item>
             <item> õmble </item>
@@ -104,14 +104,14 @@
 
         <string-array name = "collect_root_menu_title">
             <item> Lisasätted </item>
-            <item> peida </item>
+            <item> Peida </item>
             <item> Jaga </item>
             <item> Kustuta </item>
         </string-array>
 
         <string-array name = "collect_root_menu_note">
             <item> Täiendavate sätete režiim. Kohaldatav ühe kausta jaoks. Lahkuge sellest nupust vajutades. </item>
-            <item> peida see kaust. </item>
+            <item> Peida see kaust. </item>
             <item> Jagage selle kausta sisu. </item>
             <item> Kustutage valitud kaust. </item>
         </string-array>
@@ -153,8 +153,8 @@
         </string-array>
 
         <string-array name = "review_note">
-            <item> pildivaade võimalusega läbi vaadata. Selle nupuga saate seda jagada. </item>
-            <item> saatke redigeerimise aknasse ja avage siis stuudios. Tähtis! Kujutise siin avamine alustab uut projekti. </item>
+            <item> Pildivaade võimalusega läbi vaadata. Selle nupuga saate seda jagada. </item>
+            <item> Saatke redigeerimise aknasse ja avage siis stuudios. Tähtis! Kujutise siin avamine alustab uut projekti. </item>
             <item> Sule vaatamisrežiim. </item>
         </string-array>
 
@@ -175,7 +175,7 @@
         </string-array>
 
         <string-array name = "addlyr_collect_title">
-            <item> galerii </item>
+            <item> Galerii </item>
             <item> Exit </item>
         </string-array>
 
@@ -185,7 +185,7 @@
         </string-array>
 
         <string-array name = "addlyr_cam_title">
-            <item> tehke pilti </item>
+            <item> Tehke pilti </item>
             <item> Kaamera valik </item>
             <item> Välk </item>
             <item> Exit </item>
@@ -195,13 +195,13 @@
                 <item> Tehke pilt ja avage see redaktoris. </item>
                 <item> Valige, millist kaamerat kasutada. </item>
                 <item> Lülitage välk sisse. </item>
-                <item> sule kaamera. </item>
+                <item> Sule kaamera. </item>
             </string-array>
 
         <string-array name = "prop_title">
             <item> Võsa </item>
             <item> kustutuskumm </item>
-            <item> tekst </item>
+            <item> Tekst </item>
             <item> Värv </item>
             <item> Pintsli läbipaistvus </item>
             <item> Laius </item>
@@ -213,7 +213,7 @@
         <string-array name = "prop_note">
             <item> Näitab harja. Selle suurus ja värv. </item>
             <item> kustutuskumm, kustutamise laius ja tase. </item>
-            <item> teksti suurus ja värv. </item>
+            <item> Teksti suurus ja värv. </item>
             <item> Määrake harja ja teksti värv. </item>
             <item> Määrake valitud värvi läbipaistvuse tase. </item>
             <item> Määrake harja laius, kustutuskumm ja teksti suurus. </item>
@@ -223,7 +223,7 @@
         </string-array>
 
         <string-array name = "edit_text_title">
-            <item> sisestage tekst </item>
+            <item> Sisestage tekst </item>
             <item> Puhastus </item>
             <item> Font </item>
             <item> Kontuur </item>
@@ -234,7 +234,7 @@
         </string-array>
 
         <string-array name = "edit_text_note">
-            <item> tekstiväli. </item>
+            <item> Tekstiväli. </item>
             <item> Kustuta eelmine tekst. </item>
             <item> Kasutatud font. </item>
             <item> Valige kindel font või selle kontuur. </item>
@@ -246,7 +246,7 @@
 
         <string-array name = "edit_text_fonts_title">
             <item> Fontide loetelu </item>
-            <item> fondi lisamine </item>
+            <item> Fondi lisamine </item>
         </string-array>
 
         <string-array name = "edit_text_fonts_note">
