@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+                <item> Atsisakymas </item>
+                <item> Patarimai </item>
+                <item> Studija </item>
+                <item> galerija </item>
+            </string-array>
+
+        <string-array name = "main_buttons_note">
+            <item> Šios programos autorius nemano, kad yra tinkamas naudoti trečiųjų šalių vaizdus. Naudodamasis šia programa, vartotojas privalo laikytis įstatymų ir gerbti autorių teises. </item>
+            <item> Procese pasirodys užuominos. Norėdami tęsti, paspauskite kitą arba pasirinktą elementą. </item>
+            <item> Šiame lange jūs dirbate su vaizdu. Pagrindiniai įrankiai yra paslėpti už trijų mygtukų. </item>
+            <item> Čia atidarote aplankus, matote vaizdus ir pan. Paspaudus ir laikant galerijos elementą, atidaromi papildomi veiksmai. Norint, kad ji veiktų, reikalinga prieiga prie daugialypės terpės. </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_title">
+            <item> Atidaryti piešinį </item>
+            <item> Įrankiai </item>
+            <item> Piešimas išsaugomas </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_note">
+            <item> Pridėkite vaizdą arba pradėkite naują projektą. Jei norite sujungti vaizdus, ​​dirbkite iš čia. </item>
+            <item> Piešimo redagavimo įrankiai. Kai kurie iš jų yra aktyvūs tik tam tikromis sąlygomis. </item>
+            <item> Išsaugokite arba bendrinkite vaizdą iš studijos čia. </item>
+        </string-array>
+
+        <string-array name = "draw_add_title">
+            <item> Kamera </item>
+            <item> Kolekcija </item>
+            <item> Tuščia drobė </item>
+        </string-array>
+
+        <string-array name = "draw_add_note">
+            <item> Atidarykite nuotrauką, padarytą iš fotoaparato. Norint, kad ji veiktų, reikalinga prieiga prie fotoaparato. </item>
+            <item> Gaukite vaizdą iš kolekcijos. </item>
+            <item> Pats sukurkite tuščią drobę. </item>
+        </string-array>
+
+        <string-array name = "draw_save_title">
+            <item> Dalytis </item>
+            <item> Išsaugoti </item>
+            <item> Išsaugoti </item>
+        </string-array>
+
+        <string-array name = "draw_save_note">
+            <item> Bendrinkite vaizdą iš studijos. </item>
+            <item> išsaugokite vaizdą tam tikroje vietoje. Pasirodys sistemos tyrinėtojas. Jei trūksta reikiamos saugyklos vietos, patikrinkite naršyklės meniu, ji gali būti paslėpta. </item>
+            <item> išsaugokite vaizdą ankstesnėje vietoje. </item>
+        </string-array>
+
+        <string-array name = "draw_tools_title">
+            <item> Nustatymai </item>
+            <item> Mastelis </item>
+            <item> Perkelti </item>
+            <item> Iškirpti </item>
+            <item> Iškraipyti </item>
+            <item> Tekstas </item>
+            <item> Užpildykite </item>
+            <item> trintukas </item>
+            <item> Teptukas </item>
+            <item> Dropper </item>
+            <item> grįžti </item>
+            <item> eiti pirmyn </item>
+            <item> Kontūras </item>
+            <item> Ištrinkite projektą </item>
+            <item> Antspaudas </item>
+            <item> Keisti </item>
+            <item> Siūti </item>
+            <item> ištrinkite vaizdą </item>
+        </string-array>
+
+        <string-array name = "draw_tools_note">
+            <item> Įrankių nustatymų langas. Visada aktyvus. </item>
+            <item> Mastelis. Paspausdami šį mygtuką, galite perjungti vieną iš trijų režimų. Aktyvus, kai vaizdas yra studijoje. </item>
+            <item> perkelkite vaizdą ekrane. Aktyvus, kai vaizdas yra studijoje. </item>
+            <item> Pasirinkite sritį ir supjaustykite ją spausdami ten. Žymos išilgai kontūro ir centre leidžia koreguoti pasirinkimą. Aktyvus, kai vaizdas yra studijoje. </item>
+            <item> Pasukimas, iškraipymas. Perjunkite juos tiesiai ten. Paskutinis režimas viską atkuria. Aktyvus, kai vaizdas yra studijoje. </item>
+            <item> įterpti tekstą. Dar kartą paspauskite čia, pasirodys teksto nustatymų langas. Aktyvus, kai vaizdas yra studijoje. </item>
+            <item> Užpildykite spalva, užpildykite pažymėtą plotą. Aktyvus, kai studijoje yra vaizdas </item>
+            <item> Tvirtas trintukas ir su nuolydžiu. Perjunkite juos čia. Aktyvus, kai vaizdas yra studijoje. </item>
+            <item> Šepetėlis, trys režimai ir dėmė. Aktyvus, kai vaizdas yra studijoje. </item>
+            <item> Nukopijuokite spalvą iš piešinio. Ankstesnis įrankis išlieka aktyvus. Aktyvus, kai vaizdas yra studijoje. </item>
+            <item> Perdaryti. </item>
+            <item> Anuliuoti. </item>
+            <item> brėžinio kontūras. Naudinga dirbant su skaidriomis drobėmis. Dirbant su dviem, kontūrų spalvos skiriasi. Aktyvus, kai vaizdas yra studijoje. </item>
+            <item> Ištrina projektą su visa istorija. Aktyvus, kai vaizdas yra studijoje. </item>
+            <item> Leidžia kai kurioms priemonėms paveikti abu vaizdus. Aktyvus, kai yra papildomas vaizdas. </item>
+            <item> Pagrindinių ir viršutinių vaizdų vietų keitimas. Aktyvus, kai yra papildomas vaizdas. </item>
+            <item> Sujunkite du vaizdus į vieną. Viršutiniai pasėliai išilgai pagrindinio kontūro. Aktyvus, kai yra papildomas vaizdas. </item>
+            <item> Ištrinti viršutinį vaizdą. Aktyvus, kai yra papildomas vaizdas. </item>
+        </string-array>
+
+    <string-array name = "collect_title">
+                <item> Pridėti aplanką </item>
+                <item> Tvarkyti </item>
+            </string-array>
+
+        <string-array name = "collect_note">
+            <item> Pridėti aplanką galerijoje. Pasirodys sistemos tyrinėtojas. Pasirinkite aplanką ir, jei jame yra vaizdų, jis bus pridėtas. Jei trūksta reikiamos saugyklos vietos, patikrinkite naršyklės meniu, ji gali būti paslėpta. </item>
+            <item> Programų tvarkymas. </item>
+        </string-array>
+
+        <string-array name = "collect_root_menu_title">
+            <item> Papildomi nustatymai </item>
+            <item> paslėpti </item>
+            <item> Dalytis </item>
+            <item> Ištrinti </item>
+        </string-array>
+
+        <string-array name = "rinkti_rėžinių_meniu_note">
+            <item> Papildomų nustatymų režimas. Taikoma vienam aplankui. Palikite jį paspausdami šį mygtuką. </item>
+            <item> paslėpti šį aplanką. </item>
+            <item> Bendrinkite šio aplanko turinį. </item>
+            <item> Ištrinkite pasirinktą aplanką. </item>
+        </string-array>
+
+        <string-array name = "rinkti_adapt_menu_title">
+            <item> Papildomi nustatymai </item>
+            <item> Dalytis </item>
+            <item> Ištrinti </item>
+        </string-array>
+
+        <string-array name = "rinkti_adapt_menu_note">
+            <item> Papildomų nustatymų režimas. Taikoma daugiau nei vienam vaizdui. Palikite jį paspausdami šį mygtuką. </item>
+            <item> Bendrinkite pasirinktus vaizdus. </item>
+            <item> Ištrinkite pasirinktus vaizdus. </item>
+        </string-array>
+
+        <string-array name = "addlyr_title">
+            <item> Dydis </item>
+            <item> Skaidrumas </item>
+            <item> Veidrodis </item>
+            <item> Atidaryti </item>
+            <item> Atgal </item>
+            <item> Uždaryti </item>
+        </string-array>
+
+        <string-array name = "addlyr_note">
+            <item> Didelis vaizdo dydis gali turėti įtakos programos stabilumui. Čia galite pakeisti jo dydį. </item>
+            <item> skaidrumo laipsnis. </item>
+            <item> veidrodinis vaizdas. </item>
+            <item> Nusiųskite vaizdą į studiją. </item>
+            <item> Grįžkite į vaizdo šaltinį. </item>
+            <item> Uždaryti langą. </item>
+        </string-array>
+
+        <string-array name = "review_title">
+            <item> Peržiūrėkite vaizdą </item>
+            <item> Redaguoti </item>
+            <item> Išeiti </item>
+        </string-array>
+
+        <string-array name = "review_note">
+            <item> Vaizdo vaizdas su galimybe peržvelgti. Su šiuo mygtuku galite juo pasidalyti. </item>
+            <item> Siųsti į redagavimo langą, tada atidaryti studijoje. Svarbu! Atidarius atvaizdą iš čia, prasideda naujas projektas. </item>
+            <item> Uždarykite peržiūros režimą. </item>
+        </string-array>
+
+        <string-array name = "creator_title">
+        <item> Atidaryti </item>
+        <item> Plotis </item>
+        <item> Aukštis </item>
+        <item> Fono spalva </item>
+        <item> Išeiti </item>
+        </string-array>
+
+        <string-array name = "creator_note">
+            <item> Tuščios drobės režimas. Atidarykite drobę redaktoriuje, jei norite nusiųsti ją į studiją. </item>
+            <item> Nustatyti plotį. </item>
+            <item> Nustatyti aukštį. </item>
+            <item> Atidaryti spalvų parinkiklį. Paspauskite centre, kad išeitumėte. </item>
+            <item> Uždaryti tuščio drobės režimą. </item>
+        </string-array>
+
+        <string-array name = "addlyr_collect_title">
+            <item> galerija </item>
+            <item> Išeiti </item>
+        </string-array>
+
+        <string-array name = "addlyr_collect_note">
+            <item> Galerijoje yra aplankai su vaizdais. Atidarykite juos studijoje. Jie bus įtraukti į esamą projektą. Jei studijoje jau yra papildomas vaizdas, jis bus pakeistas. </item>
+            <item> Uždarykite galeriją. </item>
+        </string-array>
+
+    <string-array name = "addlyr_cam_title">
+                <item> nufotografuokite </item>
+                <item> Kameros pasirinkimas </item>
+                <item> Žaibas </item>
+                <item> Išeiti </item>
+            </string-array>
+
+        <string-array name = "addlyr_cam_note">
+            <item> Nufotografuokite ir atidarykite jį redaktoriuje. </item>
+            <item> Pasirinkite, kurį fotoaparatą naudoti. </item>
+            <item> Įjunkite žaibą. </item>
+            <item> Uždaryti kamerą. </item>
+        </string-array>
+
+        <string-array name = "prop_title">
+            <item> Teptukas </item>
+            <item> trintukas </item>
+            <item> Tekstas </item>
+            <item> Spalva </item>
+            <item> Šepetėlio skaidrumas </item>
+            <item> Plotis </item>
+            <item> Trintuko skaidrumas </item>
+            <item> Taikyti </item>
+            <item> Išeiti </item>
+        </string-array>
+
+        <string-array name = "prop_note">
+            <item> Parodo teptuką. Jo dydis ir spalva. </item>
+            <item> trintukas, trynimo plotis ir lygis. </item>
+            <item> teksto dydis ir spalva. </item>
+            <item> nustatykite teptuko ir teksto spalvą. </item>
+            <item> nustatykite pasirinktos spalvos skaidrumo lygį. </item>
+            <item> nustatykite teptuko plotį, trintuką ir teksto dydį. </item>
+            <item> Sureguliuokite ištrynimo lygį. </item>
+            <item> Taikykite pasirinktus parametrus. </item>
+            <item> Atšaukti ir išeiti. </item>
+        </string-array>
+
+        <string-array name = "edit_text_title">
+            <item> Įveskite tekstą </item>
+            <item> Valymas </item>
+            <item> Šriftas </item>
+            <item> Kontūras </item>
+            <item> Kampas </item>
+            <item> Polinkis </item>
+            <item> Taikyti </item>
+            <item> Išeiti </item>
+        </string-array>
+
+        <string-array name = "edit_text_note">
+            <item> Teksto laukas. </item>
+            <item> Ištrinti ankstesnį tekstą. </item>
+            <item> Naudotas šriftas. </item>
+            <item> Pasirinkite tvirtą šriftą arba jo kontūrą. </item>
+            <item> Sureguliuokite šrifto kampą. </item>
+            <item> nustatykite reikiamą šrifto polinkį. </item>
+            <item> išsaugokite pakeitimus ir išeikite. </item>
+            <item> Palikite be pakeitimų. </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_title">
+            <item> Šriftų sąrašas </item>
+            <item> Pridėti šriftą </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_note">
+            <item> Galimų šriftų sąrašas. </item>
+            <item> Pridėti atsisiųstą šriftą. Šriftas yra failas su plėtiniu „ttf“ arba „otf“. </item>
+        </string-array>
+
+</resources>

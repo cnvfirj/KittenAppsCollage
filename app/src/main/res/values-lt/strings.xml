@@ -1,0 +1,48 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> Aplankas buvo ištrintas </string>
+        <string name = "SELECTED_IMAGES_DELETED"> Pasirinkti vaizdai buvo ištrinti. </string>
+        <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Pasirinktame aplanke nerasta naujų vaizdų. </string>
+        <string name = "IN_GALLERY_ADD_FOLDER"> Galerijoje pridėtas naujas aplankas. </string>
+        <string name = "CREATE_IMG"> Kurti drobę </string>
+        <string name = "condition_apply_tools"> Atidarykite arba sukurkite drobę </string>
+        <string name = "PHOTO"> Nuotrauka </string>
+        <string name = "COLLECT"> Galerija </string>
+        <string name = "YES"> Taip </string>
+        <string name = "NO"> Ne </string>
+        <string name = "ASSES_TO_DATA"> Prieiga prie duomenų </string>
+        <string name = "ASSES_TO_CAMERA"> Prieiga prie fotoaparato </string>
+        <string name = "REPEAT_REQUEST"> Pakartoti užklausą? </string>
+        <string name = "RATIONALE_ASSES_CAMERA"> Norint fotografuoti naudojant programą, reikalinga prieiga prie fotoaparato. </string>
+        <string name = "RATIONALE_ASSES_WRITE"> Norint perskaityti ir išsaugoti vaizdus įrenginyje, reikia daugialypės terpės. </string>
+        <string name = "TOAST_RESOLUTION"> Nustatymuose nustatykite reikiamą skiriamąją gebą. </string>
+        <string name = "NOT_PERMISSION"> Prieiga atmesta </string>
+        <string name = "GO_TO_SETTINGS"> Norėdami jį gauti, eikite į programos nustatymus. </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Vaizdas neišsaugotas. Patikrinkite likusią įrenginio saugyklą. </string>
+        <string name = "IMAGE_SAVED"> Vaizdas išsaugotas </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Vaizdas neišsaugotas. Patikrinkite aplanką, kuriame jis turėtų būti išsaugotas. </string>
+        <string name = "FIND_FILE_FONT"> Raskite failą su plėtiniu „ttf“ arba „otf“ (failo pavadinimo pabaigoje yra .ttf arba .otf.) </string>
+        <string name = "INCORRECT_TEXT"> Netinkamas tekstas </string>
+        <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Naujas šriftas nebuvo pridėtas. Galbūt vardas jau naudojamas. </string>
+        <string name = "FILE_FONT"> Failas turėtų būti su plėtiniu „ttf“ arba „otf“ (failo pavadinimo pabaigoje yra .ttf arba .otf) </string>
+        <string name = "FONT_ADD_FIND_IN_LIST"> Šriftas pridėtas. Raskite jį sąraše. </string>
+        <string name = "ADD_FONTS_FIND"> Rasta papildomų šriftų. </string>
+        <string name = "ADD_FONTS_NOT_FIND"> Nerasta papildomų šriftų. Atsisiųskite šriftus su plėtiniu .ttf arba .otf ir pridėkite juos. </string>
+        <string name = "SELECT_POINT_PIPETTE"> Pasirinkite tašką užpildytoje ir neskaidrioje piešinio srityje. </string>
+        <string name = "REQUEST_LOAD_OLD_PROJECT"> Turite nebaigtą projektą. </string>
+        <string name = "OPEN_OLD_PROJECT"> Atidaryti? Priešingu atveju jis bus ištrintas. </string>
+        <string name = "ERROR_DELETE_FILE"> Failo ištrynimo klaida </string>
+        <string name = "images"> Vaizdai </string>
+        <string name = "collet_images"> Peržiūrėdami vaizdus, ​​paspaudę ir laikydami vieną iš jų, atidarysite papildomus veiksmus. Grįžkite naudodami šį mygtuką. </string>
+        <string name = "DELETED"> Ištrynimas </string>
+        <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Failai ištrinami iš fizinės laikmenos </string>
+        <string name = "language"> Kalba </string>
+        <string name = "color_theme"> Spalvota tema </string>
+        <string name = "restart_window"> iš naujo paleiskite langą </string>
+</resources>
