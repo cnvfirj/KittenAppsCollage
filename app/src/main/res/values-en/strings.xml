@@ -20,7 +20,6 @@
     <string name="ASSES_TO_CAMERA">Access to the camera</string>
     <string name="REPEAT_REQUEST">Repeat the request?</string>
     <string name="RATIONALE_ASSES_CAMERA"> Access to the camera is required for taking pictures using the app.</string>
-<!--    <string name="RATIONALE_ASSES_ACCAUNT">Access to the account is required for reading and saving to the cloud.</string>-->
     <string name="RATIONALE_ASSES_WRITE">Access to the multimedia is required for reading and saving the images on the device.</string>
     <string name="TOAST_RESOLUTION">In settings set the required resolution.</string>
     <string name="NOT_PERMISSION">Access denied</string>

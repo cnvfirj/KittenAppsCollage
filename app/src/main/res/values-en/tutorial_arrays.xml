@@ -26,8 +26,6 @@
         <item>Save or share an image from the studio here.</item>
     </string-array>
 
-
-
     <string-array name="draw_add_title">
         <item>Camera</item>
         <item>Collection</item>
@@ -40,7 +38,6 @@
         <item>Create blank canvas yourself.</item>
     </string-array>
 
-
     <string-array name="draw_save_title">
         <item>Share</item>
         <item>Save</item>
@@ -52,7 +49,6 @@
         <item>Save the image in certain location. System explorer will appear. In case of absence of the required storage check out menu of the explorer, it might be hidden.</item>
         <item>Save the image in previous location.</item>
     </string-array>
-
 
     <string-array name="draw_tools_title">
         <item>Settings</item>
@@ -96,8 +92,6 @@
         <item>Delete upper image. Active when an additional image is present.</item>
     </string-array>
 
-
-
     <string-array name="collect_title">
         <item>Add folder</item>
         <item>Manage</item>
@@ -107,7 +101,6 @@
         <item>Add a folder in gallery. System explorer will appear. Choose a folder and if it has the images, then it will be added. In case of absence of the required storage check out menu of the explorer, it might be hidden.</item>
         <item>App management.</item>
     </string-array>
-
 
     <string-array name="collect_root_menu_title">
         <item>Additional settings</item>
@@ -123,7 +116,6 @@
         <item>Delete the selected folder.</item>
     </string-array>
 
-
     <string-array name="collect_adapt_menu_title">
         <item>Additional settings</item>
         <item>Share</item>
@@ -136,7 +128,6 @@
         <item>Delete the selected images.</item>
     </string-array>
 
-
     <string-array name="addlyr_title">
         <item>Size</item>
         <item>Transparency</item>
@@ -144,7 +135,6 @@
         <item>Open</item>
         <item>Back</item>
         <item>Close</item>
-
     </string-array>
 
     <string-array name="addlyr_note">
@@ -160,57 +150,52 @@
         <item>View the image</item>
         <item>Edit</item>
         <item>Exit</item>
-
     </string-array>
 
     <string-array name="review_note">
         <item>Image view with the option to leaf through. With this button you can share it.</item>
         <item>Send to the edit window and then open in the studio. Important! Opening the image from here begins a new project.</item>
         <item>Close the view mode.</item>
+    </string-array>
 
-
-    </string-array><string-array name="creator_title">
+    <string-array name="creator_title">
     <item>Open</item>
     <item>Width</item>
     <item>Height</item>
     <item>Background colour</item>
     <item>Exit</item>
+    </string-array>
 
-</string-array>
     <string-array name="creator_note">
         <item>Blank canvas mode. Open canvas in editor to send it to the studio.</item>
         <item>Set width.</item>
         <item>Set height.</item>
         <item>Open colour selector. Press on center to exit.</item>
         <item>Close blank canvas mode.</item>
-
     </string-array>
 
     <string-array name="addlyr_collect_title">
         <item>Gallery</item>
         <item>Exit</item>
-
     </string-array>
+
     <string-array name="addlyr_collect_note">
         <item>Gallery contains folders with images. Open them in the studio. They will be added to the existing project. If studio already has an additional image then it will be replaced.</item>
         <item>Close the gallery.</item>
     </string-array>
-
 
     <string-array name="addlyr_cam_title">
         <item>Take a picture</item>
         <item>Camera selection</item>
         <item>Lightning</item>
         <item>Exit</item>
-
-
     </string-array>
+
     <string-array name="addlyr_cam_note">
         <item>Take a picture and open it in the editor.</item>
         <item>Choose which camera to use.</item>
         <item>Turn on the lightning.</item>
         <item>Close camera.</item>
-
     </string-array>
 
     <string-array name="prop_title">
@@ -223,7 +208,6 @@
         <item>Eraser transparency</item>
         <item>Apply</item>
         <item>Exit</item>
-
     </string-array>
 
     <string-array name="prop_note">
@@ -241,12 +225,10 @@
     <string-array name="edit_text_title">
         <item>Enter the text</item>
         <item>Cleanup</item>
-
         <item>Font</item>
         <item>Outline</item>
         <item>Angle</item>
         <item>Inclination</item>
-
         <item>Apply</item>
         <item>Exit</item>
     </string-array>
@@ -254,12 +236,10 @@
     <string-array name="edit_text_note">
         <item>Text box.</item>
         <item>Delete previous text.</item>
-
         <item>Used font.</item>
         <item>Choose solid font or its outline.</item>
         <item>Adjust the angle of the font.</item>
         <item>Set the required inclination of the font.</item>
-
         <item>Save the changes and leave.</item>
         <item>Leave without changes.</item>
     </string-array>
@@ -273,9 +253,5 @@
         <item>List of the available fonts.</item>
         <item>Add downloaded font. Font is a file with "ttf" or "otf" extension.</item>
     </string-array>
-
-
-
-
 
 </resources>

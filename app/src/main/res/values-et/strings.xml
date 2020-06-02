@@ -1,0 +1,48 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> kaust on kustutatud </string>
+        <string name = "SELECTED_IMAGES_DELETED"> Valitud pildid on kustutatud. </string>
+        <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Valitud kaustast ei leitud ühtegi uut pilti. </string>
+        <string name = "IN_GALLERY_ADD_FOLDER"> Galeriisse on lisatud uus kaust. </string>
+        <string name = "CREATE_IMG"> Loo lõuend </string>
+        <string name = "condition_apply_tools"> lõuendi avamine või loomine </string>
+        <string name = "PHOTO"> Foto </string>
+        <string name = "COLLECT"> galerii </string>
+        <string name = "YES"> Jah </string>
+        <string name = "NO"> Ei </string>
+        <string name = "ASSES_TO_DATA"> Juurdepääs andmetele </string>
+        <string name = "ASSES_TO_CAMERA"> Juurdepääs kaamerale </string>
+        <string name = "REPEAT_REQUEST"> Korda taotlust? </string>
+        <string name = "RATIONALE_ASSES_CAMERA"> Rakenduse abil pildistamiseks on vajalik kaamera juurdepääs. </string>
+        <string name = "RATIONALE_ASSES_WRITE"> Piltide lugemiseks seadmesse ja nende salvestamiseks on vajalik juurdepääs multimeediumile. </string>
+        <string name = "TOAST_RESOLUTION"> Seadistustes määrake vajalik eraldusvõime. </string>
+        <string name = "NOT_PERMISSION"> Juurdepääs on keelatud </string>
+        <string name = "GO_TO_SETTINGS"> Selle saamiseks minge rakenduse seadetesse. </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Pilti pole salvestatud. Kontrollige seadme järelejäänud salvestusruumi. </string>
+        <string name = "IMAGE_SAVED"> Pilt on salvestatud </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Pilti pole salvestatud. Kontrollige kausta, kuhu see tuleks salvestada. </string>
+        <string name = "FIND_FILE_FONT"> Leidke fail laiendiga "ttf" või "otf" (failinime lõpus on .ttf või .otf.) </string>
+        <string name = "INCORRECT_TEXT"> Kehtetu tekst </string>
+        <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Uut fonti pole lisatud. Võib-olla on nimi juba kasutusel. </string>
+        <string name = "FILE_FONT"> Fail peaks olema laiendiga "ttf" või "otf" (faili nime lõpus on .ttf või .otf) </string>
+        <string name = "FONT_ADD_FIND_IN_LIST"> Font on lisatud. Leidke see loendist. </string>
+        <string name = "ADD_FONTS_FIND"> On leitud täiendavaid fonte. </string>
+        <string name = "ADD_FONTS_NOT_FIND"> Täiendavaid fonte pole leitud. Laadige alla failid laiendiga .ttf või .otf ja lisage need. </string>
+        <string name = "SELECT_POINT_PIPETTE"> Valige joonise täidetud ja läbipaistmatu ala punkt. </string>
+        <string name = "REQUEST_LOAD_OLD_PROJECT"> Teil on lõpetamata projekt. </string>
+        <string name = "OPEN_OLD_PROJECT"> Kas soovite selle avada? Vastasel korral kustutatakse see. </string>
+        <string name = "ERROR_DELETE_FILE"> Faili kustutamise rike </string>
+        <string name = "images"> Pildid </string>
+        <string name = "collet_images"> Vaadake pilte, ühe pildi vajutamine ja hoidmine avab täiendavad toimingud. Minge tagasi selle nupu abil. </string>
+        <string name = "DELETED"> Kustutamine </string>
+        <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Failid kustutatakse füüsilisest meediumist </string>
+        <string name = "language"> keel </string>
+        <string name = "color_theme"> Värviteema </string>
+        <string name = "restart_window"> taaskäivitage aken </string>
+</resources>

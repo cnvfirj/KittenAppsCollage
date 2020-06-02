@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+                <item> Kohustustest loobumine </item>
+                <item> Vihjed </item>
+                <item> Stuudio </item>
+                <item> galerii </item>
+            </string-array>
+
+        <string-array name = "main_buttons_note">
+            <item> Selle rakenduse autor ei eelda vastutustundlikkust kolmanda osapoole piltide kasutamisel. Seda rakendust kasutades on kasutaja kohustatud järgima seadusi ja austama autoriõigusi. </item>
+            <item> Selle käigus ilmuvad vihjed. Jätkamiseks vajutage järgmist või valitud elementi. </item>
+            <item> Selles aknas töötate kujutisega. Peamised tööriistad on peidetud kolme nupu taha. </item>
+            <item> Seal saate avada kaustu, vaadata pilte jne. Galeriielemendi vajutamine ja hoidmine avavad täiendavad toimingud. Multimeedia kasutamiseks on vajalik juurdepääs. </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_title">
+            <item> Ava joonistus </item>
+            <item> Tööriistad </item>
+            <item> Joonise salvestamine </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_note">
+            <item> Lisage pilt või alustage uut projekti. Kui soovite pilte ühendada, siis töötage siit. </item>
+            <item> Tööriistad joonistamiseks. Mõned neist on aktiivsed ainult teatud tingimustel. </item>
+            <item> Salvestage või jagage siin ateljeest pärit pilt. </item>
+        </string-array>
+
+        <string-array name = "draw_add_title">
+            <item> Kaamera </item>
+            <item> Kollektsioon </item>
+            <item> Tühi lõuend </item>
+        </string-array>
+
+        <string-array name = "draw_add_note">
+            <item> Avage kaamerast tehtud foto. Kaamera tööks on vajalik juurdepääs sellele. </item>
+            <item> Hankige kollektsioonist pilt. </item>
+            <item> Looge ise tühi lõuend. </item>
+        </string-array>
+
+        <string-array name = "draw_save_title">
+            <item> Jaga </item>
+            <item> Salvesta </item>
+            <item> Salvesta </item>
+        </string-array>
+
+        <string-array name = "draw_save_note">
+            <item> Jagage pilti stuudiost. </item>
+            <item> pildi salvestamine kindlasse kohta. Ilmub süsteemi uurija. Vajaliku salvestusruumi puudumise korral saate uurija menüü vaadata, see võib olla peidetud. </item>
+            <item> pildi salvestamine eelmisse kohta. </item>
+        </string-array>
+
+        <string-array name = "draw_tools_title">
+            <item> Seadistused </item>
+            <item> Suum </item>
+            <item> Teisalda </item>
+            <item> Lõika </item>
+            <item> moonutama </item>
+            <item> tekst </item>
+            <item> täitke </item>
+            <item> kustutuskumm </item>
+            <item> Võsa </item>
+            <item> tilguti </item>
+            <item> Mine tagasi </item>
+            <item> edasi liikuda </item>
+            <item> Kontuur </item>
+            <item> kustutage projekt </item>
+            <item> Pitser </item>
+            <item> Vaheta </item>
+            <item> õmble </item>
+            <item> kustutage pilt </item>
+        </string-array>
+
+        <string-array name = "draw_tools_note">
+            <item> Tööriistade seadete aken. Alati aktiivne. </item>
+            <item> Suum. Sellel nupul vajutades saate ühe kolmest režiimist ümber lülitada. Aktiivne, kui ateljees on pilt. </item>
+            <item> pildi teisaldamine ekraanil. Aktiivne, kui ateljees on pilt. </item>
+            <item> Valige ala ja lõigake see sinna vajutades. Sildid piki kontuuri ja keskel võimaldavad teil valikut kohandada. Aktiivne, kui ateljees on pilt. </item>
+            <item> Pööramine, moonutamine. Nende vahel vahetage otse seal. Viimane režiim lähtestab kõik. Aktiivne, kui ateljees on pilt. </item>
+            <item> sisestage tekst. Vajutage siin uuesti, kuvatakse teksti sätete aken. Aktiivne, kui ateljees on pilt. </item>
+            <item> Täitke värvi järgi, täitke visandatud ala sees. Aktiivne, kui stuudios on pilt </item>
+            <item> Tahke kustutuskumm ja kaldega. Lülitage need siia. Aktiivne, kui ateljees on pilt. </item>
+            <item> Pintsel, kolm režiimi ja peits. Aktiivne, kui ateljees on pilt. </item>
+            <item> Kopeeri värv jooniselt. Eelmine tööriist jääb aktiivseks. Aktiivne, kui ateljees on pilt. </item>
+            <item> Tee uuesti. </item>
+            <item> Võta tagasi. </item>
+            <item> Joonise kontuur. Kasulik läbipaistva lõuendiga töötamisel. Kahega töötades on piirjoonte värvid erinevad. Aktiivne, kui ateljees on pilt. </item>
+            <item> Kustutab projekti kogu ajalooga. Aktiivne, kui ateljees on pilt. </item>
+            <item> Võimaldab mõnel tööriistal mõjutada mõlemat pilti. Aktiivne, kui kuvatakse täiendav pilt. </item>
+            <item> põhi- ja ülemise pildi kohtade vahetamine. Aktiivne, kui kuvatakse täiendav pilt. </item>
+            <item> Kombineeri kaks pilti üheks. Ülemised põllukultuurid piki põhikontuuri. Aktiivne, kui kuvatakse täiendav pilt. </item>
+            <item> Kustuta ülemine pilt. Aktiivne, kui kuvatakse täiendav pilt. </item>
+        </string-array>
+
+    <string-array name = "collect_title">
+                <item> Lisa kaust </item>
+                <item> Halda </item>
+            </string-array>
+
+        <string-array name = "collect_note">
+            <item> Lisage galeriisse kaust. Ilmub süsteemi uurija. Valige kaust ja kui sellel on pildid, siis see lisatakse. Vajaliku salvestusruumi puudumise korral saate uurija menüü vaadata, see võib olla peidetud. </item>
+            <item> Rakenduste haldus. </item>
+        </string-array>
+
+        <string-array name = "collect_root_menu_title">
+            <item> Lisasätted </item>
+            <item> peida </item>
+            <item> Jaga </item>
+            <item> Kustuta </item>
+        </string-array>
+
+        <string-array name = "collect_root_menu_note">
+            <item> Täiendavate sätete režiim. Kohaldatav ühe kausta jaoks. Lahkuge sellest nupust vajutades. </item>
+            <item> peida see kaust. </item>
+            <item> Jagage selle kausta sisu. </item>
+            <item> Kustutage valitud kaust. </item>
+        </string-array>
+
+        <string-array name = "collect_adapt_menu_title">
+            <item> Lisasätted </item>
+            <item> Jaga </item>
+            <item> Kustuta </item>
+        </string-array>
+
+        <string-array name = "collect_adapt_menu_note">
+            <item> Täiendavate sätete režiim. Kohaldatav mitme pildi puhul. Lahkuge sellest nupust vajutades. </item>
+            <item> Jagage valitud pilte. </item>
+            <item> Kustutage valitud pildid. </item>
+        </string-array>
+
+        <string-array name = "addlyr_title">
+            <item> suurus </item>
+            <item> Läbipaistvus </item>
+            <item> Peegel </item>
+            <item> Ava </item>
+            <item> Tagasi </item>
+            <item> Sule </item>
+        </string-array>
+
+        <string-array name = "addlyr_note">
+            <item> Suure pildi suurus võib mõjutada rakenduse stabiilsust. Siin saate selle suurust muuta. </item>
+            <item> läbipaistvuse aste. </item>
+            <item> peegelpilt. </item>
+            <item> saatke pilt stuudiosse. </item>
+            <item> naaseb pildi allika juurde. </item>
+            <item> sule aken. </item>
+        </string-array>
+
+        <string-array name = "review_title">
+            <item> Vaadake pilti </item>
+            <item> Redigeerimine </item>
+            <item> Exit </item>
+        </string-array>
+
+        <string-array name = "review_note">
+            <item> pildivaade võimalusega läbi vaadata. Selle nupuga saate seda jagada. </item>
+            <item> saatke redigeerimise aknasse ja avage siis stuudios. Tähtis! Kujutise siin avamine alustab uut projekti. </item>
+            <item> Sule vaatamisrežiim. </item>
+        </string-array>
+
+        <string-array name = "creator_title">
+        <item> Ava </item>
+        <item> Laius </item>
+        <item> Kõrgus </item>
+        <item> taustavärv </item>
+        <item> Exit </item>
+        </string-array>
+
+        <string-array name = "creator_note">
+            <item> Tühja lõuendi režiim. Stuudiosse saatmiseks avage redigeerija lõuend. </item>
+            <item> Seadista laius. </item>
+            <item> Määrake kõrgus. </item>
+            <item> Ava värvivalija. Väljumiseks vajutage keskpunkti. </item>
+            <item> Tühja lõuendi režiimi sulgemine. </item>
+        </string-array>
+
+        <string-array name = "addlyr_collect_title">
+            <item> galerii </item>
+            <item> Exit </item>
+        </string-array>
+
+        <string-array name = "addlyr_collect_note">
+            <item> Galerii sisaldab piltidega kaustu. Avage need stuudios. Need lisatakse olemasolevasse projekti. Kui stuudios on juba mõni täiendav pilt, siis see asendatakse. </item>
+            <item> Sule galerii. </item>
+        </string-array>
+
+        <string-array name = "addlyr_cam_title">
+            <item> tehke pilti </item>
+            <item> Kaamera valik </item>
+            <item> Välk </item>
+            <item> Exit </item>
+        </string-array>
+
+    <string-array name = "addlyr_cam_note">
+                <item> Tehke pilt ja avage see redaktoris. </item>
+                <item> Valige, millist kaamerat kasutada. </item>
+                <item> Lülitage välk sisse. </item>
+                <item> sule kaamera. </item>
+            </string-array>
+
+        <string-array name = "prop_title">
+            <item> Võsa </item>
+            <item> kustutuskumm </item>
+            <item> tekst </item>
+            <item> Värv </item>
+            <item> Pintsli läbipaistvus </item>
+            <item> Laius </item>
+            <item> Kustutuskummi läbipaistvus </item>
+            <item> Rakenda </item>
+            <item> Exit </item>
+        </string-array>
+
+        <string-array name = "prop_note">
+            <item> Näitab harja. Selle suurus ja värv. </item>
+            <item> kustutuskumm, kustutamise laius ja tase. </item>
+            <item> teksti suurus ja värv. </item>
+            <item> Määrake harja ja teksti värv. </item>
+            <item> Määrake valitud värvi läbipaistvuse tase. </item>
+            <item> Määrake harja laius, kustutuskumm ja teksti suurus. </item>
+            <item> Reguleerige kustutamise taset. </item>
+            <item> Rakendage valitud sätted. </item>
+            <item> Tühista ja välju. </item>
+        </string-array>
+
+        <string-array name = "edit_text_title">
+            <item> sisestage tekst </item>
+            <item> Puhastus </item>
+            <item> Font </item>
+            <item> Kontuur </item>
+            <item> Nurk </item>
+            <item> Kalle </item>
+            <item> Rakenda </item>
+            <item> Exit </item>
+        </string-array>
+
+        <string-array name = "edit_text_note">
+            <item> tekstiväli. </item>
+            <item> Kustuta eelmine tekst. </item>
+            <item> Kasutatud font. </item>
+            <item> Valige kindel font või selle kontuur. </item>
+            <item> Reguleerige fondi nurka. </item>
+            <item> Määrake fondi nõutav kalle. </item>
+            <item> Salvestage muudatused ja lahkuge. </item>
+            <item> Jäta muudatusteta. </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_title">
+            <item> Fontide loetelu </item>
+            <item> fondi lisamine </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_note">
+            <item> Saadaolevate fondide loend. </item>
+            <item> Lisage allalaaditud font. Font on fail, mille laiend on "ttf" või "otf". </item>
+        </string-array>
+
+</resources>
