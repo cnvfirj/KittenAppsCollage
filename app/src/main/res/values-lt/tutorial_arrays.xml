@@ -109,20 +109,20 @@
             <item> Ištrinti </item>
         </string-array>
 
-        <string-array name = "rinkti_rėžinių_meniu_note">
+        <string-array name = "collect_root_menu_note">
             <item> Papildomų nustatymų režimas. Taikoma vienam aplankui. Palikite jį paspausdami šį mygtuką. </item>
             <item> paslėpti šį aplanką. </item>
             <item> Bendrinkite šio aplanko turinį. </item>
             <item> Ištrinkite pasirinktą aplanką. </item>
         </string-array>
 
-        <string-array name = "rinkti_adapt_menu_title">
+        <string-array name = "collect_adapt_menu_title">
             <item> Papildomi nustatymai </item>
             <item> Dalytis </item>
             <item> Ištrinti </item>
         </string-array>
 
-        <string-array name = "rinkti_adapt_menu_note">
+        <string-array name = "collect_adapt_menu_note">
             <item> Papildomų nustatymų režimas. Taikoma daugiau nei vienam vaizdui. Palikite jį paspausdami šį mygtuką. </item>
             <item> Bendrinkite pasirinktus vaizdus. </item>
             <item> Ištrinkite pasirinktus vaizdus. </item>
@@ -175,7 +175,7 @@
         </string-array>
 
         <string-array name = "addlyr_collect_title">
-            <item> galerija </item>
+            <item> Galerija </item>
             <item> Išeiti </item>
         </string-array>
 
@@ -185,7 +185,7 @@
         </string-array>
 
     <string-array name = "addlyr_cam_title">
-                <item> nufotografuokite </item>
+                <item> Nufotografuokite </item>
                 <item> Kameros pasirinkimas </item>
                 <item> Žaibas </item>
                 <item> Išeiti </item>
@@ -200,7 +200,7 @@
 
         <string-array name = "prop_title">
             <item> Teptukas </item>
-            <item> trintukas </item>
+            <item> Trintukas </item>
             <item> Tekstas </item>
             <item> Spalva </item>
             <item> Šepetėlio skaidrumas </item>
@@ -212,11 +212,11 @@
 
         <string-array name = "prop_note">
             <item> Parodo teptuką. Jo dydis ir spalva. </item>
-            <item> trintukas, trynimo plotis ir lygis. </item>
-            <item> teksto dydis ir spalva. </item>
-            <item> nustatykite teptuko ir teksto spalvą. </item>
-            <item> nustatykite pasirinktos spalvos skaidrumo lygį. </item>
-            <item> nustatykite teptuko plotį, trintuką ir teksto dydį. </item>
+            <item> Trintukas, trynimo plotis ir lygis. </item>
+            <item> Teksto dydis ir spalva. </item>
+            <item> Nustatykite teptuko ir teksto spalvą. </item>
+            <item> Nustatykite pasirinktos spalvos skaidrumo lygį. </item>
+            <item> Nustatykite teptuko plotį, trintuką ir teksto dydį. </item>
             <item> Sureguliuokite ištrynimo lygį. </item>
             <item> Taikykite pasirinktus parametrus. </item>
             <item> Atšaukti ir išeiti. </item>
@@ -239,8 +239,8 @@
             <item> Naudotas šriftas. </item>
             <item> Pasirinkite tvirtą šriftą arba jo kontūrą. </item>
             <item> Sureguliuokite šrifto kampą. </item>
-            <item> nustatykite reikiamą šrifto polinkį. </item>
-            <item> išsaugokite pakeitimus ir išeikite. </item>
+            <item> Nustatykite reikiamą šrifto polinkį. </item>
+            <item> Išsaugokite pakeitimus ir išeikite. </item>
             <item> Palikite be pakeitimų. </item>
         </string-array>
 

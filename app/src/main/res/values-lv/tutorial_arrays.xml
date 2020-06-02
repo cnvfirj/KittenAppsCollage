@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+                <item> Atruna </item>
+                <item> Ieteikumi </item>
+                <item> Studija </item>
+                <item> Galerija </item>
+            </string-array>
+
+        <string-array name = "main_buttons_note">
+            <item> Šīs lietotnes autors neuzņemas trešo pušu attēlu izmantošanas iespējas. Izmantojot šo lietotni, lietotājam ir pienākums ievērot likumus un ievērot autortiesības. </item>
+            <item> Šajā procesā parādīsies mājieni. Nospiediet nākamo vai izvēlēto elementu, lai turpinātu. </item>
+            <item> Šajā logā jūs strādājat ar attēlu. Galvenie rīki ir paslēpti aiz trim pogām. </item>
+            <item> Tur atverat mapes, skatāt attēlus utt. Nospiežot un turot galerijas elementu, tiek atvērtas papildu darbības. Lai tā darbotos, ir nepieciešama piekļuve multividei. </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_title">
+            <item> Atvērt zīmējumu </item>
+            <item> Rīki </item>
+            <item> Zīmējuma saglabāšana </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_note">
+            <item> Pievienojiet attēlu vai sāciet jaunu projektu. Ja vēlaties apvienot attēlus, strādājiet šeit. </item>
+            <item> Rīka zīmēšanas rediģēšanai. Daži no tiem ir aktīvi tikai noteiktos apstākļos. </item>
+            <item> Saglabājiet vai kopīgojiet attēlu no studijas šeit. </item>
+        </string-array>
+
+        <string-array name = "draw_add_title">
+            <item> Kamera </item>
+            <item> Kolekcija </item>
+            <item> Tukša audekls </item>
+        </string-array>
+
+        <string-array name = "draw_add_note">
+            <item> Atveriet fotoattēlu, kas uzņemts no kameras. Lai tā darbotos, nepieciešama piekļuve kamerai. </item>
+            <item> Iegūstiet attēlu no kolekcijas. </item>
+            <item> Izveidojiet pats tukšu audeklu. </item>
+        </string-array>
+
+        <string-array name = "draw_save_title">
+            <item> Kopīgot </item>
+            <item> Saglabāt </item>
+            <item> Saglabāt </item>
+        </string-array>
+
+        <string-array name = "draw_save_note">
+            <item> Kopīgojiet attēlu no studijas. </item>
+            <item> Saglabājiet attēlu noteiktā vietā. Parādīsies sistēmas pētnieks. Ja nav vajadzīgās krātuves, pārbaudiet Explorer izvēlni, tā var būt paslēpta. </item>
+            <item> Saglabājiet attēlu iepriekšējā vietā. </item>
+        </string-array>
+
+        <string-array name = "draw_tools_title">
+            <item> Iestatījumi </item>
+            <item> Tālummaiņa </item>
+            <item> Pārvietot </item>
+            <item> Izgriezt </item>
+            <item> Izkropļot </item>
+            <item> Teksts </item>
+            <item> Aizpildīt </item>
+            <item> Dzēšgumija </item>
+            <item> Birste </item>
+            <item> Pilinātājs </item>
+            <item> Iet atpakaļ </item>
+            <item> Iet uz priekšu </item>
+            <item> Kontūra </item>
+            <item> Izdzēst projektu </item>
+            <item> Zīmogs </item>
+            <item> Apmainīt </item>
+            <item> Šūt </item>
+            <item> Izdzēsiet attēlu </item>
+        </string-array>
+
+        <string-array name = "draw_tools_note">
+            <item> Rīku iestatījumu logs. Vienmēr aktīvs. </item>
+            <item> Tālummaiņa. Nospiežot šo pogu, var pārslēgt vienu no trim režīmiem. Aktīvs, kad studijā ir attēls. </item>
+            <item> Pārvietojiet attēlu uz ekrāna. Aktīvs, kad studijā ir attēls. </item>
+            <item> Atlasiet apgabalu un nogrieziet to, nospiežot tur. Tagi kontūrā un centrā ļauj pielāgot izvēli. Aktīvs, kad studijā ir attēls. </item>
+            <item> Rotācija, kropļojumi. Pārslēdzieties starp viņiem turpat. Pēdējais režīms atiestata visu. Aktīvs, kad studijā ir attēls. </item>
+            <item> ievietojiet tekstu. Vēlreiz nospiediet šeit, parādīsies teksta iestatījumu logs. Aktīvs, kad studijā ir attēls. </item>
+            <item> Aizpildiet pēc krāsas, aizpildiet norādītajā apgabalā. Aktīva, ja studijā ir attēls </item>
+            <item> Ciets dzēšgumija un ar slīpumiem. Pārslēdziet tos šeit. Aktīvs, kad studijā ir attēls. </item>
+            <item> Ota, trīs režīmi un traipu. Aktīvs, kad studijā ir attēls. </item>
+            <item> Nokopējiet krāsu no zīmējuma. Iepriekšējais rīks paliek aktīvs. Aktīvs, kad studijā ir attēls. </item>
+            <item> Atkārtot. </item>
+            <item> Atsaukt. </item>
+            <item> Zīmējuma kontūra. Noderīga, strādājot ar caurspīdīgu audeklu. Strādājot ar diviem, kontūru krāsas ir atšķirīgas. Aktīvs, kad studijā ir attēls. </item>
+            <item> Izdzēš projektu ar visu vēsturi. Aktīvs, kad studijā ir attēls. </item>
+            <item> Ļauj dažiem rīkiem ietekmēt abus attēlus. Aktīvs, kad klāt ir papildu attēls. </item>
+            <item> Galveno un augšējo attēlu vietu apmaiņa. Aktīvs, kad klāt ir papildu attēls. </item>
+            <item> Apvienojiet divus attēlus vienā. Augšējās kultūras gar galvenā kontūru. Aktīvs, kad klāt ir papildu attēls. </item>
+            <item> Dzēst augšējo attēlu. Aktīvs, kad klāt ir papildu attēls. </item>
+        </string-array>
+
+    <string-array name = "collect_title">
+                <item> Pievienot mapi </item>
+                <item> Pārvaldīt </item>
+            </string-array>
+
+        <string-array name = "collect_note">
+            <item> Pievienot mapi galerijā. Parādīsies sistēmas pētnieks. Izvēlieties mapi un, ja tajā ir attēli, tā tiks pievienota. Ja nav vajadzīgās krātuves, pārbaudiet Explorer izvēlni, tā var būt paslēpta. </item>
+            <item> Lietotņu pārvaldība. </item>
+        </string-array>
+
+        <string-array name = "collect_root_menu_title">
+            <item> Papildu iestatījumi </item>
+            <item> Paslēpt </item>
+            <item> Kopīgot </item>
+            <item> Dzēst </item>
+        </string-array>
+
+        <string-array name = "collect_root_menu_note">
+            <item> Papildu iestatījumu režīms. Attiecas uz vienu mapi. Atstājiet to, nospiežot šo pogu. </item>
+            <item> Paslēpt šo mapi. </item>
+            <item> Kopīgojiet šīs mapes saturu. </item>
+            <item> Izdzēsiet atlasīto mapi. </item>
+        </string-array>
+
+        <string-array name = "collect_adapt_menu_title">
+            <item> Papildu iestatījumi </item>
+            <item> Kopīgot </item>
+            <item> Dzēst </item>
+        </string-array>
+
+        <string-array name = "collect_adapt_menu_note">
+            <item> Papildu iestatījumu režīms. Piemērojams vairāk nekā vienam attēlam. Atstājiet to, nospiežot šo pogu. </item>
+            <item> Kopīgojiet atlasītos attēlus. </item>
+            <item> Izdzēsiet atlasītos attēlus. </item>
+        </string-array>
+
+        <string-array name = "addlyr_title">
+            <item> Izmērs </item>
+            <item> Caurspīdīgums </item>
+            <item> Spogulis </item>
+            <item> Atvērt </item>
+            <item> Atpakaļ </item>
+            <item> Aizvērt </item>
+        </string-array>
+
+        <string-array name = "addlyr_note">
+            <item> Liels attēla izmērs var ietekmēt lietotnes stabilitāti. Šeit jūs varat mainīt tā izmēru. </item>
+            <item> Caurspīdīguma pakāpe. </item>
+            <item> Spoguļattēls. </item>
+            <item> Nosūtiet attēlu uz studiju. </item>
+            <item> Atgriezties pie attēla avota. </item>
+            <item> Aizvērt logu. </item>
+        </string-array>
+
+        <string-array name = "review_title">
+            <item> Skatīt attēlu </item>
+            <item> Rediģēt </item>
+            <item> Iziet </item>
+        </string-array>
+
+        <string-array name = "review_note">
+            <item> Attēla skats ar iespēju pārlūkot. Ar šo pogu jūs varat to kopīgot. </item>
+            <item> Nosūtiet uz rediģēšanas logu un pēc tam atveriet studijā. Svarīgs! Attēla atvēršana šeit sāk jaunu projektu. </item>
+            <item> Aizveriet skata režīmu. </item>
+        </string-array>
+
+        <string-array name = "creator_title">
+        <item> Atvērt </item>
+        <item> Platums </item>
+        <item> Augstums </item>
+        <item> Fona krāsa </item>
+        <item> Iziet </item>
+        </string-array>
+
+        <string-array name = "creator_note">
+            <item> Tukša audekla režīms. Atveriet audeklu redaktorā, lai to nosūtītu studijai. </item>
+            <item> Iestatīt platumu. </item>
+            <item> Iestatīt augstumu. </item>
+            <item> Atvērt krāsu atlasītāju. Nospiediet centrā, lai izietu. </item>
+            <item> Aizveriet tukša audekla režīmu. </item>
+        </string-array>
+
+        <string-array name = "addlyr_collect_title">
+            <item> Galerija </item>
+            <item> Iziet </item>
+        </string-array>
+
+        <string-array name = "addlyr_collect_note">
+            <item> Galerijā ir mapes ar attēliem. Atveriet tos studijā. Tie tiks pievienoti esošajam projektam. Ja studijai jau ir papildu attēls, tas tiks aizstāts. </item>
+            <item> Aizveriet galeriju. </item>
+        </string-array>
+
+        <string-array name = "addlyr_cam_title">
+            <item> Nofotografēt </item>
+            <item> Kameras izvēle </item>
+            <item> Zibens </item>
+            <item> Iziet </item>
+        </string-array>
+
+        <string-array name = "addlyr_cam_note">
+            <item> Uzņemiet attēlu un atveriet to redaktorā. </item>
+            <item> Izvēlieties izmantojamo kameru. </item>
+            <item> Ieslēdziet zibens. </item>
+            <item> Aizveriet kameru. </item>
+        </string-array>
+
+    <string-array name = "prop_title">
+                <item> Birste </item>
+                <item> Dzēšgumija </item>
+                <item> Teksts </item>
+                <item> Krāsa </item>
+                <item> Otas caurspīdīgums </item>
+                <item> Platums </item>
+                <item> Dzēšgumijas caurspīdīgums </item>
+                <item> Lietot </item>
+                <item> Iziet </item>
+            </string-array>
+
+        <string-array name = "prop_note">
+            <item> Parāda suku. Tā lielums un krāsa. </item>
+            <item> Dzēšgumija, dzēšanas platums un līmenis. </item>
+            <item> teksta lielums un krāsa. </item>
+            <item> Iestatiet sukas un teksta krāsu. </item>
+            <item> Iestatiet izvēlētās krāsas caurspīdīguma līmeni. </item>
+            <item> Iestatiet sukas platumu, dzēšgumiju un teksta lielumu. </item>
+            <item> Pielāgojiet dzēšanas līmeni. </item>
+            <item> Lietojiet atlasītos iestatījumus. </item>
+            <item> Atcelt un iziet. </item>
+        </string-array>
+
+        <string-array name = "edit_text_title">
+            <item> Ievadiet tekstu </item>
+            <item> Tīrīšana </item>
+            <item> Fonts </item>
+            <item> Kontūra </item>
+            <item> Leņķis </item>
+            <item> Slīpums </item>
+            <item> Lietot </item>
+            <item> Iziet </item>
+        </string-array>
+
+        <string-array name = "edit_text_note">
+            <item> Tekstlodziņš. </item>
+            <item> Dzēst iepriekšējo tekstu. </item>
+            <item> Lietots fonts. </item>
+            <item> Izvēlieties cieto fontu vai tā kontūru. </item>
+            <item> Pielāgojiet fonta leņķi. </item>
+            <item> Iestatiet nepieciešamo fonta slīpumu. </item>
+            <item> Saglabājiet izmaiņas un aizveriet. </item>
+            <item> Atstājiet bez izmaiņām. </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_title">
+            <item> Fontu saraksts </item>
+            <item> Pievienojiet fontu </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_note">
+            <item> Pieejamo fontu saraksts. </item>
+            <item> Pievienojiet lejupielādēto fontu. Fonts ir fails ar paplašinājumu "ttf" vai "otf". </item>
+        </string-array>
+
+</resources>

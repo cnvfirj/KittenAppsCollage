@@ -228,8 +228,8 @@
 
         <string-array name = "prop_note">
             <item> Näyttää harjan. Sen koko ja väri. </item>
-            <item> pyyhekumi, poiston leveys ja taso. </item>
-            <item> tekstin koko ja väri. </item>
+            <item> Pyyhekumi, poiston leveys ja taso. </item>
+            <item> Tekstin koko ja väri. </item>
             <item> Aseta harjan ja tekstin väri. </item>
             <item> Aseta valitun värin läpinäkyvyys. </item>
             <item> Aseta harjan leveys, pyyhekumi ja tekstin koko. </item>
@@ -240,7 +240,7 @@
 
         <string-array name = "edit_text_title">
             <item> Kirjoita teksti </item>
-            <item> uudelleenjärjestäminen </item>
+            <item> Uudelleenjärjestäminen </item>
 
             <item> Fontin </item>
             <item> Jäsennys </item>

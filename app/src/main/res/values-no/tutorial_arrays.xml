@@ -138,7 +138,7 @@
 
 
         <string-array name = "addlyr_title">
-            <item> størrelse </item>
+            <item> Størrelse </item>
             <item> Gjennomsiktighet </item>
             <item> Speil </item>
             <item> Åpne </item>

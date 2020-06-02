@@ -1,0 +1,48 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> Mape ir izdzēsta </string>
+        <string name = "SELECTED_IMAGES_DELETED"> Atlasītie attēli ir izdzēsti. </string>
+        <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Izvēlētajā mapē nav atrasti jauni attēli. </string>
+        <string name = "IN_GALLERY_ADD_FOLDER"> Galerijai ir pievienota jauna mape. </string>
+        <string name = "CREATE_IMG"> Izveidot audekls </string>
+        <string name = "condition_apply_tools"> Atveriet vai izveidojiet audekls </string>
+        <string name = "PHOTO"> Fotoattēls </string>
+        <string name = "COLLECT"> Galerija </string>
+        <string name = "YES"> Jā </string>
+        <string name = "NO"> Nē </string>
+        <string name = "ASSES_TO_DATA"> Piekļuve datiem </string>
+        <string name = "ASSES_TO_CAMERA"> Piekļuve kamerai </string>
+        <string name = "REPEAT_REQUEST"> Vai atkārtot pieprasījumu? </string>
+        <string name = "RATIONALE_ASSES_CAMERA"> Lai fotografētu, izmantojot lietotni, ir nepieciešama piekļuve kamerai. </string>
+        <string name = "RATIONALE_ASSES_WRITE"> Lai lasītu un saglabātu attēlus ierīcē, ir nepieciešama piekļuve multividei. </string>
+        <string name = "TOAST_RESOLUTION"> Iestatījumos iestatiet nepieciešamo izšķirtspēju. </string>
+        <string name = "NOT_PERMISSION"> Piekļuve liegta </string>
+        <string name = "GO_TO_SETTINGS"> Lai to iegūtu, dodieties uz lietotnes iestatījumiem. </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Attēls nav saglabāts. Pārbaudiet atlikušo ierīces krātuvi. </string>
+        <string name = "IMAGE_SAVED"> Attēls ir saglabāts </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Attēls nav saglabāts. Pārbaudiet mapi, kurā tā jāsaglabā. </string>
+        <string name = "FIND_FILE_FONT"> Atrodiet failu ar paplašinājumu "ttf" vai "otf" (faila nosaukuma beigās ir .ttf vai .otf.) </string>
+        <string name = "INCORRECT_TEXT"> Nederīgs teksts </string>
+        <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Jauns fonts nav pievienots. Varbūt nosaukums jau tiek izmantots. </string>
+        <string name = "FILE_FONT"> Failam jābūt ar paplašinājumu "ttf" vai "otf" (faila nosaukuma beigās ir .ttf vai .otf) </string>
+        <string name = "FONT_ADD_FIND_IN_LIST"> Fonts ir pievienots. Atrodiet to sarakstā. </string>
+        <string name = "ADD_FONTS_FIND"> Tika atrasti papildu fonti. </string>
+        <string name = "ADD_FONTS_NOT_FIND"> Tika atrasti papildu fonti. Lejupielādējiet fontus ar paplašinājumu .ttf vai .otf un pievienojiet tos. </string>
+        <string name = "SELECT_POINT_PIPETTE"> Atlasiet punktu uz aizpildītā un necaurspīdīgā zīmējuma laukuma. </string>
+        <string name = "REQUEST_LOAD_OLD_PROJECT"> Jums ir nepabeigts projekts. </string>
+        <string name = "OPEN_OLD_PROJECT"> Vai to atvērt? Pretējā gadījumā tas tiks izdzēsts. </string>
+        <string name = "ERROR_DELETE_FILE"> Faila dzēšanas kļūda </string>
+        <string name = "images"> Attēli </string>
+        <string name = "collet_images"> Skatiet attēlus, nospiežot un turot vienu no tiem, tiek atvērtas papildu darbības. Atgriezieties, izmantojot šo pogu. </string>
+        <string name = "DELETED"> Dzēšana </string>
+        <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Faili tiek izdzēsti no fiziskā datu nesēja </string>
+        <string name = "language"> Valoda </string>
+        <string name = "color_theme"> Krāsu tēma </string>
+        <string name = "restart_window"> restartējiet logu </string>
+</resources>

@@ -46,8 +46,8 @@
 
         <string-array name = "draw_save_note">
             <item> Jagage pilti stuudiost. </item>
-            <item> pildi salvestamine kindlasse kohta. Ilmub süsteemi uurija. Vajaliku salvestusruumi puudumise korral saate uurija menüü vaadata, see võib olla peidetud. </item>
-            <item> pildi salvestamine eelmisse kohta. </item>
+            <item> Pildi salvestamine kindlasse kohta. Ilmub süsteemi uurija. Vajaliku salvestusruumi puudumise korral saate uurija menüü vaadata, see võib olla peidetud. </item>
+            <item> Pildi salvestamine eelmisse kohta. </item>
         </string-array>
 
         <string-array name = "draw_tools_title">
@@ -74,10 +74,10 @@
         <string-array name = "draw_tools_note">
             <item> Tööriistade seadete aken. Alati aktiivne. </item>
             <item> Suum. Sellel nupul vajutades saate ühe kolmest režiimist ümber lülitada. Aktiivne, kui ateljees on pilt. </item>
-            <item> pildi teisaldamine ekraanil. Aktiivne, kui ateljees on pilt. </item>
+            <item> Pildi teisaldamine ekraanil. Aktiivne, kui ateljees on pilt. </item>
             <item> Valige ala ja lõigake see sinna vajutades. Sildid piki kontuuri ja keskel võimaldavad teil valikut kohandada. Aktiivne, kui ateljees on pilt. </item>
             <item> Pööramine, moonutamine. Nende vahel vahetage otse seal. Viimane režiim lähtestab kõik. Aktiivne, kui ateljees on pilt. </item>
-            <item> sisestage tekst. Vajutage siin uuesti, kuvatakse teksti sätete aken. Aktiivne, kui ateljees on pilt. </item>
+            <item> Sisestage tekst. Vajutage siin uuesti, kuvatakse teksti sätete aken. Aktiivne, kui ateljees on pilt. </item>
             <item> Täitke värvi järgi, täitke visandatud ala sees. Aktiivne, kui stuudios on pilt </item>
             <item> Tahke kustutuskumm ja kaldega. Lülitage need siia. Aktiivne, kui ateljees on pilt. </item>
             <item> Pintsel, kolm režiimi ja peits. Aktiivne, kui ateljees on pilt. </item>
@@ -129,7 +129,7 @@
         </string-array>
 
         <string-array name = "addlyr_title">
-            <item> suurus </item>
+            <item> Suurus </item>
             <item> Läbipaistvus </item>
             <item> Peegel </item>
             <item> Ava </item>
@@ -139,11 +139,11 @@
 
         <string-array name = "addlyr_note">
             <item> Suure pildi suurus võib mõjutada rakenduse stabiilsust. Siin saate selle suurust muuta. </item>
-            <item> läbipaistvuse aste. </item>
-            <item> peegelpilt. </item>
-            <item> saatke pilt stuudiosse. </item>
-            <item> naaseb pildi allika juurde. </item>
-            <item> sule aken. </item>
+            <item> Läbipaistvuse aste. </item>
+            <item> Peegelpilt. </item>
+            <item> Saatke pilt stuudiosse. </item>
+            <item> Naaseb pildi allika juurde. </item>
+            <item> Sule aken. </item>
         </string-array>
 
         <string-array name = "review_title">
@@ -162,7 +162,7 @@
         <item> Ava </item>
         <item> Laius </item>
         <item> Kõrgus </item>
-        <item> taustavärv </item>
+        <item> Taustavärv </item>
         <item> Exit </item>
         </string-array>
 
@@ -200,7 +200,7 @@
 
         <string-array name = "prop_title">
             <item> Võsa </item>
-            <item> kustutuskumm </item>
+            <item> Kustutuskumm </item>
             <item> Tekst </item>
             <item> Värv </item>
             <item> Pintsli läbipaistvus </item>
@@ -212,7 +212,7 @@
 
         <string-array name = "prop_note">
             <item> Näitab harja. Selle suurus ja värv. </item>
-            <item> kustutuskumm, kustutamise laius ja tase. </item>
+            <item> Kustutuskumm, kustutamise laius ja tase. </item>
             <item> Teksti suurus ja värv. </item>
             <item> Määrake harja ja teksti värv. </item>
             <item> Määrake valitud värvi läbipaistvuse tase. </item>

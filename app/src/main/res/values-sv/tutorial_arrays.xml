@@ -64,7 +64,7 @@
             <item> Fill </item>
             <item> Eraser </item>
             <item> Pensel </item>
-            <item> dropper </item>
+            <item> Dropper </item>
             <item> Gå tillbaka </item>
             <item> Gå fram </item>
             <item> Outline </item>
@@ -149,7 +149,7 @@
 
         <string-array name = "addlyr_note">
             <item> Stor bildstorlek kan påverka appens stabilitet. Här kan du ändra storlek på den. </item>
-            <item> grad av transparens. </item>
+            <item> Grad av transparens. </item>
             <item> Spegelbild. </item>
             <item> Skicka bilden till studion. </item>
             <item> Återgå till bildens källa. </item>
