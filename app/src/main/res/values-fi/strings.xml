@@ -1,0 +1,48 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> Kansio on poistettu </string>
+        <string name = "SELECTED_IMAGES_DELETED"> Valitut kuvat on poistettu. </string>
+        <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Valitusta kansiosta ei löydy uusia kuvia. </string>
+        <string name = "IN_GALLERY_ADD_FOLDER"> Uusi kansio on lisätty galleriaan. </string>
+        <string name = "CREATE_IMG"> Luo kangas </string>
+        <string name = "condition_apply_tools"> Avaa tai luo kangas </string>
+        <string name = "PHOTO"> Valokuva </string>
+        <string name = "COLLECT"> galleria </string>
+        <string name = "YES"> Kyllä </string>
+        <string name = "NO"> Ei </string>
+        <string name = "ASSES_TO_DATA"> Tietojen käyttö </string>
+        <string name = "ASSES_TO_CAMERA"> Pääsy kameraan </string>
+        <string name = "REPEAT_REQUEST"> Toistetaanko pyyntö? </string>
+        <string name = "RATIONALE_ASSES_CAMERA"> Kameran käyttöoikeus tarvitaan kuvan ottamiseen sovelluksen avulla. </string>
+        <string name = "RATIONALE_ASSES_WRITE"> Multimedian käyttö on välttämätöntä, jotta kuvia voidaan lukea ja tallentaa laitteelle. </string>
+        <string name = "TOAST_RESOLUTION"> Asetuksissa aseta tarvittava resoluutio. </string>
+        <string name = "NOT_PERMISSION"> Käyttö evätty </string>
+        <string name = "GO_TO_SETTINGS"> Saadaksesi se siirry sovelluksen asetuksiin. </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> kuvaa ei ole tallennettu. Tarkista laitteen jäljellä oleva tallennustila. </string>
+        <string name = "IMAGE_SAVED"> Kuva on tallennettu </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> kuvaa ei ole tallennettu. Tarkista kansio, johon se tulisi tallentaa. </string>
+        <string name = "FIND_FILE_FONT"> Etsi tiedosto, jonka tunniste on "ttf" tai "otf" (tiedoston nimen lopussa on .ttf tai .otf.) </string>
+        <string name = "INCORRECT_TEXT"> virheellinen teksti </string>
+        <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Uutta kirjasinta ei ole lisätty. Ehkä nimi on jo käytössä. </string>
+        <string name = "FILE_FONT"> Tiedoston tulee olla laajennuksella "ttf" tai "otf" (tiedostonimen lopussa on .ttf tai .otf) </string>
+        <string name = "FONT_ADD_FIND_IN_LIST"> Kirjasin on lisätty. Löydä se luettelosta. </string>
+        <string name = "ADD_FONTS_FIND"> Lisä fontteja on löydetty. </string>
+        <string name = "ADD_FONTS_NOT_FIND"> Muita fontteja ei löytynyt. Lataa fontit .ttf- tai .otf-tunnisteella ja lisää ne. </string>
+        <string name = "SELECT_POINT_PIPETTE"> Valitse piste täytetyllä ja läpinäkymättömällä piirustusalueella. </string>
+        <string name = "REQUEST_LOAD_OLD_PROJECT"> Sinulla on keskeneräinen projekti. </string>
+        <string name = "OPEN_OLD_PROJECT"> avataanko se? Muuten se poistetaan. </string>
+        <string name = "ERROR_DELETE_FILE"> Tiedoston poistamisvirhe </string>
+        <string name = "images"> Kuvat </string>
+        <string name = "collet_images"> Katsele kuvia, pitämällä painettuna yhtä niistä avaa lisätoiminnot. Palaa takaisin tällä painikkeella. </string>
+        <string name = "DELETED"> Poisto </string>
+        <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Tiedostot poistetaan fyysisestä tallennusvälineestä </string>
+        <string name = "language"> Kieli </string>
+        <string name = "color_theme"> Väriteema </string>
+        <string name = "restart_window"> käynnistä ikkuna uudelleen </string>
+</resources>

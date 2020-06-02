@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+                <item> Disclaimer </item>
+                <item> vihjeet </item>
+                <item> Studio </item>
+                <item> Galleria </item>
+            </string-array>
+
+        <string-array name = "main_buttons_note">
+            <item> Tämän sovelluksen kirjoittaja ei ole vastuussa kolmannen osapuolen kuvien käytöstä. Tämän sovelluksen avulla käyttäjän on noudatettava lakia ja kunnioitettava tekijänoikeuksia. </item>
+            <item> Vihjeitä ilmestyy prosessissa. Jatka painamalla seuraavaa tai valittua elementtiä. </item>
+            <item> Tässä ikkunassa työskentelet kuvan kanssa. Päätyökalut ovat piilotettu kolmen painikkeen taakse. </item>
+            <item> Siellä avaat kansiot, katsot kuvia jne. Jos painat ja pidät painettuna galleriaelementtiä, avaat lisätoiminnot. Multimedian käyttö edellyttää, että se toimii. </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_title">
+            <item> Avaa piirustus </item>
+            <item> Työkalut </item>
+            <item> Piirustuksen tallentaminen </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_note">
+            <item> Lisää kuva tai aloita uusi projekti. Jos haluat yhdistää kuvia, työskentele tästä. </item>
+            <item> Työkalut piirustuksen muokkaamiseen. Jotkut heistä ovat aktiivisia vain tietyissä olosuhteissa. </item>
+            <item> Tallenna tai jaa kuva studiosta täällä. </item>
+        </string-array>
+
+
+
+        <string-array name = "draw_add_title">
+            <item> Kamera </item>
+            <item> Kokoelma </item>
+            <item> Tyhjä kangas </item>
+        </string-array>
+
+        <string-array name = "draw_add_note">
+            <item> Avaa kamerasta otettu valokuva. Kameran käyttö on vaadittava, jotta se toimisi. </item>
+            <item> Hanki kuva kokoelmasta. </item>
+            <item> Luo tyhjä kangas itse. </item>
+        </string-array>
+
+
+        <string-array name = "draw_save_title">
+            <item> Jaa </item>
+            <item> Tallenna </item>
+            <item> Tallenna </item>
+        </string-array>
+
+        <string-array name = "draw_save_note">
+            <item> Jaa kuva studiosta. </item>
+            <item> Tallenna kuva tiettyyn sijaintiin. Järjestelmän tutkija ilmestyy. Jos vaadittua tallennustilaa ei löydy tutkijavalikosta, se saattaa olla piilotettu. </item>
+            <item> Tallenna kuva aikaisempaan sijaintiin. </item>
+        </string-array>
+
+
+        <string-array name = "draw_tools_title">
+            <item> Asetukset </item>
+            <item> Zoom </item>
+            <item> Siirrä </item>
+            <item> Leikkaa </item>
+            <item> Vääristä </item>
+            <item> Text </item>
+            <item> Fill </item>
+            <item> Eraser </item>
+            <item> Brush </item>
+            <item> Dropper </item>
+            <item> Palaa takaisin </item>
+            <item> siirry eteenpäin </item>
+            <item> Jäsennys </item>
+            <item> Poista projekti </item>
+            <item> Seal </item>
+            <item> Vaihda </item>
+            <item> Ompele </item>
+            <item> Poista kuva </item>
+        </string-array>
+
+        <string-array name = "draw_tools_note">
+            <item> Työkalujen asetusikkuna. Aina aktiivinen. </item>
+            <item> Zoom. Voit vaihtaa yhden kolmesta tilasta painamalla tätä painiketta. Aktiivinen, kun kuva on läsnä studiossa. </item>
+            <item> Siirrä kuvaa näytössä. Aktiivinen, kun kuva on läsnä studiossa. </item>
+            <item> Valitse alue ja leikkaa se painamalla sitä. Tunnisteet ääriviivat ja keskellä antavat sinun säätää valintaa. Aktiivinen, kun kuva on läsnä studiossa. </item>
+            <item> Kierto, vääristymä. Vaihda niiden välillä on täällä. Viimeinen tila nollaa kaiken. Aktiivinen, kun kuva on läsnä studiossa. </item>
+            <item> Lisää teksti. Paina tätä uudelleen, tekstin asetusikkuna tulee näkyviin. Aktiivinen, kun kuva on läsnä studiossa. </item>
+            <item> Täytä värin mukaan, täytä kehystetyn alueen sisällä. Aktiivinen, kun studiossa on kuva </item>
+            <item> Kiinteä pyyhekumi ja kaltevuuksilla. Vaihda ne tähän. Aktiivinen, kun kuva on läsnä studiossa. </item>
+            <item> Harja, kolme tilaa ja tahra. Aktiivinen, kun kuva on läsnä studiossa. </item>
+            <item> Kopioi väri piirustuksesta. Edellinen työkalu pysyy aktiivisena. Aktiivinen, kun kuva on läsnä studiossa. </item>
+            <item> Tee uudelleen. </item>
+            <item> Kumoa. </item>
+            <item> Piirustuksen ääriviivat. Hyödyllinen työskennellessäsi läpinäkyvän kankaan kanssa. Kahden kanssa työskennellessä ääriviivojen värit ovat erilaiset. Aktiivinen, kun kuva on läsnä studiossa. </item>
+            <item> Poistaa projektin koko historian kanssa. Aktiivinen, kun kuva on läsnä studiossa. </item>
+            <item> Mahdollistaa joidenkin työkalujen vaikuttavan molempiin kuviin. Aktiivinen, kun ylimääräinen kuva on läsnä. </item>
+            <item> Vaihdetaan pää- ja yläkuvien paikkoja. Aktiivinen, kun ylimääräinen kuva on läsnä. </item>
+            <item> Yhdistä kaksi kuvaa yhdeksi. Ylempi viljelykasvi pääosan ääriviivat pitkin. Aktiivinen, kun ylimääräinen kuva on läsnä. </item>
+            <item> Poista yläkuva. Aktiivinen, kun ylimääräinen kuva on läsnä. </item>
+        </string-array>
+
+
+
+    <string-array name = "collect_title">
+                <item> Lisää kansio </item>
+                <item> Hallitse </item>
+            </string-array>
+
+        <string-array name = "collect_note">
+            <item> Lisää kansio galleriaan. Järjestelmän tutkija ilmestyy. Valitse kansio ja jos siinä on kuvia, se lisätään. Jos vaadittua tallennustilaa ei löydy tutkijavalikosta, se saattaa olla piilotettu. </item>
+            <item> Sovellusten hallinta. </item>
+        </string-array>
+
+
+        <string-array name = "collect_root_menu_title">
+            <item> Lisäasetukset </item>
+            <item> Piilota </item>
+            <item> Jaa </item>
+            <item> Poista </item>
+        </string-array>
+
+        <string-array name = "collect_root_menu_note">
+            <item> Lisäasetukset-tila. Soveltuu yhteen kansioon. Jätä se painamalla tätä painiketta. </item>
+            <item> piilota tämä kansio. </item>
+            <item> Jaa tämän kansion sisältö. </item>
+            <item> Poista valittu kansio. </item>
+        </string-array>
+
+
+        <string-array name = "collect_adapt_menu_title">
+            <item> Lisäasetukset </item>
+            <item> Jaa </item>
+            <item> Poista </item>
+        </string-array>
+
+        <string-array name = "collect_adapt_menu_note">
+            <item> Lisäasetukset-tila. Sovelletaan useampaan kuin yhteen kuvaan. Jätä se painamalla tätä painiketta. </item>
+            <item> Jaa valitut kuvat. </item>
+            <item> Poista valitut kuvat. </item>
+        </string-array>
+
+
+        <string-array name = "addlyr_title">
+            <item> Koko </item>
+            <item> Läpinäkyvyys </item>
+            <item> Mirror </item>
+            <item> Avaa </item>
+            <item> Takaisin </item>
+            <item> Close </item>
+
+        </string-array>
+
+        <string-array name = "addlyr_note">
+            <item> Kuvan suuri koko voi vaikuttaa sovelluksen vakauteen. Täällä voit muuttaa sen kokoa. </item>
+            <item> läpinäkyvyysaste. </item>
+            <item> Peilikuva. </item>
+            <item> Lähetä kuva studioon. </item>
+            <item> Palaa kuvan lähteeseen. </item>
+            <item> Sulje ikkuna. </item>
+        </string-array>
+
+        <string-array name = "review_title">
+            <item> Näytä kuva </item>
+            <item> Muokkaa </item>
+            <item> Lopeta </item>
+
+        </string-array>
+
+        <string-array name = "review_note">
+            <item> Kuvanäkymä, jolla on mahdollisuus selata. Tällä painikkeella voit jakaa sen. </item>
+            <item> Lähetä muokkausikkunaan ja avaa sitten studiossa. Tärkeä! Kuvan avaaminen täältä aloittaa uuden projektin. </item>
+            <item> Sulje katselutila. </item>
+
+
+        </string-array> <string-array name = "creator_title">
+        <item> Avaa </item>
+        <item> Leveys </item>
+        <item> Korkeus </item>
+        <item> Taustaväri </item>
+        <item> Lopeta </item>
+
+</string-array>
+        <string-array name = "creator_note">
+            <item> Tyhjä kangastila. Avaa kangas editorissa lähettääksesi se studioon. </item>
+            <item> Aseta leveys. </item>
+            <item> Aseta korkeus. </item>
+            <item> Avaa värivalitsin. Paina keskellä poistuaksesi. </item>
+            <item> Sulje tyhjä kangastila. </item>
+
+        </string-array>
+
+    <string-array name = "addlyr_collect_title">
+                <item> Galleria </item>
+                <item> Lopeta </item>
+
+            </string-array>
+        <string-array name = "addlyr_collect_note">
+            <item> Galleria sisältää kansioita, joissa on kuvia. Avaa ne studiossa. Ne lisätään olemassa olevaan projektiin. Jos studiossa on jo lisäkuva, se korvataan. </item>
+            <item> Sulje galleria. </item>
+        </string-array>
+
+
+        <string-array name = "addlyr_cam_title">
+            <item> Ota kuva </item>
+            <item> Kameran valinta </item>
+            <item> Studio </item>
+            <item> Lopeta </item>
+
+
+        </string-array>
+        <string-array name = "addlyr_cam_note">
+            <item> Ota kuva ja avaa se editorissa. </item>
+            <item> Valitse käytettävä kamera. </item>
+            <item> Kytke salama päälle. </item>
+            <item> Sulje kamera. </item>
+
+        </string-array>
+
+        <string-array name = "prop_title">
+            <item> Brush </item>
+            <item> Eraser </item>
+            <item> Text </item>
+            <item> Väri </item>
+            <item> Harjan läpinäkyvyys </item>
+            <item> Leveys </item>
+            <item> Pyyhekumi läpinäkyvyys </item>
+            <item> Käytä </item>
+            <item> Lopeta </item>
+
+        </string-array>
+
+        <string-array name = "prop_note">
+            <item> Näyttää harjan. Sen koko ja väri. </item>
+            <item> pyyhekumi, poiston leveys ja taso. </item>
+            <item> tekstin koko ja väri. </item>
+            <item> Aseta harjan ja tekstin väri. </item>
+            <item> Aseta valitun värin läpinäkyvyys. </item>
+            <item> Aseta harjan leveys, pyyhekumi ja tekstin koko. </item>
+            <item> Säädä pyyhkäisyn tasoa. </item>
+            <item> Käytä valitut asetukset. </item>
+            <item> Peruuta ja poistu. </item>
+        </string-array>
+
+        <string-array name = "edit_text_title">
+            <item> Kirjoita teksti </item>
+            <item> uudelleenjärjestäminen </item>
+
+            <item> Fontin </item>
+            <item> Jäsennys </item>
+            <item> Angle </item>
+            <item> Kaltevuus </item>
+
+            <item> Käytä </item>
+            <item> Lopeta </item>
+        </string-array>
+
+        <string-array name = "edit_text_note">
+            <item> Tekstiruutu. </item>
+            <item> Poista edellinen teksti. </item>
+
+            <item> Käytetty fontti. </item>
+            <item> Valitse kiinteä fontti tai sen ääriviivat. </item>
+            <item> Säädä fontin kulmaa. </item>
+            <item> Aseta fontin tarvittava kaltevuus. </item>
+
+            <item> Tallenna muutokset ja poistu. </item>
+            <item> Jätä ilman muutoksia. </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_title">
+            <item> Luettelo fontteista </item>
+            <item> Lisää kirjasinlaji </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_note">
+            <item> Luettelo käytettävissä olevista kirjasimista. </item>
+            <item> Lisää ladattu fontti. Fontti on tiedosto, jonka tunniste on "ttf" tai "otf". </item>
+        </string-array>
+
+
+
+
+
+</resources>
