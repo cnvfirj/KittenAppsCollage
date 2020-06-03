@@ -213,7 +213,7 @@
         <string-array name = "prop_note">
             <item> Parāda suku. Tā lielums un krāsa. </item>
             <item> Dzēšgumija, dzēšanas platums un līmenis. </item>
-            <item> teksta lielums un krāsa. </item>
+            <item> Teksta lielums un krāsa. </item>
             <item> Iestatiet sukas un teksta krāsu. </item>
             <item> Iestatiet izvēlētās krāsas caurspīdīguma līmeni. </item>
             <item> Iestatiet sukas platumu, dzēšgumiju un teksta lielumu. </item>

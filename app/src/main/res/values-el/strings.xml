@@ -1,0 +1,48 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> Ο φάκελος διαγράφηκε </string>
+        <string name = "SELECTED_IMAGES_DELETED"> Οι επιλεγμένες εικόνες έχουν διαγραφεί. </string>
+        <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Δεν βρέθηκαν νέες εικόνες στον επιλεγμένο φάκελο. </string>
+        <string name = "IN_GALLERY_ADD_FOLDER"> Προστέθηκε νέος φάκελος στη συλλογή. </string>
+        <string name = "CREATE_IMG"> Δημιουργία καμβά </string>
+        <string name = "condition_apply_tools"> Άνοιγμα ή δημιουργία καμβά </string>
+        <string name = "PHOTO"> Φωτογραφία </string>
+        <string name = "COLLECT"> Συλλογή </string>
+        <string name = "ΝΑΙ"> Ναι </string>
+        <string name = "NO"> Όχι </string>
+        <string name = "ASSES_TO_DATA"> Πρόσβαση στα δεδομένα </string>
+        <string name = "ASSES_TO_CAMERA"> Πρόσβαση στην κάμερα </string>
+        <string name = "REPEAT_REQUEST"> Επανάληψη του αιτήματος; </string>
+        <string name = "RATIONALE_ASSES_CAMERA"> Απαιτείται πρόσβαση στην κάμερα για τη λήψη φωτογραφιών χρησιμοποιώντας την εφαρμογή. </string>
+        <string name = "RATIONALE_ASSES_WRITE"> Απαιτείται πρόσβαση στα πολυμέσα για την ανάγνωση και αποθήκευση των εικόνων στη συσκευή. </string>
+        <string name = "TOAST_RESOLUTION"> Στις ρυθμίσεις ορίστε την απαιτούμενη ανάλυση. </string>
+        <string name = "NOT_PERMISSION"> Δεν επιτρέπεται η πρόσβαση </string>
+        <string name = "GO_TO_SETTINGS"> Για να το μεταβείτε στις ρυθμίσεις της εφαρμογής. </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Η εικόνα δεν έχει αποθηκευτεί. Ελέγξτε τον υπόλοιπο χώρο αποθήκευσης της συσκευής. </string>
+        <string name = "IMAGE_SAVED"> Η εικόνα έχει αποθηκευτεί </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Η εικόνα δεν έχει αποθηκευτεί. Ελέγξτε το φάκελο στον οποίο πρέπει να αποθηκευτεί. </string>
+        <string name = "FIND_FILE_FONT"> Βρείτε το αρχείο με επέκταση "ttf" ή "otf" (Υπάρχει .ttf ή .otf στο τέλος του ονόματος αρχείου.) </string>
+        <string name = "INCORRECT_TEXT"> Μη έγκυρο κείμενο </string>
+        <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Δεν έχει προστεθεί νέα γραμματοσειρά. Ίσως το όνομα χρησιμοποιείται ήδη. </string>
+        <string name = "FILE_FONT"> Το αρχείο πρέπει να είναι με επέκταση "ttf" ή "otf" (Υπάρχει .ttf ή .otf στο τέλος του ονόματος αρχείου) </string>
+        <string name = "FONT_ADD_FIND_IN_LIST"> Προστέθηκε γραμματοσειρά. Βρείτε το στη λίστα. </string>
+        <string name = "ADD_FONTS_FIND"> Βρέθηκαν επιπλέον γραμματοσειρές. </string>
+        <string name = "ADD_FONTS_NOT_FIND"> Δεν βρέθηκαν επιπλέον γραμματοσειρές. Πραγματοποιήστε λήψη των γραμματοσειρών με επέκταση .ttf ή .otf και προσθέστε τις. </string>
+        <string name = "SELECT_POINT_PIPETTE"> Επιλέξτε το σημείο στην γεμάτη και μη διαφανή περιοχή του σχεδίου. </string>
+        <string name = "REQUEST_LOAD_OLD_PROJECT"> Έχετε ένα ημιτελές έργο. </string>
+        <string name = "OPEN_OLD_PROJECT"> Άνοιγμα; Διαφορετικά θα διαγραφεί. </string>
+        <string name = "ERROR_DELETE_FILE"> Αποτυχία διαγραφής αρχείων </string>
+        <string name = "images"> Εικόνες </string>
+        <string name = "collet_images"> Προβολή των εικόνων, πατώντας παρατεταμένα μία από αυτές ανοίγει τις πρόσθετες ενέργειες. Επιστρέψτε χρησιμοποιώντας αυτό το κουμπί. </string>
+        <string name = "DELETED"> Διαγραφή </string>
+        <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Τα αρχεία διαγράφονται από τα φυσικά μέσα </string>
+        <string name = "language"> Γλώσσα </string>
+        <string name = "color_theme"> Θέμα χρώματος </string>
+        <string name = "restart_window"> επανεκκινήστε το παράθυρο </string>
+</resources>

@@ -1,0 +1,48 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> Папката е изтрита </string>
+        <string name = "SELECTED_IMAGES_DELETED"> Избраните изображения са изтрити. </string>
+        <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Не са намерени нови изображения в избраната папка. </string>
+        <string name = "IN_GALLERY_ADD_FOLDER"> Добавена е нова папка в галерията. </string>
+        <string name = "CREATE_IMG"> Създаване на платно </string>
+        <string name = "condition_apply_tools"> Отваряне или създаване на платно </string>
+        <string name = "PHOTO"> Снимка </string>
+        <string name = "COLLECT"> Галерия </string>
+        <string name = "YES"> Да </string>
+        <string name = "NO"> Не </string>
+        <string name = "ASSES_TO_DATA"> Достъп до данните </string>
+        <string name = "ASSES_TO_CAMERA"> Достъп до камерата </string>
+        <string name = "REPEAT_REQUEST"> Повторете заявката? </string>
+        <string name = "RATIONALE_ASSES_CAMERA"> Достъпът до камерата е необходим за правене на снимки с помощта на приложението. </string>
+        <string name = "RATIONALE_ASSES_WRITE"> Необходим е достъп до мултимедията за четене и запазване на изображенията на устройството. </string>
+        <string name = "TOAST_RESOLUTION"> В настройките задайте необходимата разделителна способност. </string>
+        <string name = "NOT_PERMISSION"> Достъпът е отказан </string>
+        <string name = "GO_TO_SETTINGS"> За да отидете до настройките на приложението. </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Изображението не е запазено. Проверете оставащото място за съхранение на устройството. </string>
+        <string name = "IMAGE_SAVED"> Изображението е запазено </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Изображението не е запазено. Проверете папката, където трябва да бъде записана. </string>
+        <string name = "FIND_FILE_FONT"> Намерете файла с разширение "ttf" или "otf" (Има .ttf или .otf в края на името на файла.) </string>
+        <string name = "INCORRECT_TEXT"> Невалиден текст </string>
+        <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Нов шрифт не е добавен. Може би името вече се използва. </string>
+        <string name = "FILE_FONT"> Файлът трябва да бъде с разширение "ttf" или "otf" (има .ttf или .otf в края на името на файла) </string>
+        <string name = "FONT_ADD_FIND_IN_LIST"> Шрифтът е добавен. Намерете го в списъка. </string>
+        <string name = "ADD_FONTS_FIND"> Намерени са допълнителни шрифтове. </string>
+        <string name = "ADD_FONTS_NOT_FIND"> Не бяха намерени допълнителни шрифтове. Изтеглете шрифтовете с разширение .ttf или .otf и ги добавете. </string>
+        <string name = "SELECT_POINT_PIPETTE"> Изберете точката върху запълнената и непрозрачна област на чертежа. </string>
+        <string name = "REQUEST_LOAD_OLD_PROJECT"> Имате незавършен проект. </string>
+        <string name = "OPEN_OLD_PROJECT"> Да го отворя ли? В противен случай тя ще бъде изтрита. </string>
+        <string name = "ERROR_DELETE_FILE"> Грешка при изтриване на файл </string>
+        <string name = "images"> Изображения </string>
+        <string name = "collet_images"> Преглед на изображенията, натискането и задържането на едно от тях отваря допълнителните действия. Върнете се с този бутон. </string>
+        <string name = "DELETED"> Изтриване </string>
+        <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Файловете се изтриват от физически носители </string>
+        <string name = "language"> Език </string>
+        <string name = "color_theme"> Цветна тема </string>
+        <string name = "restart_window"> рестартирайте прозореца </string>
+</resources>

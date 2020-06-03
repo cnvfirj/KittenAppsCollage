@@ -55,10 +55,10 @@
             <item> Aðdráttur </item>
             <item> Færa </item>
             <item> Klippa </item>
-            <item> bjögun </item>
-            <item> texti </item>
+            <item> Bjögun </item>
+            <item> Texti </item>
             <item> Fylltu </item>
-            <item> strokleður </item>
+            <item> Strokleður </item>
             <item> Bursti </item>
             <item> dropper </item>
             <item> Fara til baka </item>
@@ -139,7 +139,7 @@
 
         <string-array name = "addlyr_note">
             <item> Stór stærð myndarinnar getur haft áhrif á stöðugleika appsins. Hér getur þú breytt stærðinni. </item>
-            <item> gráðu gagnsæis. </item>
+            <item> Gráðu gagnsæis. </item>
             <item> Spegilmynd. </item>
             <item> Sendu myndina í hljóðverið. </item>
             <item> Fara aftur í uppruna myndarinnar. </item>
@@ -200,8 +200,8 @@
 
     <string-array name = "prop_title">
                 <item> Bursti </item>
-                <item> strokleður </item>
-                <item> texti </item>
+                <item> Strokleður </item>
+                <item> Texti </item>
                 <item> Litur </item>
                 <item> Bursta gegnsæi </item>
                 <item> Breidd </item>
