@@ -1,0 +1,48 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> Mappa hefur verið eytt </string>
+        <string name = "SELECTED_IMAGES_DELETED"> Völdum myndum hefur verið eytt. </string>
+        <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Engar nýjar myndir hafa fundist í völdum möppu. </string>
+        <string name = "IN_GALLERY_ADD_FOLDER"> Ný mappa hefur verið sett í myndasafnið. </string>
+        <string name = "CREATE_IMG"> Búðu til striga </string>
+        <string name = "condition_apply_tools"> Opnaðu eða búðu til striga </string>
+        <string name = "PHOTO"> Mynd </string>
+        <string name = "COLLECT"> Gallerí </string>
+        <string name = "YES"> Já </string>
+        <string name = "NO"> Nei </string>
+        <string name = "ASSES_TO_DATA"> Aðgangur að gögnunum </string>
+        <string name = "ASSES_TO_CAMERA"> Aðgangur að myndavélinni </string>
+        <string name = "REPEAT_REQUEST"> Endurtaktu beiðnina? </string>
+        <string name = "RATIONALE_ASSES_CAMERA"> Aðgang að myndavélinni er krafist til að taka myndir með forritinu. </string>
+        <string name = "RATIONALE_ASSES_WRITE"> Aðgang að margmiðluninni er krafist til að lesa og vista myndirnar í tækinu. </string>
+        <string name = "TOAST_RESOLUTION"> Í stillingum stilltu nauðsynlega upplausn. </string>
+        <string name = "NOT_PERMISSION"> Aðgangi hafnað </string>
+        <string name = "GO_TO_SETTINGS"> Til að fá það skaltu fara í forritsstillingarnar. </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Mynd hefur ekki verið vistuð. Athugaðu geymslu tækisins sem eftir er. </string>
+        <string name = "IMAGE_SAVED"> Mynd hefur verið vistuð </string>
+        <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Mynd hefur ekki verið vistuð. Athugaðu möppuna þar sem hún á að vista. </string>
+        <string name = "FIND_FILE_FONT"> Finndu skrána með viðbótinni "ttf" eða "otf" (það er .ttf eða .otf í lok skráarheitisins.) </string>
+        <string name = "INCORRECT_TEXT"> Ógildur texti </string>
+        <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Nýju letri hefur ekki verið bætt við. Kannski er nafnið þegar í notkun. </string>
+        <string name = "FILE_FONT"> Skráin ætti að vera með "ttf" eða "otf" viðbótina (það er .ttf eða .otf í lok skráarheitisins) </string>
+        <string name = "FONT_ADD_FIND_IN_LIST"> Fonti var bætt við. Finndu það á listanum. </string>
+        <string name = "ADD_FONTS_FIND"> Viðbótar letur fundust. </string>
+        <string name = "ADD_FONTS_NOT_FIND"> Viðbótargerð leturgerða hefur ekki fundist. Sæktu leturgerðirnar með .ttf eða .otf viðbótinni og bættu þeim við. </string>
+        <string name = "SELECT_POINT_PIPETTE"> Veldu punktinn á fylltu og ógagnsæju svæði teikningarinnar. </string>
+        <string name = "REQUEST_LOAD_OLD_PROJECT"> Þú ert með óunnið verkefni. </string>
+        <string name = "OPEN_OLD_PROJECT"> Opna það? Annars verður því eytt. </string>
+        <string name = "ERROR_DELETE_FILE"> Bilun á eyðingu skjals </string>
+        <string name = "images"> Myndir </string>
+        <string name = "collet_images"> Skoðaðu myndirnar, haltu inni á einni þeirra opnar viðbótaraðgerðirnar. Farðu aftur með þessum hnappi. </string>
+        <string name = "DELETED"> Eyði </string>
+        <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Skrár er eytt af líkamlegum miðlum </string>
+        <string name = "language"> Tungumál </string>
+        <string name = "color_theme"> Litur þema </string>
+        <string name = "restart_window"> endurræstu gluggann </string>
+</resources>

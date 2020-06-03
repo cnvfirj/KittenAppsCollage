@@ -133,6 +133,8 @@ public class SaveStep {
             try {
                 os = new FileOutputStream(file);
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
+//                bitmap.compress(Bitmap.CompressFormat.WEBP, 100, os);
+
                 os.flush();
                 os.close();
             } catch (IOException e) {

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+                <item> Fyrirvari </item>
+                <item> Ábendingar </item>
+                <item> Stúdíó </item>
+                <item> Gallerí </item>
+            </string-array>
+
+        <string-array name = "main_buttons_note">
+            <item> Höfundur þessa forrits tekur ekki ábyrgð á notkun þriðja aðila myndanna. Með því að nota þetta forrit er notandanum skylt að fylgja lögum og virða höfundarrétt. </item>
+            <item> Í ferlinu munu vísbendingarnar birtast. Ýttu á næsta eða valinn þátt til að halda áfram. </item>
+            <item> Í þessum glugga ertu að vinna með myndina. Helstu verkfæri eru falin á bak við þrjá hnappa. </item>
+            <item> Þar opnarðu möppurnar, skoðar myndir o.s.frv. Með því að ýta á og halda inni í myndasafni opnast viðbótaraðgerðirnar. Aðgangur að margmiðluninni er nauðsynlegur til að það virki. </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_title">
+            <item> Opna teikningu </item>
+            <item> Verkfæri </item>
+            <item> Vistar teikningu </item>
+        </string-array>
+
+        <string-array name = "draw_main_buttons_note">
+            <item> Bættu við mynd eða byrjaðu á nýju verkefni. Ef þú vilt sameina myndir skaltu vinna héðan. </item>
+            <item> Verkfæri til að teikna klippingu. Sumir þeirra eru aðeins virkir við vissar aðstæður. </item>
+            <item> Vistaðu eða deildu mynd úr vinnustofunni hér. </item>
+        </string-array>
+
+        <string-array name = "draw_add_title">
+            <item> Myndavél </item>
+            <item> Safn </item>
+            <item> Autt striga </item>
+        </string-array>
+
+        <string-array name = "draw_add_note">
+            <item> Opnaðu mynd sem tekin var úr myndavélinni. Aðgangur að myndavélinni er nauðsynlegur til að hún virki. </item>
+            <item> Fáðu mynd úr safninu. </item>
+            <item> Búðu til auða striga sjálfur. </item>
+        </string-array>
+
+        <string-array name = "draw_save_title">
+            <item> Deila </item>
+            <item> Vista </item>
+            <item> Vista </item>
+        </string-array>
+
+        <string-array name = "draw_save_note">
+            <item> Deildu myndinni frá vinnustofunni. </item>
+            <item> Vistaðu myndina á ákveðnum stað. Könnuður kerfisins mun birtast. Ef ekki er þörf á geymsluplássi skaltu skoða valmynd landkönnuða. Það gæti verið falið. </item>
+            <item> Vistaðu myndina á fyrri stað. </item>
+        </string-array>
+
+        <string-array name = "draw_tools_title">
+            <item> Stillingar </item>
+            <item> Aðdráttur </item>
+            <item> Færa </item>
+            <item> Klippa </item>
+            <item> bjögun </item>
+            <item> texti </item>
+            <item> Fylltu </item>
+            <item> strokleður </item>
+            <item> Bursti </item>
+            <item> dropper </item>
+            <item> Fara til baka </item>
+            <item> Fara áfram </item>
+            <item> Yfirlit </item>
+            <item> Eyða verkefninu </item>
+            <item> innsigli </item>
+            <item> Skipta </item>
+            <item> Saumaðu </item>
+            <item> Eyða myndinni </item>
+        </string-array>
+
+        <string-array name = "draw_tools_note">
+            <item> Stillingar gluggi fyrir verkfærin. Alltaf virkur. </item>
+            <item> Aðdráttur. Þú getur skipt um einn af þremur stillingum með því að ýta á þennan hnapp. Virkt þegar mynd er til staðar í hljóðverinu. </item>
+            <item> Færðu myndina á skjáinn. Virkt þegar mynd er til staðar í hljóðverinu. </item>
+            <item> Veldu svæðið og skera það með því að ýta þar. Merkingar eftir útlínunni og í miðjunni láta þig laga valið. Virkt þegar mynd er til staðar í hljóðverinu. </item>
+            <item> Snúningur, bjögun. Skipt milli þeirra er rétt þar. Síðasti stillingin endurstillir allt. Virkt þegar mynd er til staðar í hljóðverinu. </item>
+            <item> Settu textann inn. Ýttu aftur hér, stillingarglugginn fyrir textann birtist. Virkt þegar mynd er til staðar í hljóðverinu. </item>
+            <item> Fylltu eftir lit, fylltu innan útlits svæðisins. Virkt þegar það er mynd í hljóðverinu </item>
+            <item> Solid strokleður og með halla. Skiptu um þá. Virkt þegar mynd er til staðar í hljóðverinu. </item>
+            <item> Bursti, þrír stillingar og blettur. Virkt þegar mynd er til staðar í hljóðverinu. </item>
+            <item> Afritaðu litinn af teikningunni. Fyrra tól er áfram virkt. Virkt þegar mynd er til staðar í hljóðverinu. </item>
+            <item> Endurtaka. </item>
+            <item> Afturkalla. </item>
+            <item> Yfirlit teikningarinnar. Gagnlegar þegar unnið er með gegnsæja striga. Þegar unnið er með tvo eru litirnir á útlínunum mismunandi. Virkt þegar mynd er til staðar í hljóðverinu. </item>
+            <item> Eyðir verkefninu með allri sögu. Virkt þegar mynd er til staðar í hljóðverinu. </item>
+            <item> Leyfir að sum verkfæranna hafa áhrif á báðar myndirnar. Virkt þegar viðbótarmynd er til staðar. </item>
+            <item> Skipt um staði aðal- og efri mynda. Virkt þegar viðbótarmynd er til staðar. </item>
+            <item> Sameina tvær myndir í eina. Efri ræktun meðfram útlínur helstu. Virkt þegar viðbótarmynd er til staðar. </item>
+            <item> Eyða efri mynd. Virkt þegar viðbótarmynd er til staðar. </item>
+        </string-array>
+
+    <string-array name = "collect_title">
+                <item> Bæta við möppu </item>
+                <item> Stjórna </item>
+            </string-array>
+
+        <string-array name = "collect_note">
+            <item> Bættu við möppu í gallerí. Könnuður kerfisins mun birtast. Veldu möppu og ef hún er með myndunum, þá verður henni bætt við. Ef ekki er þörf á geymsluplássi skaltu skoða valmynd landkönnuða. Það gæti verið falið. </item>
+            <item> Stjórnun forrita. </item>
+        </string-array>
+
+        <string-array name = "collect_root_menu_title">
+            <item> Viðbótarstillingar </item>
+            <item> Fela </item>
+            <item> Deila </item>
+            <item> Eyða </item>
+        </string-array>
+
+        <string-array name = "collect_root_menu_note">
+            <item> Viðbótarstillingarstilling. Gildir í einni möppu. Skildu eftir það með því að ýta á þennan hnapp. </item>
+            <item> Fela þessa möppu. </item>
+            <item> Deila innihaldi þessarar möppu. </item>
+            <item> Eyða völdum möppu. </item>
+        </string-array>
+
+        <string-array name = "collect_adapt_menu_title">
+            <item> Viðbótarstillingar </item>
+            <item> Deila </item>
+            <item> Eyða </item>
+        </string-array>
+
+        <string-array name = "collect_adapt_menu_note">
+            <item> Viðbótarstillingarstilling. Gildir á fleiri en einni mynd. Skildu eftir það með því að ýta á þennan hnapp. </item>
+            <item> Deildu völdum myndum. </item>
+            <item> Eyða völdum myndum. </item>
+        </string-array>
+
+        <string-array name = "addlyr_title">
+            <item> Stærð </item>
+            <item> Gagnsæi </item>
+            <item> Spegill </item>
+            <item> Opna </item>
+            <item> Til baka </item>
+            <item> Loka </item>
+        </string-array>
+
+        <string-array name = "addlyr_note">
+            <item> Stór stærð myndarinnar getur haft áhrif á stöðugleika appsins. Hér getur þú breytt stærðinni. </item>
+            <item> gráðu gagnsæis. </item>
+            <item> Spegilmynd. </item>
+            <item> Sendu myndina í hljóðverið. </item>
+            <item> Fara aftur í uppruna myndarinnar. </item>
+            <item> Lokaðu glugga. </item>
+        </string-array>
+
+        <string-array name = "review_title">
+            <item> Skoða myndina </item>
+            <item> Breyta </item>
+            <item> Hætta </item>
+        </string-array>
+
+        <string-array name = "review_note">
+            <item> Myndskoðun með möguleika á að fletta í gegnum. Með þessum hnappi geturðu deilt því. </item>
+            <item> Senda í ritgluggann og opnaðu síðan í stúdíóinu. Mikilvægt! Opnun myndarinnar héðan byrjar nýtt verkefni. </item>
+            <item> Lokaðu skjástillingu. </item>
+        </string-array>
+
+        <string-array name = "creator_title">
+        <item> Opna </item>
+        <item> Breidd </item>
+        <item> Hæð </item>
+        <item> Bakgrunnslitur </item>
+        <item> Hætta </item>
+        </string-array>
+
+        <string-array name = "creator_note">
+            <item> Blank strigahamur. Opnaðu striga í ritlinum til að senda hann í hljóðverið. </item>
+            <item> Stilltu breidd. </item>
+            <item> Stilltu hæð. </item>
+            <item> Opna litaval. Ýttu á miðju til að hætta. </item>
+            <item> Lokaðu auða striga stillingu. </item>
+        </string-array>
+
+        <string-array name = "addlyr_collect_title">
+            <item> Gallerí </item>
+            <item> Hætta </item>
+        </string-array>
+
+        <string-array name = "addlyr_collect_note">
+            <item> Gallerí inniheldur möppur með myndum. Opnaðu þá í vinnustofunni. Þeim verður bætt við núverandi verkefni. Ef vinnustofan er þegar með viðbótarmynd þá verður henni skipt út. </item>
+            <item> Lokaðu galleríinu. </item>
+        </string-array>
+
+        <string-array name = "addlyr_cam_title">
+            <item> Taktu mynd </item>
+            <item> Val á myndavél </item>
+            <item> Elding </item>
+            <item> Hætta </item>
+        </string-array>
+
+        <string-array name = "addlyr_cam_note">
+            <item> Taktu mynd og opnaðu hana í ritlinum. </item>
+            <item> Veldu hvaða myndavél sem á að nota. </item>
+            <item> Kveiktu á eldingunni. </item>
+            <item> Lokaðu myndavélinni. </item>
+        </string-array>
+
+    <string-array name = "prop_title">
+                <item> Bursti </item>
+                <item> strokleður </item>
+                <item> texti </item>
+                <item> Litur </item>
+                <item> Bursta gegnsæi </item>
+                <item> Breidd </item>
+                <item> Gagnsæi strokleður </item>
+                <item> Notaðu </item>
+                <item> Hætta </item>
+            </string-array>
+
+        <string-array name = "prop_note">
+            <item> Sýnir burstann. Stærð þess og liturinn. </item>
+            <item> strokleður, breidd og stig eyðingar. </item>
+            <item> Stærð og litur textans. </item>
+            <item> Stilltu lit burstans og textann. </item>
+            <item> Stilltu gegnsæi stigs valda litarins. </item>
+            <item> Stilltu breidd bursta, strokleður og stærð textans. </item>
+            <item> Stilltu stig þurrka. </item>
+            <item> Notaðu valdar stillingar. </item>
+            <item> Hætta við og hætta. </item>
+        </string-array>
+
+        <string-array name = "edit_text_title">
+            <item> Sláðu inn textann </item>
+            <item> Hreinsun </item>
+            <item> letur </item>
+            <item> Yfirlit </item>
+            <item> Horn </item>
+            <item> Hneigð </item>
+            <item> Notaðu </item>
+            <item> Hætta </item>
+        </string-array>
+
+        <string-array name = "edit_text_note">
+            <item> Texti kassi. </item>
+            <item> Eyða fyrri texta. </item>
+            <item> Notað leturgerð. </item>
+            <item> Veldu solid leturgerð eða útlínur þess. </item>
+            <item> Stilltu horn letrið. </item>
+            <item> Stilltu nauðsynlega halla letursins. </item>
+            <item> Vistaðu breytingarnar og farðu. </item>
+            <item> Leyfi án breytinga. </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_title">
+            <item> Listi yfir leturgerðir </item>
+            <item> Bættu við letri </item>
+        </string-array>
+
+        <string-array name = "edit_text_fonts_note">
+            <item> Listi yfir tiltækar leturgerðir. </item>
+            <item> Bættu við halaðri letri. Leturgerð er skrá með "ttf" eða "otf" eftirnafn. </item>
+        </string-array>
+
+</resources>
