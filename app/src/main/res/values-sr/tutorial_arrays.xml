@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+        <item> Одрицање од одговорности </item>
+        <item> Савјети </item>
+        <item> Студио </item>
+        <item> Галерија </item>
+    </string-array>
+
+    <string-array name = "main_buttons_note">
+        <item> Аутор ове апликације не преузима одговорност за употребу слика треће стране. Користећи ову апликацију, корисник је дужан да се придржава закона и да поштује ауторска права. </item>
+        <item> У току ће се појавити савети. Притисните следећи или изабрани елемент да бисте наставили. </item>
+        <item> У овом прозору радите са сликом. Главни алати су скривени иза три дугмета. </item>
+        <item> Тамо отварате мапе, прегледавате слике итд. Притиском и држањем елемента галерије отварају се додатне радње. За рад је потребан приступ мултимедији. </item>
+    </string-array>
+
+    <string-array name = "draw_main_buttons_title">
+        <item> Отвори цртеж </item>
+        <item> Алати </item>
+        <item> Спремање цртежа </item>
+    </string-array>
+
+    <string-array name = "draw_main_buttons_note">
+        <item> Додајте слику или започните нови пројекат. Ако желите да комбинујете слике, тада радите одавде. </item>
+        <item> Алати за уређивање цртежа. Неки од њих су активни само под одређеним условима. </item>
+        <item> Сачувајте или делите слику из студија овде. </item>
+    </string-array>
+
+    <string-array name = "draw_add_title">
+        <item> Камера </item>
+        <item> Колекција </item>
+        <item> Празно платно </item>
+    </string-array>
+
+    <string-array name = "draw_add_note">
+        <item> Отворите фотографију снимљену са камере. За рад је потребан приступ камери. </item>
+        <item> Набавите слику из колекције. </item>
+        <item> Креирајте празно платно сами. </item>
+    </string-array>
+
+    <string-array name = "draw_save_title">
+        <item> Дели </item>
+        <item> Сачувај </item>
+        <item> Сачувај </item>
+    </string-array>
+
+    <string-array name = "draw_save_note">
+        <item> Поделите слику из студија. </item>
+        <item> Сачувајте слику на одређеној локацији. Појавиће се Систем Екплорер. У случају да недостаје потребан мени за одјављивање складиштара, можда ће бити скривен. </item>
+        <item> Сачувајте слику на претходној локацији. </item>
+    </string-array>
+
+    <string-array name = "draw_tools_title">
+        <item> Подешавања </item>
+        <item> Зоом </item>
+        <item> Помицање </item>
+        <item> Изрежи </item>
+        <item> Изобличи </item>
+        <item> Текст </item>
+        <item> Попуните </item>
+        <item> Ерасер </item>
+        <item> Четкица </item>
+        <item> Дроппер </item>
+        <item> Врати се </item>
+        <item> Иди напред </item>
+        <item> Оквир </item>
+        <item> Избришите пројекат </item>
+        <item> Печат </item>
+        <item> Заменити </item>
+        <item> Шива </item>
+        <item> Избришите слику </item>
+    </string-array>
+
+    <string-array name = "draw_tools_note">
+        <item> Прозор поставки за алате. Увек активан. </item>
+        <item> Зум. Можете пребацити један од три режима притиском на ово дугме. Активан када је слика присутна у студију. </item>
+        <item> Померите слику на екрану. Активан када је слика присутна у студију. </item>
+        <item> Изаберите област и исеците је притискајући тамо. Ознаке дуж обриса и у средини омогућавају вам да прилагодите избор. Активан када је слика присутна у студију. </item>
+        <item> Ротација, изобличење. Пребацивање између њих је тамо. Последњи режим ресетује све. Активан када је слика присутна у студију. </item>
+        <item> Уметните текст. Поново притисните овде, појавиће се прозор са подешавањем текста. Активан када је слика присутна у студију. </item>
+        <item> Попуните бојом, испуните унутар обрисане области. Активан када у студију постоји слика </item>
+        <item> Чврста гумица и са градијентима. Пребаците их овде. Активан када је слика присутна у студију. </item>
+        <item> Четкица, три начина и мрља. Активан када је слика присутна у студију. </item>
+        <item> Копирајте боју са цртежа. Претходни алат остаје активан. Активан када је слика присутна у студију. </item>
+        <item> Понови. </item>
+        <item> Поништи. </item>
+        <item> Нацрт цртежа. Користан за рад с прозирним платном. Када радите са две, боје обриса су различите. Активан када је слика присутна у студију. </item>
+        <item> Брише пројекат са читавом историјом. Активан када је слика присутна у студију. </item>
+        <item> Омогућује да неки од алата утичу на обе слике. Активан када је додатна слика присутна. </item>
+        <item> Замена места главне и горње слике. Активан када је додатна слика присутна. </item>
+        <item> Комбинујте две слике у једну. Горњи усјеви уз контуру главног. Активан када је додатна слика присутна. </item>
+        <item> Избриши горњу слику. Активан када је додатна слика присутна. </item>
+    </string-array>
+
+    <string-array name = "collect_title">
+        <item> Додај фасциклу </item>
+        <item> Управљање </item>
+    </string-array>
+
+    <string-array name = "collect_note">
+        <item> Додајте фасциклу у галерију. Појавиће се Систем Екплорер. Изаберите фасциклу и ако садржи слике, биће додана. У случају да недостаје потребан мени за одјављивање складиштара, можда ће бити скривен. </item>
+        <item> Управљање апликацијама. </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_title">
+        <item> Додатна подешавања </item>
+        <item> Сакриј </item>
+        <item> Дели </item>
+        <item> Избриши </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_note">
+        <item> Режим додатних подешавања. Применљиво на једну фасциклу. Оставите га притиском на ово дугме. </item>
+        <item> Сакриј ову мапу. </item>
+        <item> Делите садржај ове мапе. </item>
+        <item> Избришите изабрану мапу. </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_title">
+        <item> Додатна подешавања </item>
+        <item> Дели </item>
+        <item> Избриши </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_note">
+        <item> Режим додатних подешавања. Применљиво на више слика. Оставите га притиском на ово дугме. </item>
+        <item> Поделите изабране слике. </item>
+        <item> Избришите одабране слике. </item>
+    </string-array>
+
+    <string-array name = "addlyr_title">
+        <item> Величина </item>
+        <item> Транспарентност </item>
+        <item> Огледало </item>
+        <item> Отвори </item>
+        <item> Назад </item>
+        <item> Затвори </item>
+    </string-array>
+
+    <string-array name = "addlyr_note">
+        <item> Велика величина слике може утицати на стабилност апликације. Овде можете да промените величину. </item>
+        <item> Степен транспарентности. </item>
+        <item> Огледало слика. </item>
+        <item> Пошаљите слику у студио. </item>
+        <item> Вратите се на извор слике. </item>
+        <item> Затвори прозор. </item>
+    </string-array>
+
+    <string-array name = "review_title">
+        <item> Погледајте слику </item>
+        <item> Измени </item>
+        <item> Излаз </item>
+    </string-array>
+
+    <string-array name = "review_note">
+        <item> Приказ слике са опцијом да се прође кроз њега. Помоћу овог дугмета можете га делити. </item>
+        <item> Пошаљите у прозор за уређивање, а затим отворите у студију. Важно! Отварањем слике одавде започиње нови пројекат. </item>
+        <item> Затворите режим прегледа. </item>
+    </string-array>
+
+    <string-array name = "creator_title">
+        <item> Отвори </item>
+        <item> Ширина </item>
+        <item> Висина </item>
+        <item> Боја позадине </item>
+        <item> Излаз </item>
+    </string-array>
+
+    <string-array name = "creator_note">
+        <item> Празан режим платна. Отворите платно у уређивачу да бисте га послали студију. </item>
+        <item> сет ширина. </item>
+        <item> Подесите висину. </item>
+        <item> Отвори селектор боја. Притисните центар да бисте изашли. </item>
+        <item> Затворите режим празног платна. </item>
+    </string-array>
+
+    <string-array name = "addlyr_collect_title">
+        <item> Галерија </item>
+        <item> Излаз </item>
+    </string-array>
+
+    <string-array name = "addlyr_collect_note">
+        <item> Галерија садржи фолдере са сликама. Отвори их у студију. Они ће бити додат постојећем пројекту. Ако студио већ има додатну слику, биће замењен. </item>
+        <item> Затворите галерију. </item>
+    </string-array>
+
+    <string-array name = "addlyr_cam_title">
+        <item> Фотографирајте </item>
+        <item> Избор камере </item>
+        <item> Муња </item>
+        <item> Излаз </item>
+    </string-array>
+
+    <string-array name = "addlyr_cam_note">
+        <item> Направите слику и отворите је у уређивачу. </item>
+        <item> Изаберите коју камеру користите. </item>
+        <item> Укључите муње. </item>
+        <item> Затвори камеру. </item>
+    </string-array>
+
+    <string-array name = "prop_title">
+        <item> Четкица </item>
+        <item> Ерасер </item>
+        <item> Текст </item>
+        <item> Боја </item>
+        <item> Прозирност четкице </item>
+        <item> Ширина </item>
+        <item> Прозорна транспарентност </item>
+        <item> Примени </item>
+        <item> Излаз </item>
+    </string-array>
+
+    <string-array name = "prop_note">
+        <item> Приказује четку. Његова величина и боја. </item>
+        <item> Ерасер, ширина и ниво брисања. </item>
+        <item> Величина и боја текста. </item>
+        <item> Подесите боје четке и текста. </item>
+        <item> сет транспарентност ниво одабраном бојом. </item>
+        <item> Подесите ширину четкице, гумицу и величину текста. </item>
+        <item> Подесите ниво брисања. </item>
+        <item> Примените изабрана подешавања. </item>
+        <item> Откажи и изађи. </item>
+    </string-array>
+
+    <string-array name = "edit_text_title">
+        <item> Унесите текст </item>
+        <item> Чишћење </item>
+        <item> Фонт </item>
+        <item> Оквир </item>
+        <item> Угао </item>
+        <item> Наклоност </item>
+        <item> Примени </item>
+        <item> Излаз </item>
+    </string-array>
+
+    <string-array name = "edit_text_note">
+        <item> Оквир за текст. </item>
+        <item> Избриши претходни текст. </item>
+        <item> Коришћени фонт. </item>
+        <item> Изаберите чврсти фонт или његов обрис. </item>
+        <item> Подесите угао фонта. </item>
+        <item> сет потребан нагиб фонта. </item>
+        <item> Сачувај промене и одсуство. </item>
+        <item> Напусти без промена. </item>
+    </string-array>
+
+    <string-array name = "edit_text_fonts_title">
+        <item> Листа фонтова </item>
+        <item> Додајте фонт </item>
+    </string-array>
+
+    <string-array name = "edit_text_fonts_note">
+        <item> Листа доступних фонтова. </item>
+        <item> Додајте преузети фонт. Фонт је датотека са "ттф" или "отф" наставком. </item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,48 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name="FOLDER_DELETE">Мапа је избрисана</string>
+    <string name="SELECTED_IMAGES_DELETED">Изабране слике су избрисане.</string>
+    <string name="IS_SELECTED_FOLDER_IMAGES_NOT">У изабраној мапи нису пронађене нове слике.</string>
+    <string name="IN_GALLERY_ADD_FOLDER">Нова фасцикла је додата у галерију.</string>
+    <string name="CREATE_IMG">Креирајте платно</string>
+    <string name="condition_apply_tools">Отворите или направите платно</string>
+    <string name="PHOTO">Слика</string>
+    <string name="COLLECT">Галерија</string>
+    <string name="YES">да</string>
+    <string name="NO">Не</string>
+    <string name="ASSES_TO_DATA">Приступ подацима</string>
+    <string name="ASSES_TO_CAMERA">Приступ камери</string>
+    <string name="REPEAT_REQUEST">Поновите захтев?</string>
+    <string name="RATIONALE_ASSES_CAMERA"> За фотографисање помоћу апликације потребан је приступ фотоапарату.</string>
+    <string name="RATIONALE_ASSES_WRITE">Приступ мултимедији је потребан за читање и чување слика на уређају.</string>
+    <string name="TOAST_RESOLUTION">У подешавањима поставите потребну резолуцију.</string>
+    <string name="NOT_PERMISSION">Приступ забрањен</string>
+    <string name="GO_TO_SETTINGS">Да бисте га добили, идите на подешавања апликације.</string>
+    <string name="IMAGE_NOT_SAVED_CHECK_STORAGE">Слика није сачувана. Проверите преостало складиште уређаја.</string>
+    <string name="IMAGE_SAVED">Слика је сачувана</string>
+    <string name="IMAGE_NOT_SAVED_CHECK_FOLDER">Слика није сачувана. Проверите фасциклу где треба да се сачува.</string>
+    <string name="FIND_FILE_FONT">Пронађите датотеку с наставком "ттф" или "отф" (постоји .ттф или .отф на крају имена датотеке.)</string>
+    <string name="INCORRECT_TEXT">Неважећи текст</string>
+    <string name="NOT_ADD_FONT_IF_NAME_CLONE">Нови фонт није додат. Можда се име већ користи.</string>
+    <string name="FILE_FONT">Датотека би требала бити са "ттф" или "отф" екстензијом (постоји .ттф или .отф на крају назива датотеке)</string>
+    <string name="FONT_ADD_FIND_IN_LIST">Фонт је додан. Пронађите га на листи.</string>
+    <string name="ADD_FONTS_FIND">Пронађени су додатни фонтови.</string>
+    <string name="ADD_FONTS_NOT_FIND">Нису пронађени додатни фонтови. Преузмите фонтове с .ттф или .отф екстензијом и додајте их.</string>
+    <string name="SELECT_POINT_PIPETTE">Изаберите тачку на испуњеном и нетранспарентном подручју цртежа.</string>
+    <string name="REQUEST_LOAD_OLD_PROJECT">Имате недовршен пројекат.</string>
+    <string name="OPEN_OLD_PROJECT">Отворите га? У супротном биће избрисана.</string>
+    <string name="ERROR_DELETE_FILE">Неуспјех брисања датотеке</string>
+    <string name="images">Слике</string>
+    <string name="collet_images">Прегледавање слика, притиском и држањем једне од њих отвара се додатне радње. Врати се помоћу овог дугмета.</string>
+    <string name="DELETED">Брисање</string>
+    <string name="FILES_DELETED_IN_MAIN_STORAGE">Датотеке се бришу са физичког медија</string>
+    <string name="language">Језик</string>
+    <string name="color_theme">Тема боја</string>
+    <string name="restart_window">поново покрените прозор</string>
+</resources>

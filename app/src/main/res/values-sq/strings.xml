@@ -1,0 +1,48 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> Dosja është fshirë </string>
+    <string name = "SELECTED_IMAGES_DELETED"> Imazhet e zgjedhura janë fshirë. </string>
+    <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Asnjë imazh i ri nuk është gjetur në dosjen e zgjedhur. </string>
+    <string name = "IN_GALLERY_ADD_FOLDER"> Dosje e re është shtuar në galeri. </string>
+    <string name = "CREATE_IMG"> Krijoni kanavacë </string>
+    <string name = "condition_apply_tools"> Hapni ose krijoni kanavacë </string>
+    <string name = "PHOTO"> Foto </string>
+    <string name = "COLLECT"> Galeria </string>
+    <string name = "YES"> Po </string>
+    <string name = "NO"> Jo </string>
+    <string name = "ASSES_TO_DATA"> Qasje në të dhëna </string>
+    <string name = "ASSES_TO_CAMERA"> Qasje në kamera </string>
+    <string name = "REPEAT_REQUEST"> Përsëriteni kërkesën? </string>
+    <string name = "RATIONALE_ASSES_CAMERA"> Qasja në kamera është e nevojshme për të bërë fotografi duke përdorur aplikacionin. </string>
+    <string name = "RATIONALE_ASSES_WRITE"> Qasja në multimedia është e nevojshme për të lexuar dhe ruajtur imazhet në pajisje. </string>
+    <string name = "TOAST_RESOLUTION"> Në cilësimet vendosni rezolucionin e kërkuar. </string>
+    <string name = "NOT_PERMISSION"> Qasja e mohuar </string>
+    <string name = "GO_TO_SETTINGS"> Për ta marrë atë të shkojë te cilësimet e aplikacionit. </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Imazhi nuk është ruajtur. Kontrolloni ruajtjen e mbetur të pajisjes. </string>
+    <string name = "IMAGE_SAVED"> Imazhi është ruajtur </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Imazhi nuk është ruajtur. Kontrolloni dosjen ku duhet të ruhet. </string>
+    <string name = "FIND_FILE_FONT"> Gjeni skedarin me shtrirje "ttf" ose "otf" (Atje është .ttf ose .otf në fund të emrit të skedarit.) </string>
+    <string name = "INCORRECT_TEXT"> Tekst i pavlefshëm </string>
+    <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Shkronja e re nuk është shtuar. Ndoshta emri tashmë është në përdorim. </string>
+    <string name = "FILE_FONT"> Dosja duhet të jetë me shtrirje "ttf" ose "otf" (Atje është .ttf ose .otf në fund të emrit të skedarit) </string>
+    <string name = "FONT_ADD_FIND_IN_LIST"> Font është shtuar. Gjeni atë në listë. </string>
+    <string name = "ADD_FONTS_FIND"> Janë gjetur fonte shtesë. </string>
+    <string name = "ADD_FONTS_NOT_FIND"> Gjetje shtesë të shkronjave nuk u gjetën. Shkarkoni shkronjat me shtrirje .ttf ose .otf dhe shtojini ato. </string>
+    <string name = "SELECT_POINT_PIPETTE"> Zgjidhni pikën në zonën e mbushur dhe jo transparente të vizatimit. </string>
+    <string name = "REQUEST_LOAD_OLD_PROJECT"> Ju keni një projekt të papërfunduar. </string>
+    <string name = "OPEN_OLD_PROJECT"> Hapeni atë? Përndryshe ajo do të fshihet. </string>
+    <string name = "ERROR_DELETE_FILE"> Dështim i fshirjes së skedarit </string>
+    <string name = "images"> Imazhe </string>
+    <string name = "collet_images"> Shikoni imazhet, duke shtypur dhe mbajtur në njërën prej tyre hap veprimet shtesë. Kthehu përsëri duke përdorur këtë buton. </string>
+    <string name = "DELETED"> Fshirje </string>
+    <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Skedarët janë fshirë nga media fizike </string>
+    <string name = "language"> Gjuhë </string>
+    <string name = "color_theme"> Tema e ngjyrave </string>
+    <string name = "restart_window"> rinisni dritaren </string>
+</resources>

@@ -1,0 +1,48 @@
+<resources >
+    <string name="app_name">Kitten Apps Collage</string>
+    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
+    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
+    <string name="KEY_ADAPTER_ID">key adapter id</string>
+    <string name="KEY_ADAPTER_FILE">key adapter file</string>
+
+
+    <string name = "FOLDER_DELETE"> Папката е избришана </string>
+    <string name = "SELECTED_IMAGES_DELETED"> Избраните слики се избришани. </string>
+    <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Не се пронајдени нови слики во избраната папка. </string>
+    <string name = "IN_GALLERY_ADD_FOLDER"> Нова папка е додадена во галеријата. </string>
+    <string name = "CREATE_IMG"> Креирај платно </string>
+    <string name = "condition_apply_tools"> Отворете или креирајте платно </string>
+    <string name = "PHOTO"> Фото </string>
+    <string name = "COLLECT"> Галерија </string>
+    <string name = "YES"> Да </string>
+    <string name = "NO"> Не </string>
+    <string name = "ASSES_TO_DATA"> Пристап до податоците </string>
+    <string name = "ASSES_TO_CAMERA"> Пристап до камерата </string>
+    <string name = "REPEAT_REQUEST"> Повторете го барањето? </string>
+    <string name = "RATIONALE_ASSES_CAMERA"> Потребен е пристап до камерата за фотографирање со помош на апликацијата. </string>
+    <string name = "RATIONALE_ASSES_WRITE"> Потребен е пристап до мултимедија, за читање и зачувување на сликите на уредот. </string>
+    <string name = "TOAST_RESOLUTION"> Во поставките поставете ја потребната резолуција. </string>
+    <string name = "NOT_PERMISSION"> Пристапот е одбиен </string>
+    <string name = "GO_TO_SETTINGS"> За да ја добиете, одете во поставките на апликацијата. </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Сликата не е зачувана. Проверете го преостанатото складирање на уредот. </string>
+    <string name = "IMAGE_SAVED"> Сликата е зачувана </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Сликата не е зачувана. Проверете ја папката каде треба да се зачува. </string>
+    <string name = "FIND_FILE_FONT"> Пронајдете ја датотеката со наставка "ttf" или "otf" (Има на крајот. имено или .otf на крајот од името на датотеката.)</string>
+    <string name = "INCORRECT_TEXT"> Невалиден текст </string>
+    <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Не е додаден нов фонт. Можеби името е веќе во употреба. </string>
+    <string name = "FILE_FONT"> Датотеката треба да биде со наставка "ttf" или "otf" (Има на .ttf или .otf на крајот од името на датотеката) </string>
+    <string name = "FONT_ADD_FIND_IN_LIST"> Фонт е додаден. Пронајдете го на списокот. </string>
+    <string name = "ADD_FONTS_FIND"> Пронајдени се дополнителни фонтови. </string>
+    <string name = "ADD_FONTS_NOT_FIND"> Пронајдени се дополнителни засолништа за фонтови. Преземете ги фонтовите со наставка .ttf или .otf и додадете ги. </string>
+    <string name = "SELECT_POINT_PIPETTE"> Изберете ја точката на пополнетата и нетранспарентната област на цртежот. </string>
+    <string name = "REQUEST_LOAD_OLD_PROJECT"> Имате недовршен проект. </string>
+    <string name = "OPEN_OLD_PROJECT"> Отворете го? Во спротивно, таа ќе биде избришана. </string>
+    <string name = "ERROR_DELETE_FILE"> Неуспех на бришење датотека </string>
+    <string name = "images"> Слики </string>
+    <string name = "collet_images"> Погледнете ги сликите, притискање и држење на една од нив ги отвора дополнителните активности. Вратете се со користење на ова копче. </string>
+    <string name = "DELETED"> Бришење </string>
+    <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Датотеките се избришани од физички медиуми </string>
+    <string name = "language"> Јазик </string>
+    <string name = "color_theme"> Тема во боја </string>
+    <string name = "restart_window"> рестартирајте го прозорецот </string>
+</resources>

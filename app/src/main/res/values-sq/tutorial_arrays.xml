@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+
+    <string-array name = "main_buttons_title">
+        <item> Disclaimer </item>
+        <item> Këshilla </item>
+        <item> Studio </item>
+        <item> Galeria </item>
+    </string-array>
+
+    <string-array name = "main_buttons_note">
+        <item> Autori i kësaj aplikacioni nuk merr përgjegjësi për përdorimin e imazheve të palëve të treta. Duke përdorur këtë aplikacion, përdoruesi është i detyruar t\'i përmbahet ligjit dhe të respektojë të drejtat e autorit. </item>
+        <item> Në proces, sugjerimet do të shfaqen. Shtypni elementin tjetër ose të zgjedhur për të vazhduar. </item>
+        <item> Në këtë dritare po punoni me imazhin. Mjetet kryesore janë fshehur pas tre butonave. </item>
+        <item> Aty hapni dosjet, shikoni figurat etj. Shtypja dhe mbajtja e një elementi galerie hap veprimet shtesë. Kërkohet qasje në multimedia për të punuar. </item>
+    </string-array>
+
+    <string-array name = "draw_main_buttons_title">
+        <item> Vizatim i hapur </item>
+        <item> Tools </item>
+        <item> Ruajtja e vizatimit </item>
+    </string-array>
+
+    <string-array name = "draw_main_buttons_note">
+        <item> Shtoni një imazh ose filloni një projekt të ri. Nëse dëshironi të kombinoni imazhet, atëherë punoni nga këtu. </item>
+        <item> Mjetet për përpunimin e vizatimit. Disa prej tyre janë aktivë vetëm në kushte të caktuara. </item>
+        <item> Ruani ose ndani një imazh nga studioja këtu. </item>
+    </string-array>
+
+    <string-array name = "draw_add_title">
+        <item> Camera </item>
+        <item> Koleksion </item>
+        <item> Kanavacë e zbrazët </item>
+    </string-array>
+
+    <string-array name = "draw_add_note">
+        <item> Hapni një fotografi të marrë nga kamera. Kërkohet qasje në kamera që ajo të funksionojë. </item>
+        <item> Merrni një imazh nga koleksioni. </item>
+        <item> Krijoni kanavacë të zbrazët vetë. </item>
+    </string-array>
+
+    <string-array name = "draw_save_title">
+        <item> Share </item>
+        <item> Save </item>
+        <item> Save </item>
+    </string-array>
+
+    <string-array name = "draw_save_note">
+        <item> Ndani imazhin nga studio. </item>
+        <item> Ruani imazhin në një vend të caktuar. Do të shfaqet eksploruesi i sistemit. Në rast të mungesës së menusë së kërkimit të ruajtjes, të eksploruesit, ai mund të fshihet. </item>
+        <item> Ruani imazhin në vendndodhjen e mëparshme. </item>
+    </string-array>
+
+    <string-array name = "draw_tools_title">
+        <item> Cilësimet </item>
+        <item> Zoom </item>
+        <item> Zhvendos </item>
+        <item> Cut </item>
+        <item> shtrembërojnë </item>
+        <item> Tekst </item>
+        <item> Plotësoni </item>
+        <item> Eraser </item>
+        <item> Brush </item>
+        <item> pikatore </item>
+        <item> Kthehu mbrapa </item>
+        <item> Shkoni përpara </item>
+        <item> Outline </item>
+        <item> Fshini projektin </item>
+        <item> Seal </item>
+        <item> Swap </item>
+        <item> Sew </item>
+        <item> Fshij imazhin </item>
+    </string-array>
+
+    <string-array name = "draw_tools_note">
+        <item> Dritarja e cilësimeve për mjetet. Gjithmonë aktiv. </item>
+        <item> Zoom. Ju mund të ndërroni një nga tre mënyrat duke shtypur në këtë buton. Aktiv kur një imazh është i pranishëm në studio. </item>
+        <item> Zhvendos figurën në ekran. Aktiv kur një imazh është i pranishëm në studio. </item>
+        <item> Zgjidhni zonën dhe prerë duke shtypur atje. Etiketat përgjatë skicës dhe në qendër ju lejojnë të rregulloni zgjedhjen. Aktiv kur një imazh është i pranishëm në studio. </item>
+        <item> Rrotullimi, shtrembërimi. Kalimi midis tyre është pikërisht atje. Modaliteti i fundit rivendos gjithçka. Aktiv kur një imazh është i pranishëm në studio. </item>
+        <item> Vendosni tekstin. Shtypni këtu përsëri, dritarja e cilësimeve për tekstin do të shfaqet. Aktiv kur një imazh është i pranishëm në studio. </item>
+        <item> Mbush me ngjyra, mbush brenda zonës së përshkruar. Aktiv kur ka një imazh në studio </item>
+        <item> Gomë të ngurtë dhe me gradient. Kalo këtu. Aktiv kur një imazh është i pranishëm në studio. </item>
+        <item> Furça, tre mënyra dhe njolla. Aktiv kur një imazh është i pranishëm në studio. </item>
+        <item> Kopjoni ngjyrën nga vizatimi. Mjeti i mëparshëm mbetet aktiv. Aktiv kur një imazh është i pranishëm në studio. </item>
+        <item> Redo. </item>
+        <item> Undo. </item>
+        <item> Skica e vizatimit. Dobishme kur punoni me kanavacë transparente. Kur punoni me dy, ngjyrat e skicave janë të ndryshme. Aktiv kur një imazh është i pranishëm në studio. </item>
+        <item> Fshin projektin me të gjithë historinë. Aktiv kur një imazh është i pranishëm në studio. </item>
+        <item> Lejon që disa nga mjetet të ndikojnë në të dy imazhet. Aktiv kur një imazh shtesë është i pranishëm. </item>
+        <item> Ndërrimi i vendeve të pamjeve kryesore dhe të sipërme. Aktiv kur një imazh shtesë është i pranishëm. </item>
+        <item> Kombinoni dy imazhe në një. Të lashtat e sipërme përgjatë skicës së kryesore. Aktiv kur një imazh shtesë është i pranishëm. </item>
+        <item> Fshij imazhin e sipërm. Aktiv kur një imazh shtesë është i pranishëm. </item>
+    </string-array>
+
+    <string-array name = "collect_title">
+        <item> Shtoni dosjen </item>
+        <item> Manage </item>
+    </string-array>
+
+    <string-array name = "collect_note">
+        <item> Shtoni një dosje në galeri. Do të shfaqet eksploruesi i sistemit. Zgjidhni një dosje dhe nëse ajo ka imazhet, atëherë ajo do të shtohet. Në rast të mungesës së menusë së kërkimit të ruajtjes, të eksploruesit, ai mund të fshihet. </item>
+        <item> Menaxhimi i aplikacionit. </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_title">
+        <item> Cilësimet shtesë </item>
+        <item> Fshih </item>
+        <item> Share </item>
+        <item> Delete </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_note">
+        <item> Mënyra e cilësimeve shtesë. E zbatueshme për një dosje. Lëreni atë duke shtypur këtë buton. </item>
+        <item> Fshihni këtë dosje. </item>
+        <item> Ndani përmbajtjen e këtij dosje. </item>
+        <item> Fshini dosjen e zgjedhur. </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_title">
+        <item> Cilësimet shtesë </item>
+        <item> Share </item>
+        <item> Delete </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_note">
+        <item> Mënyra e cilësimeve shtesë. E zbatueshme për më shumë se një imazh. Lëreni atë duke shtypur këtë buton. </item>
+        <item> Ndani imazhet e zgjedhura. </item>
+        <item> Fshini imazhet e zgjedhura. </item>
+    </string-array>
+
+    <string-array name = "addlyr_title">
+        <item> Size </item>
+        <item> Transparency </item>
+        <item> Mirror </item>
+        <item> Open </item>
+        <item> Back </item>
+        <item> Close </item>
+    </string-array>
+
+    <string-array name = "addlyr_note">
+        <item> Madhësia e madhe e figurës mund të ndikojë në qëndrueshmërinë e aplikacionit. Këtu mund ta ndryshosh përmasën. </item>
+        <item> Shkalla e transparencës. </item>
+        <item> Imazhi i pasqyrës. </item>
+        <item> Dërgoni imazhin në studio. </item>
+        <item> Kthehu tek burimi i figurës. </item>
+        <item> Mbyll dritaren. </item>
+    </string-array>
+
+    <string-array name = "review_title">
+        <item> Shikoni imazhin </item>
+        <item> Edit </item>
+        <item> Exit </item>
+    </string-array>
+
+    <string-array name = "review_note">
+        <item> Pamje imazhi me opsionin për të zbuluar. Me këtë buton mund ta ndani. </item>
+        <item> Dërgoni në dritaren e modifikimit dhe më pas hapeni në studio. E rëndësishme! Hapja e imazhit nga këtu fillon një projekt të ri. </item>
+        <item> Mbyllni mënyrën e shikimit. </item>
+    </string-array>
+
+    <string-array name = "creator_title">
+        <item> Open </item>
+        <item> Gjerësia </item>
+        <item> Lartësia </item>
+        <item> Ngjyra e sfondit </item>
+        <item> Exit </item>
+    </string-array>
+
+    <string-array name = "creator_note">
+        <item> Mënyra e zbrazët e kanavacës. Hapni kanavacën në redaktues për ta dërguar në studio. </item>
+        <item> Vendos gjerësinë. </item>
+        <item> Vendos lartësinë. </item>
+        <item> Përzgjedhësi me ngjyra të hapura. Shtypni në qendër për të dalë. </item>
+        <item> Mbyllni mënyrën e kanavacës bosh. </item>
+    </string-array>
+
+    <string-array name = "addlyr_collect_title">
+        <item> Galeria </item>
+        <item> Exit </item>
+    </string-array>
+
+    <string-array name = "addlyr_collect_note">
+        <item> Galeria përmban dosje me imazhe. Hapini ato në studio. Ata do të shtohen në projektin ekzistues. Nëse studio tashmë ka një imazh shtesë, atëherë do të zëvendësohet. </item>
+        <item> Mbyllni galerinë. </item>
+    </string-array>
+
+    <string-array name = "addlyr_cam_title">
+        <item> Bëni një foto </item>
+        <item> Zgjedhja e kamerës </item>
+        <item> Lightning </item>
+        <item> Exit </item>
+    </string-array>
+
+    <string-array name = "addlyr_cam_note">
+        <item> Bëni një fotografi dhe hapeni atë në redaktues. </item>
+        <item> Zgjidhni cilën kamerë të përdorni. </item>
+        <item> Ndizni vetëtimën. </item>
+        <item> Mbyllni kamerën. </item>
+    </string-array>
+
+    <string-array name = "prop_title">
+        <item> Brush </item>
+        <item> Eraser </item>
+        <item> Tekst </item>
+        <item> Color </item>
+        <item> Transparenca e furçës </item>
+        <item> Gjerësia </item>
+        <item> Transparenca e gomës </item>
+        <item> Aplikoni </item>
+        <item> Exit </item>
+    </string-array>
+
+    <string-array name = "prop_note">
+        <item> Tregon furçën. Madhësia dhe ngjyra e saj. </item>
+        <item> Largues, gjerësia dhe niveli i fshirjes. </item>
+        <item> Madhësia dhe ngjyra e tekstit. </item>
+        <item> Vendosni ngjyrën e furçës dhe tekstit. </item>
+        <item> Vendosni nivelin e transparencës së ngjyrës së zgjedhur. </item>
+        <item> Vendosni gjerësinë e furçës, gomës dhe madhësinë e tekstit. </item>
+        <item> Rregulloni nivelin e fshirjes. </item>
+        <item> Aplikoni cilësimet e zgjedhura. </item>
+        <item> Anuloni dhe dilni. </item>
+    </string-array>
+
+    <string-array name = "edit_text_title">
+        <item> Vendosni tekstin </item>
+        <item> Cleanup </item>
+        <item> Font </item>
+        <item> Outline </item>
+        <item> Angle </item>
+        <item> Prirja </item>
+        <item> Aplikoni </item>
+        <item> Exit </item>
+    </string-array>
+
+    <string-array name = "edit_text_note">
+        <item> Kutia e tekstit. </item>
+        <item> Fshini tekstin e mëparshëm. </item>
+        <item> font i përdorur. </item>
+        <item> Zgjidhni fontin e ngurtë ose skicën e tij. </item>
+        <item> Rregulloni këndin e fontit. </item>
+        <item> Vendosni pjerrtësinë e kërkuar të shkronjave. </item>
+        <item> Ruani ndryshimet dhe lini. </item>
+        <item> Lini pa ndryshime. </item>
+    </string-array>
+
+    <string-array name = "edit_text_fonts_title">
+        <item> Lista e shkronjave </item>
+        <item> Shtoni një font </item>
+    </string-array>
+
+    <string-array name = "edit_text_fonts_note">
+        <item> Lista e shkronjave në dispozicion. </item>
+        <item> Shtoni fontin e shkarkuar. Font është një skedar me shtrirje "ttf" ose "otf". </item>
+    </string-array>
+</resources>
