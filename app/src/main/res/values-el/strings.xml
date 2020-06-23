@@ -14,7 +14,7 @@
         <string name = "condition_apply_tools"> Άνοιγμα ή δημιουργία καμβά </string>
         <string name = "PHOTO"> Φωτογραφία </string>
         <string name = "COLLECT"> Συλλογή </string>
-        <string name = "ΝΑΙ"> Ναι </string>
+        <string name = "YES"> Ναι </string>
         <string name = "NO"> Όχι </string>
         <string name = "ASSES_TO_DATA"> Πρόσβαση στα δεδομένα </string>
         <string name = "ASSES_TO_CAMERA"> Πρόσβαση στην κάμερα </string>

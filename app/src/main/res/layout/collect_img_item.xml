@@ -17,7 +17,8 @@
         android:clickable="true"
         android:focusable="true"
         android:id="@+id/collect_item_gallery_image"
-        android:foreground="?android:attr/selectableItemBackground"/>
+        android:foreground="?android:attr/selectableItemBackground"
+        tools:ignore="UnusedAttribute" />
 
     <ImageView
         style="@style/common_buttons"

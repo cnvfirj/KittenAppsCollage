@@ -9,4 +9,18 @@
         android:layout_height="match_parent"
         android:id="@+id/fragment_review_view"/>
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/fragment_review_progress"/>
+
+    <ImageView
+        style="@style/slide_style_all_tools"
+        android:layout_gravity="center"
+        android:id="@+id/fragment_review_error"
+        android:background="@color/colorAccent"
+        android:src="@drawable/ic_close"
+        android:visibility="invisible"/>
+
 </FrameLayout>

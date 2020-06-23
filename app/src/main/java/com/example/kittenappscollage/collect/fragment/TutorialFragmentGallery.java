@@ -43,6 +43,7 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
 
     private String chapter;
 
+    @SuppressLint("CommitPrefEdits")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.example.kittenappscollage.R;
 
 
-public class ReviewFragment extends Fragment {
+public class ReviewFragment extends Fragment implements ViewReview.LoadImage{
 
     private static final String IMG = "img";
 
@@ -44,6 +44,7 @@ public class ReviewFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         viewReview = view.findViewById(R.id.fragment_review_view);
+        viewReview.setListenLoadImage(this);
         viewReview.setUriBitmap(img);
     }
 
@@ -56,6 +57,14 @@ public class ReviewFragment extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         viewReview.resetImg();
+    }
+
+    @Override
+    public void done(boolean d) {
+        getView().findViewById(R.id.fragment_review_progress).setVisibility(View.INVISIBLE);
+        if(!d){
+            getView().findViewById(R.id.fragment_review_error).setVisibility(View.VISIBLE);
+        }
     }
 
     public Bitmap getImage(){

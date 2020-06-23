@@ -27,6 +27,7 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 
 import static com.example.kittenappscollage.helpers.Massages.LYTE;
+import static com.example.kittenappscollage.helpers.Massages.MASSAGE;
 
 
 public class ViewReview extends View {
@@ -37,6 +38,8 @@ public class ViewReview extends View {
 
     private Matrix matrix;
 
+    private LoadImage loadImage;
+
     public ViewReview(Context context) {
         super(context);
         initVar();
@@ -45,6 +48,10 @@ public class ViewReview extends View {
     public ViewReview(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         initVar();
+    }
+
+    public void setListenLoadImage(LoadImage loadImage){
+        this.loadImage = loadImage;
     }
 
     @Override
@@ -75,6 +82,8 @@ public class ViewReview extends View {
                         locBitmap(DeformMat.Command.SCALE_ADAPT);
                         invalidate();
                     }
+                    if(loadImage!=null)loadImage.done(test());
+
                 });
     }
 
@@ -157,5 +166,9 @@ public class ViewReview extends View {
 
     public Bitmap getBitmap(){
         return bitmap;
+    }
+
+    interface LoadImage{
+        void done(boolean d);
     }
 }
