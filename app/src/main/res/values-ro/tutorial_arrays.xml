@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+        <item> Disclaimer </item>
+        <item> Sugestii </item>
+        <item> Studio </item>
+        <item> Galerie </item>
+    </string-array>
+
+    <string-array name = "main_buttons_note">
+        <item> Autorul acestei aplicații nu își asumă resposibilitatea pentru utilizarea imaginilor terților. Utilizând această aplicație, utilizatorul este obligat să respecte legea și să respecte drepturile de autor. </item>
+        <item> În acest proces, vor apărea indicii. Apăsați elementul următor sau selectat pentru a continua. </item>
+        <item> În această fereastră lucrați cu imaginea. Instrumentele principale sunt ascunse în spatele a trei butoane. </item>
+        <item> Acolo deschideți folderele, vizualizați imaginile etc. Apăsând și ținând apăsat un element de galerie se deschid acțiunile suplimentare. Accesul la multimedia este necesar pentru ca acesta să funcționeze. </item>
+    </string-array>
+
+    <string-array name = "draw_main_buttons_title">
+        <item> Deschidere deschisă </item>
+        <item> Instrumente </item>
+        <item> Salvarea desenului </item>
+    </string-array>
+
+    <string-array name = "draw_main_buttons_note">
+        <item> Adăugați o imagine sau începeți un nou proiect. Dacă doriți să combinați imagini, atunci lucrați de aici. </item>
+        <item> Instrumente pentru editare desen. Unele dintre ele sunt active doar în anumite condiții. </item>
+        <item> Salvați sau partajați o imagine din studio aici. </item>
+    </string-array>
+
+    <string-array name = "draw_add_title">
+        <item> Aparat foto </item>
+        <item> Colectia </item>
+        <item> Pânză goală </item>
+    </string-array>
+
+    <string-array name = "draw_add_note">
+        <item> Deschideți o fotografie făcută de la aparatul foto. Accesul la cameră este necesar pentru ca acesta să funcționeze. </item>
+        <item> Obțineți o imagine din colecție. </item>
+        <item> Creați singur panza goală. </item>
+    </string-array>
+
+    <string-array name = "draw_save_title">
+        <item> Distribuiți </item>
+        <item> Salvați </item>
+        <item> Salvați </item>
+    </string-array>
+
+    <string-array name = "draw_save_note">
+        <item> Partajează imaginea din studio. </item>
+        <item> Salvați imaginea în anumite locații. Va apărea exploratorul de sistem. În caz de absență a meniului de check out necesar de stocare al exploratorului, acesta ar putea fi ascuns. </item>
+        <item> Salvați imaginea în locația anterioară. </item>
+    </string-array>
+
+    <string-array name = "draw_tools_title">
+        <item> Setări </item>
+        <item> Zoom </item>
+        <item> Mutare </item>
+        <item> Decupați </item>
+        <item> Distort </item>
+        <item> Text </item>
+        <item> umplere </item>
+        <item> Eraser </item>
+        <item> Perie </item>
+        <item> Dropper </item>
+        <item> Înapoi </item>
+        <item> Mergeți înainte </item>
+        <item> Contur </item>
+        <item> Ștergeți proiectul </item>
+        <item> Seal </item>
+        <item> Comutare </item>
+        <item> Coase </item>
+        <item> Ștergeți imaginea </item>
+    </string-array>
+
+    <string-array name = "draw_tools_note">
+        <item> Fereastra de setări pentru instrumente. Întotdeauna activ. </item>
+        <item> Zoom. Puteți comuta unul dintre cele trei moduri apăsând pe acest buton. Activ când este prezentă o imagine în studio. </item>
+        <item> Mutați imaginea pe ecran. Activ când este prezentă o imagine în studio. </item>
+        <item> Selectați zona și tăiați-o apăsând acolo. Etichetele de-a lungul conturului și din centru vă permit să reglați selecția. Activ atunci când o imagine este prezentă în studio. </item>
+        <item> Rotire, denaturare. Comutarea între ele este chiar acolo. Ultimul mod resetează totul. Activ atunci când o imagine este prezentă în studio. </item>
+        <item> Introduceți textul. Apăsați din nou aici, va apărea fereastra de setări pentru text. Activ atunci când o imagine este prezentă în studio. </item>
+        <item> Completați după culoare, completați zona conturată. Activ când există o imagine în studio </item>
+        <item> Ștergătoare solidă și cu gradienți. Comutați-le aici. Activ atunci când o imagine este prezentă în studio. </item>
+        <item> Perie, trei moduri și pată. Activ atunci când o imagine este prezentă în studio. </item>
+        <item> Copiați culoarea din desen. Instrumentul anterior rămâne activ. Activ atunci când o imagine este prezentă în studio. </item>
+        <item> Redo. </item>
+        <item> Undo. </item>
+        <item> Schița desenului. Util când lucrați cu pânză transparentă. Când lucrați cu două, culorile contururilor sunt diferite. Activ atunci când o imagine este prezentă în studio. </item>
+        <item> Șterge proiectul cu toată istoria. Activ atunci când o imagine este prezentă în studio. </item>
+        <item> Permite unele instrumente să afecteze ambele imagini. Activ când este prezentă o imagine suplimentară. </item>
+        <item> Schimbarea locurilor imaginilor principale și superioare. Activ când este prezentă o imagine suplimentară. </item>
+        <item> Combina două imagini într-una. Culturi superioare de-a lungul conturului principalului. Activ când este prezentă o imagine suplimentară. </item>
+        <item> Ștergeți imaginea superioară Activ când este prezentă o imagine suplimentară. </item>
+    </string-array>
+
+    <string-array name = "collect_title">
+        <item> Adăugați folder </item>
+        <item> Gestionați </item>
+    </string-array>
+
+    <string-array name = "collect_note">
+        <item> Adăugați un folder în galerie. Va apărea exploratorul de sistem. Alegeți un folder și dacă are imagini, atunci acesta va fi adăugat. În caz de absență a meniului de check out necesar de stocare al exploratorului, acesta ar putea fi ascuns. </item>
+        <item> Gestionarea aplicațiilor. </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_title">
+        <item> Setări suplimentare </item>
+        <item> Ascundeți </item>
+        <item> Distribuiți </item>
+        <item> Ștergeți </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_note">
+        <item> Modul setări suplimentare. Se aplică unui singur folder. Lasă-l apăsând acest buton. </item>
+        <item> Ascundeți acest folder. </item>
+        <item> Partajați conținutul acestui folder. </item>
+        <item> Ștergeți folderul selectat. </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_title">
+        <item> Setări suplimentare </item>
+        <item> Distribuiți </item>
+        <item> Ștergeți </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_note">
+        <item> Modul setări suplimentare. Se aplică mai multor imagini. Lasă-l apăsând acest buton. </item>
+        <item> Partajează imaginile selectate. </item>
+        <item> Ștergeți imaginile selectate. </item>
+    </string-array>
+
+    <string-array name = "addlyr_title">
+        <item> Dimensiune </item>
+        <item> Transparența </item>
+        <item> Oglindă </item>
+        <item> Deschideți </item>
+        <item> Înapoi </item>
+        <item> Închide </item>
+    </string-array>
+
+    <string-array name = "addlyr_note">
+        <item> Dimensiunea mare a imaginii poate afecta stabilitatea aplicației. Aici îl puteți redimensiona. </item>
+        <item> Grad de transparență. </item>
+        <item> Imaginea oglindă. </item>
+        <item> Trimiteți imaginea în studio. </item>
+        <item> Reveniți la sursa imaginii. </item>
+        <item> Închideți fereastra. </item>
+    </string-array>
+
+    <string-array name = "review_title">
+        <item> Vizualizați imaginea </item>
+        <item> Editare </item>
+        <item> Ieșire </item>
+    </string-array>
+
+    <string-array name = "review_note">
+        <item> Vizualizare imagine cu opțiunea de a parcurge. Cu acest buton îl puteți partaja. </item>
+        <item> Trimiteți în fereastra de editare și apoi deschideți în studio. Important! Deschiderea imaginii de aici începe un nou proiect. </item>
+        <item> Închideți modul de vizualizare. </item>
+    </string-array>
+
+    <string-array name = "creator_title">
+        <item> Deschideți </item>
+        <item> Lățime </item>
+        <item> Înălțime </item>
+        <item> Culoare de fond </item>
+        <item> Ieșire </item>
+    </string-array>
+
+    <string-array name = "creator_note">
+        <item> Mod panza în gol. Deschideți panza în editor pentru a o trimite în studio. </item>
+        <item> Setează lățimea. </item>
+        <item> Setați înălțimea. </item>
+        <item> Deschideți selectorul de culori. Apăsați pe centru pentru a ieși. </item>
+        <item> Închideți modul panza goală. </item>
+    </string-array>
+
+    <string-array name = "addlyr_collect_title">
+        <item> Galerie </item>
+        <item> Ieșire </item>
+    </string-array>
+
+    <string-array name = "addlyr_collect_note">
+        <item> Galeria conține foldere cu imagini. Deschide-le în studio. Acestea vor fi adăugate la proiectul existent. Dacă studioul are deja o imagine suplimentară, atunci va fi înlocuit. </item>
+        <item> Închideți galeria. </item>
+    </string-array>
+
+    <string-array name = "addlyr_cam_title">
+        <item> Faceți o poză </item>
+        <item> Selecția camerei </item>
+        <item> Lightning </item>
+        <item> Ieșire </item>
+    </string-array>
+
+    <string-array name = "addlyr_cam_note">
+        <item> Faceți o fotografie și deschideți-o în editor. </item>
+        <item> Alegeți ce cameră să utilizați. </item>
+        <item> Porniți fulgerul. </item>
+        <item> Închideți camera. </item>
+    </string-array>
+
+    <string-array name = "prop_title">
+        <item> Perie </item>
+        <item> Eraser </item>
+        <item> Text </item>
+        <item> Color </item>
+        <item> Transparență perie </item>
+        <item> Lățime </item>
+        <item> Transparența ștergătoare </item>
+        <item> Aplicare </item>
+        <item> Ieșire </item>
+    </string-array>
+
+    <string-array name = "prop_note">
+        <item> Arată peria. Mărimea și culoarea. </item>
+        <item> Ștergătoare, lățime și nivel de ștergere. </item>
+        <item> Mărimea și culoarea textului. </item>
+        <item> Setați culoarea periei și a textului. </item>
+        <item> Setați nivelul de transparență al culorii selectate. </item>
+        <item> Setați lățimea periei, ștergătoarele și dimensiunea textului. </item>
+        <item> Ajustați nivelul de ștergere. </item>
+        <item> Aplicați setările selectate. </item>
+        <item> Anulați și ieșiți. </item>
+    </string-array>
+
+    <string-array name = "edit_text_title">
+        <item> Introduceți textul </item>
+        <item> Cleanup </item>
+        <item> Font </item>
+        <item> Contur </item>
+        <item> Unghi </item>
+        <item> Înclinarea </item>
+        <item> Aplicare </item>
+        <item> Ieșire </item>
+    </string-array>
+
+    <string-array name = "edit_text_note">
+        <item> Caseta de text. </item>
+        <item> Ștergeți textul anterior. </item>
+        <item> font folosit. </item>
+        <item> Alegeți fontul solid sau conturul său. </item>
+        <item> Reglați unghiul fontului. </item>
+        <item> Setați înclinarea necesară a fontului. </item>
+        <item> Salvați modificările și părăsiți. </item>
+        <item> Lăsați fără modificări. </item>
+    </string-array>
+
+    <string-array name = "edit_text_fonts_title">
+        <item> Lista fonturilor </item>
+        <item> Adăugați un font </item>
+    </string-array>
+
+    <string-array name = "edit_text_fonts_note">
+        <item> Lista fonturilor disponibile. </item>
+        <item> Adăugați font descărcat. Font este un fișier cu extensia "ttf" sau "otf". </item>
+    </string-array>
+
+</resources>

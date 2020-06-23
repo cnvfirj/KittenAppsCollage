@@ -1,5 +1,5 @@
 <resources >
-    <string name="app_name">Kitten Apps Collage</string>
+    <string name="app_name">Kitten collage</string>
 
 
     <string name = "FOLDER_DELETE"> La carpeta ha sido eliminada </string>

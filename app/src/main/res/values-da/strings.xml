@@ -1,0 +1,42 @@
+<resources >
+    <string name="app_name">Kitten сollage</string>
+
+
+    <string name = "FOLDER_DELETE"> Mappe er blevet slettet </string>
+    <string name = "SELECTED_IMAGES_DELETED"> De valgte billeder er blevet slettet. </string>
+    <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Ingen nye billeder er fundet i den valgte mappe. </string>
+    <string name = "IN_GALLERY_ADD_FOLDER"> Ny mappe er føjet til galleriet. </string>
+    <string name = "CREATE_IMG"> Opret lærred </string>
+    <string name = "condition_apply_tools"> Åbn eller opret lærred </string>
+    <string name = "YES"> Ja </string>
+    <string name = "NO"> Nej </string>
+    <string name = "ASSES_TO_DATA"> Adgang til dataene </string>
+    <string name = "ASSES_TO_CAMERA"> Adgang til kameraet </string>
+    <string name = "REPEAT_REQUEST"> Gentag anmodningen? </string>
+    <string name = "RATIONALE_ASSES_CAMERA"> Adgang til kameraet er påkrævet for at tage billeder ved hjælp af appen. </string>
+    <string name = "RATIONALE_ASSES_WRITE"> Adgang til multimedie er påkrævet for at læse og gemme billederne på enheden. </string>
+    <string name = "TOAST_RESOLUTION"> Indstil den ønskede opløsning i indstillinger. </string>
+    <string name = "NOT_PERMISSION"> Adgang nægtet </string>
+    <string name = "GO_TO_SETTINGS"> For at få det, skal du gå til appindstillingerne. </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Billedet er ikke gemt. Kontroller den resterende lagerplads på enheden. </string>
+    <string name = "IMAGE_SAVED"> Billedet er gemt </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Billedet er ikke gemt. Kontroller mappen, hvor den skal gemmes. </string>
+    <string name = "FIND_FILE_FONT"> Find filen med filtypen "ttf" eller "otf" (Der er .ttf eller .otf i slutningen af ​​filnavnet.) </string>
+    <string name = "INCORRECT_TEXT"> Ugyldig tekst </string>
+    <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Ny font er ikke tilføjet. Måske er navnet allerede i brug. </string>
+    <string name = "FILE_FONT"> Filen skal være med udvidelsen "ttf" eller "otf" (Der er .ttf eller .otf i slutningen af ​​filnavnet) </string>
+    <string name = "FONT_ADD_FIND_IN_LIST"> Font er tilføjet. Find det på listen. </string>
+    <string name = "ADD_FONTS_FIND"> Yderligere skrifttyper er fundet. </string>
+    <string name = "ADD_FONTS_NOT_FIND"> Yderligere skrifttyper er ikke fundet. Download skrifttyperne med filtypen .ttf eller .otf, og tilføj dem. </string>
+    <string name = "SELECT_POINT_PIPETTE"> Vælg punktet på det udfyldte og ikke-gennemsigtige område på tegningen. </string>
+    <string name = "REQUEST_LOAD_OLD_PROJECT"> Du har et uafsluttet projekt. </string>
+    <string name = "OPEN_OLD_PROJECT"> Åbn det? Ellers vil den blive slettet. </string>
+    <string name = "ERROR_DELETE_FILE"> Fejl ved sletning af fil </string>
+    <string name = "images"> Billeder </string>
+    <string name = "collet_images"> Se billederne, tryk og hold på en af ​​dem for at åbne de yderligere handlinger. Gå tilbage ved hjælp af denne knap. </string>
+    <string name = "DELETED"> Sletning </string>
+    <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Filer slettes fra fysiske medier </string>
+    <string name = "language"> Sprog </string>
+    <string name = "color_theme"> Farvetema </string>
+    <string name = "restart_window"> genstart vinduet </string>
+</resources>

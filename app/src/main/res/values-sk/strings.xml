@@ -1,0 +1,42 @@
+<resources >
+    <string name="app_name">Kitten сollage</string>
+
+
+    <string name = "FOLDER_DELETE"> Priečinok bol odstránený </string>
+    <string name = "SELECTED_IMAGES_DELETED"> Vybraté obrázky boli odstránené. </string>
+    <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Vo vybranom priečinku sa nenašli žiadne nové obrázky. </string>
+    <string name = "IN_GALLERY_ADD_FOLDER"> Do galérie bol pridaný nový priečinok. </string>
+    <string name = "CREATE_IMG"> Create canvas </string>
+    <string name = "condition_apply_tools"> Otvoriť alebo vytvoriť plátno </string>
+    <string name = "YES"> Yes </string>
+    <string name = "NO"> No </string>
+    <string name = "ASSES_TO_DATA"> Prístup k údajom </string>
+    <string name = "ASSES_TO_CAMERA"> Prístup do kamery </string>
+    <string name = "REPEAT_REQUEST"> Zopakujte požiadavku? </string>
+    <string name = "RATIONALE_ASSES_CAMERA"> Na fotografovanie pomocou aplikácie je potrebný prístup k fotoaparátu. </string>
+    <string name = "RATIONALE_ASSES_WRITE"> Na čítanie a ukladanie obrázkov do zariadenia je potrebný prístup k multimédiám. </string>
+    <string name = "TOAST_RESOLUTION"> V nastaveniach nastavte požadované rozlíšenie. </string>
+    <string name = "NOT_PERMISSION"> Prístup bol odmietnutý </string>
+    <string name = "GO_TO_SETTINGS"> Ak chcete prejsť na nastavenia aplikácie, </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Obrázok nebol uložený. Skontrolujte zostávajúce úložisko zariadenia. </string>
+    <string name = "IMAGE_SAVED"> Obrázok bol uložený </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Obrázok nebol uložený. Skontrolujte priečinok, do ktorého by sa mal uložiť. </string>
+    <string name = "FIND_FILE_FONT"> Vyhľadajte súbor s príponou "ttf" alebo "otf" (na konci názvu súboru musí byť .ttf alebo .otf) </string>
+    <string name = "INCORRECT_TEXT"> Neplatný text </string>
+    <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Nové písmo nebolo pridané. Možno sa už názov používa. </string>
+    <string name = "FILE_FONT"> Súbor by mal mať príponu "ttf" alebo "otf" (na konci názvu súboru musí byť .ttf alebo .otf) </string>
+    <string name = "FONT_ADD_FIND_IN_LIST"> Bolo pridané písmo. Nájdite ho v zozname. </string>
+    <string name = "ADD_FONTS_FIND"> Boli nájdené ďalšie písma. </string>
+    <string name = "ADD_FONTS_NOT_FIND"> Ďalšie fonty neboli nájdené. Stiahnite si písma s príponou .ttf alebo .otf a pridajte ich. </string>
+    <string name = "SELECT_POINT_PIPETTE"> Vyberte bod na vyplnenej a nepriehľadnej oblasti výkresu. </string>
+    <string name = "REQUEST_LOAD_OLD_PROJECT"> Máte nedokončený projekt. </string>
+    <string name = "OPEN_OLD_PROJECT"> Otvoriť? V opačnom prípade sa odstráni. </string>
+    <string name = "ERROR_DELETE_FILE"> Zlyhanie vymazania súboru </string>
+    <string name = "images"> Images </string>
+    <string name = "collet_images"> Prezrite si obrázky, stlačením a podržaním jednej z nich sa otvoria ďalšie akcie. Vráťte sa späť pomocou tohto tlačidla. </string>
+    <string name = "DELETED"> Odstránenie </string>
+    <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Súbory sa odstránia z fyzického média </string>
+    <string name = "language"> Language </string>
+    <string name = "color_theme"> Farebná téma </string>
+    <string name = "restart_window"> reštartujte okno </string>
+</resources>

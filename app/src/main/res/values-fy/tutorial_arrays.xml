@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+        <item> Disclaimer </item>
+        <item> Hints </item>
+        <item> Studio </item>
+        <item> Galerij </item>
+    </string-array>
+
+    <string-array name = "main_buttons_note">
+        <item> De auteur van deze app is niet verantwoordelijk voor het gebruik van afbeeldingen van derden. Met deze app is de gebruiker verplicht zich aan de wet te houden en het copyright te respecteren. </item>
+        <item> Tijdens het proces verschijnen de hints. Druk op het volgende of geselecteerde element om door te gaan. </item>
+        <item> In dit venster werk je met de afbeelding. De belangrijkste tools zijn verborgen achter drie knoppen. </item>
+        <item> Daar open je de mappen, bekijk je de afbeeldingen etc. Door een element van de galerij ingedrukt te houden, worden de extra acties geopend. Toegang tot de multimedia is vereist om te kunnen werken. </item>
+    </string-array>
+
+    <string-array name = "draw_main_buttons_title">
+        <item> Open tekening </item>
+        <item> Tools </item>
+        <item> Tekening opslaan </item>
+    </string-array>
+
+    <string-array name = "draw_main_buttons_note">
+        <item> Voeg een afbeelding toe of begin een nieuw project. Als je afbeeldingen wilt combineren, werk dan vanaf hier. </item>
+        <item> Hulpmiddelen voor het bewerken van tekeningen. Sommigen van hen zijn alleen onder bepaalde voorwaarden actief. </item>
+        <item> Bewaar of deel hier een afbeelding uit de studio. </item>
+    </string-array>
+
+    <string-array name = "draw_add_title">
+        <item> Camera </item>
+        <item> Collectie </item>
+        <item> Leeg canvas </item>
+    </string-array>
+
+    <string-array name = "draw_add_note">
+        <item> Open een foto die met de camera is gemaakt. Toegang tot de camera is vereist om te kunnen werken. </item>
+        <item> Haal een afbeelding uit de collectie. </item>
+        <item> Zelf een leeg canvas maken. </item>
+    </string-array>
+
+    <string-array name = "draw_save_title">
+        <item> Delen </item>
+        <item> Opslaan </item>
+        <item> Opslaan </item>
+    </string-array>
+
+    <string-array name = "draw_save_note">
+        <item> Deel de afbeelding vanuit de studio. </item>
+        <item> Sla de afbeelding op een bepaalde locatie op. System Explorer verschijnt. Als het verkenningsmenu van de vereiste verkenner ontbreekt, is het mogelijk verborgen. </item>
+        <item> Sla de afbeelding op de vorige locatie op. </item>
+    </string-array>
+
+    <string-array name = "draw_tools_title">
+        <item> Instellingen </item>
+        <item> Zoom </item>
+        <item> Verplaatsen </item>
+        <item> Cut </item>
+        <item> Vervorm </item>
+        <item> Tekst </item>
+        <item> Vullen </item>
+        <item> Gum </item>
+        <item> Penseel </item>
+        <item> Druppelaar </item>
+        <item> Ga terug </item>
+        <item> Ga door </item>
+        <item> Overzicht </item>
+        <item> Verwijder het project </item>
+        <item> Zegel </item>
+        <item> Ruilen </item>
+        <item> Naai </item>
+        <item> Verwijder de afbeelding </item>
+    </string-array>
+
+    <string-array name = "draw_tools_note">
+        <item> Instellingenvenster voor de tools. Altijd actief. </item>
+        <item> Zoom. U kunt een van de drie modi wisselen door op deze knop te drukken. Actief als er een afbeelding in de studio aanwezig is. </item>
+        <item> Verplaats de afbeelding op het scherm. Actief als er een afbeelding in de studio aanwezig is. </item>
+        <item> Selecteer het gebied en knip het door daar te drukken. Met tags langs de omtrek en in het midden kunt u de selectie aanpassen. Actief als er een afbeelding in de studio aanwezig is. </item>
+        <item> Rotatie, vervorming. U kunt daar tussen schakelen. In de laatste modus wordt alles gereset. Actief als er een afbeelding in de studio aanwezig is. </item>
+        <item> Voeg de tekst in. Druk hier opnieuw, het instellingenvenster voor de tekst zal verschijnen. Actief als er een afbeelding in de studio aanwezig is. </item>
+        <item> Vul op kleur, vul binnen het omlijnde gebied. Actief als er een afbeelding in de studio is </item>
+        <item> Solide gum en met verlopen. Schakel ze hier om. Actief als er een afbeelding in de studio aanwezig is. </item>
+        <item> Borstel, drie modi en vlek. Actief als er een afbeelding in de studio aanwezig is. </item>
+        <item> Kopieer de kleur uit de tekening. Vorige tool blijft actief. Actief als er een afbeelding in de studio aanwezig is. </item>
+        <item> Opnieuw. </item>
+        <item> Ongedaan maken. </item>
+        <item> Overzicht van de tekening. Handig bij het werken met transparant canvas. Bij het werken met twee zijn de kleuren van de contouren anders. Actief als er een afbeelding in de studio aanwezig is. </item>
+        <item> Verwijdert het project met alle geschiedenis. Actief als er een afbeelding in de studio aanwezig is. </item>
+        <item> Hiermee kunnen sommige tools beide afbeeldingen beïnvloeden. Actief als er een extra afbeelding aanwezig is. </item>
+        <item> De plaatsen van hoofd- en bovenste afbeeldingen wisselen. Actief als er een extra afbeelding aanwezig is. </item>
+        <item> Combineer twee afbeeldingen in één. Bovenste gewassen langs de hoofdlijnen. Actief als er een extra afbeelding aanwezig is. </item>
+        <item> Bovenste afbeelding verwijderen. Actief als er een extra afbeelding aanwezig is. </item>
+    </string-array>
+
+    <string-array name = "collect_title">
+        <item> Map toevoegen </item>
+        <item> Beheren </item>
+    </string-array>
+
+    <string-array name = "collect_note">
+        <item> Voeg een map toe in de galerij. System Explorer verschijnt. Kies een map en als deze de afbeeldingen bevat, wordt deze toegevoegd. Als het verkenningsmenu van de vereiste verkenner ontbreekt, is het mogelijk verborgen. </item>
+        <item> App-beheer. </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_title">
+        <item> Aanvullende instellingen </item>
+        <item> Verbergen </item>
+        <item> Delen </item>
+        <item> Verwijderen </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_note">
+        <item> Modus voor aanvullende instellingen. Van toepassing op één map. Verlaat het door op deze knop te drukken. </item>
+        <item> Verberg deze map. </item>
+        <item> Deel de inhoud van deze map. </item>
+        <item> Verwijder de geselecteerde map. </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_title">
+        <item> Aanvullende instellingen </item>
+        <item> Delen </item>
+        <item> Verwijderen </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_note">
+        <item> Modus voor aanvullende instellingen. Toepasbaar op meer dan één afbeelding. Verlaat het door op deze knop te drukken. </item>
+        <item> Deel de geselecteerde afbeeldingen. </item>
+        <item> Verwijder de geselecteerde afbeeldingen. </item>
+    </string-array>
+
+    <string-array name = "addlyr_title">
+        <item> Grootte </item>
+        <item> Transparantie </item>
+        <item> Mirror </item>
+        <item> Open </item>
+        <item> Terug </item>
+        <item> Sluiten </item>
+    </string-array>
+
+    <string-array name = "addlyr_note">
+        <item> Groot formaat van de afbeelding kan de stabiliteit van de app beïnvloeden. Hier kunt u het formaat wijzigen. </item>
+        <item> Mate van transparantie. </item>
+        <item> Spiegelbeeld. </item>
+        <item> Stuur de afbeelding naar de studio. </item>
+        <item> Ga terug naar de bron van de afbeelding. </item>
+        <item> Venster sluiten. </item>
+    </string-array>
+
+    <string-array name = "review_title">
+        <item> Bekijk de afbeelding </item>
+        <item> Bewerken </item>
+        <item> Afsluiten </item>
+    </string-array>
+
+    <string-array name = "review_note">
+        <item> Beeldweergave met de mogelijkheid om door te bladeren. Met deze knop kun je het delen. </item>
+        <item> Verzenden naar het bewerkingsvenster en vervolgens openen in de studio. Belangrijk! Het openen van de afbeelding vanaf hier begint een nieuw project. </item>
+        <item> Sluit de weergavemodus. </item>
+    </string-array>
+
+    <string-array name = "creator_title">
+        <item> Open </item>
+        <item> Breedte </item>
+        <item> Hoogte </item>
+        <item> Achtergrondkleur </item>
+        <item> Afsluiten </item>
+    </string-array>
+
+    <string-array name = "creator_note">
+        <item> Lege canvasmodus. Open canvas in de editor om het naar de studio te sturen. </item>
+        <item> Breedte instellen. </item>
+        <item> Hoogte instellen. </item>
+        <item> Kleurkiezer openen. Druk op het midden om af te sluiten. </item>
+        <item> Sluit de lege canvasmodus. </item>
+    </string-array>
+
+    <string-array name = "addlyr_collect_title">
+        <item> Galerij </item>
+        <item> Afsluiten </item>
+    </string-array>
+
+    <string-array name = "addlyr_collect_note">
+        <item> Galerij bevat mappen met afbeeldingen. Open ze in de studio. Ze worden toegevoegd aan het bestaande project. Als studio al een extra afbeelding heeft, wordt deze vervangen. </item>
+        <item> Sluit de galerij. </item>
+    </string-array>
+
+    <string-array name = "addlyr_cam_title">
+        <item> Maak een foto </item>
+        <item> Cameraselectie </item>
+        <item> Bliksem </item>
+        <item> Afsluiten </item>
+    </string-array>
+
+    <string-array name = "addlyr_cam_note">
+        <item> Maak een foto en open deze in de editor. </item>
+        <item> Kies welke camera je wilt gebruiken. </item>
+        <item> Schakel de bliksem in. </item>
+        <item> Camera sluiten. </item>
+    </string-array>
+
+    <string-array name = "prop_title">
+        <item> Penseel </item>
+        <item> Gum </item>
+        <item> Tekst </item>
+        <item> Kleur </item>
+        <item> Transparantie van penseel </item>
+        <item> Breedte </item>
+        <item> Transparantie van gum </item>
+        <item> Toepassen </item>
+        <item> Afsluiten </item>
+    </string-array>
+
+    <string-array name = "prop_note">
+        <item> Toont het penseel. Het formaat en de kleur. </item>
+        <item> Gum, breedte en niveau van wissen. </item>
+        <item> Grootte en kleur van de tekst. </item>
+        <item> Stel de kleur van het penseel en de tekst in. </item>
+        <item> Stel het transparantieniveau van de geselecteerde kleur in. </item>
+        <item> Stel de breedte van het penseel, de gum en de grootte van de tekst in. </item>
+        <item> Pas het niveau van wissen aan. </item>
+        <item> Pas de geselecteerde instellingen toe. </item>
+        <item> Annuleren en afsluiten. </item>
+    </string-array>
+
+    <string-array name = "edit_text_title">
+        <item> Voer de tekst in </item>
+        <item> Opruimen </item>
+        <item> Lettertype </item>
+        <item> Overzicht </item>
+        <item> Hoek </item>
+        <item> Helling </item>
+        <item> Toepassen </item>
+        <item> Afsluiten </item>
+    </string-array>
+
+    <string-array name = "edit_text_note">
+        <item> Tekstvak. </item>
+        <item> Vorige tekst verwijderen. </item>
+        <item> Gebruikt lettertype. </item>
+        <item> Kies een solide lettertype of de omtrek ervan. </item>
+        <item> Pas de hoek van het lettertype aan. </item>
+        <item> Stel de vereiste helling van het lettertype in. </item>
+        <item> Sla de wijzigingen op en vertrek. </item>
+        <item> Vertrek zonder wijzigingen. </item>
+    </string-array>
+
+    <string-array name = "edit_text_fonts_title">
+        <item> Lijst met lettertypen </item>
+        <item> Voeg een lettertype toe </item>
+    </string-array>
+
+    <string-array name = "edit_text_fonts_note">
+        <item> Lijst met beschikbare lettertypen. </item>
+        <item> Voeg gedownload lettertype toe. Lettertype is een bestand met de extensie "ttf" of "otf". </item>
+    </string-array>
+
+</resources>

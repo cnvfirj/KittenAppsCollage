@@ -1,0 +1,42 @@
+<resources >
+    <string name="app_name">Kitten сollage</string>
+
+
+    <string name = "FOLDER_DELETE"> Folderul a fost șters </string>
+    <string name = "SELECTED_IMAGES_DELETED"> Imaginile selectate au fost șterse. </string>
+    <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Nu s-au găsit imagini noi în folderul selectat. </string>
+    <string name = "IN_GALLERY_ADD_FOLDER"> A fost adăugat un nou folder în galerie. </string>
+    <string name = "CREATE_IMG"> Creați pânză </string>
+    <string name = "condition_apply_tools"> Deschide sau creează pânză </string>
+    <string name = "YES"> Da </string>
+    <string name = "NO"> Nu </string>
+    <string name = "ASSES_TO_DATA"> Acces la date </string>
+    <string name = "ASSES_TO_CAMERA"> Acces la cameră </string>
+    <string name = "REPEAT_REQUEST"> Repetați solicitarea? </string>
+    <string name = "RATIONALE_ASSES_CAMERA"> Accesul la cameră este necesar pentru a face fotografii folosind aplicația. </string>
+    <string name = "RATIONALE_ASSES_WRITE"> Accesul la multimedia este necesar pentru citirea și salvarea imaginilor pe dispozitiv. </string>
+    <string name = "TOAST_RESOLUTION"> În setări setați rezoluția dorită. </string>
+    <string name = "NOT_PERMISSION"> Acces refuzat </string>
+    <string name = "GO_TO_SETTINGS"> Pentru a accesa setările aplicației. </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Imaginea nu a fost salvată. Verificați stocarea rămasă a dispozitivului. </string>
+    <string name = "IMAGE_SAVED"> Imaginea a fost salvată </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Imaginea nu a fost salvată. Verificați dosarul în care ar trebui salvat. </string>
+    <string name = "FIND_FILE_FONT"> Găsiți fișierul cu extensia "ttf" sau "otf" (Există .ttf sau .otf la sfârșitul numelui fișierului.) </string>
+    <string name = "INCORRECT_TEXT"> Text nevalid </string>
+    <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Nu a fost adăugat un font nou. Poate că numele este deja folosit. </string>
+    <string name = "FILE_FONT"> Fișierul trebuie să fie cu extensia "ttf" sau "otf" (Există .ttf sau .otf la sfârșitul numelui fișierului) </string>
+    <string name = "FONT_ADD_FIND_IN_LIST"> Fontul a fost adăugat. Găsiți-o în listă. </string>
+    <string name = "ADD_FONTS_FIND"> Au fost găsite fonturi suplimentare. </string>
+    <string name = "ADD_FONTS_NOT_FIND"> Fonturile suplimentare nu au fost găsite. Descărcați fonturile cu extensia .ttf sau .otf și adăugați-le. </string>
+    <string name = "SELECT_POINT_PIPETTE"> Selectați punctul de pe zona umplută și netransparentă a desenului. </string>
+    <string name = "REQUEST_LOAD_OLD_PROJECT"> Aveți un proiect neterminat. </string>
+    <string name = "OPEN_OLD_PROJECT"> Deschideți-l? În caz contrar, acesta va fi șters. </string>
+    <string name = "ERROR_DELETE_FILE"> Eșec ștergere fișier </string>
+    <string name = "images"> Images </string>
+    <string name = "collet_images"> Vizualizați imaginile, ținând apăsat pe una dintre ele pentru a deschide acțiunile suplimentare. Reveniți folosind acest buton. </string>
+    <string name = "DELETED"> Ștergere </string>
+    <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Fișierele sunt șterse din suportul fizic </string>
+    <string name = "language"> Limba </string>
+    <string name = "color_theme"> Tema culorii </string>
+    <string name = "restart_window"> reporniți fereastra </string>
+</resources>

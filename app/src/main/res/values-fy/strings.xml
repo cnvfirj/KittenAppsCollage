@@ -1,0 +1,42 @@
+<resources >
+    <string name="app_name">Kitten сollage</string>
+
+
+    <string name = "FOLDER_DELETE"> Map is verwijderd </string>
+    <string name = "SELECTED_IMAGES_DELETED"> Geselecteerde afbeeldingen zijn verwijderd. </string>
+    <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Er zijn geen nieuwe afbeeldingen gevonden in de geselecteerde map. </string>
+    <string name = "IN_GALLERY_ADD_FOLDER"> Nieuwe map is toegevoegd aan de galerij. </string>
+    <string name = "CREATE_IMG"> Canvas maken </string>
+    <string name = "condition_apply_tools"> Canvas openen of maken </string>
+    <string name = "YES"> Ja </string>
+    <string name = "NO"> Nee </string>
+    <string name = "ASSES_TO_DATA"> Toegang tot de gegevens </string>
+    <string name = "ASSES_TO_CAMERA"> Toegang tot de camera </string>
+    <string name = "REPEAT_REQUEST"> Herhaal het verzoek? </string>
+    <string name = "RATIONALE_ASSES_CAMERA"> Toegang tot de camera is vereist om foto\'s te maken met de app. </string>
+    <string name = "RATIONALE_ASSES_WRITE"> Toegang tot de multimedia is vereist voor het lezen en opslaan van de afbeeldingen op het apparaat. </string>
+    <string name = "TOAST_RESOLUTION"> Stel in instellingen de vereiste resolutie in. </string>
+    <string name = "NOT_PERMISSION"> Toegang geweigerd </string>
+    <string name = "GO_TO_SETTINGS"> Ga om het op te halen naar de app-instellingen. </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Afbeelding is niet opgeslagen. Controleer de resterende opslag van het apparaat. </string>
+    <string name = "IMAGE_SAVED"> Afbeelding is opgeslagen </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Afbeelding is niet opgeslagen. Controleer de map waar deze moet worden opgeslagen. </string>
+    <string name = "FIND_FILE_FONT"> Zoek het bestand met de extensie "ttf" of "otf" (er staat .ttf of .otf aan het einde van de bestandsnaam.) </string>
+    <string name = "INCORRECT_TEXT"> Ongeldige tekst </string>
+    <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Nieuw lettertype is niet toegevoegd. Misschien is de naam al in gebruik. </string>
+    <string name = "FILE_FONT"> Bestand moet de extensie "ttf" of "otf" hebben (er staat .ttf of .otf aan het einde van de bestandsnaam) </string>
+    <string name = "FONT_ADD_FIND_IN_LIST"> Lettertype is toegevoegd. Vind het in de lijst. </string>
+    <string name = "ADD_FONTS_FIND"> Er zijn aanvullende lettertypen gevonden. </string>
+    <string name = "ADD_FONTS_NOT_FIND"> Er zijn geen aanvullende lettertypen gevonden. Download de lettertypen met de extensie .ttf of .otf en voeg ze toe. </string>
+    <string name = "SELECT_POINT_PIPETTE"> Selecteer het punt op een gevuld en niet-transparant gebied van de tekening. </string>
+    <string name = "REQUEST_LOAD_OLD_PROJECT"> Je hebt een onvoltooid project. </string>
+    <string name = "OPEN_OLD_PROJECT"> Openen? Anders wordt het verwijderd. </string>
+    <string name = "ERROR_DELETE_FILE"> Fout bij verwijderen van bestand </string>
+    <string name = "images"> Afbeeldingen </string>
+    <string name = "collet_images"> Bekijk de afbeeldingen, door een van deze ingedrukt te houden, worden de aanvullende acties geopend. Ga terug met deze knop. </string>
+    <string name = "DELETED"> Verwijdering </string>
+    <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Bestanden worden verwijderd van fysieke media </string>
+    <string name = "language"> Taal </string>
+    <string name = "color_theme"> Kleurenthema </string>
+    <string name = "restart_window"> start het venster opnieuw </string>
+</resources>

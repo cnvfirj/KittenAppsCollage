@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+        <item> Zřeknutí se odpovědnosti </item>
+        <item> Rady </item>
+        <item> Studio </item>
+        <item> Galerie </item>
+    </string-array>
+
+    <string-array name = "main_buttons_note">
+        <item> Autor této aplikace nepředpokládá resposibility za použití obrázků třetích stran. Pomocí této aplikace je uživatel povinen dodržovat zákon a dodržovat autorská práva. </item>
+        <item> V tomto procesu se zobrazí rady. Pokračujte stisknutím dalšího nebo vybraného prvku. </item>
+        <item> V tomto okně pracujete s obrázkem. Hlavní nástroje jsou skryty za třemi tlačítky. </item>
+        <item> Otevřete složky, zobrazte obrázky atd. Stisknutím a přidržením prvku galerie otevřete další akce. Přístup k multimédím je nutný, aby fungoval. </item>
+    </string-array>
+
+    <string-array name = "draw_main_buttons_title">
+        <item> Otevřít výkres </item>
+        <item> Nástroje </item>
+        <item> Ukládání výkresu </item>
+    </string-array>
+
+    <string-array name = "draw_main_buttons_note">
+        <item> Přidat obrázek nebo zahájit nový projekt. Pokud chcete kombinovat obrázky, postupujte zde. </item>
+        <item> Nástroje pro úpravy výkresu. Některé z nich jsou aktivní pouze za určitých podmínek. </item>
+        <item> Zde uložte nebo sdílejte obrázek ze studia. </item>
+    </string-array>
+
+    <string-array name = "draw_add_title">
+        <item> Fotoaparát </item>
+        <item> Kolekce </item>
+        <item> Prázdné plátno </item>
+    </string-array>
+
+    <string-array name = "draw_add_note">
+        <item> Otevřete fotografii pořízenou z fotoaparátu. Přístup k fotoaparátu je nutný, aby fungoval. </item>
+        <item> Získejte obrázek ze sbírky. </item>
+        <item> Vytvořte si prázdné plátno sami. </item>
+    </string-array>
+
+    <string-array name = "draw_save_title">
+        <item> Sdílet </item>
+        <item> Uložit </item>
+        <item> Uložit </item>
+    </string-array>
+
+    <string-array name = "draw_save_note">
+        <item> Sdílet obrázek ze studia. </item>
+        <item> Uložte obrázek na určité místo. Objeví se průzkumník systému. V případě, že požadované úložiště není k dispozici, podívejte se do nabídky průzkumníka, může to být skryto. </item>
+        <item> Uložte obrázek na předchozí místo. </item>
+    </string-array>
+
+    <string-array name = "draw_tools_title">
+        <item> Nastavení </item>
+        <item> Zoom </item>
+        <item> Přesunout </item>
+        <item> Vyjmout </item>
+        <item> Zkreslit </item>
+        <item> Text </item>
+        <item> Vyplňte </item>
+        <item> Guma </item>
+        <item> Štětec </item>
+        <item> Kapátko </item>
+        <item> Vrať se </item>
+        <item> Jděte vpřed </item>
+        <item> Obrys </item>
+        <item> Odstranit projekt </item>
+        <item> Seal </item>
+        <item> Zaměnit </item>
+        <item> šít </item>
+        <item> Odstranit obrázek </item>
+    </string-array>
+
+    <string-array name = "draw_tools_note">
+        <item> Okno nastavení nástrojů. Vždy aktivní. </item>
+        <item> Přiblížit. Stisknutím tohoto tlačítka můžete přepnout jeden ze tří režimů. Aktivní, když je ve studiu přítomen obrázek. </item>
+        <item> Přesun obrazu na obrazovce. Aktivní, když je ve studiu přítomen obrázek. </item>
+        <item> Vyberte oblast a vyjměte ji stisknutím. Značky podél obrysu a uprostřed umožňují upravit výběr. Aktivní, když je ve studiu přítomen obrázek. </item>
+        <item> Rotace, zkreslení. Přepínání mezi nimi je právě tam. Poslední režim resetuje vše. Aktivní, když je ve studiu přítomen obrázek. </item>
+        <item> Vložte text. Opětovným stisknutím se zobrazí okno pro nastavení textu. Aktivní, když je ve studiu přítomen obrázek. </item>
+        <item> Vyplňte barvou, vyplňte uvnitř obrysové oblasti. Aktivní, když je ve studiu obraz </item>
+        <item> Masivní guma as přechody. Přepněte je sem. Aktivní, když je ve studiu přítomen obrázek. </item>
+        <item> Štětec, tři režimy a skvrna. Aktivní, když je ve studiu přítomen obrázek. </item>
+        <item> Zkopírujte barvu z výkresu. Předchozí nástroj zůstává aktivní. Aktivní, když je ve studiu přítomen obrázek. </item>
+        <item> Znovu. </item>
+        <item> Zpět. </item>
+        <item> Obrys výkresu. Užitečné při práci s průhledným plátnem. Při práci se dvěma jsou barvy obrysů odlišné. Aktivní, když je ve studiu přítomen obrázek. </item>
+        <item> Odstraní projekt s celou historií. Aktivní, když je ve studiu přítomen obrázek. </item>
+        <item> Umožňuje některým z nástrojů ovlivnit oba obrázky. Aktivní, když je přítomen další obrázek. </item>
+        <item> Zaměňování míst hlavního a horního obrazu. Aktivní, když je přítomen další obrázek. </item>
+        <item> Zkombinujte dva obrázky do jednoho. Horní plodiny podél obrysu hlavní. Aktivní, když je přítomen další obrázek. </item>
+        <item> Odstranit horní obrázek. Aktivní, když je přítomen další obrázek. </item>
+    </string-array>
+
+    <string-array name = "collect_title">
+        <item> Přidat složku </item>
+        <item> Spravovat </item>
+    </string-array>
+
+    <string-array name = "collect_note">
+        <item> Přidat složku do galerie. Objeví se průzkumník systému. Vyberte složku a pokud obsahuje obrázky, bude přidána. V případě, že požadované úložiště není k dispozici, podívejte se do nabídky průzkumníka, může to být skryto. </item>
+        <item> Správa aplikací. </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_title">
+        <item> Další nastavení </item>
+        <item> Skrýt </item>
+        <item> Sdílet </item>
+        <item> Odstranit </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_note">
+        <item> Režim dodatečných nastavení. Platí pro jednu složku. Nechte to stisknutím tohoto tlačítka. </item>
+        <item> Skrýt tuto složku. </item>
+        <item> Sdílet obsah této složky. </item>
+        <item> Odstraňte vybranou složku. </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_title">
+        <item> Další nastavení </item>
+        <item> Sdílet </item>
+        <item> Odstranit </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_note">
+        <item> Režim dodatečných nastavení. Použitelné pro více než jeden obrázek. Nechte to stisknutím tohoto tlačítka. </item>
+        <item> Sdílet vybrané obrázky. </item>
+        <item> Odstraňte vybrané obrázky. </item>
+    </string-array>
+
+    <string-array name = "addlyr_title">
+        <item> Velikost </item>
+        <item> Transparentnost </item>
+        <item> Zrcadlo </item>
+        <item> Otevřít </item>
+        <item> Zpět </item>
+        <item> Zavřít </item>
+    </string-array>
+
+    <string-array name = "addlyr_note">
+        <item> Velká velikost obrázku může ovlivnit stabilitu aplikace. Zde můžete změnit velikost. </item>
+        <item> Stupeň průhlednosti. </item>
+        <item> Zrcadlový obraz. </item>
+        <item> Pošlete obrázek do studia. </item>
+        <item> Návrat ke zdroji obrázku. </item>
+        <item> Zavřete okno. </item>
+    </string-array>
+
+    <string-array name = "review_title">
+        <item> Zobrazit obrázek </item>
+        <item> Upravit </item>
+        <item> Konec </item>
+    </string-array>
+
+    <string-array name = "review_note">
+        <item> Zobrazení obrázku s možností listování. Pomocí tohoto tlačítka ji můžete sdílet. </item>
+        <item> Odeslat do editačního okna a poté otevřít ve studiu. Důležité! Otevření obrázku odtud začíná nový projekt. </item>
+        <item> Zavřete režim zobrazení. </item>
+    </string-array>
+
+    <string-array name = "creator_title">
+        <item> Otevřít </item>
+        <item> Šířka </item>
+        <item> Výška </item>
+        <item> Barva pozadí </item>
+        <item> Konec </item>
+    </string-array>
+
+    <string-array name = "creator_note">
+        <item> Prázdný režim plátna. Otevřete plátno v editoru a odešlete do studia. </item>
+        <item> Nastavit šířku. </item>
+        <item> Nastavit výšku. </item>
+        <item> Otevřete výběr barev. Chcete-li ukončit, stiskněte střed. </item>
+        <item> Zavřít režim prázdného plátna. </item>
+    </string-array>
+
+    <string-array name = "addlyr_collect_title">
+        <item> Galerie </item>
+        <item> Konec </item>
+    </string-array>
+
+    <string-array name = "addlyr_collect_note">
+        <item> Galerie obsahuje složky s obrázky. Otevřete je ve studiu. Budou přidány do stávajícího projektu. Pokud již studio obsahuje další obrázek, bude nahrazen. </item>
+        <item> Zavřete galerii. </item>
+    </string-array>
+
+    <string-array name = "addlyr_cam_title">
+        <item> Vyfoťte </item>
+        <item> Výběr kamery </item>
+        <item> Blesk </item>
+        <item> Konec </item>
+    </string-array>
+
+    <string-array name = "addlyr_cam_note">
+        <item> Pořiďte snímek a otevřete jej v editoru. </item>
+        <item> Vyberte fotoaparát, který chcete použít. </item>
+        <item> Zapněte blesk. </item>
+        <item> Zavřete kameru. </item>
+    </string-array>
+
+    <string-array name = "prop_title">
+        <item> Štětec </item>
+        <item> Guma </item>
+        <item> Text </item>
+        <item> Barva </item>
+        <item> Průhlednost štětce </item>
+        <item> Šířka </item>
+        <item> Průhlednost gumy </item>
+        <item> Použít </item>
+        <item> Konec </item>
+    </string-array>
+
+    <string-array name = "prop_note">
+        <item> Zobrazí štětec. Jeho velikost a barva. </item>
+        <item> Guma, šířka a úroveň mazání. </item>
+        <item> Velikost a barva textu. </item>
+        <item> Nastavte barvu štětce a textu. </item>
+        <item> Nastavte úroveň průhlednosti vybrané barvy. </item>
+        <item> Nastavte šířku štětce, gumu a velikost textu. </item>
+        <item> Upravte úroveň mazání. </item>
+        <item> Použít vybraná nastavení. </item>
+        <item> Zrušit a ukončit. </item>
+    </string-array>
+
+    <string-array name = "edit_text_title">
+        <item> Zadejte text </item>
+        <item> Vyčištění </item>
+        <item> Písmo </item>
+        <item> Obrys </item>
+        <item> Úhel </item>
+        <item> Sklon </item>
+        <item> Použít </item>
+        <item> Konec </item>
+    </string-array>
+
+    <string-array name = "edit_text_note">
+        <item> Textové pole. </item>
+        <item> Odstranit předchozí text. </item>
+        <item> Použité písmo. </item>
+        <item> Vyberte plné písmo nebo jeho obrys. </item>
+        <item> Upravte úhel písma. </item>
+        <item> Nastavte požadovaný sklon písma. </item>
+        <item> Uložte změny a odejděte. </item>
+        <item> Nechte beze změn. </item>
+    </string-array>
+
+    <string-array name = "edit_text_fonts_title">
+        <item> Seznam písem </item>
+        <item> Přidat písmo </item>
+    </string-array>
+
+    <string-array name = "edit_text_fonts_note">
+        <item> Seznam dostupných písem. </item>
+        <item> Přidat stažené písmo. Písmo je soubor s příponou „ttf“ nebo „otf“. </item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,42 @@
+<resources >
+    <string name="app_name">Kitten сollage</string>
+
+
+    <string name = "FOLDER_DELETE"> A mappát törölték </string>
+    <string name = "SELECTED_IMAGES_DELETED"> A kiválasztott képeket törölték. </string>
+    <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> A kiválasztott mappában nem található új kép. </string>
+    <string name = "IN_GALLERY_ADD_FOLDER"> Új mappát adtak a galériához. </string>
+    <string name = "CREATE_IMG"> Vászon létrehozása </string>
+    <string name = "condition_apply_tools"> Vászon megnyitása vagy létrehozása </string>
+    <string name = "YES"> Igen </string>
+    <string name = "NO"> Nem </string>
+    <string name = "ASSES_TO_DATA"> Hozzáférés az adatokhoz </string>
+    <string name = "ASSES_TO_CAMERA"> Hozzáférés a kamerához </string>
+    <string name = "REPEAT_REQUEST"> Ismételje meg a kérést? </string>
+    <string name = "RATIONALE_ASSES_CAMERA"> Az alkalmazás használatával történő fényképezéshez a kamera hozzáférése szükséges. </string>
+    <string name = "RATIONALE_ASSES_WRITE"> A képek olvasásához és a készülékbe történő mentéséhez a multimédia hozzáférés szükséges. </string>
+    <string name = "TOAST_RESOLUTION"> A beállításokban állítsa be a szükséges felbontást. </string>
+    <string name = "NOT_PERMISSION"> Hozzáférés megtagadva </string>
+    <string name = "GO_TO_SETTINGS"> Ennek megszerzéséhez keresse meg az alkalmazás beállításait. </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> A képet nem mentettük. Ellenőrizze az eszköz fennmaradó tárhelyét. </string>
+    <string name = "IMAGE_SAVED"> A kép el lett mentve </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> A képet nem mentettük. Ellenőrizze a mappát, ahova menteni szeretné. </string>
+    <string name = "FIND_FILE_FONT"> Keresse meg a fájlt "ttf" vagy "otf" kiterjesztéssel (a fájlnév végén .ttf vagy .otf fájl található.) </string>
+    <string name = "INCORRECT_TEXT"> Érvénytelen szöveg </string>
+    <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Új betűtípus nem került hozzáadásra. Talán a név már használatban van. </string>
+    <string name = "FILE_FONT"> A fájlnak "ttf" vagy "otf" kiterjesztéssel kell lennie (a fájlnév végén .ttf vagy .otf fájl található.) </string>
+    <string name = "FONT_ADD_FIND_IN_LIST"> Betűkészlet hozzáadva. Keresse meg a listában. </string>
+    <string name = "ADD_FONTS_FIND"> További betűtípusokat találtunk. </string>
+    <string name = "ADD_FONTS_NOT_FIND"> További betűtípusokat nem találtak. Töltse le a betűtípusokat .ttf vagy .otf kiterjesztéssel, és adja hozzá őket. </string>
+    <string name = "SELECT_POINT_PIPETTE"> Válassza ki a pontot a rajz kitöltött és nem átlátszó területén. </string>
+    <string name = "REQUEST_LOAD_OLD_PROJECT"> Befejezetlen projekted van. </string>
+    <string name = "OPEN_OLD_PROJECT"> Megnyitja? Egyébként törlődik. </string>
+    <string name = "ERROR_DELETE_FILE"> Fájl törlési hiba </string>
+    <string name = "images"> Képek </string>
+    <string name = "collet_images"> Tekintse meg a képeket, ha egyikük lenyomva tartásával megnyitja a további műveleteket. Menjen vissza ezzel a gombbal. </string>
+    <string name = "DELETED"> Törlés </string>
+    <string name = "FILES_DELETED_IN_MAIN_STORAGE"> A fájlok törlődnek a fizikai adathordozóktól </string>
+    <string name = "language"> Nyelv </string>
+    <string name = "color_theme"> Színes téma </string>
+    <string name = "restart_window"> indítsa újra az ablakot </string>
+</resources>

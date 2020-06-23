@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+         <item> Séanadh</item>
+         <item>Leideanna </item>
+         <item>Stiúideo </item>
+         <item>Gailearaí </item>
+    </string-array>
+
+    <string-array name = "main_buttons_note">
+        <item>  Ní ghlacann údar an aip seo le freagracht as úsáid na n-íomhánna tríú páirtí. Agus an aip seo á úsáid, tá oibleagáid ar an úsáideoir cloí leis an dlí agus an cóipcheart a urramú. </item>
+    <item> Sa phróiseas, beidh na leideanna le feiceáil. Brúigh an chéad eilimint eile nó roghnaithe chun leanúint ar aghaidh. </item>
+    <item> San fhuinneog seo tá tú ag obair leis an íomhá. Tá príomhuirlisí i bhfolach taobh thiar de thrí chnaipe. </item>
+    <item> Osclaíonn tú na fillteáin, amharcann tú ar na híomhánna srl. Osclaítear eilimint gailearaí a bhrú agus a choinneáil osclaítear na gníomhartha breise. Teastaíonn rochtain ar an ilmheán chun go n-oibreoidh sé. </item>
+</string-array>
+
+<string-array name = "draw_main_buttons_title">
+<item> Líníocht oscailte </item>
+ <item>Uirlisí </item>
+<item> Sábháil líníochta </item>
+</string-array>
+
+<string-array name = "draw_main_buttons_note">
+<item> Cuir íomhá leis nó cuir tús le tionscadal nua. Más mian leat íomhánna a chur le chéile ansin oibrigh as seo. </item>
+<item> Uirlisí chun eagarthóireacht a tharraingt. Níl cuid acu gníomhach ach faoi choinníollacha áirithe. </item>
+<item> Sábháil nó roinn íomhá ón stiúideo anseo. </item>
+</string-array>
+
+<string-array name = "draw_add_title">
+ <item> Ceamara</item>
+ <item>Bailiúchán </item>
+<item> Blanbh chanbhás </item>
+</string-array>
+
+<string-array name = "draw_add_note">
+<item> Oscail grianghraf a tógadh ón gceamara. Teastaíonn rochtain ar an gceamara chun go n-oibreoidh sé. </item>
+<item> Faigh íomhá ón mbailiúchán. </item>
+<item> Cruthaigh canbhás bán tú féin. </item>
+</string-array>
+
+<string-array name = "draw_save_title">
+ <item>Comhroinn </item>
+<item> Sábháil </item>
+<item> Sábháil </item>
+</string-array>
+
+<string-array name = "draw_save_note">
+<item> Comhroinn an íomhá ón stiúideo. </item>
+<item> Sábháil an íomhá in áit áirithe. Beidh taiscéalaí córais le feiceáil. I gcás nach mbeadh an roghchlár seiceála stórála riachtanach ón taiscéalaí ann, d’fhéadfadh sé a bheith i bhfolach. </item>
+<item> Sábháil an íomhá san áit roimhe seo. </item>
+</string-array>
+
+<string-array name = "draw_tools_title">
+ <item>Socruithe </item>
+<item> Zúmáil </item>
+ <item>Bog </item>
+ <item>Gearr </item>
+ <item>Saobhadh </item>
+ <item>Téacs </item>
+<item> Líon </item>
+ <item>Léirscrios </item>
+ <item>Scuab </item>
+<item> Dropper </item>
+<item> Téigh ar ais </item>
+<item> Téigh ar aghaidh </item>
+ <item>Imlíne </item>
+<item> Scrios an tionscadal </item>
+ <item>Séala </item>
+ <item>Babhtáil </item>
+<item> Sew </item>
+<item> Scrios an íomhá </item>
+</string-array>
+
+<string-array name = "draw_tools_note">
+ <item>Fuinneog Socruithe na n-uirlisí. Gníomhach i gcónaí. </item>
+ <item>Zúmáil. Is féidir leat ceann de na trí mhodh a athrú ag brú ar an gcnaipe seo. Gníomhach nuair a bhíonn íomhá i láthair sa stiúideo. </item>
+<item> Bog an íomhá ar an scáileán. Gníomhach nuair a bhíonn íomhá i láthair sa stiúideo. </item>
+<item> Roghnaigh an limistéar agus gearr é ag brú ansin. Ligeann clibeanna feadh an imlíne agus sa lár duit an roghnú a choigeartú. Gníomhach nuair a bhíonn íomhá i láthair sa stiúideo. </item>
+ <item>Rothlú, saobhadh. Tá athrú eatarthu ceart ansin. Athshocraíonn an modh deireanach gach rud. Gníomhach nuair a bhíonn íomhá i láthair sa stiúideo. </item>
+<item> Cuir isteach an téacs. Brúigh anseo arís, beidh an fhuinneog socruithe don téacs le feiceáil. Gníomhach nuair a bhíonn íomhá i láthair sa stiúideo. </item>
+<item> Líon de réir datha, líon taobh istigh den limistéar imlínithe. Gníomhach nuair a bhíonn íomhá sa stiúideo </item>
+ <item>Scriosadh soladach agus le grádáin. Athraigh iad anseo. Gníomhach nuair a bhíonn íomhá i láthair sa stiúideo. </item>
+ <item>Scuab, trí mhodh agus stain. Gníomhach nuair a bhíonn íomhá i láthair sa stiúideo. </item>
+<item> Cóipeáil an dath ón líníocht. Tá uirlis roimhe seo gníomhach i gcónaí. Gníomhach nuair a bhíonn íomhá i láthair sa stiúideo. </item>
+<item> Athdhéanamh. </item>
+<item> Cealaigh. </item>
+<item> Imlíne ar an líníocht. Úsáideach agus tú ag obair le canbhás trédhearcach. Nuair a bhíonn tú ag obair le beirt, tá dathanna na n-imlíne difriúil. Gníomhach nuair a bhíonn íomhá i láthair sa stiúideo. </item>
+<item> Scriosann an tionscadal gach stair. Gníomhach nuair a bhíonn íomhá i láthair sa stiúideo. </item>
+<item> Ceadaíonn go dtéann cuid de na huirlisí i bhfeidhm ar an dá íomhá. Gníomhach nuair a bhíonn íomhá breise i láthair. </item>
+<item> Babhtáil áiteanna na bpríomhíomhánna agus na n-íomhánna uachtaracha. Gníomhach nuair a bhíonn íomhá breise i láthair. </item>
+<item> Comhcheangail dhá íomhá i gceann amháin. Barraí uachtaracha feadh imlíne an phríomh. Gníomhach nuair a bhíonn íomhá breise i láthair. </item>
+<item> Scrios an íomhá uachtarach. Gníomhach nuair a bhíonn íomhá breise i láthair. </item>
+</string-array>
+
+    <string-array name = "collect_title">
+        <item> Cuir fillteán </item>
+        <item> Bainistigh </item>
+    </string-array>
+
+    <string-array name = "collect_note">
+        <item> Cuir fillteán sa ghailearaí. Beidh taiscéalaí córais le feiceáil. Roghnaigh fillteán agus má tá na híomhánna aige, cuirfear leis é. I gcás nach mbeadh an roghchlár seiceála stórála riachtanach ón taiscéalaí ann, d’fhéadfadh sé a bheith i bhfolach. </item>
+        Bainistíocht app <item>. </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_title">
+        <item> Socruithe breise </item>
+        <item> Folaigh </item>
+         <item>Comhroinn </item>
+        <item> Scrios </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_note">
+         <item>Modh socruithe breise Socruithe breise. Infheidhme maidir le fillteán amháin. Fág é tríd an gcnaipe seo a bhrú. </item>
+        <item> Folaigh an fillteán seo. </item>
+        <item> Roinn ábhar an fhillteáin seo. </item>
+        <item> Scrios an fillteán roghnaithe. </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_title">
+        <item> Socruithe breise </item>
+         <item>Comhroinn </item>
+        <item> Scrios </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_note">
+         <item>Modh socruithe breise Socruithe breise. Infheidhme maidir le níos mó ná íomhá amháin. Fág é tríd an gcnaipe seo a bhrú. </item>
+        <item> Comhroinn na híomhánna roghnaithe. </item>
+        <item> Scrios na híomhánna roghnaithe. </item>
+    </string-array>
+
+    <string-array name = "addlyr_title">
+         <item>Méid </item>
+         <item>Trédhearcacht </item>
+         <item>Scáthán </item>
+        <item> Oscailte </item>
+        <item> Ar ais </item>
+         <item>Dún Dún </item>
+    </string-array>
+
+    <string-array name = "addlyr_note">
+        <item> Is féidir le méid mór na híomhá dul i bhfeidhm ar chobhsaíocht an aip. Anseo is féidir leat é a athrú. </item>
+        <item> Céim na trédhearcachta. </item>
+         <item>Íomhá scátháin Scáthán. </item>
+        <item> Seol an íomhá chuig an stiúideo. </item>
+        <item> Fill ar ais chuig foinse na híomhá. </item>
+        <item> Dún an fhuinneog. </item>
+    </string-array>
+
+    <string-array name = "review_title">
+        <item> Féach ar an íomhá </item>
+        <item> Cuir in eagar </item>
+        Scoir <item> </item>
+    </string-array>
+
+    <string-array name = "review_note">
+        <item>  Amharc Íomhá leis an rogha dul tríd. Leis an gcnaipe seo is féidir leat é a roinnt. </item>
+    <item> Seol chuig an fhuinneog eagar agus ansin oscail sa stiúideo. Tábhachtach! Cuirtear tús le tionscadal nua chun an íomhá a oscailt as seo. </item>
+    <item> Dún an modh amharc. </item>
+</string-array>
+
+<string-array name = "creator_title">
+<item> Oscailte </item>
+ <item>Leithead </item>
+ <item>Airde </item>
+<item> Dath an chúlra </item>
+ <item>Scoir </item>
+</string-array>
+
+<string-array name = "creator_note">
+ <item>Modh canbháis Blank. Oscail canbhás san eagarthóir chun é a sheoladh chuig an stiúideo. </item>
+<item> Leithead socraithe. </item>
+<item> Airde socraithe. </item>
+ <item>Roghnóir dathanna oscailte Oscailte. Brúigh ar an ionad chun imeacht. </item>
+<item> Dún an modh canbháis bán. </item>
+</string-array>
+
+<string-array name = "addlyr_collect_title">
+ <item>Gailearaí </item>
+ <item>Scoir </item>
+</string-array>
+
+<string-array name = "addlyr_collect_note">
+ <item>Tá fillteáin le híomhánna i nGailearaí. Oscail iad sa stiúideo. Cuirfear iad leis an tionscadal atá ann cheana. Má tá íomhá breise ag stiúideo cheana féin cuirfear ceann eile ina áit. </item>
+<item> Dún an gailearaí. </item>
+</string-array>
+
+<string-array name = "addlyr_cam_title">
+<item> Tóg pictiúr </item>
+<item> Roghnú ceamara </item>
+ <item>Lightning </item>
+ <item>Scoir </item>
+</string-array>
+
+<string-array name = "addlyr_cam_note">
+<item> Tóg pictiúr agus oscail é san eagarthóir. </item>
+<item> Roghnaigh cén ceamara le húsáid. </item>
+<item> Cas ar an tintreach. </item>
+<item> Dún an ceamara. </item>
+</string-array>
+
+<string-array name = "prop_title">
+ <item>Scuab </item>
+ <item>Léirscrios </item>
+ <item>Téacs </item>
+ <item>Dath </item>
+<item> Scuab trédhearcachta </item>
+ <item>Leithead </item>
+<item> Trédhearcacht scriosáin </item>
+<item> Cuir Iarratas </item>
+ <item>Scoir </item>
+</string-array>
+
+    <string-array name = "prop_note">
+        <item> Taispeánann an scuab. A mhéid agus a dath. </item>
+        <item>  Léirscriosán, leithead agus leibhéal scriosadh. </item>
+    <item> Méid agus dath an téacs. </item>
+    <item> Socraigh dath an scuab agus an téacs. </item>
+    <item> Socraigh leibhéal trédhearcachta an datha roghnaithe. </item>
+    <item> Socraigh leithead an scuab, an scriosáin agus méid an téacs. </item>
+    <item> Coigeartaigh an leibhéal scriosadh. </item>
+    <item> Cuir na socruithe roghnaithe i bhfeidhm. </item>
+    <item> Cealaigh agus scoir. </item>
+</string-array>
+
+<string-array name = "edit_text_title">
+<item> Iontráil an téacs </item>
+ <item>Glantachán </item>
+ <item>Cló </item>
+ <item>Imlíne </item>
+ <item>Uillinn </item>
+ <item>Claonadh </item>
+<item> Cuir Iarratas </item>
+ <item>Scoir </item>
+</string-array>
+
+<string-array name = "edit_text_note">
+ <item>Bosca téacs. </item>
+<item> Scrios an téacs roimhe seo. </item>
+ <item>Cló úsáidte Úsáidte. </item>
+<item> Roghnaigh cló soladach nó a imlíne. </item>
+<item> Coigeartaigh uillinn an chló. </item>
+<item> Socraigh an claonadh riachtanach sa chló. </item>
+<item> Sábháil na hathruithe agus fág. </item>
+<item> Fág gan athruithe. </item>
+</string-array>
+
+<string-array name = "edit_text_fonts_title">
+<item> Liosta de na clónna </item>
+<item> Cuir cló </item> air
+</string-array>
+
+<string-array name = "edit_text_fonts_note">
+<item> Liosta de na clónna atá ar fáil. </item>
+<item> Cuir cló íoslódáilte leis. Is comhad é Cló le síneadh "ttf" nó "otf". </item>
+</string-array>
+
+</resources>

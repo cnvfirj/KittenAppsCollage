@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+        <item> Fontos </item>
+        <item> Tippek </item>
+        <item> Studio </item>
+        <item> Galéria </item>
+    </string-array>
+
+    <string-array name = "main_buttons_note">
+        <item> Ennek az alkalmazásnak a szerzője nem feltételezi a harmadik fél képeinek felhasználhatóságát. Az alkalmazás használatával a felhasználó köteles betartani a törvényeket és tiszteletben tartani a szerzői jogokat. </item>
+        <item> A folyamat során megjelennek a tippek. A folytatáshoz nyomja meg a következő vagy a kiválasztott elemet. </item>
+        <item> Ebben az ablakban a képpel dolgozik. A fő eszközök három gomb mögött vannak elrejtve. </item>
+        <item> Itt megnyitja a mappákat, megnézheti a képeket stb. Ha megnyomja és tartja lenyomva a galéria elemét, megnyílik a további műveletek. A multimédia hozzáféréséhez szükséges ahhoz, hogy működjön. </item>
+    </string-array>
+
+    <string-array name = "draw_main_buttons_title">
+        <item> Nyissa meg a rajzot </item>
+        <item> Eszközök </item>
+        <item> Rajz mentése </item>
+    </string-array>
+
+    <string-array name = "draw_main_buttons_note">
+        <item> Kép hozzáadása vagy új projekt indítása. Ha képeket szeretne kombinálni, akkor itt dolgozhat. </item>
+        <item> Eszközök a szerkesztés rajzához. Néhányuk csak bizonyos feltételek mellett aktív. </item>
+        <item> Kép mentése vagy megosztása itt a stúdióból. </item>
+    </string-array>
+
+    <string-array name = "draw_add_title">
+        <item> Kamera </item>
+        <item> Gyűjtemény </item>
+        <item> Üres vászon </item>
+    </string-array>
+
+    <string-array name = "draw_add_note">
+        <item> Nyissa meg a fényképezőgépből készített fényképet. A kamera működéséhez szükséges a hozzáférés. </item>
+        <item> Kép letöltése a gyűjteményből. </item>
+        <item> Készítsen magadnak üres vászonokat. </item>
+    </string-array>
+
+    <string-array name = "draw_save_title">
+        <item> Megosztás </item>
+        <item> Save </item>
+        <item> Save </item>
+    </string-array>
+
+    <string-array name = "draw_save_note">
+        <item> Ossza meg a képet a stúdióból. </item>
+        <item> Mentse el a képet egy bizonyos helyre. Megjelenik a rendszer felfedező. Ha nincs a szükséges tároló, ellenőrizze a felfedező menüjét, elrejtett lehet. </item>
+        <item> Kép mentése az előző helyre. </item>
+    </string-array>
+
+    <string-array name = "draw_tools_title">
+        <item> Beállítások </item>
+        <item> Nagyítás </item>
+        <item> Move </item>
+        <item> Vágás </item>
+        <item> Torzítás </item>
+        <item> Szöveg </item>
+        <item> Fill </item>
+        <item> Eraser </item>
+        <item> Brush </item>
+        <item> Cseppentős </item>
+        <item> Menj vissza </item>
+        <item> menj előre </item>
+        <item> Vázlat </item>
+        <item> Törölje a projektet </item>
+        <item> Seal </item>
+        <item> Swap </item>
+        <item> Sew </item>
+        <item> Törölje a képet </item>
+    </string-array>
+
+    <string-array name = "draw_tools_note">
+        <item> Az eszközök beállítása ablak. Mindig aktív. </item>
+        <item> Zoom. A három üzemmód egyikét a gomb megnyomásával válthatja. Aktív, amikor egy kép jelen van a stúdióban. </item>
+        <item> Mozgassa a képet a képernyőn. Aktív, amikor egy kép jelen van a stúdióban. </item>
+        <item> Válassza ki a területet, és vágja le ott. A körvonalak mentén és a közepén található címkék lehetővé teszik a kiválasztás beállítását. Aktív, amikor egy kép jelen van a stúdióban. </item>
+        <item> Forgatás, torzítás. Váltás közöttük van. Az utolsó mód mindent visszaáll. Aktív, amikor egy kép jelen van a stúdióban. </item>
+        <item> Helyezze be a szöveget. Nyomja meg ismét itt, a szöveg beállítási ablaka jelenik meg. Aktív, amikor egy kép jelen van a stúdióban. </item>
+        <item> Töltsön színnel, töltse ki a körvonalazott területet. Aktív, ha van kép a stúdióban </item>
+        <item> Szilárd radír és színátmenetekkel. Váltás ide. Aktív, amikor egy kép jelen van a stúdióban. </item>
+        <item> Kefe, három mód és folt. Aktív, amikor egy kép jelen van a stúdióban. </item>
+        <item> Másolja a színt a rajzból. Az előző eszköz aktív marad. Aktív, amikor egy kép jelen van a stúdióban. </item>
+        <item> Redo. </item>
+        <item> Undo. </item>
+        <item> A rajz vázlata. Hasznos, ha átlátszó vászonnal dolgozik. Ha kettővel dolgozik, a körvonalak színei különböznek. Aktív, amikor egy kép jelen van a stúdióban. </item>
+        <item> Törli a projektet az összes előzménnyel. Aktív, amikor egy kép jelen van a stúdióban. </item>
+        <item> Lehetővé teszi, hogy néhány eszköz mindkét képet befolyásolja. Aktív, ha van további kép. </item>
+        <item> A fő és a felső kép helyének cseréje. Aktív, ha van további kép. </item>
+        <item> Két képet egyesít. Felső növények a fő körvonal mentén. Aktív, ha van további kép. </item>
+        <item> A felső kép törlése. Aktív, ha van további kép. </item>
+    </string-array>
+
+    <string-array name = "collect_title">
+        <item> Mappa hozzáadása </item>
+        <item> Kezelés </item>
+    </string-array>
+
+    <string-array name = "collect_note">
+        <item> Mappa hozzáadása a galériába. Megjelenik a rendszer felfedező. Válasszon egy mappát, és ha van képei, akkor hozzáadódik. Ha nincs a szükséges tároló, ellenőrizze a felfedező menüjét, elrejtett lehet. </item>
+        <item> Alkalmazáskezelés. </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_title">
+        <item> További beállítások </item>
+        <item> elrejtése </item>
+        <item> Megosztás </item>
+        <item> Törlés </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_note">
+        <item> További beállítások mód. Egy mappára alkalmazható. Hagyja el, ha megnyomja ezt a gombot. </item>
+        <item> elrejti ezt a mappát. </item>
+        <item> Ossza meg ennek a mappának a tartalmát. </item>
+        <item> Törölje a kiválasztott mappát. </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_title">
+        <item> További beállítások </item>
+        <item> Megosztás </item>
+        <item> Törlés </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_note">
+        <item> További beállítások mód. Egynél több képre alkalmazható. Hagyja el, ha megnyomja ezt a gombot. </item>
+        <item> Ossza meg a kiválasztott képeket. </item>
+        <item> Törölje a kiválasztott képeket. </item>
+    </string-array>
+
+    <string-array name = "addlyr_title">
+        <item> Méret </item>
+        <item> Átláthatóság </item>
+        <item> Mirror </item>
+        <item> Megnyitás </item>
+        <item> Vissza </item>
+        <item> Bezárás </item>
+    </string-array>
+
+    <string-array name = "addlyr_note">
+        <item> A kép nagy mérete befolyásolhatja az alkalmazás stabilitását. Itt átméretezheti. </item>
+        <item> az átlátszóság mértéke. </item>
+        <item> Tükörkép. </item>
+        <item> Küldje el a képet a stúdióba. </item>
+        <item> Visszatérés a kép forrásához. </item>
+        <item> Ablak bezárása. </item>
+    </string-array>
+
+    <string-array name = "review_title">
+        <item> Tekintse meg a képet </item>
+        <item> Szerkesztés </item>
+        <item> Kilépés </item>
+    </string-array>
+
+    <string-array name = "review_note">
+        <item> Képnézet azzal a lehetőséggel, hogy átjárhasson. Ezzel a gombbal megoszthatja. </item>
+        <item> Küldje el a szerkesztési ablakba, majd nyissa meg a stúdióban. Fontos! A kép innen történő megnyitása új projektet indít. </item>
+        <item> Zárja be a nézet módot. </item>
+    </string-array>
+
+    <string-array name = "creator_title">
+        <item> Megnyitás </item>
+        <item> szélesség </item>
+        <item> Magasság </item>
+        <item> Háttér színe </item>
+        <item> Kilépés </item>
+    </string-array>
+
+    <string-array name = "creator_note">
+        <item> Üres vászon mód. Nyissa meg a vászont a szerkesztőben, és küldje el a stúdióba. </item>
+        <item> Állítsa be a szélességet. </item>
+        <item> Állítsa be a magasságot. </item>
+        <item> Nyissa meg a színválasztót. A kilépéshez nyomja meg a középpontot. </item>
+        <item> Zárja be az üres vászon módot. </item>
+    </string-array>
+
+    <string-array name = "addlyr_collect_title">
+        <item> Galéria </item>
+        <item> Kilépés </item>
+    </string-array>
+
+    <string-array name = "addlyr_collect_note">
+        A <item> galéria képeket tartalmazó mappákat tartalmaz. Nyissa meg őket a stúdióban. Ezeket hozzáadják a meglévő projekthez. Ha a stúdiónak már van egy további képe, akkor ki fogja cserélni. </item>
+        <item> Zárja be a galériát. </item>
+    </string-array>
+
+    <string-array name = "addlyr_cam_title">
+        <item> Kép készítése </item>
+        <item> Kamera kiválasztása </item>
+        <item> Lightning </item>
+        <item> Kilépés </item>
+    </string-array>
+
+    <string-array name = "addlyr_cam_note">
+        <item> Készítsen egy képet, és nyissa meg a szerkesztőben. </item>
+        <item> Válassza ki a használni kívánt kamerát. </item>
+        <item> Kapcsolja be a villámot. </item>
+        <item> Zárja be a kamerát. </item>
+    </string-array>
+
+    <string-array name = "prop_title">
+        <item> Brush </item>
+        <item> Eraser </item>
+        <item> Szöveg </item>
+        <item> Színes </item>
+        <item> Kefe átlátszó </item>
+        <item> szélesség </item>
+        <item> Radír átlátszóság </item>
+        <item> Apply </item>
+        <item> Kilépés </item>
+    </string-array>
+
+    <string-array name = "prop_note">
+        <item> Megmutatja a kefét. Mérete és színe. </item>
+        <item> Radír, a törlés szélessége és szintje. </item>
+        <item> A szöveg mérete és színe. </item>
+        <item> Állítsa be a kefe és a szöveg színét. </item>
+        <item> Állítsa be a kiválasztott szín átlátszóságát. </item>
+        <item> Állítsa be a kefe szélességét, a radírot és a szöveg méretét. </item>
+        <item> Állítsa be a törlés szintjét. </item>
+        <item> Alkalmazza a kiválasztott beállításokat. </item>
+        <item> Visszavonás és kilépés. </item>
+    </string-array>
+
+    <string-array name = "edit_text_title">
+        <item> Írja be a szöveget </item>
+        <item> Razzia </item>
+        <item> betűtípus </item>
+        <item> Vázlat </item>
+        <item> Angle </item>
+        <item> Ferde </item>
+        <item> Apply </item>
+        <item> Kilépés </item>
+    </string-array>
+
+    <string-array name = "edit_text_note">
+        <item> szövegmező. </item>
+        <item> Az előző szöveg törlése. </item>
+        <item> Használt betűtípus. </item>
+        <item> Válassza ki a szilárd betűtípust vagy annak körvonalait. </item>
+        <item> Állítsa be a betűkészlet szögét. </item>
+        <item> Állítsa be a betűkészlet szükséges dőlését. </item>
+        <item> Mentse el a változtatásokat, és hagyja el. </item>
+        <item> Hagyja változtatások nélkül. </item>
+    </string-array>
+
+    <string-array name = "edit_text_fonts_title">
+        <item> A betűtípusok listája </item>
+        <item> Betűtípus hozzáadása </item>
+    </string-array>
+
+    <string-array name = "edit_text_fonts_note">
+        <item> Az elérhető betűkészletek listája. </item>
+        <item> A letöltött betűtípus hozzáadása. A betűtípus egy "ttf" vagy "otf" kiterjesztéssel rendelkező fájl. </item>
+    </string-array>
+
+</resources>

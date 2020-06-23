@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name = "main_buttons_title">
+        <item> Disclaimer </item>
+        <item> Tips </item>
+        <item> Studio </item>
+        <item> Galleri </item>
+    </string-array>
+
+    <string-array name = "main_buttons_note">
+        <item> Forfatteren af ​​denne app påtager sig ikke ansvaret for brug af tredjepartsbilleder. Ved hjælp af denne app er brugeren forpligtet til at overholde loven og respektere ophavsretten. </item>
+        <item> I processen vises tipene. Tryk på næste eller valgte element for at fortsætte. </item>
+        <item> I dette vindue arbejder du med billedet. Hovedværktøjer er skjult bag tre knapper. </item>
+        <item> Der åbner du mapperne, ser billederne osv. Ved at trykke på og holde et element i galleriet åbnes de yderligere handlinger. Adgang til multimedie er påkrævet for at den kan fungere. </item>
+    </string-array>
+
+    <string-array name = "draw_main_buttons_title">
+        <item> Åben tegning </item>
+        <item> Værktøjer </item>
+        <item> Gemme tegning </item>
+    </string-array>
+
+    <string-array name = "draw_main_buttons_note">
+        <item> Tilføj et billede, eller start et nyt projekt. Hvis du vil kombinere billeder, skal du arbejde herfra. </item>
+        <item> Værktøjer til redigering af tegninger. Nogle af dem er kun aktive under visse betingelser. </item>
+        <item> Gem eller del et billede fra studiet her. </item>
+    </string-array>
+
+    <string-array name = "draw_add_title">
+        <item> Kamera </item>
+        <item> Samling </item>
+        <item> Blank lærred </item>
+    </string-array>
+
+    <string-array name = "draw_add_note">
+        <item> Åbn et foto taget fra kameraet. Adgang til kameraet er påkrævet for at det kan fungere. </item>
+        <item> Hent et billede fra samlingen. </item>
+        <item> Opret tomt lærred selv. </item>
+    </string-array>
+
+    <string-array name = "draw_save_title">
+        <item> Del </item>
+        <item> Gem </item>
+        <item> Gem </item>
+    </string-array>
+
+    <string-array name = "draw_save_note">
+        <item> Del billedet fra studiet. </item>
+        <item> Gem billedet på en bestemt placering. System explorer vises. I tilfælde af mangel på den krævede opbevaring, skal du tjekke ud af explorer-menuen, det kan være skjult. </item>
+        <item> Gem billedet på tidligere placering. </item>
+    </string-array>
+
+    <string-array name = "draw_tools_title">
+        <item> Indstillinger </item>
+        <item> Zoom </item>
+        <item> Flyt </item>
+        <item> Klip </item>
+        <item> Forvræng </item>
+        <item> Tekst </item>
+        <item> Fill </item>
+        <item> Viskelæder </item>
+        <item> Brush </item>
+        <item> Dropper </item>
+        <item> Gå tilbage </item>
+        <item> Gå frem </item>
+        <item> Kontur </item>
+        <item> Slet projektet </item>
+        <item> Seal </item>
+        <item> Swap </item>
+        <item> Sy </item>
+        <item> Slet billedet </item>
+    </string-array>
+
+    <string-array name = "draw_tools_note">
+        <item> Indstillingsvindue for værktøjerne. Altid aktiv. </item>
+        <item> Zoom. Du kan skifte en af ​​de tre tilstande ved at trykke på denne knap. Aktiv, når der er et billede i studiet. </item>
+        <item> Flyt billedet på skærmen. Aktiv, når der er et billede i studiet. </item>
+        <item> Vælg området, og klip det ned ved at trykke der. Mærker langs konturen og i midten giver dig mulighed for at justere markeringen. Aktiv, når der er et billede i studiet. </item>
+        <item> Rotation, forvrængning. Skift mellem dem er lige der. Sidste tilstand nulstiller alt. Aktiv, når der er et billede i studiet. </item>
+        <item> Indsæt teksten. Tryk her igen, indstillingsvinduet for teksten vises. Aktiv, når der er et billede i studiet. </item>
+        <item> Udfyld efter farve, fyld inden i det skitserede område. Aktiv, når der er et billede i studiet </item>
+        <item> Solid viskelæder og med gradueringer. Skift dem her. Aktiv, når der er et billede i studiet. </item>
+        <item> Børste, tre tilstande og plet. Aktiv, når der er et billede i studiet. </item>
+        <item> Kopier farven fra tegningen. Forrige værktøj forbliver aktivt. Aktiv, når der er et billede i studiet. </item>
+        <item> Redo. </item>
+        <item> Fortryd. </item>
+        <item> Oversigt over tegningen. Nyttig, når du arbejder med gennemsigtigt lærred. Når man arbejder med to, er farverne på konturerne forskellige. Aktiv, når der er et billede i studiet. </item>
+        <item> Sletter projektet med hele historikken. Aktiv, når der er et billede i studiet. </item>
+        <item> Tillader, at nogle af værktøjerne påvirker begge billeder. Aktiv, når der er et ekstra billede. </item>
+        <item> Udskiftning af placeringerne på hoved- og øverste billeder. Aktiv, når der er et ekstra billede. </item>
+        <item> Kombiner to billeder til et. Øvre afgrøder langs hovedkonturen. Aktiv, når der er et ekstra billede. </item>
+        <item> Slet øverste billede. Aktiv, når der er et ekstra billede. </item>
+    </string-array>
+
+    <string-array name = "collect_title">
+        <item> Tilføj mappe </item>
+        <item> Administrer </item>
+    </string-array>
+
+    <string-array name = "collect_note">
+        <item> Tilføj en mappe i galleriet. System explorer vises. Vælg en mappe, og hvis den har billederne, tilføjes den. I tilfælde af mangel på den krævede opbevaring, skal du tjekke ud af explorer-menuen, det kan være skjult. </item>
+        <item> Appadministration. </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_title">
+        <item> Yderligere indstillinger </item>
+        <item> Skjul </item>
+        <item> Del </item>
+        <item> Slet </item>
+    </string-array>
+
+    <string-array name = "collect_root_menu_note">
+        <item> Tilstand for yderligere indstillinger. Gælder for en mappe. Forlad det ved at trykke på denne knap. </item>
+        <item> Skjul denne mappe. </item>
+        <item> Del indholdet af denne mappe. </item>
+        <item> Slet den valgte mappe. </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_title">
+        <item> Yderligere indstillinger </item>
+        <item> Del </item>
+        <item> Slet </item>
+    </string-array>
+
+    <string-array name = "collect_adapt_menu_note">
+        <item> Tilstand for yderligere indstillinger. Gælder for mere end et billede. Forlad det ved at trykke på denne knap. </item>
+        <item> Del de valgte billeder. </item>
+        <item> Slet de valgte billeder. </item>
+    </string-array>
+
+    <string-array name = "addlyr_title">
+        <item> Størrelse </item>
+        <item> Gennemsigtighed </item>
+        <item> Mirror </item>
+        <item> Åbn </item>
+        <item> Tilbage </item>
+        <item> Luk </item>
+    </string-array>
+
+    <string-array name = "addlyr_note">
+        <item> Billedets store størrelse kan påvirke appens stabilitet. Her kan du ændre størrelsen på det. </item>
+        <item> Grad af gennemsigtighed. </item>
+        <item> Spejlbillede. </item>
+        <item> Send billedet til studiet. </item>
+        <item> Vend tilbage til billedkilden. </item>
+        <item> Luk vindue. </item>
+    </string-array>
+
+    <string-array name = "review_title">
+        <item> Se billedet </item>
+        <item> Rediger </item>
+        <item> Afslut </item>
+    </string-array>
+
+    <string-array name = "review_note">
+        <item> Billedvisning med mulighed for at bladre igennem. Med denne knap kan du dele den. </item>
+        <item> Send til redigeringsvinduet og åbn derefter i studiet. Vigtig! Åbning af billedet herfra starter et nyt projekt. </item>
+        <item> Luk visningstilstand. </item>
+    </string-array>
+
+    <string-array name = "creator_title">
+        <item> Åbn </item>
+        <item> Bredde </item>
+        <item> Højde </item>
+        <item> Baggrundsfarve </item>
+        <item> Afslut </item>
+    </string-array>
+
+    <string-array name = "creator_note">
+        <item> Blank lærredstilstand. Åbn lærred i editoren for at sende det til studiet. </item>
+        <item> Indstil bredde. </item>
+        <item> Indstil højde. </item>
+        <item> Åbn farvevælger. Tryk på midten for at afslutte. </item>
+        <item> Luk tomt lærredstilstand. </item>
+    </string-array>
+
+    <string-array name = "addlyr_collect_title">
+        <item> Galleri </item>
+        <item> Afslut </item>
+    </string-array>
+
+    <string-array name = "addlyr_collect_note">
+        <item> Galleri indeholder mapper med billeder. Åbn dem i studiet. De vil blive føjet til det eksisterende projekt. Hvis studiet allerede har et ekstra billede, erstattes det. </item>
+        <item> Luk galleriet. </item>
+    </string-array>
+
+    <string-array name = "addlyr_cam_title">
+        <item> Tag et billede </item>
+        <item> Valg af kamera </item>
+        <item> Lightning </item>
+        <item> Afslut </item>
+    </string-array>
+
+    <string-array name = "addlyr_cam_note">
+        <item> Tag et billede, og åbn det i editoren. </item>
+        <item> Vælg hvilket kamera, du vil bruge. </item>
+        <item> Tænd for lynet. </item>
+        <item> Luk kamera. </item>
+    </string-array>
+
+    <string-array name = "prop_title">
+        <item> Brush </item>
+        <item> Viskelæder </item>
+        <item> Tekst </item>
+        <item> Farve </item>
+        <item> Børstgennemsigtighed </item>
+        <item> Bredde </item>
+        <item> Eraser-gennemsigtighed </item>
+        <item> Anvend </item>
+        <item> Afslut </item>
+    </string-array>
+
+    <string-array name = "prop_note">
+        <item> Viser børsten. Dens størrelse og farve. </item>
+        <item> Eraser, bredde og niveau for sletning. </item>
+        <item> Størrelse og farve på teksten. </item>
+        <item> Indstil farven på børsten og teksten. </item>
+        <item> Indstil gennemsigtighedsniveauet for den valgte farve. </item>
+        <item> Indstil bredden på børsten, viskelædet og størrelsen på teksten. </item>
+        <item> Juster niveauet for sletning. </item>
+        <item> Anvend de valgte indstillinger. </item>
+        <item> Annuller og afslutt. </item>
+    </string-array>
+
+    <string-array name = "edit_text_title">
+        <item> Indtast teksten </item>
+        <item> Oprydning </item>
+        <item> Skrifttype </item>
+        <item> Kontur </item>
+        <item> Vinkel </item>
+        <item> hældning </item>
+        <item> Anvend </item>
+        <item> Afslut </item>
+    </string-array>
+
+    <string-array name = "edit_text_note">
+        <item> Tekstfelt. </item>
+        <item> Slet forrige tekst. </item>
+        <item> Brugt font. </item>
+        <item> Vælg solid font eller dets kontur. </item>
+        <item> Juster fontens vinkel. </item>
+        <item> Indstil den krævede hældning af skrifttypen. </item>
+        <item> Gem ændringerne og forlad. </item>
+        <item> Forlad uden ændringer. </item>
+    </string-array>
+
+    <string-array name = "edit_text_fonts_title">
+        <item> Liste over skrifttyper </item>
+        <item> Tilføj en font </item>
+    </string-array>
+
+    <string-array name = "edit_text_fonts_note">
+        <item> Liste over de tilgængelige skrifttyper. </item>
+        <item> Tilføj downloadet font. Skrifttype er en fil med udvidelsen "ttf" eller "otf". </item>
+    </string-array>
+
+</resources>

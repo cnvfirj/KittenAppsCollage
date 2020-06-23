@@ -1,0 +1,42 @@
+<resources >
+    <string name="app_name">Kitten сollage</string>
+
+
+    <string name = "FOLDER_DELETE"> Scriosadh an fillteán </string>
+    <string name = "SELECTED_IMAGES_DELETED"> Scriosadh íomhánna roghnaithe. </string>
+    <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Ní bhfuarthas aon íomhánna nua san fhillteán roghnaithe. </string>
+    <string name = "IN_GALLERY_ADD_FOLDER"> Tá fillteán nua curtha leis an ngailearaí. </string>
+    <string name = "CREATE_IMG"> Cruthaigh canbhás </string>
+    <string name = "condition_apply_tools"> Oscail nó cruthaigh canbhás </string>
+    <string name = "YES"> Sea </string>
+    <string name = "NO"> Níl </string>
+    <string name = "ASSES_TO_DATA"> Rochtain ar na sonraí </string>
+    <string name = "ASSES_TO_CAMERA"> Rochtain ar an gceamara </string>
+    <string name = "REPEAT_REQUEST"> Déan an iarraidh arís? </string>
+    <string name = "RATIONALE_ASSES_CAMERA"> Teastaíonn rochtain ar an gceamara chun pictiúir a thógáil ag baint úsáide as an aip. </string>
+    <string name = "RATIONALE_ASSES_WRITE"> Teastaíonn rochtain ar an ilmheán chun na híomhánna ar an bhfeiste a léamh agus a shábháil. </string>
+    <string name = "TOAST_RESOLUTION"> I socruithe socraigh an taifeach riachtanach. </string>
+    <string name = "NOT_PERMISSION"> Diúltaíodh rochtain </string>
+    <string name = "GO_TO_SETTINGS"> Chun é a fháil téigh chuig socruithe an aip. </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_STORAGE"> Níor sábháladh an íomhá. Seiceáil an stór atá fágtha den fheiste. </string>
+    <string name = "IMAGE_SAVED"> Sábháladh an íomhá </string>
+    <string name = "IMAGE_NOT_SAVED_CHECK_FOLDER"> Níor sábháladh an íomhá. Seiceáil an fillteán áit ar cheart é a shábháil. </string>
+    <string name = "FIND_FILE_FONT"> Faigh an comhad le síneadh "ttf" nó "otf" (Tá .ttf nó .otf ag deireadh ainm an chomhaid.) </string>
+    <string name = "INCORRECT_TEXT"> Téacs neamhbhailí </string>
+    <string name = "NOT_ADD_FONT_IF_NAME_CLONE"> Níor cuireadh cló nua leis. B’fhéidir go bhfuil an t-ainm in úsáid cheana. </string>
+    <string name = "FILE_FONT"> Ba chóir go mbeadh an comhad le síneadh "ttf" nó "otf" (Tá .ttf nó .otf ag deireadh ainm an chomhaid) </string>
+    <string name = "FONT_ADD_FIND_IN_LIST"> Tá cló curtha leis. Faigh é ar an liosta. </string>
+    <string name = "ADD_FONTS_FIND"> Fuarthas clónna breise. </string>
+    <string name = "ADD_FONTS_NOT_FIND"> Níor aimsíodh clónna breise. Íoslódáil na clónna le síneadh .ttf nó .otf agus cuir iad. </string>
+    <string name = "SELECT_POINT_PIPETTE"> Roghnaigh an pointe ar limistéar líonta agus neamh-trédhearcach an líníochta. </string>
+    <string name = "REQUEST_LOAD_OLD_PROJECT"> Tá tionscadal neamhchríochnaithe agat. </string>
+    <string name = "OPEN_OLD_PROJECT"> Oscail é? Seachas sin scriosfar é. </string>
+    <string name = "ERROR_DELETE_FILE"> Teip scriosadh comhad </string>
+    <string name = "images"> Íomhánna </string>
+    <string name = "collet_images"> Féach ar na híomhánna, osclaítear brú agus coimeád ar cheann acu na gníomhartha breise. Téigh ar ais ag baint úsáide as an gcnaipe seo. </string>
+    <string name = "DELETED"> Scriosadh </string>
+    <string name = "FILES_DELETED_IN_MAIN_STORAGE"> Scriostar comhaid ó na meáin fhisiciúla </string>
+    <string name = "language"> Teanga </string>
+    <string name = "color_theme"> Téama datha </string>
+    <string name = "restart_window"> atosaigh an fhuinneog </string>
+</resources>
