@@ -1,9 +1,5 @@
 <resources >
     <string name="app_name">Kitten Apps Collage</string>
-    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
-    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
-    <string name="KEY_ADAPTER_ID">key adapter id</string>
-    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 
 
     <string name = "FOLDER_DELETE"> Aplankas buvo ištrintas </string>
@@ -11,10 +7,11 @@
         <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Pasirinktame aplanke nerasta naujų vaizdų. </string>
         <string name = "IN_GALLERY_ADD_FOLDER"> Galerijoje pridėtas naujas aplankas. </string>
         <string name = "CREATE_IMG"> Kurti drobę </string>
-        <string name = "condition_apply_tools"> Atidarykite arba sukurkite drobę </string>
-        <string name = "PHOTO"> Nuotrauka </string>
-        <string name = "COLLECT"> Galerija </string>
-        <string name = "YES"> Taip </string>
+        <string name = "condition_apply_tools"> Atidarykite arba sukurkite drobę </string><![CDATA[
+        
+        
+        ]]>
+    <string name = "YES"> Taip </string>
         <string name = "NO"> Ne </string>
         <string name = "ASSES_TO_DATA"> Prieiga prie duomenų </string>
         <string name = "ASSES_TO_CAMERA"> Prieiga prie fotoaparato </string>

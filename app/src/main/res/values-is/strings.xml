@@ -1,9 +1,5 @@
 <resources >
     <string name="app_name">Kitten Apps Collage</string>
-    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
-    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
-    <string name="KEY_ADAPTER_ID">key adapter id</string>
-    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 
 
     <string name = "FOLDER_DELETE"> Mappa hefur verið eytt </string>
@@ -11,10 +7,11 @@
         <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Engar nýjar myndir hafa fundist í völdum möppu. </string>
         <string name = "IN_GALLERY_ADD_FOLDER"> Ný mappa hefur verið sett í myndasafnið. </string>
         <string name = "CREATE_IMG"> Búðu til striga </string>
-        <string name = "condition_apply_tools"> Opnaðu eða búðu til striga </string>
-        <string name = "PHOTO"> Mynd </string>
-        <string name = "COLLECT"> Gallerí </string>
-        <string name = "YES"> Já </string>
+        <string name = "condition_apply_tools"> Opnaðu eða búðu til striga </string><![CDATA[
+        
+        
+        ]]>
+    <string name = "YES"> Já </string>
         <string name = "NO"> Nei </string>
         <string name = "ASSES_TO_DATA"> Aðgangur að gögnunum </string>
         <string name = "ASSES_TO_CAMERA"> Aðgangur að myndavélinni </string>

@@ -1,35 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="param_tools">30dp</dimen>
-    <dimen name="param_lock">10dp</dimen>
-    <dimen name="margin_tool">5dp</dimen>
 
     <dimen name="param_save">34dp</dimen>
     <dimen name="param_save_2">68dp</dimen>
-    <dimen name="param_arrow">20dp</dimen>
     <dimen name="margin_save">10dp</dimen>
     <dimen name="margin_save_2">20dp</dimen>
-    <dimen name="hide_save">-34dp</dimen>
     <dimen name="margin_seek">55dp</dimen>
-    <dimen name="param_seek_bar">17dp</dimen>
     <dimen name="param_color_pick">250dp</dimen>
 
-    <dimen name="SLIDE_TOOLS">-80dp</dimen>
     <dimen name="SLIDE_SAVE">-45dp</dimen>
     <dimen name="SLIDE_ADD">45dp</dimen>
 
 
-    <dimen name="width_window_major_add_bitmap">90%</dimen>
-    <dimen name="width_window_minor_add_bitmap">90%</dimen>
-    <dimen name="height_window_major_add_bitmap">55%</dimen>
-    <dimen name="height_window_minor_add_bitmap">55%</dimen>
-
-    <dimen name="dialog_add_text_size">30sp</dimen>
-
-    <dimen name="margin_seek_dialog_add">30dp</dimen>
-
     <dimen name="PATH_FILE">111</dimen>
-    <dimen name="PATH_PHOTO">1111</dimen>
     <dimen name="PATH_DRIVE">222</dimen>
     <dimen name="PATH_NET">333</dimen>
     <dimen name="PATH_CAM">444</dimen>

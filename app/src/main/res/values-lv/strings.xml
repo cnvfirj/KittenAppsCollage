@@ -1,9 +1,5 @@
 <resources >
     <string name="app_name">Kitten Apps Collage</string>
-    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
-    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
-    <string name="KEY_ADAPTER_ID">key adapter id</string>
-    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 
 
     <string name = "FOLDER_DELETE"> Mape ir izdzēsta </string>
@@ -11,10 +7,11 @@
         <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Izvēlētajā mapē nav atrasti jauni attēli. </string>
         <string name = "IN_GALLERY_ADD_FOLDER"> Galerijai ir pievienota jauna mape. </string>
         <string name = "CREATE_IMG"> Izveidot audekls </string>
-        <string name = "condition_apply_tools"> Atveriet vai izveidojiet audekls </string>
-        <string name = "PHOTO"> Fotoattēls </string>
-        <string name = "COLLECT"> Galerija </string>
-        <string name = "YES"> Jā </string>
+        <string name = "condition_apply_tools"> Atveriet vai izveidojiet audekls </string><![CDATA[
+        
+        
+        ]]>
+    <string name = "YES"> Jā </string>
         <string name = "NO"> Nē </string>
         <string name = "ASSES_TO_DATA"> Piekļuve datiem </string>
         <string name = "ASSES_TO_CAMERA"> Piekļuve kamerai </string>

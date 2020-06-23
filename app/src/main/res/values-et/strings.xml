@@ -1,9 +1,5 @@
 <resources >
     <string name="app_name">Kitten Apps Collage</string>
-    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
-    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
-    <string name="KEY_ADAPTER_ID">key adapter id</string>
-    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 
 
     <string name = "FOLDER_DELETE"> kaust on kustutatud </string>
@@ -11,10 +7,11 @@
         <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Valitud kaustast ei leitud ühtegi uut pilti. </string>
         <string name = "IN_GALLERY_ADD_FOLDER"> Galeriisse on lisatud uus kaust. </string>
         <string name = "CREATE_IMG"> Loo lõuend </string>
-        <string name = "condition_apply_tools"> lõuendi avamine või loomine </string>
-        <string name = "PHOTO"> Foto </string>
-        <string name = "COLLECT"> galerii </string>
-        <string name = "YES"> Jah </string>
+        <string name = "condition_apply_tools"> lõuendi avamine või loomine </string><![CDATA[
+        
+        
+        ]]>
+    <string name = "YES"> Jah </string>
         <string name = "NO"> Ei </string>
         <string name = "ASSES_TO_DATA"> Juurdepääs andmetele </string>
         <string name = "ASSES_TO_CAMERA"> Juurdepääs kaamerale </string>

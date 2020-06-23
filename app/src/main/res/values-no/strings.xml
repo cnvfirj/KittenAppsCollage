@@ -1,9 +1,5 @@
 <resources >
     <string name="app_name">Kitten Apps Collage</string>
-    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
-    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
-    <string name="KEY_ADAPTER_ID">key adapter id</string>
-    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 
 
     <string name = "FOLDER_DELETE"> Mappen er blitt slettet </string>
@@ -11,10 +7,11 @@
         <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Ingen nye bilder er funnet i den valgte mappen. </string>
         <string name = "IN_GALLERY_ADD_FOLDER"> Ny mappe er lagt til i galleriet. </string>
         <string name = "CREATE_IMG"> Lag lerret </string>
-        <string name = "condition_apply_tools"> Åpne eller opprett lerret </string>
-        <string name = "PHOTO"> Foto </string>
-        <string name = "COLLECT"> Galleri </string>
-        <string name = "YES"> Ja </string>
+        <string name = "condition_apply_tools"> Åpne eller opprett lerret </string><![CDATA[
+        
+        
+        ]]>
+    <string name = "YES"> Ja </string>
         <string name = "NO"> Nei </string>
         <string name = "ASSES_TO_DATA"> Tilgang til dataene </string>
         <string name = "ASSES_TO_CAMERA"> Tilgang til kameraet </string>

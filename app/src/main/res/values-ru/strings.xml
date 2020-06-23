@@ -1,10 +1,6 @@
 <resources >
 
     <string name="app_name">Kitten Apps Collage</string>
-    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
-    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
-    <string name="KEY_ADAPTER_ID">key adapter id</string>
-    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 
     <string name="FOLDER_DELETE">Папка удалена</string>
     <string name="SELECTED_IMAGES_DELETED">Выбранные изображения удалены</string>
@@ -12,8 +8,6 @@
     <string name="IN_GALLERY_ADD_FOLDER">В галерею добавлена папка </string>
     <string name="CREATE_IMG">Создай холст</string>
     <string name="condition_apply_tools">открой или создай холст</string>
-    <string name="PHOTO">Фото</string>
-    <string name="COLLECT">Галерея</string>
     <string name="YES">да</string>
     <string name="NO">нет</string>
     <string name="ASSES_TO_DATA">доступ к данным</string>

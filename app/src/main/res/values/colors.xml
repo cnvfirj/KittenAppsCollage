@@ -12,10 +12,6 @@
     <color name="colorAccentDark">#A56C30</color>
     <color name="colorAccentTransparent">#B3CC9C3B</color>
 
-    <color name="colorDimenAccentTransparent">#B3C5AF89</color>
-    <color name="colorDimenAccentDarkTransparent">#D9A69A75</color>
-
-    <color name="colorDimenPrimaryTransparent">#B3595959</color>
     <color name="colorDimenPrimaryDarkTransparent">#B3272727</color>
 
 
@@ -25,10 +21,8 @@
 
     <color name="colorPrimaryAlpha">#B3374151</color>
     <color name="colorWhite">#E5E5E5</color>
-    <color name="colorWhiteAlpha">#B3E5E5E5</color>
 
 
-    <color name="colorTransparent">#00FFFFFF</color>
     <color name="colorShadow">#3C000000</color>
 
 

@@ -1,9 +1,5 @@
 <resources >
     <string name="app_name">Kitten Apps Collage</string>
-    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
-    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
-    <string name="KEY_ADAPTER_ID">key adapter id</string>
-    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 
 
     <string name = "FOLDER_DELETE"> A pasta foi excluída </string>
@@ -11,10 +7,11 @@
         <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Nenhuma nova imagem foi encontrada na pasta selecionada. </string>
         <string name = "IN_GALLERY_ADD_FOLDER"> Nova pasta foi adicionada à galeria. </string>
         <string name = "CREATE_IMG"> Criar tela </string>
-        <string name = "condition_apply_tools"> Abra ou crie tela </string>
-        <string name = "PHOTO"> Foto </string>
-        <string name = "COLLECT"> Galeria </string>
-        <string name = "YES"> Sim </string>
+        <string name = "condition_apply_tools"> Abra ou crie tela </string><![CDATA[
+        
+        
+        ]]>
+    <string name = "YES"> Sim </string>
         <string name = "NO"> Não </string>
         <string name = "ASSES_TO_DATA"> Acesso aos dados </string>
         <string name = "ASSES_TO_CAMERA"> Acesso à câmera </string>

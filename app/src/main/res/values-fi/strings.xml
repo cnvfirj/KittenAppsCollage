@@ -1,9 +1,5 @@
 <resources >
     <string name="app_name">Kitten Apps Collage</string>
-    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
-    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
-    <string name="KEY_ADAPTER_ID">key adapter id</string>
-    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 
 
     <string name = "FOLDER_DELETE"> Kansio on poistettu </string>
@@ -11,10 +7,11 @@
         <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Valitusta kansiosta ei löydy uusia kuvia. </string>
         <string name = "IN_GALLERY_ADD_FOLDER"> Uusi kansio on lisätty galleriaan. </string>
         <string name = "CREATE_IMG"> Luo kangas </string>
-        <string name = "condition_apply_tools"> Avaa tai luo kangas </string>
-        <string name = "PHOTO"> Valokuva </string>
-        <string name = "COLLECT"> galleria </string>
-        <string name = "YES"> Kyllä </string>
+        <string name = "condition_apply_tools"> Avaa tai luo kangas </string><![CDATA[
+        
+        
+        ]]>
+    <string name = "YES"> Kyllä </string>
         <string name = "NO"> Ei </string>
         <string name = "ASSES_TO_DATA"> Tietojen käyttö </string>
         <string name = "ASSES_TO_CAMERA"> Pääsy kameraan </string>

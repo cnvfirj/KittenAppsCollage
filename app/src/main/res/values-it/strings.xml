@@ -1,9 +1,5 @@
 <resources >
     <string name="app_name">Kitten Apps Collage</string>
-    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
-    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
-    <string name="KEY_ADAPTER_ID">key adapter id</string>
-    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 
 
     <string name = "FOLDER_DELETE"> La cartella è stata eliminata </string>
@@ -11,10 +7,11 @@
         <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Non sono state trovate nuove immagini nella cartella selezionata. </string>
         <string name = "IN_GALLERY_ADD_FOLDER"> Nuova cartella è stata aggiunta alla galleria. </string>
         <string name = "CREATE_IMG"> Crea canvas </string>
-        <string name = "condition_apply_tools"> Apri o crea canvas </string>
-        <string name = "PHOTO"> Foto </string>
-        <string name = "COLLECT"> Galleria </string>
-        <string name = "YES"> Sì </string>
+        <string name = "condition_apply_tools"> Apri o crea canvas </string><![CDATA[
+        
+        
+        ]]>
+    <string name = "YES"> Sì </string>
         <string name = "NO"> No </string>
         <string name = "ASSES_TO_DATA"> Accesso ai dati </string>
         <string name = "ASSES_TO_CAMERA"> Accesso alla videocamera </string>

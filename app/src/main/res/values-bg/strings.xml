@@ -1,9 +1,5 @@
 <resources >
     <string name="app_name">Kitten Apps Collage</string>
-    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
-    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
-    <string name="KEY_ADAPTER_ID">key adapter id</string>
-    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 
 
     <string name = "FOLDER_DELETE"> Папката е изтрита </string>
@@ -11,10 +7,11 @@
         <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Не са намерени нови изображения в избраната папка. </string>
         <string name = "IN_GALLERY_ADD_FOLDER"> Добавена е нова папка в галерията. </string>
         <string name = "CREATE_IMG"> Създаване на платно </string>
-        <string name = "condition_apply_tools"> Отваряне или създаване на платно </string>
-        <string name = "PHOTO"> Снимка </string>
-        <string name = "COLLECT"> Галерия </string>
-        <string name = "YES"> Да </string>
+        <string name = "condition_apply_tools"> Отваряне или създаване на платно </string><![CDATA[
+        
+        
+        ]]>
+    <string name = "YES"> Да </string>
         <string name = "NO"> Не </string>
         <string name = "ASSES_TO_DATA"> Достъп до данните </string>
         <string name = "ASSES_TO_CAMERA"> Достъп до камерата </string>

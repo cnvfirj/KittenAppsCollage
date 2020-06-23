@@ -1,9 +1,5 @@
 <resources >
     <string name="app_name">Kitten Apps Collage</string>
-    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
-    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
-    <string name="KEY_ADAPTER_ID">key adapter id</string>
-    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 
 
     <string name = "FOLDER_DELETE"> Ο φάκελος διαγράφηκε </string>
@@ -11,10 +7,11 @@
         <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Δεν βρέθηκαν νέες εικόνες στον επιλεγμένο φάκελο. </string>
         <string name = "IN_GALLERY_ADD_FOLDER"> Προστέθηκε νέος φάκελος στη συλλογή. </string>
         <string name = "CREATE_IMG"> Δημιουργία καμβά </string>
-        <string name = "condition_apply_tools"> Άνοιγμα ή δημιουργία καμβά </string>
-        <string name = "PHOTO"> Φωτογραφία </string>
-        <string name = "COLLECT"> Συλλογή </string>
-        <string name = "YES"> Ναι </string>
+        <string name = "condition_apply_tools"> Άνοιγμα ή δημιουργία καμβά </string><![CDATA[
+        
+        
+        ]]>
+    <string name = "YES"> Ναι </string>
         <string name = "NO"> Όχι </string>
         <string name = "ASSES_TO_DATA"> Πρόσβαση στα δεδομένα </string>
         <string name = "ASSES_TO_CAMERA"> Πρόσβαση στην κάμερα </string>

@@ -1,9 +1,5 @@
 <resources >
     <string name="app_name">Kitten Apps Collage</string>
-    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
-    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
-    <string name="KEY_ADAPTER_ID">key adapter id</string>
-    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 
 
     <string name = "FOLDER_DELETE"> Mapa je izbrisana </string>
@@ -12,8 +8,6 @@
     <string name = "IN_GALLERY_ADD_FOLDER"> Nova mapa je dodana u galeriju. </string>
     <string name = "CREATE_IMG"> Stvori platno </string>
     <string name = "condition_apply_tools"> Otvori ili stvori platno </string>
-    <string name = "PHOTO"> Fotografija </string>
-    <string name = "COLLECT"> Galerija </string>
     <string name = "YES"> Da </string>
     <string name = "NO"> Ne </string>
     <string name = "ASSES_TO_DATA"> Pristup podacima </string>

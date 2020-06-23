@@ -1,9 +1,5 @@
 <resources >
     <string name="app_name">Kitten Apps Collage</string>
-    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
-    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
-    <string name="KEY_ADAPTER_ID">key adapter id</string>
-    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 
 
     <string name = "FOLDER_DELETE"> Mapp har tagits bort </string>
@@ -11,10 +7,11 @@
         <string name = "IS_SELECTED_FOLDER_IMAGES_NOT"> Inga nya bilder har hittats i den valda mappen. </string>
         <string name = "IN_GALLERY_ADD_FOLDER"> Ny mapp har lagts till i galleriet. </string>
         <string name = "CREATE_IMG"> Skapa duk </string>
-        <string name = "condition_apply_tools"> Öppna eller skapa duk </string>
-        <string name = "PHOTO"> Foto </string>
-        <string name = "COLLECT"> Galleri </string>
-        <string name = "YES"> Ja </string>
+        <string name = "condition_apply_tools"> Öppna eller skapa duk </string><![CDATA[
+        
+        
+        ]]>
+    <string name = "YES"> Ja </string>
         <string name = "NO"> Nej </string>
         <string name = "ASSES_TO_DATA"> Tillgång till data </string>
         <string name = "ASSES_TO_CAMERA"> Tillgång till kameran </string>

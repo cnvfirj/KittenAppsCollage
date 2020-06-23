@@ -1,9 +1,5 @@
 <resources >
     <string name="app_name">Kitten Apps Collage</string>
-    <string name="KEY_ADAPTER_POSITION">key adapter position</string>
-    <string name="KEY_ADAPTER_SOURCE_IMAGE">key adapter source image</string>
-    <string name="KEY_ADAPTER_ID">key adapter id</string>
-    <string name="KEY_ADAPTER_FILE">key adapter file</string>
 
 
     <string name="FOLDER_DELETE">Folder has been deleted</string>
@@ -12,8 +8,6 @@
     <string name="IN_GALLERY_ADD_FOLDER">Der Galerie wurde ein neuer Ordner hinzugefügt.</string>
     <string name="CREATE_IMG">Leinwand erstellen</string>
     <string name="condition_apply_tools">Leinwand öffnen oder erstellen</string>
-    <string name="PHOTO">Foto</string>
-    <string name="COLLECT">Galerie</string>
     <string name="YES">Ja</string>
     <string name="NO">Nein</string>
     <string name="ASSES_TO_DATA">Zugriff auf die Daten.</string>

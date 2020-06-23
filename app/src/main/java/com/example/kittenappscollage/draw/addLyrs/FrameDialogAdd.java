@@ -94,11 +94,11 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
                     bundle.putSerializable(AddLyr.KEY_EXTRACTOR_WAY, (String) way);
                     bundle.putInt(AddLyr.KEY_SOURCE, R.dimen.PATH_NEW);
                     break;
-                case R.id.network_done_link:
-                    bundle = new Bundle();
-                    bundle.putSerializable(AddLyr.KEY_EXTRACTOR_WAY, (String) way);
-                    bundle.putInt(AddLyr.KEY_SOURCE, R.dimen.PATH_NET);
-                    break;
+//                case R.id.network_done_link:
+//                    bundle = new Bundle();
+//                    bundle.putSerializable(AddLyr.KEY_EXTRACTOR_WAY, (String) way);
+//                    bundle.putInt(AddLyr.KEY_SOURCE, R.dimen.PATH_NET);
+//                    break;
                 case R.id.cam_click:
                     bundle = new Bundle();
                     bundle.putSerializable(AddLyr.KEY_EXTRACTOR_WAY, (DecodeCamera.CameraProperties) way);
