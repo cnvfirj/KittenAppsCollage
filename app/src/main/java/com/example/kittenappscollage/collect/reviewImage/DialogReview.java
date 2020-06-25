@@ -148,8 +148,10 @@ public class DialogReview extends Fragment implements View.OnClickListener, Targ
 
     private void pressEdit(){
         ReviewFragment f = (ReviewFragment)viewPager.getAdapter().instantiateItem(viewPager,viewPager.getCurrentItem());
-        selector = (SelectorOperationReview) getParentFragment();
-       selector.edit(f.getImage().copy(Bitmap.Config.ARGB_8888,true));
+        if(f.getImage()!=null&&!f.getImage().isRecycled()) {
+            selector = (SelectorOperationReview) getParentFragment();
+            selector.edit(f.getImage().copy(Bitmap.Config.ARGB_8888, true));
+        }
 
     }
 

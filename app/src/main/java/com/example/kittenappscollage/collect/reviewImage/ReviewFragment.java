@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +20,8 @@ public class ReviewFragment extends Fragment implements ViewReview.LoadImage{
     private static final String IMG = "img";
 
     private ViewReview viewReview;
+
+    private ProgressBar progress;
 
     private Uri  img;
 
@@ -43,6 +46,7 @@ public class ReviewFragment extends Fragment implements ViewReview.LoadImage{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        progress = view.findViewById(R.id.fragment_review_progress);
         viewReview = view.findViewById(R.id.fragment_review_view);
         viewReview.setListenLoadImage(this);
         viewReview.setUriBitmap(img);
@@ -61,7 +65,8 @@ public class ReviewFragment extends Fragment implements ViewReview.LoadImage{
 
     @Override
     public void done(boolean d) {
-        getView().findViewById(R.id.fragment_review_progress).setVisibility(View.INVISIBLE);
+//        getView().findViewById(R.id.fragment_review_progress).setVisibility(View.INVISIBLE);
+        progress.setVisibility(View.INVISIBLE);
         if(!d){
             getView().findViewById(R.id.fragment_review_error).setVisibility(View.VISIBLE);
         }
