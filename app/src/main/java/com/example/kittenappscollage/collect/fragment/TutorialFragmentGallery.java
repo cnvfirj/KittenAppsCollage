@@ -119,8 +119,8 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
     protected void setIndexAdapter(int i) {
         super.setIndexAdapter(i);
         if(i!=ROOT_ADAPTER){
-            int step = preferences.getInt(KEY_STEP_BACK_COLL,0);
-            step = 999;
+//            int step = preferences.getInt(KEY_STEP_BACK_COLL,0);
+            int step = 999;
             if(step<999){
                 initExcurs();
                 if(!excursInTutorial.getOngoing()){
@@ -136,8 +136,8 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
     protected void visibleMenu() {
         super.visibleMenu();
         if(getIndexAdapter()==ROOT_ADAPTER){
-            int step = preferences.getInt(KEY_STEP_MENU_ROOT,0);
-            step = 999;
+//            int step = preferences.getInt(KEY_STEP_MENU_ROOT,0);
+            int step = 999;
             if(step<999){
                 initExcurs();
                 if(!excursInTutorial.getOngoing()){
@@ -147,8 +147,8 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
                 }
             }
         }else {
-            int step = preferences.getInt(KEY_STEP_MENU_ADAPT,0);
-            step = 999;
+//            int step = preferences.getInt(KEY_STEP_MENU_ADAPT,0);
+            int step = 999;
             if(step<999){
                 initExcurs();
                 if(!excursInTutorial.getOngoing()){

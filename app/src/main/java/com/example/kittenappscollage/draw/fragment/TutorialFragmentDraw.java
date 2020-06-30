@@ -102,9 +102,9 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     @Override
     protected void slideSave(ImageView view) {
-            int step = getPreferences().getInt(KEY_TUTORIAL_SAVE_IMG, 0);
-            /*отключаем*/
-            step = 999;
+//            int step = getPreferences().getInt(KEY_TUTORIAL_SAVE_IMG, 0);
+//            /*отключаем*/
+        int step = 999;
             if (step < 999) {
                 initExcurs();
                 if (!excursInTutorial.getOngoing()) {
@@ -118,8 +118,8 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     @Override
     protected void slideTools() {
-        int step = getPreferences().getInt(KEY_TUTORIAL_REDACT_IMG,0);
-        step = 999;
+//        int step = getPreferences().getInt(KEY_TUTORIAL_REDACT_IMG,0);
+        int step = 999;
         if(step<999){
             initExcurs();
             if(!excursInTutorial.getOngoing()){
@@ -134,8 +134,8 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
     @Override
     protected void slideAdd() {
 
-        int step = getPreferences().getInt(KEY_TUTORIAL_ADD_LYR,0);
-        step = 999;
+//        int step = getPreferences().getInt(KEY_TUTORIAL_ADD_LYR,0);
+        int step = 999;
         if(step<999){
             initExcurs();
             if(!excursInTutorial.getOngoing()){
