@@ -7,12 +7,12 @@
 
 
 
-    <com.example.kittenappscollage.view.CustomFon
+    <com.kittendevelop.kittenappscollage.view.CustomFon
         style="@style/common_buttons"
         android:layout_width="match_parent"
         android:id="@+id/iten_present_draw_fon"/>
 
-    <com.example.kittenappscollage.view.PresentPaint
+    <com.kittendevelop.kittenappscollage.view.PresentPaint
         style="@style/common_buttons"
         android:layout_width="match_parent"
         android:id="@+id/item_present_draw"

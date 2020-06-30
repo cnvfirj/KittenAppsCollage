@@ -3,15 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.kittenappscollage.view.CustomFon
+    <com.kittendevelop.kittenappscollage.view.CustomFon
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-    <com.example.kittenappscollage.mainTabs.SelectSweepViewPager
+    <com.kittendevelop.kittenappscollage.mainTabs.SelectSweepViewPager
         android:id="@+id/dialog_review_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.example.kittenappscollage.mainTabs.SelectSweepViewPager>
+    </com.kittendevelop.kittenappscollage.mainTabs.SelectSweepViewPager>
 
     <ImageView
         style="@style/buttons_dialog_add"
