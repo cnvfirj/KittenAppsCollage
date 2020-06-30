@@ -14,13 +14,13 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
 
     private ExcursInTutorial excursInTutorial;
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial_1";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentDraw step tutorial";
 
-    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr_1";
+    private final String KEY_TUTORIAL_ADD_LYR = "TutorialFragmentDraw tutorial add lyr";
 
-    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img_1";
+    private final String KEY_TUTORIAL_SAVE_IMG = "TutorialFragmentDraw tutorial save img";
 
-    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img_1";
+    private final String KEY_TUTORIAL_REDACT_IMG = "TutorialFragmentDraw tutorial redact img";
 
     private String chapter;
 
@@ -103,6 +103,8 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
     @Override
     protected void slideSave(ImageView view) {
             int step = getPreferences().getInt(KEY_TUTORIAL_SAVE_IMG, 0);
+            /*отключаем*/
+            step = 999;
             if (step < 999) {
                 initExcurs();
                 if (!excursInTutorial.getOngoing()) {
@@ -117,6 +119,7 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
     @Override
     protected void slideTools() {
         int step = getPreferences().getInt(KEY_TUTORIAL_REDACT_IMG,0);
+        step = 999;
         if(step<999){
             initExcurs();
             if(!excursInTutorial.getOngoing()){
@@ -132,6 +135,7 @@ public class TutorialFragmentDraw extends ApplyDrawToolsFragmentDraw implements 
     protected void slideAdd() {
 
         int step = getPreferences().getInt(KEY_TUTORIAL_ADD_LYR,0);
+        step = 999;
         if(step<999){
             initExcurs();
             if(!excursInTutorial.getOngoing()){

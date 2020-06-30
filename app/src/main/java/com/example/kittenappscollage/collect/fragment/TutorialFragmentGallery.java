@@ -23,13 +23,13 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
 
     public final static String KEY_ACTIVATE_COLLECT = "activate fragment";
 
-    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial_1";
+    private final String KEY_STEP_TUTORIAL = "TutorialFragmentGallery step tutorial";
 
-    private final String KEY_STEP_BACK_COLL = "TutorialFragmentGallery step tback coll_1";
+    private final String KEY_STEP_BACK_COLL = "TutorialFragmentGallery step tback coll";
 
-    private final String KEY_STEP_MENU_ROOT = "TutorialFragmentGallery step menu root_1";
+    private final String KEY_STEP_MENU_ROOT = "TutorialFragmentGallery step menu root";
 
-    private final String KEY_STEP_MENU_ADAPT = "TutorialFragmentGallery step menu adapt_1";
+    private final String KEY_STEP_MENU_ADAPT = "TutorialFragmentGallery step menu adapt";
 
     private ExcursInTutorial excursInTutorial;
 
@@ -120,6 +120,7 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
         super.setIndexAdapter(i);
         if(i!=ROOT_ADAPTER){
             int step = preferences.getInt(KEY_STEP_BACK_COLL,0);
+            step = 999;
             if(step<999){
                 initExcurs();
                 if(!excursInTutorial.getOngoing()){
@@ -136,6 +137,7 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
         super.visibleMenu();
         if(getIndexAdapter()==ROOT_ADAPTER){
             int step = preferences.getInt(KEY_STEP_MENU_ROOT,0);
+            step = 999;
             if(step<999){
                 initExcurs();
                 if(!excursInTutorial.getOngoing()){
@@ -146,6 +148,7 @@ public class TutorialFragmentGallery extends FragmentGalleryAddFolder implements
             }
         }else {
             int step = preferences.getInt(KEY_STEP_MENU_ADAPT,0);
+            step = 999;
             if(step<999){
                 initExcurs();
                 if(!excursInTutorial.getOngoing()){
