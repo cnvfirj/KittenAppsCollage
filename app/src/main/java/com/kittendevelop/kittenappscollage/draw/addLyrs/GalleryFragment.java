@@ -18,6 +18,9 @@ import com.kittendevelop.kittenappscollage.collect.fragment.FragmentGalleryRevie
 import com.kittendevelop.kittenappscollage.draw.tutorial.ExcursInTutorial;
 import com.example.targetviewnote.TargetView;
 
+import static com.kittendevelop.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
+import static com.kittendevelop.kittenappscollage.helpers.Massages.LYTE;
+
 public class GalleryFragment extends FragmentGalleryReviewImages implements TargetView.OnClickTargetViewNoleListener {
 
     private final String KEY_STEP_TUTORIAL = "GalleryFragment key step tutorial_2";
@@ -69,6 +72,11 @@ public class GalleryFragment extends FragmentGalleryReviewImages implements Targ
     @Override
     public void longClick(int adapter, ImageView img, ImageView check, int pos) {
         /*выделение не нужно*/
+        if(getIndexAdapter()==ROOT_ADAPTER){
+            getFoldAdapt().setModeSelected(false);
+        }else {
+            getImgAdapt().setModeSelected(false);
+        }
     }
 
     @Override

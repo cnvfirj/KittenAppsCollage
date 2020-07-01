@@ -260,7 +260,7 @@ public abstract class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
                 intent.setAction(Intent.ACTION_SEND);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    Uri uri = FileProvider.getUriForFile(getContext(), "com.example.kittenappscollage.fileprovider", file);
+                    Uri uri = FileProvider.getUriForFile(getContext(), "com.kittendevelop.kittenappscollage.fileprovider", file);
                     intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
                     intent.putExtra(Intent.EXTRA_STREAM, uri);
                     intent.setType("image/png");
