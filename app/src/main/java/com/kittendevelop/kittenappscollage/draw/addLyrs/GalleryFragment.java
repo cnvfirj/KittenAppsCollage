@@ -19,7 +19,7 @@ import com.kittendevelop.kittenappscollage.draw.tutorial.ExcursInTutorial;
 import com.example.targetviewnote.TargetView;
 
 import static com.kittendevelop.kittenappscollage.collect.adapters.ListenLoadFoldAdapter.ROOT_ADAPTER;
-import static com.kittendevelop.kittenappscollage.helpers.Massages.LYTE;
+
 
 public class GalleryFragment extends FragmentGalleryReviewImages implements TargetView.OnClickTargetViewNoleListener {
 

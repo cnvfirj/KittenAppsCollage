@@ -152,7 +152,8 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
                   if(isFill(operation)){
                       if(event.getAction()==MotionEvent.ACTION_DOWN) {
                           operation.ready(TouchBitmap
-                                  .ifIGotBit(
+//                                  .ifIGotBit(
+                                  .ifIGotRect(
                                           getOverMat().muteDeformLoc(Deform.Coordinates.DISPLAY_ROTATE_DEFORM),
                                           new PointF(event.getX(), event.getY())
                                   ));
@@ -185,7 +186,8 @@ public class ApplyOperationSelector implements Operation.ResultMutable {
             if(!operation.isReady()){
                 if(isFill(operation)){
                     operation.ready(TouchBitmap
-                            .ifIGotBit(getOverMat()
+//                            .ifIGotBit(
+                            .ifIGotRect(getOverMat()
                                     .muteDeformLoc(Deform
                                             .Coordinates.DISPLAY_ROTATE_DEFORM), new PointF(event.getX(), event.getY())));
                     if(operation.isReady()){

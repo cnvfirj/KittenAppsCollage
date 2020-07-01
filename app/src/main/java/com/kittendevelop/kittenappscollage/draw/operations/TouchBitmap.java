@@ -1,6 +1,7 @@
 package com.kittendevelop.kittenappscollage.draw.operations;
 
 import android.graphics.PointF;
+import android.graphics.RectF;
 import android.util.Pair;
 
 import java.util.Arrays;
@@ -24,8 +25,11 @@ public class TouchBitmap {
     }
 
     public static boolean ifIGotBit(PointF[]points, PointF point){
-
         return vectorCheck(points,point);
+    }
+
+    public static boolean ifIGotRect(PointF[]points, PointF point){
+        return vectorRect(points,point);
     }
 
     private static boolean vectorCheck(PointF[]points, PointF p){
@@ -128,6 +132,27 @@ public class TouchBitmap {
         return new Pair<>(new PointF(arrX[0],arrY[0]),new PointF(arrX[3],arrY[3]));
     }
 
+    private static boolean vectorRect(PointF[]points,PointF point){
+
+        PointF min = new PointF();
+        PointF max = new PointF();
+        for (int i=0;i<points.length;i++){
+            if(i==0){
+                min.set(points[i].x,points[i].y);
+                max.set(points[i].x,points[i].y);
+                continue;
+            }
+            if(points[i].x<min.x)min.set(points[i].x,min.y);
+            if(points[i].y<min.y)min.set(min.x,points[i].y);
+
+            if(points[i].x>max.x)max.set(points[i].x,max.y);
+            if(points[i].y>max.y)max.set(max.x,points[i].y);
+        }
+        RectF r = new RectF(min.x,min.y,max.x,max.y);
+
+
+        return r.contains(point.x,point.y);
+    }
 
 
 }
