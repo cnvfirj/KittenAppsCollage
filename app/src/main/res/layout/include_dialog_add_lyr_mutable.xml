@@ -12,16 +12,16 @@
         android:background="@drawable/background_buttons_add_lyr"
         android:layout_marginTop="@dimen/margin_save"/>
 
-    <com.example.dynamikseekbar.DynamicSeekBar
-        android:layout_margin="@dimen/margin_save"
-        android:layout_width="@dimen/param_save_2"
-        android:layout_height="@dimen/param_save"
-        android:id="@+id/dialog_selector_filter"
-        app:color_progress="@color/colorPrimary"
-        app:color_mark="@color/colorPrimary"
-        app:color_way="@color/colorAccent"
-        app:max_value="1"
-        app:progress_value="0"/>
+    <ImageView
+        style="@style/buttons_dialog_add"
+        android:id="@+id/dialog_invert"
+        android:src="@drawable/ic_invert"
+        android:layout_marginStart="@dimen/margin_save"
+        android:layout_marginEnd="@dimen/margin_save"
+        android:background="@drawable/background_buttons_add_lyr"
+        android:layout_marginTop="@dimen/margin_save"/>
+
+
 
     <ImageView
         style="@style/buttons_dialog_add"

@@ -1,9 +1,19 @@
 package com.kittendevelop.kittenappscollage.draw;
 
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 
+import androidx.core.content.ContextCompat;
+
+import com.kittendevelop.kittenappscollage.R;
 import com.kittendevelop.kittenappscollage.helpers.rx.ThreadTransformers;
 
 import io.reactivex.Observable;
@@ -23,6 +33,18 @@ public class MutableBitmap {
             }
         }).compose(new ThreadTransformers.Processor<>());
     }
+
+    public static Observable<Object> requestMutable(final Bitmap bitmap, final int scale, final int alpha, final int color){
+        return Observable.create(new ObservableOnSubscribe<Bitmap>() {
+            @Override
+            public void subscribe(ObservableEmitter<Bitmap> emitter) throws Exception {
+                emitter.onNext(filter(mutable(bitmap,scale,alpha),color));
+                emitter.onComplete();
+            }
+        }).compose(new ThreadTransformers.Processor<>());
+    }
+
+
 
     public static Bitmap mirror(Bitmap bitmap){
         matrix.reset();
@@ -55,6 +77,18 @@ public class MutableBitmap {
         bitmap.getPixels(src,0,w,0,0,w,h);
         swap(src,valAlpha(val));
         bitmap.setPixels(src,0,w,0,0,w,h);
+        return bitmap;
+    }
+
+
+    private static Bitmap filter(Bitmap bitmap, int color){
+        color = Color.argb(100,Color.red(color),Color.green(color),Color.blue(color));
+        Paint paint = new Paint();
+        ColorFilter filter = new PorterDuffColorFilter(color, PorterDuff.Mode.LIGHTEN);
+        paint.setColorFilter(filter);
+        Canvas c = new Canvas(bitmap);
+        c.drawBitmap(bitmap,0,0,paint);
+
         return bitmap;
     }
 

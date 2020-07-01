@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,11 +40,11 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
 
     private SelectorFrameFragments selector;
 
-    private ImageView aBack, aDone, aClose, aMirror, aColorFilter;
+    private ImageView aBack, aDone, aClose, aMirror, aFilter,aInvers;
 
     protected ProgressBar aProgress;
 
-    private DynamicSeekBar aScale, aAlpha, aSwitchColorFilter;
+    private DynamicSeekBar aScale, aAlpha;
 
     private int aPercentScale, aPercentAlpha;
 
@@ -149,11 +151,10 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
         aClose.setOnClickListener(this);
         aMirror = v.findViewById(R.id.dialog_mirror);
         aMirror.setOnClickListener(this);
-        aColorFilter = v.findViewById(R.id.dialog_filter);
-        aColorFilter.setOnClickListener(this);
-        aColorFilter.setEnabled(false);
-        aSwitchColorFilter = v.findViewById(R.id.dialog_selector_filter);
-        aSwitchColorFilter.setOnSeekBarChangeListener(this);
+        aFilter = v.findViewById(R.id.dialog_filter);
+        aFilter.setOnClickListener(this);
+        aInvers = v.findViewById(R.id.dialog_invert);
+        aInvers.setOnClickListener(this);
         aScale = v.findViewById(R.id.dialog_seek_scale);
         aScale.setOnSeekBarChangeListener(this);
         aScale.setProgress(aPercentScale);
@@ -187,6 +188,12 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
                 break;
             case R.id.dialog_mirror:
                 pressMirror((ImageView) view);
+                break;
+            case R.id.dialog_filter:
+                pressFilter();
+                break;
+            case R.id.dialog_invert:
+                pressInvert();
                 break;
 
         }
@@ -232,14 +239,11 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
 
     @Override
     public void onStartTrackingTouch(DynamicSeekBar seekBar) {
-        if(seekBar.getId()==R.id.dialog_selector_filter) {
-            if (seekBar.getProgress() == 0) {
-                seekBar.setProgress(1);
-            } else {
-                seekBar.setProgress(0);
-            }
-        }
+
     }
+
+
+
 
     @Override
     public void onStopTrackingTouch(DynamicSeekBar seekBar) {
@@ -308,6 +312,15 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
         view.setSelected(!view.isSelected());
         selector = (SelectorFrameFragments)getParentFragment();
         selector.backInSelectedLyr();
+    }
+
+
+    private void pressFilter(){
+
+    }
+
+    private void pressInvert(){
+
     }
 
 }
