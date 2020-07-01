@@ -51,14 +51,37 @@
         android:layout_marginBottom="@dimen/margin_save"
         android:layout_marginEnd="@dimen/margin_save"/>
 
-    <ImageView
-        style="@style/buttons_dialog_add"
-        android:id="@+id/dialog_mirror"
-        android:src="@drawable/icon_mirror"
-        android:background="@drawable/background_buttons_add_lyr"
+
+
+    <include layout="@layout/include_dialog_add_lyr_mutable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_save"/>
+        android:layout_centerHorizontal="true" />
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_centerHorizontal="true">-->
+
+<!--        <ImageView-->
+<!--            style="@style/buttons_dialog_add"-->
+<!--            android:id="@+id/dialog_mirror"-->
+<!--            android:src="@drawable/icon_mirror"-->
+<!--            android:background="@drawable/background_buttons_add_lyr"-->
+<!--            android:layout_marginTop="@dimen/margin_save"/>-->
+
+<!--        <ImageView-->
+<!--            style="@style/buttons_dialog_add"-->
+<!--            android:id="@+id/dialog_filter"-->
+<!--            android:src="@drawable/ic_filter"-->
+<!--            android:background="@drawable/background_buttons_add_lyr"-->
+<!--            android:layout_marginTop="@dimen/margin_save"/>-->
+
+<!--    </LinearLayout>-->
+
+
 
 
     <com.example.dynamikseekbar.DynamicSeekBar

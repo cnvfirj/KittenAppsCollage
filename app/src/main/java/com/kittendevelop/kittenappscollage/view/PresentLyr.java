@@ -7,6 +7,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.SizeF;
+import android.view.MotionEvent;
 import android.view.View;
 
 public class PresentLyr extends View {
@@ -31,6 +32,7 @@ public class PresentLyr extends View {
                    location(createSize(canvas.getWidth(),canvas.getHeight()), createSize(rectImage(pPresent).width(),rectImage(pPresent).height())),null);
        }
     }
+
 
     private RectF location(SizeF c, SizeF r){
         float scale = c.getWidth()/r.getWidth()<c.getHeight()/r.getHeight()

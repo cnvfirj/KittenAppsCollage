@@ -19,6 +19,8 @@ import com.kittendevelop.kittenappscollage.R;
 import com.kittendevelop.kittenappscollage.draw.repozitoryDraw.RepDraw;
 import com.kittendevelop.kittenappscollage.draw.addLyrs.loadImage.DecodeCamera;
 
+import static com.kittendevelop.kittenappscollage.helpers.Massages.LYTE;
+
 public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragments{
 
     public static final int ADD_CAM = 1;
@@ -78,14 +80,12 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
     private Fragment select(int index){
         if(index==ADD_CAM)return new AddLyrInCam();
         else if(index==ADD_COLL)return new GalleryFragment();
-//        else if(index==ADD_NET)return new AddLyrInNet();
         else if(index==ADD_NEW)return new AddLyrInCreator();
         return null;
     }
 
     @Override
     public void backInAddLyr(View v, Object way) {
-
         Bundle bundle = null;
         if(v!=null) {
             switch (v.getId()) {
@@ -94,11 +94,6 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
                     bundle.putSerializable(AddLyr.KEY_EXTRACTOR_WAY, (String) way);
                     bundle.putInt(AddLyr.KEY_SOURCE, R.dimen.PATH_NEW);
                     break;
-//                case R.id.network_done_link:
-//                    bundle = new Bundle();
-//                    bundle.putSerializable(AddLyr.KEY_EXTRACTOR_WAY, (String) way);
-//                    bundle.putInt(AddLyr.KEY_SOURCE, R.dimen.PATH_NET);
-//                    break;
                 case R.id.cam_click:
                     bundle = new Bundle();
                     bundle.putSerializable(AddLyr.KEY_EXTRACTOR_WAY, (DecodeCamera.CameraProperties) way);
@@ -111,7 +106,7 @@ public class FrameDialogAdd extends DialogFragment implements SelectorFrameFragm
             bundle.putInt(AddLyr.KEY_SOURCE, R.dimen.PATH_FILE);
         }
         dFragmentAdd.setArguments(bundle);
-        dManager.beginTransaction().add(R.id.dialog_add_frame,dFragmentAdd).commit();
+        if(!dFragmentAdd.isAdded())dManager.beginTransaction().add(R.id.dialog_add_frame,dFragmentAdd).commit();
 
     }
 
