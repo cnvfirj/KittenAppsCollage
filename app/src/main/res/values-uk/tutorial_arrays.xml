@@ -161,8 +161,8 @@
     </string-array>
 
     <string-array name="review_title">
-        <item>Просмотр зображення</item>
-        <item>Редактувати</item>
+        <item>Перегляд зображення</item>
+        <item>Редагування</item>
         <item>Вихід</item>
 
     </string-array>
