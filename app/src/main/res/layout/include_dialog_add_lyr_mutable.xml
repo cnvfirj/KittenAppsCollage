@@ -15,18 +15,18 @@
     <ImageView
         style="@style/buttons_dialog_add"
         android:id="@+id/dialog_invert"
-        android:src="@drawable/ic_invert"
+        android:src="@drawable/icon_invert"
         android:layout_marginStart="@dimen/margin_save"
         android:layout_marginEnd="@dimen/margin_save"
         android:background="@drawable/background_buttons_add_lyr"
-        android:layout_marginTop="@dimen/margin_save"/>
+        android:layout_marginTop="@dimen/margin_save" />
 
 
 
     <ImageView
         style="@style/buttons_dialog_add"
         android:id="@+id/dialog_filter"
-        android:src="@drawable/ic_filter"
+        android:src="@drawable/icon_filter"
         android:background="@drawable/background_buttons_add_lyr_enabled"
         android:layout_marginTop="@dimen/margin_save" />
 

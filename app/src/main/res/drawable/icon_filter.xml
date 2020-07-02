@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/filter_out"
+        android:drawable="@drawable/ic_filter_in"
+        android:state_selected="true"/>
+
+    <item
+        android:id="@+id/filter_in"
+        android:drawable="@drawable/ic_filter_out"
+        android:state_selected="false"/>
+
+    <transition
+        android:drawable="@drawable/anim_filter_in"
+        android:fromId="@+id/filter_out"
+        android:toId="@+id/filter_in"/>
+
+    <transition
+        android:drawable="@drawable/anim_filter_out"
+        android:fromId="@+id/filter_in"
+        android:toId="@+id/filter_out"/>
+
+
+</animated-selector>

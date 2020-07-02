@@ -153,8 +153,10 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
         aMirror.setOnClickListener(this);
         aFilter = v.findViewById(R.id.dialog_filter);
         aFilter.setOnClickListener(this);
+        aFilter.setSelected(false);
         aInvers = v.findViewById(R.id.dialog_invert);
         aInvers.setOnClickListener(this);
+        aInvers.setSelected(false);
         aScale = v.findViewById(R.id.dialog_seek_scale);
         aScale.setOnSeekBarChangeListener(this);
         aScale.setProgress(aPercentScale);
@@ -190,10 +192,10 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
                 pressMirror((ImageView) view);
                 break;
             case R.id.dialog_filter:
-                pressFilter();
+                pressFilter((ImageView) view);
                 break;
             case R.id.dialog_invert:
-                pressInvert();
+                pressInvert((ImageView) view);
                 break;
 
         }
@@ -315,12 +317,12 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
     }
 
 
-    private void pressFilter(){
-
+    private void pressFilter(ImageView view){
+        view.setSelected(!view.isSelected());
     }
 
-    private void pressInvert(){
-
+    private void pressInvert(ImageView view){
+        view.setSelected(!view.isSelected());
     }
 
 }
