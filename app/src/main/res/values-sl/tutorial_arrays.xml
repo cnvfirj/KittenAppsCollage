@@ -1,261 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="main_buttons_title">
-        <item>Disclaimer</item>
-        <item>Hints</item>
-        <item>Studio</item>
-        <item>Gallery</item>
+    <string-array name = "main_buttons_title">
+        <item> Izjava o omejitvi odgovornosti </item>
+        <item> Namigi </item>
+        <item> Studio </item>
+        <item> Galerija </item>
     </string-array>
 
-    <string-array name="main_buttons_note">
-        <item>Author of this app does not assume resposibility for usage of  the third-party images. Using this app, the user is obliged to adhere to the law and respect the copyright.</item>
-        <item>In the process, the hints will appear. Press next or selected element to continue.</item>
-        <item>In this window you are working with the image. Main tools are hidden behind three buttons.</item>
-        <item>There you open the folders, view the images etc. Pressing and holding an element of gallery opens the additional actions. Access to the multimedia is required for it to work.</item>
+    <string-array name = "main_buttons_note">
+        <item> Avtor te aplikacije ne prevzema odgovornosti za uporabo slik tretjih oseb. Uporabnik se mora s to aplikacijo držati zakona in spoštovati avtorske pravice. </item>
+        <item> V postopku se bodo pojavili namigi. Za nadaljevanje pritisnite naslednji ali izbrani element. </item>
+        <item> V tem oknu delate s sliko. Glavna orodja so skrita za tremi gumbi. </item>
+        <item> Tam odprete mape, si ogledate slike itd. Če pritisnete in pridržite element galerije, se odprejo dodatna dejanja. Za delovanje je potreben dostop do večpredstavnosti. </item>
     </string-array>
 
-    <string-array name="draw_main_buttons_title">
-        <item>Open drawing</item>
-        <item>Tools</item>
-        <item>Saving drawing</item>
+    <string-array name = "draw_main_buttons_title">
+        <item> Odpri risbo </item>
+        <item> Orodja </item>
+        <item> Shranjevanje risbe </item>
     </string-array>
 
-    <string-array name="draw_main_buttons_note">
-        <item>Add an image or begin a new project. If you want to combine images then work from here.</item>
-        <item>Tools for drawing editing. Some of them are active only under certain conditions.</item>
-        <item>Save or share an image from the studio here.</item>
+    <string-array name = "draw_main_buttons_note">
+        <item> Dodajte sliko ali začnite nov projekt. Če želite kombinirati slike, potem delujte od tukaj. </item>
+        <item> Orodja za urejanje risb. Nekateri od njih so aktivni le pod določenimi pogoji. </item>
+        <item> Shranite ali delite sliko iz studia tukaj. </item>
     </string-array>
 
-    <string-array name="draw_add_title">
-        <item>Camera</item>
-        <item>Collection</item>
-        <item>Blank canvas</item>
+
+
+    <string-array name = "draw_add_title">
+        <item> Kamera </item>
+        <item> Zbirka </item>
+        <item> Prazno platno </item>
     </string-array>
 
-    <string-array name="draw_add_note">
-        <item>Open a photo taken from the camera. Access to the camera is required for it to work.</item>
-        <item>Get an image from the collection.</item>
-        <item>Create blank canvas yourself.</item>
+    <string-array name = "draw_add_note">
+        <item> Odprite fotografijo, posneto s fotoaparata. Za delovanje potrebuje fotoaparat. </item>
+        <item> Pridobite sliko iz zbirke. </item>
+        <item> Sami ustvarite prazno platno. </item>
     </string-array>
 
-    <string-array name="draw_save_title">
-        <item>Share</item>
-        <item>Save</item>
-        <item>Save</item>
+
+    <string-array name = "draw_save_title">
+        <item> Daj v skupno rabo </item>
+        <item> Shrani </item>
+        <item> Shrani </item>
     </string-array>
 
-    <string-array name="draw_save_note">
-        <item>Share the image from the studio.</item>
-        <item>Save the image in certain location. System explorer will appear. In case of absence of the required storage check out menu of the explorer, it might be hidden.</item>
-        <item>Save the image in previous location.</item>
+    <string-array name = "draw_save_note">
+        <item> Delite sliko iz studia. </item>
+        <item> Shranite sliko na določeno mesto. Prikaže se sistemski raziskovalec. V primeru, da v raziskovalcu ni potrebnega menija za preverjanje prostora za shranjevanje, je morda skrita. </item>
+        <item> Shranite sliko na prejšnji lokaciji. </item>
     </string-array>
 
-    <string-array name="draw_tools_title">
-        <item>Settings</item>
-        <item>Zoom</item>
-        <item>Move</item>
-        <item>Cut</item>
-        <item>Distort</item>
-        <item>Text</item>
-        <item>Fill</item>
-        <item>Eraser</item>
-        <item>Brush</item>
-        <item>Dropper</item>
-        <item>Go back</item>
-        <item>Go forward</item>
-        <item>Outline</item>
-        <item>Delete the project</item>
-        <item>Seal</item>
-        <item>Swap</item>
-        <item>Sew</item>
-        <item>Delete the image</item>
+
+    <string-array name = "draw_tools_title">
+        <item> Nastavitve </item>
+        <item> Povečava </item>
+        <item> Premakni </item>
+        <item> Izrez </item>
+        <item> Izkrivljanje </item>
+        <item> Besedilo </item>
+        <item> Izpolni </item>
+        <item> Eraser </item>
+        <item> Krtača </item>
+        <item> Dropper </item>
+        <item> Vrni se </item>
+        <item> Pojdi naprej </item>
+        <item> Oris </item>
+        <item> Izbriši projekt </item>
+        <item> Pečat </item>
+        <item> Zamenjaj </item>
+        <item> Šiva </item>
+        <item> Izbrišite sliko </item>
     </string-array>
 
-    <string-array name="draw_tools_note">
-        <item>Settings window for the tools. Always active.</item>
-        <item>Zoom. You can switch one of the three modes pressing on this button. Active when an image is present in the studio.</item>
-        <item>Move the image on the screen. Active when an image is present in the studio.</item>
-        <item>Select the area and cut it pressing there. Tags along the outline and in the center let you to adjust the selection. Active when an image is present in the studio.</item>
-        <item>Rotation, distortion. Switch between them is right there. Last mode resets everything. Active when an image is present in the studio.</item>
-        <item>Insert the text. Press here again, the settings window for the text will appear. Active when an image is present in the studio.</item>
-        <item>Fill by color, fill inside the outlined area. Active when there is an image in the studio</item>
-        <item>Solid eraser and with gradients. Switch them here. Active when an image is present in the studio.</item>
-        <item>Brush, three modes and stain. Active when an image is present in the studio.</item>
-        <item>Copy the colour from the drawing. Previous tool remains active. Active when an image is present in the studio.</item>
-        <item>Redo.</item>
-        <item>Undo.</item>
-        <item>Outline of the drawing. Useful when working with transparent canvas. When working with two, the colours of the outlines are different. Active when an image is present in the studio.</item>
-        <item>Deletes the project with all history. Active when an image is present in the studio.</item>
-        <item>Allows some of the tools affect both images. Active when an additional image is present.</item>
-        <item>Swapping the places of main and upper images. Active when an additional image is present.</item>
-        <item>Combine two images into one. Upper crops along the outline of the main. Active when an additional image is present.</item>
-        <item>Delete upper image. Active when an additional image is present.</item>
+    <string-array name = "draw_tools_note">
+        <item> Okno z nastavitvami za orodja. Vedno aktiven. </item>
+        <item> Povečava. S pritiskom na ta gumb lahko preklopite enega od treh načinov. Aktivna, ko je v studiu prisotna slika. </item>
+        <item> Premakni sliko na zaslon. Aktivna, ko je v studiu prisotna slika. </item>
+        <item> Izberite območje in ga tam pritisnite. Oznake vzdolž orisa in na sredini vam omogočajo, da prilagodite izbiro. Aktivna, ko je v studiu prisotna slika. </item>
+        <item> Vrtenje, popačenje. Preklopite med njimi ravno tam. Zadnji način ponastavi vse. Aktivna, ko je v studiu prisotna slika. </item>
+        <item> Vstavite besedilo. Ponovno pritisnite tukaj, prikaže se okno z nastavitvami besedila. Aktivna, ko je v studiu prisotna slika. </item>
+        <item> Napolnite z barvo, vnesite v začrtano območje. Aktivna, ko je v studiu slika. </item>
+        <item> Trda radirka in z nakloni. Preklopite jih tukaj. Aktivna, ko je v studiu prisotna slika. </item>
+        <item> Krtača, trije načini in madeži. Aktivna, ko je v studiu prisotna slika. </item>
+        <item> Kopirajte barvo z risbe. Prejšnje orodje ostane aktivno. Aktivna, ko je v studiu prisotna slika. </item>
+        <item> Uveljavi. </item>
+        <item> Razveljavi. </item>
+        <item> Obris risbe. Uporabno pri delu s prozornim platnom. Pri delu z dvema so barve obrisov različne. Aktivna, ko je v studiu prisotna slika. </item>
+        <item> Izbriše projekt z vso zgodovino. Aktivna, ko je v studiu prisotna slika. </item>
+        <item> Omogoča, da nekatera orodja vplivajo na obe sliki. Aktivan, če je prisotna dodatna slika. </item>
+        <item> Zamenjava mest glavne in zgornje slike. Aktivan, če je prisotna dodatna slika. </item>
+        <item> Združite dve sliki v eno. Zgornji posevki ob obrisu glavnega. Aktivan, če je prisotna dodatna slika. </item>
+        <item> Zbrišite zgornjo sliko. Aktivan, če je prisotna dodatna slika. </item>
     </string-array>
 
-    <string-array name="collect_title">
-        <item>Add folder</item>
-        <item>Manage</item>
+
+
+    <string-array name = "collect_title">
+        <item> Dodaj mapo </item>
+        <item> Upravljanje </item>
     </string-array>
 
-    <string-array name="collect_note">
-        <item>Add a folder in gallery. System explorer will appear. Choose a folder and if it has the images, then it will be added. In case of absence of the required storage check out menu of the explorer, it might be hidden.</item>
-        <item>App management.</item>
+    <string-array name = "collect_note">
+        <item> Dodajanje mape v galeriji. Prikaže se sistemski raziskovalec. Izberite mapo in če ima slike, bodo dodane. V primeru, da v raziskovalcu ni potrebnega menija za preverjanje prostora za shranjevanje, je morda skrita. </item>
+        <item> Upravljanje aplikacij. </item>
     </string-array>
 
-    <string-array name="collect_root_menu_title">
-        <item>Additional settings</item>
-        <item>Hide</item>
-        <item>Share</item>
-        <item>Delete</item>
+
+    <string-array name = "collect_root_menu_title">
+        <item> Dodatne nastavitve </item>
+        <item> Skrij </item>
+        <item> Daj v skupno rabo </item>
+        <item> Izbriši </item>
     </string-array>
 
-    <string-array name="collect_root_menu_note">
-        <item>Additional settings mode. Applicable to one folder. Leave it by pressing this button.</item>
-        <item>Hide this folder.</item>
-        <item>Share the contents of this folder.</item>
-        <item>Delete the selected folder.</item>
+    <string-array name = "collect_root_menu_note">
+        <item> Način dodatnih nastavitev. Velja za eno mapo. Pustite ga s pritiskom na ta gumb. </item>
+        <item> Skrij to mapo. </item>
+        <item> Dajte v skupno rabo vsebino te mape. </item>
+        <item> Izbrišite izbrano mapo. </item>
     </string-array>
 
-    <string-array name="collect_adapt_menu_title">
-        <item>Additional settings</item>
-        <item>Share</item>
-        <item>Delete</item>
+
+    <string-array name = "collect_adapt_menu_title">
+        <item> Dodatne nastavitve </item>
+        <item> Daj v skupno rabo </item>
+        <item> Izbriši </item>
     </string-array>
 
-    <string-array name="collect_adapt_menu_note">
-        <item>Additional settings mode.  Applicable to more than one images. Leave it by pressing this button.</item>
-        <item>Share the selected images.</item>
-        <item>Delete the selected images.</item>
+    <string-array name = "collect_adapt_menu_note">
+        <item> Način dodatnih nastavitev. Uporablja se za več slik. Pustite ga s pritiskom na ta gumb. </item>
+        <item> Dajte v skupno rabo izbrane slike. </item>
+        <item> Izbrišite izbrane slike. </item>
     </string-array>
 
-    <string-array name="addlyr_title">
-        <item>Size</item>
-        <item>Transparency</item>
-        <item>Mirror</item>
-        <item>Negative</item>
-        <item>Black and white</item>
-        <item>Open</item>
-        <item>Back</item>
-        <item>Close</item>
+
+    <string-array name = "addlyr_title">
+        <item> Velikost </item>
+        <item> Preglednost </item>
+        <item> Ogledalo </item>
+        <item> Negativno </item>
+        <item> Črno-belo </item>
+        <item> Odpri </item>
+        <item> Nazaj </item>
+        <item> Zapri </item>
+
     </string-array>
 
-    <string-array name="addlyr_note">
-        <item>Big size of the image can affect the stability of the app. Here you can resize it.</item>
-        <item>Degree of transparency.</item>
-        <item>Mirror image.</item>
-        <item>Image inversion. To cancel, click here.</item>
-        <item>Switch to black and white mode. To cancel, click here.</item>
-        <item>Send the image to the studio.</item>
-        <item>Return to the source of the image.</item>
-        <item>Close window.</item>
+    <string-array name = "addlyr_note">
+        <item> Velika velikost slike lahko vpliva na stabilnost aplikacije. Tu lahko spremenite velikost. </item>
+        <item> Stopnja preglednosti. </item>
+        <item> Zrcalna slika. </item>
+        <item> Inverzija slike. Če želite preklicati, kliknite tukaj. </item>
+        <item> Preklopite na črno-beli način. Če želite preklicati, kliknite tukaj. </item>
+        <item> Pošlji sliko v studio. </item>
+        <item> Vrnite se k izvoru slike. </item>
+        <item> Zapri okno. </item>
     </string-array>
 
-    <string-array name="review_title">
-        <item>View the image</item>
-        <item>Edit</item>
-        <item>Exit</item>
+    <string-array name = "review_title">
+        <item> Ogled slike </item>
+        <item> Uredi </item>
+        <item> Izhod </item>
+
     </string-array>
 
-    <string-array name="review_note">
-        <item>Image view with the option to leaf through. With this button you can share it.</item>
-        <item>Send to the edit window and then open in the studio. Important! Opening the image from here begins a new project.</item>
-        <item>Close the view mode.</item>
+    <string-array name = "review_note">
+        <item> Pogled slike z možnostjo listanja. S tem gumbom ga lahko daste v skupno rabo. </item>
+        <item> Pošlji v okno za urejanje in nato odprite v studiu. Pomembno! Odpiranje slike od tu začne nov projekt. </item>
+        <item> Zaprite način pogleda. </item>
+
+
+    </string-array> <string-array name = "creator_title">
+    <item> Odpri </item>
+    <item> Širina </item>
+    <item> Višina </item>
+    <item> Barva ozadja </item>
+    <item> Izhod </item>
+
+</string-array>
+    <string-array name = "creator_note">
+        <item> Način prazno platno. Odprite platno v urejevalniku, da ga pošljete v studio. </item>
+        <item> Nastavite širino. </item>
+        <item> Nastavite višino. </item>
+        <item> Odprite izbirnik barve. Za izhod pritisnite na sredino. </item>
+        <item> Zapri način praznega platna. </item>
+
     </string-array>
 
-    <string-array name="creator_title">
-    <item>Open</item>
-    <item>Width</item>
-    <item>Height</item>
-    <item>Background colour</item>
-    <item>Exit</item>
+    <string-array name = "addlyr_collect_title">
+        <item> Galerija </item>
+        <item> Izhod </item>
+
+    </string-array>
+    <string-array name = "addlyr_collect_note">
+        <item> Galerija vsebuje mape s slikami. Odprite jih v studiu. Dodali jih bodo k obstoječemu projektu. Če ima studio že dodatno sliko, jo bo zamenjal. </item>
+        <item> Zaprite galerijo. </item>
     </string-array>
 
-    <string-array name="creator_note">
-        <item>Blank canvas mode. Open canvas in editor to send it to the studio.</item>
-        <item>Set width.</item>
-        <item>Set height.</item>
-        <item>Open colour selector. Press on center to exit.</item>
-        <item>Close blank canvas mode.</item>
+
+    <string-array name = "addlyr_cam_title">
+        <item> Fotografirajte </item>
+        <item> Izbira fotoaparata </item>
+        <item> Strela </item>
+        <item> Izhod </item>
+
+
+    </string-array>
+    <string-array name = "addlyr_cam_note">
+        <item> Naredite sliko in jo odprite v urejevalniku. </item>
+        <item> Izberite, katero kamero želite uporabiti. </item>
+        <item> Vklopite strelo. </item>
+        <item> Zaprite kamero. </item>
+
     </string-array>
 
-    <string-array name="addlyr_collect_title">
-        <item>Gallery</item>
-        <item>Exit</item>
+    <string-array name = "prop_title">
+        <item> Krtača </item>
+        <item> Eraser </item>
+        <item> Besedilo </item>
+        <item> Barva </item>
+        <item> Prozornost ščetke </item>
+        <item> Širina </item>
+        <item> Prosojna preglednost </item>
+        <item> Uporabi </item>
+        <item> Izhod </item>
+
     </string-array>
 
-    <string-array name="addlyr_collect_note">
-        <item>Gallery contains folders with images. Open them in the studio. They will be added to the existing project. If studio already has an additional image then it will be replaced.</item>
-        <item>Close the gallery.</item>
+    <string-array name = "prop_note">
+        <item> Prikaže krtačo. Njegova velikost in barva. </item>
+        <item> Radirka, širina in raven brisanja. </item>
+        <item> Velikost in barva besedila. </item>
+        <item> Nastavite barvo čopiča in besedila. </item>
+        <item> Nastavite stopnjo preglednosti izbrane barve. </item>
+        <item> Nastavite širino čopiča, radirko in velikost besedila. </item>
+        <item> Prilagodite stopnjo brisanja. </item>
+        <item> Uporabi izbrane nastavitve. </item>
+        <item> Prekliči in zapusti. </item>
     </string-array>
 
-    <string-array name="addlyr_cam_title">
-        <item>Take a picture</item>
-        <item>Camera selection</item>
-        <item>Lightning</item>
-        <item>Exit</item>
+    <string-array name = "edit_text_title">
+        <item> Vnesite besedilo </item>
+        <item> Čiščenje </item>
+
+        <item> Pisava </item>
+        <item> Oris </item>
+        <item> Kot </item>
+        <item> Nagnjenost </item>
+
+        <item> Uporabi </item>
+        <item> Izhod </item>
     </string-array>
 
-    <string-array name="addlyr_cam_note">
-        <item>Take a picture and open it in the editor.</item>
-        <item>Choose which camera to use.</item>
-        <item>Turn on the lightning.</item>
-        <item>Close camera.</item>
+    <string-array name = "edit_text_note">
+        <item> Besedilno polje. </item>
+        <item> Izbriši prejšnje besedilo. </item>
+        <item> Uporabljena pisava. Kliknite za ogled seznama </item>
+        <item> Izberite trdno pisavo ali njen oris. </item>
+        <item> Prilagodite kot pisave. </item>
+        <item> Nastavite zahtevani naklon pisave. </item>
+        <item> Spremembe shranite in zapustite. </item>
+        <item> Pustite brez sprememb. </item>
     </string-array>
 
-    <string-array name="prop_title">
-        <item>Brush</item>
-        <item>Eraser</item>
-        <item>Text</item>
-        <item>Colour</item>
-        <item>Brush transparency</item>
-        <item>Width</item>
-        <item>Eraser transparency</item>
-        <item>Apply</item>
-        <item>Exit</item>
+    <string-array name = "edit_text_fonts_title">
+        <item> Seznam pisav </item>
+        <item> Dodajte pisavo </item>
     </string-array>
 
-    <string-array name="prop_note">
-        <item>Shows the brush. Its size and the colour.</item>
-        <item>Eraser, width and level of erasing.</item>
-        <item>Size and colour of the text.</item>
-        <item>Set the colour of the brush and text.</item>
-        <item>Set the transparency level of the selected colour.</item>
-        <item>Set the width of the brush, eraser and size of the text.</item>
-        <item>Adjust level of erasing.</item>
-        <item>Apply the selected settings.</item>
-        <item>Cancel and exit.</item>
-    </string-array>
-
-    <string-array name="edit_text_title">
-        <item>Enter the text</item>
-        <item>Cleanup</item>
-        <item>Font</item>
-        <item>Outline</item>
-        <item>Angle</item>
-        <item>Inclination</item>
-        <item>Apply</item>
-        <item>Exit</item>
-    </string-array>
-
-    <string-array name="edit_text_note">
-        <item>Text box.</item>
-        <item>Delete previous text.</item>
-        <item>Used font.</item>
-        <item>Choose solid font or its outline.</item>
-        <item>Adjust the angle of the font.</item>
-        <item>Set the required inclination of the font.</item>
-        <item>Save the changes and leave.</item>
-        <item>Leave without changes.</item>
-    </string-array>
-
-    <string-array name="edit_text_fonts_title">
-        <item>List of the fonts</item>
-        <item>Add a font</item>
-    </string-array>
-
-    <string-array name="edit_text_fonts_note">
-        <item>List of the available fonts.</item>
-        <item>Add downloaded font. Font is a file with "ttf" or "otf" extension.</item>
+    <string-array name = "edit_text_fonts_note">
+        <item> Seznam pisav, ki so na voljo. </item>
+        <item> Dodaj preneseno pisavo. Pisava je datoteka s pripono "ttf" ali "otf". </item>
     </string-array>
 
 </resources>
