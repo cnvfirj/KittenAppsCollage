@@ -257,16 +257,26 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
                 aPercentScale = aScale.getProgress();
                 break;
         }
-        applyMutable(false);
+        applyMutable(false,aInvers.isSelected(),aFilter.isSelected());
     }
 
     private void pressMirror(ImageView view){
         view.setSelected(!view.isSelected());
-        applyMutable(true);
+        applyMutable(true,aInvers.isSelected(),aFilter.isSelected());
+    }
+
+    private void pressFilter(ImageView view){
+        view.setSelected(!view.isSelected());
+        applyMutable(false,aInvers.isSelected(),aFilter.isSelected());
+    }
+
+    private void pressInvert(ImageView view){
+        view.setSelected(!view.isSelected());
+        applyMutable(false,aInvers.isSelected(),aFilter.isSelected());
     }
 
     @SuppressLint("CheckResult")
-    private void applyMutable(boolean mirr){
+    private void applyMutable(boolean mirr,boolean invers, boolean filter){
         aProgress.setVisibility(View.VISIBLE);
         ongoingProgress(true);
         if(mirr){
@@ -275,7 +285,7 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
             aLyr = MutableBitmap.mirror(aLyr);
         }
         MutableBitmap
-                .requestMutable(aLyr,aPercentScale,aPercentAlpha)
+                .requestMutable(aLyr,aPercentScale,aPercentAlpha,invers,filter)
                 .subscribe(bitmap ->{
                     aPresent.presentBitmap((Bitmap) bitmap);
                     aProgress.setVisibility(View.INVISIBLE);
@@ -317,14 +327,5 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
     }
 
 
-    private void pressFilter(ImageView view){
-        view.setSelected(!view.isSelected());
-
-    }
-
-    private void pressInvert(ImageView view){
-        view.setSelected(!view.isSelected());
-
-    }
 
 }

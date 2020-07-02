@@ -24,6 +24,12 @@ public class MutableBitmap {
 
     private static Matrix matrix = new Matrix();
 
+    private static Paint paint = new Paint();
+
+    private static ColorMatrix colorMatrix = new ColorMatrix();
+
+    private static ColorFilter colorFilter;
+
     public static Observable<Object> requestMutable(final Bitmap bitmap, final int scale, final int alpha){
         return Observable.create(new ObservableOnSubscribe<Bitmap>() {
             @Override
@@ -34,11 +40,11 @@ public class MutableBitmap {
         }).compose(new ThreadTransformers.Processor<>());
     }
 
-    public static Observable<Object> requestMutable(final Bitmap bitmap, final int scale, final int alpha, final int color){
+    public static Observable<Object> requestMutable(final Bitmap bitmap, final int scale, final int alpha, final boolean invert,final  boolean filter){
         return Observable.create(new ObservableOnSubscribe<Bitmap>() {
             @Override
             public void subscribe(ObservableEmitter<Bitmap> emitter) throws Exception {
-                emitter.onNext(filter(mutable(bitmap,scale,alpha),color));
+                emitter.onNext(mutable(bitmap,scale,alpha,invert,filter));
                 emitter.onComplete();
             }
         }).compose(new ThreadTransformers.Processor<>());
@@ -56,6 +62,13 @@ public class MutableBitmap {
 
     private static Bitmap mutable(Bitmap bitmap, int scale,int alpha){
         return alpha(scale(copy(bitmap),scale),alpha);
+    }
+
+    private static Bitmap mutable(Bitmap bitmap,int scale,int alpha,boolean invert,boolean filter){
+        if(invert&&filter)return alpha(invert(filter(scale(copy(bitmap),scale))),alpha);
+        else if(invert)return alpha(invert(scale(copy(bitmap),scale)),alpha);
+        else if(filter)return alpha(filter(scale(copy(bitmap),scale)),alpha);
+        else return alpha(scale(copy(bitmap),scale),alpha);
     }
 
 
@@ -81,14 +94,31 @@ public class MutableBitmap {
     }
 
 
-    private static Bitmap filter(Bitmap bitmap, int color){
-        color = Color.argb(100,Color.red(color),Color.green(color),Color.blue(color));
-        Paint paint = new Paint();
-        ColorFilter filter = new PorterDuffColorFilter(color, PorterDuff.Mode.LIGHTEN);
-        paint.setColorFilter(filter);
-        Canvas c = new Canvas(bitmap);
-        c.drawBitmap(bitmap,0,0,paint);
+    private static Bitmap filter(Bitmap bitmap){
+        float[] cmData = new float[]{
+                0.3f, 0.59f, 0.11f, 0, 0,
+                0.3f, 0.59f, 0.11f, 0, 0,
+                0.3f, 0.59f, 0.11f, 0, 0,
+                0, 0, 0, 1, 0};
+        colorMatrix.set(cmData);
+        colorFilter = new ColorMatrixColorFilter(colorMatrix);
+        paint.setColorFilter(colorFilter);
+        Canvas canvas = new Canvas(bitmap);
+        canvas.drawBitmap(bitmap,0,0,paint);
+        return bitmap;
+    }
 
+    private static Bitmap invert(Bitmap bitmap){
+        float[] cmData = new float[]{
+                -1, 0, 0, 0, 255,
+                0, -1, 0, 0, 255,
+                0, 0, -1, 0, 255,
+                0, 0, 0, 1, 0};
+        colorMatrix.set(cmData);
+        colorFilter = new ColorMatrixColorFilter(colorMatrix);
+        paint.setColorFilter(colorFilter);
+        Canvas canvas = new Canvas(bitmap);
+        canvas.drawBitmap(bitmap,0,0,paint);
         return bitmap;
     }
 
