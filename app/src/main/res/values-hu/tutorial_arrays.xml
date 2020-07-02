@@ -132,6 +132,8 @@
         <item> Méret </item>
         <item> Átláthatóság </item>
         <item> Mirror </item>
+        <item>Negative</item>
+        <item>Black and white</item>
         <item> Megnyitás </item>
         <item> Vissza </item>
         <item> Bezárás </item>
@@ -141,6 +143,8 @@
         <item> A kép nagy mérete befolyásolhatja az alkalmazás stabilitását. Itt átméretezheti. </item>
         <item> az átlátszóság mértéke. </item>
         <item> Tükörkép. </item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
         <item> Küldje el a képet a stúdióba. </item>
         <item> Visszatérés a kép forrásához. </item>
         <item> Ablak bezárása. </item>

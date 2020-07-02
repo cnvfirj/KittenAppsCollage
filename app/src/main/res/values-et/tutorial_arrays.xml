@@ -132,6 +132,8 @@
             <item> Suurus </item>
             <item> Läbipaistvus </item>
             <item> Peegel </item>
+    <item>Negative</item>
+    <item>Black and white</item>
             <item> Ava </item>
             <item> Tagasi </item>
             <item> Sule </item>
@@ -141,6 +143,8 @@
             <item> Suure pildi suurus võib mõjutada rakenduse stabiilsust. Siin saate selle suurust muuta. </item>
             <item> Läbipaistvuse aste. </item>
             <item> Peegelpilt. </item>
+    <item>Image inversion. To cancel, click here.</item>
+    <item>Switch to black and white mode. To cancel, click here.</item>
             <item> Saatke pilt stuudiosse. </item>
             <item> Naaseb pildi allika juurde. </item>
             <item> Sule aken. </item>

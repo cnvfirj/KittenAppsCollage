@@ -138,9 +138,11 @@
 
 
     <string-array name="addlyr_title">
-        <item>Размір</item>
+        <item>Розмір</item>
         <item>Прозорість</item>
         <item>Дзеркало</item>
+        <item>Negative</item>
+        <item>Black and white</item>
         <item>Відкрити</item>
         <item>Назад</item>
         <item>Закрити</item>
@@ -151,8 +153,10 @@
         <item>Великий розмір зображення впливає на роботу програми. Тут ти можеш його зменшити.</item>
         <item>Ступінь прозорості.</item>
         <item>Дзеркальне відображення.</item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
         <item>Відправ зображення в студію.</item>
-        <item>Вернись до джерела зображення.</item>
+        <item>Повернись до джерела зображення.</item>
         <item>Закрий вікно.</item>
     </string-array>
 
@@ -232,9 +236,9 @@
     <string-array name="prop_note">
         <item>Приклад пензлика.</item>
         <item>Приклад ластика.</item>
-        <item>Приклад текста.</item>
+        <item>Приклад тексту.</item>
         <item>Обери колір тексту і пензлика.</item>
-        <item>Обери прозорість кольіра.</item>
+        <item>Обери прозорість кольору.</item>
         <item>Обери загальну ширину пензлика, ластика і тексту.</item>
         <item>Відрегулюй степінь стирання ластика.</item>
         <item>Застосувати вибрані параметри.</item>
@@ -244,7 +248,6 @@
     <string-array name="edit_text_title">
         <item>Ввод тексту</item>
         <item>Очистка</item>
-
         <item>Шріфт</item>
         <item>Контур</item>
         <item>Кут</item>
@@ -257,25 +260,22 @@
     <string-array name="edit_text_note">
         <item>Поле для введення тексту.</item>
         <item>Видалити старий текст.</item>
-
-
         <item>Використовуемий шрифт.</item>
         <item>Вибери суцільний шрифт, або його контур.</item>
         <item>Відкрий можливість корегувати кут шрифта.</item>
         <item>Обери потрібний кут шрифта.</item>
-
         <item>Зберігти і вийти.</item>
         <item>Вийти без змін.</item>
     </string-array>
 
     <string-array name="edit_text_fonts_title">
-        <item>Список шрифтів</item>
+        <item>Перелік шрифтів</item>
         <item>Додати шрифт</item>
     </string-array>
 
     <string-array name="edit_text_fonts_note">
-        <item>Список доступных шрифтов.</item>
-        <item>Додай завантажений на устройство шрифт. Шрифт це файл з расширенням "ttf" или "otf".</item>
+        <item>Перелік доступних шрифтыв.</item>
+        <item>Додай завантажений на пристрый шрифт. Шрифт це файл з расширенням "ttf" або "otf".</item>
     </string-array>
 
 

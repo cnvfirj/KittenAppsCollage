@@ -142,6 +142,8 @@
             <item> Taille </item>
             <item> Transparence </item>
             <item> Miroir </item>
+    <item>Negative</item>
+    <item>Black and white</item>
             <item> Ouvrir </item>
             <item> Retour </item>
             <item> Fermer </item>
@@ -152,6 +154,8 @@
             <item> Une grande taille de l\'image peut affecter la stabilité de l\'application. Ici, vous pouvez le redimensionner. </item>
             <item> Degré de transparence. </item>
             <item> Image miroir. </item>
+    <item>Image inversion. To cancel, click here.</item>
+    <item>Switch to black and white mode. To cancel, click here.</item>
             <item> Envoyez l\'image au studio. </item>
             <item> Retournez à la source de l\'image. </item>
             <item> Fermer la fenêtre. </item>

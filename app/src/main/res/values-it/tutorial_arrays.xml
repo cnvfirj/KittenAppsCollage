@@ -142,6 +142,8 @@
                 <item> Dimensioni </item>
                 <item> Trasparenza </item>
                 <item> Specchio </item>
+        <item>Negative</item>
+        <item>Black and white</item>
                 <item> Apri </item>
                 <item> Indietro </item>
                 <item> Chiudi </item>
@@ -152,6 +154,8 @@
             <item> Grandi dimensioni dell\'immagine possono influire sulla stabilità dell\'app. Qui puoi ridimensionarlo. </item>
             <item> Grado di trasparenza. </item>
             <item> Immagine speculare. </item>
+    <item>Image inversion. To cancel, click here.</item>
+    <item>Switch to black and white mode. To cancel, click here.</item>
             <item> Invia l\'immagine allo studio. </item>
             <item> Ritorna alla fonte dell\'immagine. </item>
             <item> Chiudi la finestra. </item>

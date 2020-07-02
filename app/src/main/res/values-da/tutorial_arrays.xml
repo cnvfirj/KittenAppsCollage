@@ -132,6 +132,8 @@
         <item> Størrelse </item>
         <item> Gennemsigtighed </item>
         <item> Mirror </item>
+        <item>Negative</item>
+        <item>Black and white</item>
         <item> Åbn </item>
         <item> Tilbage </item>
         <item> Luk </item>
@@ -141,6 +143,8 @@
         <item> Billedets store størrelse kan påvirke appens stabilitet. Her kan du ændre størrelsen på det. </item>
         <item> Grad af gennemsigtighed. </item>
         <item> Spejlbillede. </item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
         <item> Send billedet til studiet. </item>
         <item> Vend tilbage til billedkilden. </item>
         <item> Luk vindue. </item>

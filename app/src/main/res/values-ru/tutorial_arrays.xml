@@ -141,6 +141,8 @@
         <item>Размер</item>
         <item>Прозрачность</item>
         <item>Зеркало</item>
+        <item>Negative</item>
+        <item>Black and white</item>
         <item>Открыть</item>
         <item>Назад</item>
         <item>Закрыть</item>
@@ -151,6 +153,8 @@
         <item>Большой размер изображения влияет на работу приложения. Здесь ты можешь его уменьшить</item>
         <item>Степень прозрачности.</item>
         <item>Зеркальное отражение.</item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
         <item>Отправь изображение в студию.</item>
         <item>Вернись к источнику изображения.</item>
         <item>Закрой окно.</item>

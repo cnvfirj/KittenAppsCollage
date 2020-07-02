@@ -116,11 +116,13 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
 
     private Integer[]targetsEx(){
         return new Integer[]{R.id.dialog_seek_scale,R.id.dialog_seek_alpha,R.id.dialog_mirror,
+                             R.id.dialog_invert,R.id.dialog_filter,
                              R.id.dialog_apply,R.id.dialog_back,R.id.dialog_close};
     }
 
     private int[]sizesWin(){
         return new int[]{TargetView.MIDI_VEIL,TargetView.MIDI_VEIL,
+                TargetView.MIDI_VEIL,TargetView.MIDI_VEIL,
                 TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL,TargetView.MINI_VEIL};
     }
 

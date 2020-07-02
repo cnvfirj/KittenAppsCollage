@@ -132,6 +132,8 @@
             <item> Размер </item>
             <item> Прозрачност </item>
             <item> Огледало </item>
+    <item>Negative</item>
+    <item>Black and white</item>
             <item> Отваряне </item>
             <item> Назад </item>
             <item> Затваряне </item>
@@ -141,6 +143,8 @@
             <item> Големият размер на изображението може да повлияе на стабилността на приложението. Тук можете да го преоразмерите. </item>
             <item> Степен на прозрачност. </item>
             <item> Огледално изображение. </item>
+    <item>Image inversion. To cancel, click here.</item>
+    <item>Switch to black and white mode. To cancel, click here.</item>
             <item> Изпратете изображението в студиото. </item>
             <item> Върнете се към източника на изображението. </item>
             <item> Затваряне на прозореца. </item>

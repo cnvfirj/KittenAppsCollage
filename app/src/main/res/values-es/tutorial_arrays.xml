@@ -141,6 +141,8 @@
             <item> Tamaño </item>
             <item> Transparencia </item>
             <item> Espejo </item>
+    <item>Negative</item>
+    <item>Black and white</item>
             <item> Abrir </item>
             <item> Volver </item>
             <item> Cerrar </item>
@@ -151,6 +153,8 @@
             <item> El tamaño grande de la imagen puede afectar la estabilidad de la aplicación. Aquí puede cambiar su tamaño. </item>
             <item> Grado de transparencia. </item>
             <item> Imagen espejo. </item>
+    <item>Image inversion. To cancel, click here.</item>
+    <item>Switch to black and white mode. To cancel, click here.</item>
             <item> Envía la imagen al estudio. </item>
             <item> Regresar a la fuente de la imagen. </item>
             <item> Cerrar ventana. </item>

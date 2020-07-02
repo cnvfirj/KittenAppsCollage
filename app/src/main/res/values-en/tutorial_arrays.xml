@@ -132,6 +132,8 @@
         <item>Size</item>
         <item>Transparency</item>
         <item>Mirror</item>
+        <item>Negative</item>
+        <item>Black and white</item>
         <item>Open</item>
         <item>Back</item>
         <item>Close</item>
@@ -141,6 +143,8 @@
         <item>Big size of the image can affect the stability of the app. Here you can resize it.</item>
         <item>Degree of transparency.</item>
         <item>Mirror image.</item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
         <item>Send the image to the studio.</item>
         <item>Return to the source of the image.</item>
         <item>Close window.</item>

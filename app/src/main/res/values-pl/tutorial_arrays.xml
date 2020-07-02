@@ -141,6 +141,8 @@
         <item> Rozmiar </item>
                  <item> Przejrzystość </item>
                  <item> Mirror </item>
+        <item>Negative</item>
+        <item>Black and white</item>
                  <item> Otwórz </item>
                  <item> Wstecz </item>
                  <item> Zamknij </item>
@@ -151,6 +153,8 @@
         <item> Duży rozmiar obrazu może wpłynąć na stabilność aplikacji. Tutaj możesz zmienić jego rozmiar. </item>
                  <item> Stopień przejrzystości. </item>
                  <item> Odbicie lustrzane. </item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
                  <item> Wyślij zdjęcie do studia. </item>
                  <item> Wróć do źródła obrazu. </item>
                  <item> Zamknij okno. </item>

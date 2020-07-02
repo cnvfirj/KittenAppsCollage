@@ -132,6 +132,8 @@
         <item> Dimensiune </item>
         <item> Transparența </item>
         <item> Oglindă </item>
+        <item>Negative</item>
+        <item>Black and white</item>
         <item> Deschideți </item>
         <item> Înapoi </item>
         <item> Închide </item>
@@ -141,6 +143,8 @@
         <item> Dimensiunea mare a imaginii poate afecta stabilitatea aplicației. Aici îl puteți redimensiona. </item>
         <item> Grad de transparență. </item>
         <item> Imaginea oglindă. </item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
         <item> Trimiteți imaginea în studio. </item>
         <item> Reveniți la sursa imaginii. </item>
         <item> Închideți fereastra. </item>

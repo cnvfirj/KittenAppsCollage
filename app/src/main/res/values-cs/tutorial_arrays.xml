@@ -132,15 +132,20 @@
         <item> Velikost </item>
         <item> Transparentnost </item>
         <item> Zrcadlo </item>
+        <item>Negative</item>
+        <item>Black and white</item>
         <item> Otevřít </item>
         <item> Zpět </item>
         <item> Zavřít </item>
     </string-array>
 
+
     <string-array name = "addlyr_note">
         <item> Velká velikost obrázku může ovlivnit stabilitu aplikace. Zde můžete změnit velikost. </item>
         <item> Stupeň průhlednosti. </item>
         <item> Zrcadlový obraz. </item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
         <item> Pošlete obrázek do studia. </item>
         <item> Návrat ke zdroji obrázku. </item>
         <item> Zavřete okno. </item>

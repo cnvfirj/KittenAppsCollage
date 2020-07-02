@@ -132,6 +132,8 @@
          <item>Méid </item>
          <item>Trédhearcacht </item>
          <item>Scáthán </item>
+        <item>Negative</item>
+        <item>Black and white</item>
         <item> Oscailte </item>
         <item> Ar ais </item>
          <item>Dún Dún </item>
@@ -141,6 +143,8 @@
         <item> Is féidir le méid mór na híomhá dul i bhfeidhm ar chobhsaíocht an aip. Anseo is féidir leat é a athrú. </item>
         <item> Céim na trédhearcachta. </item>
          <item>Íomhá scátháin Scáthán. </item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
         <item> Seol an íomhá chuig an stiúideo. </item>
         <item> Fill ar ais chuig foinse na híomhá. </item>
         <item> Dún an fhuinneog. </item>

@@ -135,6 +135,8 @@
         <item> Size </item>
         <item> Transparency </item>
         <item> Mirror </item>
+        <item>Negative</item>
+        <item>Black and white</item>
         <item> Open </item>
         <item> Back </item>
         <item> Close </item>
@@ -144,6 +146,8 @@
         <item> Madhësia e madhe e figurës mund të ndikojë në qëndrueshmërinë e aplikacionit. Këtu mund ta ndryshosh përmasën. </item>
         <item> Shkalla e transparencës. </item>
         <item> Imazhi i pasqyrës. </item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
         <item> Dërgoni imazhin në studio. </item>
         <item> Kthehu tek burimi i figurës. </item>
         <item> Mbyll dritaren. </item>

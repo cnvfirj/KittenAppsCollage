@@ -132,6 +132,8 @@
             <item> Izmērs </item>
             <item> Caurspīdīgums </item>
             <item> Spogulis </item>
+    <item>Negative</item>
+    <item>Black and white</item>
             <item> Atvērt </item>
             <item> Atpakaļ </item>
             <item> Aizvērt </item>
@@ -141,6 +143,8 @@
             <item> Liels attēla izmērs var ietekmēt lietotnes stabilitāti. Šeit jūs varat mainīt tā izmēru. </item>
             <item> Caurspīdīguma pakāpe. </item>
             <item> Spoguļattēls. </item>
+    <item>Image inversion. To cancel, click here.</item>
+    <item>Switch to black and white mode. To cancel, click here.</item>
             <item> Nosūtiet attēlu uz studiju. </item>
             <item> Atgriezties pie attēla avota. </item>
             <item> Aizvērt logu. </item>

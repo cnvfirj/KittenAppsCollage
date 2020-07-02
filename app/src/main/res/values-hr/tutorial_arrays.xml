@@ -132,6 +132,8 @@
         <item> Veličina </item>
         <item> Transparentnost </item>
         <item> Ogledalo </item>
+        <item>Negative</item>
+        <item>Black and white</item>
         <item> Otvori </item>
         <item> Natrag </item>
         <item> Zatvori </item>
@@ -141,6 +143,8 @@
         <item> Velika veličina slike može utjecati na stabilnost aplikacije. Ovdje možete promijeniti veličinu. </item>
         <item> Stupanj transparentnosti. </item>
         <item> Zrcalna slika. </item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
         <item> Pošaljite sliku u studio. </item>
         <item> Vratite se izvoru slike. </item>
         <item> Zatvori prozor. </item>

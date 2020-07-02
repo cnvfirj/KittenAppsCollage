@@ -132,6 +132,8 @@
         <item> Grootte </item>
         <item> Transparantie </item>
         <item> Mirror </item>
+        <item>Negative</item>
+        <item>Black and white</item>
         <item> Open </item>
         <item> Terug </item>
         <item> Sluiten </item>
@@ -141,6 +143,8 @@
         <item> Groot formaat van de afbeelding kan de stabiliteit van de app beïnvloeden. Hier kunt u het formaat wijzigen. </item>
         <item> Mate van transparantie. </item>
         <item> Spiegelbeeld. </item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
         <item> Stuur de afbeelding naar de studio. </item>
         <item> Ga terug naar de bron van de afbeelding. </item>
         <item> Venster sluiten. </item>

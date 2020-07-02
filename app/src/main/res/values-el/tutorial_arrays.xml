@@ -132,6 +132,8 @@
             <item> Μέγεθος </item>
             <item> Διαφάνεια </item>
             <item> Καθρέφτης </item>
+    <item>Negative</item>
+    <item>Black and white</item>
             <item> Άνοιγμα </item>
             <item> Πίσω </item>
             <item> Κλείσιμο </item>
@@ -141,6 +143,8 @@
             <item> Το μεγάλο μέγεθος της εικόνας μπορεί να επηρεάσει τη σταθερότητα της εφαρμογής. Εδώ μπορείτε να αλλάξετε το μέγεθός του. </item>
             <item> Βαθμός διαφάνειας. </item>
             <item> Εικόνα καθρέφτη. </item>
+    <item>Image inversion. To cancel, click here.</item>
+    <item>Switch to black and white mode. To cancel, click here.</item>
             <item> Στείλτε την εικόνα στο στούντιο. </item>
             <item> Επιστροφή στην πηγή της εικόνας. </item>
             <item> Κλείσιμο παραθύρου. </item>

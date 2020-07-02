@@ -141,6 +141,8 @@
         <item>Size</item>
         <item>Transparency</item>
         <item>Mirror</item>
+        <item>Negative</item>
+        <item>Black and white</item>
         <item>Open</item>
         <item>Back</item>
         <item>Close</item>
@@ -151,6 +153,8 @@
         <item>Big size of the image can affect the stability of the app. Here you can resize it.</item>
         <item>Degree of transparency.</item>
         <item>Mirror image.</item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
         <item>Send the image to the studio.</item>
         <item>Return to the source of the image.</item>
         <item>Close window.</item>
@@ -254,12 +258,10 @@
     <string-array name="edit_text_note">
         <item>Text box.</item>
         <item>Delete previous text.</item>
-
-        <item>Used font.</item>
+        <item>Used font. Сlick to view list</item>
         <item>Choose solid font or its outline.</item>
         <item>Adjust the angle of the font.</item>
         <item>Set the required inclination of the font.</item>
-
         <item>Save the changes and leave.</item>
         <item>Leave without changes.</item>
     </string-array>

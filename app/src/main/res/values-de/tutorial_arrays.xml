@@ -141,6 +141,8 @@
         <item> Größe </item>
                  <item> Transparenz </item>
                  <item> Mirror </item>
+        <item>Negative</item>
+        <item>Black and white</item>
                  <item> Öffnen </item>
                  <item> Zurück </item>
                  <item> Schließen </item>
@@ -151,6 +153,8 @@
         <item> Eine große Bildgröße kann die Stabilität der App beeinträchtigen. Hier können Sie die Größe ändern. </item>
                  <item> Transparenzgrad. </item>
                  <item> Spiegelbild. </item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
                  <item> Senden Sie das Bild an das Studio. </item>
                  <item> Kehren Sie zur Quelle des Bildes zurück. </item>
                  <item> Fenster schließen. </item>

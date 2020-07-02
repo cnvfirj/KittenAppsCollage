@@ -141,6 +141,8 @@
             <item> Koko </item>
             <item> Läpinäkyvyys </item>
             <item> Mirror </item>
+    <item>Image inversion. To cancel, click here.</item>
+    <item>Switch to black and white mode. To cancel, click here.</item>
             <item> Avaa </item>
             <item> Takaisin </item>
             <item> Close </item>
@@ -151,6 +153,8 @@
             <item> Kuvan suuri koko voi vaikuttaa sovelluksen vakauteen. Täällä voit muuttaa sen kokoa. </item>
             <item> läpinäkyvyysaste. </item>
             <item> Peilikuva. </item>
+    <item>Negative</item>
+    <item>Black and white</item>
             <item> Lähetä kuva studioon. </item>
             <item> Palaa kuvan lähteeseen. </item>
             <item> Sulje ikkuna. </item>

@@ -132,6 +132,8 @@
             <item> Stærð </item>
             <item> Gagnsæi </item>
             <item> Spegill </item>
+    <item>Negative</item>
+    <item>Black and white</item>
             <item> Opna </item>
             <item> Til baka </item>
             <item> Loka </item>
@@ -141,6 +143,8 @@
             <item> Stór stærð myndarinnar getur haft áhrif á stöðugleika appsins. Hér getur þú breytt stærðinni. </item>
             <item> Gráðu gagnsæis. </item>
             <item> Spegilmynd. </item>
+    <item>Image inversion. To cancel, click here.</item>
+    <item>Switch to black and white mode. To cancel, click here.</item>
             <item> Sendu myndina í hljóðverið. </item>
             <item> Fara aftur í uppruna myndarinnar. </item>
             <item> Lokaðu glugga. </item>

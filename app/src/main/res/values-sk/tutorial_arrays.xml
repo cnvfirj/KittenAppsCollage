@@ -132,6 +132,8 @@
         <item> Veľkosť </item>
         <item> Transparentnosť </item>
         <item> Mirror </item>
+        <item>Negative</item>
+        <item>Black and white</item>
         <item> Otvoriť </item>
         <item> Späť </item>
         <item> Zavrieť </item>
@@ -141,6 +143,8 @@
         <item> Stabilita aplikácie môže ovplyvniť veľká veľkosť obrázka. Tu môžete zmeniť veľkosť. </item>
         <item> Stupeň transparentnosti. </item>
         <item> Zrkadlový obraz. </item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
         <item> Odošlite obrázok do štúdia. </item>
         <item> Návrat k zdroju obrázka. </item>
         <item> Zavrieť okno. </item>

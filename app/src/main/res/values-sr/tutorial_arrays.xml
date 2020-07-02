@@ -132,6 +132,8 @@
         <item> Величина </item>
         <item> Транспарентност </item>
         <item> Огледало </item>
+        <item>Negative</item>
+        <item>Black and white</item>
         <item> Отвори </item>
         <item> Назад </item>
         <item> Затвори </item>
@@ -141,6 +143,8 @@
         <item> Велика величина слике може утицати на стабилност апликације. Овде можете да промените величину. </item>
         <item> Степен транспарентности. </item>
         <item> Огледало слика. </item>
+        <item>Image inversion. To cancel, click here.</item>
+        <item>Switch to black and white mode. To cancel, click here.</item>
         <item> Пошаљите слику у студио. </item>
         <item> Вратите се на извор слике. </item>
         <item> Затвори прозор. </item>

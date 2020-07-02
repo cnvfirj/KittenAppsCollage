@@ -132,6 +132,8 @@
             <item> Dydis </item>
             <item> Skaidrumas </item>
             <item> Veidrodis </item>
+    <item>Negative</item>
+    <item>Black and white</item>
             <item> Atidaryti </item>
             <item> Atgal </item>
             <item> Uždaryti </item>
@@ -139,8 +141,10 @@
 
         <string-array name = "addlyr_note">
             <item> Didelis vaizdo dydis gali turėti įtakos programos stabilumui. Čia galite pakeisti jo dydį. </item>
-            <item> skaidrumo laipsnis. </item>
-            <item> veidrodinis vaizdas. </item>
+            <item> Skaidrumo laipsnis. </item>
+            <item> Veidrodinis vaizdas. </item>
+    <item>Image inversion. To cancel, click here.</item>
+    <item>Switch to black and white mode. To cancel, click here.</item>
             <item> Nusiųskite vaizdą į studiją. </item>
             <item> Grįžkite į vaizdo šaltinį. </item>
             <item> Uždaryti langą. </item>
