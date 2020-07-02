@@ -319,10 +319,12 @@ public class AddLyr extends Fragment implements View.OnClickListener, DynamicSee
 
     private void pressFilter(ImageView view){
         view.setSelected(!view.isSelected());
+
     }
 
     private void pressInvert(ImageView view){
         view.setSelected(!view.isSelected());
+
     }
 
 }
