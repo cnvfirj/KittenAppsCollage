@@ -164,7 +164,6 @@
         <item>Перегляд зображення</item>
         <item>Редагування</item>
         <item>Вихід</item>
-
     </string-array>
 
     <string-array name="review_note">
@@ -179,13 +178,12 @@
         <item>Висота</item>
         <item>Колір</item>
         <item>Вихід</item>
-
     </string-array>
 
     <string-array name="creator_note">
         <item>Режим створення чистого аркуша. Відкрити лист в редакторі для відправки в студію.</item>
-        <item>Ставиш ширину.</item>
-        <item>Ставиш висоту.</item>
+        <item>Обирай ширину.</item>
+        <item>Обирай висоту.</item>
         <item>Виклик вікна вибору кольору. Клік по центру вихід.</item>
         <item>Закрити режим створення чистого аркуша.</item>
 
