@@ -142,7 +142,7 @@
                 <item> Dimensioni </item>
                 <item> Trasparenza </item>
                 <item> Specchio </item>
-        <Item> Negativo </ item>
+        <item> Negativo </item>
         <item> Bianco e nero </item>
                 <item> Apri </item>
                 <item> Indietro </item>
@@ -260,7 +260,7 @@
             <item> Casella di testo. </item>
             <item> Elimina il testo precedente. </item>
 
-            <item> Carattere usato. Fare clic per visualizzare l'elenco.</item>
+            <item> Carattere usato. Fare clic per visualizzare l\'elenco.</item>
             <item> Scegli il carattere solido o il suo contorno. </item>
             <item> Regola l\'angolazione del carattere. </item>
             <item> Imposta l\'inclinazione richiesta del font. </item>
