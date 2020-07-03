@@ -132,8 +132,8 @@
             <item> Suurus </item>
             <item> Läbipaistvus </item>
             <item> Peegel </item>
-    <item>Negative</item>
-    <item>Black and white</item>
+    <item> Negatiivne </item>
+    <item> Must ja valge </item>
             <item> Ava </item>
             <item> Tagasi </item>
             <item> Sule </item>
@@ -143,8 +143,8 @@
             <item> Suure pildi suurus võib mõjutada rakenduse stabiilsust. Siin saate selle suurust muuta. </item>
             <item> Läbipaistvuse aste. </item>
             <item> Peegelpilt. </item>
-    <item>Image inversion. To cancel, click here.</item>
-    <item>Switch to black and white mode. To cancel, click here.</item>
+    <item> Kujutise ümberpööramine. Tühistamiseks klõpsake siin. </item>
+    <item> Lülitu mustvalgele režiimile. Tühistamiseks klõpsake siin. </item>
             <item> Saatke pilt stuudiosse. </item>
             <item> Naaseb pildi allika juurde. </item>
             <item> Sule aken. </item>
@@ -240,7 +240,7 @@
         <string-array name = "edit_text_note">
             <item> Tekstiväli. </item>
             <item> Kustuta eelmine tekst. </item>
-            <item> Kasutatud font. </item>
+            <item> Kasutatud font. С Klõpsake loendi kuvamiseks. </item>
             <item> Valige kindel font või selle kontuur. </item>
             <item> Reguleerige fondi nurka. </item>
             <item> Määrake fondi nõutav kalle. </item>

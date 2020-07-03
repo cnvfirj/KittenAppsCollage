@@ -132,8 +132,8 @@
         <item> Grootte </item>
         <item> Transparantie </item>
         <item> Mirror </item>
-        <item>Negative</item>
-        <item>Black and white</item>
+        <item> Negatief </item>
+        <item> Zwart-wit </item>
         <item> Open </item>
         <item> Terug </item>
         <item> Sluiten </item>
@@ -143,8 +143,8 @@
         <item> Groot formaat van de afbeelding kan de stabiliteit van de app beïnvloeden. Hier kunt u het formaat wijzigen. </item>
         <item> Mate van transparantie. </item>
         <item> Spiegelbeeld. </item>
-        <item>Image inversion. To cancel, click here.</item>
-        <item>Switch to black and white mode. To cancel, click here.</item>
+        <item> Beeldinversie. Klik hier om te annuleren. </item>
+        <item> Overschakelen naar zwart-witmodus. Klik hier om te annuleren. </item>
         <item> Stuur de afbeelding naar de studio. </item>
         <item> Ga terug naar de bron van de afbeelding. </item>
         <item> Venster sluiten. </item>
@@ -240,7 +240,7 @@
     <string-array name = "edit_text_note">
         <item> Tekstvak. </item>
         <item> Vorige tekst verwijderen. </item>
-        <item> Gebruikt lettertype. </item>
+        <item> Gebruikt lettertype. Klik om de lijst te bekijken.</item>
         <item> Kies een solide lettertype of de omtrek ervan. </item>
         <item> Pas de hoek van het lettertype aan. </item>
         <item> Stel de vereiste helling van het lettertype in. </item>

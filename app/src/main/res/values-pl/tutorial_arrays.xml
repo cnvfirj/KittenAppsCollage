@@ -141,8 +141,8 @@
         <item> Rozmiar </item>
                  <item> Przejrzystość </item>
                  <item> Mirror </item>
-        <item>Negative</item>
-        <item>Black and white</item>
+        <item> Negatywny </item>
+        <item> Czarno-biały </item>
                  <item> Otwórz </item>
                  <item> Wstecz </item>
                  <item> Zamknij </item>
@@ -153,8 +153,8 @@
         <item> Duży rozmiar obrazu może wpłynąć na stabilność aplikacji. Tutaj możesz zmienić jego rozmiar. </item>
                  <item> Stopień przejrzystości. </item>
                  <item> Odbicie lustrzane. </item>
-        <item>Image inversion. To cancel, click here.</item>
-        <item>Switch to black and white mode. To cancel, click here.</item>
+        <item> Odwrócenie obrazu. Aby anulować, kliknij tutaj. </item>
+        <item> Przełącz do trybu czarno-białego. Aby anulować, kliknij tutaj. </item>
                  <item> Wyślij zdjęcie do studia. </item>
                  <item> Wróć do źródła obrazu. </item>
                  <item> Zamknij okno. </item>
@@ -259,7 +259,7 @@
         <item> Pole tekstowe. </item>
                  <item> Usuń poprzedni tekst. </item>
 
-                 <item> Użyta czcionka. </item>
+                 <item> Użyta czcionka. Kliknij, aby wyświetlić listę.</item>
                  <item> Wybierz jednolitą czcionkę lub jej kontur. </item>
                  <item> Dostosuj kąt czcionki. </item>
                  <item> Ustaw wymagane nachylenie czcionki. </item>

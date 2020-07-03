@@ -132,8 +132,8 @@
             <item> Dydis </item>
             <item> Skaidrumas </item>
             <item> Veidrodis </item>
-    <item>Negative</item>
-    <item>Black and white</item>
+    <item> Neigiamas </item>
+    <item> nespalvotas </item>
             <item> Atidaryti </item>
             <item> Atgal </item>
             <item> Uždaryti </item>
@@ -143,8 +143,8 @@
             <item> Didelis vaizdo dydis gali turėti įtakos programos stabilumui. Čia galite pakeisti jo dydį. </item>
             <item> Skaidrumo laipsnis. </item>
             <item> Veidrodinis vaizdas. </item>
-    <item>Image inversion. To cancel, click here.</item>
-    <item>Switch to black and white mode. To cancel, click here.</item>
+    <item> Vaizdo inversija. Norėdami atšaukti, spustelėkite čia. </item>
+    <item> Perjunkite į nespalvotą režimą. Norėdami atšaukti, spustelėkite čia. </item>
             <item> Nusiųskite vaizdą į studiją. </item>
             <item> Grįžkite į vaizdo šaltinį. </item>
             <item> Uždaryti langą. </item>
@@ -240,7 +240,7 @@
         <string-array name = "edit_text_note">
             <item> Teksto laukas. </item>
             <item> Ištrinti ankstesnį tekstą. </item>
-            <item> Naudotas šriftas. </item>
+            <item> Naudotas šriftas. С Spustelėkite norėdami pamatyti sąrašą.</item>
             <item> Pasirinkite tvirtą šriftą arba jo kontūrą. </item>
             <item> Sureguliuokite šrifto kampą. </item>
             <item> Nustatykite reikiamą šrifto polinkį. </item>

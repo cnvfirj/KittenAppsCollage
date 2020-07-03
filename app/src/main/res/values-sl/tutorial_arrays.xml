@@ -258,7 +258,7 @@
     <string-array name = "edit_text_note">
         <item> Besedilno polje. </item>
         <item> Izbriši prejšnje besedilo. </item>
-        <item> Uporabljena pisava. Kliknite za ogled seznama </item>
+        <item> Uporabljena pisava. Kliknite za ogled seznama. </item>
         <item> Izberite trdno pisavo ali njen oris. </item>
         <item> Prilagodite kot pisave. </item>
         <item> Nastavite zahtevani naklon pisave. </item>

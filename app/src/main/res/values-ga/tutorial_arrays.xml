@@ -132,8 +132,8 @@
          <item>Méid </item>
          <item>Trédhearcacht </item>
          <item>Scáthán </item>
-        <item>Negative</item>
-        <item>Black and white</item>
+        <item> Diúltach </item>
+        <item> Dubh agus bán </item>
         <item> Oscailte </item>
         <item> Ar ais </item>
          <item>Dún Dún </item>
@@ -143,8 +143,8 @@
         <item> Is féidir le méid mór na híomhá dul i bhfeidhm ar chobhsaíocht an aip. Anseo is féidir leat é a athrú. </item>
         <item> Céim na trédhearcachta. </item>
          <item>Íomhá scátháin Scáthán. </item>
-        <item>Image inversion. To cancel, click here.</item>
-        <item>Switch to black and white mode. To cancel, click here.</item>
+        <item>Inbhéartú íomhá. Chun cealú, cliceáil anseo. </item>
+        <item> Athraigh go mód dubh agus bán. Chun cealú, cliceáil anseo. </item>
         <item> Seol an íomhá chuig an stiúideo. </item>
         <item> Fill ar ais chuig foinse na híomhá. </item>
         <item> Dún an fhuinneog. </item>
@@ -240,7 +240,7 @@
 <string-array name = "edit_text_note">
  <item>Bosca téacs. </item>
 <item> Scrios an téacs roimhe seo. </item>
- <item>Cló úsáidte Úsáidte. </item>
+ <item>Cló úsáidte Úsáidte. С Cliceáil chun an liosta a fheiceáil.</item>
 <item> Roghnaigh cló soladach nó a imlíne. </item>
 <item> Coigeartaigh uillinn an chló. </item>
 <item> Socraigh an claonadh riachtanach sa chló. </item>

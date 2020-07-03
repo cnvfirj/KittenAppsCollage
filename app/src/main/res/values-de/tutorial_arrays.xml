@@ -141,8 +141,8 @@
         <item> Größe </item>
                  <item> Transparenz </item>
                  <item> Mirror </item>
-        <item>Negative</item>
-        <item>Black and white</item>
+        <item> Negative </item>
+        <item> Schwarz und Weiß </item>
                  <item> Öffnen </item>
                  <item> Zurück </item>
                  <item> Schließen </item>
@@ -153,8 +153,8 @@
         <item> Eine große Bildgröße kann die Stabilität der App beeinträchtigen. Hier können Sie die Größe ändern. </item>
                  <item> Transparenzgrad. </item>
                  <item> Spiegelbild. </item>
-        <item>Image inversion. To cancel, click here.</item>
-        <item>Switch to black and white mode. To cancel, click here.</item>
+        <item> Bildinversion. Klicken Sie hier, um den Vorgang abzubrechen. </item>
+        <item> Wechseln Sie in den Schwarzweißmodus. Klicken Sie hier, um den Vorgang abzubrechen. </item>
                  <item> Senden Sie das Bild an das Studio. </item>
                  <item> Kehren Sie zur Quelle des Bildes zurück. </item>
                  <item> Fenster schließen. </item>
@@ -259,10 +259,9 @@
     </string-array>
 
     <string-array name="edit_text_note">
-        <item> Textfeld. </item>
+                 <item> Textfeld. </item>
                  <item> Vorherigen Text löschen. </item>
-
-                 <item> Verwendete Schriftart. </item>
+                 <item> Verwendete Schriftart. Klicken Sie, um die Liste anzuzeigen.</item>
                  <item> Wählen Sie eine feste Schriftart oder deren Umriss. </item>
                  <item> Passen Sie den Winkel der Schriftart an. </item>
                  <item> Stellen Sie die erforderliche Neigung der Schriftart ein. </item>

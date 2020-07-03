@@ -132,8 +132,8 @@
         <item> Големина </item>
         <item> Транспарентност </item>
         <item> Огледало </item>
-        <item>Negative</item>
-        <item>Black and white</item>
+        <item> Негативен </item>
+        <item> Црно и бело </item>
         <item> Отворено </item>
         <item> Назад </item>
         <item> Затвори </item>
@@ -143,8 +143,8 @@
         <item> Голема големина на сликата може да влијае на стабилноста на апликацијата. Тука можете да ја промените големината. </item>
         <item> Степен на транспарентност. </item>
         <item> Слика на огледало. </item>
-        <item>Image inversion. To cancel, click here.</item>
-        <item>Switch to black and white mode. To cancel, click here.</item>
+        <item> Инверзија на слика. За откажување, кликнете овде. </item>
+        <item> Префрлете се на црно-бел режим. За откажување, кликнете овде. </item>
         <item> Испратете ја сликата во студиото. </item>
         <item> Врати се на изворот на сликата. </item>
         <item> Затвори го прозорецот. </item>
@@ -240,7 +240,7 @@
     <string-array name = "edit_text_note">
         <item> Текст кутија. </item>
         <item> Избришете го претходниот текст. </item>
-        <item> Користен фонт. </item>
+        <item> Користен фонт. Кликнете за да ја видите листата.</item>
         <item> Изберете цврст фонт или неговиот преглед. </item>
         <item> Прилагодете го аголот на фонтот. </item>
         <item> Поставете ја потребната наклон на фонтот. </item>

@@ -132,8 +132,8 @@
         <item> Størrelse </item>
         <item> Gennemsigtighed </item>
         <item> Mirror </item>
-        <item>Negative</item>
-        <item>Black and white</item>
+        <item> Negativ </item>
+        <item> Sort / hvid </item>
         <item> Åbn </item>
         <item> Tilbage </item>
         <item> Luk </item>
@@ -143,8 +143,8 @@
         <item> Billedets store størrelse kan påvirke appens stabilitet. Her kan du ændre størrelsen på det. </item>
         <item> Grad af gennemsigtighed. </item>
         <item> Spejlbillede. </item>
-        <item>Image inversion. To cancel, click here.</item>
-        <item>Switch to black and white mode. To cancel, click here.</item>
+        <item> Billedinversion. Klik her for at annullere. </item>
+        <item> Skift til sort / hvid-tilstand. Klik her for at annullere. </item>
         <item> Send billedet til studiet. </item>
         <item> Vend tilbage til billedkilden. </item>
         <item> Luk vindue. </item>
@@ -240,7 +240,7 @@
     <string-array name = "edit_text_note">
         <item> Tekstfelt. </item>
         <item> Slet forrige tekst. </item>
-        <item> Brugt font. </item>
+        <item> Brugt font. С klik for at se listen.</item>
         <item> Vælg solid font eller dets kontur. </item>
         <item> Juster fontens vinkel. </item>
         <item> Indstil den krævede hældning af skrifttypen. </item>

@@ -141,8 +141,8 @@
             <item> Tamaño </item>
             <item> Transparencia </item>
             <item> Espejo </item>
-    <item>Negative</item>
-    <item>Black and white</item>
+    <item> Negativo </item>
+    <item> Blanco y negro </item>
             <item> Abrir </item>
             <item> Volver </item>
             <item> Cerrar </item>
@@ -153,8 +153,8 @@
             <item> El tamaño grande de la imagen puede afectar la estabilidad de la aplicación. Aquí puede cambiar su tamaño. </item>
             <item> Grado de transparencia. </item>
             <item> Imagen espejo. </item>
-    <item>Image inversion. To cancel, click here.</item>
-    <item>Switch to black and white mode. To cancel, click here.</item>
+    <item> Inversión de imagen. Para cancelar, haga clic aquí. </item>
+    <item> Cambia al modo blanco y negro. Para cancelar, haga clic aquí. </item>
             <item> Envía la imagen al estudio. </item>
             <item> Regresar a la fuente de la imagen. </item>
             <item> Cerrar ventana. </item>
@@ -259,7 +259,7 @@
             <item> Cuadro de texto. </item>
             <item> Eliminar texto anterior. </item>
 
-            <item> Fuente usada. </item>
+            <item> Fuente usada. Haga clic para ver la lista</item>
             <item> Elija una fuente sólida o su contorno. </item>
             <item> Ajusta el ángulo de la fuente. </item>
             <item> Establezca la inclinación requerida de la fuente. </item>

@@ -141,8 +141,8 @@
         <item>Розмір</item>
         <item>Прозорість</item>
         <item>Дзеркало</item>
-        <item>Negative</item>
-        <item>Black and white</item>
+        <item>Негативний</item>
+        <item>Чорно-білий</item>
         <item>Відкрити</item>
         <item>Назад</item>
         <item>Закрити</item>
@@ -153,8 +153,8 @@
         <item>Великий розмір зображення впливає на роботу програми. Тут ти можеш його зменшити.</item>
         <item>Ступінь прозорості.</item>
         <item>Дзеркальне відображення.</item>
-        <item>Image inversion. To cancel, click here.</item>
-        <item>Switch to black and white mode. To cancel, click here.</item>
+        <item> Інверсія зображень. Щоб скасувати, натисніть тут. </item>
+        <item> Перехід у чорно-білий режим. Щоб скасувати, натисніть тут. </item>
         <item>Відправ зображення в студію.</item>
         <item>Повернись до джерела зображення.</item>
         <item>Закрий вікно.</item>
@@ -258,7 +258,7 @@
     <string-array name="edit_text_note">
         <item>Поле для введення тексту.</item>
         <item>Видалити старий текст.</item>
-        <item>Використовуемий шрифт.</item>
+        <item>Використовуемий шрифт. Натисніть, щоб переглянути список.</item>
         <item>Вибери суцільний шрифт, або його контур.</item>
         <item>Відкрий можливість корегувати кут шрифта.</item>
         <item>Обери потрібний кут шрифта.</item>

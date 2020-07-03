@@ -132,8 +132,8 @@
             <item> Izmērs </item>
             <item> Caurspīdīgums </item>
             <item> Spogulis </item>
-    <item>Negative</item>
-    <item>Black and white</item>
+    <item> Negatīvs </item>
+    <item> Melnbalts </item>
             <item> Atvērt </item>
             <item> Atpakaļ </item>
             <item> Aizvērt </item>
@@ -143,8 +143,8 @@
             <item> Liels attēla izmērs var ietekmēt lietotnes stabilitāti. Šeit jūs varat mainīt tā izmēru. </item>
             <item> Caurspīdīguma pakāpe. </item>
             <item> Spoguļattēls. </item>
-    <item>Image inversion. To cancel, click here.</item>
-    <item>Switch to black and white mode. To cancel, click here.</item>
+    <item> Attēla inversija. Lai atceltu, noklikšķiniet šeit. </item>
+    <item> Pārslēgties uz melnbalto režīmu. Lai atceltu, noklikšķiniet šeit. </item>
             <item> Nosūtiet attēlu uz studiju. </item>
             <item> Atgriezties pie attēla avota. </item>
             <item> Aizvērt logu. </item>
@@ -240,7 +240,7 @@
         <string-array name = "edit_text_note">
             <item> Tekstlodziņš. </item>
             <item> Dzēst iepriekšējo tekstu. </item>
-            <item> Lietots fonts. </item>
+            <item> Lietots fonts. С Noklikšķiniet, lai skatītu sarakstu.</item>
             <item> Izvēlieties cieto fontu vai tā kontūru. </item>
             <item> Pielāgojiet fonta leņķi. </item>
             <item> Iestatiet nepieciešamo fonta slīpumu. </item>

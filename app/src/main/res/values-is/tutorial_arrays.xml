@@ -132,8 +132,8 @@
             <item> Stærð </item>
             <item> Gagnsæi </item>
             <item> Spegill </item>
-    <item>Negative</item>
-    <item>Black and white</item>
+    <item> Neikvætt </item>
+    <item> Svart og hvítt </item>
             <item> Opna </item>
             <item> Til baka </item>
             <item> Loka </item>
@@ -143,8 +143,8 @@
             <item> Stór stærð myndarinnar getur haft áhrif á stöðugleika appsins. Hér getur þú breytt stærðinni. </item>
             <item> Gráðu gagnsæis. </item>
             <item> Spegilmynd. </item>
-    <item>Image inversion. To cancel, click here.</item>
-    <item>Switch to black and white mode. To cancel, click here.</item>
+    <item> Andhverf mynd. Smelltu hér til að hætta við. </item>
+    <item> Skiptu yfir í svart og hvítt ham. Smelltu hér til að hætta við. </item>
             <item> Sendu myndina í hljóðverið. </item>
             <item> Fara aftur í uppruna myndarinnar. </item>
             <item> Lokaðu glugga. </item>
@@ -240,7 +240,7 @@
         <string-array name = "edit_text_note">
             <item> Texti kassi. </item>
             <item> Eyða fyrri texta. </item>
-            <item> Notað leturgerð. </item>
+            <item> Notað leturgerð. Ýttu til að skoða lista.</item>
             <item> Veldu solid leturgerð eða útlínur þess. </item>
             <item> Stilltu horn letrið. </item>
             <item> Stilltu nauðsynlega halla letursins. </item>

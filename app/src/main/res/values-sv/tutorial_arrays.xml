@@ -141,8 +141,8 @@
             <item> Storlek </item>
             <item> Transparens </item>
             <item> Mirror </item>
-    <item>Negative</item>
-    <item>Black and white</item>
+    <Item> Negativ </ item>
+    <item> Svartvitt </item>
             <item> Öppna </item>
             <item> Tillbaka </item>
             <item> Stäng </item>
@@ -153,8 +153,8 @@
             <item> Stor bildstorlek kan påverka appens stabilitet. Här kan du ändra storlek på den. </item>
             <item> Grad av transparens. </item>
             <item> Spegelbild. </item>
-    <item>Image inversion. To cancel, click here.</item>
-    <item>Switch to black and white mode. To cancel, click here.</item>
+    <item> Bildinversion. Klicka här för att avbryta. </item>
+    <item> Byt till svartvitt läge. Klicka här för att avbryta. </item>
             <item> Skicka bilden till studion. </item>
             <item> Återgå till bildens källa. </item>
             <item> Stäng fönstret. </item>
@@ -260,7 +260,7 @@
             <item> Textruta. </item>
             <item> Radera föregående text. </item>
 
-            <item> Använt teckensnitt. </item>
+            <item> Använt teckensnitt. Сlicka för att visa listan.</item>
             <item> Välj fast typsnitt eller dess kontur. </item>
             <item> Justera teckensnittets vinkel. </item>
             <item> Ställ in önskad lutning av teckensnittet. </item>

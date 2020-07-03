@@ -135,8 +135,8 @@
         <item> Size </item>
         <item> Transparency </item>
         <item> Mirror </item>
-        <item>Negative</item>
-        <item>Black and white</item>
+        <Item> Negative </ item>
+        <item> E zezë dhe e bardhë </item>
         <item> Open </item>
         <item> Back </item>
         <item> Close </item>
@@ -146,8 +146,8 @@
         <item> Madhësia e madhe e figurës mund të ndikojë në qëndrueshmërinë e aplikacionit. Këtu mund ta ndryshosh përmasën. </item>
         <item> Shkalla e transparencës. </item>
         <item> Imazhi i pasqyrës. </item>
-        <item>Image inversion. To cancel, click here.</item>
-        <item>Switch to black and white mode. To cancel, click here.</item>
+        <item> përmbysja e figurës. Për të anuluar, kliko këtu. </item>
+        <item> Kaloni në modalitetin bardh e zi. Për të anuluar, kliko këtu. </item>
         <item> Dërgoni imazhin në studio. </item>
         <item> Kthehu tek burimi i figurës. </item>
         <item> Mbyll dritaren. </item>
@@ -243,7 +243,7 @@
     <string-array name = "edit_text_note">
         <item> Kutia e tekstit. </item>
         <item> Fshini tekstin e mëparshëm. </item>
-        <item> font i përdorur. </item>
+        <item> Font i përdorur. Klikoni për të parë listën.</item>
         <item> Zgjidhni fontin e ngurtë ose skicën e tij. </item>
         <item> Rregulloni këndin e fontit. </item>
         <item> Vendosni pjerrtësinë e kërkuar të shkronjave. </item>

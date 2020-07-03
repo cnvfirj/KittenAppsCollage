@@ -141,8 +141,8 @@
             <item> Størrelse </item>
             <item> Gjennomsiktighet </item>
             <item> Speil </item>
-    <item>Negative</item>
-    <item>Black and white</item>
+    <item> Negativ </item>
+    <item> Svart og hvitt </item>
             <item> Åpne </item>
             <item> Tilbake </item>
             <item> Lukk </item>
@@ -153,8 +153,8 @@
             <item> Stor størrelse på bildet kan påvirke stabiliteten til appen. Her kan du endre størrelse på den. </item>
             <item> Grad av åpenhet. </item>
             <item> Speilbilde. </item>
-    <item>Image inversion. To cancel, click here.</item>
-    <item>Switch to black and white mode. To cancel, click here.</item>
+    <item> Bildeinversjon. Klikk her for å avbryte. </item>
+    <item> Bytt til svart-hvitt-modus. Klikk her for å avbryte. </item>
             <item> Send bildet til studioet. </item>
             <item> Gå tilbake til kilden til bildet. </item>
             <item> Lukk vinduet. </item>
@@ -261,7 +261,7 @@
             <item> Tekstboks. </item>
             <item> Slett forrige tekst. </item>
 
-            <item> Brukt font. </item>
+            <item> Brukt font. С Klikk for å se listen.</item>
             <item> Velg solid skrift eller omriss. </item>
             <item> Juster skriftsvinkelen. </item>
             <item> Angi ønsket tilbøyelighet til skriften. </item>

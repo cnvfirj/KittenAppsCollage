@@ -142,8 +142,8 @@
                 <item> Dimensioni </item>
                 <item> Trasparenza </item>
                 <item> Specchio </item>
-        <item>Negative</item>
-        <item>Black and white</item>
+        <Item> Negativo </ item>
+        <item> Bianco e nero </item>
                 <item> Apri </item>
                 <item> Indietro </item>
                 <item> Chiudi </item>
@@ -154,8 +154,8 @@
             <item> Grandi dimensioni dell\'immagine possono influire sulla stabilità dell\'app. Qui puoi ridimensionarlo. </item>
             <item> Grado di trasparenza. </item>
             <item> Immagine speculare. </item>
-    <item>Image inversion. To cancel, click here.</item>
-    <item>Switch to black and white mode. To cancel, click here.</item>
+    <item> Inversione di immagine. Per annullare, fai clic qui. </item>
+    <item> Passa alla modalità bianco e nero. Per annullare, fai clic qui. </item>
             <item> Invia l\'immagine allo studio. </item>
             <item> Ritorna alla fonte dell\'immagine. </item>
             <item> Chiudi la finestra. </item>
@@ -260,7 +260,7 @@
             <item> Casella di testo. </item>
             <item> Elimina il testo precedente. </item>
 
-            <item> Carattere usato. </item>
+            <item> Carattere usato. Fare clic per visualizzare l'elenco.</item>
             <item> Scegli il carattere solido o il suo contorno. </item>
             <item> Regola l\'angolazione del carattere. </item>
             <item> Imposta l\'inclinazione richiesta del font. </item>

@@ -132,8 +132,8 @@
         <item> Veličina </item>
         <item> Transparentnost </item>
         <item> Ogledalo </item>
-        <item>Negative</item>
-        <item>Black and white</item>
+        <item> Negativno </item>
+        <item> Crno-bijelo </item>
         <item> Otvori </item>
         <item> Natrag </item>
         <item> Zatvori </item>
@@ -143,8 +143,8 @@
         <item> Velika veličina slike može utjecati na stabilnost aplikacije. Ovdje možete promijeniti veličinu. </item>
         <item> Stupanj transparentnosti. </item>
         <item> Zrcalna slika. </item>
-        <item>Image inversion. To cancel, click here.</item>
-        <item>Switch to black and white mode. To cancel, click here.</item>
+        <item> Inverzija slike. Za otkazivanje kliknite ovdje. </item>
+        <item> Prebacite se na crno-bijeli režim. Za otkazivanje kliknite ovdje. </item>
         <item> Pošaljite sliku u studio. </item>
         <item> Vratite se izvoru slike. </item>
         <item> Zatvori prozor. </item>
@@ -240,7 +240,7 @@
     <string-array name = "edit_text_note">
         <item> Tekstni okvir. </item>
         <item> Izbriši prethodni tekst. </item>
-        <item> Korišteni font. </item>
+        <item> Korišteni font. Pritisnite za pregled liste.</item>
         <item> Odaberite puni font ili njegov obris. </item>
         <item> Podesite kut fonta. </item>
         <item> Postavite potrebnu nagib fonta. </item>

@@ -258,7 +258,7 @@
     <string-array name="edit_text_note">
         <item>Text box.</item>
         <item>Delete previous text.</item>
-        <item>Used font. Сlick to view list</item>
+        <item>Used font. Сlick to view list.</item>
         <item>Choose solid font or its outline.</item>
         <item>Adjust the angle of the font.</item>
         <item>Set the required inclination of the font.</item>

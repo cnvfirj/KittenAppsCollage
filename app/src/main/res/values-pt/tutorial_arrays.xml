@@ -142,8 +142,8 @@
             <item> Tamanho </item>
             <item> Transparência </item>
             <item> Espelho </item>
-    <item>Negative</item>
-    <item>Black and white</item>
+    <item> Negativo </item>
+    <item> Preto e branco </item>
             <item> Abrir </item>
             <item> Voltar </item>
             <item> Fechar </item>
@@ -154,8 +154,8 @@
             <item> O tamanho grande da imagem pode afetar a estabilidade do aplicativo. Aqui você pode redimensioná-lo. </item>
             <item> Grau de transparência. </item>
             <item> Imagem em espelho. </item>
-    <item>Image inversion. To cancel, click here.</item>
-    <item>Switch to black and white mode. To cancel, click here.</item>
+    <item> Inversão de imagem. Para cancelar, clique aqui. </item>
+    <item> Alterna para o modo preto e branco. Para cancelar, clique aqui. </item>
             <item> Envie a imagem para o estúdio. </item>
             <item> Retorne à fonte da imagem. </item>
             <item> Feche a janela. </item>
@@ -260,7 +260,7 @@
             <item> Caixa de texto. </item>
             <item> Excluir texto anterior. </item>
 
-            <item> Fonte usada. </item>
+            <item> Fonte usada. Clique para visualizar a lista.</item>
             <item> Escolha fonte sólida ou seu contorno. </item>
             <item> Ajuste o ângulo da fonte. </item>
             <item> Defina a inclinação necessária da fonte. </item>

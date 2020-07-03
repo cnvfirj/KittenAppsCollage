@@ -132,8 +132,8 @@
         <item> Veľkosť </item>
         <item> Transparentnosť </item>
         <item> Mirror </item>
-        <item>Negative</item>
-        <item>Black and white</item>
+        <Item> Negatívne </ item>
+        <item> Čiernobiele </item>
         <item> Otvoriť </item>
         <item> Späť </item>
         <item> Zavrieť </item>
@@ -143,8 +143,8 @@
         <item> Stabilita aplikácie môže ovplyvniť veľká veľkosť obrázka. Tu môžete zmeniť veľkosť. </item>
         <item> Stupeň transparentnosti. </item>
         <item> Zrkadlový obraz. </item>
-        <item>Image inversion. To cancel, click here.</item>
-        <item>Switch to black and white mode. To cancel, click here.</item>
+        <item> Inverzia obrazu. Ak ju chcete zrušiť, kliknite sem. </item>
+        <item> Prepnutie na čiernobiely režim. Ak ju chcete zrušiť, kliknite sem. </item>
         <item> Odošlite obrázok do štúdia. </item>
         <item> Návrat k zdroju obrázka. </item>
         <item> Zavrieť okno. </item>
@@ -240,7 +240,7 @@
     <string-array name = "edit_text_note">
         <item> Textové pole. </item>
         <item> Odstrániť predchádzajúci text. </item>
-        <item> Použité písmo. </item>
+        <item> Použité písmo. Kliknutím zobrazíte zoznam.</item>
         <item> Vyberte plné písmo alebo jeho obrys. </item>
         <item> Upravte uhol písma. </item>
         <item> Nastavte požadovaný sklon písma. </item>

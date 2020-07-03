@@ -132,8 +132,8 @@
         <item> Méret </item>
         <item> Átláthatóság </item>
         <item> Mirror </item>
-        <item>Negative</item>
-        <item>Black and white</item>
+        <Item> Negatív </ item>
+        <item> Fekete-fehér </item>
         <item> Megnyitás </item>
         <item> Vissza </item>
         <item> Bezárás </item>
@@ -143,8 +143,8 @@
         <item> A kép nagy mérete befolyásolhatja az alkalmazás stabilitását. Itt átméretezheti. </item>
         <item> az átlátszóság mértéke. </item>
         <item> Tükörkép. </item>
-        <item>Image inversion. To cancel, click here.</item>
-        <item>Switch to black and white mode. To cancel, click here.</item>
+        <item> Kép inverzió. A visszavonáshoz kattintson ide. </item>
+        <item> Váltás fekete-fehér módra. A visszavonáshoz kattintson ide. </item>
         <item> Küldje el a képet a stúdióba. </item>
         <item> Visszatérés a kép forrásához. </item>
         <item> Ablak bezárása. </item>
@@ -240,7 +240,7 @@
     <string-array name = "edit_text_note">
         <item> szövegmező. </item>
         <item> Az előző szöveg törlése. </item>
-        <item> Használt betűtípus. </item>
+        <item> Használt betűtípus. С Kattintson a lista megtekintéséhez.</item>
         <item> Válassza ki a szilárd betűtípust vagy annak körvonalait. </item>
         <item> Állítsa be a betűkészlet szögét. </item>
         <item> Állítsa be a betűkészlet szükséges dőlését. </item>

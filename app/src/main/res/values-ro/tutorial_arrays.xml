@@ -132,8 +132,8 @@
         <item> Dimensiune </item>
         <item> Transparența </item>
         <item> Oglindă </item>
-        <item>Negative</item>
-        <item>Black and white</item>
+        <Item> Negativ </ item>
+        <item> Alb-negru </item>
         <item> Deschideți </item>
         <item> Înapoi </item>
         <item> Închide </item>
@@ -143,8 +143,8 @@
         <item> Dimensiunea mare a imaginii poate afecta stabilitatea aplicației. Aici îl puteți redimensiona. </item>
         <item> Grad de transparență. </item>
         <item> Imaginea oglindă. </item>
-        <item>Image inversion. To cancel, click here.</item>
-        <item>Switch to black and white mode. To cancel, click here.</item>
+        <item> Inversare imagine. Pentru a anula, faceți clic aici. </item>
+        <item> Comutați la modul alb-negru. Pentru a anula, faceți clic aici. </item>
         <item> Trimiteți imaginea în studio. </item>
         <item> Reveniți la sursa imaginii. </item>
         <item> Închideți fereastra. </item>
@@ -240,7 +240,7 @@
     <string-array name = "edit_text_note">
         <item> Caseta de text. </item>
         <item> Ștergeți textul anterior. </item>
-        <item> font folosit. </item>
+        <item> Font folosit. Faceți clic pentru a vizualiza lista.</item>
         <item> Alegeți fontul solid sau conturul său. </item>
         <item> Reglați unghiul fontului. </item>
         <item> Setați înclinarea necesară a fontului. </item>

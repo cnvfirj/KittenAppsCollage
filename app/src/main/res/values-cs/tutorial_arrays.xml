@@ -132,8 +132,8 @@
         <item> Velikost </item>
         <item> Transparentnost </item>
         <item> Zrcadlo </item>
-        <item>Negative</item>
-        <item>Black and white</item>
+        <item> Negativní </item>
+        <item> Černobílý </item>
         <item> Otevřít </item>
         <item> Zpět </item>
         <item> Zavřít </item>
@@ -144,8 +144,8 @@
         <item> Velká velikost obrázku může ovlivnit stabilitu aplikace. Zde můžete změnit velikost. </item>
         <item> Stupeň průhlednosti. </item>
         <item> Zrcadlový obraz. </item>
-        <item>Image inversion. To cancel, click here.</item>
-        <item>Switch to black and white mode. To cancel, click here.</item>
+        <item> Inverze obrazu. Chcete-li akci zrušit, klikněte sem. </item>
+        <item> Přepne do černobílého režimu. Chcete-li akci zrušit, klikněte sem. </item>
         <item> Pošlete obrázek do studia. </item>
         <item> Návrat ke zdroji obrázku. </item>
         <item> Zavřete okno. </item>
@@ -241,7 +241,7 @@
     <string-array name = "edit_text_note">
         <item> Textové pole. </item>
         <item> Odstranit předchozí text. </item>
-        <item> Použité písmo. </item>
+        <item> Použité písmo. Kliknutím zobrazíte seznam/</item>
         <item> Vyberte plné písmo nebo jeho obrys. </item>
         <item> Upravte úhel písma. </item>
         <item> Nastavte požadovaný sklon písma. </item>
