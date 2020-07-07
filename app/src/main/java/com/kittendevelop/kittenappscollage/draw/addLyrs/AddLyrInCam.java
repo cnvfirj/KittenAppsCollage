@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,6 +19,8 @@ import com.otaliastudios.cameraview.CameraListener;
 import com.otaliastudios.cameraview.CameraView;
 import com.otaliastudios.cameraview.Facing;
 import com.otaliastudios.cameraview.Flash;
+
+import static com.kittendevelop.kittenappscollage.helpers.Massages.LYTE;
 
 public class AddLyrInCam extends SelectedFragment{
 
@@ -183,8 +186,10 @@ public class AddLyrInCam extends SelectedFragment{
             public void onPictureTaken(byte[] jpeg) {
                 super.onPictureTaken(jpeg);
                 selector = (SelectorFrameFragments) getParentFragment();
-                selector.backInAddLyr(aDone,new DecodeCamera.CameraProperties(jpeg,aCamera.getFacing().name(),orientation));
-
+                if(selector!=null){
+                    selector.backInAddLyr(aDone,new DecodeCamera.CameraProperties(jpeg,aCamera.getFacing().name(),orientation));
+                }
+                else Toast.makeText(getContext(),getContext().getResources().getText(R.string.restart_window),Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -18,6 +18,8 @@ import java.io.Serializable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 
+import static com.kittendevelop.kittenappscollage.helpers.Massages.LYTE;
+
 
 public class DecodeCamera {
 
@@ -58,7 +60,9 @@ public class DecodeCamera {
 
     private Observable<Bitmap> decode(byte[]img){
         return Observable.create((ObservableOnSubscribe<Bitmap>) emitter -> {
-            emitter.onNext(bitmap(img));
+//            emitter.onNext(bitmap(img));
+            emitter.onNext(decodeBitmap(img));
+
             emitter.onComplete();
         }).compose(new ThreadTransformers.Processor<>());
     }
@@ -90,6 +94,10 @@ public class DecodeCamera {
             options.inJustDecodeBounds = false;
 
         return BitmapFactory.decodeByteArray(source,0, source.length,options);
+    }
+
+    private Bitmap facing(Bitmap bitmap){
+        return bitmap;
     }
 
     private int calculateInSampleSize(
