@@ -271,7 +271,7 @@
     </string-array>
 
     <string-array name="edit_text_fonts_note">
-        <item>Перелік доступних шрифтыв.</item>
+        <item>Перелік доступних шрифтів.</item>
         <item>Додай завантажений на пристрый шрифт. Шрифт це файл з расширенням "ttf" або "otf".</item>
     </string-array>
 
