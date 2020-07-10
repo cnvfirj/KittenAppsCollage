@@ -4,7 +4,7 @@
 
     <string name="FOLDER_DELETE">Папка видалена</string>
     <string name="SELECTED_IMAGES_DELETED">Вибрані зображення видалені</string>
-    <string name="IS_SELECTED_FOLDER_IMAGES_NOT">У вибраній папці нових зображень, не знайдено</string>
+    <string name="IS_SELECTED_FOLDER_IMAGES_NOT">У вибраній папці нових зображень не знайдено</string>
     <string name="IN_GALLERY_ADD_FOLDER">В галерею додана папка </string>
     <string name="CREATE_IMG">Створи полотно</string>
     <string name="condition_apply_tools">відкрий або створи полотно</string>
@@ -13,7 +13,7 @@
     <string name="ASSES_TO_DATA">доступ до даних</string>
     <string name="ASSES_TO_CAMERA">доступ до камери</string>
     <string name="REPEAT_REQUEST">повторити запит?</string>
-    <string name="RATIONALE_ASSES_CAMERA">доступ до камери потрібен для зйомки всередині програми</string>
+    <string name="RATIONALE_ASSES_CAMERA">доступ до камери потрібен для зйомки всередині додатка</string>
 <!--    <string name="RATIONALE_ASSES_ACCAUNT">Access to the account is required for reading and saving to the cloud.</string>-->
     <string name="RATIONALE_ASSES_WRITE">доступ до мультимедіа потрібен для читання і збереження зображень на пристрої</string>
     <string name="TOAST_RESOLUTION">в налаштуваннях дай потрібний дозвіл</string>

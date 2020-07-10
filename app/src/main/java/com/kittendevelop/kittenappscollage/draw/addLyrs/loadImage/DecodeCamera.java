@@ -76,9 +76,9 @@ public class DecodeCamera {
         if(dFacing.equals(Facing.FRONT)) {
             matrix.postScale(-1, 1) ;
         }
-        if (dRotate != 0 ||dRotate!=360) {
-            matrix.postRotate(dRotate);
-        }
+//        if (dRotate != 0 ||dRotate!=360) {
+//            matrix.postRotate(dRotate);
+//        }
         bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
         return bitmap;
     }
