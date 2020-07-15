@@ -8,8 +8,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
-
-import com.kittendevelop.kittenappscollage.R;
 import com.kittendevelop.kittenappscollage.draw.saveSteps.State;
 import com.kittendevelop.kittenappscollage.helpers.RequestFolder;
 

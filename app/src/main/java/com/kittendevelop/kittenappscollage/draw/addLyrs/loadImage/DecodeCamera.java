@@ -18,9 +18,6 @@ import java.io.Serializable;
 import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 
-import static com.kittendevelop.kittenappscollage.helpers.Massages.LYTE;
-
-
 public class DecodeCamera {
 
     private int dRotate = 0;
