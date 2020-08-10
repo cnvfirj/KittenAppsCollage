@@ -8,6 +8,11 @@
             android:height="24dp"
             android:viewportWidth="24"
             android:viewportHeight="24">
+            <path
+                android:pathData="M18.006,23.002L21.998,21.998L23.001,17.979L23.001,23.003Z"
+                android:strokeWidth="0.1"
+                android:fillColor="@color/colorWhite"
+                android:strokeColor="@color/colorWhite"/>
             <group
                 android:name="group"
                 android:pivotX="12"
@@ -19,6 +24,7 @@
                     android:pathData="M 10.5 16.8 C 9.006 16.8 7.8 18.006 7.8 19.5 C 7.8 20.679 6.756 21.3 6 21.3 C 6.828 22.398 8.241 23.1 9.6 23.1 C 11.589 23.1 13.2 21.489 13.2 19.5 C 13.2 18.006 11.994 16.8 10.5 16.8 Z M 22.839 8.367 L 21.633 7.161 C 21.282 6.81 20.715 6.81 20.364 7.161 L 12.3 15.225 L 14.775 17.7 L 22.839 9.636 C 23.19 9.285 23.19 8.718 22.839 8.367 Z"
                     android:fillColor="@color/colorWhite"
                     android:strokeWidth="1.111111111"/>
+
                 <clip-path
                     android:name="mask"
                     android:pathData="M 4.206 20.867 C 5.677 22.945 6.727 22.594 5.39 22.998 C 1.118 22.963 5.707 23.086 1.09 22.925 C 1.119 19.949 0.987 4.283 0.984 1.01 C 12.043 1.08 18.809 0.913 23.005 1.048 C 23.005 2.455 22.964 2.4 22.978 3.998 C 9.862 16.042 23.004 3.931 9.931 16 C 5.617 16.138 8.826 20.955 4.206 20.867 Z"/>

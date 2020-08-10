@@ -26,6 +26,7 @@ public class ExcursInTutorial {
 
     public ExcursInTutorial(TargetView target){
         targetView = target;
+
     }
 
     public ExcursInTutorial ongoing(boolean o){
