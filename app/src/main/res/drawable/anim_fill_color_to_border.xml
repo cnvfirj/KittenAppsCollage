@@ -8,6 +8,11 @@
             android:height="24dp"
             android:viewportWidth="24"
             android:viewportHeight="24">
+            <path
+                android:pathData="M18.006,23.002L21.998,21.998L23.001,17.979L23.001,23.003Z"
+                android:strokeWidth="0.1"
+                android:fillColor="@color/colorWhite"
+                android:strokeColor="@color/colorWhite"/>
             <clip-path
                 android:name="mask"
                 android:pathData="M 5.522 14.895 C 5.522 11.916 7.633 9.212 12.329 2.736 C 17.616 9.383 19.307 10.894 19.307 14.895 C 19.307 18.896 16.221 22.14 12.414 22.14 C 8.608 22.14 5.522 18.896 5.522 14.895 Z"/>

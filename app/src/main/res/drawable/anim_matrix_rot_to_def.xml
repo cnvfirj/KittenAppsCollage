@@ -9,6 +9,11 @@
             android:viewportWidth="24"
             android:viewportHeight="24">
             <path
+                android:pathData="M18.006,23.002L21.998,21.998L23.001,17.979L23.001,23.003Z"
+                android:strokeWidth="0.1"
+                android:fillColor="@color/colorWhite"
+                android:strokeColor="@color/colorWhite"/>
+            <path
                 android:name="img"
                 android:pathData="M 16.9 7.1 L 16.9 16.9 L 7.1 16.9 L 7.1 7.1 L 16.9 7.1 M 16.9 5.7 L 7.1 5.7 C 6.33 5.7 5.7 6.33 5.7 7.1 L 5.7 16.9 C 5.7 17.67 6.33 18.3 7.1 18.3 L 16.9 18.3 C 17.67 18.3 18.3 17.67 18.3 16.9 L 18.3 7.1 C 18.3 6.33 17.67 5.7 16.9 5.7 Z M 13.498 11.902 L 11.398 14.611 L 9.9 12.798 L 7.8 15.5 L 16.2 15.5 L 13.498 11.902 Z"
                 android:fillColor="@color/colorWhite"

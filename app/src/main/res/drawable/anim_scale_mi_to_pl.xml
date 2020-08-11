@@ -8,6 +8,11 @@
             android:height="24dp"
             android:viewportWidth="24"
             android:viewportHeight="24">
+            <path
+                android:pathData="M18.006,23.002L21.998,21.998L23.001,17.979L23.001,23.003Z"
+                android:strokeWidth="0.1"
+                android:fillColor="@color/colorWhite"
+                android:strokeColor="@color/colorWhite"/>
             <group
                 android:name="group_common"
                 android:pivotX="12"
@@ -22,7 +27,7 @@
                 <path
                     android:name="path"
                     android:pathData="M 5.765 13.588 L 5.765 10.53 L 10.531 10.464 L 10.574 10.468 L 13.596 10.499 L 13.599 10.495 L 18.235 10.53 L 18.235 13.588 L 13.409 13.6 L 13.412 13.593 L 10.596 13.644 L 10.588 13.647 Z"
-                    android:fillColor="#FFFCFC"/>
+                    android:fillColor="@color/colorWhite"/>
             </group>
         </vector>
     </aapt:attr>
