@@ -23,6 +23,7 @@ import com.example.dynamikseekbar.DynamicSeekBar;
 import com.kittendevelop.kittenappscollage.R;
 import com.kittendevelop.kittenappscollage.draw.fragment.ApplyDrawToolsFragmentDraw;
 import com.kittendevelop.kittenappscollage.draw.repozitoryDraw.RepDraw;
+import com.kittendevelop.kittenappscollage.helpers.App;
 import com.kittendevelop.kittenappscollage.helpers.rx.ThreadTransformers;
 import com.kittendevelop.kittenappscollage.helpers.Massages;
 
@@ -118,7 +119,14 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
         super.searchFonts(view);
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("application/octet-stream");
+        if(App.checkVersion())intent.setType("application/octet-stream");
+        else intent.setType("font/ttf");
+//        {
+
+//            intent.setType("font/otf");
+//        intent.setType("*/*");
+
+//        }
         startActivityForResult(intent, REQUEST_ADD_FONT);
     }
 
