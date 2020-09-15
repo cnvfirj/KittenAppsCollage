@@ -15,6 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.documentfile.provider.DocumentFile;
 
 import com.kittendevelop.kittenappscollage.R;
+import com.kittendevelop.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
 import com.kittendevelop.kittenappscollage.helpers.Massages;
 import com.kittendevelop.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 import com.kittendevelop.kittenappscollage.helpers.rx.ThreadTransformers;
@@ -57,6 +58,12 @@ public abstract class FragmentGalleryAddFolder extends FragmentGalleryReviewImag
 
     }
 
+    @Override
+    public void setSavingInStorageCollage(Uri uri, String report, String delimiter, long date) {
+        super.setSavingInStorageCollage(uri, report, delimiter, date);
+        startScan(Uri.parse(report.split(delimiter)[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD]));
+    }
+
     @SuppressLint("CheckResult")
     private void startScan(Uri uri){
         getAddFolders().setEnabled(false);
@@ -96,8 +103,8 @@ public abstract class FragmentGalleryAddFolder extends FragmentGalleryReviewImag
 
 
     private void scanFold(Uri uri, ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
-        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
-        getContext().getContentResolver().takePersistableUriPermission(uri, takeFlags);
+//        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
+//        getContext().getContentResolver().takePersistableUriPermission(uri, takeFlags);
         DocumentFile folder = DocumentFile.fromTreeUri(getContext(),uri);
 
         steps(folder,emitter);

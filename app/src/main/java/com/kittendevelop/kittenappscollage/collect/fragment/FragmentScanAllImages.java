@@ -15,8 +15,10 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import com.kittendevelop.kittenappscollage.R;
 import com.kittendevelop.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
 import com.kittendevelop.kittenappscollage.helpers.App;
+import com.kittendevelop.kittenappscollage.helpers.Massages;
 import com.kittendevelop.kittenappscollage.helpers.dbPerms.Permis;
 import com.kittendevelop.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 import com.kittendevelop.kittenappscollage.helpers.rx.ThreadTransformers;
@@ -155,36 +157,34 @@ public class FragmentScanAllImages extends Fragment {
 
     /*android 9 storage system*/
     public void setSavingInStorageCollage(Uri uri, String report, String delimiter,long date){
-        String[]split = report.split(delimiter);
+//        String[]split = report.split(delimiter);
+
         /*здесь выясняем айди папки и потом закидываем его в бд*/
-        String nameImg = split[SavedKollagesFragmentDraw.INDEX_NAME_IMG];
-        String key = split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD];
-        Cursor c = null;
-        try {
-            c = getContext().getContentResolver().query(
-                    question(),
-                    new String[]{MediaStore.Images.Media.BUCKET_ID, MediaStore.Images.Media._ID},
-                    MediaStore.Images.Media.DISPLAY_NAME + " = ?",
-                    new String[]{nameImg},
-                    null);
-
-            c.moveToFirst();
-            WorkDBPerms.get(getContext()).addId(key, c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID)));
-            final String img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media._ID))).toString();
-            addImgCollect(
-                    split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
-                    img,
-                    split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD],
-                    split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
-                    date);
-            setListImagesInFolders(getListImagesInFolders());
-        }finally {
-            if(c!=null)c.close();
-        }
+//        String nameImg = split[SavedKollagesFragmentDraw.INDEX_NAME_IMG];
+//        String key = split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD];
+//        Cursor c = null;
+//        try {
+//            c = getContext().getContentResolver().query(
+//                    question(),
+//                    new String[]{MediaStore.Images.Media.BUCKET_ID, MediaStore.Images.Media._ID},
+//                    MediaStore.Images.Media.DISPLAY_NAME + " = ?",
+//                    new String[]{nameImg},
+//                    null);
+//
+//            c.moveToFirst();
+//            WorkDBPerms.get(getContext()).addId(key, c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID)));
+//            final String img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media._ID))).toString();
+//            addImgCollect(
+//                    split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+//                    img,
+//                    split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD],
+//                    split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+//                    date);
+//            setListImagesInFolders(getListImagesInFolders());
+//        }finally {
+//            if(c!=null)c.close();
+//        }
     }
-
-
-
     protected Uri question(){
         Uri uri = null;
         if(App.checkVersion())uri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
