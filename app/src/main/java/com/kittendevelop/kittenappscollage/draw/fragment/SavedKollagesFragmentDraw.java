@@ -32,6 +32,8 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.functions.Consumer;
 
+import static com.example.mutmatrix.Massages.MASSAGE;
+
 
 public abstract class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
 
@@ -220,10 +222,12 @@ public abstract class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
     }
 
     private String getRealPath(String lastSegment) {
+
         String[]split = lastSegment.split("[:]");
         String[]sub = lastSegment.split(split[0]+":");
         String[]storage = getContext().getExternalFilesDir(null).getAbsolutePath().split("[/]");
-        String p = "/"+storage[1]+"/"+split[0]+"/"+sub[1];
+        String p = "/"+storage[1]+"/"+split[0]+"/"+lastSegment+":";
+        if(App.checkVersion())p = "/"+storage[1]+"/"+split[0]+"/"+sub[1];
         if(p.startsWith("/storage/primary/")){
             String[]correct = p.split("/storage/primary/");
             return "/storage/emulated/0/"+correct[1];
@@ -271,20 +275,6 @@ public abstract class SavedKollagesFragmentDraw extends AddLyrsFragmentDraw {
             } catch (ActivityNotFoundException anfe) { }
         }
     }
-
-//    private boolean save(File file, Bitmap bitmap){
-//
-//        OutputStream os = null;
-//        try {
-//            os = new FileOutputStream(file);
-//            bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
-//            os.flush();
-//            os.close();
-//        } catch (IOException e) {
-//
-//        }
-//        return file.exists();
-//    }
 
     public interface ActionSave{
         public void request(boolean block);
