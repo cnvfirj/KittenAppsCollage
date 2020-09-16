@@ -1,9 +1,12 @@
 package com.kittendevelop.kittenappscollage.collect.fragment;
 
+import android.content.ContentUris;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +23,9 @@ import com.kittendevelop.kittenappscollage.collect.ExLayoutManager;
 import com.kittendevelop.kittenappscollage.collect.adapters.ListenAdapter;
 import com.kittendevelop.kittenappscollage.collect.adapters.LoadImgAdapt;
 import com.kittendevelop.kittenappscollage.collect.adapters.LockFoldAdapter;
+import com.kittendevelop.kittenappscollage.draw.fragment.SavedKollagesFragmentDraw;
 import com.kittendevelop.kittenappscollage.helpers.AllPermissions;
+import com.kittendevelop.kittenappscollage.helpers.dbPerms.WorkDBPerms;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -145,10 +150,35 @@ public class FragmentGallery extends FragmentScanAllImages implements ListenAdap
     }
 
 
-    @Override
-    public void setSavingInStorageCollage(Uri uri, String report, String delimiter,long date) {
-        super.setSavingInStorageCollage(uri, report, delimiter,date);
-    }
+//    @Override
+//    public void setSavingInStorageCollage(Uri uri, String report, String delimiter,long date) {
+//        super.setSavingInStorageCollage(uri, report, delimiter,date);
+//        String[]split = report.split(delimiter);//        /*здесь выясняем айди папки и потом закидываем его в бд*/
+//    String nameImg = split[SavedKollagesFragmentDraw.INDEX_NAME_IMG];
+//    String key = split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD];
+//    Cursor c = null;
+//        try {
+//        c = getContext().getContentResolver().query(
+//                question(),
+//                new String[]{MediaStore.Images.Media.BUCKET_ID, MediaStore.Images.Media._ID},
+//                MediaStore.Images.Media.DISPLAY_NAME + " = ?",
+//                new String[]{nameImg},
+//                null);
+//
+//        c.moveToFirst();
+//        WorkDBPerms.get(getContext()).addId(key, c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID)));
+//        final String img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media._ID))).toString();
+//        addImgCollect(
+//                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+//                img,
+//                split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD],
+//                split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+//                date);
+//        setListImagesInFolders(getListImagesInFolders());
+//    }finally {
+//        if(c!=null)c.close();
+//    }
+//    }
 
     @Override
     public void createHolder(int adapter, View holder, int pos) {

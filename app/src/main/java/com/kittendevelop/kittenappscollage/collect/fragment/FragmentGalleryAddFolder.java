@@ -28,6 +28,8 @@ import java.util.Locale;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 
 public abstract class FragmentGalleryAddFolder extends FragmentGalleryReviewImages {
 
@@ -52,20 +54,21 @@ public abstract class FragmentGalleryAddFolder extends FragmentGalleryReviewImag
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(requestCode==49){
             if(resultCode== Activity.RESULT_OK){
-                startScan(data.getData());
+                startScan(data.getData(),49);
             }
         }else super.onActivityResult(requestCode, resultCode, data);
 
     }
 
-    @Override
+//    @Override
     public void setSavingInStorageCollage(Uri uri, String report, String delimiter, long date) {
-        super.setSavingInStorageCollage(uri, report, delimiter, date);
-        startScan(Uri.parse(report.split(delimiter)[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD]));
+//        super.setSavingInStorageCollage(uri, report, delimiter, date);
+//        startScan(Uri.parse(report.split(delimiter)[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD]),499);
+        reportSave(report,delimiter,date);
     }
 
     @SuppressLint("CheckResult")
-    private void startScan(Uri uri){
+    private void startScan(Uri uri,int request){
         getAddFolders().setEnabled(false);
         final int[] iterator = new int[]{0};
         addingFold = "name";
@@ -75,32 +78,99 @@ public abstract class FragmentGalleryAddFolder extends FragmentGalleryReviewImag
         }).compose(new ThreadTransformers.InputOutput<>())
                 .doOnComplete(() -> {
                     getAddFolders().setEnabled(true);
-                    if(iterator[0]==0) Massages.SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.IS_SELECTED_FOLDER_IMAGES_NOT));
+                    if(iterator[0]==0&&request==49) Massages.SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.IS_SELECTED_FOLDER_IMAGES_NOT));
                 })
                 .subscribe(stringArrayListHashMap -> {
                     iterator[0]++;
                     setListImagesInFolders(stringArrayListHashMap);
-                    Massages.SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.IN_GALLERY_ADD_FOLDER)+addingFold);
+                    Massages.SHOW_MASSAGE(getContext(),getContext().getResources().getString(R.string.IN_GALLERY_ADD_FOLDER)+" "+addingFold);
                 });
     }
 
-    private void changeLocale(Locale locale) {
-//        this.locale = locale.getCountry();
-        String l = getContext().getResources().getConfiguration().locale.getCountry();
-        if(l.equals("EN"))changeLocale(new Locale("RU"));
-        else changeLocale(new Locale("EN"));
-
-
-        Locale.setDefault(locale);
-        Configuration configuration = new Configuration();
-        configuration.setLocale(locale);
-        getContext().getResources()
-                .updateConfiguration(configuration,
-                        getContext()
-                                .getResources()
-                                .getDisplayMetrics());
+    @SuppressLint("CheckResult")
+    private void reportSave(String report, String delimiter,long date){
+        final int[] iterator = new int[]{0};
+        addingFold = "name";
+        Observable.create(new ObservableOnSubscribe<HashMap<String, ArrayList<String>>>() {
+            @Override
+            public void subscribe(ObservableEmitter<HashMap<String, ArrayList<String>>> emitter) throws Exception {
+                scanFold(report,delimiter,date,emitter);
+                emitter.onComplete();
+            }
+        }).compose(new ThreadTransformers.InputOutput<>())
+                .doOnComplete(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        if(iterator[0]==0){
+                            startScan(Uri.parse(report.split(delimiter)[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD]),499);
+                        }else {
+                            setListImagesInFolders(getListImagesInFolders());
+                        }
+                    }
+                })
+        .subscribe(new Consumer<HashMap<String, ArrayList<String>>>() {
+            @Override
+            public void accept(HashMap<String, ArrayList<String>> stringArrayListHashMap) throws Exception {
+                iterator[0]++;
+            }
+        });
     }
 
+//    private void changeLocale(Locale locale) {
+////        this.locale = locale.getCountry();
+//        String l = getContext().getResources().getConfiguration().locale.getCountry();
+//        if(l.equals("EN"))changeLocale(new Locale("RU"));
+//        else changeLocale(new Locale("EN"));
+//
+//
+//        Locale.setDefault(locale);
+//        Configuration configuration = new Configuration();
+//        configuration.setLocale(locale);
+//        getContext().getResources()
+//                .updateConfiguration(configuration,
+//                        getContext()
+//                                .getResources()
+//                                .getDisplayMetrics());
+//    }
+
+
+    private void scanFold(String report, String delimiter, long date,ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
+        String[]split = report.split(delimiter);
+        if(!getListImagesInFolders().containsKey(split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD])){
+            emitter.onComplete();
+        }else {
+           addImage(report,delimiter,date);
+           emitter.onNext(getListImagesInFolders());
+        }
+    }
+
+    private void addImage(String report, String delimiter,long date){
+        String[]split = report.split(delimiter);//        /*здесь выясняем айди папки и потом закидываем его в бд*/
+        String nameImg = split[SavedKollagesFragmentDraw.INDEX_NAME_IMG];
+        String key = split[SavedKollagesFragmentDraw.INDEX_URI_PERM_FOLD];
+        Cursor c = null;
+        try {
+            c = getContext().getContentResolver().query(
+                    question(),
+                    new String[]{MediaStore.Images.Media.BUCKET_ID, MediaStore.Images.Media._ID},
+                    MediaStore.Images.Media.DISPLAY_NAME + " = ?",
+                    new String[]{nameImg},
+                    null);
+
+            c.moveToFirst();
+            WorkDBPerms.get(getContext()).addId(key, c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID)));
+            final String img = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, c.getLong(c.getColumnIndexOrThrow(MediaStore.Images.Media._ID))).toString();
+            addImgCollect(
+                    split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+                    img,
+                    split[SavedKollagesFragmentDraw.INDEX_NAME_FOLD],
+                    split[SavedKollagesFragmentDraw.INDEX_URI_DF_FOLD],
+                    date);
+//            setListImagesInFolders(getListImagesInFolders());
+        }finally {
+            if(c!=null)c.close();
+        }
+    }
 
     private void scanFold(Uri uri, ObservableEmitter<HashMap<String, ArrayList<String>>> emitter){
 //        int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION;
