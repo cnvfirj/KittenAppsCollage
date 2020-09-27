@@ -40,4 +40,8 @@
     <string name="language">Language</string>
     <string name="color_theme">Color theme</string>
     <string name="restart_window">restart the window</string>
+
+
+
+<!--    <string name="FONT_IS_ALREADY_THERE" translatable="false">This font is already there</string>-->
 </resources>

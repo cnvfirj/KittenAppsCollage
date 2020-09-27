@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -214,6 +215,8 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
                     if(list.size()>0){
                         ((AdapterShrift)getListShrift().getAdapter()).setFonts(list);
                         Toast.makeText(getContext(), getContext().getResources().getString(R.string.FONT_ADD_FIND_IN_LIST),Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(getContext(),getContext().getResources().getText(R.string.NOT_ADD_FONT_IF_NAME_CLONE),Toast.LENGTH_SHORT).show();
                     }
 
                 });
@@ -260,7 +263,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
                 }
                 ArrayList<String> adapt = ((AdapterShrift) getListShrift().getAdapter()).getFonts();
                 boolean contain = false;
-                for (int i = fonts.size() - 1; i >= 0; i++) {
+                for (int i = fonts.size() - 1; i >= 0; i--) {
                     if (!adapt.contains(fonts.get(i))) {
                         contain = true;
                         break;
@@ -269,7 +272,7 @@ public class DialogSelectShrift extends DialogSelecledTextFragment {
                 if (contain) return fonts;
             }
         }
-        return new ArrayList<String>();
+        return new ArrayList<String>(0);
     }
 
     private void handlingAddFont(DocumentFile font,ObservableEmitter<Boolean> emitter){
