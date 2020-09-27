@@ -4,8 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Intent;
-//import android.database.Cursor;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -23,7 +21,6 @@ import com.kittendevelop.kittenappscollage.menu.DialogMainMenu;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
